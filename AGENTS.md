@@ -12,6 +12,18 @@ Primitive --grammar--> Mechanic --orchestration--> Gameplay Pattern --instantiat
 
 Treat the model as a research hypothesis, not a settled fact.
 
+## Current Phase
+
+The project is in Phase 1, open research. Prioritize inquiry over manuscript production unless the user explicitly asks for finished prose.
+
+- Discussions, reading notes, competing hypotheses, counterexamples, and partial models are valid outputs.
+- Do not force exploratory material into chapters or polish away meaningful uncertainty.
+- Treat `book/OUTLINE.md` as a question map, not a sequential drafting queue.
+- Preserve the path from source or observation to hypothesis and later synthesis.
+- An early GitHub Pages site may publish a generated research edition for reading and navigation. Repository content remains the source of truth.
+- Do not let the early site's framework, visual design, or information architecture constrain the future book website. The final web edition will be deliberately redesigned when the manuscript stabilizes.
+- Consult `ROADMAP.md` before changing project phase or treating exploratory material as settled manuscript content.
+
 ## Language And Style
 
 - Write reader-facing material primarily in Simplified Chinese.
@@ -35,6 +47,7 @@ Treat the model as a research hypothesis, not a settled fact.
 - `theory/`: definitions, ontology, grammar, notation, and formal models.
 - `catalog/`: structured primitive, mechanic, gameplay-pattern, and game analyses.
 - `research/`: sources, literature notes, evidence, and unresolved questions.
+- `ROADMAP.md`: phase convention, transition signals, and website strategy.
 - `.codex/`: repository-specific Codex workflow configuration.
 
 When scope or structure changes, update `README.md` or the relevant book/research document in the same change.
