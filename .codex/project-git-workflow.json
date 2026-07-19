@@ -1,0 +1,17 @@
+{
+  "schemaVersion": 1,
+  "initializedMarker": "codex-project-git-workflow: initialized",
+  "initializedAt": "2026-07-20 03:30:40 +08:00",
+  "projectName": "游戏原语 / Game Primitives",
+  "repoRoot": "D:\\Articles\\Game Primitives",
+  "safeDirectory": "D:/Articles/Game Primitives",
+  "statusCommand": "git status --short --branch",
+  "validationCommands": [
+    "git diff --check"
+  ],
+  "stagingPolicy": "selected files only",
+  "commitCommand": "",
+  "pushCommand": "git push -u origin HEAD",
+  "docsRequirement": "Update README or the relevant manuscript and research documents when project scope or structure changes.",
+  "forbiddenCommands": "Use main; never force-push; preserve research history and unrelated work."
+}
