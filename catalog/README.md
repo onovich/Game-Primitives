@@ -4,7 +4,7 @@
 
 ## 记录格式
 
-完整游戏与跨层案例采用[案例研究包模板 v0.1](CASE-PACKET-TEMPLATE.md)。模板同时支持速查、标准和深度三档：范围与规则事实始终必填，编排和玩家层按研究深度展开，完整证据账本、反例与设计变体只在深度案例中强制要求。
+完整游戏与跨层案例采用[案例研究包模板 v0.2](CASE-PACKET-TEMPLATE.md)。模板同时支持速查、标准和深度三档，并区分可追溯的教学最小视图与研究充分视图：范围与规则事实始终必填，编排和玩家层按研究深度展开，完整证据账本、反例与设计变体只在深度案例中强制要求。
 
 单独的原语候选、机制条目或玩法模板条目可以使用较短的专用格式，但必须至少说明：
 
@@ -18,6 +18,6 @@
 
 ## 第一轮校准案例
 
-- [国际象棋：FIDE 桌面标准棋](cases/chess-fide-standard.md)（深度；待校准门 A）
-- [《俄罗斯方块》：Game Boy A-Type](cases/tetris-game-boy-a-type.md)（深度；待校准门 A）
-- 两案的对照结论见[校准门 A 报告](../research/calibration-gates/gate-a-chess-tetris.md)。
+- [国际象棋：FIDE 桌面标准棋](cases/chess-fide-standard.md)（深度；校准门 A 已通过）
+- [《俄罗斯方块》：Game Boy A-Type](cases/tetris-game-boy-a-type.md)（深度；校准门 A 已通过）
+- 两案的已接受对照结论见[校准门 A 报告](../research/calibration-gates/gate-a-chess-tetris.md)。
