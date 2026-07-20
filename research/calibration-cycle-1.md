@@ -34,7 +34,7 @@
 
 1. 建立[案例研究包模板 v0.2](../catalog/CASE-PACKET-TEMPLATE.md)。（v0.1 经校准门 A 修订为双视图与可选模块版本）
 2. 深度研究“国际象棋＋Game Boy《俄罗斯方块》A-Type”，随后进入[校准门 A](calibration-gates/gate-a-chess-tetris.md)，优先修订规则语法、实时／回合表达与案例字段。（已通过，D-A1–D-A5 已接受）
-3. 深度研究“无限注德州扑克＋《农场主》修订版”，随后进入校准门 B，优先修订信息、资源、编排与玩家活动模型。（当前执行）
+3. 按[校准门 B 事前研究协议](calibration-gates/gate-b-protocol.md)深度研究“无限注德州扑克＋《农场主》修订版”，随后进入校准门 B，优先修订信息、资源、编排与玩家活动模型。（当前执行）
 4. 依次研究四组标准对照：“数独＋花火”“Dominion＋Factorio”“星际争霸＋外交”“NetHack＋足球”。
 5. 持续汇总[失败清单](calibration-failure-log.md)，并在全部案例后完成跨案例比较、原语候选与模型修订，形成首轮校准版本。
 
