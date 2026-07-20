@@ -67,7 +67,9 @@ catalog/    原语、机制、玩法模板和游戏案例
 research/   文献、阅读笔记、证据与开放问题
 ```
 
-目前处于开放研究阶段。首版概念边界见 [`theory/FOUNDATIONS.md`](theory/FOUNDATIONS.md)，暂定书稿问题地图见 [`book/OUTLINE.md`](book/OUTLINE.md)。
+目前处于开放研究阶段。首版概念边界见 [`theory/FOUNDATIONS.md`](theory/FOUNDATIONS.md)，当前共享词汇见 [`CONTEXT.md`](CONTEXT.md)，暂定书稿问题地图见 [`book/OUTLINE.md`](book/OUTLINE.md)。
+
+当前正在执行[第一轮案例校准](research/calibration-cycle-1.md)：用 4 个深度案例与 8 个标准案例主动寻找模型失效，而不是继续脱离案例扩充术语。第一组[“国际象棋 × Game Boy《俄罗斯方块》”校准门 A](research/calibration-gates/gate-a-chess-tetris.md)已经形成待复核报告。
 
 ## 项目状态
 
