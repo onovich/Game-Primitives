@@ -1,8 +1,8 @@
 # 基础理论与文献地图：从游戏定义到可执行描述
 
-> 状态：Phase 1 开放研究稿  
-> 更新日期：2026-07-20  
-> 研究范围：游戏定义、规则、ontology、ludeme、game grammar / game description language、mechanics / dynamics、gameplay design patterns、agency、emergence、feedback / economy、rules–play–culture、formal abstract design tools  
+> 状态：Phase 1 开放研究稿
+> 更新日期：2026-07-20
+> 研究范围：游戏定义、规则、ontology、ludeme、game grammar / game description language、mechanics / dynamics、gameplay design patterns、agency、emergence、feedback / economy、rules–play–culture、formal abstract design tools
 > 编辑约束：本文以“原语 → 机制 → 玩法模板 → 游戏”为既定的简洁编辑主干，只做文献定位、压力测试与后续研究规划，不提议在此改写主干。
 
 ## 1. 研究问题、证据标签与结论边界
