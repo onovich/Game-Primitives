@@ -32,9 +32,9 @@
 
 ## 执行顺序
 
-1. 建立[案例研究包模板 v0.2](../catalog/CASE-PACKET-TEMPLATE.md)。（v0.1 经校准门 A 修订为双视图与可选模块版本）
+1. 建立并持续校准[案例研究包模板 v0.3](../catalog/CASE-PACKET-TEMPLATE.md)。（v0.1 经门 A 升级为双视图 v0.2；v0.2 经门 B 增加来源语域、资源准入、观察后效、决策锁定、术语族与双证据状态）
 2. 深度研究“国际象棋＋Game Boy《俄罗斯方块》A-Type”，随后进入[校准门 A](calibration-gates/gate-a-chess-tetris.md)，优先修订规则语法、实时／回合表达与案例字段。（已通过，D-A1–D-A5 已接受）
-3. 按[校准门 B 事前研究协议](calibration-gates/gate-b-protocol.md)和[一手资料与版本冻结包](sources/calibration-b-primary-sources.md)深度研究“无限注德州扑克＋《农场主》修订版”，随后进入校准门 B，优先修订信息、资源、编排与玩家活动模型。（两份案例与观察审计已完成；[Gate B 报告](calibration-gates/gate-b-holdem-agricola.md)建议通过，等待作者复核 D-B1–D-B6）
+3. 按[校准门 B 事前研究协议](calibration-gates/gate-b-protocol.md)和[一手资料与版本冻结包](sources/calibration-b-primary-sources.md)深度研究“无限注德州扑克＋《农场主》修订版”，随后进入校准门 B，优先修订信息、资源、编排与玩家活动模型。（已完成；[Gate B 报告](calibration-gates/gate-b-holdem-agricola.md)结构校准通过，D-B1–D-B6 已接受，行为证据待补）
 4. 依次研究四组标准对照：“数独＋花火”“Dominion＋Factorio”“星际争霸＋外交”“NetHack＋足球”。
 5. 持续汇总[失败清单](calibration-failure-log.md)，并在全部案例后完成跨案例比较、原语候选与模型修订，形成首轮校准版本。
 
