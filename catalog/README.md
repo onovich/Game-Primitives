@@ -27,3 +27,6 @@
 - [数独：Nikoli 标准 9×9 规则](cases/sudoku-nikoli-standard-9x9.md)（标准；结构通过，具体题面与行为证据待补）
 - [《花火》：R&R Games 标准卡牌版四人五色基础局](cases/hanabi-rr-2013-four-player-five-color.md)（标准；结构通过，实体印次与行为证据待补）
 - 两案共用的版本边界、术语映射与信息对照见[一手来源冻结包](../research/sources/calibration-sudoku-hanabi-primary-sources.md)。
+- [《Dominion》：第二版二人 `First Game` 王国](cases/dominion-second-edition-first-game-two-player.md)（标准；结构通过，具体牌序与行为证据待补）
+- [《Factorio》：2.0.77 基础游戏自由模式](cases/factorio-2.0.77-base-freeplay.md)（标准；结构通过，运行制品、工厂实例、测量与行为证据待补）
+- 两案共用的版本、地图夹具、来源术语、资源／集合边界与反馈对照见[一手来源冻结包](../research/sources/calibration-dominion-factorio-primary-sources.md)。
