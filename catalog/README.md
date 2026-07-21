@@ -21,3 +21,6 @@
 - [国际象棋：FIDE 桌面标准棋](cases/chess-fide-standard.md)（深度；校准门 A 已通过）
 - [《俄罗斯方块》：Game Boy A-Type](cases/tetris-game-boy-a-type.md)（深度；校准门 A 已通过）
 - 两案的已接受对照结论见[校准门 A 报告](../research/calibration-gates/gate-a-chess-tetris.md)。
+- [无限注德州扑克：2026 WSOP Event #65](cases/holdem-wsop-2026-event-65.md)（深度；校准门 B 待作者复核）
+- [《农场主》：2016 英文修订版四人基础游戏](cases/agricola-revised-2016-four-player.md)（深度；校准门 B 待作者复核）
+- 两案的观察证据边界与拟议模型修订见[校准门 B 报告](../research/calibration-gates/gate-b-holdem-agricola.md)。

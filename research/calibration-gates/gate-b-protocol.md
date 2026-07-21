@@ -1,6 +1,6 @@
 # 校准门 B 事前研究协议：无限注德州扑克 ×《农场主》修订版
 
-- 状态：执行中；规则对象已由[一手资料与版本冻结包](../sources/calibration-b-primary-sources.md)锁定，案例分析待完成
+- 状态：协议执行完成；两份案例与观察审计已回收，[Gate B 报告](gate-b-holdem-agricola.md)等待作者复核
 - 建立日期：2026-07-21
 - 所属阶段：阶段一·开放研究，第一轮案例校准
 - 使用模型：校准门 A 后共享词汇与[案例研究包模板 v0.2](../../catalog/CASE-PACKET-TEMPLATE.md)

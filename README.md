@@ -69,7 +69,7 @@ research/   文献、阅读笔记、证据与开放问题
 
 目前处于开放研究阶段。首版概念边界见 [`theory/FOUNDATIONS.md`](theory/FOUNDATIONS.md)，当前共享词汇见 [`CONTEXT.md`](CONTEXT.md)，暂定书稿问题地图见 [`book/OUTLINE.md`](book/OUTLINE.md)。
 
-当前正在执行[第一轮案例校准](research/calibration-cycle-1.md)：用 4 个深度案例与 8 个标准案例主动寻找模型失效，而不是继续脱离案例扩充术语。第一组[“国际象棋 × Game Boy《俄罗斯方块》”校准门 A](research/calibration-gates/gate-a-chess-tetris.md)已经通过，当前进入“无限注德州扑克 ×《农场主》修订版”的校准门 B 研究。
+当前正在执行[第一轮案例校准](research/calibration-cycle-1.md)：用 4 个深度案例与 8 个标准案例主动寻找模型失效，而不是继续脱离案例扩充术语。第一组[“国际象棋 × Game Boy《俄罗斯方块》”校准门 A](research/calibration-gates/gate-a-chess-tetris.md)已经通过；第二组[“无限注德州扑克 ×《农场主》修订版”校准门 B](research/calibration-gates/gate-b-holdem-agricola.md)已完成案例与证据审计，正在等待 D-B1–D-B6 的作者复核。
 
 ## 项目状态
 
