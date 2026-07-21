@@ -33,3 +33,8 @@
 - [《星际争霸：母巢之战》：1.23.10.13515 `(2) Eldritch Lake` 二人 `Melee`](cases/starcraft-brood-war-1.23.10-eldritch-lake-1v1.md)（标准；结构通过，客户端二进制、实机轨迹与行为证据待补）
 - [《外交》：Hasbro 第四版七人标准局](cases/diplomacy-fourth-edition-seven-player-standard.md)（标准；结构通过，实体地图、具体命令批次与行为证据待补）
 - 两案共用的清单／规则制品、命令生命周期、同时性、信息隐藏和容量结构对照见[一手来源冻结包](../research/sources/calibration-starcraft-diplomacy-primary-sources.md)。
+- [《NetHack》：5.0.0 Windows x64 rev4 TTY 普通模式配置族](cases/nethack-5.0.0-windows-x64-tty-normal.md)（标准；结构通过，实际游玩、随机实例、bones 与行为证据待补）
+- [十一人制足球：IFAB 2026/27 成年标准配置](cases/football-ifab-2026-27-eleven-a-side-standard.md)（标准；结构通过，实体比赛、裁判轨迹、测量与行为证据待补）
+- 两案共用的版本分叉、运行／竞赛夹具、程序生成、运行生命周期、连续物理、裁判权、时间与测量对照见[一手来源冻结包](../research/sources/calibration-nethack-football-primary-sources.md)。
+
+至此第一轮 4 个深度案例与 8 个标准案例均已建档。结构校准完成不代表具体运行／比赛已经复现，也不代表玩家活动与体验获得证据；下一步是跨十二案总汇报和共享模型修订。

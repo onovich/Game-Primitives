@@ -1,6 +1,6 @@
 # 第一轮案例校准
 
-- 状态：执行中
+- 状态：执行中；十二个案例包已完成，首轮跨案例汇总与模型修订待做
 - 日期：2026-07-21
 - 项目阶段：阶段一·开放研究
 - 性质：模型压力测试，不是书稿章节或最终类型覆盖清单
@@ -21,10 +21,10 @@
 | 标准 | [《Dominion》第二版二人 `First Game` 王国](../catalog/cases/dominion-second-edition-first-game-two-player.md) | 集合结构、抽取、购买、洗牌、局内构筑与反馈 |
 | 标准 | [《星际争霸：母巢之战》1.23.10.13515 `(2) Eldritch Lake` 二人 `Melee`](../catalog/cases/starcraft-brood-war-1.23.10-eldritch-lake-1v1.md) | 同时行动、战争迷雾、多单位控制、生产、空间控制与操作负荷 |
 | 标准 | [《Factorio》2.0.77 基础游戏自由模式](../catalog/cases/factorio-2.0.77-base-freeplay.md)；仅 `core+base`，固定设置与种子 | 资源流、物流、转换、自动过程、吞吐与涌现优化 |
-| 标准 | 《NetHack》标准单局；建档时锁定稳定版本与非调试配置 | 程序生成、永久死亡、规则例外、知识进展与传统 Roguelike |
+| 标准 | [《NetHack》5.0.0 Windows x64 rev4 TTY 普通模式配置族](../catalog/cases/nethack-5.0.0-windows-x64-tty-normal.md) | 程序生成、永久死亡、规则例外、知识进展与传统 Roguelike |
 | 标准 | [《花火》；R&R 标准卡牌版四人五色基础配置](../catalog/cases/hanabi-rr-2013-four-player-five-color.md) | 反向可见手牌、受限沟通、共享目标、信息行动容量与合作推理 |
 | 标准 | [《外交》Hasbro 第四版七人标准局](../catalog/cases/diplomacy-fourth-edition-seven-player-standard.md) | 秘密同时提交、命令结算、协商、承诺、背叛与战略惯例 |
-| 标准 | 十一人制足球；建档时采用明确版本的 IFAB 规则 | 身体执行、连续空间、物理材料、团队控制、裁判裁定与规则执行 |
+| 标准 | [IFAB 2026/27 成年十一人制足球标准配置](../catalog/cases/football-ifab-2026-27-eleven-a-side-standard.md) | 身体执行、连续空间、物理材料、团队控制、裁判裁定与规则执行 |
 
 ## 版本门槛
 
@@ -35,8 +35,8 @@
 1. 建立并持续校准[案例研究包模板 v0.3](../catalog/CASE-PACKET-TEMPLATE.md)。（v0.1 经门 A 升级为双视图 v0.2；v0.2 经门 B 增加来源语域、资源准入、观察后效、决策锁定、术语族与双证据状态）
 2. 深度研究“国际象棋＋Game Boy《俄罗斯方块》A-Type”，随后进入[校准门 A](calibration-gates/gate-a-chess-tetris.md)，优先修订规则语法、实时／回合表达与案例字段。（已通过，D-A1–D-A5 已接受）
 3. 按[校准门 B 事前研究协议](calibration-gates/gate-b-protocol.md)和[一手资料与版本冻结包](sources/calibration-b-primary-sources.md)深度研究“无限注德州扑克＋《农场主》修订版”，随后进入校准门 B，优先修订信息、资源、编排与玩家活动模型。（已完成；[Gate B 报告](calibration-gates/gate-b-holdem-agricola.md)结构校准通过，D-B1–D-B6 已接受，行为证据待补）
-4. 依次研究四组标准对照：“数独＋花火”“Dominion＋Factorio”“星际争霸＋外交”“NetHack＋足球”。（前三组的来源冻结、标准案例与累计失败记录已完成，结构均在声明范围内通过；第三组的版本与规则边界见[一手来源冻结包](sources/calibration-starcraft-diplomacy-primary-sources.md)。各组的具体题面／牌序／存档、软件运行、对局轨迹、测量与行为证据按案例声明继续待补；尚余“NetHack＋足球”）
-5. 持续汇总[失败清单](calibration-failure-log.md)，并在全部案例后完成跨案例比较、原语候选与模型修订，形成首轮校准版本。
+4. 依次研究四组标准对照：“数独＋花火”“Dominion＋Factorio”“星际争霸＋外交”“NetHack＋足球”。（四组的一手来源冻结、八份标准案例与累计失败记录均已完成，结构在各自声明范围内通过；最后一组的版本、竞赛配置与跨媒介边界见[NetHack × 足球一手来源冻结包](sources/calibration-nethack-football-primary-sources.md)。具体题面／牌序／存档、软件游玩、实体比赛、对局轨迹、测量与行为证据按案例声明继续待补。）
+5. 持续汇总[失败清单](calibration-failure-log.md)，并在全部案例后完成跨案例比较、原语候选与模型修订，形成首轮校准版本。（案例采样完成；首轮总汇报与修订待执行。）
 
 ### 校准门问题
 
