@@ -21,6 +21,9 @@
 - [国际象棋：FIDE 桌面标准棋](cases/chess-fide-standard.md)（深度；校准门 A 已通过）
 - [《俄罗斯方块》：Game Boy A-Type](cases/tetris-game-boy-a-type.md)（深度；校准门 A 已通过）
 - 两案的已接受对照结论见[校准门 A 报告](../research/calibration-gates/gate-a-chess-tetris.md)。
-- [无限注德州扑克：2026 WSOP Event #65](cases/holdem-wsop-2026-event-65.md)（深度；校准门 B 待作者复核）
-- [《农场主》：2016 英文修订版四人基础游戏](cases/agricola-revised-2016-four-player.md)（深度；校准门 B 待作者复核）
-- 两案的观察证据边界与拟议模型修订见[校准门 B 报告](../research/calibration-gates/gate-b-holdem-agricola.md)。
+- [无限注德州扑克：2026 WSOP Event #65](cases/holdem-wsop-2026-event-65.md)（深度；校准门 B 结构通过）
+- [《农场主》：2016 英文修订版四人基础游戏](cases/agricola-revised-2016-four-player.md)（深度；校准门 B 结构通过）
+- 两案的观察证据边界与已接受修订见[校准门 B 报告](../research/calibration-gates/gate-b-holdem-agricola.md)。
+- [数独：Nikoli 标准 9×9 规则](cases/sudoku-nikoli-standard-9x9.md)（标准；结构通过，具体题面与行为证据待补）
+- [《花火》：R&R Games 标准卡牌版四人五色基础局](cases/hanabi-rr-2013-four-player-five-color.md)（标准；结构通过，实体印次与行为证据待补）
+- 两案共用的版本边界、术语映射与信息对照见[一手来源冻结包](../research/sources/calibration-sudoku-hanabi-primary-sources.md)。

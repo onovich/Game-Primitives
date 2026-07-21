@@ -252,6 +252,8 @@ open_questions: []
 | **R11 体育、竞速、节奏与具身控制**：身体执行、器材、连续物理和数字模型怎样对应？ | [IFAB Laws of the Game 2026/27](https://www.theifab.com/laws-of-the-game-documents/?language=en)：足球的场地、身体、裁判与团队关系提供非数字基线 | [Mario Kart 8 Deluxe](https://mariokart8.nintendo.com/)：数字竞速加入道具、角色/车辆参数与赛道反馈 | [iRacing Official Sporting Code](https://www.iracing.com/iracing-official-sporting-code/)：模拟、赛事程序、安全评分和线上裁判共同形成纵深 | [Beat Saber](https://beatsaber.com/)：VR 空间、节奏判断与真实身体动作使“输入”同时成为规则动作和身体表演 |
 | **R12 持续世界、直播运营与创作平台**：版本、赛季、经济、社群和用户内容何时改变“同一游戏”？ | [World of Warcraft](https://worldofwarcraft.blizzard.com/)：长期角色、团队副本与持续世界的熟悉入口 | [Fortnite](https://www.fortnite.com/)：赛季更新、多个模式和跨媒体活动改变单一 Battle Royale 标签的解释力 | [EVE Online](https://www.eveonline.com/)：长期经济、组织、领土和玩家政治把机制与社群制度深度耦合 | [Roblox](https://corp.roblox.com/)：更接近承载许多规则制品与创作者经济的平台，压力测试“一个标题 = 一个游戏”的假设 |
 
+**[校准进展·2026-07-21]** [Nikoli 标准 9×9 数独](../../catalog/cases/sudoku-nikoli-standard-9x9.md)与[R&R Games 四人五色《花火》](../../catalog/cases/hanabi-rr-2013-four-player-five-color.md)已经完成第一轮标准结构案例。数独承担 R5 锚点；《花火》作为 R5 的玩家推理问题与 R10 的受限沟通／共享目标之间的跨区域对照，不因同样常被称作“推理游戏”就自动进入同一玩法模板。
+
 ## 7. 四个指定垂直传统的首轮问题单
 
 ### 7.1 逻辑解谜
