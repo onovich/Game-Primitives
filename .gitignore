@@ -9,3 +9,6 @@ Desktop.ini
 *.swp
 *.tmp
 ~$*
+
+# Local research render/download cache
+/tmp/

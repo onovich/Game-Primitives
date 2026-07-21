@@ -254,6 +254,8 @@ open_questions: []
 
 **[校准进展·2026-07-21]** [Nikoli 标准 9×9 数独](../../catalog/cases/sudoku-nikoli-standard-9x9.md)与[R&R Games 四人五色《花火》](../../catalog/cases/hanabi-rr-2013-four-player-five-color.md)已经完成第一轮标准结构案例。数独承担 R5 锚点；《花火》作为 R5 的玩家推理问题与 R10 的受限沟通／共享目标之间的跨区域对照，不因同样常被称作“推理游戏”就自动进入同一玩法模板。
 
+**[校准进展·2026-07-21]** [《星际争霸：母巢之战》1.23.10.13515 二人 `Melee`](../../catalog/cases/starcraft-brood-war-1.23.10-eldritch-lake-1v1.md)与[Hasbro 第四版七人《外交》](../../catalog/cases/diplomacy-fourth-edition-seven-player-standard.md)已经完成第一轮标准结构案例，作为 R3 的内部对照并回连 R10。《星际争霸》校准共享实时时基、持续命令和动态当前世界访问；《外交》校准非约束沟通、秘密未来指令、同步公开与人类批量裁定。两案不能仅凭“同时行动”“战争”“命令”或 `supply/control` 的词面重合并入同一玩法模板；客户端运行、具体命令批次与玩家行为仍待取证。
+
 ## 7. 四个指定垂直传统的首轮问题单
 
 ### 7.1 逻辑解谜

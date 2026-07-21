@@ -30,3 +30,6 @@
 - [《Dominion》：第二版二人 `First Game` 王国](cases/dominion-second-edition-first-game-two-player.md)（标准；结构通过，具体牌序与行为证据待补）
 - [《Factorio》：2.0.77 基础游戏自由模式](cases/factorio-2.0.77-base-freeplay.md)（标准；结构通过，运行制品、工厂实例、测量与行为证据待补）
 - 两案共用的版本、地图夹具、来源术语、资源／集合边界与反馈对照见[一手来源冻结包](../research/sources/calibration-dominion-factorio-primary-sources.md)。
+- [《星际争霸：母巢之战》：1.23.10.13515 `(2) Eldritch Lake` 二人 `Melee`](cases/starcraft-brood-war-1.23.10-eldritch-lake-1v1.md)（标准；结构通过，客户端二进制、实机轨迹与行为证据待补）
+- [《外交》：Hasbro 第四版七人标准局](cases/diplomacy-fourth-edition-seven-player-standard.md)（标准；结构通过，实体地图、具体命令批次与行为证据待补）
+- 两案共用的清单／规则制品、命令生命周期、同时性、信息隐藏和容量结构对照见[一手来源冻结包](../research/sources/calibration-starcraft-diplomacy-primary-sources.md)。
