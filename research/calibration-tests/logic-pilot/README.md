@@ -1,6 +1,6 @@
 # 逻辑解谜先行组测试工作区
 
-- 状态：目录、JSON 约定、判定与执行方法已接受；`rehearsal-001` 已以 `procedure_pass` 完成，`logic-001` 正式包已冻结；尚未进入盲测收集
+- 状态：目录、JSON 约定、判定与执行方法已接受；`rehearsal-001` 已以 `procedure_pass` 完成，`logic-001` 正式包已冻结并获作者放行，正在收集盲测首次提交
 - 决定：[ADR 0106](../../../docs/adr/0106-use-versioned-json-run-artifacts-for-logic-pilot.md)
 - 方法：[第二轮案例校准协议](../../calibration-cycle-2-protocol.md)
 - 隔离：[ADR 0105](../../../docs/adr/0105-use-procedural-blinding-and-answer-commitments-for-logic-pilot.md)
