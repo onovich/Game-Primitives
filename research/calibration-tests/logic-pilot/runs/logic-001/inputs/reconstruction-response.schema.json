@@ -1,0 +1,198 @@
+{
+  "$defs": {
+    "composition": {
+      "additionalProperties": false,
+      "properties": {
+        "input_rule_ids": {
+          "items": {
+            "pattern": "^rule-[a-z0-9][a-z0-9-]*$",
+            "type": "string"
+          },
+          "minItems": 1,
+          "type": "array",
+          "uniqueItems": true
+        },
+        "relation": {
+          "enum": [
+            "sequence",
+            "parallel",
+            "nesting",
+            "gating",
+            "feedback",
+            "mutual_exclusion",
+            "conversion",
+            "coupling",
+            "other",
+            "indeterminate"
+          ]
+        },
+        "summary": {
+          "minLength": 1,
+          "type": "string"
+        }
+      },
+      "required": [
+        "input_rule_ids",
+        "relation",
+        "summary"
+      ],
+      "type": "object"
+    },
+    "reference": {
+      "additionalProperties": false,
+      "properties": {
+        "input_reference_ids": {
+          "items": {
+            "pattern": "^ref-[a-z0-9][a-z0-9-]*$",
+            "type": "string"
+          },
+          "minItems": 1,
+          "type": "array",
+          "uniqueItems": true
+        },
+        "role": {
+          "enum": [
+            "entity",
+            "state",
+            "relation",
+            "condition",
+            "action",
+            "process",
+            "rule",
+            "goal_evaluation",
+            "feedback_observation",
+            "context_scope",
+            "indeterminate"
+          ]
+        },
+        "summary": {
+          "minLength": 1,
+          "type": "string"
+        }
+      },
+      "required": [
+        "input_reference_ids",
+        "role",
+        "summary"
+      ],
+      "type": "object"
+    },
+    "rule": {
+      "additionalProperties": false,
+      "properties": {
+        "action_or_evaluation": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "conditions": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "effects_or_result": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "input_rule_ids": {
+          "items": {
+            "pattern": "^rule-[a-z0-9][a-z0-9-]*$",
+            "type": "string"
+          },
+          "minItems": 1,
+          "type": "array",
+          "uniqueItems": true
+        },
+        "scope_and_timing": {
+          "minLength": 1,
+          "type": "string"
+        }
+      },
+      "required": [
+        "action_or_evaluation",
+        "conditions",
+        "effects_or_result",
+        "input_rule_ids",
+        "scope_and_timing"
+      ],
+      "type": "object"
+    }
+  },
+  "$id": "https://github.com/onovich/Game-Primitives/blob/main/research/calibration-tests/logic-pilot/runs/logic-001/inputs/reconstruction-response.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "assumptions": {
+      "items": {
+        "type": "string"
+      },
+      "type": "array"
+    },
+    "composition": {
+      "items": {
+        "$ref": "#/$defs/composition"
+      },
+      "type": "array",
+      "uniqueItems": true
+    },
+    "confidence": {
+      "enum": [
+        "low",
+        "medium",
+        "high"
+      ]
+    },
+    "core_rules": {
+      "items": {
+        "$ref": "#/$defs/rule"
+      },
+      "minItems": 1,
+      "type": "array",
+      "uniqueItems": true
+    },
+    "indeterminate": {
+      "type": "boolean"
+    },
+    "key_references": {
+      "items": {
+        "$ref": "#/$defs/reference"
+      },
+      "minItems": 1,
+      "type": "array",
+      "uniqueItems": true
+    },
+    "limits": {
+      "items": {
+        "type": "string"
+      },
+      "type": "array"
+    },
+    "overall_summary": {
+      "minLength": 1,
+      "type": "string"
+    },
+    "structural_distinctions": {
+      "items": {
+        "type": "string"
+      },
+      "minItems": 1,
+      "type": "array",
+      "uniqueItems": true
+    }
+  },
+  "required": [
+    "assumptions",
+    "composition",
+    "confidence",
+    "core_rules",
+    "indeterminate",
+    "key_references",
+    "limits",
+    "overall_summary",
+    "structural_distinctions"
+  ],
+  "title": "Game Primitives Logic 001 Reconstruction Response",
+  "type": "object"
+}

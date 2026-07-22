@@ -1,0 +1,90 @@
+{
+  "$id": "https://github.com/onovich/Game-Primitives/blob/main/research/calibration-tests/logic-pilot/schema/logic-input.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "$schema": {
+      "type": "string"
+    },
+    "artifact_version": {
+      "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$",
+      "type": "string"
+    },
+    "glossary_path": {
+      "not": {
+        "pattern": "(^|/)\\.\\.(/|$)"
+      },
+      "pattern": "^instructions/[A-Za-z0-9._-]+(?:/[A-Za-z0-9._-]+)*\\.md$",
+      "type": "string"
+    },
+    "input_id": {
+      "pattern": "^input-[a-z0-9][a-z0-9-]*$",
+      "type": "string"
+    },
+    "instructions_path": {
+      "not": {
+        "pattern": "(^|/)\\.\\.(/|$)"
+      },
+      "pattern": "^instructions/[A-Za-z0-9._-]+(?:/[A-Za-z0-9._-]+)*\\.md$",
+      "type": "string"
+    },
+    "item_order_randomized": {
+      "const": true
+    },
+    "items": {
+      "items": {
+        "additionalProperties": false,
+        "properties": {
+          "item_id": {
+            "pattern": "^item-[a-z0-9]{8,16}$",
+            "type": "string"
+          },
+          "payload": {
+            "type": "object"
+          },
+          "payload_schema_id": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "task_kind": {
+            "enum": [
+              "reconstruction",
+              "annotation"
+            ]
+          }
+        },
+        "required": [
+          "item_id",
+          "payload",
+          "payload_schema_id",
+          "task_kind"
+        ],
+        "type": "object"
+      },
+      "minItems": 1,
+      "type": "array",
+      "uniqueItems": true
+    },
+    "protocol_version": {
+      "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$",
+      "type": "string"
+    },
+    "run_id": {
+      "pattern": "^logic-[0-9]{3}$",
+      "type": "string"
+    }
+  },
+  "required": [
+    "$schema",
+    "artifact_version",
+    "glossary_path",
+    "input_id",
+    "instructions_path",
+    "item_order_randomized",
+    "items",
+    "protocol_version",
+    "run_id"
+  ],
+  "title": "Game Primitives Logic Pilot Input Envelope",
+  "type": "object"
+}

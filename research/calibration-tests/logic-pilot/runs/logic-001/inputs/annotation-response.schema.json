@@ -1,0 +1,92 @@
+{
+  "$defs": {
+    "answer": {
+      "additionalProperties": false,
+      "properties": {
+        "answer": {
+          "enum": [
+            "yes",
+            "no",
+            "indeterminate"
+          ]
+        },
+        "question_id": {
+          "enum": [
+            "q1",
+            "q2"
+          ]
+        },
+        "rationale": {
+          "minLength": 1,
+          "type": "string"
+        }
+      },
+      "required": [
+        "answer",
+        "question_id",
+        "rationale"
+      ],
+      "type": "object"
+    }
+  },
+  "$id": "https://github.com/onovich/Game-Primitives/blob/main/research/calibration-tests/logic-pilot/runs/logic-001/inputs/annotation-response.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "answers": {
+      "allOf": [
+        {
+          "contains": {
+            "properties": {
+              "question_id": {
+                "const": "q1"
+              }
+            },
+            "required": [
+              "question_id"
+            ]
+          }
+        },
+        {
+          "contains": {
+            "properties": {
+              "question_id": {
+                "const": "q2"
+              }
+            },
+            "required": [
+              "question_id"
+            ]
+          }
+        }
+      ],
+      "items": {
+        "$ref": "#/$defs/answer"
+      },
+      "maxItems": 2,
+      "minItems": 2,
+      "type": "array",
+      "uniqueItems": true
+    },
+    "assumptions": {
+      "items": {
+        "type": "string"
+      },
+      "type": "array"
+    },
+    "confidence": {
+      "enum": [
+        "low",
+        "medium",
+        "high"
+      ]
+    }
+  },
+  "required": [
+    "answers",
+    "assumptions",
+    "confidence"
+  ],
+  "title": "Game Primitives Logic 001 Annotation Response",
+  "type": "object"
+}

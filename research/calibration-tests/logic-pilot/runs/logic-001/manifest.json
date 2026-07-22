@@ -2,10 +2,70 @@
   "$schema": "../../schema/run-manifest.schema.json",
   "artifacts": [
     {
+      "artifact_kind": "commitment",
+      "artifact_version": "0.1.0",
+      "path": "commitments/answer-commitment.json",
+      "sha256": "d9a1e3d0b4810a132657f6e205cb7d9802f49e057c246bddfeda961483b09f42"
+    },
+    {
       "artifact_kind": "input",
       "artifact_version": "0.1.0",
-      "path": "inputs/source-packet.json",
-      "sha256": "b1152e06450e41867715ac9009d3399a233be858d1df8f88fc7a780470fb8277"
+      "path": "inputs/annotation-input.json",
+      "sha256": "4c74dec698c8e60e0db278ad5f9b708110fc5bde5352635d658d8894573d14ce"
+    },
+    {
+      "artifact_kind": "input",
+      "artifact_version": "0.1.0",
+      "path": "inputs/annotation-payload.schema.json",
+      "sha256": "250e3482ee0ba975dd04ddafcb7ef444fc7804b1c574c659f8d8a7b5d3ac36cd"
+    },
+    {
+      "artifact_kind": "input",
+      "artifact_version": "0.1.0",
+      "path": "inputs/annotation-response.schema.json",
+      "sha256": "9c15be672db39f71a4eb126825b8af748a5d217f665343fccc244b2a0986b2ad"
+    },
+    {
+      "artifact_kind": "input",
+      "artifact_version": "0.1.0",
+      "path": "inputs/answer-commitment.schema.json",
+      "sha256": "4e4f5b30c0a11510cdf4e068b7bebaeb2cfac5d1dd2794f3224acec995d23a27"
+    },
+    {
+      "artifact_kind": "input",
+      "artifact_version": "0.1.0",
+      "path": "inputs/logic-input.schema.json",
+      "sha256": "743ccd10d2fe394bb0a7229c8b13b00fd1df221d6114315788fe8fad36bda5ba"
+    },
+    {
+      "artifact_kind": "input",
+      "artifact_version": "0.1.0",
+      "path": "inputs/logic-submission.schema.json",
+      "sha256": "ccd2c4ab6bfdd1b738baf3a25b3c1fd7a79885d2c964cf18b97d6ed6f524f7a0"
+    },
+    {
+      "artifact_kind": "input",
+      "artifact_version": "0.1.0",
+      "path": "inputs/reconstruction-input.json",
+      "sha256": "59d5b07a5682fc38af20dcf5a4c9b8382d922922b53e135e7c385d03c8cc613b"
+    },
+    {
+      "artifact_kind": "input",
+      "artifact_version": "0.1.0",
+      "path": "inputs/reconstruction-payload.schema.json",
+      "sha256": "8ad546b256d3f18f9b00181631312c87c36c5ff01d5a1b6bcce95ea2aa0b5dec"
+    },
+    {
+      "artifact_kind": "input",
+      "artifact_version": "0.1.0",
+      "path": "inputs/reconstruction-response.schema.json",
+      "sha256": "662d071ba0ea3abb7b0923b4df416ec1c5c70f9eca666af017882e2811828ba0"
+    },
+    {
+      "artifact_kind": "input",
+      "artifact_version": "0.1.0",
+      "path": "inputs/source-encoding.schema.json",
+      "sha256": "3d666681c4867078ace98ff66a2cfe5734a29f30e738750309b3d60e8b21c5a7"
     },
     {
       "artifact_kind": "input",
@@ -20,6 +80,36 @@
       "sha256": "894548b1d0c0af1411f4b52c6291202c7fe9ea0f59f77fde093520691d60f25b"
     },
     {
+      "artifact_kind": "input",
+      "artifact_version": "0.1.0",
+      "path": "inputs/source-packet.json",
+      "sha256": "b1152e06450e41867715ac9009d3399a233be858d1df8f88fc7a780470fb8277"
+    },
+    {
+      "artifact_kind": "instruction",
+      "artifact_version": "0.1.0",
+      "path": "instructions/annotation-task.md",
+      "sha256": "c7c05d55659f363cffd43b186fbca99239d612cd93c31f7c018b909475d51155"
+    },
+    {
+      "artifact_kind": "instruction",
+      "artifact_version": "0.1.0",
+      "path": "instructions/dispatch-surface.md",
+      "sha256": "1f6a5b0aa835c44781027b0cf986a6f54fc6be7f8ea9019a2dc6bec69590bdc0"
+    },
+    {
+      "artifact_kind": "instruction",
+      "artifact_version": "0.1.0",
+      "path": "instructions/glossary.md",
+      "sha256": "4c6951e41899f2457d9877ec459819b949cee55afdb888fc8ddf07ce4c7f83a8"
+    },
+    {
+      "artifact_kind": "instruction",
+      "artifact_version": "0.1.0",
+      "path": "instructions/reconstruction-task.md",
+      "sha256": "0b659754739fa6a9b2717a3f4057589c4a85b9c7cff42c99d75f8324b9acc6ff"
+    },
+    {
       "artifact_kind": "instruction",
       "artifact_version": "0.1.0",
       "path": "instructions/source-encoding-task.md",
@@ -32,20 +122,32 @@
       "sha256": "0009e00ea0f045b0317bd34d8c8bcfcc2cc379fed1f1fcf7518232fde0c513e1"
     },
     {
+      "artifact_kind": "instruction",
+      "artifact_version": "0.1.0",
+      "path": "instructions/structural-representation-0.1.md",
+      "sha256": "2f59f499b43319c0722d1e54e2bf2308246aba1b902e0a08c82535153975aaa2"
+    },
+    {
       "artifact_kind": "report",
       "artifact_version": "0.1.0",
-      "path": "reports/source-fidelity-audit-v0.1.0.json",
-      "sha256": "01d8dc8bff49e932e7831b744edf85724f5e811d83f53d9f3db5b20b5f618ad8"
+      "path": "reports/formal-package-build-log.md",
+      "sha256": "dee57a75abcbbad564b25809185b73ccc8374bb4248bbee0f41ccf65afb81fac"
     },
     {
       "artifact_kind": "report",
       "artifact_version": "0.1.0",
       "path": "reports/source-encoding-revision-log.md",
       "sha256": "cd174b1dc50e1f28f87da8578b6ff8585188f62e5e27abf0ecca68e4fe062853"
+    },
+    {
+      "artifact_kind": "report",
+      "artifact_version": "0.1.0",
+      "path": "reports/source-fidelity-audit-v0.1.0.json",
+      "sha256": "01d8dc8bff49e932e7831b744edf85724f5e811d83f53d9f3db5b20b5f618ad8"
     }
   ],
   "protocol_version": "0.3.0",
   "run_id": "logic-001",
   "schema_version": "0.1.0",
-  "status": "preparing"
+  "status": "frozen"
 }

@@ -1,0 +1,13 @@
+{
+  "algorithm": "SHA-256",
+  "combination": "secret_nonce_bytes || exact_truth_bundle_bytes",
+  "commitment": "6241d17b5bd5fd748184d6ee84dff7a34796533f8512a91a31463521f43691d1",
+  "commitment_id": "commitment-logic-001",
+  "created_at": "2026-07-22T19:38:58Z",
+  "nonce_length_bytes": 32,
+  "protocol_version": "0.3.0",
+  "run_id": "logic-001",
+  "truth_bundle_bytes": 10696,
+  "truth_bundle_name": "logic-truth.json",
+  "version": "0.1.0"
+}

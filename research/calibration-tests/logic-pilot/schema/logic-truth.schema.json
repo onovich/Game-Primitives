@@ -158,6 +158,9 @@
               "lc-04-state-rule-set-change"
             ]
           },
+          "expected_response": {
+            "type": "object"
+          },
           "expected_summary": {
             "minLength": 1,
             "type": "string"
@@ -165,18 +168,44 @@
           "item_id": {
             "pattern": "^item-[a-z0-9]{8,16}$",
             "type": "string"
+          },
+          "task_kind": {
+            "enum": [
+              "reconstruction",
+              "annotation"
+            ]
           }
         },
         "required": [
           "condition_id",
+          "expected_response",
           "expected_summary",
-          "item_id"
+          "item_id",
+          "task_kind"
         ],
         "type": "object"
       },
       "minItems": 4,
       "type": "array",
       "uniqueItems": true
+    },
+    "input_sha256s": {
+      "additionalProperties": false,
+      "properties": {
+        "annotation": {
+          "pattern": "^[0-9a-f]{64}$",
+          "type": "string"
+        },
+        "reconstruction": {
+          "pattern": "^[0-9a-f]{64}$",
+          "type": "string"
+        }
+      },
+      "required": [
+        "annotation",
+        "reconstruction"
+      ],
+      "type": "object"
     },
     "item_mappings": {
       "allOf": [
@@ -256,12 +285,19 @@
           "source_anchor_id": {
             "minLength": 1,
             "type": "string"
+          },
+          "task_kind": {
+            "enum": [
+              "reconstruction",
+              "annotation"
+            ]
           }
         },
         "required": [
           "case_role",
           "fixture_ids",
-          "item_id"
+          "item_id",
+          "task_kind"
         ],
         "type": "object"
       },
@@ -272,6 +308,47 @@
     "protocol_version": {
       "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$",
       "type": "string"
+    },
+    "randomization": {
+      "additionalProperties": false,
+      "properties": {
+        "algorithm": {
+          "const": "HMAC-SHA-256 keyed ordering and opaque IDs with pair-distance rejection v1"
+        },
+        "annotation_id_seed_hex": {
+          "pattern": "^[0-9a-f]{64}$",
+          "type": "string"
+        },
+        "annotation_order_attempt": {
+          "minimum": 0,
+          "type": "integer"
+        },
+        "annotation_order_seed_hex": {
+          "pattern": "^[0-9a-f]{64}$",
+          "type": "string"
+        },
+        "reconstruction_id_seed_hex": {
+          "pattern": "^[0-9a-f]{64}$",
+          "type": "string"
+        },
+        "reconstruction_order_attempt": {
+          "const": 0
+        },
+        "reconstruction_order_seed_hex": {
+          "pattern": "^[0-9a-f]{64}$",
+          "type": "string"
+        }
+      },
+      "required": [
+        "algorithm",
+        "annotation_id_seed_hex",
+        "annotation_order_attempt",
+        "annotation_order_seed_hex",
+        "reconstruction_id_seed_hex",
+        "reconstruction_order_attempt",
+        "reconstruction_order_seed_hex"
+      ],
+      "type": "object"
     },
     "run_id": {
       "pattern": "^logic-[0-9]{3}$",
@@ -287,8 +364,10 @@
     "artifact_version",
     "critical_conditions",
     "expected_judgments",
+    "input_sha256s",
     "item_mappings",
     "protocol_version",
+    "randomization",
     "run_id",
     "truth_id"
   ],

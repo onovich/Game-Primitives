@@ -1,0 +1,63 @@
+{
+  "$id": "https://github.com/onovich/Game-Primitives/blob/main/research/calibration-tests/logic-pilot/schema/answer-commitment.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "algorithm": {
+      "const": "SHA-256"
+    },
+    "combination": {
+      "const": "secret_nonce_bytes || exact_truth_bundle_bytes"
+    },
+    "commitment": {
+      "pattern": "^[0-9a-f]{64}$",
+      "type": "string"
+    },
+    "commitment_id": {
+      "pattern": "^[a-z0-9][a-z0-9-]*$",
+      "type": "string"
+    },
+    "created_at": {
+      "format": "date-time",
+      "type": "string"
+    },
+    "nonce_length_bytes": {
+      "const": 32
+    },
+    "protocol_version": {
+      "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$",
+      "type": "string"
+    },
+    "run_id": {
+      "pattern": "^logic-[0-9]{3}$",
+      "type": "string"
+    },
+    "truth_bundle_bytes": {
+      "minimum": 1,
+      "type": "integer"
+    },
+    "truth_bundle_name": {
+      "pattern": "^[a-z0-9][a-z0-9._-]*\\.json$",
+      "type": "string"
+    },
+    "version": {
+      "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$",
+      "type": "string"
+    }
+  },
+  "required": [
+    "algorithm",
+    "combination",
+    "commitment",
+    "commitment_id",
+    "created_at",
+    "nonce_length_bytes",
+    "protocol_version",
+    "run_id",
+    "truth_bundle_bytes",
+    "truth_bundle_name",
+    "version"
+  ],
+  "title": "Game Primitives Logic Pilot Answer Commitment",
+  "type": "object"
+}

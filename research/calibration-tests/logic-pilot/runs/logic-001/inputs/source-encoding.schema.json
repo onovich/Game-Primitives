@@ -1,0 +1,413 @@
+{
+  "$defs": {
+    "case": {
+      "additionalProperties": false,
+      "properties": {
+        "blind_encoding": {
+          "$ref": "#/$defs/encoding"
+        },
+        "source_anchor_id": {
+          "enum": [
+            "source-anchor-01",
+            "source-anchor-02",
+            "source-anchor-03",
+            "source-anchor-04"
+          ]
+        },
+        "source_encoding": {
+          "$ref": "#/$defs/encoding"
+        }
+      },
+      "required": [
+        "blind_encoding",
+        "source_anchor_id",
+        "source_encoding"
+      ],
+      "type": "object"
+    },
+    "composition_relation": {
+      "additionalProperties": false,
+      "properties": {
+        "from_rule_id": {
+          "pattern": "^rule-[a-z0-9][a-z0-9-]*$",
+          "type": "string"
+        },
+        "relation": {
+          "enum": [
+            "sequence",
+            "parallel",
+            "nesting",
+            "gating",
+            "feedback",
+            "mutual_exclusion",
+            "conversion",
+            "coupling"
+          ]
+        },
+        "statement": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "to_rule_id": {
+          "pattern": "^rule-[a-z0-9][a-z0-9-]*$",
+          "type": "string"
+        }
+      },
+      "required": [
+        "from_rule_id",
+        "relation",
+        "statement",
+        "to_rule_id"
+      ],
+      "type": "object"
+    },
+    "encoding": {
+      "additionalProperties": false,
+      "properties": {
+        "composition_relations": {
+          "items": {
+            "$ref": "#/$defs/composition_relation"
+          },
+          "type": "array",
+          "uniqueItems": true
+        },
+        "encoding_status": {
+          "enum": [
+            "encoded",
+            "source_underdetermined",
+            "representation_gap",
+            "scope_excluded"
+          ]
+        },
+        "notes": {
+          "$ref": "#/$defs/notes"
+        },
+        "references": {
+          "items": {
+            "$ref": "#/$defs/reference"
+          },
+          "minItems": 1,
+          "type": "array",
+          "uniqueItems": true
+        },
+        "rules": {
+          "items": {
+            "$ref": "#/$defs/rule"
+          },
+          "minItems": 1,
+          "type": "array",
+          "uniqueItems": true
+        },
+        "scope": {
+          "minLength": 1,
+          "type": "string"
+        }
+      },
+      "required": [
+        "composition_relations",
+        "encoding_status",
+        "notes",
+        "references",
+        "rules",
+        "scope"
+      ],
+      "type": "object"
+    },
+    "notes": {
+      "additionalProperties": false,
+      "properties": {
+        "identity_leakage_risks": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "representation_gaps": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "scope_excluded": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "source_underdetermined": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "required": [
+        "identity_leakage_risks",
+        "representation_gaps",
+        "scope_excluded",
+        "source_underdetermined"
+      ],
+      "type": "object"
+    },
+    "reference": {
+      "additionalProperties": false,
+      "properties": {
+        "description": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "ref_id": {
+          "pattern": "^ref-[a-z0-9][a-z0-9-]*$",
+          "type": "string"
+        },
+        "type": {
+          "enum": [
+            "entity",
+            "state",
+            "relation",
+            "condition",
+            "action",
+            "process",
+            "rule",
+            "goal_evaluation",
+            "feedback_observation",
+            "context_scope"
+          ]
+        }
+      },
+      "required": [
+        "description",
+        "ref_id",
+        "type"
+      ],
+      "type": "object"
+    },
+    "rule": {
+      "additionalProperties": false,
+      "properties": {
+        "encoding_status": {
+          "enum": [
+            "encoded",
+            "source_underdetermined",
+            "representation_gap",
+            "scope_excluded"
+          ]
+        },
+        "rule_id": {
+          "pattern": "^rule-[a-z0-9][a-z0-9-]*$",
+          "type": "string"
+        },
+        "slots": {
+          "additionalProperties": false,
+          "properties": {
+            "action": {
+              "$ref": "#/$defs/slot"
+            },
+            "actor": {
+              "$ref": "#/$defs/slot"
+            },
+            "context": {
+              "$ref": "#/$defs/slot"
+            },
+            "cost": {
+              "$ref": "#/$defs/slot"
+            },
+            "effects": {
+              "$ref": "#/$defs/slot"
+            },
+            "feedback": {
+              "$ref": "#/$defs/slot"
+            },
+            "goals_evaluation": {
+              "$ref": "#/$defs/slot"
+            },
+            "preconditions": {
+              "$ref": "#/$defs/slot"
+            },
+            "resolution": {
+              "$ref": "#/$defs/slot"
+            },
+            "target": {
+              "$ref": "#/$defs/slot"
+            },
+            "trigger": {
+              "$ref": "#/$defs/slot"
+            }
+          },
+          "required": [
+            "action",
+            "actor",
+            "context",
+            "cost",
+            "effects",
+            "feedback",
+            "goals_evaluation",
+            "preconditions",
+            "resolution",
+            "target",
+            "trigger"
+          ],
+          "type": "object"
+        }
+      },
+      "required": [
+        "encoding_status",
+        "rule_id",
+        "slots"
+      ],
+      "type": "object"
+    },
+    "slot": {
+      "additionalProperties": false,
+      "properties": {
+        "encoding_status": {
+          "enum": [
+            "encoded",
+            "not_applicable",
+            "source_underdetermined",
+            "representation_gap",
+            "scope_excluded"
+          ]
+        },
+        "reference_ids": {
+          "items": {
+            "pattern": "^ref-[a-z0-9][a-z0-9-]*$",
+            "type": "string"
+          },
+          "type": "array",
+          "uniqueItems": true
+        },
+        "statement": {
+          "minLength": 1,
+          "type": "string"
+        }
+      },
+      "required": [
+        "encoding_status",
+        "reference_ids",
+        "statement"
+      ],
+      "type": "object"
+    },
+    "tester": {
+      "additionalProperties": false,
+      "properties": {
+        "actor_kind": {
+          "const": "model"
+        },
+        "context_scope": {
+          "const": "isolated_package"
+        },
+        "identifier": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "model_name": {
+          "minLength": 1,
+          "type": "string"
+        }
+      },
+      "required": [
+        "actor_kind",
+        "context_scope",
+        "identifier",
+        "model_name"
+      ],
+      "type": "object"
+    }
+  },
+  "$id": "https://github.com/onovich/Game-Primitives/blob/main/research/calibration-tests/logic-pilot/schema/source-encoding.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "$schema": {
+      "type": "string"
+    },
+    "artifact_version": {
+      "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$",
+      "type": "string"
+    },
+    "cases": {
+      "allOf": [
+        {
+          "contains": {
+            "properties": {
+              "source_anchor_id": {
+                "const": "source-anchor-01"
+              }
+            },
+            "required": [
+              "source_anchor_id"
+            ]
+          }
+        },
+        {
+          "contains": {
+            "properties": {
+              "source_anchor_id": {
+                "const": "source-anchor-02"
+              }
+            },
+            "required": [
+              "source_anchor_id"
+            ]
+          }
+        },
+        {
+          "contains": {
+            "properties": {
+              "source_anchor_id": {
+                "const": "source-anchor-03"
+              }
+            },
+            "required": [
+              "source_anchor_id"
+            ]
+          }
+        },
+        {
+          "contains": {
+            "properties": {
+              "source_anchor_id": {
+                "const": "source-anchor-04"
+              }
+            },
+            "required": [
+              "source_anchor_id"
+            ]
+          }
+        }
+      ],
+      "items": {
+        "$ref": "#/$defs/case"
+      },
+      "maxItems": 4,
+      "minItems": 4,
+      "type": "array",
+      "uniqueItems": true
+    },
+    "encoder": {
+      "$ref": "#/$defs/tester"
+    },
+    "protocol_version": {
+      "const": "0.3.0"
+    },
+    "representation_version": {
+      "const": "GP-SR 0.1"
+    },
+    "run_id": {
+      "const": "logic-001"
+    }
+  },
+  "required": [
+    "$schema",
+    "artifact_version",
+    "cases",
+    "encoder",
+    "protocol_version",
+    "representation_version",
+    "run_id"
+  ],
+  "title": "Game Primitives Logic Pilot Source Encoding",
+  "type": "object"
+}

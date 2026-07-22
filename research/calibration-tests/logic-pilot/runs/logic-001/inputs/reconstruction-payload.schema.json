@@ -1,0 +1,23 @@
+{
+  "$id": "https://github.com/onovich/Game-Primitives/blob/main/research/calibration-tests/logic-pilot/runs/logic-001/inputs/reconstruction-payload.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "analysis_scale": {
+      "const": "single_rule_system"
+    },
+    "encoding": {
+      "$ref": "source-encoding.schema.json#/$defs/encoding"
+    },
+    "representation_version": {
+      "const": "GP-SR 0.1"
+    }
+  },
+  "required": [
+    "analysis_scale",
+    "encoding",
+    "representation_version"
+  ],
+  "title": "Game Primitives Logic 001 Reconstruction Payload",
+  "type": "object"
+}

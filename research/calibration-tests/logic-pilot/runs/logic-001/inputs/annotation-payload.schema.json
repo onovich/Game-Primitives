@@ -1,0 +1,483 @@
+{
+  "$defs": {
+    "edge": {
+      "additionalProperties": false,
+      "properties": {
+        "edge_id": {
+          "pattern": "^[a-z][a-z0-9-]*$",
+          "type": "string"
+        },
+        "from": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "to": {
+          "minLength": 1,
+          "type": "string"
+        }
+      },
+      "required": [
+        "edge_id",
+        "from",
+        "to"
+      ],
+      "type": "object"
+    },
+    "edge_state": {
+      "additionalProperties": false,
+      "properties": {
+        "candidate_edges": {
+          "items": {
+            "$ref": "#/$defs/edge"
+          },
+          "minItems": 1,
+          "type": "array",
+          "uniqueItems": true
+        },
+        "selected_edge_ids": {
+          "items": {
+            "pattern": "^[a-z][a-z0-9-]*$",
+            "type": "string"
+          },
+          "minItems": 1,
+          "type": "array",
+          "uniqueItems": true
+        },
+        "vertices": {
+          "items": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "minItems": 1,
+          "type": "array",
+          "uniqueItems": true
+        }
+      },
+      "required": [
+        "candidate_edges",
+        "selected_edge_ids",
+        "vertices"
+      ],
+      "type": "object"
+    },
+    "finite_grid_state": {
+      "additionalProperties": false,
+      "properties": {
+        "candidate_assignment": {
+          "additionalProperties": false,
+          "properties": {
+            "column": {
+              "maximum": 4,
+              "minimum": 1,
+              "type": "integer"
+            },
+            "row": {
+              "maximum": 4,
+              "minimum": 1,
+              "type": "integer"
+            },
+            "value": {
+              "maximum": 4,
+              "minimum": 1,
+              "type": "integer"
+            }
+          },
+          "required": [
+            "column",
+            "row",
+            "value"
+          ],
+          "type": "object"
+        },
+        "current_grid": {
+          "$ref": "#/$defs/grid"
+        },
+        "domain": {
+          "const": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        "grid_size": {
+          "const": {
+            "columns": 4,
+            "rows": 4
+          }
+        },
+        "groups": {
+          "const": {
+            "block_columns": 2,
+            "block_rows": 2,
+            "columns": true,
+            "rows": true
+          }
+        },
+        "initial_grid": {
+          "$ref": "#/$defs/grid"
+        }
+      },
+      "required": [
+        "candidate_assignment",
+        "current_grid",
+        "domain",
+        "grid_size",
+        "groups",
+        "initial_grid"
+      ],
+      "type": "object"
+    },
+    "grid": {
+      "items": {
+        "items": {
+          "oneOf": [
+            {
+              "maximum": 4,
+              "minimum": 1,
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "maxItems": 4,
+        "minItems": 4,
+        "type": "array"
+      },
+      "maxItems": 4,
+      "minItems": 4,
+      "type": "array"
+    },
+    "position_state": {
+      "additionalProperties": false,
+      "properties": {
+        "actor": {
+          "pattern": "^p[0-3]$",
+          "type": "string"
+        },
+        "cargo": {
+          "pattern": "^p[0-3]$",
+          "type": "string"
+        },
+        "goal": {
+          "pattern": "^p[0-3]$",
+          "type": "string"
+        }
+      },
+      "required": [
+        "actor",
+        "cargo",
+        "goal"
+      ],
+      "type": "object"
+    },
+    "push_state": {
+      "additionalProperties": false,
+      "properties": {
+        "declared_action": {
+          "const": {
+            "actor_to": "p1",
+            "cargo_to": "p2",
+            "type": "push_one_forward"
+          }
+        },
+        "locations": {
+          "const": [
+            "p0",
+            "p1",
+            "p2",
+            "p3"
+          ]
+        },
+        "state_after": {
+          "$ref": "#/$defs/position_state"
+        },
+        "state_before": {
+          "$ref": "#/$defs/position_state"
+        },
+        "terminal_cargo_locations": {
+          "const": [
+            "p2"
+          ]
+        },
+        "transition_edges": {
+          "const": [
+            {
+              "from": "p0",
+              "to": "p1"
+            },
+            {
+              "from": "p1",
+              "to": "p2"
+            }
+          ]
+        }
+      },
+      "required": [
+        "declared_action",
+        "locations",
+        "state_after",
+        "state_before",
+        "terminal_cargo_locations",
+        "transition_edges"
+      ],
+      "type": "object"
+    },
+    "question": {
+      "additionalProperties": false,
+      "properties": {
+        "allowed_answers": {
+          "const": [
+            "yes",
+            "no",
+            "indeterminate"
+          ]
+        },
+        "prompt": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "question_id": {
+          "enum": [
+            "q1",
+            "q2"
+          ]
+        }
+      },
+      "required": [
+        "allowed_answers",
+        "prompt",
+        "question_id"
+      ],
+      "type": "object"
+    },
+    "rule_rebuild_state": {
+      "additionalProperties": false,
+      "properties": {
+        "grid_size": {
+          "const": {
+            "columns": 4,
+            "rows": 4
+          }
+        },
+        "parse_pattern": {
+          "const": "沿水平或垂直方向读取三个连续单元格；仅当依次为 SUBJECT、LINK、PROPERTY 时生成规则 SUBJECT -> PROPERTY。每次位置变化后清空旧集合并重建。"
+        },
+        "tokens_after": {
+          "items": {
+            "$ref": "#/$defs/token"
+          },
+          "minItems": 6,
+          "type": "array",
+          "uniqueItems": true
+        },
+        "tokens_before": {
+          "items": {
+            "$ref": "#/$defs/token"
+          },
+          "minItems": 6,
+          "type": "array",
+          "uniqueItems": true
+        }
+      },
+      "required": [
+        "grid_size",
+        "parse_pattern",
+        "tokens_after",
+        "tokens_before"
+      ],
+      "type": "object"
+    },
+    "token": {
+      "additionalProperties": false,
+      "properties": {
+        "kind": {
+          "const": "text"
+        },
+        "symbol": {
+          "enum": [
+            "kind_n",
+            "kind_g",
+            "LINK",
+            "CONTROL",
+            "SUCCESS"
+          ]
+        },
+        "token_id": {
+          "pattern": "^t[0-9]+$",
+          "type": "string"
+        },
+        "x": {
+          "maximum": 3,
+          "minimum": 0,
+          "type": "integer"
+        },
+        "y": {
+          "maximum": 3,
+          "minimum": 0,
+          "type": "integer"
+        }
+      },
+      "required": [
+        "kind",
+        "symbol",
+        "token_id",
+        "x",
+        "y"
+      ],
+      "type": "object"
+    }
+  },
+  "$id": "https://github.com/onovich/Game-Primitives/blob/main/research/calibration-tests/logic-pilot/runs/logic-001/inputs/annotation-payload.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "structure_kind": {
+            "const": "finite_grid_assignment"
+          }
+        },
+        "required": [
+          "structure_kind"
+        ]
+      },
+      "then": {
+        "properties": {
+          "state": {
+            "$ref": "#/$defs/finite_grid_state"
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "structure_kind": {
+            "const": "directed_push_transition"
+          }
+        },
+        "required": [
+          "structure_kind"
+        ]
+      },
+      "then": {
+        "properties": {
+          "state": {
+            "$ref": "#/$defs/push_state"
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "structure_kind": {
+            "const": "edge_subset_evaluation"
+          }
+        },
+        "required": [
+          "structure_kind"
+        ]
+      },
+      "then": {
+        "properties": {
+          "state": {
+            "$ref": "#/$defs/edge_state"
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "structure_kind": {
+            "const": "text_rule_rebuild_transition"
+          }
+        },
+        "required": [
+          "structure_kind"
+        ]
+      },
+      "then": {
+        "properties": {
+          "state": {
+            "$ref": "#/$defs/rule_rebuild_state"
+          }
+        }
+      }
+    }
+  ],
+  "properties": {
+    "questions": {
+      "allOf": [
+        {
+          "contains": {
+            "properties": {
+              "question_id": {
+                "const": "q1"
+              }
+            },
+            "required": [
+              "question_id"
+            ]
+          }
+        },
+        {
+          "contains": {
+            "properties": {
+              "question_id": {
+                "const": "q2"
+              }
+            },
+            "required": [
+              "question_id"
+            ]
+          }
+        }
+      ],
+      "items": {
+        "$ref": "#/$defs/question"
+      },
+      "maxItems": 2,
+      "minItems": 2,
+      "type": "array",
+      "uniqueItems": true
+    },
+    "rules": {
+      "items": {
+        "minLength": 1,
+        "type": "string"
+      },
+      "minItems": 1,
+      "type": "array",
+      "uniqueItems": true
+    },
+    "state": {
+      "type": "object"
+    },
+    "structure_kind": {
+      "enum": [
+        "finite_grid_assignment",
+        "directed_push_transition",
+        "edge_subset_evaluation",
+        "text_rule_rebuild_transition"
+      ]
+    },
+    "version": {
+      "const": "0.1.0"
+    }
+  },
+  "required": [
+    "questions",
+    "rules",
+    "state",
+    "structure_kind",
+    "version"
+  ],
+  "title": "Game Primitives Logic 001 Annotation Payload",
+  "type": "object"
+}

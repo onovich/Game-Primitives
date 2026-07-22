@@ -1,0 +1,846 @@
+{
+  "$schema": "../../../schema/logic-input.schema.json",
+  "artifact_version": "0.1.0",
+  "glossary_path": "instructions/glossary.md",
+  "input_id": "input-logic-001-annotation",
+  "instructions_path": "instructions/annotation-task.md",
+  "item_order_randomized": true,
+  "items": [
+    {
+      "item_id": "item-41ac5b09b93b",
+      "payload": {
+        "questions": [
+          {
+            "allowed_answers": [
+              "yes",
+              "no",
+              "indeterminate"
+            ],
+            "prompt": "从 before 到 after，是否至少有一个文本对象的位置发生变化？",
+            "question_id": "q1"
+          },
+          {
+            "allowed_answers": [
+              "yes",
+              "no",
+              "indeterminate"
+            ],
+            "prompt": "按照给定解析与重建规则，after 的生效规则集合是否不同于 before？",
+            "question_id": "q2"
+          }
+        ],
+        "rules": [
+          "所有列出的对象都是可移动文本对象；本项目只比较给定 before 与 after，不评价移动输入本身。",
+          "沿水平或垂直方向读取三个连续单元格；仅当依次为 SUBJECT、LINK、PROPERTY 时生成规则 SUBJECT -> PROPERTY。",
+          "每次文本位置变化后先清空旧集合，再从 after 的全部文本位置重建生效规则集合。"
+        ],
+        "state": {
+          "grid_size": {
+            "columns": 4,
+            "rows": 4
+          },
+          "parse_pattern": "沿水平或垂直方向读取三个连续单元格；仅当依次为 SUBJECT、LINK、PROPERTY 时生成规则 SUBJECT -> PROPERTY。每次位置变化后清空旧集合并重建。",
+          "tokens_after": [
+            {
+              "kind": "text",
+              "symbol": "kind_n",
+              "token_id": "t1",
+              "x": 0,
+              "y": 0
+            },
+            {
+              "kind": "text",
+              "symbol": "LINK",
+              "token_id": "t2",
+              "x": 1,
+              "y": 0
+            },
+            {
+              "kind": "text",
+              "symbol": "CONTROL",
+              "token_id": "t3",
+              "x": 2,
+              "y": 0
+            },
+            {
+              "kind": "text",
+              "symbol": "kind_g",
+              "token_id": "t4",
+              "x": 1,
+              "y": 2
+            },
+            {
+              "kind": "text",
+              "symbol": "LINK",
+              "token_id": "t5",
+              "x": 2,
+              "y": 2
+            },
+            {
+              "kind": "text",
+              "symbol": "SUCCESS",
+              "token_id": "t6",
+              "x": 3,
+              "y": 2
+            }
+          ],
+          "tokens_before": [
+            {
+              "kind": "text",
+              "symbol": "kind_n",
+              "token_id": "t1",
+              "x": 0,
+              "y": 0
+            },
+            {
+              "kind": "text",
+              "symbol": "LINK",
+              "token_id": "t2",
+              "x": 1,
+              "y": 0
+            },
+            {
+              "kind": "text",
+              "symbol": "CONTROL",
+              "token_id": "t3",
+              "x": 2,
+              "y": 0
+            },
+            {
+              "kind": "text",
+              "symbol": "kind_g",
+              "token_id": "t4",
+              "x": 0,
+              "y": 2
+            },
+            {
+              "kind": "text",
+              "symbol": "LINK",
+              "token_id": "t5",
+              "x": 2,
+              "y": 2
+            },
+            {
+              "kind": "text",
+              "symbol": "SUCCESS",
+              "token_id": "t6",
+              "x": 3,
+              "y": 2
+            }
+          ]
+        },
+        "structure_kind": "text_rule_rebuild_transition",
+        "version": "0.1.0"
+      },
+      "payload_schema_id": "inputs/annotation-payload.schema.json",
+      "task_kind": "annotation"
+    },
+    {
+      "item_id": "item-00c77066d715",
+      "payload": {
+        "questions": [
+          {
+            "allowed_answers": [
+              "yes",
+              "no",
+              "indeterminate"
+            ],
+            "prompt": "在当前选边集合中，每个被使用的顶点是否都恰好连接两条选中边，并且没有交叉或分支？",
+            "question_id": "q1"
+          },
+          {
+            "allowed_answers": [
+              "yes",
+              "no",
+              "indeterminate"
+            ],
+            "prompt": "当前全部选中边是否共同构成恰好一个非空、连通的闭合环？",
+            "question_id": "q2"
+          }
+        ],
+        "rules": [
+          "候选边只连接水平或垂直相邻的顶点。",
+          "局部顶点条件要求每个被使用的顶点恰有两条选中边，且不得交叉或分支。",
+          "完成条件要求全部选中边共同形成恰好一个非空、连通的闭合环；多个互不相连的闭合环不算完成。"
+        ],
+        "state": {
+          "candidate_edges": [
+            {
+              "edge_id": "b01",
+              "from": "b0",
+              "to": "b1"
+            },
+            {
+              "edge_id": "b12",
+              "from": "b1",
+              "to": "b2"
+            },
+            {
+              "edge_id": "b23",
+              "from": "b2",
+              "to": "b3"
+            },
+            {
+              "edge_id": "t01",
+              "from": "t0",
+              "to": "t1"
+            },
+            {
+              "edge_id": "t12",
+              "from": "t1",
+              "to": "t2"
+            },
+            {
+              "edge_id": "t23",
+              "from": "t2",
+              "to": "t3"
+            },
+            {
+              "edge_id": "v0",
+              "from": "t0",
+              "to": "b0"
+            },
+            {
+              "edge_id": "v1",
+              "from": "t1",
+              "to": "b1"
+            },
+            {
+              "edge_id": "v2",
+              "from": "t2",
+              "to": "b2"
+            },
+            {
+              "edge_id": "v3",
+              "from": "t3",
+              "to": "b3"
+            }
+          ],
+          "selected_edge_ids": [
+            "b01",
+            "b23",
+            "t01",
+            "t23",
+            "v0",
+            "v1",
+            "v2",
+            "v3"
+          ],
+          "vertices": [
+            "b0",
+            "b1",
+            "b2",
+            "b3",
+            "t0",
+            "t1",
+            "t2",
+            "t3"
+          ]
+        },
+        "structure_kind": "edge_subset_evaluation",
+        "version": "0.1.0"
+      },
+      "payload_schema_id": "inputs/annotation-payload.schema.json",
+      "task_kind": "annotation"
+    },
+    {
+      "item_id": "item-e859a6ae0cc3",
+      "payload": {
+        "questions": [
+          {
+            "allowed_answers": [
+              "yes",
+              "no",
+              "indeterminate"
+            ],
+            "prompt": "从 before 到 after，是否至少有一个文本对象的位置发生变化？",
+            "question_id": "q1"
+          },
+          {
+            "allowed_answers": [
+              "yes",
+              "no",
+              "indeterminate"
+            ],
+            "prompt": "按照给定解析与重建规则，after 的生效规则集合是否不同于 before？",
+            "question_id": "q2"
+          }
+        ],
+        "rules": [
+          "所有列出的对象都是可移动文本对象；本项目只比较给定 before 与 after，不评价移动输入本身。",
+          "沿水平或垂直方向读取三个连续单元格；仅当依次为 SUBJECT、LINK、PROPERTY 时生成规则 SUBJECT -> PROPERTY。",
+          "每次文本位置变化后先清空旧集合，再从 after 的全部文本位置重建生效规则集合。"
+        ],
+        "state": {
+          "grid_size": {
+            "columns": 4,
+            "rows": 4
+          },
+          "parse_pattern": "沿水平或垂直方向读取三个连续单元格；仅当依次为 SUBJECT、LINK、PROPERTY 时生成规则 SUBJECT -> PROPERTY。每次位置变化后清空旧集合并重建。",
+          "tokens_after": [
+            {
+              "kind": "text",
+              "symbol": "kind_n",
+              "token_id": "t1",
+              "x": 0,
+              "y": 0
+            },
+            {
+              "kind": "text",
+              "symbol": "LINK",
+              "token_id": "t2",
+              "x": 1,
+              "y": 0
+            },
+            {
+              "kind": "text",
+              "symbol": "CONTROL",
+              "token_id": "t3",
+              "x": 2,
+              "y": 0
+            },
+            {
+              "kind": "text",
+              "symbol": "kind_g",
+              "token_id": "t4",
+              "x": 0,
+              "y": 3
+            },
+            {
+              "kind": "text",
+              "symbol": "LINK",
+              "token_id": "t5",
+              "x": 2,
+              "y": 2
+            },
+            {
+              "kind": "text",
+              "symbol": "SUCCESS",
+              "token_id": "t6",
+              "x": 3,
+              "y": 2
+            }
+          ],
+          "tokens_before": [
+            {
+              "kind": "text",
+              "symbol": "kind_n",
+              "token_id": "t1",
+              "x": 0,
+              "y": 0
+            },
+            {
+              "kind": "text",
+              "symbol": "LINK",
+              "token_id": "t2",
+              "x": 1,
+              "y": 0
+            },
+            {
+              "kind": "text",
+              "symbol": "CONTROL",
+              "token_id": "t3",
+              "x": 2,
+              "y": 0
+            },
+            {
+              "kind": "text",
+              "symbol": "kind_g",
+              "token_id": "t4",
+              "x": 0,
+              "y": 2
+            },
+            {
+              "kind": "text",
+              "symbol": "LINK",
+              "token_id": "t5",
+              "x": 2,
+              "y": 2
+            },
+            {
+              "kind": "text",
+              "symbol": "SUCCESS",
+              "token_id": "t6",
+              "x": 3,
+              "y": 2
+            }
+          ]
+        },
+        "structure_kind": "text_rule_rebuild_transition",
+        "version": "0.1.0"
+      },
+      "payload_schema_id": "inputs/annotation-payload.schema.json",
+      "task_kind": "annotation"
+    },
+    {
+      "item_id": "item-b67b341f583c",
+      "payload": {
+        "questions": [
+          {
+            "allowed_answers": [
+              "yes",
+              "no",
+              "indeterminate"
+            ],
+            "prompt": "候选赋值执行后，当前网格是否满足所有已列出的即时非重复条件？",
+            "question_id": "q1"
+          },
+          {
+            "allowed_answers": [
+              "yes",
+              "no",
+              "indeterminate"
+            ],
+            "prompt": "从当前网格出发，是否至少存在一种保持初始固定值并满足全部完成条件的完整赋值？",
+            "question_id": "q2"
+          }
+        ],
+        "rules": [
+          "每个空单元格可以写入值域 1、2、3、4 中的一个值；初始非空值保持不变。",
+          "在任一当前状态中，每行、每列和每个 2×2 分区内已经出现的非空值不得重复。",
+          "完成状态要求所有单元格均有值，且每行、每列和每个 2×2 分区都恰好包含 1、2、3、4。"
+        ],
+        "state": {
+          "candidate_assignment": {
+            "column": 2,
+            "row": 1,
+            "value": 2
+          },
+          "current_grid": [
+            [
+              1,
+              2,
+              null,
+              4
+            ],
+            [
+              null,
+              4,
+              1,
+              null
+            ],
+            [
+              2,
+              1,
+              4,
+              null
+            ],
+            [
+              4,
+              null,
+              null,
+              1
+            ]
+          ],
+          "domain": [
+            1,
+            2,
+            3,
+            4
+          ],
+          "grid_size": {
+            "columns": 4,
+            "rows": 4
+          },
+          "groups": {
+            "block_columns": 2,
+            "block_rows": 2,
+            "columns": true,
+            "rows": true
+          },
+          "initial_grid": [
+            [
+              1,
+              null,
+              null,
+              4
+            ],
+            [
+              null,
+              4,
+              1,
+              null
+            ],
+            [
+              2,
+              1,
+              4,
+              null
+            ],
+            [
+              4,
+              null,
+              null,
+              1
+            ]
+          ]
+        },
+        "structure_kind": "finite_grid_assignment",
+        "version": "0.1.0"
+      },
+      "payload_schema_id": "inputs/annotation-payload.schema.json",
+      "task_kind": "annotation"
+    },
+    {
+      "item_id": "item-097801a57cc6",
+      "payload": {
+        "questions": [
+          {
+            "allowed_answers": [
+              "yes",
+              "no",
+              "indeterminate"
+            ],
+            "prompt": "在当前选边集合中，每个被使用的顶点是否都恰好连接两条选中边，并且没有交叉或分支？",
+            "question_id": "q1"
+          },
+          {
+            "allowed_answers": [
+              "yes",
+              "no",
+              "indeterminate"
+            ],
+            "prompt": "当前全部选中边是否共同构成恰好一个非空、连通的闭合环？",
+            "question_id": "q2"
+          }
+        ],
+        "rules": [
+          "候选边只连接水平或垂直相邻的顶点。",
+          "局部顶点条件要求每个被使用的顶点恰有两条选中边，且不得交叉或分支。",
+          "完成条件要求全部选中边共同形成恰好一个非空、连通的闭合环；多个互不相连的闭合环不算完成。"
+        ],
+        "state": {
+          "candidate_edges": [
+            {
+              "edge_id": "b01",
+              "from": "b0",
+              "to": "b1"
+            },
+            {
+              "edge_id": "b12",
+              "from": "b1",
+              "to": "b2"
+            },
+            {
+              "edge_id": "b23",
+              "from": "b2",
+              "to": "b3"
+            },
+            {
+              "edge_id": "t01",
+              "from": "t0",
+              "to": "t1"
+            },
+            {
+              "edge_id": "t12",
+              "from": "t1",
+              "to": "t2"
+            },
+            {
+              "edge_id": "t23",
+              "from": "t2",
+              "to": "t3"
+            },
+            {
+              "edge_id": "v0",
+              "from": "t0",
+              "to": "b0"
+            },
+            {
+              "edge_id": "v1",
+              "from": "t1",
+              "to": "b1"
+            },
+            {
+              "edge_id": "v2",
+              "from": "t2",
+              "to": "b2"
+            },
+            {
+              "edge_id": "v3",
+              "from": "t3",
+              "to": "b3"
+            }
+          ],
+          "selected_edge_ids": [
+            "b01",
+            "b12",
+            "b23",
+            "t01",
+            "t12",
+            "t23",
+            "v0",
+            "v3"
+          ],
+          "vertices": [
+            "b0",
+            "b1",
+            "b2",
+            "b3",
+            "t0",
+            "t1",
+            "t2",
+            "t3"
+          ]
+        },
+        "structure_kind": "edge_subset_evaluation",
+        "version": "0.1.0"
+      },
+      "payload_schema_id": "inputs/annotation-payload.schema.json",
+      "task_kind": "annotation"
+    },
+    {
+      "item_id": "item-c0d964141a8b",
+      "payload": {
+        "questions": [
+          {
+            "allowed_answers": [
+              "yes",
+              "no",
+              "indeterminate"
+            ],
+            "prompt": "题面中的声明推动在执行前是否被规则允许？",
+            "question_id": "q1"
+          },
+          {
+            "allowed_answers": [
+              "yes",
+              "no",
+              "indeterminate"
+            ],
+            "prompt": "执行该推动后，完成条件是否已经成立，或仍能通过零次或多次许可动作达到？",
+            "question_id": "q2"
+          }
+        ],
+        "rules": [
+          "当行动者位于货物后方、货物前方的相邻位置为空且一次只涉及一件货物时，可以向前推动。",
+          "货物只能被向前推动，不能被拉动，也不能与另一件货物同时推动。",
+          "p2 是货物的终端位置：其前方没有可供继续推动的位置；p3 与所列推动通路不连通。",
+          "当货物位置等于目标位置时完成条件成立。"
+        ],
+        "state": {
+          "declared_action": {
+            "actor_to": "p1",
+            "cargo_to": "p2",
+            "type": "push_one_forward"
+          },
+          "locations": [
+            "p0",
+            "p1",
+            "p2",
+            "p3"
+          ],
+          "state_after": {
+            "actor": "p1",
+            "cargo": "p2",
+            "goal": "p3"
+          },
+          "state_before": {
+            "actor": "p0",
+            "cargo": "p1",
+            "goal": "p3"
+          },
+          "terminal_cargo_locations": [
+            "p2"
+          ],
+          "transition_edges": [
+            {
+              "from": "p0",
+              "to": "p1"
+            },
+            {
+              "from": "p1",
+              "to": "p2"
+            }
+          ]
+        },
+        "structure_kind": "directed_push_transition",
+        "version": "0.1.0"
+      },
+      "payload_schema_id": "inputs/annotation-payload.schema.json",
+      "task_kind": "annotation"
+    },
+    {
+      "item_id": "item-6000d62748b1",
+      "payload": {
+        "questions": [
+          {
+            "allowed_answers": [
+              "yes",
+              "no",
+              "indeterminate"
+            ],
+            "prompt": "候选赋值执行后，当前网格是否满足所有已列出的即时非重复条件？",
+            "question_id": "q1"
+          },
+          {
+            "allowed_answers": [
+              "yes",
+              "no",
+              "indeterminate"
+            ],
+            "prompt": "从当前网格出发，是否至少存在一种保持初始固定值并满足全部完成条件的完整赋值？",
+            "question_id": "q2"
+          }
+        ],
+        "rules": [
+          "每个空单元格可以写入值域 1、2、3、4 中的一个值；初始非空值保持不变。",
+          "在任一当前状态中，每行、每列和每个 2×2 分区内已经出现的非空值不得重复。",
+          "完成状态要求所有单元格均有值，且每行、每列和每个 2×2 分区都恰好包含 1、2、3、4。"
+        ],
+        "state": {
+          "candidate_assignment": {
+            "column": 2,
+            "row": 1,
+            "value": 3
+          },
+          "current_grid": [
+            [
+              1,
+              3,
+              null,
+              4
+            ],
+            [
+              null,
+              4,
+              1,
+              null
+            ],
+            [
+              2,
+              1,
+              4,
+              null
+            ],
+            [
+              4,
+              null,
+              null,
+              1
+            ]
+          ],
+          "domain": [
+            1,
+            2,
+            3,
+            4
+          ],
+          "grid_size": {
+            "columns": 4,
+            "rows": 4
+          },
+          "groups": {
+            "block_columns": 2,
+            "block_rows": 2,
+            "columns": true,
+            "rows": true
+          },
+          "initial_grid": [
+            [
+              1,
+              null,
+              null,
+              4
+            ],
+            [
+              null,
+              4,
+              1,
+              null
+            ],
+            [
+              2,
+              1,
+              4,
+              null
+            ],
+            [
+              4,
+              null,
+              null,
+              1
+            ]
+          ]
+        },
+        "structure_kind": "finite_grid_assignment",
+        "version": "0.1.0"
+      },
+      "payload_schema_id": "inputs/annotation-payload.schema.json",
+      "task_kind": "annotation"
+    },
+    {
+      "item_id": "item-e4697f6fefa4",
+      "payload": {
+        "questions": [
+          {
+            "allowed_answers": [
+              "yes",
+              "no",
+              "indeterminate"
+            ],
+            "prompt": "题面中的声明推动在执行前是否被规则允许？",
+            "question_id": "q1"
+          },
+          {
+            "allowed_answers": [
+              "yes",
+              "no",
+              "indeterminate"
+            ],
+            "prompt": "执行该推动后，完成条件是否已经成立，或仍能通过零次或多次许可动作达到？",
+            "question_id": "q2"
+          }
+        ],
+        "rules": [
+          "当行动者位于货物后方、货物前方的相邻位置为空且一次只涉及一件货物时，可以向前推动。",
+          "货物只能被向前推动，不能被拉动，也不能与另一件货物同时推动。",
+          "p2 是货物的终端位置：其前方没有可供继续推动的位置；p3 与所列推动通路不连通。",
+          "当货物位置等于目标位置时完成条件成立。"
+        ],
+        "state": {
+          "declared_action": {
+            "actor_to": "p1",
+            "cargo_to": "p2",
+            "type": "push_one_forward"
+          },
+          "locations": [
+            "p0",
+            "p1",
+            "p2",
+            "p3"
+          ],
+          "state_after": {
+            "actor": "p1",
+            "cargo": "p2",
+            "goal": "p2"
+          },
+          "state_before": {
+            "actor": "p0",
+            "cargo": "p1",
+            "goal": "p2"
+          },
+          "terminal_cargo_locations": [
+            "p2"
+          ],
+          "transition_edges": [
+            {
+              "from": "p0",
+              "to": "p1"
+            },
+            {
+              "from": "p1",
+              "to": "p2"
+            }
+          ]
+        },
+        "structure_kind": "directed_push_transition",
+        "version": "0.1.0"
+      },
+      "payload_schema_id": "inputs/annotation-payload.schema.json",
+      "task_kind": "annotation"
+    }
+  ],
+  "protocol_version": "0.3.0",
+  "run_id": "logic-001"
+}

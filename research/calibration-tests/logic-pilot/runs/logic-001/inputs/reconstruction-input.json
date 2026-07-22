@@ -1,0 +1,1054 @@
+{
+  "$schema": "../../../schema/logic-input.schema.json",
+  "artifact_version": "0.1.0",
+  "glossary_path": "instructions/glossary.md",
+  "input_id": "input-logic-001-reconstruction",
+  "instructions_path": "instructions/reconstruction-task.md",
+  "item_order_randomized": true,
+  "items": [
+    {
+      "item_id": "item-91bd9a32517f",
+      "payload": {
+        "analysis_scale": "single_rule_system",
+        "encoding": {
+          "composition_relations": [
+            {
+              "from_rule_id": "rule-s03-edge-selection",
+              "relation": "coupling",
+              "statement": "候选边的选择改变线索计数与拓扑完成条件所评估的选边集合。",
+              "to_rule_id": "rule-s03-completion"
+            }
+          ],
+          "encoding_status": "encoded",
+          "notes": {
+            "identity_leakage_risks": [
+              "7×7 单元格、8×8 点阵、0–3 线索及单一无分支环的组合具有较高识别风险，但这些信息是恢复规则所必需的。"
+            ],
+            "representation_gaps": [],
+            "scope_excluded": [
+              "排除标记、提示、计时与技巧名称",
+              "唯一性、难度与玩家推理路线",
+              "来源没有规定的软件输入和反馈"
+            ],
+            "source_underdetermined": [
+              "来源没有规定选边动作的具体输入方式、撤销许可或完成检查调度。"
+            ]
+          },
+          "references": [
+            {
+              "description": "由 7×7 单元格和 8×8 点阵构成的结构。",
+              "ref_id": "ref-s03-grid",
+              "type": "entity"
+            },
+            {
+              "description": "连接水平或垂直相邻点的候选边。",
+              "ref_id": "ref-s03-candidate-edge",
+              "type": "relation"
+            },
+            {
+              "description": "当前被选择的候选边子集。",
+              "ref_id": "ref-s03-selected-state",
+              "type": "state"
+            },
+            {
+              "description": "单元格内可出现的 0、1、2、3 线索值；空白单元格没有固定周边数量。",
+              "ref_id": "ref-s03-clues",
+              "type": "state"
+            },
+            {
+              "description": "有数字的单元格周围选中边数必须等于该数字。",
+              "ref_id": "ref-s03-count-condition",
+              "type": "condition"
+            },
+            {
+              "description": "选中边形成一个不自交且无分支的单一环。",
+              "ref_id": "ref-s03-topology-condition",
+              "type": "condition"
+            },
+            {
+              "description": "将一条水平或垂直相邻点之间的候选边加入选中集合。",
+              "ref_id": "ref-s03-select-action",
+              "type": "action"
+            },
+            {
+              "description": "联合线索计数与单环拓扑条件判断选边集合是否完成。",
+              "ref_id": "ref-s03-completion",
+              "type": "goal_evaluation"
+            }
+          ],
+          "rules": [
+            {
+              "encoding_status": "encoded",
+              "rule_id": "rule-s03-edge-selection",
+              "slots": {
+                "action": {
+                  "encoding_status": "encoded",
+                  "reference_ids": [
+                    "ref-s03-select-action"
+                  ],
+                  "statement": "选择一条水平或垂直相邻点之间的候选边。"
+                },
+                "actor": {
+                  "encoding_status": "source_underdetermined",
+                  "reference_ids": [],
+                  "statement": "source_underdetermined：来源以指令形式规定连边，但未在本包中定义执行者实体。"
+                },
+                "context": {
+                  "encoding_status": "encoded",
+                  "reference_ids": [
+                    "ref-s03-grid",
+                    "ref-s03-selected-state"
+                  ],
+                  "statement": "规则作用于 8×8 点阵及其当前选边子集。"
+                },
+                "cost": {
+                  "encoding_status": "not_applicable",
+                  "reference_ids": [],
+                  "statement": "not_applicable：来源没有为选边定义资源或数值成本。"
+                },
+                "effects": {
+                  "encoding_status": "encoded",
+                  "reference_ids": [
+                    "ref-s03-selected-state"
+                  ],
+                  "statement": "被选择的候选边进入当前选边集合。"
+                },
+                "feedback": {
+                  "encoding_status": "scope_excluded",
+                  "reference_ids": [],
+                  "statement": "scope_excluded：来源未规定软件输入反馈，途中状态中的排除标记也不在范围内。"
+                },
+                "goals_evaluation": {
+                  "encoding_status": "not_applicable",
+                  "reference_ids": [],
+                  "statement": "not_applicable：单次选边本身不构成独立完成判断。"
+                },
+                "preconditions": {
+                  "encoding_status": "encoded",
+                  "reference_ids": [
+                    "ref-s03-candidate-edge"
+                  ],
+                  "statement": "目标边的两个端点必须水平或垂直相邻。"
+                },
+                "resolution": {
+                  "encoding_status": "encoded",
+                  "reference_ids": [
+                    "ref-s03-select-action",
+                    "ref-s03-selected-state"
+                  ],
+                  "statement": "将目标候选边记入当前选中边子集。"
+                },
+                "target": {
+                  "encoding_status": "encoded",
+                  "reference_ids": [
+                    "ref-s03-candidate-edge"
+                  ],
+                  "statement": "目标是一条水平或垂直相邻点之间的候选边。"
+                },
+                "trigger": {
+                  "encoding_status": "source_underdetermined",
+                  "reference_ids": [],
+                  "statement": "source_underdetermined：来源没有规定具体输入事件或选边调度。"
+                }
+              }
+            },
+            {
+              "encoding_status": "encoded",
+              "rule_id": "rule-s03-completion",
+              "slots": {
+                "action": {
+                  "encoding_status": "not_applicable",
+                  "reference_ids": [],
+                  "statement": "not_applicable：本规则评估当前选边集合，不定义新的选边动作。"
+                },
+                "actor": {
+                  "encoding_status": "not_applicable",
+                  "reference_ids": [],
+                  "statement": "not_applicable：完成谓词不要求独立行动者。"
+                },
+                "context": {
+                  "encoding_status": "encoded",
+                  "reference_ids": [
+                    "ref-s03-grid",
+                    "ref-s03-clues",
+                    "ref-s03-selected-state"
+                  ],
+                  "statement": "评估当前选边集合相对于全部数字线索和点阵拓扑的关系。"
+                },
+                "cost": {
+                  "encoding_status": "not_applicable",
+                  "reference_ids": [],
+                  "statement": "not_applicable：来源没有为条件评估定义成本。"
+                },
+                "effects": {
+                  "encoding_status": "not_applicable",
+                  "reference_ids": [],
+                  "statement": "not_applicable：完成评估不改变选边集合。"
+                },
+                "feedback": {
+                  "encoding_status": "scope_excluded",
+                  "reference_ids": [],
+                  "statement": "scope_excluded：来源没有规定完成或违规的软件反馈。"
+                },
+                "goals_evaluation": {
+                  "encoding_status": "encoded",
+                  "reference_ids": [
+                    "ref-s03-completion",
+                    "ref-s03-count-condition",
+                    "ref-s03-topology-condition"
+                  ],
+                  "statement": "当每个数字单元格周围的选中边数等于其数字，且全部选中边形成一个不自交、无分支的单一环时，完成条件成立；空白单元格没有固定周边数量。"
+                },
+                "preconditions": {
+                  "encoding_status": "encoded",
+                  "reference_ids": [
+                    "ref-s03-selected-state"
+                  ],
+                  "statement": "存在一个可被评估的当前选边集合。"
+                },
+                "resolution": {
+                  "encoding_status": "encoded",
+                  "reference_ids": [
+                    "ref-s03-count-condition",
+                    "ref-s03-topology-condition"
+                  ],
+                  "statement": "检查所有数字线索的周边计数，并检查使用中的点无分支、环不自交且选中边只有一个环形连通整体。"
+                },
+                "target": {
+                  "encoding_status": "encoded",
+                  "reference_ids": [
+                    "ref-s03-selected-state"
+                  ],
+                  "statement": "目标是当前选边集合。"
+                },
+                "trigger": {
+                  "encoding_status": "source_underdetermined",
+                  "reference_ids": [],
+                  "statement": "source_underdetermined：来源没有规定完成检查的精确时点。"
+                }
+              }
+            }
+          ],
+          "scope": "编码 7×7 单元格、8×8 点阵、0–3 数字线索、水平或垂直相邻点候选边、周边计数及单一无交叉无分支环的完成判断；不编码排除标记、提示、计时、技巧名称、唯一性、难度、玩家推理路线或来源未规定的软件输入与反馈。"
+        },
+        "representation_version": "GP-SR 0.1"
+      },
+      "payload_schema_id": "inputs/reconstruction-payload.schema.json",
+      "task_kind": "reconstruction"
+    },
+    {
+      "item_id": "item-84ea42abbc88",
+      "payload": {
+        "analysis_scale": "single_rule_system",
+        "encoding": {
+          "composition_relations": [
+            {
+              "from_rule_id": "rule-s02-push",
+              "relation": "coupling",
+              "statement": "获准的推动改变行动者与货物的位置，从而改变完成条件所评估的位置关系。",
+              "to_rule_id": "rule-s02-completion"
+            }
+          ],
+          "encoding_status": "encoded",
+          "notes": {
+            "identity_leakage_risks": [
+              "封闭 5×5 示意盘面、单件推动、禁止拉动以及货物对目标格的完成关系组合具有识别风险，但均是本来源案的关键结构。"
+            ],
+            "representation_gaps": [],
+            "scope_excluded": [
+              "最优步数、排行榜、撤销与重开界面",
+              "商业关卡编号、移植版差异与玩家行为",
+              "来源没有定义的软件反馈或判错"
+            ],
+            "source_underdetermined": [
+              "来源包没有给出障碍格碰撞、普通行走或完成检查的更精确执行算法，因而不从示意盘面推导额外许可。"
+            ]
+          },
+          "references": [
+            {
+              "description": "一个 5×5 盘面，含边界障碍格、地面格、一个行动者、两件货物和两个目标格。",
+              "ref_id": "ref-s02-board",
+              "type": "entity"
+            },
+            {
+              "description": "由玩家操作并可推动货物的盘面行动者。",
+              "ref_id": "ref-s02-actor",
+              "type": "entity"
+            },
+            {
+              "description": "待送往指定目标格的货物实体。",
+              "ref_id": "ref-s02-cargo",
+              "type": "entity"
+            },
+            {
+              "description": "货物应被送达的指定目标格。",
+              "ref_id": "ref-s02-storage",
+              "type": "entity"
+            },
+            {
+              "description": "行动者离散移动并推动货物的位置变化。",
+              "ref_id": "ref-s02-movement",
+              "type": "action"
+            },
+            {
+              "description": "一次推动只允许涉及一件货物；推动两件或更多货物以及拉动货物均不允许。",
+              "ref_id": "ref-s02-push-condition",
+              "type": "condition"
+            },
+            {
+              "description": "依据货物是否均已送达指定目标格判断完成。",
+              "ref_id": "ref-s02-completion",
+              "type": "goal_evaluation"
+            }
+          ],
+          "rules": [
+            {
+              "encoding_status": "encoded",
+              "rule_id": "rule-s02-push",
+              "slots": {
+                "action": {
+                  "encoding_status": "encoded",
+                  "reference_ids": [
+                    "ref-s02-movement"
+                  ],
+                  "statement": "行动者可以推动一件货物并发生离散位置变化。"
+                },
+                "actor": {
+                  "encoding_status": "encoded",
+                  "reference_ids": [
+                    "ref-s02-actor"
+                  ],
+                  "statement": "执行推动的是由玩家操作的行动者。"
+                },
+                "context": {
+                  "encoding_status": "encoded",
+                  "reference_ids": [
+                    "ref-s02-board"
+                  ],
+                  "statement": "规则作用于含障碍格、地面格、行动者、货物和目标格的当前盘面。"
+                },
+                "cost": {
+                  "encoding_status": "not_applicable",
+                  "reference_ids": [],
+                  "statement": "not_applicable：来源没有为移动或推动定义资源成本或步数价值。"
+                },
+                "effects": {
+                  "encoding_status": "encoded",
+                  "reference_ids": [
+                    "ref-s02-actor",
+                    "ref-s02-cargo",
+                    "ref-s02-movement"
+                  ],
+                  "statement": "获准推动会改变行动者及被推动单件货物的位置；禁止的多件推动或拉动不产生该位置变化。"
+                },
+                "feedback": {
+                  "encoding_status": "scope_excluded",
+                  "reference_ids": [],
+                  "statement": "scope_excluded：来源没有定义软件判错或操作反馈。"
+                },
+                "goals_evaluation": {
+                  "encoding_status": "not_applicable",
+                  "reference_ids": [],
+                  "statement": "not_applicable：单次推动本身不直接定义完成。"
+                },
+                "preconditions": {
+                  "encoding_status": "encoded",
+                  "reference_ids": [
+                    "ref-s02-push-condition"
+                  ],
+                  "statement": "推动对象必须恰为一件货物；两件或更多货物不能被同时推动，货物也不能被拉动。"
+                },
+                "resolution": {
+                  "encoding_status": "source_underdetermined",
+                  "reference_ids": [
+                    "ref-s02-movement"
+                  ],
+                  "statement": "source_underdetermined：来源确定单件推动许可及多件推动、拉动禁令，但未在本包中给出更精确的位移算法。"
+                },
+                "target": {
+                  "encoding_status": "encoded",
+                  "reference_ids": [
+                    "ref-s02-cargo"
+                  ],
+                  "statement": "目标是行动者试图推动的一件货物。"
+                },
+                "trigger": {
+                  "encoding_status": "source_underdetermined",
+                  "reference_ids": [],
+                  "statement": "source_underdetermined：来源未规定宿主输入事件或移动检查的精确调度。"
+                }
+              }
+            },
+            {
+              "encoding_status": "encoded",
+              "rule_id": "rule-s02-completion",
+              "slots": {
+                "action": {
+                  "encoding_status": "not_applicable",
+                  "reference_ids": [],
+                  "statement": "not_applicable：本规则评估货物位置，不定义额外动作。"
+                },
+                "actor": {
+                  "encoding_status": "not_applicable",
+                  "reference_ids": [],
+                  "statement": "not_applicable：完成谓词不需要独立行动者。"
+                },
+                "context": {
+                  "encoding_status": "encoded",
+                  "reference_ids": [
+                    "ref-s02-board",
+                    "ref-s02-cargo",
+                    "ref-s02-storage"
+                  ],
+                  "statement": "评估当前盘面上货物相对于指定目标格的位置。"
+                },
+                "cost": {
+                  "encoding_status": "not_applicable",
+                  "reference_ids": [],
+                  "statement": "not_applicable：来源没有为完成评估定义成本。"
+                },
+                "effects": {
+                  "encoding_status": "not_applicable",
+                  "reference_ids": [],
+                  "statement": "not_applicable：完成评估不改变盘面位置。"
+                },
+                "feedback": {
+                  "encoding_status": "scope_excluded",
+                  "reference_ids": [],
+                  "statement": "scope_excluded：来源未定义完成时的软件反馈。"
+                },
+                "goals_evaluation": {
+                  "encoding_status": "encoded",
+                  "reference_ids": [
+                    "ref-s02-completion"
+                  ],
+                  "statement": "当货物均已送达指定目标格时，完成条件成立。"
+                },
+                "preconditions": {
+                  "encoding_status": "encoded",
+                  "reference_ids": [
+                    "ref-s02-cargo",
+                    "ref-s02-storage"
+                  ],
+                  "statement": "存在可比较的当前货物位置和指定目标格位置。"
+                },
+                "resolution": {
+                  "encoding_status": "encoded",
+                  "reference_ids": [
+                    "ref-s02-completion"
+                  ],
+                  "statement": "比较每件货物的位置与指定目标格集合并得出完成判断。"
+                },
+                "target": {
+                  "encoding_status": "encoded",
+                  "reference_ids": [
+                    "ref-s02-board"
+                  ],
+                  "statement": "目标是当前盘面状态。"
+                },
+                "trigger": {
+                  "encoding_status": "source_underdetermined",
+                  "reference_ids": [],
+                  "statement": "source_underdetermined：来源没有规定完成判断的精确检查时点。"
+                }
+              }
+            }
+          ],
+          "scope": "编码 5×5 示意盘面的障碍格、地面格、行动者、货物与目标格、离散移动、单件推动许可及货物相对目标格的完成判断；不编码最优步数、排行榜、撤销重开、商业关卡信息、移植差异、玩家行为或来源未定义的软件反馈与判错。"
+        },
+        "representation_version": "GP-SR 0.1"
+      },
+      "payload_schema_id": "inputs/reconstruction-payload.schema.json",
+      "task_kind": "reconstruction"
+    },
+    {
+      "item_id": "item-e0288e34cc18",
+      "payload": {
+        "analysis_scale": "single_rule_system",
+        "encoding": {
+          "composition_relations": [
+            {
+              "from_rule_id": "rule-s01-assignment",
+              "relation": "coupling",
+              "statement": "对空单元格的赋值改变完成条件所评估的当前网格状态。",
+              "to_rule_id": "rule-s01-completion"
+            }
+          ],
+          "encoding_status": "encoded",
+          "notes": {
+            "identity_leakage_risks": [
+              "9×9 网格、1–9 值域及九个 3×3 分区的组合具有较高识别风险，但属于恢复规则结构所必需的信息。"
+            ],
+            "representation_gaps": [],
+            "scope_excluded": [
+              "候选笔记、提示、逐步判错与撤销",
+              "计时、评分、比赛提交与玩家行为",
+              "来源未明示的唯一性主张"
+            ],
+            "source_underdetermined": [
+              "来源没有确定该实例是否只有一个满足条件的完整赋值，也没有规定完成检查的精确调度。"
+            ]
+          },
+          "references": [
+            {
+              "description": "由 9 行和 9 列单元格组成、并划分为九个 3×3 分区的网格。",
+              "ref_id": "ref-s01-grid",
+              "type": "entity"
+            },
+            {
+              "description": "可写入单元格的整数值域 1–9。",
+              "ref_id": "ref-s01-values",
+              "type": "entity"
+            },
+            {
+              "description": "初始已占用且不属于待赋值目标的单元格状态。",
+              "ref_id": "ref-s01-fixed-state",
+              "type": "state"
+            },
+            {
+              "description": "保留初始布局并对先前空单元格增加赋值的部分状态。",
+              "ref_id": "ref-s01-partial-state",
+              "type": "state"
+            },
+            {
+              "description": "行、列和 3×3 分区这三类单元格集合。",
+              "ref_id": "ref-s01-groups",
+              "type": "relation"
+            },
+            {
+              "description": "每个行、列和分区均包含值域 1–9 的全部值。",
+              "ref_id": "ref-s01-group-condition",
+              "type": "condition"
+            },
+            {
+              "description": "向一个空单元格写入值域中的一个值。",
+              "ref_id": "ref-s01-fill-action",
+              "type": "action"
+            },
+            {
+              "description": "判断同一网格是否已完全赋值并满足全部集合条件。",
+              "ref_id": "ref-s01-completion",
+              "type": "goal_evaluation"
+            }
+          ],
+          "rules": [
+            {
+              "encoding_status": "encoded",
+              "rule_id": "rule-s01-assignment",
+              "slots": {
+                "action": {
+                  "encoding_status": "encoded",
+                  "reference_ids": [
+                    "ref-s01-fill-action"
+                  ],
+                  "statement": "向一个空单元格放入 1–9 中的一个值。"
+                },
+                "actor": {
+                  "encoding_status": "source_underdetermined",
+                  "reference_ids": [],
+                  "statement": "source_underdetermined：来源以指令形式规定赋值，但未在本包中定义执行者实体。"
+                },
+                "context": {
+                  "encoding_status": "encoded",
+                  "reference_ids": [
+                    "ref-s01-grid",
+                    "ref-s01-fixed-state",
+                    "ref-s01-partial-state"
+                  ],
+                  "statement": "规则作用于保留初始已占用单元格的 9×9 当前网格。"
+                },
+                "cost": {
+                  "encoding_status": "not_applicable",
+                  "reference_ids": [],
+                  "statement": "not_applicable：来源没有为单次赋值定义资源或数值成本。"
+                },
+                "effects": {
+                  "encoding_status": "encoded",
+                  "reference_ids": [
+                    "ref-s01-partial-state",
+                    "ref-s01-values"
+                  ],
+                  "statement": "目标单元格由空状态变为持有一个 1–9 值的状态，当前部分赋值随之更新。"
+                },
+                "feedback": {
+                  "encoding_status": "scope_excluded",
+                  "reference_ids": [],
+                  "statement": "scope_excluded：来源未规定软件提示、逐步判错或其他操作反馈。"
+                },
+                "goals_evaluation": {
+                  "encoding_status": "not_applicable",
+                  "reference_ids": [],
+                  "statement": "not_applicable：单次赋值本身不构成独立完成判断。"
+                },
+                "preconditions": {
+                  "encoding_status": "encoded",
+                  "reference_ids": [
+                    "ref-s01-values"
+                  ],
+                  "statement": "目标必须是空单元格，写入值必须属于 1–9。"
+                },
+                "resolution": {
+                  "encoding_status": "encoded",
+                  "reference_ids": [
+                    "ref-s01-fill-action",
+                    "ref-s01-partial-state"
+                  ],
+                  "statement": "赋值直接写入目标单元格并形成新的当前部分状态。"
+                },
+                "target": {
+                  "encoding_status": "encoded",
+                  "reference_ids": [
+                    "ref-s01-grid"
+                  ],
+                  "statement": "目标是当前网格中的一个空单元格。"
+                },
+                "trigger": {
+                  "encoding_status": "source_underdetermined",
+                  "reference_ids": [],
+                  "statement": "source_underdetermined：来源没有规定赋值请求的输入事件或精确调度。"
+                }
+              }
+            },
+            {
+              "encoding_status": "encoded",
+              "rule_id": "rule-s01-completion",
+              "slots": {
+                "action": {
+                  "encoding_status": "not_applicable",
+                  "reference_ids": [],
+                  "statement": "not_applicable：本规则是状态条件与完成判断，不定义新的赋值动作。"
+                },
+                "actor": {
+                  "encoding_status": "not_applicable",
+                  "reference_ids": [],
+                  "statement": "not_applicable：完成谓词不要求独立行动者。"
+                },
+                "context": {
+                  "encoding_status": "encoded",
+                  "reference_ids": [
+                    "ref-s01-grid",
+                    "ref-s01-groups"
+                  ],
+                  "statement": "评估同一 9×9 网格中的全部行、列和 3×3 分区。"
+                },
+                "cost": {
+                  "encoding_status": "not_applicable",
+                  "reference_ids": [],
+                  "statement": "not_applicable：来源没有为条件评估定义成本。"
+                },
+                "effects": {
+                  "encoding_status": "not_applicable",
+                  "reference_ids": [],
+                  "statement": "not_applicable：条件评估不改变网格赋值。"
+                },
+                "feedback": {
+                  "encoding_status": "scope_excluded",
+                  "reference_ids": [],
+                  "statement": "scope_excluded：来源未规定完成或失败的软件反馈形式。"
+                },
+                "goals_evaluation": {
+                  "encoding_status": "encoded",
+                  "reference_ids": [
+                    "ref-s01-completion",
+                    "ref-s01-group-condition"
+                  ],
+                  "statement": "当网格每个单元格均有值，且每一行、每一列和每个 3×3 分区都包含 1–9 的全部值时，完成条件成立。"
+                },
+                "preconditions": {
+                  "encoding_status": "encoded",
+                  "reference_ids": [
+                    "ref-s01-partial-state"
+                  ],
+                  "statement": "存在一个可被评估的当前赋值状态。"
+                },
+                "resolution": {
+                  "encoding_status": "encoded",
+                  "reference_ids": [
+                    "ref-s01-groups",
+                    "ref-s01-group-condition"
+                  ],
+                  "statement": "逐类检查所有行、列和分区是否满足全部值条件，并结合全格赋值状态得出完成判断。"
+                },
+                "target": {
+                  "encoding_status": "encoded",
+                  "reference_ids": [
+                    "ref-s01-grid"
+                  ],
+                  "statement": "目标是当前完整网格状态。"
+                },
+                "trigger": {
+                  "encoding_status": "source_underdetermined",
+                  "reference_ids": [],
+                  "statement": "source_underdetermined：来源没有规定何时执行完成检查。"
+                }
+              }
+            }
+          ],
+          "scope": "编码 9×9 单元格、1–9 值域、九个 3×3 分区、初始与当前赋值、行列分区条件和完成判断；不编码候选与辅助功能、计时评分竞赛、玩家行为或来源未明示的唯一性。"
+        },
+        "representation_version": "GP-SR 0.1"
+      },
+      "payload_schema_id": "inputs/reconstruction-payload.schema.json",
+      "task_kind": "reconstruction"
+    },
+    {
+      "item_id": "item-aad710407b19",
+      "payload": {
+        "analysis_scale": "single_rule_system",
+        "encoding": {
+          "composition_relations": [
+            {
+              "from_rule_id": "rule-s04-rule-set-rebuild",
+              "relation": "gating",
+              "statement": "移动与阻挡求值读取由当前文本位置重建出的当前特征集合。",
+              "to_rule_id": "rule-s04-property-application"
+            },
+            {
+              "from_rule_id": "rule-s04-property-application",
+              "relation": "feedback",
+              "statement": "可推动文本的位置变化会改变下一次特征重建能够读取的正交文本序列。",
+              "to_rule_id": "rule-s04-rule-set-rebuild"
+            },
+            {
+              "from_rule_id": "rule-s04-rule-set-rebuild",
+              "relation": "gating",
+              "statement": "胜利求值查询当前重建集合中的控制特征与胜利特征。",
+              "to_rule_id": "rule-s04-success"
+            }
+          ],
+          "encoding_status": "encoded",
+          "notes": {
+            "identity_leakage_risks": [
+              "可推动文本在正交方向组成动态三词规则、并即时改变控制、阻挡和胜利属性的结构具有很高识别风险，但删除这些关系会破坏关键来源规则。",
+              "冻结实例中各对象的零基坐标及两条初始纵向语句也可能辅助识别。"
+            ],
+            "representation_gaps": [],
+            "scope_excluded": [
+              "其他版本、后续补丁、编辑器与其他关卡",
+              "完整通关路径、唯一性、难度与玩家行为",
+              "音画表现以及规则实现之外的宿主调用细节"
+            ],
+            "source_underdetermined": [
+              "来源实现未包含宿主引擎调用清空与重建过程的完整调度；只能确定下一次规则求值读取由届时文本位置生成的特征集合。"
+            ]
+          },
+          "references": [
+            {
+              "description": "冻结实例中的相关对象：文本“类别甲”位于 (5,13)、“连接词”位于 (5,14)、“控制属性”位于 (5,15)；文本“类别乙”位于 (8,13)、“连接词”位于 (8,14)、“阻挡属性”位于 (8,15)；文本“类别丙”位于 (6,9)、“连接词”位于 (10,6)、“胜利属性”位于 (13,7)；类别丙实体位于 (10,9)，类别甲实体位于 (13,9)。",
+              "ref_id": "ref-s04-level-state",
+              "type": "state"
+            },
+            {
+              "description": "可在位置变化后被重新读取并参与正交连续文本序列的文本对象。",
+              "ref_id": "ref-s04-text",
+              "type": "entity"
+            },
+            {
+              "description": "可由当前特征赋予控制、阻挡或胜利属性的非文本实体。",
+              "ref_id": "ref-s04-entities",
+              "type": "entity"
+            },
+            {
+              "description": "沿两个正交方向读取连续文本名称并收集多词序列的过程。",
+              "ref_id": "ref-s04-rule-set-scan",
+              "type": "process"
+            },
+            {
+              "description": "从当前文本位置重新生成的规则特征集合。",
+              "ref_id": "ref-s04-active-rule-set",
+              "type": "state"
+            },
+            {
+              "description": "正交连续文本名称构成可查询的一至三词规则片段。",
+              "ref_id": "ref-s04-text-sequence",
+              "type": "relation"
+            },
+            {
+              "description": "使具有相应当前特征的实体成为受控移动实体的属性。",
+              "ref_id": "ref-s04-control-property",
+              "type": "condition"
+            },
+            {
+              "description": "使具有相应当前特征的对象阻止移动的属性。",
+              "ref_id": "ref-s04-obstruction-property",
+              "type": "condition"
+            },
+            {
+              "description": "移动检查中使对象可被推动的属性；文本对象按可推动对象处理。",
+              "ref_id": "ref-s04-push-property",
+              "type": "condition"
+            },
+            {
+              "description": "使具有相应当前特征的实体参与胜利重叠检查的属性。",
+              "ref_id": "ref-s04-success-property",
+              "type": "condition"
+            },
+            {
+              "description": "具有控制属性的实体与具有胜利属性的实体位于同一位置。",
+              "ref_id": "ref-s04-success-overlap",
+              "type": "condition"
+            },
+            {
+              "description": "当前控制实体和胜利实体相遇时判定胜利。",
+              "ref_id": "ref-s04-success-evaluation",
+              "type": "goal_evaluation"
+            }
+          ],
+          "rules": [
+            {
+              "encoding_status": "encoded",
+              "rule_id": "rule-s04-rule-set-rebuild",
+              "slots": {
+                "action": {
+                  "encoding_status": "encoded",
+                  "reference_ids": [
+                    "ref-s04-rule-set-scan"
+                  ],
+                  "statement": "清空当前特征集合，并从当前文本位置沿两个正交方向重新收集连续文本序列。"
+                },
+                "actor": {
+                  "encoding_status": "not_applicable",
+                  "reference_ids": [],
+                  "statement": "not_applicable：这是实现中的规则求值过程，不由来源定义为盘面实体动作。"
+                },
+                "context": {
+                  "encoding_status": "encoded",
+                  "reference_ids": [
+                    "ref-s04-level-state",
+                    "ref-s04-text"
+                  ],
+                  "statement": "过程读取冻结实例中各文本对象在求值时的当前位置。"
+                },
+                "cost": {
+                  "encoding_status": "not_applicable",
+                  "reference_ids": [],
+                  "statement": "not_applicable：实现没有为特征重建定义游戏内资源成本。"
+                },
+                "effects": {
+                  "encoding_status": "encoded",
+                  "reference_ids": [
+                    "ref-s04-active-rule-set"
+                  ],
+                  "statement": "旧特征被清空，当前特征集合替换为从当前文本布局收集到的多词序列。"
+                },
+                "feedback": {
+                  "encoding_status": "encoded",
+                  "reference_ids": [
+                    "ref-s04-active-rule-set"
+                  ],
+                  "statement": "重建结果成为后续一至三词特征查询所读取的当前集合。"
+                },
+                "goals_evaluation": {
+                  "encoding_status": "not_applicable",
+                  "reference_ids": [],
+                  "statement": "not_applicable：特征重建本身不判定胜利。"
+                },
+                "preconditions": {
+                  "encoding_status": "encoded",
+                  "reference_ids": [
+                    "ref-s04-text"
+                  ],
+                  "statement": "存在可按当前位置和两个正交方向扫描的文本对象。"
+                },
+                "resolution": {
+                  "encoding_status": "encoded",
+                  "reference_ids": [
+                    "ref-s04-rule-set-scan",
+                    "ref-s04-text-sequence"
+                  ],
+                  "statement": "读取正交方向上的连续文本名称，将多词序列加入集合；后续查询从当前集合匹配一至三词片段并返回匹配序列的首项。"
+                },
+                "target": {
+                  "encoding_status": "encoded",
+                  "reference_ids": [
+                    "ref-s04-active-rule-set"
+                  ],
+                  "statement": "目标是当前规则特征集合。"
+                },
+                "trigger": {
+                  "encoding_status": "source_underdetermined",
+                  "reference_ids": [
+                    "ref-s04-rule-set-scan"
+                  ],
+                  "statement": "source_underdetermined：实现片段未包含宿主调用清空与重建过程的完整调度；只能确定下一次规则求值读取重建后的集合。"
+                }
+              }
+            },
+            {
+              "encoding_status": "encoded",
+              "rule_id": "rule-s04-property-application",
+              "slots": {
+                "action": {
+                  "encoding_status": "encoded",
+                  "reference_ids": [
+                    "ref-s04-control-property",
+                    "ref-s04-push-property",
+                    "ref-s04-obstruction-property"
+                  ],
+                  "statement": "移动检查依据当前控制、可推动和阻挡特征处理实体移动；文本对象按可推动对象处理。"
+                },
+                "actor": {
+                  "encoding_status": "encoded",
+                  "reference_ids": [
+                    "ref-s04-entities",
+                    "ref-s04-control-property"
+                  ],
+                  "statement": "具有当前控制特征的实体是受控移动实体。"
+                },
+                "context": {
+                  "encoding_status": "encoded",
+                  "reference_ids": [
+                    "ref-s04-active-rule-set",
+                    "ref-s04-level-state"
+                  ],
+                  "statement": "规则在当前特征集合和当前对象位置下进行移动与阻挡检查。"
+                },
+                "cost": {
+                  "encoding_status": "not_applicable",
+                  "reference_ids": [],
+                  "statement": "not_applicable：来源实现没有定义移动资源成本。"
+                },
+                "effects": {
+                  "encoding_status": "encoded",
+                  "reference_ids": [
+                    "ref-s04-level-state",
+                    "ref-s04-text"
+                  ],
+                  "statement": "获准移动可改变受控实体及被推动对象的位置；若被推动对象是文本，其新位置会影响下一次特征重建；当前阻挡特征可阻止移动。"
+                },
+                "feedback": {
+                  "encoding_status": "scope_excluded",
+                  "reference_ids": [],
+                  "statement": "scope_excluded：音画或界面反馈及宿主层反馈不在本来源案范围内。"
+                },
+                "goals_evaluation": {
+                  "encoding_status": "not_applicable",
+                  "reference_ids": [],
+                  "statement": "not_applicable：移动属性应用本身不判定胜利。"
+                },
+                "preconditions": {
+                  "encoding_status": "encoded",
+                  "reference_ids": [
+                    "ref-s04-active-rule-set",
+                    "ref-s04-control-property"
+                  ],
+                  "statement": "移动检查读取当前特征集合；受控移动要求实体具有当前控制特征。"
+                },
+                "resolution": {
+                  "encoding_status": "encoded",
+                  "reference_ids": [
+                    "ref-s04-control-property",
+                    "ref-s04-push-property",
+                    "ref-s04-obstruction-property"
+                  ],
+                  "statement": "查询当前特征中的控制、可推动和阻挡属性，并据此应用移动、推动或阻挡；文本对象在该检查中按可推动对象处理。"
+                },
+                "target": {
+                  "encoding_status": "encoded",
+                  "reference_ids": [
+                    "ref-s04-entities",
+                    "ref-s04-text"
+                  ],
+                  "statement": "目标是参与当前移动检查的受控实体、文本对象及其他具有相关特征的对象。"
+                },
+                "trigger": {
+                  "encoding_status": "source_underdetermined",
+                  "reference_ids": [],
+                  "statement": "source_underdetermined：来源包未包含宿主输入与移动检查的完整调用调度。"
+                }
+              }
+            },
+            {
+              "encoding_status": "encoded",
+              "rule_id": "rule-s04-success",
+              "slots": {
+                "action": {
+                  "encoding_status": "not_applicable",
+                  "reference_ids": [],
+                  "statement": "not_applicable：本规则是位置与当前特征的胜利求值，不要求额外盘面动作。"
+                },
+                "actor": {
+                  "encoding_status": "encoded",
+                  "reference_ids": [
+                    "ref-s04-entities",
+                    "ref-s04-control-property"
+                  ],
+                  "statement": "参与一侧判定的是具有当前控制特征的实体。"
+                },
+                "context": {
+                  "encoding_status": "encoded",
+                  "reference_ids": [
+                    "ref-s04-active-rule-set",
+                    "ref-s04-level-state"
+                  ],
+                  "statement": "评估当前特征集合及实体当前坐标。"
+                },
+                "cost": {
+                  "encoding_status": "not_applicable",
+                  "reference_ids": [],
+                  "statement": "not_applicable：来源实现没有为胜利检查定义资源成本。"
+                },
+                "effects": {
+                  "encoding_status": "encoded",
+                  "reference_ids": [
+                    "ref-s04-success-evaluation"
+                  ],
+                  "statement": "满足重叠条件时触发胜利状态。"
+                },
+                "feedback": {
+                  "encoding_status": "scope_excluded",
+                  "reference_ids": [],
+                  "statement": "scope_excluded：胜利的音画、界面和宿主层呈现不在范围内。"
+                },
+                "goals_evaluation": {
+                  "encoding_status": "encoded",
+                  "reference_ids": [
+                    "ref-s04-success-overlap",
+                    "ref-s04-success-evaluation"
+                  ],
+                  "statement": "具有当前控制特征的实体与具有当前胜利特征的实体位于同一位置时，胜利条件成立。"
+                },
+                "preconditions": {
+                  "encoding_status": "encoded",
+                  "reference_ids": [
+                    "ref-s04-control-property",
+                    "ref-s04-success-property",
+                    "ref-s04-active-rule-set"
+                  ],
+                  "statement": "当前特征集合分别把控制特征和胜利特征赋予至少一个可参与位置检查的实体。"
+                },
+                "resolution": {
+                  "encoding_status": "encoded",
+                  "reference_ids": [
+                    "ref-s04-success-overlap"
+                  ],
+                  "statement": "查询当前控制与胜利特征，并比较相应实体位置；同位相遇即触发胜利。"
+                },
+                "target": {
+                  "encoding_status": "encoded",
+                  "reference_ids": [
+                    "ref-s04-entities"
+                  ],
+                  "statement": "目标是具有当前控制特征或胜利特征的实体及其位置关系。"
+                },
+                "trigger": {
+                  "encoding_status": "encoded",
+                  "reference_ids": [
+                    "ref-s04-success-overlap"
+                  ],
+                  "statement": "具有当前控制特征的实体与具有当前胜利特征的实体在同一位置相遇。"
+                }
+              }
+            }
+          ],
+          "scope": "编码冻结实例中列出的文本对象、实体与零基坐标、正交文本序列的特征收集、文本推动、控制、阻挡、胜利查询，以及文本位置变化后下一次规则求值所见的特征集合；不编码其他版本、补丁、编辑器、其他关卡、完整通关路径、唯一性、难度、玩家行为、音画表现或规则实现之外的宿主调用细节。"
+        },
+        "representation_version": "GP-SR 0.1"
+      },
+      "payload_schema_id": "inputs/reconstruction-payload.schema.json",
+      "task_kind": "reconstruction"
+    }
+  ],
+  "protocol_version": "0.3.0",
+  "run_id": "logic-001"
+}
