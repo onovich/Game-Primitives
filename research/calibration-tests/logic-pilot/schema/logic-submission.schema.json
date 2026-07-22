@@ -1,0 +1,224 @@
+{
+  "$id": "https://github.com/onovich/Game-Primitives/blob/main/research/calibration-tests/logic-pilot/schema/logic-submission.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "$schema": {
+      "type": "string"
+    },
+    "artifact_version": {
+      "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$",
+      "type": "string"
+    },
+    "input_sha256": {
+      "pattern": "^[0-9a-f]{64}$",
+      "type": "string"
+    },
+    "pollution": {
+      "additionalProperties": false,
+      "properties": {
+        "answer_exposure": {
+          "enum": [
+            "none",
+            "suspected",
+            "confirmed"
+          ]
+        },
+        "external_lookup": {
+          "enum": [
+            "none",
+            "declared",
+            "undeclared_discovered"
+          ]
+        },
+        "external_lookup_scope": {
+          "enum": [
+            "not_applicable",
+            "within_scope",
+            "outside_scope",
+            "unknown"
+          ]
+        },
+        "external_sources": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "notes": {
+          "type": "string"
+        },
+        "other_submission_exposure": {
+          "enum": [
+            "none",
+            "suspected",
+            "confirmed"
+          ]
+        },
+        "out_of_package_access": {
+          "enum": [
+            "none",
+            "declared",
+            "undeclared_discovered"
+          ]
+        },
+        "out_of_package_paths": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "prior_project_exposure": {
+          "enum": [
+            "none",
+            "limited",
+            "substantial",
+            "unknown"
+          ]
+        },
+        "prototype_recognition": {
+          "enum": [
+            "none",
+            "suspected",
+            "identified"
+          ]
+        },
+        "recognized_families": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "required": [
+        "answer_exposure",
+        "external_lookup",
+        "external_lookup_scope",
+        "external_sources",
+        "notes",
+        "other_submission_exposure",
+        "out_of_package_access",
+        "out_of_package_paths",
+        "prior_project_exposure",
+        "prototype_recognition",
+        "recognized_families"
+      ],
+      "type": "object"
+    },
+    "protocol_version": {
+      "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$",
+      "type": "string"
+    },
+    "responses": {
+      "items": {
+        "additionalProperties": false,
+        "properties": {
+          "item_id": {
+            "pattern": "^item-[a-z0-9]{8,16}$",
+            "type": "string"
+          },
+          "response": {
+            "type": "object"
+          },
+          "task_kind": {
+            "enum": [
+              "reconstruction",
+              "annotation"
+            ]
+          }
+        },
+        "required": [
+          "item_id",
+          "response",
+          "task_kind"
+        ],
+        "type": "object"
+      },
+      "minItems": 1,
+      "type": "array",
+      "uniqueItems": true
+    },
+    "run_id": {
+      "pattern": "^logic-[0-9]{3}$",
+      "type": "string"
+    },
+    "submission_id": {
+      "pattern": "^submission-[a-z0-9][a-z0-9-]*$",
+      "type": "string"
+    },
+    "submitted_at": {
+      "format": "date-time",
+      "type": "string"
+    },
+    "tester": {
+      "additionalProperties": false,
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "actor_kind": {
+                "enum": [
+                  "model",
+                  "hybrid"
+                ]
+              }
+            },
+            "required": [
+              "actor_kind"
+            ]
+          },
+          "then": {
+            "required": [
+              "model_name"
+            ]
+          }
+        }
+      ],
+      "properties": {
+        "actor_kind": {
+          "enum": [
+            "human",
+            "model",
+            "hybrid"
+          ]
+        },
+        "context_scope": {
+          "enum": [
+            "isolated_package",
+            "prior_project_context",
+            "mixed",
+            "unknown"
+          ]
+        },
+        "identifier": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "model_name": {
+          "minLength": 1,
+          "type": "string"
+        }
+      },
+      "required": [
+        "actor_kind",
+        "context_scope",
+        "identifier"
+      ],
+      "type": "object"
+    }
+  },
+  "required": [
+    "$schema",
+    "artifact_version",
+    "input_sha256",
+    "pollution",
+    "protocol_version",
+    "responses",
+    "run_id",
+    "submission_id",
+    "submitted_at",
+    "tester"
+  ],
+  "title": "Game Primitives Logic Pilot Submission",
+  "type": "object"
+}

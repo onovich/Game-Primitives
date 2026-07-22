@@ -21,7 +21,7 @@
 
 散列和**答案承诺**都作用于仓库实际保存或事后揭示的精确文件字节，而不是解析后再序列化的抽象对象。格式化工具若改变字节，就必须重新计算校验值并在**首次提交**前更新版本。
 
-JSON Schema 固定使用 Draft 2020-12 描述机器约束。当前先建立轮次清单与**答案承诺** Schema；夹具输入、提交、揭示和报告的字段仍等待 D2-5c 冻结，不以空泛 Schema 预先掩盖尚未决定的问题。
+JSON Schema 固定使用 Draft 2020-12 描述机器约束。D2-5b 阶段先建立轮次清单与**答案承诺** Schema，没有用空泛 Schema 预先掩盖尚未决定的问题；D2-5c 冻结字段后，已继续建立输入信封、提交、真值与报告 Schema。
 
 ### 目录与轮次
 
@@ -75,5 +75,5 @@ YAML 较适合手写注释，但隐式类型、解析差异和序列化变化会
 
 - [第二轮校准协议](../../research/calibration-cycle-2-protocol.md)和[校准门 D](../../research/calibration-gates/gate-d-second-cycle-method-pilot.md)将逻辑组启动条件第 8 项记为已满足。
 - [逻辑先行组测试工作区](../../research/calibration-tests/logic-pilot/README.md)与 `logic-001` 轮次骨架建立，但尚无测试输入或提交。
-- D2-5c 继续决定事前通过／失败标准、污染表字段、近邻隔离变量、行为取证边界，以及输入／提交／揭示／报告 Schema。
+- D2-5c 已由 [ADR 0107](0107-freeze-logic-pilot-verdicts-contamination-and-scope.md)冻结事前通过／失败标准、污染字段、近邻隔离变量、行为边界，以及输入／提交／真值／报告 Schema。
 - 第二轮仍未启动完整取证。

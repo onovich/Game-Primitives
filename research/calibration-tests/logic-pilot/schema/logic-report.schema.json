@@ -1,0 +1,247 @@
+{
+  "$id": "https://github.com/onovich/Game-Primitives/blob/main/research/calibration-tests/logic-pilot/schema/logic-report.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "$schema": {
+      "type": "string"
+    },
+    "artifact_version": {
+      "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$",
+      "type": "string"
+    },
+    "behavior_scope": {
+      "const": "structural_only"
+    },
+    "commitment_verified": {
+      "type": "boolean"
+    },
+    "condition_results": {
+      "allOf": [
+        {
+          "contains": {
+            "properties": {
+              "condition_id": {
+                "const": "lc-01-local-global-extension"
+              }
+            },
+            "required": [
+              "condition_id"
+            ]
+          }
+        },
+        {
+          "contains": {
+            "properties": {
+              "condition_id": {
+                "const": "lc-02-legal-goal-reachability"
+              }
+            },
+            "required": [
+              "condition_id"
+            ]
+          }
+        },
+        {
+          "contains": {
+            "properties": {
+              "condition_id": {
+                "const": "lc-03-local-single-loop"
+              }
+            },
+            "required": [
+              "condition_id"
+            ]
+          }
+        },
+        {
+          "contains": {
+            "properties": {
+              "condition_id": {
+                "const": "lc-04-state-rule-set-change"
+              }
+            },
+            "required": [
+              "condition_id"
+            ]
+          }
+        }
+      ],
+      "items": {
+        "additionalProperties": false,
+        "properties": {
+          "condition_id": {
+            "enum": [
+              "lc-01-local-global-extension",
+              "lc-02-legal-goal-reachability",
+              "lc-03-local-single-loop",
+              "lc-04-state-rule-set-change"
+            ]
+          },
+          "rationale": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "result": {
+            "enum": [
+              "recovered",
+              "partially_recovered",
+              "missed",
+              "contradicted",
+              "not_evaluable",
+              "invalid"
+            ]
+          },
+          "submission_ids": {
+            "items": {
+              "pattern": "^submission-[a-z0-9][a-z0-9-]*$",
+              "type": "string"
+            },
+            "minItems": 1,
+            "type": "array",
+            "uniqueItems": true
+          }
+        },
+        "required": [
+          "condition_id",
+          "rationale",
+          "result",
+          "submission_ids"
+        ],
+        "type": "object"
+      },
+      "minItems": 4,
+      "type": "array",
+      "uniqueItems": true
+    },
+    "generated_at": {
+      "format": "date-time",
+      "type": "string"
+    },
+    "out_of_scope_behavior_claims": {
+      "items": {
+        "additionalProperties": false,
+        "allOf": [
+          {
+            "if": {
+              "properties": {
+                "disposition": {
+                  "const": "evidence_backlog"
+                }
+              },
+              "required": [
+                "disposition"
+              ]
+            },
+            "then": {
+              "required": [
+                "evidence_backlog_id"
+              ]
+            }
+          }
+        ],
+        "properties": {
+          "claim": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "disposition": {
+            "enum": [
+              "withdrawn",
+              "evidence_backlog"
+            ]
+          },
+          "evidence_backlog_id": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "claim",
+          "disposition"
+        ],
+        "type": "object"
+      },
+      "type": "array"
+    },
+    "overall_verdict": {
+      "enum": [
+        "pass_in_scope",
+        "model_failure",
+        "inconclusive",
+        "run_invalid"
+      ]
+    },
+    "pollution_effects": {
+      "items": {
+        "additionalProperties": false,
+        "properties": {
+          "effect": {
+            "enum": [
+              "none",
+              "downgraded",
+              "submission_invalid",
+              "run_invalid"
+            ]
+          },
+          "rationale": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "submission_id": {
+            "pattern": "^submission-[a-z0-9][a-z0-9-]*$",
+            "type": "string"
+          }
+        },
+        "required": [
+          "effect",
+          "rationale"
+        ],
+        "type": "object"
+      },
+      "type": "array"
+    },
+    "protocol_version": {
+      "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$",
+      "type": "string"
+    },
+    "report_id": {
+      "pattern": "^report-[a-z0-9][a-z0-9-]*$",
+      "type": "string"
+    },
+    "run_id": {
+      "pattern": "^logic-[0-9]{3}$",
+      "type": "string"
+    },
+    "submission_ids": {
+      "items": {
+        "pattern": "^submission-[a-z0-9][a-z0-9-]*$",
+        "type": "string"
+      },
+      "minItems": 2,
+      "type": "array",
+      "uniqueItems": true
+    },
+    "truth_sha256": {
+      "pattern": "^[0-9a-f]{64}$",
+      "type": "string"
+    }
+  },
+  "required": [
+    "$schema",
+    "artifact_version",
+    "behavior_scope",
+    "commitment_verified",
+    "condition_results",
+    "generated_at",
+    "out_of_scope_behavior_claims",
+    "overall_verdict",
+    "pollution_effects",
+    "protocol_version",
+    "report_id",
+    "run_id",
+    "submission_ids",
+    "truth_sha256"
+  ],
+  "title": "Game Primitives Logic Pilot Report",
+  "type": "object"
+}

@@ -1,6 +1,6 @@
 # 逻辑解谜先行组测试工作区
 
-- 状态：目录与 JSON 约定已接受；`logic-001` 正在准备；尚未开始取证
+- 状态：目录、JSON 约定、判定与污染字段已接受；`logic-001` 正在准备；尚未开始取证
 - 决定：[ADR 0106](../../../docs/adr/0106-use-versioned-json-run-artifacts-for-logic-pilot.md)
 - 方法：[第二轮案例校准协议](../../calibration-cycle-2-protocol.md)
 - 隔离：[ADR 0105](../../../docs/adr/0105-use-procedural-blinding-and-answer-commitments-for-logic-pilot.md)
@@ -29,9 +29,13 @@ runs/<run_id>/
 └── reports/
 ```
 
-Git 只在目录出现真实制品时跟踪它。当前仅建立 `logic-001` 的说明和清单；D2-5c 冻结任务字段与判定标准后，才创建输入、承诺及其专用 Schema。
+Git 只在目录出现真实制品时跟踪它。当前已经冻结协议信封、判定和污染字段；具体网格、图、状态与规则词块 payload Schema 将随 `logic-001` 实际输入一起建立，避免用空泛通用格式预判理论。
 
 ## 当前 Schema
 
 - [`run-manifest.schema.json`](schema/run-manifest.schema.json)：轮次状态与制品索引；
-- [`answer-commitment.schema.json`](schema/answer-commitment.schema.json)：公开**答案承诺**记录，不含答案或随机数。
+- [`answer-commitment.schema.json`](schema/answer-commitment.schema.json)：公开**答案承诺**记录，不含答案或随机数；
+- [`logic-input.schema.json`](schema/logic-input.schema.json)：随机化输入包信封，不规定具体 payload 结构；
+- [`logic-submission.schema.json`](schema/logic-submission.schema.json)：回答、测试者范围与污染记录；
+- [`logic-truth.schema.json`](schema/logic-truth.schema.json)：揭示后的内部映射、硬条件与预期判断；
+- [`logic-report.schema.json`](schema/logic-report.schema.json)：逐项结果、污染影响和**强检验结论**。

@@ -280,7 +280,7 @@ D2-4 已接受：冻结“Nikoli 数独网页例题＋Sokoban 权利方规则示
 
 - 依据 [ADR 0106](../../docs/adr/0106-use-versioned-json-run-artifacts-for-logic-pilot.md)把四个夹具写入 `logic-001` 的版本化 JSON 输入并生成 SHA-256；
 - 依据 [ADR 0105](../../docs/adr/0105-use-procedural-blinding-and-answer-commitments-for-logic-pilot.md)把已冻结的角色可见性制成测试本地术语表、隔离输入包、答案包与承诺记录；
-- 由 D2-5c 冻结通过／失败标准、污染字段、近邻隔离变量与行为边界，再建立其余专用 Schema。
+- D2-5c 已由 [ADR 0107](../../docs/adr/0107-freeze-logic-pilot-verdicts-contamination-and-scope.md)冻结通过／失败标准、污染字段、近邻隔离变量与行为边界，并建立输入／提交／真值／报告 Schema；下一步制作具体 payload Schema 与测试包。
 
 这两项是测试制品准备，不改变本次选案结论。
 

@@ -40,5 +40,5 @@
 - [第二轮校准协议](../../research/calibration-cycle-2-protocol.md)和[校准门 D](../../research/calibration-gates/gate-d-second-cycle-method-pilot.md)将逻辑组启动条件第 1–3 项记为已满足。
 - [原语候选表](../../theory/PRIMITIVE-CANDIDATES.md)中的 `GP-C005` 不因选案自动升级；必须等待强检验结果。
 - 官方答案图、途中图、源码和研究者推演都不能证明玩家策略、难度或体验；相关主张仍触发**行为取证测试**。
-- 后续 D2-5a 已由 [ADR 0105](0105-use-procedural-blinding-and-answer-commitments-for-logic-pilot.md)冻结重构／标注角色的可见性、**答案承诺**与揭示顺序；D2-5b 已由 [ADR 0106](0106-use-versioned-json-run-artifacts-for-logic-pilot.md)冻结机器可读格式、轮次目录与版本方式；D2-5c 仍须决定事前通过与失败标准、污染表、近邻隔离变量及行为取证边界。
+- 后续 D2-5a 已由 [ADR 0105](0105-use-procedural-blinding-and-answer-commitments-for-logic-pilot.md)冻结重构／标注角色的可见性、**答案承诺**与揭示顺序；D2-5b 已由 [ADR 0106](0106-use-versioned-json-run-artifacts-for-logic-pilot.md)冻结机器可读格式、轮次目录与版本方式；D2-5c 已由 [ADR 0107](0107-freeze-logic-pilot-verdicts-contamination-and-scope.md)冻结事前判定、污染字段、四项隔离变量及行为边界。
 - 第二轮仍未启动完整取证。

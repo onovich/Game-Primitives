@@ -1,9 +1,9 @@
 # 校准门 D：第二轮强检验方法试验
 
-- 状态：门审范围、执行顺序及逻辑解谜组命题、角色、锚点、夹具基线、**程序性盲化**、制品格式与轮次目录已接受；实际输入与通过标准待定
+- 状态：门审范围与执行顺序已接受；逻辑解谜组第 1–8 项启动方法决定均已冻结，实际测试包与执行者待准备
 - 日期：2026-07-22
 - 所属阶段：阶段一·开放研究，第二轮案例校准准备
-- 来源决定：D2-1、D2-2、D2-3、D2-4、D2-5a 与 D2-5b；[ADR 0101](../../docs/adr/0101-pilot-the-second-cycle-with-two-contrasting-groups.md)；[ADR 0102](../../docs/adr/0102-run-the-logic-puzzle-pilot-before-continuous-action.md)；[ADR 0103](../../docs/adr/0103-test-puzzle-judgment-and-rule-boundaries-with-four-case-roles.md)；[ADR 0104](../../docs/adr/0104-freeze-dual-material-logic-puzzle-pilot-cases.md)；[ADR 0105](../../docs/adr/0105-use-procedural-blinding-and-answer-commitments-for-logic-pilot.md)；[ADR 0106](../../docs/adr/0106-use-versioned-json-run-artifacts-for-logic-pilot.md)
+- 来源决定：D2-1、D2-2、D2-3、D2-4 与 D2-5a–c；[ADR 0101](../../docs/adr/0101-pilot-the-second-cycle-with-two-contrasting-groups.md)；[ADR 0102](../../docs/adr/0102-run-the-logic-puzzle-pilot-before-continuous-action.md)；[ADR 0103](../../docs/adr/0103-test-puzzle-judgment-and-rule-boundaries-with-four-case-roles.md)；[ADR 0104](../../docs/adr/0104-freeze-dual-material-logic-puzzle-pilot-cases.md)；[ADR 0105](../../docs/adr/0105-use-procedural-blinding-and-answer-commitments-for-logic-pilot.md)；[ADR 0106](../../docs/adr/0106-use-versioned-json-run-artifacts-for-logic-pilot.md)；[ADR 0107](../../docs/adr/0107-freeze-logic-pilot-verdicts-contamination-and-scope.md)
 - 方法依据：[第二轮案例校准协议](../calibration-cycle-2-protocol.md)
 
 ## 1. 门 D 的职责
@@ -23,7 +23,7 @@
 
 | 顺序 | 试验组 | 主要压力 | 必做强检验 | 条件检验 | 尚待决定 |
 | --- | --- | --- | --- | --- | --- |
-| 1 | **逻辑解谜与状态空间组** | **动作合法性**、**局部一致性**、**全局可完成性**、不可逆状态与**规则变换边界** | **重构测试＋近邻辨别测试＋独立标注测试** | 涉及实际解题行为或难度时行为取证 | 实际夹具／输入、通过标准、污染表、近邻隔离变量与标注材料 |
+| 1 | **逻辑解谜与状态空间组** | **动作合法性**、**局部一致性**、**全局可完成性**、不可逆状态与**规则变换边界** | **重构测试＋近邻辨别测试＋独立标注测试** | 本轮禁止行为主张；若新增则转证据积压 | 无待决方法项；实际制品与执行者尚待准备 |
 | 2 | **连续行动与具身控制组** | 动作／事件／过程，连续时间与空间，输入反馈，行动实现载体 | **重构测试＋设计变体测试** | 涉及原语边界时独立标注；涉及技能、难度或体验时行为取证 | 具体游戏、版本、组内角色与隔离变体 |
 
 两个组都必须记录为什么预期当前模型会失败。仅因作品经典、流行或属于目标类型，不能取得样本席位。
@@ -33,6 +33,8 @@
 四种角色现已分别冻结 Nikoli 数独官方例题、《仓库番》权利方规则示意盘面、Nikoli Slitherlink 官方例题与《Baba Is You》NGJ17 `1level` 为**锚点案例**内容，同时冻结 `FX-L01`–`FX-L04` 的职责和最小内容为**受控测试夹具**基线。选择依据与制品校验见[一手来源选案笔记](../sources/second-cycle-logic-pilot-case-selection.md)。D2-5a 又把**来源编码者**、**重构者**和**夹具标注者**的可见／隔离材料分开，由不参与判断的测试保管者在仓库外持有答案，并要求**答案承诺**、不可覆盖的**首次提交**与事后污染声明；夹具文件和隔离输入包仍未制作。
 
 D2-5b 已把测试制品固定为版本化 JSON，并建立 [`logic-001`](../calibration-tests/logic-pilot/runs/logic-001/) 轮次骨架。说明、输入、承诺、提交、揭示与报告均在同一轮次保存；答案在揭示前不进入仓库。该决定满足保存位置条件，但不表示实际测试制品已经完成。
+
+D2-5c 已冻结 `LC-01`–`LC-04` 四项硬条件、六种单项结果和四种总体**强检验结论**，并明确污染降级／失效规则。逻辑组 `behavior_scope` 为 `structural_only`；不以本轮材料主张策略、难度、平衡或体验。具体条件见 [ADR 0107](../../docs/adr/0107-freeze-logic-pilot-verdicts-contamination-and-scope.md)。
 
 ## 3. 单组启动条件
 
@@ -49,7 +51,7 @@ D2-5b 已把测试制品固定为版本化 JSON，并建立 [`logic-001`](../cal
 
 逻辑解谜组先完成冻结与必做检验，随后进行一次不作理论结论的组间方法复核；连续行动组再使用复核后的方法执行。门 D 只在两组都提交结果后召开。
 
-逻辑解谜组当前已满足第 1–4 项和第 8 项；第 5–7 项仍待冻结，且四个夹具尚未制成带哈希的测试输入，因此该组尚未启动完整取证。
+逻辑解谜组第 1–8 项启动方法决定现已全部冻结；四个夹具、说明、真值、承诺和执行者分派仍未形成完整测试包，因此该组尚未启动完整取证。
 
 ## 4. 门审输入
 

@@ -52,5 +52,5 @@ commitment = SHA-256(secret_nonce_bytes || exact_truth_bundle_bytes)
 
 - [第二轮校准协议](../../research/calibration-cycle-2-protocol.md)和[校准门 D](../../research/calibration-gates/gate-d-second-cycle-method-pilot.md)把逻辑组启动条件第 4 项记为方法边界已冻结；实际输入包仍未制作。
 - `CONTEXT.md` 增加**来源编码**、**程序性盲化**、**答案承诺**与**首次提交**四个共享研究术语；它们不进入“原语 → 机制 → 玩法模板 → 游戏”的公开理论层级。
-- D2-5b 已由 [ADR 0106](0106-use-versioned-json-run-artifacts-for-logic-pilot.md)冻结机器可读格式、目录与版本方式；D2-5c 继续决定事前通过／失败标准、污染表字段、近邻隔离变量、行为取证边界与专用 Schema。
+- D2-5b 已由 [ADR 0106](0106-use-versioned-json-run-artifacts-for-logic-pilot.md)冻结机器可读格式、目录与版本方式；D2-5c 已由 [ADR 0107](0107-freeze-logic-pilot-verdicts-contamination-and-scope.md)冻结事前通过／失败标准、污染字段、近邻隔离变量、行为边界与专用 Schema。
 - 第二轮仍未启动完整取证。

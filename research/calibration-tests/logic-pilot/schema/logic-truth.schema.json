@@ -1,0 +1,297 @@
+{
+  "$id": "https://github.com/onovich/Game-Primitives/blob/main/research/calibration-tests/logic-pilot/schema/logic-truth.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "$schema": {
+      "type": "string"
+    },
+    "artifact_version": {
+      "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$",
+      "type": "string"
+    },
+    "critical_conditions": {
+      "allOf": [
+        {
+          "contains": {
+            "properties": {
+              "condition_id": {
+                "const": "lc-01-local-global-extension"
+              }
+            },
+            "required": [
+              "condition_id"
+            ]
+          }
+        },
+        {
+          "contains": {
+            "properties": {
+              "condition_id": {
+                "const": "lc-02-legal-goal-reachability"
+              }
+            },
+            "required": [
+              "condition_id"
+            ]
+          }
+        },
+        {
+          "contains": {
+            "properties": {
+              "condition_id": {
+                "const": "lc-03-local-single-loop"
+              }
+            },
+            "required": [
+              "condition_id"
+            ]
+          }
+        },
+        {
+          "contains": {
+            "properties": {
+              "condition_id": {
+                "const": "lc-04-state-rule-set-change"
+              }
+            },
+            "required": [
+              "condition_id"
+            ]
+          }
+        }
+      ],
+      "items": {
+        "additionalProperties": false,
+        "properties": {
+          "condition_id": {
+            "enum": [
+              "lc-01-local-global-extension",
+              "lc-02-legal-goal-reachability",
+              "lc-03-local-single-loop",
+              "lc-04-state-rule-set-change"
+            ]
+          },
+          "expected_distinction": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "rationale": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "severity": {
+            "const": "critical"
+          }
+        },
+        "required": [
+          "condition_id",
+          "expected_distinction",
+          "rationale",
+          "severity"
+        ],
+        "type": "object"
+      },
+      "minItems": 4,
+      "type": "array",
+      "uniqueItems": true
+    },
+    "expected_judgments": {
+      "allOf": [
+        {
+          "contains": {
+            "properties": {
+              "condition_id": {
+                "const": "lc-01-local-global-extension"
+              }
+            },
+            "required": [
+              "condition_id"
+            ]
+          }
+        },
+        {
+          "contains": {
+            "properties": {
+              "condition_id": {
+                "const": "lc-02-legal-goal-reachability"
+              }
+            },
+            "required": [
+              "condition_id"
+            ]
+          }
+        },
+        {
+          "contains": {
+            "properties": {
+              "condition_id": {
+                "const": "lc-03-local-single-loop"
+              }
+            },
+            "required": [
+              "condition_id"
+            ]
+          }
+        },
+        {
+          "contains": {
+            "properties": {
+              "condition_id": {
+                "const": "lc-04-state-rule-set-change"
+              }
+            },
+            "required": [
+              "condition_id"
+            ]
+          }
+        }
+      ],
+      "items": {
+        "additionalProperties": false,
+        "properties": {
+          "condition_id": {
+            "enum": [
+              "lc-01-local-global-extension",
+              "lc-02-legal-goal-reachability",
+              "lc-03-local-single-loop",
+              "lc-04-state-rule-set-change"
+            ]
+          },
+          "expected_summary": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "item_id": {
+            "pattern": "^item-[a-z0-9]{8,16}$",
+            "type": "string"
+          }
+        },
+        "required": [
+          "condition_id",
+          "expected_summary",
+          "item_id"
+        ],
+        "type": "object"
+      },
+      "minItems": 4,
+      "type": "array",
+      "uniqueItems": true
+    },
+    "item_mappings": {
+      "allOf": [
+        {
+          "contains": {
+            "properties": {
+              "case_role": {
+                "const": "static_constraint_anchor"
+              }
+            },
+            "required": [
+              "case_role"
+            ]
+          }
+        },
+        {
+          "contains": {
+            "properties": {
+              "case_role": {
+                "const": "irreversible_state_space_contrast"
+              }
+            },
+            "required": [
+              "case_role"
+            ]
+          }
+        },
+        {
+          "contains": {
+            "properties": {
+              "case_role": {
+                "const": "local_global_structure_depth"
+              }
+            },
+            "required": [
+              "case_role"
+            ]
+          }
+        },
+        {
+          "contains": {
+            "properties": {
+              "case_role": {
+                "const": "rule_transformation_boundary"
+              }
+            },
+            "required": [
+              "case_role"
+            ]
+          }
+        }
+      ],
+      "items": {
+        "additionalProperties": false,
+        "properties": {
+          "case_role": {
+            "enum": [
+              "static_constraint_anchor",
+              "irreversible_state_space_contrast",
+              "local_global_structure_depth",
+              "rule_transformation_boundary"
+            ]
+          },
+          "fixture_ids": {
+            "items": {
+              "pattern": "^FX-L0[1-4](?:-[A-Z])?$",
+              "type": "string"
+            },
+            "minItems": 1,
+            "type": "array",
+            "uniqueItems": true
+          },
+          "item_id": {
+            "pattern": "^item-[a-z0-9]{8,16}$",
+            "type": "string"
+          },
+          "source_anchor_id": {
+            "minLength": 1,
+            "type": "string"
+          }
+        },
+        "required": [
+          "case_role",
+          "fixture_ids",
+          "item_id"
+        ],
+        "type": "object"
+      },
+      "minItems": 4,
+      "type": "array",
+      "uniqueItems": true
+    },
+    "protocol_version": {
+      "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$",
+      "type": "string"
+    },
+    "run_id": {
+      "pattern": "^logic-[0-9]{3}$",
+      "type": "string"
+    },
+    "truth_id": {
+      "pattern": "^truth-[a-z0-9][a-z0-9-]*$",
+      "type": "string"
+    }
+  },
+  "required": [
+    "$schema",
+    "artifact_version",
+    "critical_conditions",
+    "expected_judgments",
+    "item_mappings",
+    "protocol_version",
+    "run_id",
+    "truth_id"
+  ],
+  "title": "Game Primitives Logic Pilot Truth Bundle",
+  "type": "object"
+}

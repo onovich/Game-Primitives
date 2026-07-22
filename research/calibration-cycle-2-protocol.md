@@ -1,9 +1,9 @@
 # 第二轮案例校准协议
 
-- 状态：方法、两个先行问题组、执行顺序及逻辑解谜组命题、角色、锚点、夹具基线、**程序性盲化**、制品格式与轮次目录已接受；实际输入与通过标准待定；尚未启动
+- 状态：方法、两个先行问题组与执行顺序已接受；逻辑解谜组第 1–8 项启动方法决定均已冻结，实际测试包与执行者待准备；尚未启动
 - 日期：2026-07-22
 - 项目阶段：阶段一·开放研究
-- 来源决定：D-C7、D2-1、D2-2、D2-3、D2-4、D2-5a 与 D2-5b；[ADR 0100](../docs/adr/0100-require-strong-tests-beyond-structural-expressibility.md)；[ADR 0101](../docs/adr/0101-pilot-the-second-cycle-with-two-contrasting-groups.md)；[ADR 0102](../docs/adr/0102-run-the-logic-puzzle-pilot-before-continuous-action.md)；[ADR 0103](../docs/adr/0103-test-puzzle-judgment-and-rule-boundaries-with-four-case-roles.md)；[ADR 0104](../docs/adr/0104-freeze-dual-material-logic-puzzle-pilot-cases.md)；[ADR 0105](../docs/adr/0105-use-procedural-blinding-and-answer-commitments-for-logic-pilot.md)；[ADR 0106](../docs/adr/0106-use-versioned-json-run-artifacts-for-logic-pilot.md)
+- 来源决定：D-C7、D2-1、D2-2、D2-3、D2-4 与 D2-5a–c；[ADR 0100](../docs/adr/0100-require-strong-tests-beyond-structural-expressibility.md)；[ADR 0101](../docs/adr/0101-pilot-the-second-cycle-with-two-contrasting-groups.md)；[ADR 0102](../docs/adr/0102-run-the-logic-puzzle-pilot-before-continuous-action.md)；[ADR 0103](../docs/adr/0103-test-puzzle-judgment-and-rule-boundaries-with-four-case-roles.md)；[ADR 0104](../docs/adr/0104-freeze-dual-material-logic-puzzle-pilot-cases.md)；[ADR 0105](../docs/adr/0105-use-procedural-blinding-and-answer-commitments-for-logic-pilot.md)；[ADR 0106](../docs/adr/0106-use-versioned-json-run-artifacts-for-logic-pilot.md)；[ADR 0107](../docs/adr/0107-freeze-logic-pilot-verdicts-contamination-and-scope.md)
 - 前序结果：[第一轮十二案跨案例总汇报](calibration-gates/gate-c-first-cycle-synthesis.md)
 
 ## 1. 第二轮要回答什么
@@ -51,7 +51,7 @@
 
 | 顺序 | 试验组 | 主要检验对象 | 固定的最低强检验 | 本轮暂不冻结 |
 | --- | --- | --- | --- | --- |
-| 1 | **逻辑解谜与状态空间组** | **动作合法性**、**局部一致性**、**全局可完成性**与**规则变换边界** | **重构测试＋近邻辨别测试＋独立标注测试** | 实际夹具／输入、通过标准、污染表、近邻隔离变量与行为取证范围 |
+| 1 | **逻辑解谜与状态空间组** | **动作合法性**、**局部一致性**、**全局可完成性**与**规则变换边界** | **重构测试＋近邻辨别测试＋独立标注测试** | 无待决方法项；实际制品与执行者尚待准备 |
 | 2 | **连续行动与具身控制组** | 动作／事件／过程、时间、空间、行动实现载体与输入反馈 | **重构测试＋设计变体测试** | 具体游戏、版本、组内角色与行为取证范围 |
 
 两组不是“主流组”和“垂直组”的简单分工。连续行动内部也要包含纵深或边界压力，逻辑解谜也要使用读者熟悉的锚点；每组都必须说明为什么可能推翻当前模型。
@@ -115,7 +115,24 @@ D2-5b 接受[版本化 JSON 测试轮次决定](../docs/adr/0106-use-versioned-j
 
 测试工作区固定为 [`research/calibration-tests/logic-pilot/`](calibration-tests/logic-pilot/)，每次执行按 `runs/<run_id>/` 保存说明、输入、承诺、提交、揭示与报告。首轮标识为 `logic-001`，当前状态为 `preparing`。**首次提交**后若任务语义、输入或承诺发生变化，必须新建轮次，不能覆盖旧制品。
 
-答案、映射与 `secret_nonce` 在揭示前没有仓库内副本；测试保管者继续在仓库外保存。当前仅建立轮次清单和**答案承诺** Schema，输入、提交、揭示与报告 Schema 等待 D2-5c 冻结字段后再建。
+答案、映射与 `secret_nonce` 在揭示前没有仓库内副本；测试保管者继续在仓库外保存。轮次清单、**答案承诺**、输入信封、提交、真值与报告 Schema 已建立；具体网格、图、状态和规则词块 payload Schema 随实际输入制作。
+
+#### 2.1.5 事前硬条件、污染与行为边界
+
+D2-5c 接受[判定、污染与主张范围决定](../docs/adr/0107-freeze-logic-pilot-verdicts-contamination-and-scope.md)。逻辑组不采用综合分数，事前冻结四项硬条件：
+
+1. `LC-01`：**局部一致性**不等于存在完整扩展；
+2. `LC-02`：**动作合法性**不等于动作后仍具**全局可完成性**；
+3. `LC-03`：局部边条件成立不等于形成单一全局环；
+4. `LC-04`：普通对象状态变化不等于生效规则集合发生变化。
+
+单项使用 `recovered`、`partially_recovered`、`missed`、`contradicted`、`not_evaluable` 或 `invalid`；总体**强检验结论**使用**范围内通过**、**模型失败**、**结论不定**或**轮次无效**。只有四项均完整恢复、两份有效独立标注在结构意义上一致且不依赖隔离材料，才能判为**范围内通过**。措辞不同但结构一致只记录为词汇压力。
+
+每份提交记录既往项目暴露、原型识别、外部检索、包外访问、他人提交暴露和答案暴露。认出原型只降级证据；确认提前看见答案或他人提交使该提交失效；冻结输入被覆盖、答案全局泄漏或承诺无法复算才使轮次无效。失效提交仍保留。
+
+本轮 `behavior_scope` 固定为 `structural_only`。玩家策略、难度、平衡和体验陈述不参与硬条件判断：能撤回则撤回，仍需研究则移交[校准证据积压](calibration-evidence-backlog.md)；若总体结论依赖这类主张，则不能判为**范围内通过**。
+
+至此逻辑组第 1–8 项启动方法决定均已冻结，但 `logic-001` 仍只有骨架与 Schema。完成说明、测试本地术语表、payload Schema、匿名输入、仓库外真值、公开承诺及执行者分派后，才可把轮次从 `preparing` 改为 `frozen`。
 
 ### 2.2 校准门 D
 
@@ -178,6 +195,8 @@ D2-5b 接受[版本化 JSON 测试轮次决定](../docs/adr/0106-use-versioned-j
 
 “通过”只适用于本组研究问题和明确范围，不升级为全模型有效。
 
+逻辑先行组进一步使用 D2-5c 的六种单项结果和四种总体**强检验结论**；本节的“未测试／重构受阻”等表述保留为跨组通用成熟度说明，不替代轮次报告中的事前判定。
+
 ## 5. 设计变体测试
 
 每次只隔离一个候选、参数或编排边，并在检查结果前登记：
@@ -213,6 +232,8 @@ D2-5b 接受[版本化 JSON 测试轮次决定](../docs/adr/0106-use-versioned-j
 
 分歧本身是结果，不得为了获得漂亮一致率而静默协调。样本足够前只报告逐项一致、分歧类型和修订原因，不夸大为普遍统计可靠性。
 
+逻辑先行组只要求结构意义一致，不把字符串完全相同当作硬条件；若两份标注使用不同术语却恢复同一边界，记录为词汇压力。若干净输入下连边界本身也无法复现，则当前轮次不通过独立标注条件。
+
 ## 8. 行为取证测试
 
 凡结论使用“玩家会”“通常”“最优”“更难”“更公平”“产生某种体验”等实际性表达，必须绑定与范围相称的行为材料，例如：
@@ -224,6 +245,8 @@ D2-5b 接受[版本化 JSON 测试轮次决定](../docs/adr/0106-use-versioned-j
 - 有清楚身份与边界的参与者证言，且不把证言自动当作总体规律。
 
 没有行为材料时，可以保留“规则允许”“设计上激励”“工作假设”等有限表述，但**行为证据状态**必须保持“未主张”或“待补”。
+
+逻辑先行组当前主动限定为 `structural_only`，因此不收集玩家行为材料，也不允许用结构测试结果生成玩家事实；被发现的范围外主张按 ADR 0107 撤回或移交证据积压。
 
 ## 9. 反例优先组样
 
