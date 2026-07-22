@@ -1,0 +1,33 @@
+{
+  "$schema": "../../schema/run-manifest.schema.json",
+  "artifacts": [
+    {
+      "artifact_kind": "commitment",
+      "artifact_version": "0.1.0",
+      "path": "commitments/answer-commitment.json",
+      "sha256": "79f37bb04b75ca157d458b0b00ed8a8d4cb56748622de1151e4e04aa0f7ec8c4"
+    },
+    {
+      "artifact_kind": "input",
+      "artifact_version": "0.1.0",
+      "path": "inputs/rehearsal-input.json",
+      "sha256": "1640a7cdfe5fd8b6c0cba6ef20295b09922765302fc196934bdcdf3415c89bba"
+    },
+    {
+      "artifact_kind": "instruction",
+      "artifact_version": "0.1.0",
+      "path": "instructions/glossary.md",
+      "sha256": "d6e1f6597843809860b2db408b53fcc6db48b29956929214f2dab57bae1654e6"
+    },
+    {
+      "artifact_kind": "instruction",
+      "artifact_version": "0.1.0",
+      "path": "instructions/task.md",
+      "sha256": "3ffc81267f37767afa5ba84fdef5ca064a0c8512795b3be0b9fcd5ec64f34762"
+    }
+  ],
+  "protocol_version": "0.3.0",
+  "run_id": "logic-000",
+  "schema_version": "0.1.0",
+  "status": "frozen"
+}

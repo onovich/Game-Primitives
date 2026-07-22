@@ -1,0 +1,32 @@
+{
+  "$schema": "../../../schema/logic-input.schema.json",
+  "artifact_version": "0.1.0",
+  "glossary_path": "instructions/glossary.md",
+  "input_id": "input-rehearsal-001",
+  "instructions_path": "instructions/task.md",
+  "item_order_randomized": true,
+  "items": [
+    {
+      "item_id": "item-7f3a9c21",
+      "payload": {
+        "left": 9,
+        "right": 4,
+        "token": "violet"
+      },
+      "payload_schema_id": "rehearsal-arithmetic-v1",
+      "task_kind": "annotation"
+    },
+    {
+      "item_id": "item-b4e18d62",
+      "payload": {
+        "left": 7,
+        "right": 5,
+        "token": "amber"
+      },
+      "payload_schema_id": "rehearsal-arithmetic-v1",
+      "task_kind": "annotation"
+    }
+  ],
+  "protocol_version": "0.3.0",
+  "run_id": "logic-000"
+}

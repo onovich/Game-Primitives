@@ -1,0 +1,57 @@
+{
+  "$defs": {
+    "payload": {
+      "additionalProperties": false,
+      "properties": {
+        "left": {
+          "type": "integer"
+        },
+        "right": {
+          "type": "integer"
+        },
+        "token": {
+          "minLength": 1,
+          "type": "string"
+        }
+      },
+      "required": [
+        "left",
+        "right",
+        "token"
+      ],
+      "type": "object"
+    },
+    "response": {
+      "additionalProperties": false,
+      "properties": {
+        "confidence": {
+          "enum": [
+            "low",
+            "medium",
+            "high"
+          ]
+        },
+        "notes": {
+          "type": "string"
+        },
+        "sum": {
+          "type": "integer"
+        },
+        "token": {
+          "minLength": 1,
+          "type": "string"
+        }
+      },
+      "required": [
+        "confidence",
+        "notes",
+        "sum",
+        "token"
+      ],
+      "type": "object"
+    }
+  },
+  "$id": "https://github.com/onovich/Game-Primitives/blob/main/research/calibration-tests/logic-pilot/schema/rehearsal-arithmetic.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Game Primitives Logic Pilot Rehearsal Arithmetic Payloads"
+}

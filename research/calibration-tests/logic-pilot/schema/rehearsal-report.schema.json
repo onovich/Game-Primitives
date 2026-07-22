@@ -1,0 +1,250 @@
+{
+  "$defs": {
+    "check": {
+      "additionalProperties": false,
+      "properties": {
+        "evidence": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "passed": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "evidence",
+        "passed"
+      ],
+      "type": "object"
+    }
+  },
+  "$id": "https://github.com/onovich/Game-Primitives/blob/main/research/calibration-tests/logic-pilot/schema/rehearsal-report.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "allOf": [
+    {
+      "else": {
+        "properties": {
+          "procedure_verdict": {
+            "const": "procedure_fail"
+          }
+        }
+      },
+      "if": {
+        "properties": {
+          "checks": {
+            "properties": {
+              "rp-01-input-byte-identity": {
+                "properties": {
+                  "passed": {
+                    "const": true
+                  }
+                },
+                "required": [
+                  "passed"
+                ]
+              },
+              "rp-02-same-input-dispatch": {
+                "properties": {
+                  "passed": {
+                    "const": true
+                  }
+                },
+                "required": [
+                  "passed"
+                ]
+              },
+              "rp-03-submission-independence": {
+                "properties": {
+                  "passed": {
+                    "const": true
+                  }
+                },
+                "required": [
+                  "passed"
+                ]
+              },
+              "rp-04-submission-byte-preservation": {
+                "properties": {
+                  "passed": {
+                    "const": true
+                  }
+                },
+                "required": [
+                  "passed"
+                ]
+              },
+              "rp-05-no-early-shared-plaintext": {
+                "properties": {
+                  "passed": {
+                    "const": true
+                  }
+                },
+                "required": [
+                  "passed"
+                ]
+              },
+              "rp-06-commitment-recomputation": {
+                "properties": {
+                  "passed": {
+                    "const": true
+                  }
+                },
+                "required": [
+                  "passed"
+                ]
+              },
+              "rp-07-schema-validation": {
+                "properties": {
+                  "passed": {
+                    "const": true
+                  }
+                },
+                "required": [
+                  "passed"
+                ]
+              },
+              "rp-08-git-sequence": {
+                "properties": {
+                  "passed": {
+                    "const": true
+                  }
+                },
+                "required": [
+                  "passed"
+                ]
+              },
+              "rp-09-pollution-retention": {
+                "properties": {
+                  "passed": {
+                    "const": true
+                  }
+                },
+                "required": [
+                  "passed"
+                ]
+              }
+            },
+            "required": [
+              "rp-01-input-byte-identity",
+              "rp-02-same-input-dispatch",
+              "rp-03-submission-independence",
+              "rp-04-submission-byte-preservation",
+              "rp-05-no-early-shared-plaintext",
+              "rp-06-commitment-recomputation",
+              "rp-07-schema-validation",
+              "rp-08-git-sequence",
+              "rp-09-pollution-retention"
+            ]
+          }
+        },
+        "required": [
+          "checks"
+        ]
+      },
+      "then": {
+        "properties": {
+          "procedure_verdict": {
+            "const": "procedure_pass"
+          }
+        }
+      }
+    }
+  ],
+  "properties": {
+    "$schema": {
+      "type": "string"
+    },
+    "artifact_version": {
+      "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$",
+      "type": "string"
+    },
+    "checks": {
+      "additionalProperties": false,
+      "properties": {
+        "rp-01-input-byte-identity": {
+          "$ref": "#/$defs/check"
+        },
+        "rp-02-same-input-dispatch": {
+          "$ref": "#/$defs/check"
+        },
+        "rp-03-submission-independence": {
+          "$ref": "#/$defs/check"
+        },
+        "rp-04-submission-byte-preservation": {
+          "$ref": "#/$defs/check"
+        },
+        "rp-05-no-early-shared-plaintext": {
+          "$ref": "#/$defs/check"
+        },
+        "rp-06-commitment-recomputation": {
+          "$ref": "#/$defs/check"
+        },
+        "rp-07-schema-validation": {
+          "$ref": "#/$defs/check"
+        },
+        "rp-08-git-sequence": {
+          "$ref": "#/$defs/check"
+        },
+        "rp-09-pollution-retention": {
+          "$ref": "#/$defs/check"
+        }
+      },
+      "required": [
+        "rp-01-input-byte-identity",
+        "rp-02-same-input-dispatch",
+        "rp-03-submission-independence",
+        "rp-04-submission-byte-preservation",
+        "rp-05-no-early-shared-plaintext",
+        "rp-06-commitment-recomputation",
+        "rp-07-schema-validation",
+        "rp-08-git-sequence",
+        "rp-09-pollution-retention"
+      ],
+      "type": "object"
+    },
+    "generated_at": {
+      "format": "date-time",
+      "type": "string"
+    },
+    "procedure_verdict": {
+      "enum": [
+        "procedure_pass",
+        "procedure_fail"
+      ]
+    },
+    "protocol_version": {
+      "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$",
+      "type": "string"
+    },
+    "report_id": {
+      "const": "report-rehearsal-001"
+    },
+    "run_id": {
+      "const": "logic-000"
+    },
+    "submission_ids": {
+      "items": {
+        "pattern": "^submission-[a-z0-9][a-z0-9-]*$",
+        "type": "string"
+      },
+      "maxItems": 2,
+      "minItems": 2,
+      "type": "array",
+      "uniqueItems": true
+    }
+  },
+  "required": [
+    "$schema",
+    "artifact_version",
+    "checks",
+    "generated_at",
+    "procedure_verdict",
+    "protocol_version",
+    "report_id",
+    "run_id",
+    "submission_ids"
+  ],
+  "title": "Game Primitives Logic Pilot Procedural Rehearsal Report",
+  "type": "object"
+}

@@ -1,0 +1,13 @@
+{
+  "algorithm": "SHA-256",
+  "combination": "secret_nonce_bytes || exact_truth_bundle_bytes",
+  "commitment": "c5be132854e586df8f2961c54baa3bb668ff8224cb9cedaedecd56f44ef0c30c",
+  "commitment_id": "commitment-rehearsal-001",
+  "created_at": "2026-07-23T02:27:42.8304476+08:00",
+  "nonce_length_bytes": 32,
+  "protocol_version": "0.3.0",
+  "run_id": "logic-000",
+  "truth_bundle_bytes": 532,
+  "truth_bundle_name": "rehearsal-truth.json",
+  "version": "0.1.0"
+}
