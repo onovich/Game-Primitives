@@ -15,9 +15,9 @@
     },
     {
       "artifact_kind": "input",
-      "artifact_version": "0.1.2",
-      "path": "inputs/source-encoding-v0.1.2.json",
-      "sha256": "d45f994e21d87a56ae42a0fc44cb85d05f2c926c1bacf02d9eede203af244525"
+      "artifact_version": "0.1.3",
+      "path": "inputs/source-encoding-v0.1.3.json",
+      "sha256": "894548b1d0c0af1411f4b52c6291202c7fe9ea0f59f77fde093520691d60f25b"
     },
     {
       "artifact_kind": "instruction",
@@ -35,7 +35,7 @@
       "artifact_kind": "report",
       "artifact_version": "0.1.0",
       "path": "reports/source-encoding-revision-log.md",
-      "sha256": "85a0f38d664b3d0535cdee1b6cffa3a223cffb447eb3e414aa61ea31eb9d16cd"
+      "sha256": "0ce6e4a575bffcd4b4e2cfcc55410c46a261134bf49828c2e3624a337e1a1608"
     }
   ],
   "protocol_version": "0.3.0",

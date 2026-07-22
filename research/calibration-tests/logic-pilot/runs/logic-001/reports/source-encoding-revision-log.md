@@ -47,3 +47,11 @@ sNN-ref-X  -> ref-sNN-X
 - 结果：盲化禁词扫描失败，不得进入来源忠实度审核。`source-anchor-04` 的共享 ID 仍包含来源词 `features`、`stop` 与 `win`；即使正文已经中性化，ID 也可能向重构者泄漏来源词。
 
 编码者随后明确批准只把上述共享 ID 映射为 `rule-set`、`active-rule-set`、`obstruction` 与 `success` 等中性 ID，并把下一制品版本递增为 `0.1.3`。这次迁移同样不得改动 statement、类型、槽位状态或组合关系语义。
+
+## `v0.1.3`
+
+- 文件：`inputs/source-encoding-v0.1.3.json`
+- SHA-256：`894548b1d0c0af1411f4b52c6291202c7fe9ea0f59f77fde093520691d60f25b`
+- 性质：按编码者批准的一一映射，把 `source-anchor-04` 共享 ID 中的 `features`、`stop` 与 `win` 中性化，并把制品版本改为 `0.1.3`；没有改动 statement、类型、槽位状态或组合关系语义。
+- 已通过：冻结 JSON Schema、四案计数、UTF-8 无 BOM、单一末尾 LF、无 CR、递归键序、引用闭包、source／blind 规则与引用同构、状态前缀检查，以及作品身份、来源专名、`LC-*`、`FX-*` 和三项预期结论的盲化禁词扫描。
+- 状态：可进入独立**来源忠实度审核**；尚未批准用于下游重构。

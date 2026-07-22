@@ -1,6 +1,6 @@
 {
   "$schema": "../../../schema/source-encoding.schema.json",
-  "artifact_version": "0.1.2",
+  "artifact_version": "0.1.3",
   "cases": [
     {
       "blind_encoding": {
@@ -1325,7 +1325,7 @@
       "blind_encoding": {
         "composition_relations": [
           {
-            "from_rule_id": "rule-s04-feature-rebuild",
+            "from_rule_id": "rule-s04-rule-set-rebuild",
             "relation": "gating",
             "statement": "移动与阻挡求值读取由当前文本位置重建出的当前特征集合。",
             "to_rule_id": "rule-s04-property-application"
@@ -1334,13 +1334,13 @@
             "from_rule_id": "rule-s04-property-application",
             "relation": "feedback",
             "statement": "可推动文本的位置变化会改变下一次特征重建能够读取的正交文本序列。",
-            "to_rule_id": "rule-s04-feature-rebuild"
+            "to_rule_id": "rule-s04-rule-set-rebuild"
           },
           {
-            "from_rule_id": "rule-s04-feature-rebuild",
+            "from_rule_id": "rule-s04-rule-set-rebuild",
             "relation": "gating",
             "statement": "胜利求值查询当前重建集合中的控制特征与胜利特征。",
-            "to_rule_id": "rule-s04-win"
+            "to_rule_id": "rule-s04-success"
           }
         ],
         "encoding_status": "encoded",
@@ -1377,12 +1377,12 @@
           },
           {
             "description": "沿两个正交方向读取连续文本名称并收集多词序列的过程。",
-            "ref_id": "ref-s04-feature-scan",
+            "ref_id": "ref-s04-rule-set-scan",
             "type": "process"
           },
           {
             "description": "从当前文本位置重新生成的规则特征集合。",
-            "ref_id": "ref-s04-features",
+            "ref_id": "ref-s04-active-rule-set",
             "type": "state"
           },
           {
@@ -1397,7 +1397,7 @@
           },
           {
             "description": "使具有相应当前特征的对象阻止移动的属性。",
-            "ref_id": "ref-s04-stop-property",
+            "ref_id": "ref-s04-obstruction-property",
             "type": "condition"
           },
           {
@@ -1407,29 +1407,29 @@
           },
           {
             "description": "使具有相应当前特征的实体参与胜利重叠检查的属性。",
-            "ref_id": "ref-s04-win-property",
+            "ref_id": "ref-s04-success-property",
             "type": "condition"
           },
           {
             "description": "具有控制属性的实体与具有胜利属性的实体位于同一位置。",
-            "ref_id": "ref-s04-win-overlap",
+            "ref_id": "ref-s04-success-overlap",
             "type": "condition"
           },
           {
             "description": "当前控制实体和胜利实体相遇时判定胜利。",
-            "ref_id": "ref-s04-win-evaluation",
+            "ref_id": "ref-s04-success-evaluation",
             "type": "goal_evaluation"
           }
         ],
         "rules": [
           {
             "encoding_status": "encoded",
-            "rule_id": "rule-s04-feature-rebuild",
+            "rule_id": "rule-s04-rule-set-rebuild",
             "slots": {
               "action": {
                 "encoding_status": "encoded",
                 "reference_ids": [
-                  "ref-s04-feature-scan"
+                  "ref-s04-rule-set-scan"
                 ],
                 "statement": "清空当前特征集合，并从当前文本位置沿两个正交方向重新收集连续文本序列。"
               },
@@ -1454,14 +1454,14 @@
               "effects": {
                 "encoding_status": "encoded",
                 "reference_ids": [
-                  "ref-s04-features"
+                  "ref-s04-active-rule-set"
                 ],
                 "statement": "旧特征被清空，当前特征集合替换为从当前文本布局收集到的多词序列。"
               },
               "feedback": {
                 "encoding_status": "encoded",
                 "reference_ids": [
-                  "ref-s04-features"
+                  "ref-s04-active-rule-set"
                 ],
                 "statement": "重建结果成为后续一至三词特征查询所读取的当前集合。"
               },
@@ -1480,7 +1480,7 @@
               "resolution": {
                 "encoding_status": "encoded",
                 "reference_ids": [
-                  "ref-s04-feature-scan",
+                  "ref-s04-rule-set-scan",
                   "ref-s04-text-sequence"
                 ],
                 "statement": "读取正交方向上的连续文本名称，将多词序列加入集合；后续查询从当前集合匹配一至三词片段并返回匹配序列的首项。"
@@ -1488,14 +1488,14 @@
               "target": {
                 "encoding_status": "encoded",
                 "reference_ids": [
-                  "ref-s04-features"
+                  "ref-s04-active-rule-set"
                 ],
                 "statement": "目标是当前规则特征集合。"
               },
               "trigger": {
                 "encoding_status": "source_underdetermined",
                 "reference_ids": [
-                  "ref-s04-feature-scan"
+                  "ref-s04-rule-set-scan"
                 ],
                 "statement": "source_underdetermined：实现片段未包含宿主调用清空与重建过程的完整调度；只能确定下一次规则求值读取重建后的集合。"
               }
@@ -1510,7 +1510,7 @@
                 "reference_ids": [
                   "ref-s04-control-property",
                   "ref-s04-push-property",
-                  "ref-s04-stop-property"
+                  "ref-s04-obstruction-property"
                 ],
                 "statement": "移动检查依据当前控制、可推动和阻挡特征处理实体移动；文本对象按可推动对象处理。"
               },
@@ -1525,7 +1525,7 @@
               "context": {
                 "encoding_status": "encoded",
                 "reference_ids": [
-                  "ref-s04-features",
+                  "ref-s04-active-rule-set",
                   "ref-s04-level-state"
                 ],
                 "statement": "规则在当前特征集合和当前对象位置下进行移动与阻挡检查。"
@@ -1556,7 +1556,7 @@
               "preconditions": {
                 "encoding_status": "encoded",
                 "reference_ids": [
-                  "ref-s04-features",
+                  "ref-s04-active-rule-set",
                   "ref-s04-control-property"
                 ],
                 "statement": "移动检查读取当前特征集合；受控移动要求实体具有当前控制特征。"
@@ -1566,7 +1566,7 @@
                 "reference_ids": [
                   "ref-s04-control-property",
                   "ref-s04-push-property",
-                  "ref-s04-stop-property"
+                  "ref-s04-obstruction-property"
                 ],
                 "statement": "查询当前特征中的控制、可推动和阻挡属性，并据此应用移动、推动或阻挡；文本对象在该检查中按可推动对象处理。"
               },
@@ -1587,7 +1587,7 @@
           },
           {
             "encoding_status": "encoded",
-            "rule_id": "rule-s04-win",
+            "rule_id": "rule-s04-success",
             "slots": {
               "action": {
                 "encoding_status": "not_applicable",
@@ -1605,7 +1605,7 @@
               "context": {
                 "encoding_status": "encoded",
                 "reference_ids": [
-                  "ref-s04-features",
+                  "ref-s04-active-rule-set",
                   "ref-s04-level-state"
                 ],
                 "statement": "评估当前特征集合及实体当前坐标。"
@@ -1618,7 +1618,7 @@
               "effects": {
                 "encoding_status": "encoded",
                 "reference_ids": [
-                  "ref-s04-win-evaluation"
+                  "ref-s04-success-evaluation"
                 ],
                 "statement": "满足重叠条件时触发胜利状态。"
               },
@@ -1630,8 +1630,8 @@
               "goals_evaluation": {
                 "encoding_status": "encoded",
                 "reference_ids": [
-                  "ref-s04-win-overlap",
-                  "ref-s04-win-evaluation"
+                  "ref-s04-success-overlap",
+                  "ref-s04-success-evaluation"
                 ],
                 "statement": "具有当前控制特征的实体与具有当前胜利特征的实体位于同一位置时，胜利条件成立。"
               },
@@ -1639,15 +1639,15 @@
                 "encoding_status": "encoded",
                 "reference_ids": [
                   "ref-s04-control-property",
-                  "ref-s04-win-property",
-                  "ref-s04-features"
+                  "ref-s04-success-property",
+                  "ref-s04-active-rule-set"
                 ],
                 "statement": "当前特征集合分别把控制特征和胜利特征赋予至少一个可参与位置检查的实体。"
               },
               "resolution": {
                 "encoding_status": "encoded",
                 "reference_ids": [
-                  "ref-s04-win-overlap"
+                  "ref-s04-success-overlap"
                 ],
                 "statement": "查询当前控制与胜利特征，并比较相应实体位置；同位相遇即触发胜利。"
               },
@@ -1661,7 +1661,7 @@
               "trigger": {
                 "encoding_status": "encoded",
                 "reference_ids": [
-                  "ref-s04-win-overlap"
+                  "ref-s04-success-overlap"
                 ],
                 "statement": "具有当前控制特征的实体与具有当前胜利特征的实体在同一位置相遇。"
               }
@@ -1674,7 +1674,7 @@
       "source_encoding": {
         "composition_relations": [
           {
-            "from_rule_id": "rule-s04-feature-rebuild",
+            "from_rule_id": "rule-s04-rule-set-rebuild",
             "relation": "gating",
             "statement": "Baba Is You 的移动与阻挡求值读取由当前文本位置重建出的当前 features。",
             "to_rule_id": "rule-s04-property-application"
@@ -1683,13 +1683,13 @@
             "from_rule_id": "rule-s04-property-application",
             "relation": "feedback",
             "statement": "可推动文本的位置变化会改变下一次 code 重建能够读取的正交文本序列。",
-            "to_rule_id": "rule-s04-feature-rebuild"
+            "to_rule_id": "rule-s04-rule-set-rebuild"
           },
           {
-            "from_rule_id": "rule-s04-feature-rebuild",
+            "from_rule_id": "rule-s04-rule-set-rebuild",
             "relation": "gating",
             "statement": "胜利求值查询当前 features 中的 is you 与 is win。",
-            "to_rule_id": "rule-s04-win"
+            "to_rule_id": "rule-s04-success"
           }
         ],
         "encoding_status": "encoded",
@@ -1723,12 +1723,12 @@
           },
           {
             "description": "code 沿两个正交方向读取连续文本名称并收集多词序列的过程。",
-            "ref_id": "ref-s04-feature-scan",
+            "ref_id": "ref-s04-rule-set-scan",
             "type": "process"
           },
           {
             "description": "clear 清空后由 code 从当前文本位置重新生成的 features 集合。",
-            "ref_id": "ref-s04-features",
+            "ref_id": "ref-s04-active-rule-set",
             "type": "state"
           },
           {
@@ -1743,7 +1743,7 @@
           },
           {
             "description": "is stop 使具有该当前特征的对象阻止移动。",
-            "ref_id": "ref-s04-stop-property",
+            "ref_id": "ref-s04-obstruction-property",
             "type": "condition"
           },
           {
@@ -1753,29 +1753,29 @@
           },
           {
             "description": "is win 使具有该当前特征的实体参与胜利重叠检查。",
-            "ref_id": "ref-s04-win-property",
+            "ref_id": "ref-s04-success-property",
             "type": "condition"
           },
           {
             "description": "具有 is you 的实体与具有 is win 的实体位于同一位置。",
-            "ref_id": "ref-s04-win-overlap",
+            "ref_id": "ref-s04-success-overlap",
             "type": "condition"
           },
           {
             "description": "当前 YOU 实体和 WIN 实体同位相遇时触发胜利。",
-            "ref_id": "ref-s04-win-evaluation",
+            "ref_id": "ref-s04-success-evaluation",
             "type": "goal_evaluation"
           }
         ],
         "rules": [
           {
             "encoding_status": "encoded",
-            "rule_id": "rule-s04-feature-rebuild",
+            "rule_id": "rule-s04-rule-set-rebuild",
             "slots": {
               "action": {
                 "encoding_status": "encoded",
                 "reference_ids": [
-                  "ref-s04-feature-scan"
+                  "ref-s04-rule-set-scan"
                 ],
                 "statement": "clear 清空当前 features，code 从当前文本位置沿两个正交方向重新收集连续文本序列。"
               },
@@ -1800,14 +1800,14 @@
               "effects": {
                 "encoding_status": "encoded",
                 "reference_ids": [
-                  "ref-s04-features"
+                  "ref-s04-active-rule-set"
                 ],
                 "statement": "旧 features 被清空，当前集合替换为从当前文本布局收集到的多词序列。"
               },
               "feedback": {
                 "encoding_status": "encoded",
                 "reference_ids": [
-                  "ref-s04-features"
+                  "ref-s04-active-rule-set"
                 ],
                 "statement": "重建结果成为后续 findfeature 一至三词查询所读取的当前 features。"
               },
@@ -1826,7 +1826,7 @@
               "resolution": {
                 "encoding_status": "encoded",
                 "reference_ids": [
-                  "ref-s04-feature-scan",
+                  "ref-s04-rule-set-scan",
                   "ref-s04-text-sequence"
                 ],
                 "statement": "code 读取正交方向上的连续文本名称并将多词序列加入 features；findfeature 从当前集合匹配一至三词片段并返回匹配序列的首项。"
@@ -1834,14 +1834,14 @@
               "target": {
                 "encoding_status": "encoded",
                 "reference_ids": [
-                  "ref-s04-features"
+                  "ref-s04-active-rule-set"
                 ],
                 "statement": "目标是当前 features 集合。"
               },
               "trigger": {
                 "encoding_status": "source_underdetermined",
                 "reference_ids": [
-                  "ref-s04-feature-scan"
+                  "ref-s04-rule-set-scan"
                 ],
                 "statement": "source_underdetermined：syntax.lua 未包含宿主调用 clear 与 code 的完整调度；只能确定下一次规则求值读取重建后的 features。"
               }
@@ -1856,7 +1856,7 @@
                 "reference_ids": [
                   "ref-s04-control-property",
                   "ref-s04-push-property",
-                  "ref-s04-stop-property"
+                  "ref-s04-obstruction-property"
                 ],
                 "statement": "移动检查查询当前 is you、is push 和 is stop，并据此处理实体移动；文本对象按可推动对象处理。"
               },
@@ -1871,7 +1871,7 @@
               "context": {
                 "encoding_status": "encoded",
                 "reference_ids": [
-                  "ref-s04-features",
+                  "ref-s04-active-rule-set",
                   "ref-s04-level-state"
                 ],
                 "statement": "规则在当前 features 和当前对象位置下进行移动与阻挡检查。"
@@ -1902,7 +1902,7 @@
               "preconditions": {
                 "encoding_status": "encoded",
                 "reference_ids": [
-                  "ref-s04-features",
+                  "ref-s04-active-rule-set",
                   "ref-s04-control-property"
                 ],
                 "statement": "移动检查读取当前 features；受控移动要求实体具有当前 is you 特征。"
@@ -1912,7 +1912,7 @@
                 "reference_ids": [
                   "ref-s04-control-property",
                   "ref-s04-push-property",
-                  "ref-s04-stop-property"
+                  "ref-s04-obstruction-property"
                 ],
                 "statement": "查询当前 is you、is push 和 is stop，并据此应用移动、推动或阻挡；文本对象在移动检查中按可推动对象处理。"
               },
@@ -1933,7 +1933,7 @@
           },
           {
             "encoding_status": "encoded",
-            "rule_id": "rule-s04-win",
+            "rule_id": "rule-s04-success",
             "slots": {
               "action": {
                 "encoding_status": "not_applicable",
@@ -1951,7 +1951,7 @@
               "context": {
                 "encoding_status": "encoded",
                 "reference_ids": [
-                  "ref-s04-features",
+                  "ref-s04-active-rule-set",
                   "ref-s04-level-state"
                 ],
                 "statement": "评估当前 features 及实体当前坐标。"
@@ -1964,7 +1964,7 @@
               "effects": {
                 "encoding_status": "encoded",
                 "reference_ids": [
-                  "ref-s04-win-evaluation"
+                  "ref-s04-success-evaluation"
                 ],
                 "statement": "满足重叠条件时触发胜利状态。"
               },
@@ -1976,8 +1976,8 @@
               "goals_evaluation": {
                 "encoding_status": "encoded",
                 "reference_ids": [
-                  "ref-s04-win-overlap",
-                  "ref-s04-win-evaluation"
+                  "ref-s04-success-overlap",
+                  "ref-s04-success-evaluation"
                 ],
                 "statement": "具有当前 is you 特征的实体与具有当前 is win 特征的实体位于同一位置时，胜利条件成立。"
               },
@@ -1985,15 +1985,15 @@
                 "encoding_status": "encoded",
                 "reference_ids": [
                   "ref-s04-control-property",
-                  "ref-s04-win-property",
-                  "ref-s04-features"
+                  "ref-s04-success-property",
+                  "ref-s04-active-rule-set"
                 ],
                 "statement": "当前 features 分别把 is you 和 is win 赋予至少一个可参与位置检查的实体。"
               },
               "resolution": {
                 "encoding_status": "encoded",
                 "reference_ids": [
-                  "ref-s04-win-overlap"
+                  "ref-s04-success-overlap"
                 ],
                 "statement": "查询当前 is you 与 is win，并比较相应实体位置；同位相遇即触发胜利。"
               },
@@ -2007,7 +2007,7 @@
               "trigger": {
                 "encoding_status": "encoded",
                 "reference_ids": [
-                  "ref-s04-win-overlap"
+                  "ref-s04-success-overlap"
                 ],
                 "statement": "具有当前 is you 特征的实体与具有当前 is win 特征的实体在同一位置相遇。"
               }
