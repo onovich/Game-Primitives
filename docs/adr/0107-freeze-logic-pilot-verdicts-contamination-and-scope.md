@@ -75,5 +75,5 @@
 
 - [校准门 D](../../research/calibration-gates/gate-d-second-cycle-method-pilot.md)的逻辑组启动条件第 5–7 项记为已满足；至此第 1–8 项的方法决定均已冻结。
 - `logic-001` 的 `protocol_version` 从 `0.1.0` 提升为 `0.2.0`；状态仍为 `preparing`。
-- 下一步是制作并审计实际说明、术语表、payload Schema、匿名输入、仓库外真值与公开承诺，而不是直接宣布测试开始。
+- D2-6 已由 [ADR 0108](0108-freeze-logic-pilot-execution-representation-and-rehearsal.md)冻结执行角色、GP-SR 0.1、流程彩排、冻结纪律与人工放行门；下一步先执行 `rehearsal-001`，而不是直接宣布正式测试开始。
 - 第二轮仍未启动完整取证。

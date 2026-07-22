@@ -1,9 +1,9 @@
 # 第二轮案例校准协议
 
-- 状态：方法、两个先行问题组与执行顺序已接受；逻辑解谜组第 1–8 项启动方法决定均已冻结，实际测试包与执行者待准备；尚未启动
+- 状态：方法、两个先行问题组与执行顺序已接受；逻辑解谜组启动方法、执行角色、GP-SR 0.1、流程彩排与人工放行门均已冻结；`rehearsal-001` 待执行，正式测试尚未启动
 - 日期：2026-07-22
 - 项目阶段：阶段一·开放研究
-- 来源决定：D-C7、D2-1、D2-2、D2-3、D2-4 与 D2-5a–c；[ADR 0100](../docs/adr/0100-require-strong-tests-beyond-structural-expressibility.md)；[ADR 0101](../docs/adr/0101-pilot-the-second-cycle-with-two-contrasting-groups.md)；[ADR 0102](../docs/adr/0102-run-the-logic-puzzle-pilot-before-continuous-action.md)；[ADR 0103](../docs/adr/0103-test-puzzle-judgment-and-rule-boundaries-with-four-case-roles.md)；[ADR 0104](../docs/adr/0104-freeze-dual-material-logic-puzzle-pilot-cases.md)；[ADR 0105](../docs/adr/0105-use-procedural-blinding-and-answer-commitments-for-logic-pilot.md)；[ADR 0106](../docs/adr/0106-use-versioned-json-run-artifacts-for-logic-pilot.md)；[ADR 0107](../docs/adr/0107-freeze-logic-pilot-verdicts-contamination-and-scope.md)
+- 来源决定：D-C7、D2-1、D2-2、D2-3、D2-4、D2-5a–c 与 D2-6a–q；[ADR 0100](../docs/adr/0100-require-strong-tests-beyond-structural-expressibility.md)；[ADR 0101](../docs/adr/0101-pilot-the-second-cycle-with-two-contrasting-groups.md)；[ADR 0102](../docs/adr/0102-run-the-logic-puzzle-pilot-before-continuous-action.md)；[ADR 0103](../docs/adr/0103-test-puzzle-judgment-and-rule-boundaries-with-four-case-roles.md)；[ADR 0104](../docs/adr/0104-freeze-dual-material-logic-puzzle-pilot-cases.md)；[ADR 0105](../docs/adr/0105-use-procedural-blinding-and-answer-commitments-for-logic-pilot.md)；[ADR 0106](../docs/adr/0106-use-versioned-json-run-artifacts-for-logic-pilot.md)；[ADR 0107](../docs/adr/0107-freeze-logic-pilot-verdicts-contamination-and-scope.md)；[ADR 0108](../docs/adr/0108-freeze-logic-pilot-execution-representation-and-rehearsal.md)
 - 前序结果：[第一轮十二案跨案例总汇报](calibration-gates/gate-c-first-cycle-synthesis.md)
 
 ## 1. 第二轮要回答什么
@@ -133,6 +133,20 @@ D2-5c 接受[判定、污染与主张范围决定](../docs/adr/0107-freeze-logic
 本轮 `behavior_scope` 固定为 `structural_only`。玩家策略、难度、平衡和体验陈述不参与硬条件判断：能撤回则撤回，仍需研究则移交[校准证据积压](calibration-evidence-backlog.md)；若总体结论依赖这类主张，则不能判为**范围内通过**。
 
 至此逻辑组第 1–8 项启动方法决定均已冻结，但 `logic-001` 仍只有骨架与 Schema。完成说明、测试本地术语表、payload Schema、匿名输入、仓库外真值、公开承诺及执行者分派后，才可把轮次从 `preparing` 改为 `frozen`。
+
+#### 2.1.6 执行角色、受测表示与流程彩排
+
+D2-6a–q 接受[执行、表示与彩排决定](../docs/adr/0108-freeze-logic-pilot-execution-representation-and-rehearsal.md)。测试保管者不参加本轮来源编码、重构或标注；正式执行采用一名**来源编码者**、一名来源忠实度审核者、两名**重构者**和两名**夹具标注者**。来源编码与审核使用不同模型；两份重构和两份标注各自保持同模同参、空白会话和相同冻结输入。
+
+本轮的“独立”限定为**独立执行**：不同会话不继承项目上下文、提交前互不可见，但共享文件系统并未形成安全边界。盲测输入直接随任务派发，盲测角色不得调用工具或读取包外材料；真值、密钥与其他提交在预定提交收齐前不以明文进入共享工作区。文件读取违规无法被技术性排除，因此必须继续登记污染，结论也不得外推为跨模型或人类一致性。
+
+来源编码只使用[游戏原语结构表示 v0.1](../theory/STRUCTURAL-REPRESENTATION-0.1.md)。来源事实分别记录 `encoded`、`source_underdetermined`、`representation_gap` 或 `scope_excluded`；其中 `representation_gap` 是模型失败证据，不能靠运行中新增槽位消除。来源编码与审核的分歧必须由来源定位裁决，无法裁决时阻止对应项目冻结。
+
+重构包固定为四个锚点项目，标注包固定为八个匿名 A／B 状态项目；两包分别随机一次并共同冻结，同类执行者看见相同输入与顺序。提交采用结构化 JSON 与自然语言说明并存的混合格式，允许 `indeterminate`，置信度不计分。
+
+正式测试前先在 [`rehearsals/rehearsal-001/`](calibration-tests/logic-pilot/rehearsals/rehearsal-001/) 用虚构材料完成一次**流程彩排**。彩排只验证冻结字节、相同派发、两份互不可见提交、提交哈希、共享工作区隔离、承诺复算、Schema、Git 顺序与污染记录，不产生理论结论；任何失败都保留并转入新的彩排编号。
+
+`logic-001` 只有在 GP-SR 0.1、说明、术语表、来源编码、payload Schema、输入、哈希和公开承诺全部提交推送后才能进入 `frozen`。首个 `frozen` 提交以后，测试者可见字节发生任何改变都必须保留该轮并创建 `logic-002`。彩排通过且正式冻结包完成后，仍须向作者展示提交、清单、哈希和承诺，取得明确放行才可派发正式任务。
 
 ### 2.2 校准门 D
 

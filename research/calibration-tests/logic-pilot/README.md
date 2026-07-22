@@ -1,9 +1,10 @@
 # 逻辑解谜先行组测试工作区
 
-- 状态：目录、JSON 约定、判定与污染字段已接受；`logic-001` 正在准备；尚未开始取证
+- 状态：目录、JSON 约定、判定、执行与流程彩排方法已接受；`rehearsal-001` 待执行，`logic-001` 正在准备；尚未开始正式取证
 - 决定：[ADR 0106](../../../docs/adr/0106-use-versioned-json-run-artifacts-for-logic-pilot.md)
 - 方法：[第二轮案例校准协议](../../calibration-cycle-2-protocol.md)
 - 隔离：[ADR 0105](../../../docs/adr/0105-use-procedural-blinding-and-answer-commitments-for-logic-pilot.md)
+- 执行：[ADR 0108](../../../docs/adr/0108-freeze-logic-pilot-execution-representation-and-rehearsal.md)
 
 本目录保存逻辑解谜先行组每次测试的公开证据链。结构化制品以 JSON 为唯一数据来源；Markdown 只写任务说明、阅读导航和从 JSON 生成的视图。
 
@@ -27,9 +28,23 @@ runs/<run_id>/
 ├── submissions/
 ├── reveal/
 └── reports/
+
+rehearsals/<rehearsal_id>/
+├── README.md
+├── manifest.json
+├── instructions/
+├── inputs/
+├── commitments/
+├── submissions/
+├── reveal/
+└── reports/
 ```
 
+`runs/` 只保存正式证据轮次；`rehearsals/` 使用虚构材料验证流程，不能产生**强检验结论**。彩排失败也必须保留，并以新编号重试。
+
 Git 只在目录出现真实制品时跟踪它。当前已经冻结协议信封、判定和污染字段；具体网格、图、状态与规则词块 payload Schema 将随 `logic-001` 实际输入一起建立，避免用空泛通用格式预判理论。
+
+`logic-001` 的受测表示固定为[游戏原语结构表示 v0.1](../../../theory/STRUCTURAL-REPRESENTATION-0.1.md)。首个 `frozen` 提交之后，任何测试者可见字节变化都建立新轮次，不在原轮次回写。
 
 ## 当前 Schema
 
