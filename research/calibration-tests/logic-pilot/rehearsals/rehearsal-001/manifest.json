@@ -36,10 +36,22 @@
       "artifact_version": "0.1.0",
       "path": "submissions/submission-rehearsal-b.json",
       "sha256": "0815aa7058968e10b4e16cd16656a584b3cba6fb7babe5bc0a808295bbc00b5b"
+    },
+    {
+      "artifact_kind": "reveal",
+      "artifact_version": "0.1.0",
+      "path": "reveal/rehearsal-reveal.json",
+      "sha256": "8fc7d728412791e40c0e7b6a59499c7ba7b3fe1af1a5ad560afd2350419b8135"
+    },
+    {
+      "artifact_kind": "reveal",
+      "artifact_version": "0.1.0",
+      "path": "reveal/rehearsal-truth.json",
+      "sha256": "3671e3b07de6e794d6d6e6b9f87f815cd62f8a035a7d9ab1dfbed44cdbb0e625"
     }
   ],
   "protocol_version": "0.3.0",
   "run_id": "logic-000",
   "schema_version": "0.1.0",
-  "status": "collecting"
+  "status": "revealed"
 }

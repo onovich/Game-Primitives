@@ -1,0 +1,12 @@
+{
+  "$schema": "../../../schema/rehearsal-reveal.schema.json",
+  "artifact_version": "0.1.0",
+  "commitment_id": "commitment-rehearsal-001",
+  "commitment_verified": true,
+  "recomputed_commitment": "c5be132854e586df8f2961c54baa3bb668ff8224cb9cedaedecd56f44ef0c30c",
+  "revealed_at": "2026-07-23T02:34:58+08:00",
+  "run_id": "logic-000",
+  "secret_nonce_hex": "e5edca2a8e3c3687f7813114c2209af7c754645f453a6f4a292701391415d06f",
+  "truth_bundle_path": "reveal/rehearsal-truth.json",
+  "truth_sha256": "3671e3b07de6e794d6d6e6b9f87f815cd62f8a035a7d9ab1dfbed44cdbb0e625"
+}

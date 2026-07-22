@@ -1,0 +1,21 @@
+{
+  "$schema": "../../../schema/rehearsal-truth.schema.json",
+  "artifact_version": "0.1.0",
+  "expected_responses": [
+    {
+      "item_id": "item-7f3a9c21",
+      "sum": 13,
+      "token": "violet"
+    },
+    {
+      "item_id": "item-b4e18d62",
+      "sum": 12,
+      "token": "amber"
+    }
+  ],
+  "input_sha256": "1640a7cdfe5fd8b6c0cba6ef20295b09922765302fc196934bdcdf3415c89bba",
+  "protocol_version": "0.3.0",
+  "run_id": "logic-000",
+  "shuffle_seed": "7860bce36692a41662bf532267a3a3db",
+  "truth_id": "truth-rehearsal-001"
+}
