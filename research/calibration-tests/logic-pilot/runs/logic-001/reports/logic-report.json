@@ -1,0 +1,87 @@
+{
+  "$schema": "../../../schema/logic-report.schema.json",
+  "artifact_version": "0.1.0",
+  "behavior_scope": "structural_only",
+  "commitment_verified": true,
+  "condition_results": [
+    {
+      "condition_id": "lc-01-local-global-extension",
+      "rationale": "两份标注均把局部无重复与完整扩展分开，并对可扩展／不可扩展夹具给出全部四个预期判断；两份重构均把单次赋值许可与完整状态评价分开，并拒绝把最终约束自动改写成逐步许可。两类证据共同恢复该区别。",
+      "result": "recovered",
+      "submission_ids": [
+        "submission-annotation-a",
+        "submission-annotation-b",
+        "submission-reconstruction-a",
+        "submission-reconstruction-b"
+      ]
+    },
+    {
+      "condition_id": "lc-02-legal-goal-reachability",
+      "rationale": "两份标注均判定两次推动当前都合法，但只有目标位于推动终点的夹具仍可完成；两份重构均把一次推动许可、行动者／货物位置变化与完成状态评价分开。两类证据共同恢复动作合法性与动作后目标可达性的区别。",
+      "result": "recovered",
+      "submission_ids": [
+        "submission-annotation-a",
+        "submission-annotation-b",
+        "submission-reconstruction-a",
+        "submission-reconstruction-b"
+      ]
+    },
+    {
+      "condition_id": "lc-03-local-single-loop",
+      "rationale": "两份标注均判定单环与双环夹具满足局部顶点条件，且只有单环夹具满足整体条件；两份重构均恢复了正交邻接、数字周边计数与单一连通环不能相互替代。",
+      "result": "recovered",
+      "submission_ids": [
+        "submission-annotation-a",
+        "submission-annotation-b",
+        "submission-reconstruction-a",
+        "submission-reconstruction-b"
+      ]
+    },
+    {
+      "condition_id": "lc-04-state-rule-set-change",
+      "rationale": "两份标注均判定两个过渡都有文本对象位移，但只有形成新可解析序列的过渡改变生效规则集合；两份重构均恢复了当前文本扫描、特征集合重建和普通位置变化与规则集合变化之间的边界。",
+      "result": "recovered",
+      "submission_ids": [
+        "submission-annotation-a",
+        "submission-annotation-b",
+        "submission-reconstruction-a",
+        "submission-reconstruction-b"
+      ]
+    }
+  ],
+  "generated_at": "2026-07-23T04:09:54+08:00",
+  "out_of_scope_behavior_claims": [],
+  "overall_verdict": "pass_in_scope",
+  "pollution_effects": [
+    {
+      "effect": "downgraded",
+      "rationale": "测试者识别出 Baba Is You、Slitherlink、Sokoban 与 Sudoku；其声明无既往项目暴露、外部检索、包外访问、答案暴露或他人提交暴露。按冻结规则，原型识别降低证据强度但不使提交失效。",
+      "submission_id": "submission-annotation-a"
+    },
+    {
+      "effect": "downgraded",
+      "rationale": "测试者怀疑四类通用谜题家族；其声明无既往项目暴露、外部检索、包外访问、答案暴露或他人提交暴露。按保守口径，原型怀疑同样降低证据强度但不使提交失效。",
+      "submission_id": "submission-annotation-b"
+    },
+    {
+      "effect": "downgraded",
+      "rationale": "测试者从结构特征识别出四类熟悉原型；其声明无既往项目暴露、外部检索、包外访问、答案暴露或他人提交暴露。按冻结规则，原型识别降低证据强度但不使提交失效。",
+      "submission_id": "submission-reconstruction-a"
+    },
+    {
+      "effect": "downgraded",
+      "rationale": "测试者从结构特征识别出四类熟悉原型；其声明无既往项目暴露、外部检索、包外访问、答案暴露或他人提交暴露。按冻结规则，原型识别降低证据强度但不使提交失效。",
+      "submission_id": "submission-reconstruction-b"
+    }
+  ],
+  "protocol_version": "0.3.0",
+  "report_id": "report-logic-001",
+  "run_id": "logic-001",
+  "submission_ids": [
+    "submission-annotation-a",
+    "submission-annotation-b",
+    "submission-reconstruction-a",
+    "submission-reconstruction-b"
+  ],
+  "truth_sha256": "118435a4e42439180edb4d35f29e79cb2b9da00f2563197254026ccff7ff68bf"
+}

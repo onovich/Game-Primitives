@@ -1,7 +1,7 @@
 # 校准门 D：第二轮强检验方法试验
 
-- 状态：门审范围与执行顺序已接受；逻辑解谜组启动方法、执行角色、GP-SR 0.1、流程彩排与人工放行门均已冻结，`rehearsal-001` 待执行
-- 日期：2026-07-22
+- 状态：逻辑解谜组 `logic-001` 已以**范围内通过**完成，证据因原型识别降级；待组间方法复核与连续行动组试验
+- 日期：2026-07-23
 - 所属阶段：阶段一·开放研究，第二轮案例校准准备
 - 来源决定：D2-1、D2-2、D2-3、D2-4、D2-5a–c 与 D2-6a–q；[ADR 0101](../../docs/adr/0101-pilot-the-second-cycle-with-two-contrasting-groups.md)；[ADR 0102](../../docs/adr/0102-run-the-logic-puzzle-pilot-before-continuous-action.md)；[ADR 0103](../../docs/adr/0103-test-puzzle-judgment-and-rule-boundaries-with-four-case-roles.md)；[ADR 0104](../../docs/adr/0104-freeze-dual-material-logic-puzzle-pilot-cases.md)；[ADR 0105](../../docs/adr/0105-use-procedural-blinding-and-answer-commitments-for-logic-pilot.md)；[ADR 0106](../../docs/adr/0106-use-versioned-json-run-artifacts-for-logic-pilot.md)；[ADR 0107](../../docs/adr/0107-freeze-logic-pilot-verdicts-contamination-and-scope.md)；[ADR 0108](../../docs/adr/0108-freeze-logic-pilot-execution-representation-and-rehearsal.md)
 - 方法依据：[第二轮案例校准协议](../calibration-cycle-2-protocol.md)
@@ -23,20 +23,20 @@
 
 | 顺序 | 试验组 | 主要压力 | 必做强检验 | 条件检验 | 尚待决定 |
 | --- | --- | --- | --- | --- | --- |
-| 1 | **逻辑解谜与状态空间组** | **动作合法性**、**局部一致性**、**全局可完成性**、不可逆状态与**规则变换边界** | **重构测试＋近邻辨别测试＋独立标注测试** | 本轮禁止行为主张；若新增则转证据积压 | 无待决方法项；实际制品与执行者尚待准备 |
+| 1 | **逻辑解谜与状态空间组** | **动作合法性**、**局部一致性**、**全局可完成性**、不可逆状态与**规则变换边界** | **重构测试＋近邻辨别测试＋独立标注测试** | 本轮禁止行为主张；若新增则转证据积压 | `logic-001` 已报告；待不产生理论结论的组间方法复核 |
 | 2 | **连续行动与具身控制组** | 动作／事件／过程，连续时间与空间，输入反馈，行动实现载体 | **重构测试＋设计变体测试** | 涉及原语边界时独立标注；涉及技能、难度或体验时行为取证 | 具体游戏、版本、组内角色与隔离变体 |
 
 两个组都必须记录为什么预期当前模型会失败。仅因作品经典、流行或属于目标类型，不能取得样本席位。
 
 逻辑组已冻结一项可反驳命题：单一“合法／约束”谓词不足以稳定区分**动作合法性**、**局部一致性**与**全局可完成性**；**规则变换边界**案例另行检验判定规则本身成为动作对象时的边界。四种案例角色依次为**静态约束锚点**、**不可逆状态空间对照**、**局部—全局结构纵深**和**规则变换边界**。该冻结不把四项自动提升为原语。
 
-四种角色现已分别冻结 Nikoli 数独官方例题、《仓库番》权利方规则示意盘面、Nikoli Slitherlink 官方例题与《Baba Is You》NGJ17 `1level` 为**锚点案例**内容，同时冻结 `FX-L01`–`FX-L04` 的职责和最小内容为**受控测试夹具**基线。选择依据与制品校验见[一手来源选案笔记](../sources/second-cycle-logic-pilot-case-selection.md)。D2-5a 又把**来源编码者**、**重构者**和**夹具标注者**的可见／隔离材料分开，由不参与判断的测试保管者在仓库外持有答案，并要求**答案承诺**、不可覆盖的**首次提交**与事后污染声明；夹具文件和隔离输入包仍未制作。
+四种角色分别使用 Nikoli 数独官方例题、《仓库番》权利方规则示意盘面、Nikoli Slitherlink 官方例题与《Baba Is You》NGJ17 `1level` 为**锚点案例**内容，并以 `FX-L01`–`FX-L04` 为**受控测试夹具**。选择依据见[一手来源选案笔记](../sources/second-cycle-logic-pilot-case-selection.md)；来源编码、独立**来源忠实度审核**、隔离输入、答案承诺与四份不可覆盖的首次提交均已形成并保存在 [`logic-001`](../calibration-tests/logic-pilot/runs/logic-001/) 中。
 
-D2-5b 已把测试制品固定为版本化 JSON，并建立 [`logic-001`](../calibration-tests/logic-pilot/runs/logic-001/) 轮次骨架。说明、输入、承诺、提交、揭示与报告均在同一轮次保存；答案在揭示前不进入仓库。该决定满足保存位置条件，但不表示实际测试制品已经完成。
+D2-5b 已把测试制品固定为版本化 JSON。`logic-001` 的说明、输入、承诺、提交、揭示与[正式报告](../calibration-tests/logic-pilot/runs/logic-001/reports/logic-001-comparison.md)均保存在同一轮次；答案在四份首次提交收齐并推送后才揭示，公开承诺复算一致。
 
 D2-5c 已冻结 `LC-01`–`LC-04` 四项硬条件、六种单项结果和四种总体**强检验结论**，并明确污染降级／失效规则。逻辑组 `behavior_scope` 为 `structural_only`；不以本轮材料主张策略、难度、平衡或体验。具体条件见 [ADR 0107](../../docs/adr/0107-freeze-logic-pilot-verdicts-contamination-and-scope.md)。
 
-D2-6 已冻结 `1＋1＋2＋2` 执行角色、空白会话**独立执行**、来源忠实度审核、[GP-SR 0.1](../../theory/STRUCTURAL-REPRESENTATION-0.1.md)、四项重构／八项标注输入规模、混合提交格式和正式派发前的人工放行门。正式材料前必须先完成不产生理论结论的 `rehearsal-001` **流程彩排**；具体见 [ADR 0108](../../docs/adr/0108-freeze-logic-pilot-execution-representation-and-rehearsal.md)。
+D2-6 已冻结并执行 `1＋1＋2＋2` 角色、空白会话**独立执行**、来源忠实度审核、[GP-SR 0.1](../../theory/STRUCTURAL-REPRESENTATION-0.1.md)、四项重构／八项标注输入规模、混合提交格式和正式派发前的人工放行门。`rehearsal-001` 已以 `procedure_pass` 完成，随后经人工放行执行正式轮次；具体见 [ADR 0108](../../docs/adr/0108-freeze-logic-pilot-execution-representation-and-rehearsal.md)。
 
 ## 3. 单组启动条件
 
@@ -53,7 +53,7 @@ D2-6 已冻结 `1＋1＋2＋2` 执行角色、空白会话**独立执行**、来
 
 逻辑解谜组先完成冻结与必做检验，随后进行一次不作理论结论的组间方法复核；连续行动组再使用复核后的方法执行。门 D 只在两组都提交结果后召开。
 
-逻辑解谜组第 1–8 项启动方法决定及执行方法现已全部冻结；`rehearsal-001` 尚未通过，四个夹具、说明、真值与承诺也尚未形成完整测试包，因此该组尚未启动完整取证。
+逻辑解谜组第 1–8 项启动方法决定、执行方法与正式取证均已完成。`logic-001` 的四项硬条件全部 `recovered`，两份独立标注在结构意义上一致，承诺验证通过，因此按冻结规则判为**范围内通过**。四份提交都出现原型识别或怀疑，证据统一降级保留；该限制不使提交失效，但禁止把成功完全归因于 GP-SR 0.1。逻辑组的完整比较见[正式报告](../calibration-tests/logic-pilot/runs/logic-001/reports/logic-001-comparison.md)。
 
 ## 4. 门审输入
 

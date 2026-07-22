@@ -1,6 +1,6 @@
 # 逻辑解谜先行组测试工作区
 
-- 状态：目录、JSON 约定、判定与执行方法已接受；`rehearsal-001` 已以 `procedure_pass` 完成，`logic-001` 的四份盲测首次提交已冻结，答案承诺已经揭示并复算一致，正在形成正式报告
+- 状态：目录、JSON 约定、判定与执行方法已接受；`rehearsal-001` 已以 `procedure_pass` 完成；[`logic-001`](runs/logic-001/) 已报告为 `pass_in_scope`，四份证据均因原型识别或怀疑而降级保留
 - 决定：[ADR 0106](../../../docs/adr/0106-use-versioned-json-run-artifacts-for-logic-pilot.md)
 - 方法：[第二轮案例校准协议](../../calibration-cycle-2-protocol.md)
 - 隔离：[ADR 0105](../../../docs/adr/0105-use-procedural-blinding-and-answer-commitments-for-logic-pilot.md)
@@ -45,6 +45,8 @@ rehearsals/<rehearsal_id>/
 Git 只在目录出现真实制品时跟踪它。当前已经冻结协议信封、判定和污染字段；`logic-001` 已随实际输入建立重构、网格、图、状态与规则词块 payload／response Schema，没有用空泛通用格式预判理论。
 
 `logic-001` 的受测表示固定为[游戏原语结构表示 v0.1](../../../theory/STRUCTURAL-REPRESENTATION-0.1.md)。首个 `frozen` 提交之后，任何测试者可见字节变化都建立新轮次，不在原轮次回写。
+
+本轮结果见 [`logic-001` 正式比较报告](runs/logic-001/reports/logic-001-comparison.md)。**范围内通过**只表示四项冻结结构区别在本轮材料与测试者条件下得到稳定恢复；所有测试者都认出或怀疑原型，因此不能把成功完全归因于结构表示，也不能外推为普适性或玩家行为结论。
 
 ## 当前 Schema
 

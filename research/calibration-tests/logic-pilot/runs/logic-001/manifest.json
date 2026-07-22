@@ -172,6 +172,18 @@
     {
       "artifact_kind": "report",
       "artifact_version": "0.1.0",
+      "path": "reports/logic-001-comparison.md",
+      "sha256": "5bdb6bcc656e345238d96ec35ac0fc4b41a3d9a32faad759ae767b9c722a233e"
+    },
+    {
+      "artifact_kind": "report",
+      "artifact_version": "0.1.0",
+      "path": "reports/logic-report.json",
+      "sha256": "da005ff296c3cfca57c6bf436ff7458533af4f4de80905c592deee41c64f1c12"
+    },
+    {
+      "artifact_kind": "report",
+      "artifact_version": "0.1.0",
       "path": "reports/source-encoding-revision-log.md",
       "sha256": "cd174b1dc50e1f28f87da8578b6ff8585188f62e5e27abf0ecca68e4fe062853"
     },
@@ -185,5 +197,5 @@
   "protocol_version": "0.3.0",
   "run_id": "logic-001",
   "schema_version": "0.1.0",
-  "status": "revealed"
+  "status": "reported"
 }
