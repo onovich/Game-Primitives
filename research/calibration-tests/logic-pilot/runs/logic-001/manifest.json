@@ -128,6 +128,30 @@
       "sha256": "2f59f499b43319c0722d1e54e2bf2308246aba1b902e0a08c82535153975aaa2"
     },
     {
+      "artifact_kind": "submission",
+      "artifact_version": "0.1.0",
+      "path": "submissions/submission-annotation-a.json",
+      "sha256": "3d494549fb4065fd9f93621a0ccf62f6b24a34b62152fb166b54c8e02cb774d7"
+    },
+    {
+      "artifact_kind": "submission",
+      "artifact_version": "0.1.0",
+      "path": "submissions/submission-annotation-b.json",
+      "sha256": "66e5f0eb4d886c5931c9eda8cfccc52f65077cae0c410fa9d10cc50b1b578a07"
+    },
+    {
+      "artifact_kind": "submission",
+      "artifact_version": "0.1.0",
+      "path": "submissions/submission-reconstruction-a.json",
+      "sha256": "6c90171709cf2064cf278a02ea3b37ff7250b7c7575d03bdd6408f6260e3385b"
+    },
+    {
+      "artifact_kind": "submission",
+      "artifact_version": "0.1.0",
+      "path": "submissions/submission-reconstruction-b.json",
+      "sha256": "5acc09b67715a1f55f71d8f5c8577d2b23d5f7d3df69c08962d0060f937650b9"
+    },
+    {
       "artifact_kind": "report",
       "artifact_version": "0.1.0",
       "path": "reports/formal-package-build-log.md",

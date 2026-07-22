@@ -1,0 +1,520 @@
+{
+  "$schema": "../inputs/logic-submission.schema.json",
+  "artifact_version": "0.1.0",
+  "input_sha256": "59d5b07a5682fc38af20dcf5a4c9b8382d922922b53e135e7c385d03c8cc613b",
+  "pollution": {
+    "answer_exposure": "none",
+    "external_lookup": "none",
+    "external_lookup_scope": "not_applicable",
+    "external_sources": [],
+    "notes": "未调用工具或接触包外材料。根据题面中的结构特征辨认出若干熟悉的谜题或动态规则原型；重构内容仍仅依据冻结材料。",
+    "other_submission_exposure": "none",
+    "out_of_package_access": "none",
+    "out_of_package_paths": [],
+    "prior_project_exposure": "none",
+    "prototype_recognition": "identified",
+    "recognized_families": [
+      "数字线索单环连边原型",
+      "单件推货物原型",
+      "九宫分区填值原型",
+      "动态文本规则原型"
+    ]
+  },
+  "protocol_version": "0.3.0",
+  "responses": [
+    {
+      "item_id": "item-91bd9a32517f",
+      "response": {
+        "assumptions": [],
+        "composition": [
+          {
+            "input_rule_ids": [
+              "rule-s03-edge-selection",
+              "rule-s03-completion"
+            ],
+            "relation": "coupling",
+            "summary": "rule-s03-edge-selection 改变当前选边集合；rule-s03-completion 随后以同一集合同时进行线索计数和拓扑检查，因此前者通过共享状态影响后者。"
+          }
+        ],
+        "confidence": "high",
+        "core_rules": [
+          {
+            "action_or_evaluation": "把一条连接水平或垂直相邻点的候选边加入当前选边集合。",
+            "conditions": [
+              "目标必须符合 ref-s03-candidate-edge，即两个端点水平或垂直相邻。",
+              "执行者、输入事件和选边调度未由材料确定。"
+            ],
+            "effects_or_result": [
+              "ref-s03-selected-state 更新为包含所选候选边的新集合。",
+              "该变化为后续线索计数和拓扑完成判断提供新的被评估状态。"
+            ],
+            "input_rule_ids": [
+              "rule-s03-edge-selection"
+            ],
+            "scope_and_timing": "作用于 ref-s03-grid 中的候选边及当前 ref-s03-selected-state；单次选择不自行判定完成，且具体触发时点不确定。"
+          },
+          {
+            "action_or_evaluation": "联合检查当前选边集合是否满足全部数字单元格的周边计数条件以及单一无自交、无分支环的拓扑条件。",
+            "conditions": [
+              "必须存在可评估的 ref-s03-selected-state。",
+              "每个带数字单元格周围的选中边数必须等于 ref-s03-clues 给出的数值。",
+              "空白单元格没有固定周边边数要求。",
+              "全部选中边必须共同形成一个不自交、无分支的单一环形连通整体。"
+            ],
+            "effects_or_result": [
+              "只有 ref-s03-count-condition 与 ref-s03-topology-condition 同时成立时，ref-s03-completion 才成立。",
+              "评估本身不改变当前选边集合。"
+            ],
+            "input_rule_ids": [
+              "rule-s03-completion"
+            ],
+            "scope_and_timing": "评估整个点阵、全部数字线索和当前选边集合；完成检查的精确调度未由材料确定。"
+          }
+        ],
+        "indeterminate": false,
+        "key_references": [
+          {
+            "input_reference_ids": [
+              "ref-s03-grid"
+            ],
+            "role": "entity",
+            "summary": "由单元格与点阵构成的整体空间作用域。"
+          },
+          {
+            "input_reference_ids": [
+              "ref-s03-candidate-edge"
+            ],
+            "role": "relation",
+            "summary": "水平或垂直相邻点之间可被选择的连接关系。"
+          },
+          {
+            "input_reference_ids": [
+              "ref-s03-selected-state",
+              "ref-s03-clues"
+            ],
+            "role": "state",
+            "summary": "分别表示当前选中边子集和各数字单元格的局部计数要求。"
+          },
+          {
+            "input_reference_ids": [
+              "ref-s03-count-condition",
+              "ref-s03-topology-condition"
+            ],
+            "role": "condition",
+            "summary": "完成判断中必须同时成立的局部计数约束与全局环拓扑约束。"
+          },
+          {
+            "input_reference_ids": [
+              "ref-s03-select-action"
+            ],
+            "role": "action",
+            "summary": "将一条合格候选边加入选中集合的状态变更。"
+          },
+          {
+            "input_reference_ids": [
+              "ref-s03-completion"
+            ],
+            "role": "goal_evaluation",
+            "summary": "联合局部计数与全局拓扑条件得出的完成评价。"
+          }
+        ],
+        "limits": [
+          "无法确定选边的具体输入方式、执行者、撤销许可或完成检查时点。",
+          "不能从题面补出排除标记、提示、计时、软件反馈、唯一性、难度或推理路线。"
+        ],
+        "overall_summary": "该系统维护点阵候选边的选中子集。选择动作只更新该子集；完成评价读取同一状态，要求所有数字线索的局部周边计数正确，并要求全部选中边组成唯一的无分支、不自交环。",
+        "structural_distinctions": [
+          "空白单元格的无固定数量要求不能等同于数值为零。",
+          "局部线索计数成立不能等同于整体完成；还必须独立满足全局拓扑条件。",
+          "无分支、不自交和仅有一个环是相互关联但不能互相替代的结构判断。",
+          "单次选边动作不能等同于完成评价。",
+          "候选边的邻接合法性不能等同于加入该边后整个选边集合仍满足最终条件。",
+          "题面未确定的触发与调度不能被补写为特定交互流程。"
+        ]
+      },
+      "task_kind": "reconstruction"
+    },
+    {
+      "item_id": "item-84ea42abbc88",
+      "response": {
+        "assumptions": [],
+        "composition": [
+          {
+            "input_rule_ids": [
+              "rule-s02-push",
+              "rule-s02-completion"
+            ],
+            "relation": "coupling",
+            "summary": "rule-s02-push 改变行动者及一件货物的位置，rule-s02-completion 读取变化后的货物与目标格位置关系，因此两条规则通过盘面位置状态耦合。"
+          }
+        ],
+        "confidence": "high",
+        "core_rules": [
+          {
+            "action_or_evaluation": "由 ref-s02-actor 推动恰好一件 ref-s02-cargo，并使行动者和该货物发生离散位置变化。",
+            "conditions": [
+              "一次获准推动的直接对象必须恰为一件货物。",
+              "同时推动两件或更多货物不获许可。",
+              "拉动货物不获许可。",
+              "更精确的碰撞、位移和普通行走算法未由材料确定。"
+            ],
+            "effects_or_result": [
+              "获准推动改变行动者与被推动货物的位置。",
+              "被禁止的多件推动或拉动不产生上述位置变化。",
+              "货物位置的变化会改变完成评价所读取的货物与目标格关系。"
+            ],
+            "input_rule_ids": [
+              "rule-s02-push"
+            ],
+            "scope_and_timing": "作用于 ref-s02-board 的当前盘面状态；宿主输入事件及移动检查调度不确定，单次推动不直接构成完成。"
+          },
+          {
+            "action_or_evaluation": "比较当前全部货物的位置与指定目标格集合，判断是否均已送达。",
+            "conditions": [
+              "存在可比较的 ref-s02-cargo 当前位置和 ref-s02-storage 位置。",
+              "完成要求所有货物均位于指定目标格，而不是仅有部分货物到达。"
+            ],
+            "effects_or_result": [
+              "全部货物均送达指定目标格时，ref-s02-completion 成立。",
+              "完成评价本身不改变盘面位置。"
+            ],
+            "input_rule_ids": [
+              "rule-s02-completion"
+            ],
+            "scope_and_timing": "评价目标是整个 ref-s02-board 的当前状态；完成检查的精确时点未由材料确定。"
+          }
+        ],
+        "indeterminate": false,
+        "key_references": [
+          {
+            "input_reference_ids": [
+              "ref-s02-board",
+              "ref-s02-actor",
+              "ref-s02-cargo",
+              "ref-s02-storage"
+            ],
+            "role": "entity",
+            "summary": "分别构成盘面作用域、执行推动的行动者、被推动货物和用于完成比较的目标格。"
+          },
+          {
+            "input_reference_ids": [
+              "ref-s02-movement"
+            ],
+            "role": "action",
+            "summary": "行动者离散移动并推动货物所产生的位置变化。"
+          },
+          {
+            "input_reference_ids": [
+              "ref-s02-push-condition"
+            ],
+            "role": "condition",
+            "summary": "限定一次只能推动一件货物，并排除多件推动与拉动。"
+          },
+          {
+            "input_reference_ids": [
+              "ref-s02-completion"
+            ],
+            "role": "goal_evaluation",
+            "summary": "依据全部货物是否到达指定目标格得出的完成判断。"
+          }
+        ],
+        "limits": [
+          "无法确定障碍碰撞、普通行走、单步位移、输入事件和完成检查的精确算法或调度。",
+          "不能从示意盘面额外推导题面没有陈述的移动许可。",
+          "不能补出最优步数、撤销、重开、软件判错、排行榜或完成反馈。"
+        ],
+        "overall_summary": "该系统在离散盘面上允许行动者推动单件货物，同时明确禁止多件推动和拉动。推动改变共享的位置状态；当所有货物均处于指定目标格时完成条件成立。",
+        "structural_distinctions": [
+          "推动一件货物不能等同于推动任意长度的货物链。",
+          "推动不能等同于拉动；题面明确允许前者的受限形式并禁止后者。",
+          "行动者位置、货物位置和目标格位置是不同角色，不能合并成单一占用状态。",
+          "一次合法推动不能等同于完成；完成评价量化全部货物。",
+          "部分货物到达目标格不能等同于全部完成。",
+          "单件推动许可不能推出未编码的普通行走或障碍碰撞算法。"
+        ]
+      },
+      "task_kind": "reconstruction"
+    },
+    {
+      "item_id": "item-e0288e34cc18",
+      "response": {
+        "assumptions": [],
+        "composition": [
+          {
+            "input_rule_ids": [
+              "rule-s01-assignment",
+              "rule-s01-completion"
+            ],
+            "relation": "coupling",
+            "summary": "rule-s01-assignment 更新当前部分赋值，rule-s01-completion 读取同一网格状态并检查全格赋值及各组条件，因此两者通过网格状态耦合。"
+          }
+        ],
+        "confidence": "high",
+        "core_rules": [
+          {
+            "action_or_evaluation": "向当前网格中的一个空单元格写入 ref-s01-values 中的一个值。",
+            "conditions": [
+              "目标单元格必须为空。",
+              "写入值必须属于 1–9。",
+              "初始已占用的 ref-s01-fixed-state 不属于该动作的目标。",
+              "执行者及赋值请求的输入事件和调度未由材料确定。"
+            ],
+            "effects_or_result": [
+              "目标单元格由空状态变为持有一个合法值。",
+              "ref-s01-partial-state 更新，同时保留初始已占用状态。",
+              "更新后的状态成为完成评价的输入。"
+            ],
+            "input_rule_ids": [
+              "rule-s01-assignment"
+            ],
+            "scope_and_timing": "作用于 ref-s01-grid 的当前部分赋值；单次写入不独立判定完成，触发时点不确定。"
+          },
+          {
+            "action_or_evaluation": "检查网格是否全部赋值，并检查每一行、每一列和每个分区是否都包含值域的全部值。",
+            "conditions": [
+              "存在可评估的 ref-s01-partial-state。",
+              "每个单元格都必须持有值。",
+              "ref-s01-groups 中每一行、每一列和每个分区都必须满足 ref-s01-group-condition。"
+            ],
+            "effects_or_result": [
+              "全格赋值与所有集合条件同时成立时，ref-s01-completion 成立。",
+              "评价过程不改变任何单元格赋值。"
+            ],
+            "input_rule_ids": [
+              "rule-s01-completion"
+            ],
+            "scope_and_timing": "评价同一 ref-s01-grid 中全部行、列与分区；检查的精确执行时点未由材料确定。"
+          }
+        ],
+        "indeterminate": false,
+        "key_references": [
+          {
+            "input_reference_ids": [
+              "ref-s01-grid",
+              "ref-s01-values"
+            ],
+            "role": "entity",
+            "summary": "分别表示单元格空间及可写入的有限值域。"
+          },
+          {
+            "input_reference_ids": [
+              "ref-s01-fixed-state",
+              "ref-s01-partial-state"
+            ],
+            "role": "state",
+            "summary": "分别表示不可作为待赋值目标的初始占用和保留初始布局的当前部分赋值。"
+          },
+          {
+            "input_reference_ids": [
+              "ref-s01-groups"
+            ],
+            "role": "relation",
+            "summary": "把单元格组织为行、列和分区三类相互重叠的集合。"
+          },
+          {
+            "input_reference_ids": [
+              "ref-s01-group-condition"
+            ],
+            "role": "condition",
+            "summary": "要求每个被检查集合都包含值域中的全部值。"
+          },
+          {
+            "input_reference_ids": [
+              "ref-s01-fill-action"
+            ],
+            "role": "action",
+            "summary": "向一个空单元格写入一个值域成员。"
+          },
+          {
+            "input_reference_ids": [
+              "ref-s01-completion"
+            ],
+            "role": "goal_evaluation",
+            "summary": "联合全格赋值与全部集合条件得出的完成判断。"
+          }
+        ],
+        "limits": [
+          "材料未确定完整赋值是否唯一，也未规定完成检查的精确调度。",
+          "无法补出候选笔记、提示、逐步判错、撤销、计时、评分或玩家行为。",
+          "赋值规则没有说明是否在每一步即时拒绝违反集合条件的值。"
+        ],
+        "overall_summary": "该系统保留初始占用单元格，并允许把 1–9 中的值写入空单元格。完成要求网格无空位，且每一行、每一列和每个分区都包含全部值域成员；赋值动作与完成评价通过当前网格状态耦合。",
+        "structural_distinctions": [
+          "初始已占用状态不能等同于玩家后续写入的当前部分赋值。",
+          "值属于合法值域不能等同于该值在相关行、列和分区中满足最终约束。",
+          "网格已填满不能等同于完成；还必须检查全部集合条件。",
+          "单个集合满足条件不能等同于所有行、列和分区均满足条件。",
+          "行、列和分区是三类不同但重叠的关系作用域，不能合并为一次局部检查。",
+          "存在满足条件的完整赋值不能等同于该赋值唯一。",
+          "题面没有确定赋值时即时判错，因此不能把最终完成约束自动改写为每步拒绝规则。"
+        ]
+      },
+      "task_kind": "reconstruction"
+    },
+    {
+      "item_id": "item-aad710407b19",
+      "response": {
+        "assumptions": [],
+        "composition": [
+          {
+            "input_rule_ids": [
+              "rule-s04-rule-set-rebuild",
+              "rule-s04-property-application"
+            ],
+            "relation": "gating",
+            "summary": "rule-s04-rule-set-rebuild 生成的当前特征集合决定 rule-s04-property-application 能查询到哪些控制、可推动和阻挡特征。"
+          },
+          {
+            "input_rule_ids": [
+              "rule-s04-property-application",
+              "rule-s04-rule-set-rebuild"
+            ],
+            "relation": "feedback",
+            "summary": "rule-s04-property-application 可推动文本并改变其位置；变化后的文本布局成为下一次 rule-s04-rule-set-rebuild 的输入，从而形成跨次求值反馈。"
+          },
+          {
+            "input_rule_ids": [
+              "rule-s04-rule-set-rebuild",
+              "rule-s04-success"
+            ],
+            "relation": "gating",
+            "summary": "rule-s04-success 只有在当前重建集合为实体提供控制特征和胜利特征时，才会对相应实体进行位置重叠评价。"
+          }
+        ],
+        "confidence": "high",
+        "core_rules": [
+          {
+            "action_or_evaluation": "清空旧特征集合，并按文本当前位置沿两个正交方向扫描连续文本名称，重建当前规则特征集合。",
+            "conditions": [
+              "存在可按当前位置和正交方向扫描的 ref-s04-text。",
+              "连续文本名称依 ref-s04-text-sequence 构成可查询的一至三词片段。",
+              "宿主调用清空和重建过程的精确调度未由材料确定。"
+            ],
+            "effects_or_result": [
+              "旧的 ref-s04-active-rule-set 被清空。",
+              "当前特征集合替换为由当前文本布局收集到的多词序列。",
+              "后续属性和胜利查询读取这一新集合。"
+            ],
+            "input_rule_ids": [
+              "rule-s04-rule-set-rebuild"
+            ],
+            "scope_and_timing": "每次重建读取 ref-s04-level-state 中求值时的文本位置；文本移动不会追溯修改已完成的扫描，而会影响下一次规则求值所见的集合。"
+          },
+          {
+            "action_or_evaluation": "移动检查查询当前控制、可推动和阻挡特征，据此移动受控实体、推动对象或阻止移动；文本对象在该检查中按可推动对象处理。",
+            "conditions": [
+              "移动检查必须读取当前 ref-s04-active-rule-set。",
+              "受控移动实体必须具有 ref-s04-control-property。",
+              "对象具有 ref-s04-obstruction-property 时可阻止移动。",
+              "ref-s04-text 按具有可推动性质的对象参与移动检查。",
+              "宿主输入和移动调用调度未由材料确定。"
+            ],
+            "effects_or_result": [
+              "获准移动可改变受控实体及被推动对象的位置。",
+              "阻挡特征可以否决位置变化。",
+              "被推动文本的新位置改变下一次重建可读取的正交文本序列。"
+            ],
+            "input_rule_ids": [
+              "rule-s04-property-application"
+            ],
+            "scope_and_timing": "在当前特征集合与当前对象坐标下进行；它处于一次重建结果之后，并可能为下一次重建提供变化后的文本布局。"
+          },
+          {
+            "action_or_evaluation": "查询当前控制特征和胜利特征对应的实体，并比较其位置；两类实体同位时判定胜利。",
+            "conditions": [
+              "当前 ref-s04-active-rule-set 必须把 ref-s04-control-property 和 ref-s04-success-property 分别赋予至少一个可参与位置检查的实体。",
+              "具有两类当前特征的实体必须满足 ref-s04-success-overlap。"
+            ],
+            "effects_or_result": [
+              "同位重叠使 ref-s04-success-evaluation 成立并触发胜利状态。",
+              "胜利求值依赖当前特征集合，而不是对象的永久类别。"
+            ],
+            "input_rule_ids": [
+              "rule-s04-success"
+            ],
+            "scope_and_timing": "评价当前特征集合和当前实体坐标；触发点是当前控制实体与当前胜利实体同位。"
+          }
+        ],
+        "indeterminate": false,
+        "key_references": [
+          {
+            "input_reference_ids": [
+              "ref-s04-text",
+              "ref-s04-entities"
+            ],
+            "role": "entity",
+            "summary": "文本既是可移动对象又是规则重建的输入；非文本实体则可由当前特征获得控制、阻挡或胜利角色。"
+          },
+          {
+            "input_reference_ids": [
+              "ref-s04-level-state",
+              "ref-s04-active-rule-set"
+            ],
+            "role": "state",
+            "summary": "分别记录当前对象坐标布局以及由当前文本位置重建出的特征集合。"
+          },
+          {
+            "input_reference_ids": [
+              "ref-s04-text-sequence"
+            ],
+            "role": "relation",
+            "summary": "把正交方向上的连续文本组织为可查询的一至三词片段。"
+          },
+          {
+            "input_reference_ids": [
+              "ref-s04-rule-set-scan"
+            ],
+            "role": "process",
+            "summary": "沿两个正交方向读取文本并重建当前特征集合的过程。"
+          },
+          {
+            "input_reference_ids": [
+              "ref-s04-control-property",
+              "ref-s04-obstruction-property",
+              "ref-s04-push-property",
+              "ref-s04-success-property",
+              "ref-s04-success-overlap"
+            ],
+            "role": "condition",
+            "summary": "分别决定受控移动、阻挡、推动、胜利参与资格以及最终同位重叠。"
+          },
+          {
+            "input_reference_ids": [
+              "ref-s04-success-evaluation"
+            ],
+            "role": "goal_evaluation",
+            "summary": "当前控制实体与当前胜利实体同位时成立的胜利评价。"
+          }
+        ],
+        "limits": [
+          "无法确定宿主何时清空、重建和调用移动检查，也无法补全输入调度。",
+          "冻结坐标只确定所给实例状态，不能推出完整通关路径、唯一性或其他关卡规则。",
+          "不能补出未列出的属性、版本差异、音画反馈或宿主层胜利呈现。",
+          "材料只保证下一次规则求值读取届时文本位置生成的集合，未给出更细的帧内先后顺序。"
+        ],
+        "overall_summary": "该系统把可移动文本布局转换为当前规则特征集合。该集合动态决定哪些实体受控、哪些对象可推动或阻挡，以及哪些实体参与胜利检查。移动文本会改变后续可扫描出的序列，因此规则重建和属性应用形成反馈；当前控制实体与当前胜利实体同位时胜利。",
+        "structural_distinctions": [
+          "文本对象的盘面实体角色不能等同于它在扫描中承担的规则符号角色。",
+          "当前特征是由文本位置重建的可变状态，不能等同于实体永久固有的类别。",
+          "规则重建不能等同于属性应用：前者生成查询集合，后者读取集合并处理移动。",
+          "可推动特征不能等同于控制特征；可被移动与主动受控移动是不同许可。",
+          "阻挡特征不能等同于不可推动的简单反面，两者是移动检查中的不同条件。",
+          "具有胜利特征不能单独等同于胜利；还需当前控制实体与其同位。",
+          "控制实体与胜利实体可以是不同角色集合，题面不能被压缩为某个固定实体到达固定坐标。",
+          "文本位置变化影响下一次重建，不能被解释为对先前已用特征集合的追溯修改。",
+          "未给出的宿主调度不能被补写为确定的逐帧执行顺序。"
+        ]
+      },
+      "task_kind": "reconstruction"
+    }
+  ],
+  "run_id": "logic-001",
+  "submission_id": "submission-reconstruction-a",
+  "submitted_at": "2026-07-23T00:00:00Z",
+  "tester": {
+    "actor_kind": "model",
+    "context_scope": "isolated_package",
+    "identifier": "logic-reconstructor-01",
+    "model_name": "gpt-5.6-sol"
+  }
+}

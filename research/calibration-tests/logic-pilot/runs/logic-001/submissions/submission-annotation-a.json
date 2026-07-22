@@ -1,0 +1,203 @@
+{
+  "$schema": "../inputs/logic-submission.schema.json",
+  "artifact_version": "0.1.0",
+  "input_sha256": "4c74dec698c8e60e0db278ad5f9b708110fc5bde5352635d658d8894573d14ce",
+  "pollution": {
+    "answer_exposure": "none",
+    "external_lookup": "none",
+    "external_lookup_scope": "not_applicable",
+    "external_sources": [],
+    "notes": "仅凭既往一般知识识别出若干原型家族；未据此补充题面状态或规则。",
+    "other_submission_exposure": "none",
+    "out_of_package_access": "none",
+    "out_of_package_paths": [],
+    "prior_project_exposure": "none",
+    "prototype_recognition": "identified",
+    "recognized_families": [
+      "Baba Is You",
+      "Slitherlink",
+      "Sokoban",
+      "Sudoku"
+    ]
+  },
+  "protocol_version": "0.3.0",
+  "responses": [
+    {
+      "item_id": "item-41ac5b09b93b",
+      "response": {
+        "answers": [
+          {
+            "answer": "yes",
+            "question_id": "q1",
+            "rationale": "t4 从 (0,2) 移至 (1,2)，因此至少一个文本对象的位置发生了变化。"
+          },
+          {
+            "answer": "yes",
+            "question_id": "q2",
+            "rationale": "before 的第二组文本不连续；after 在第 2 行形成 kind_g、LINK、SUCCESS 的连续序列，新增 kind_g -> SUCCESS，规则集合因此不同。"
+          }
+        ],
+        "assumptions": [
+          "按符号命名将 kind_n 与 kind_g 读作 SUBJECT，将 CONTROL 与 SUCCESS 读作 PROPERTY。"
+        ],
+        "confidence": "high"
+      },
+      "task_kind": "annotation"
+    },
+    {
+      "item_id": "item-00c77066d715",
+      "response": {
+        "answers": [
+          {
+            "answer": "yes",
+            "question_id": "q1",
+            "rationale": "八个被使用顶点各连接恰好两条选中边，所选边形成两个无交叉、无分支的矩形环。"
+          },
+          {
+            "answer": "no",
+            "question_id": "q2",
+            "rationale": "选中边分成左右两个互不连通的闭合环，不是恰好一个连通闭合环。"
+          }
+        ],
+        "assumptions": [],
+        "confidence": "high"
+      },
+      "task_kind": "annotation"
+    },
+    {
+      "item_id": "item-e859a6ae0cc3",
+      "response": {
+        "answers": [
+          {
+            "answer": "yes",
+            "question_id": "q1",
+            "rationale": "t4 从 (0,2) 移至 (0,3)，因此至少一个文本对象的位置发生了变化。"
+          },
+          {
+            "answer": "no",
+            "question_id": "q2",
+            "rationale": "before 与 after 都只有 kind_n、LINK、CONTROL 构成有效连续序列；t4 的移动前后均未形成另一条规则，所以规则集合相同。"
+          }
+        ],
+        "assumptions": [
+          "按符号命名将 kind_n 与 kind_g 读作 SUBJECT，将 CONTROL 与 SUCCESS 读作 PROPERTY。"
+        ],
+        "confidence": "high"
+      },
+      "task_kind": "annotation"
+    },
+    {
+      "item_id": "item-b67b341f583c",
+      "response": {
+        "answers": [
+          {
+            "answer": "yes",
+            "question_id": "q1",
+            "rationale": "写入 2 后，所有行、列及 2×2 分区中现有非空值均无重复。"
+          },
+          {
+            "answer": "yes",
+            "question_id": "q2",
+            "rationale": "可完成为 [1,2,3,4]、[3,4,1,2]、[2,1,4,3]、[4,3,2,1]，且保持全部初始固定值。"
+          }
+        ],
+        "assumptions": [],
+        "confidence": "high"
+      },
+      "task_kind": "annotation"
+    },
+    {
+      "item_id": "item-097801a57cc6",
+      "response": {
+        "answers": [
+          {
+            "answer": "yes",
+            "question_id": "q1",
+            "rationale": "每个被使用顶点都恰有两条选中边，且所选边没有交叉或分支。"
+          },
+          {
+            "answer": "yes",
+            "question_id": "q2",
+            "rationale": "全部选中边沿上下两排及两端竖边共同形成一个非空、连通的闭合环。"
+          }
+        ],
+        "assumptions": [],
+        "confidence": "high"
+      },
+      "task_kind": "annotation"
+    },
+    {
+      "item_id": "item-c0d964141a8b",
+      "response": {
+        "answers": [
+          {
+            "answer": "yes",
+            "question_id": "q1",
+            "rationale": "行动者在 p0、货物在其前方 p1，声明动作把单件货物沿所列通路推至 p2，满足推动条件。"
+          },
+          {
+            "answer": "no",
+            "question_id": "q2",
+            "rationale": "推动后货物在 p2 而目标在 p3；p2 是终端位置且 p3 与推动通路不连通，因此既未完成也无法继续达到目标。"
+          }
+        ],
+        "assumptions": [
+          "目标标记不占据位置，且除列出的行动者和货物外没有未声明的阻挡物。"
+        ],
+        "confidence": "high"
+      },
+      "task_kind": "annotation"
+    },
+    {
+      "item_id": "item-6000d62748b1",
+      "response": {
+        "answers": [
+          {
+            "answer": "yes",
+            "question_id": "q1",
+            "rationale": "写入 3 后，当前各行、各列及各 2×2 分区中的现有非空值均无重复。"
+          },
+          {
+            "answer": "no",
+            "question_id": "q2",
+            "rationale": "行列约束会迫使末行为 [4,2,3,1]，使右下 2×2 分区中的 3 重复，因此不存在满足全部完成条件的完整赋值。"
+          }
+        ],
+        "assumptions": [],
+        "confidence": "high"
+      },
+      "task_kind": "annotation"
+    },
+    {
+      "item_id": "item-e4697f6fefa4",
+      "response": {
+        "answers": [
+          {
+            "answer": "yes",
+            "question_id": "q1",
+            "rationale": "行动者在 p0、货物在其前方 p1，声明动作把单件货物沿所列通路推至 p2，满足推动条件。"
+          },
+          {
+            "answer": "yes",
+            "question_id": "q2",
+            "rationale": "推动后货物与目标都位于 p2，完成条件已经成立，无需后续动作。"
+          }
+        ],
+        "assumptions": [
+          "目标标记不占据位置，且除列出的行动者和货物外没有未声明的阻挡物。"
+        ],
+        "confidence": "high"
+      },
+      "task_kind": "annotation"
+    }
+  ],
+  "run_id": "logic-001",
+  "submission_id": "submission-annotation-a",
+  "submitted_at": "2026-07-23T00:00:00Z",
+  "tester": {
+    "actor_kind": "model",
+    "context_scope": "isolated_package",
+    "identifier": "logic-annotator-01",
+    "model_name": "gpt-5.6-sol"
+  }
+}
