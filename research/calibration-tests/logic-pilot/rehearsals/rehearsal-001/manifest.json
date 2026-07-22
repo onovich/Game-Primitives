@@ -48,10 +48,16 @@
       "artifact_version": "0.1.0",
       "path": "reveal/rehearsal-truth.json",
       "sha256": "3671e3b07de6e794d6d6e6b9f87f815cd62f8a035a7d9ab1dfbed44cdbb0e625"
+    },
+    {
+      "artifact_kind": "report",
+      "artifact_version": "0.1.0",
+      "path": "reports/rehearsal-report.json",
+      "sha256": "b111bf042f12f58a20e8f759751f270e7eb8cfae9a9c7ab19dd9edc4ce6bd31a"
     }
   ],
   "protocol_version": "0.3.0",
   "run_id": "logic-000",
   "schema_version": "0.1.0",
-  "status": "revealed"
+  "status": "reported"
 }

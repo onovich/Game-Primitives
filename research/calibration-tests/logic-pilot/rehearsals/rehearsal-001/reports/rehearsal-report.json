@@ -1,0 +1,51 @@
+{
+  "$schema": "../../../schema/rehearsal-report.schema.json",
+  "artifact_version": "0.1.0",
+  "checks": {
+    "rp-01-input-byte-identity": {
+      "evidence": "冻结提交 69c116376eb62b03b69ae75503aaa13577ebb739 中的输入 SHA-256 为 1640a7cdfe5fd8b6c0cba6ef20295b09922765302fc196934bdcdf3415c89bba；派发前、提交归档后与揭示时复算均一致。",
+      "passed": true
+    },
+    "rp-02-same-input-dispatch": {
+      "evidence": "两个派发消息逐字内联同一份冻结任务说明、本地词汇与输入；输入顺序和 SHA-256 相同，差异只限执行者身份及各自冻结的提交元数据。",
+      "passed": true
+    },
+    "rp-03-submission-independence": {
+      "evidence": "两名执行者来自 fork_turns=none 的独立空白会话，未产生工具调用，也未声明接触另一份提交；两份首次输出收齐后才写入工作区。该结论表示流程独立性，不表示安全边界或人口独立性。",
+      "passed": true
+    },
+    "rp-04-submission-byte-preservation": {
+      "evidence": "保管者原样归档两个首次 JSON 输出，只追加一个末尾 LF；A 与 B 的归档 SHA-256 分别为 7676868803ce4ab1674c428d801a8f7c5cba3410e9d36cf30ce2b9569ff52ed3 和 0815aa7058968e10b4e16cd16656a584b3cba6fb7babe5bc0a808295bbc00b5b。",
+      "passed": true
+    },
+    "rp-05-no-early-shared-plaintext": {
+      "evidence": "精确真值在两份提交收齐前只以仓库外密封副本存在；Git 历史先归档提交 460c5b7，再于 6560c88 写入揭示明文，且任一提交均未提前写入工作区。",
+      "passed": true
+    },
+    "rp-06-commitment-recomputation": {
+      "evidence": "以揭示的 32 字节 secret_nonce 和 532 字节精确真值包按 secret_nonce_bytes || exact_truth_bundle_bytes 复算 SHA-256，得到 c5be132854e586df8f2961c54baa3bb668ff8224cb9cedaedecd56f44ef0c30c，与冻结承诺一致。",
+      "passed": true
+    },
+    "rp-07-schema-validation": {
+      "evidence": "承诺、输入、两份提交、真值、揭示、清单和本报告均通过对应 Draft 2020-12 Schema；两项输入与四项回答另通过彩排算术 payload/response 定义，JSON 编码与键序约定亦通过检查。",
+      "passed": true
+    },
+    "rp-08-git-sequence": {
+      "evidence": "冻结、开始收集、归档提交与揭示依次作为独立提交推送：69c1163 -> cf63f8b -> 460c5b7 -> 6560c88；测试者可见输入在冻结后没有变化。",
+      "passed": true
+    },
+    "rp-09-pollution-retention": {
+      "evidence": "两份首次提交的 pollution 对象均原样保留；二者声明无答案暴露、外部检索、工作区访问、项目先验或彼此提交暴露，没有删除或改写污染记录。",
+      "passed": true
+    }
+  },
+  "generated_at": "2026-07-23T02:35:45+08:00",
+  "procedure_verdict": "procedure_pass",
+  "protocol_version": "0.3.0",
+  "report_id": "report-rehearsal-001",
+  "run_id": "logic-000",
+  "submission_ids": [
+    "submission-rehearsal-a",
+    "submission-rehearsal-b"
+  ]
+}
