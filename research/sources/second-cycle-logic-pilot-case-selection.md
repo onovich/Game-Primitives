@@ -276,10 +276,11 @@ D2-4 已接受以下组合：
 
 D2-4 已接受：冻结“Nikoli 数独网页例题＋Sokoban 权利方规则示意盘面＋Nikoli Slitherlink 网页例题＋《Baba Is You》NGJ17 upload 455759 的 `1level`”为四份**锚点案例**材料，同时冻结 `FX-L01`–`FX-L04` 的职责与最小内容为**受控测试夹具**基线。
 
-进入正式测试包制作前仍需完成两项机械工作：
+进入正式测试包制作前仍需完成以下工作：
 
-- 把四个夹具写成统一机器可读格式并生成版本哈希；
-- 依据 [ADR 0105](../../docs/adr/0105-use-procedural-blinding-and-answer-commitments-for-logic-pilot.md)把已冻结的角色可见性制成测试本地术语表、隔离输入包、答案包与承诺清单。
+- 依据 [ADR 0106](../../docs/adr/0106-use-versioned-json-run-artifacts-for-logic-pilot.md)把四个夹具写入 `logic-001` 的版本化 JSON 输入并生成 SHA-256；
+- 依据 [ADR 0105](../../docs/adr/0105-use-procedural-blinding-and-answer-commitments-for-logic-pilot.md)把已冻结的角色可见性制成测试本地术语表、隔离输入包、答案包与承诺记录；
+- 由 D2-5c 冻结通过／失败标准、污染字段、近邻隔离变量与行为边界，再建立其余专用 Schema。
 
 这两项是测试制品准备，不改变本次选案结论。
 

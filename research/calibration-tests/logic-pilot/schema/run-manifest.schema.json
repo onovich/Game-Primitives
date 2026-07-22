@@ -1,0 +1,82 @@
+{
+  "$id": "https://github.com/onovich/Game-Primitives/blob/main/research/calibration-tests/logic-pilot/schema/run-manifest.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "$schema": {
+      "type": "string"
+    },
+    "artifacts": {
+      "items": {
+        "additionalProperties": false,
+        "properties": {
+          "artifact_kind": {
+            "enum": [
+              "instruction",
+              "input",
+              "commitment",
+              "submission",
+              "reveal",
+              "report"
+            ]
+          },
+          "artifact_version": {
+            "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$",
+            "type": "string"
+          },
+          "path": {
+            "not": {
+              "pattern": "(^|/)\\.\\.(/|$)"
+            },
+            "pattern": "^(instructions|inputs|commitments|submissions|reveal|reports)/[A-Za-z0-9._-]+(?:/[A-Za-z0-9._-]+)*$",
+            "type": "string"
+          },
+          "sha256": {
+            "pattern": "^[0-9a-f]{64}$",
+            "type": "string"
+          }
+        },
+        "required": [
+          "artifact_kind",
+          "artifact_version",
+          "path",
+          "sha256"
+        ],
+        "type": "object"
+      },
+      "type": "array"
+    },
+    "protocol_version": {
+      "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$",
+      "type": "string"
+    },
+    "run_id": {
+      "pattern": "^logic-[0-9]{3}$",
+      "type": "string"
+    },
+    "schema_version": {
+      "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$",
+      "type": "string"
+    },
+    "status": {
+      "enum": [
+        "preparing",
+        "frozen",
+        "collecting",
+        "revealed",
+        "reported",
+        "invalidated"
+      ]
+    }
+  },
+  "required": [
+    "$schema",
+    "artifacts",
+    "protocol_version",
+    "run_id",
+    "schema_version",
+    "status"
+  ],
+  "title": "Game Primitives Logic Pilot Run Manifest",
+  "type": "object"
+}

@@ -1,0 +1,8 @@
+{
+  "$schema": "../../schema/run-manifest.schema.json",
+  "artifacts": [],
+  "protocol_version": "0.1.0",
+  "run_id": "logic-001",
+  "schema_version": "0.1.0",
+  "status": "preparing"
+}

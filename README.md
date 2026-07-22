@@ -69,7 +69,7 @@ research/   文献、阅读笔记、证据与开放问题
 
 目前处于开放研究阶段。首版概念边界见 [`theory/FOUNDATIONS.md`](theory/FOUNDATIONS.md)，当前共享词汇见 [`CONTEXT.md`](CONTEXT.md)，带证据状态的第一版候选登记见 [`theory/PRIMITIVE-CANDIDATES.md`](theory/PRIMITIVE-CANDIDATES.md)，暂定书稿问题地图见 [`book/OUTLINE.md`](book/OUTLINE.md)。
 
-[第一轮案例校准](research/calibration-cycle-1.md)已在声明的结构范围内完成：4 个深度案例与 8 个标准案例均已形成案例包，门 A、门 B 与[十二案跨案例总汇报](research/calibration-gates/gate-c-first-cycle-synthesis.md)已经通过，D-C1–D-C7 全部接受。该状态不关闭具体题面／牌序／存档、实体或软件运行、系统测量与行为证据缺口；它们继续记录在[校准证据积压](research/calibration-evidence-backlog.md)。[第二轮校准协议](research/calibration-cycle-2-protocol.md)已确定强检验方法，先执行逻辑解谜组，经组间方法复核后再执行连续行动组；逻辑组的检验命题、四种案例角色、数独／《仓库番》／Slitherlink／《Baba Is You》锚点、四个**受控测试夹具**基线以及**程序性盲化**原则已经冻结，测试制品与通过标准尚未完成，第二轮尚未启动。
+[第一轮案例校准](research/calibration-cycle-1.md)已在声明的结构范围内完成：4 个深度案例与 8 个标准案例均已形成案例包，门 A、门 B 与[十二案跨案例总汇报](research/calibration-gates/gate-c-first-cycle-synthesis.md)已经通过，D-C1–D-C7 全部接受。该状态不关闭具体题面／牌序／存档、实体或软件运行、系统测量与行为证据缺口；它们继续记录在[校准证据积压](research/calibration-evidence-backlog.md)。[第二轮校准协议](research/calibration-cycle-2-protocol.md)已确定强检验方法，先执行逻辑解谜组，经组间方法复核后再执行连续行动组；逻辑组的检验命题、四种案例角色、数独／《仓库番》／Slitherlink／《Baba Is You》锚点、四个**受控测试夹具**基线、**程序性盲化**原则及版本化 JSON 轮次目录已经冻结，实际输入与通过标准尚未完成，第二轮尚未启动。
 
 ## 项目状态
 
