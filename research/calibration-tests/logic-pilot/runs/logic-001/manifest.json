@@ -1,7 +1,26 @@
 {
   "$schema": "../../schema/run-manifest.schema.json",
-  "artifacts": [],
-  "protocol_version": "0.2.0",
+  "artifacts": [
+    {
+      "artifact_kind": "input",
+      "artifact_version": "0.1.0",
+      "path": "inputs/source-packet.json",
+      "sha256": "b1152e06450e41867715ac9009d3399a233be858d1df8f88fc7a780470fb8277"
+    },
+    {
+      "artifact_kind": "instruction",
+      "artifact_version": "0.1.0",
+      "path": "instructions/source-encoding-task.md",
+      "sha256": "8962b6e29fbbdc06af05b1ed81b8925a88668a7009ddf64f00838a4a2058b411"
+    },
+    {
+      "artifact_kind": "instruction",
+      "artifact_version": "0.1.0",
+      "path": "instructions/source-fidelity-audit-task.md",
+      "sha256": "0009e00ea0f045b0317bd34d8c8bcfcc2cc379fed1f1fcf7518232fde0c513e1"
+    }
+  ],
+  "protocol_version": "0.3.0",
   "run_id": "logic-001",
   "schema_version": "0.1.0",
   "status": "preparing"

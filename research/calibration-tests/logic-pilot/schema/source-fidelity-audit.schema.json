@@ -1,0 +1,216 @@
+{
+  "$defs": {
+    "case_audit": {
+      "additionalProperties": false,
+      "properties": {
+        "issues": {
+          "items": {
+            "$ref": "#/$defs/issue"
+          },
+          "type": "array"
+        },
+        "source_anchor_id": {
+          "enum": [
+            "source-anchor-01",
+            "source-anchor-02",
+            "source-anchor-03",
+            "source-anchor-04"
+          ]
+        },
+        "verdict": {
+          "enum": [
+            "approved",
+            "revision_required",
+            "blocked"
+          ]
+        },
+        "verified_points": {
+          "items": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "minItems": 1,
+          "type": "array",
+          "uniqueItems": true
+        }
+      },
+      "required": [
+        "issues",
+        "source_anchor_id",
+        "verdict",
+        "verified_points"
+      ],
+      "type": "object"
+    },
+    "issue": {
+      "additionalProperties": false,
+      "properties": {
+        "category": {
+          "enum": [
+            "fact_error",
+            "necessary_rule_omission",
+            "ambiguity",
+            "identity_leakage",
+            "scope_overreach"
+          ]
+        },
+        "description": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "material": {
+          "type": "boolean"
+        },
+        "recommended_action": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "source_locator": {
+          "minLength": 1,
+          "type": "string"
+        }
+      },
+      "required": [
+        "category",
+        "description",
+        "material",
+        "recommended_action",
+        "source_locator"
+      ],
+      "type": "object"
+    },
+    "tester": {
+      "additionalProperties": false,
+      "properties": {
+        "actor_kind": {
+          "const": "model"
+        },
+        "context_scope": {
+          "const": "isolated_package"
+        },
+        "identifier": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "model_name": {
+          "minLength": 1,
+          "type": "string"
+        }
+      },
+      "required": [
+        "actor_kind",
+        "context_scope",
+        "identifier",
+        "model_name"
+      ],
+      "type": "object"
+    }
+  },
+  "$id": "https://github.com/onovich/Game-Primitives/blob/main/research/calibration-tests/logic-pilot/schema/source-fidelity-audit.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "$schema": {
+      "type": "string"
+    },
+    "artifact_version": {
+      "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$",
+      "type": "string"
+    },
+    "auditor": {
+      "$ref": "#/$defs/tester"
+    },
+    "cases": {
+      "allOf": [
+        {
+          "contains": {
+            "properties": {
+              "source_anchor_id": {
+                "const": "source-anchor-01"
+              }
+            },
+            "required": [
+              "source_anchor_id"
+            ]
+          }
+        },
+        {
+          "contains": {
+            "properties": {
+              "source_anchor_id": {
+                "const": "source-anchor-02"
+              }
+            },
+            "required": [
+              "source_anchor_id"
+            ]
+          }
+        },
+        {
+          "contains": {
+            "properties": {
+              "source_anchor_id": {
+                "const": "source-anchor-03"
+              }
+            },
+            "required": [
+              "source_anchor_id"
+            ]
+          }
+        },
+        {
+          "contains": {
+            "properties": {
+              "source_anchor_id": {
+                "const": "source-anchor-04"
+              }
+            },
+            "required": [
+              "source_anchor_id"
+            ]
+          }
+        }
+      ],
+      "items": {
+        "$ref": "#/$defs/case_audit"
+      },
+      "maxItems": 4,
+      "minItems": 4,
+      "type": "array",
+      "uniqueItems": true
+    },
+    "encoding_sha256": {
+      "pattern": "^[0-9a-f]{64}$",
+      "type": "string"
+    },
+    "overall_verdict": {
+      "enum": [
+        "approved",
+        "revision_required",
+        "blocked"
+      ]
+    },
+    "protocol_version": {
+      "const": "0.3.0"
+    },
+    "representation_version": {
+      "const": "GP-SR 0.1"
+    },
+    "run_id": {
+      "const": "logic-001"
+    }
+  },
+  "required": [
+    "$schema",
+    "artifact_version",
+    "auditor",
+    "cases",
+    "encoding_sha256",
+    "overall_verdict",
+    "protocol_version",
+    "representation_version",
+    "run_id"
+  ],
+  "title": "Game Primitives Logic Pilot Source Fidelity Audit",
+  "type": "object"
+}

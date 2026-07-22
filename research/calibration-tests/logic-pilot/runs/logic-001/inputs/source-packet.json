@@ -1,0 +1,485 @@
+{
+  "$schema": "../../../schema/source-packet.schema.json",
+  "artifact_version": "0.1.0",
+  "cases": [
+    {
+      "artifacts": [
+        {
+          "artifact_id": "artifact-s01-page",
+          "locator": "Rules; Sample; Progressing; Solution",
+          "media_type": "text/html",
+          "url": "https://www.nikoli.co.jp/en/puzzles/sudoku/"
+        },
+        {
+          "artifact_id": "artifact-s01-sample",
+          "length_bytes": 10402,
+          "locator": "sudoku01.gif",
+          "media_type": "image/gif",
+          "sha256": "7fbb59678a23a32bd4e00296c84e2514fd9cd264bcf52953e270809816ace7c5",
+          "url": "https://www.nikoli.co.jp/en/wp-content/themes/nikoli_en/images/puzzles/sudoku01.gif"
+        },
+        {
+          "artifact_id": "artifact-s01-progress",
+          "length_bytes": 10857,
+          "locator": "sudoku02.gif",
+          "media_type": "image/gif",
+          "sha256": "41ef763f0bd16b8a8268dde5f77fe8c0281c0b87ef0cd1eda4cdcb8281a4ff4b",
+          "url": "https://www.nikoli.co.jp/en/wp-content/themes/nikoli_en/images/puzzles/sudoku02.gif"
+        },
+        {
+          "artifact_id": "artifact-s01-solution",
+          "length_bytes": 18591,
+          "locator": "sudoku03.gif",
+          "media_type": "image/gif",
+          "sha256": "2b132ec8249fe126d0563bc9bba045ec0138cb0cd130ad046c813a225c1f59cd",
+          "url": "https://www.nikoli.co.jp/en/wp-content/themes/nikoli_en/images/puzzles/sudoku03.gif"
+        }
+      ],
+      "content_instance": {
+        "block_columns": 3,
+        "block_rows": 3,
+        "columns": 9,
+        "progressing_relation": "The progressing artifact preserves the sample layout and adds assignments to previously empty cells.",
+        "rows": 9,
+        "sample_state": "The sample artifact contains fixed digits and empty cells in a 9×9 grid divided into nine bold 3×3 blocks.",
+        "solution_state": "The solution artifact presents a digit in every cell of the same grid.",
+        "value_domain": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9
+        ]
+      },
+      "identity": {
+        "maker": "Nikoli Co., Ltd.",
+        "title": "Sudoku",
+        "version_scope": "Nikoli English rules page and the three linked 180×180 GIF artifacts frozen on 2026-07-22"
+      },
+      "scope_exclusions": [
+        "候选笔记、提示、逐步判错与撤销",
+        "计时、评分、比赛提交与玩家行为",
+        "由规则页未明示的唯一解主张"
+      ],
+      "scope_inclusions": [
+        "9×9 单元格、1–9 值域与九个 3×3 区块",
+        "初始固定值、当前部分赋值与完整赋值",
+        "行、列、区块的取值条件与完成判断"
+      ],
+      "source_anchor_id": "source-anchor-01",
+      "source_records": [
+        {
+          "evidence_kind": "source_fact",
+          "locator": "Sudoku page, Rules 1",
+          "record_id": "record-s01-fill",
+          "statement": "每个空单元格放入 1–9 中的一个数字。"
+        },
+        {
+          "evidence_kind": "source_fact",
+          "locator": "Sudoku page, Rules 2",
+          "record_id": "record-s01-groups",
+          "statement": "每一行、每一列以及粗线围成的每个 3×3 区块都包含 1–9 的全部数字。"
+        },
+        {
+          "evidence_kind": "source_fact",
+          "locator": "Sudoku page, Sample / Progressing / Solution labels",
+          "record_id": "record-s01-media",
+          "statement": "页面把三张图分别发布为例题、途中状态和答案。"
+        },
+        {
+          "evidence_kind": "project_measurement",
+          "locator": "sudoku01.gif, sudoku02.gif, sudoku03.gif; hashes in artifacts",
+          "record_id": "record-s01-structure",
+          "statement": "三张冻结图共享 9×9 网格与九个 3×3 区块；来源包只记录结构测量，不重新发布完整题面或答案。"
+        },
+        {
+          "evidence_kind": "source_underdetermined",
+          "locator": "Sudoku page, Rules",
+          "record_id": "record-s01-uniqueness",
+          "statement": "规则页没有把该例题的唯一解、候选记号、撤销、计时或自动判错写成规则。"
+        }
+      ]
+    },
+    {
+      "artifacts": [
+        {
+          "artifact_id": "artifact-s02-page",
+          "length_bytes": 11493,
+          "locator": "rule.html; rules and 5×5 table",
+          "media_type": "text/html",
+          "sha256": "352bf5b31835a8583c89c6a5446830cd444edc4464c9b3593a1d15c47e95fab9",
+          "url": "https://sokoban.jp/rule.html"
+        }
+      ],
+      "content_instance": {
+        "board_rows": [
+          [
+            "wall",
+            "wall",
+            "wall",
+            "wall",
+            "wall"
+          ],
+          [
+            "wall",
+            "actor",
+            "cargo",
+            "storage",
+            "wall"
+          ],
+          [
+            "wall",
+            "floor",
+            "cargo",
+            "floor",
+            "wall"
+          ],
+          [
+            "wall",
+            "storage",
+            "floor",
+            "floor",
+            "wall"
+          ],
+          [
+            "wall",
+            "wall",
+            "wall",
+            "wall",
+            "wall"
+          ]
+        ],
+        "columns": 5,
+        "rows": 5
+      },
+      "identity": {
+        "maker": "Hiroyuki Imabayashi and Falcon Co., Ltd.",
+        "title": "倉庫番 / Sokoban",
+        "version_scope": "Rights-holder rule.html and its unnumbered 5×5 demonstration board frozen on 2026-07-22"
+      },
+      "scope_exclusions": [
+        "最优步数、排行榜、撤销与重开界面",
+        "商业关卡编号、移植版差异与玩家行为",
+        "规则页没有定义的软件反馈或判错"
+      ],
+      "scope_inclusions": [
+        "5×5 示意盘面的墙、地面、行动者、货物与格纳点",
+        "离散移动与单件货物推动许可",
+        "货物位置相对格纳点的完成判断"
+      ],
+      "source_anchor_id": "source-anchor-02",
+      "source_records": [
+        {
+          "evidence_kind": "source_fact",
+          "locator": "rule.html, description paragraph",
+          "record_id": "record-s02-goal",
+          "statement": "玩家操作页面中的角色，把仓库内货物送到指定格纳位置。"
+        },
+        {
+          "evidence_kind": "source_fact",
+          "locator": "rule.html, rule 1",
+          "record_id": "record-s02-push-one",
+          "statement": "角色可以推动一件货物。"
+        },
+        {
+          "evidence_kind": "source_fact",
+          "locator": "rule.html, rule 2",
+          "record_id": "record-s02-no-multiple",
+          "statement": "角色不能推动两件或更多货物。"
+        },
+        {
+          "evidence_kind": "source_fact",
+          "locator": "rule.html, rule 3",
+          "record_id": "record-s02-no-pull",
+          "statement": "角色不能拉动货物。"
+        },
+        {
+          "evidence_kind": "project_measurement",
+          "locator": "rule.html 5×5 HTML table; artifact hash",
+          "record_id": "record-s02-transcription",
+          "statement": "content_instance 是对冻结 HTML 单元格示意盘面的必要结构转写。"
+        }
+      ]
+    },
+    {
+      "artifacts": [
+        {
+          "artifact_id": "artifact-s03-page",
+          "locator": "Rules; Sample; Progressing; Solution",
+          "media_type": "text/html",
+          "url": "https://www.nikoli.co.jp/en/puzzles/slitherlink/"
+        },
+        {
+          "artifact_id": "artifact-s03-sample",
+          "length_bytes": 8967,
+          "locator": "slitherlink01.gif",
+          "media_type": "image/gif",
+          "sha256": "957d2ade8856b577f45f74b28836741da97cbda6d460dc9e8cde1b1d3106ae5b",
+          "url": "https://www.nikoli.co.jp/en/wp-content/themes/nikoli_en/images/puzzles/slitherlink01.gif"
+        },
+        {
+          "artifact_id": "artifact-s03-progress",
+          "length_bytes": 10273,
+          "locator": "slitherlink02.gif",
+          "media_type": "image/gif",
+          "sha256": "9496debb694187ee264a39d70280af589ce1d86d0583f88061bafd23143d433e",
+          "url": "https://www.nikoli.co.jp/en/wp-content/themes/nikoli_en/images/puzzles/slitherlink02.gif"
+        },
+        {
+          "artifact_id": "artifact-s03-solution",
+          "length_bytes": 9433,
+          "locator": "slitherlink03.gif",
+          "media_type": "image/gif",
+          "sha256": "6e0286e37f46dbbc1824a0415d8dedaf194ddd98028cd93bcedc047e7366e3d6",
+          "url": "https://www.nikoli.co.jp/en/wp-content/themes/nikoli_en/images/puzzles/slitherlink03.gif"
+        }
+      ],
+      "content_instance": {
+        "cell_columns": 7,
+        "cell_rows": 7,
+        "clue_values_present": [
+          0,
+          1,
+          2,
+          3
+        ],
+        "dot_columns": 8,
+        "dot_rows": 8,
+        "progressing_state": "The progressing artifact marks a subset of candidate edges as selected and also shows exclusion marks that are outside this run's scope.",
+        "solution_state": "The solution artifact's selected edges satisfy every shown clue, give every used dot degree two, and form one connected component."
+      },
+      "identity": {
+        "maker": "Nikoli Co., Ltd.",
+        "title": "Slitherlink",
+        "version_scope": "Nikoli English rules page and the three linked 180×180 GIF artifacts frozen on 2026-07-22"
+      },
+      "scope_exclusions": [
+        "打叉记号、提示、计时与技巧名称",
+        "唯一解、难度与玩家推理路线",
+        "来源没有规定的软件输入和反馈"
+      ],
+      "scope_inclusions": [
+        "7×7 单元格、8×8 点阵、数字线索与候选边集合",
+        "水平或垂直相邻点之间的选边",
+        "数字周边计数、单环、无交叉与无分支条件"
+      ],
+      "source_anchor_id": "source-anchor-03",
+      "source_records": [
+        {
+          "evidence_kind": "source_fact",
+          "locator": "Slitherlink page, Rules 1",
+          "record_id": "record-s03-loop",
+          "statement": "连接相邻点之间的水平或垂直边，形成一个单一环。"
+        },
+        {
+          "evidence_kind": "source_fact",
+          "locator": "Slitherlink page, Rules 2",
+          "record_id": "record-s03-counts",
+          "statement": "数字表示其所在单元格周围有多少条选中边；空白单元格周围可以有任意数量。"
+        },
+        {
+          "evidence_kind": "source_fact",
+          "locator": "Slitherlink page, Rules 3",
+          "record_id": "record-s03-topology",
+          "statement": "环不得自交，也不得产生分支。"
+        },
+        {
+          "evidence_kind": "source_fact",
+          "locator": "Slitherlink page, Sample / Progressing / Solution labels",
+          "record_id": "record-s03-media",
+          "statement": "页面把三张图分别发布为例题、途中状态和答案。"
+        },
+        {
+          "evidence_kind": "project_measurement",
+          "locator": "slitherlink01.gif, slitherlink02.gif, slitherlink03.gif; hashes in artifacts",
+          "record_id": "record-s03-structure",
+          "statement": "三张冻结图共享 7×7 单元格和 8×8 点阵；答案边集经机械检查满足线索计数、使用中顶点度为 2 且只有一个连通分量，来源包不重新发布完整题面。"
+        }
+      ]
+    },
+    {
+      "artifacts": [
+        {
+          "artifact_id": "artifact-s04-page",
+          "locator": "author page; upload 455759 metadata",
+          "media_type": "text/html",
+          "url": "https://hempuli.itch.io/baba-is-you"
+        },
+        {
+          "artifact_id": "artifact-s04-zip",
+          "length_bytes": 2935620,
+          "locator": "upload 455759, Baba Is You - NGJ17 entry (zip)",
+          "media_type": "application/zip",
+          "sha256": "564ba45cf2546b8802716288acd09b28fd1e8fcc6a6ba6f1dd4f0ff0b62e028b",
+          "url": "https://hempuli.itch.io/baba-is-you"
+        },
+        {
+          "artifact_id": "artifact-s04-level",
+          "length_bytes": 275,
+          "locator": "upload 455759 :: 1level",
+          "media_type": "application/octet-stream",
+          "sha256": "60544e661b1dac46a4c07ae75bb503472e78de602b92540a3825772716c9643f",
+          "url": "https://hempuli.itch.io/baba-is-you"
+        },
+        {
+          "artifact_id": "artifact-s04-syntax",
+          "length_bytes": 10415,
+          "locator": "upload 455759 :: syntax.lua",
+          "media_type": "text/x-lua",
+          "sha256": "d67b103fb2f4a09a304a00d3ec1807ff18f7dfebb1dd1adb60756cd0a390fa2f",
+          "url": "https://hempuli.itch.io/baba-is-you"
+        }
+      ],
+      "content_instance": {
+        "coordinate_convention": "Zero-based (x,y) coordinates from the project parser for 1level.",
+        "parsed_relevant_objects": [
+          {
+            "object_kind": "text",
+            "source_name": "PLAYER",
+            "x": 5,
+            "y": 13
+          },
+          {
+            "object_kind": "text",
+            "source_name": "IS",
+            "x": 5,
+            "y": 14
+          },
+          {
+            "object_kind": "text",
+            "source_name": "YOU",
+            "x": 5,
+            "y": 15
+          },
+          {
+            "object_kind": "text",
+            "source_name": "WALL",
+            "x": 8,
+            "y": 13
+          },
+          {
+            "object_kind": "text",
+            "source_name": "IS",
+            "x": 8,
+            "y": 14
+          },
+          {
+            "object_kind": "text",
+            "source_name": "STOP",
+            "x": 8,
+            "y": 15
+          },
+          {
+            "object_kind": "text",
+            "source_name": "FLAG",
+            "x": 6,
+            "y": 9
+          },
+          {
+            "object_kind": "text",
+            "source_name": "IS",
+            "x": 10,
+            "y": 6
+          },
+          {
+            "object_kind": "text",
+            "source_name": "WIN",
+            "x": 13,
+            "y": 7
+          },
+          {
+            "object_kind": "entity",
+            "source_name": "FLAG",
+            "x": 10,
+            "y": 9
+          },
+          {
+            "object_kind": "entity",
+            "source_name": "PLAYER",
+            "x": 13,
+            "y": 9
+          }
+        ],
+        "syntax_behavior_locators": [
+          "syntax.lua:5-9",
+          "syntax.lua:19-28",
+          "syntax.lua:120-160",
+          "syntax.lua:163-209",
+          "syntax.lua:224-238",
+          "syntax.lua:296-309",
+          "syntax.lua:354-365",
+          "syntax.lua:427-448"
+        ]
+      },
+      "identity": {
+        "maker": "Hempuli",
+        "title": "Baba Is You (Jam Build)",
+        "version_scope": "Nordic Game Jam 2017 upload 455759, internal 1level with syntax.lua as the rule implementation baseline"
+      },
+      "scope_exclusions": [
+        "商业正式版、后续补丁、编辑器与其他关卡",
+        "完整通关路径、唯一解、难度与玩家行为",
+        "音画表现以及 syntax.lua 之外的宿主调用细节"
+      ],
+      "scope_inclusions": [
+        "1level 中列出的文本对象与实体位置",
+        "水平或垂直文本序列的规则特征收集",
+        "文本推动、控制、阻挡与胜利特征的查询和应用",
+        "文本位置变化后下一次规则求值所见的特征集合"
+      ],
+      "source_anchor_id": "source-anchor-04",
+      "source_records": [
+        {
+          "evidence_kind": "source_fact",
+          "locator": "itch author page; More information and Download",
+          "record_id": "record-s04-identity",
+          "statement": "作者页把该制品标为 Hempuli 制作、Windows 平台、Nordic Game Jam 2017，并提供名为 Baba Is You - NGJ17 entry 的下载项。"
+        },
+        {
+          "evidence_kind": "project_measurement",
+          "locator": "upload 455759 :: 1level; artifact hash",
+          "record_id": "record-s04-level-parse",
+          "statement": "content_instance 列出项目解析器从冻结 1level 得到、与本轮范围直接相关的对象类型、文本身份和零基坐标。"
+        },
+        {
+          "evidence_kind": "source_fact",
+          "locator": "syntax.lua:163-209, 427-448",
+          "record_id": "record-s04-feature-scan",
+          "statement": "实现沿两个正交方向读取连续文本名称，把多词序列加入 features；findfeature 随后从当前 features 查询一至三词片段并返回序列首项。"
+        },
+        {
+          "evidence_kind": "source_fact",
+          "locator": "syntax.lua:19-28, 120-160, 224-238",
+          "record_id": "record-s04-properties",
+          "statement": "移动与阻挡逻辑查询 is you、is push、is stop 等当前特征；文本对象在移动检查中按可推动对象处理。"
+        },
+        {
+          "evidence_kind": "source_fact",
+          "locator": "syntax.lua:296-309, 354-365",
+          "record_id": "record-s04-win",
+          "statement": "实现查询 is win 与 is you；具有相应当前特征的实体在同一位置相遇时触发胜利。"
+        },
+        {
+          "evidence_kind": "source_fact",
+          "locator": "syntax.lua:5-9, 163-209",
+          "record_id": "record-s04-feature-reset",
+          "statement": "features 是当前规则特征集合；clear 会清空它，code 会从当前文本位置重新收集特征。"
+        },
+        {
+          "evidence_kind": "source_underdetermined",
+          "locator": "upload 455759 :: syntax.lua",
+          "record_id": "record-s04-host-schedule",
+          "statement": "syntax.lua 没有包含宿主引擎调用 clear 与 code 的完整调度；本包只能确定下一次规则求值所见集合，不声称精确帧序。"
+        }
+      ]
+    }
+  ],
+  "packet_id": "source-packet-logic-001",
+  "protocol_version": "0.3.0",
+  "run_id": "logic-001",
+  "source_freeze_date": "2026-07-22"
+}
