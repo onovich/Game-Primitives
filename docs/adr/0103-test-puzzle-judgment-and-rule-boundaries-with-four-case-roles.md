@@ -50,3 +50,7 @@
 - [校准门 D](../../research/calibration-gates/gate-d-second-cycle-method-pilot.md)把该命题作为逻辑组的事前输入，而不是事后解释。
 - [原语候选表](../../theory/PRIMITIVE-CANDIDATES.md)中的 `GP-C005` 状态不因本决定改变；本轮只确定怎样检验它。
 - 下一项决策 D2-4 冻结具体作品、版本与内容实例；在此之前不启动完整取证。
+
+## 后续
+
+D2-4 已冻结四种角色的锚点内容和受控测试夹具基线，见 [ADR 0104](0104-freeze-dual-material-logic-puzzle-pilot-cases.md)。本 ADR 中“具体作品待定”保留为 D2-3 接受时的历史状态。

@@ -23,5 +23,6 @@
 - [第一轮案例校准](calibration-cycle-1.md)：结构校准已完成，D-C1–D-C7 已接受；
 - [门 C 总汇报](calibration-gates/gate-c-first-cycle-synthesis.md)：第一轮跨案例结论与关闭边界；
 - [校准证据积压](calibration-evidence-backlog.md)：仍待补的复现、测量、行为与强检验证据；
-- [第二轮案例校准协议](calibration-cycle-2-protocol.md)：方法、两个先行问题组、执行顺序及逻辑解谜组检验命题／案例角色已接受；具体作品与内容实例待定，尚未启动；
+- [第二轮案例校准协议](calibration-cycle-2-protocol.md)：方法、两个先行问题组、执行顺序及逻辑解谜组命题、角色、锚点与夹具基线已接受；测试制品与输入隔离待定，尚未启动；
+- [逻辑解谜组一手来源选案](sources/second-cycle-logic-pilot-case-selection.md)：四个锚点、四个**受控测试夹具**及来源／版权／污染边界；
 - [校准门 D](calibration-gates/gate-d-second-cycle-method-pilot.md)：两组完成后复核强检验方法，再决定扩展范围。

@@ -2,13 +2,13 @@
 
 - 案例编号：`sudoku-nikoli-standard-9x9-rules`
 - 分析深度：标准
-- 状态：分析完成，待首轮总校准；具体题面与行为证据待补
+- 状态：第一轮结构案例已完成；第二轮已选官方例题锚点；解数量审计与行为证据待补
 - 建档日期：2026-07-21
 - 研究问题：一个规则极短、信息持续公开的逻辑谜题，怎样把重叠约束组织成可验证的完成任务？玩家推理为何不能直接写成规则机制？
 - 案例角色：逻辑解谜锚点；与 R&R Games 标准卡牌版[《花火》四人五色基础局](hanabi-rr-2013-four-player-five-color.md)构成第一组标准对照
 - 模板版本：[案例研究包 v0.3](../CASE-PACKET-TEMPLATE.md)
 
-> 本文分析 Nikoli 的标准数独**规则对象**，尚未分析某一道具体题。它可以检验规则语法、约束、派生事实与信息访问，却不能证明唯一解、难度、解法顺序或真实玩家怎样推理。
+> 本文正文分析 Nikoli 的标准数独**规则对象**，不追溯修改第一轮案例单位。D2-4 已另行为第二轮选定 Nikoli 英文网页例题及配套途中图／答案图，见[一手来源选案](../../research/sources/second-cycle-logic-pilot-case-selection.md#31-静态约束锚点nikoli-数独)与 [ADR 0104](../../docs/adr/0104-freeze-dual-material-logic-puzzle-pilot-cases.md)。该选定仍不能自行证明唯一解、难度、解法顺序或真实玩家怎样推理。
 
 ## 1. 案例范围卡
 
@@ -331,6 +331,5 @@ flowchart LR
 - 保留的工作定义：**约束**是作用于有类型状态和作用域的规则结构；**玩家推理**不是规则系统自动执行的机制。
 - 候选概念：暂不录取“逻辑”“候选消去”或“推理”原语；“局部一致／全局可扩展”保留为可能的合法性谓词细分。
 - 新的模型压力：规则家族与内容实例必须显式区分；没有具体题不能把唯一性和难度写进游戏层。
-- 后续取证：冻结一则可公开引用的 Nikoli 具体题面，审计解数量，并收集逐步解题轨迹；再与 Sokoban、Slitherlink 和数字数独实现对照。
+- 后续取证：对已冻结的 Nikoli 网页例题审计解数量，并收集逐步解题轨迹；再与 Sokoban、Slitherlink 和数字数独实现对照。
 - 关联：[一手来源冻结](../../research/sources/calibration-sudoku-hanabi-primary-sources.md)、[校准失败清单](../../research/calibration-failure-log.md)、[逻辑解谜覆盖地图](../../research/corpus/genre-coverage-map.md#71-逻辑解谜)。
-
