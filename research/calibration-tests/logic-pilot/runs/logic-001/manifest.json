@@ -8,6 +8,18 @@
       "sha256": "b1152e06450e41867715ac9009d3399a233be858d1df8f88fc7a780470fb8277"
     },
     {
+      "artifact_kind": "input",
+      "artifact_version": "0.1.0",
+      "path": "inputs/source-encoding-v0.1.0.json",
+      "sha256": "a64ba48ce114e39bc85e2402048ca94d130956142bf7466727af006c6a350922"
+    },
+    {
+      "artifact_kind": "input",
+      "artifact_version": "0.1.1",
+      "path": "inputs/source-encoding-v0.1.1.json",
+      "sha256": "c51abd87352204959f197b10e322805b429a51cebb2824b7389e36b0aa51fbe9"
+    },
+    {
       "artifact_kind": "instruction",
       "artifact_version": "0.1.0",
       "path": "instructions/source-encoding-task.md",
@@ -18,6 +30,12 @@
       "artifact_version": "0.1.0",
       "path": "instructions/source-fidelity-audit-task.md",
       "sha256": "0009e00ea0f045b0317bd34d8c8bcfcc2cc379fed1f1fcf7518232fde0c513e1"
+    },
+    {
+      "artifact_kind": "report",
+      "artifact_version": "0.1.0",
+      "path": "reports/source-encoding-revision-log.md",
+      "sha256": "ad8be083fdcf52327c0b42b60d253348e202392cd272467e075dcf89c0191453"
     }
   ],
   "protocol_version": "0.3.0",
