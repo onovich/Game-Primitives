@@ -17,3 +17,10 @@
 ## 来源最低信息
 
 尽可能记录作者、标题、年份、载体、版本、页码或章节、稳定链接与访问日期。引用游戏时记录平台与所分析版本；规则随版本变化时，不把当前状态写成永久事实。
+
+## 当前校准工作
+
+- [第一轮案例校准](calibration-cycle-1.md)：结构校准已完成，D-C1–D-C7 已接受；
+- [门 C 总汇报](calibration-gates/gate-c-first-cycle-synthesis.md)：第一轮跨案例结论与关闭边界；
+- [校准证据积压](calibration-evidence-backlog.md)：仍待补的复现、测量、行为与强检验证据；
+- [第二轮案例校准协议](calibration-cycle-2-protocol.md)：方法已接受，样本组待定，尚未启动。
