@@ -29,11 +29,21 @@
 
 ## 下一版纪律
 
-`v0.1.2` 只允许做一一对应的 ID 机械迁移：
+编码者以 `{"decision":"approved","reason":"该迁移仅机械调整 ID 前缀并递增制品版本，不改变编码语义。"}` 明确批准 `v0.1.2` 的一一对应 ID 机械迁移：
 
 ```text
 sNN-rule-X -> rule-sNN-X
 sNN-ref-X  -> ref-sNN-X
 ```
 
-不得借此修改规则语义、来源判断、中性化内容、槽位状态或组合关系。`v0.1.2` 通过 Schema、递归键序、引用闭包、source／blind 同构和禁词扫描后，才可提交给独立来源忠实度审核者。
+不得借此修改规则语义、来源判断、中性化内容、槽位状态或组合关系。
+
+## `v0.1.2`
+
+- 文件：`inputs/source-encoding-v0.1.2.json`
+- SHA-256：`d45f994e21d87a56ae42a0fc44cb85d05f2c926c1bacf02d9eede203af244525`
+- 性质：把 `v0.1.1` 按上述映射机械迁移，并把制品版本改为 `0.1.2`；没有改变其他语义字段。
+- 已通过：冻结 JSON Schema、四案计数、递归键序、引用闭包、source／blind 的规则与引用同构、状态前缀检查。
+- 结果：盲化禁词扫描失败，不得进入来源忠实度审核。`source-anchor-04` 的共享 ID 仍包含来源词 `features`、`stop` 与 `win`；即使正文已经中性化，ID 也可能向重构者泄漏来源词。
+
+编码者随后明确批准只把上述共享 ID 映射为 `rule-set`、`active-rule-set`、`obstruction` 与 `success` 等中性 ID，并把下一制品版本递增为 `0.1.3`。这次迁移同样不得改动 statement、类型、槽位状态或组合关系语义。
