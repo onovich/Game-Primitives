@@ -1,6 +1,6 @@
 # 第一轮案例校准
 
-- 状态：执行中；十二个案例包与[首轮跨案例总汇报草案](calibration-gates/gate-c-first-cycle-synthesis.md)已完成，D-C1–D-C5 已接受，D-C6–D-C7 待决定
+- 状态：执行中；十二个案例包与[首轮跨案例总汇报草案](calibration-gates/gate-c-first-cycle-synthesis.md)已完成，D-C1–D-C6 已接受，D-C7 待决定
 - 日期：2026-07-21
 - 项目阶段：阶段一·开放研究
 - 性质：模型压力测试，不是书稿章节或最终类型覆盖清单
@@ -36,7 +36,7 @@
 2. 深度研究“国际象棋＋Game Boy《俄罗斯方块》A-Type”，随后进入[校准门 A](calibration-gates/gate-a-chess-tetris.md)，优先修订规则语法、实时／回合表达与案例字段。（已通过，D-A1–D-A5 已接受）
 3. 按[校准门 B 事前研究协议](calibration-gates/gate-b-protocol.md)和[一手资料与版本冻结包](sources/calibration-b-primary-sources.md)深度研究“无限注德州扑克＋《农场主》修订版”，随后进入校准门 B，优先修订信息、资源、编排与玩家活动模型。（已完成；[Gate B 报告](calibration-gates/gate-b-holdem-agricola.md)结构校准通过，D-B1–D-B6 已接受，行为证据待补）
 4. 依次研究四组标准对照：“数独＋花火”“Dominion＋Factorio”“星际争霸＋外交”“NetHack＋足球”。（四组的一手来源冻结、八份标准案例与累计失败记录均已完成，结构在各自声明范围内通过；最后一组的版本、竞赛配置与跨媒介边界见[NetHack × 足球一手来源冻结包](sources/calibration-nethack-football-primary-sources.md)。具体题面／牌序／存档、软件游玩、实体比赛、对局轨迹、测量与行为证据按案例声明继续待补。）
-5. 持续汇总[失败清单](calibration-failure-log.md)，并在全部案例后完成跨案例比较、原语候选与模型修订，形成首轮校准版本。（案例采样与[首轮总汇报草案](calibration-gates/gate-c-first-cycle-synthesis.md)已完成；D-C1–D-C5 已接受并写入共享模型与模板，D-C6–D-C7 待决定。）
+5. 持续汇总[失败清单](calibration-failure-log.md)，并在全部案例后完成跨案例比较、原语候选与模型修订，形成首轮校准版本。（案例采样与[首轮总汇报草案](calibration-gates/gate-c-first-cycle-synthesis.md)已完成；D-C1–D-C6 已接受并写入共享模型、模板与[原语候选表 v0.1](../theory/PRIMITIVE-CANDIDATES.md)，D-C7 待决定。）
 
 ### 校准门问题
 
