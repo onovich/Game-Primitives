@@ -24,6 +24,18 @@
       "artifact_version": "0.1.0",
       "path": "instructions/task.md",
       "sha256": "3ffc81267f37767afa5ba84fdef5ca064a0c8512795b3be0b9fcd5ec64f34762"
+    },
+    {
+      "artifact_kind": "submission",
+      "artifact_version": "0.1.0",
+      "path": "submissions/submission-rehearsal-a.json",
+      "sha256": "7676868803ce4ab1674c428d801a8f7c5cba3410e9d36cf30ce2b9569ff52ed3"
+    },
+    {
+      "artifact_kind": "submission",
+      "artifact_version": "0.1.0",
+      "path": "submissions/submission-rehearsal-b.json",
+      "sha256": "0815aa7058968e10b4e16cd16656a584b3cba6fb7babe5bc0a808295bbc00b5b"
     }
   ],
   "protocol_version": "0.3.0",

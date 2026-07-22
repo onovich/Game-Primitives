@@ -1,0 +1,50 @@
+{
+  "$schema": "../../../schema/logic-submission.schema.json",
+  "artifact_version": "0.1.0",
+  "input_sha256": "1640a7cdfe5fd8b6c0cba6ef20295b09922765302fc196934bdcdf3415c89bba",
+  "pollution": {
+    "answer_exposure": "none",
+    "external_lookup": "none",
+    "external_lookup_scope": "not_applicable",
+    "external_sources": [],
+    "notes": "",
+    "other_submission_exposure": "none",
+    "out_of_package_access": "none",
+    "out_of_package_paths": [],
+    "prior_project_exposure": "none",
+    "prototype_recognition": "none",
+    "recognized_families": []
+  },
+  "protocol_version": "0.3.0",
+  "responses": [
+    {
+      "item_id": "item-7f3a9c21",
+      "response": {
+        "confidence": "high",
+        "notes": "",
+        "sum": 13,
+        "token": "violet"
+      },
+      "task_kind": "annotation"
+    },
+    {
+      "item_id": "item-b4e18d62",
+      "response": {
+        "confidence": "high",
+        "notes": "",
+        "sum": 12,
+        "token": "amber"
+      },
+      "task_kind": "annotation"
+    }
+  ],
+  "run_id": "logic-000",
+  "submission_id": "submission-rehearsal-a",
+  "submitted_at": "2026-07-23T02:32:18+08:00",
+  "tester": {
+    "actor_kind": "model",
+    "context_scope": "isolated_package",
+    "identifier": "rehearsal-executor-a",
+    "model_name": "gpt-5.6-sol"
+  }
+}
