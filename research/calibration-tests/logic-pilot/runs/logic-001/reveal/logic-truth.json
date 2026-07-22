@@ -1,0 +1,314 @@
+{
+  "$schema": "../../../schema/logic-truth.schema.json",
+  "artifact_version": "0.1.0",
+  "critical_conditions": [
+    {
+      "condition_id": "lc-01-local-global-extension",
+      "expected_distinction": "当前赋值不违反已检查的非重复条件，不等于该状态存在满足全部完成条件的完整扩展。",
+      "rationale": "两份 4×4 状态都满足即时条件，但只有一份存在完整赋值。",
+      "severity": "critical"
+    },
+    {
+      "condition_id": "lc-02-legal-goal-reachability",
+      "expected_distinction": "动作当前被允许，不等于动作后仍能达到完成条件。",
+      "rationale": "两份状态执行同一许可推动；终端位置相同，但目标位置不同。",
+      "severity": "critical"
+    },
+    {
+      "condition_id": "lc-03-local-single-loop",
+      "expected_distinction": "每个使用中顶点都满足度数与无分支条件，不等于全部边形成单一连通环。",
+      "rationale": "单环与双环状态具有相同的局部顶点性质。",
+      "severity": "critical"
+    },
+    {
+      "condition_id": "lc-04-state-rule-set-change",
+      "expected_distinction": "对象位置变化不必改变生效规则集合；只有改变可解析文本序列的移动才改变后续求值规则。",
+      "rationale": "两份过渡都有文本位移，只有一份新建了 SUBJECT -> PROPERTY 规则。",
+      "severity": "critical"
+    }
+  ],
+  "expected_judgments": [
+    {
+      "condition_id": "lc-03-local-single-loop",
+      "expected_response": {
+        "q1": "yes",
+        "q2": "no"
+      },
+      "expected_summary": "q1 与 q2 必须分别依据题面即时条件和后续或整体评价作答。",
+      "item_id": "item-00c77066d715",
+      "task_kind": "annotation"
+    },
+    {
+      "condition_id": "lc-03-local-single-loop",
+      "expected_response": {
+        "q1": "yes",
+        "q2": "yes"
+      },
+      "expected_summary": "q1 与 q2 必须分别依据题面即时条件和后续或整体评价作答。",
+      "item_id": "item-097801a57cc6",
+      "task_kind": "annotation"
+    },
+    {
+      "condition_id": "lc-04-state-rule-set-change",
+      "expected_response": {
+        "q1": "yes",
+        "q2": "yes"
+      },
+      "expected_summary": "q1 与 q2 必须分别依据题面即时条件和后续或整体评价作答。",
+      "item_id": "item-41ac5b09b93b",
+      "task_kind": "annotation"
+    },
+    {
+      "condition_id": "lc-01-local-global-extension",
+      "expected_response": {
+        "q1": "yes",
+        "q2": "no"
+      },
+      "expected_summary": "q1 与 q2 必须分别依据题面即时条件和后续或整体评价作答。",
+      "item_id": "item-6000d62748b1",
+      "task_kind": "annotation"
+    },
+    {
+      "condition_id": "lc-02-legal-goal-reachability",
+      "expected_response": {
+        "must_not_invent": [
+          "最优步数",
+          "普通行走算法",
+          "墙体碰撞算法"
+        ],
+        "must_recover": [
+          "一次只允许推动一件货物，禁止多件推动与拉动。",
+          "推动改变行动者和货物位置；完成判断比较货物与目标位置。",
+          "推动许可与推动后能否达到完成状态是不同判断。"
+        ]
+      },
+      "expected_summary": "重构必须恢复来源编码中的关键规则，并明确题面所含的非等价判断。",
+      "item_id": "item-84ea42abbc88",
+      "task_kind": "reconstruction"
+    },
+    {
+      "condition_id": "lc-03-local-single-loop",
+      "expected_response": {
+        "must_not_invent": [
+          "唯一解",
+          "排除标记",
+          "输入方式"
+        ],
+        "must_recover": [
+          "选边端点必须正交相邻。",
+          "数字周边计数与无交叉、无分支、单一环共同决定完成。",
+          "局部顶点条件不足以替代单一连通环条件。"
+        ]
+      },
+      "expected_summary": "重构必须恢复来源编码中的关键规则，并明确题面所含的非等价判断。",
+      "item_id": "item-91bd9a32517f",
+      "task_kind": "reconstruction"
+    },
+    {
+      "condition_id": "lc-04-state-rule-set-change",
+      "expected_response": {
+        "must_not_invent": [
+          "精确宿主帧调度",
+          "完整通关路径",
+          "其他版本规则"
+        ],
+        "must_recover": [
+          "当前文本位置被扫描并重建生效特征集合。",
+          "控制、推动、阻挡与成功判断读取当前集合。",
+          "文本移动既改变对象位置，也可能通过下一次重建改变后续规则集合。"
+        ]
+      },
+      "expected_summary": "重构必须恢复来源编码中的关键规则，并明确题面所含的非等价判断。",
+      "item_id": "item-aad710407b19",
+      "task_kind": "reconstruction"
+    },
+    {
+      "condition_id": "lc-01-local-global-extension",
+      "expected_response": {
+        "q1": "yes",
+        "q2": "yes"
+      },
+      "expected_summary": "q1 与 q2 必须分别依据题面即时条件和后续或整体评价作答。",
+      "item_id": "item-b67b341f583c",
+      "task_kind": "annotation"
+    },
+    {
+      "condition_id": "lc-02-legal-goal-reachability",
+      "expected_response": {
+        "q1": "yes",
+        "q2": "no"
+      },
+      "expected_summary": "q1 与 q2 必须分别依据题面即时条件和后续或整体评价作答。",
+      "item_id": "item-c0d964141a8b",
+      "task_kind": "annotation"
+    },
+    {
+      "condition_id": "lc-01-local-global-extension",
+      "expected_response": {
+        "must_not_invent": [
+          "唯一解",
+          "候选提示",
+          "精确完成检查调度"
+        ],
+        "must_recover": [
+          "单次赋值只要求目标为空且值在值域内。",
+          "完成判断要求全格赋值以及每个行、列、分区满足全集条件。",
+          "单次赋值许可与完整状态评价是不同规则；当前部分状态可能需要另行判断能否扩展。"
+        ]
+      },
+      "expected_summary": "重构必须恢复来源编码中的关键规则，并明确题面所含的非等价判断。",
+      "item_id": "item-e0288e34cc18",
+      "task_kind": "reconstruction"
+    },
+    {
+      "condition_id": "lc-02-legal-goal-reachability",
+      "expected_response": {
+        "q1": "yes",
+        "q2": "yes"
+      },
+      "expected_summary": "q1 与 q2 必须分别依据题面即时条件和后续或整体评价作答。",
+      "item_id": "item-e4697f6fefa4",
+      "task_kind": "annotation"
+    },
+    {
+      "condition_id": "lc-04-state-rule-set-change",
+      "expected_response": {
+        "q1": "yes",
+        "q2": "no"
+      },
+      "expected_summary": "q1 与 q2 必须分别依据题面即时条件和后续或整体评价作答。",
+      "item_id": "item-e859a6ae0cc3",
+      "task_kind": "annotation"
+    }
+  ],
+  "input_sha256s": {
+    "annotation": "4c74dec698c8e60e0db278ad5f9b708110fc5bde5352635d658d8894573d14ce",
+    "reconstruction": "59d5b07a5682fc38af20dcf5a4c9b8382d922922b53e135e7c385d03c8cc613b"
+  },
+  "item_mappings": [
+    {
+      "case_role": "local_global_structure_depth",
+      "fixture_ids": [
+        "FX-L03-B"
+      ],
+      "item_id": "item-00c77066d715",
+      "source_anchor_id": "source-anchor-03",
+      "task_kind": "annotation"
+    },
+    {
+      "case_role": "local_global_structure_depth",
+      "fixture_ids": [
+        "FX-L03-A"
+      ],
+      "item_id": "item-097801a57cc6",
+      "source_anchor_id": "source-anchor-03",
+      "task_kind": "annotation"
+    },
+    {
+      "case_role": "rule_transformation_boundary",
+      "fixture_ids": [
+        "FX-L04-B"
+      ],
+      "item_id": "item-41ac5b09b93b",
+      "source_anchor_id": "source-anchor-04",
+      "task_kind": "annotation"
+    },
+    {
+      "case_role": "static_constraint_anchor",
+      "fixture_ids": [
+        "FX-L01-B"
+      ],
+      "item_id": "item-6000d62748b1",
+      "source_anchor_id": "source-anchor-01",
+      "task_kind": "annotation"
+    },
+    {
+      "case_role": "irreversible_state_space_contrast",
+      "fixture_ids": [
+        "FX-L02-A",
+        "FX-L02-B"
+      ],
+      "item_id": "item-84ea42abbc88",
+      "source_anchor_id": "source-anchor-02",
+      "task_kind": "reconstruction"
+    },
+    {
+      "case_role": "local_global_structure_depth",
+      "fixture_ids": [
+        "FX-L03-A",
+        "FX-L03-B"
+      ],
+      "item_id": "item-91bd9a32517f",
+      "source_anchor_id": "source-anchor-03",
+      "task_kind": "reconstruction"
+    },
+    {
+      "case_role": "rule_transformation_boundary",
+      "fixture_ids": [
+        "FX-L04-A",
+        "FX-L04-B"
+      ],
+      "item_id": "item-aad710407b19",
+      "source_anchor_id": "source-anchor-04",
+      "task_kind": "reconstruction"
+    },
+    {
+      "case_role": "static_constraint_anchor",
+      "fixture_ids": [
+        "FX-L01-A"
+      ],
+      "item_id": "item-b67b341f583c",
+      "source_anchor_id": "source-anchor-01",
+      "task_kind": "annotation"
+    },
+    {
+      "case_role": "irreversible_state_space_contrast",
+      "fixture_ids": [
+        "FX-L02-B"
+      ],
+      "item_id": "item-c0d964141a8b",
+      "source_anchor_id": "source-anchor-02",
+      "task_kind": "annotation"
+    },
+    {
+      "case_role": "static_constraint_anchor",
+      "fixture_ids": [
+        "FX-L01-A",
+        "FX-L01-B"
+      ],
+      "item_id": "item-e0288e34cc18",
+      "source_anchor_id": "source-anchor-01",
+      "task_kind": "reconstruction"
+    },
+    {
+      "case_role": "irreversible_state_space_contrast",
+      "fixture_ids": [
+        "FX-L02-A"
+      ],
+      "item_id": "item-e4697f6fefa4",
+      "source_anchor_id": "source-anchor-02",
+      "task_kind": "annotation"
+    },
+    {
+      "case_role": "rule_transformation_boundary",
+      "fixture_ids": [
+        "FX-L04-A"
+      ],
+      "item_id": "item-e859a6ae0cc3",
+      "source_anchor_id": "source-anchor-04",
+      "task_kind": "annotation"
+    }
+  ],
+  "protocol_version": "0.3.0",
+  "randomization": {
+    "algorithm": "HMAC-SHA-256 keyed ordering and opaque IDs with pair-distance rejection v1",
+    "annotation_id_seed_hex": "9622338f1b4161cdc496246a08c547136a078f2360899ea7ebc2ff694c7f6eec",
+    "annotation_order_attempt": 1,
+    "annotation_order_seed_hex": "521b0bdff0602e7327be2f1d592f7984e33bf1f9aa0a0d95e2b542661183fcc5",
+    "reconstruction_id_seed_hex": "13e968582b423fc32bc6fab072fc554ed1e1334576051a3e69a2e9ab86f4a21b",
+    "reconstruction_order_attempt": 0,
+    "reconstruction_order_seed_hex": "9388f2083b702ee019aef4b5b7682a2b8afe04744f1ef6da4755a971b6abf2f0"
+  },
+  "run_id": "logic-001",
+  "truth_id": "truth-logic-001"
+}

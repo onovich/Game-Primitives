@@ -1,0 +1,12 @@
+{
+  "$schema": "../../../schema/logic-reveal.schema.json",
+  "artifact_version": "0.1.0",
+  "commitment_id": "commitment-logic-001",
+  "commitment_verified": true,
+  "recomputed_commitment": "6241d17b5bd5fd748184d6ee84dff7a34796533f8512a91a31463521f43691d1",
+  "revealed_at": "2026-07-23T04:06:50+08:00",
+  "run_id": "logic-001",
+  "secret_nonce_hex": "d5810d58f6972de3f47e9963855560b977c2a75874aab6b9c73ee1c0d40c0d61",
+  "truth_bundle_path": "reveal/logic-truth.json",
+  "truth_sha256": "118435a4e42439180edb4d35f29e79cb2b9da00f2563197254026ccff7ff68bf"
+}

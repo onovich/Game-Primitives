@@ -152,6 +152,18 @@
       "sha256": "5acc09b67715a1f55f71d8f5c8577d2b23d5f7d3df69c08962d0060f937650b9"
     },
     {
+      "artifact_kind": "reveal",
+      "artifact_version": "0.1.0",
+      "path": "reveal/logic-reveal.json",
+      "sha256": "0ab3bf3454faedf9e191639823102e9071eb0fac2b13ab9f8d17598c4d38d8bb"
+    },
+    {
+      "artifact_kind": "reveal",
+      "artifact_version": "0.1.0",
+      "path": "reveal/logic-truth.json",
+      "sha256": "118435a4e42439180edb4d35f29e79cb2b9da00f2563197254026ccff7ff68bf"
+    },
+    {
       "artifact_kind": "report",
       "artifact_version": "0.1.0",
       "path": "reports/formal-package-build-log.md",
@@ -173,5 +185,5 @@
   "protocol_version": "0.3.0",
   "run_id": "logic-001",
   "schema_version": "0.1.0",
-  "status": "collecting"
+  "status": "revealed"
 }

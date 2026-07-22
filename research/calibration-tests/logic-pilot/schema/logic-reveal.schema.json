@@ -1,0 +1,58 @@
+{
+  "$id": "https://github.com/onovich/Game-Primitives/blob/main/research/calibration-tests/logic-pilot/schema/logic-reveal.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "$schema": {
+      "type": "string"
+    },
+    "artifact_version": {
+      "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$",
+      "type": "string"
+    },
+    "commitment_id": {
+      "pattern": "^commitment-logic-[0-9]{3}$",
+      "type": "string"
+    },
+    "commitment_verified": {
+      "type": "boolean"
+    },
+    "recomputed_commitment": {
+      "pattern": "^[0-9a-f]{64}$",
+      "type": "string"
+    },
+    "revealed_at": {
+      "format": "date-time",
+      "type": "string"
+    },
+    "run_id": {
+      "pattern": "^logic-[0-9]{3}$",
+      "type": "string"
+    },
+    "secret_nonce_hex": {
+      "pattern": "^[0-9a-f]{64}$",
+      "type": "string"
+    },
+    "truth_bundle_path": {
+      "const": "reveal/logic-truth.json"
+    },
+    "truth_sha256": {
+      "pattern": "^[0-9a-f]{64}$",
+      "type": "string"
+    }
+  },
+  "required": [
+    "$schema",
+    "artifact_version",
+    "commitment_id",
+    "commitment_verified",
+    "recomputed_commitment",
+    "revealed_at",
+    "run_id",
+    "secret_nonce_hex",
+    "truth_bundle_path",
+    "truth_sha256"
+  ],
+  "title": "Game Primitives Logic Pilot Reveal",
+  "type": "object"
+}
