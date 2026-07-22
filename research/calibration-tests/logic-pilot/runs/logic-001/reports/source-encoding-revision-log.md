@@ -1,6 +1,6 @@
 # `logic-001` 来源编码修订记录
 
-- 状态：预审计；尚未交给来源忠实度审核者
+- 状态：独立来源忠实度审核通过；可用于制作下游冻结包
 - 编码者：`logic-source-encoder-01`，`gpt-5.6-sol`，`high`
 - 表示：`GP-SR 0.1`
 - 来源包 SHA-256：`b1152e06450e41867715ac9009d3399a233be858d1df8f88fc7a780470fb8277`
@@ -55,3 +55,14 @@ sNN-ref-X  -> ref-sNN-X
 - 性质：按编码者批准的一一映射，把 `source-anchor-04` 共享 ID 中的 `features`、`stop` 与 `win` 中性化，并把制品版本改为 `0.1.3`；没有改动 statement、类型、槽位状态或组合关系语义。
 - 已通过：冻结 JSON Schema、四案计数、UTF-8 无 BOM、单一末尾 LF、无 CR、递归键序、引用闭包、source／blind 规则与引用同构、状态前缀检查，以及作品身份、来源专名、`LC-*`、`FX-*` 和三项预期结论的盲化禁词扫描。
 - 状态：可进入独立**来源忠实度审核**；尚未批准用于下游重构。
+
+## 独立来源忠实度审核
+
+- 文件：`reports/source-fidelity-audit-v0.1.0.json`
+- SHA-256：`01d8dc8bff49e932e7831b744edf85724f5e811d83f53d9f3db5b20b5f618ad8`
+- 审核者：`logic-source-auditor-01`，`gpt-5.6-terra`，`high`
+- 输入范围：冻结来源包、`source-encoding-v0.1.3.json`、`GP-SR 0.1` 与输出 Schema；不允许工具、网络、包外文件、预期标签、真值或下游提交。
+- 结果：四案均为 `approved`，没有登记事实错误、必要规则遗漏、歧义、身份泄漏或范围越界异议；总裁决为 `approved`。
+- 校验：首次输出原样归档；通过冻结 JSON Schema、递归键序、UTF-8 无 BOM、单一末尾 LF、无 CR及目标编码 SHA-256 绑定检查。
+
+该裁决批准 `v0.1.3` 用于制作 `logic-001` 下游重构与夹具输入，不等于正式盲测已经开始，也不允许在首次 `frozen` 提交后回写测试者可见字节。

@@ -1,0 +1,54 @@
+{
+  "$schema": "../../../schema/source-fidelity-audit.schema.json",
+  "artifact_version": "0.1.0",
+  "auditor": {
+    "actor_kind": "model",
+    "context_scope": "isolated_package",
+    "identifier": "logic-source-auditor-01",
+    "model_name": "gpt-5.6-terra"
+  },
+  "cases": [
+    {
+      "issues": [],
+      "source_anchor_id": "source-anchor-01",
+      "verdict": "approved",
+      "verified_points": [
+        "已核验 9×9 网格、1–9 值域、3×3 分区、空格赋值以及行列分区完成条件均与 Sudoku page, Rules 1-2 和冻结图结构一致。",
+        "已核验 source_encoding 与 blind_encoding 的引用、规则和组合关系一一对应，盲化版本未保留来源身份词。"
+      ]
+    },
+    {
+      "issues": [],
+      "source_anchor_id": "source-anchor-02",
+      "verdict": "approved",
+      "verified_points": [
+        "已核验 5×5 示意盘面、货物送达目标格、单件推动、禁止多件推动和禁止拉动均与 rule.html, description paragraph; rule 1-3 一致。",
+        "已核验未从示意盘面推定未给出的普通行走、碰撞或精确调度，盲化结构与来源结构对应。"
+      ]
+    },
+    {
+      "issues": [],
+      "source_anchor_id": "source-anchor-03",
+      "verdict": "approved",
+      "verified_points": [
+        "已核验相邻点选边、数字周边计数、空白格任意计数、单一无交叉无分支环均与 Slitherlink page, Rules 1-3 一致。",
+        "已核验 7×7 单元格与 8×8 点阵、完成拓扑条件及选边到完成判断的耦合关系与冻结图结构记录一致。"
+      ]
+    },
+    {
+      "issues": [],
+      "source_anchor_id": "source-anchor-04",
+      "verdict": "approved",
+      "verified_points": [
+        "已核验当前文本位置重建特征集合、正交连续序列收集与一至三词查询均与 syntax.lua:5-9, 163-209, 427-448 一致。",
+        "已核验控制、推动、阻挡、同位胜利及文本位置影响下一次重建的关系均与 syntax.lua:19-28, 120-160, 224-238, 296-309, 354-365 一致。",
+        "已核验宿主调度仅标为 source_underdetermined，盲化版本未保留作品、作者、角色或实现专有词。"
+      ]
+    }
+  ],
+  "encoding_sha256": "894548b1d0c0af1411f4b52c6291202c7fe9ea0f59f77fde093520691d60f25b",
+  "overall_verdict": "approved",
+  "protocol_version": "0.3.0",
+  "representation_version": "GP-SR 0.1",
+  "run_id": "logic-001"
+}

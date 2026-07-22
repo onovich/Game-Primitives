@@ -34,8 +34,14 @@
     {
       "artifact_kind": "report",
       "artifact_version": "0.1.0",
+      "path": "reports/source-fidelity-audit-v0.1.0.json",
+      "sha256": "01d8dc8bff49e932e7831b744edf85724f5e811d83f53d9f3db5b20b5f618ad8"
+    },
+    {
+      "artifact_kind": "report",
+      "artifact_version": "0.1.0",
       "path": "reports/source-encoding-revision-log.md",
-      "sha256": "0ce6e4a575bffcd4b4e2cfcc55410c46a261134bf49828c2e3624a337e1a1608"
+      "sha256": "cd174b1dc50e1f28f87da8578b6ff8585188f62e5e27abf0ecca68e4fe062853"
     }
   ],
   "protocol_version": "0.3.0",
