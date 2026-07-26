@@ -1,0 +1,39 @@
+{
+  "artifact_type": "rehearsal_invocation_log",
+  "artifact_version": "0.1.0",
+  "executions": [
+    {
+      "configuration_id": "config.baseline",
+      "exit_code": 0,
+      "finished_at": "2026-07-26T18:21:24.706Z",
+      "repetition_index": 1,
+      "started_at": "2026-07-26T18:21:24.503Z",
+      "stdout_line": 1
+    },
+    {
+      "configuration_id": "config.baseline",
+      "exit_code": 0,
+      "finished_at": "2026-07-26T18:21:24.930Z",
+      "repetition_index": 2,
+      "started_at": "2026-07-26T18:21:24.728Z",
+      "stdout_line": 2
+    },
+    {
+      "configuration_id": "config.variant",
+      "exit_code": 0,
+      "finished_at": "2026-07-26T18:21:25.133Z",
+      "repetition_index": 1,
+      "started_at": "2026-07-26T18:21:24.930Z",
+      "stdout_line": 3
+    },
+    {
+      "configuration_id": "config.variant",
+      "exit_code": 0,
+      "finished_at": "2026-07-26T18:21:25.333Z",
+      "repetition_index": 2,
+      "started_at": "2026-07-26T18:21:25.133Z",
+      "stdout_line": 4
+    }
+  ],
+  "run_id": "rehearsal-002"
+}
