@@ -1,0 +1,40 @@
+{
+  "$schema": "https://github.com/onovich/Game-Primitives/blob/main/research/calibration-tests/continuous-action-pilot/schema/run-report-0.1.0.schema.json",
+  "artifact_type": "rehearsal_report",
+  "artifact_version": "0.1.0",
+  "checks": [
+    {
+      "check_id": "check.stage1-freeze",
+      "evidence": "两份有效重构分别在提交 85bae0e 与 973a477 中归档；任何第二阶段有效预测均晚于这两个提交。Schema 无效的首次尝试原样保留在 submissions/invalid/，替补执行者均从独立的第一阶段重新开始。",
+      "status": "passed"
+    },
+    {
+      "check_id": "check.stage2-continuity",
+      "evidence": "两个有效第二阶段提交都由各自有效第一阶段的同一替补执行者继续完成，并通过 prior_submission_sha256 分别绑定 65ea72da1be2cbae2dc3e9ade0ad8fa5eb73695c1aaa2db00c56e31d1e2c045e 与 44c9fe248cda668f7d1f2f7a33684407ced3bc332972fb11bbddf77c7accd93f。",
+      "status": "passed"
+    },
+    {
+      "check_id": "check.condition-isolation",
+      "evidence": "两个有效替补均从空白会话开始，只接收自己的单一条件视图；在预测归档前看不到另一条件、另一执行者提交、条件含义或密封真值。无效尝试也未被作为上下文交给替补。",
+      "status": "passed"
+    },
+    {
+      "check_id": "check.prediction-before-execution",
+      "evidence": "两份 role-submission 0.1.1 预测先在提交 834fe9b 中冻结，集合摘要为 1392756f94068f4dd83d38f8862a82d6e58cd903ab74bb25ea22988edb1c5829；每个期望均显式携带 configuration_id。夹具、执行计划和原始运行记录均在此后提交。",
+      "status": "passed"
+    },
+    {
+      "check_id": "check.execution-before-reveal",
+      "evidence": "四次前台执行均成功，基线两次为 7、变体两次为 4，不变量全部成立；原始记录在 962f733 归档，比较与结果在 429fbb4 归档，真值随后才在 59564e4 揭示。",
+      "status": "passed"
+    },
+    {
+      "check_id": "check.hash-closure",
+      "evidence": "冻结清单中 9 个单项文件散列和 Schema 散列均可复算，后续预测、执行与真值承诺链也闭合；但按冻结规则将各项按 path 排序并连接 path + TAB + sha256 + LF，所得根摘要为 fe3534849b1b1e50a62f1e1841ba4b9e774fb3c19011f8892cd47e5407b682c5，与 manifest 记录的 060a0ace37c306b55af9d06978b5f2bdac4192fcc8229ad0151c496a51514d3f 不同。",
+      "status": "failed"
+    }
+  ],
+  "finished_at": "2026-07-26T18:25:04Z",
+  "procedure_result": "procedure_fail",
+  "run_id": "rehearsal-002"
+}
