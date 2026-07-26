@@ -1,0 +1,97 @@
+{
+  "$schema": "https://github.com/onovich/Game-Primitives/blob/main/research/calibration-tests/continuous-action-pilot/schema/role-submission-0.1.0.schema.json",
+  "artifact_type": "reconstruction_submission",
+  "artifact_version": "0.1.0",
+  "run_id": "rehearsal-001",
+  "condition_id": "condition-v02",
+  "stage": "reconstruction",
+  "submission_id": "submission.reconstruct.v02",
+  "task_id": "task.reconstruct.v02",
+  "submitted_at": "2026-07-26T18:00:00Z",
+  "first_submission": true,
+  "prior_stage_submission_sha256": null,
+  "actor": {
+    "identifier": "blind-v02",
+    "model": "Codex delegated agent",
+    "model_version": "current-thread-runtime",
+    "reasoning_effort": "xhigh",
+    "role": "blind_reconstructor_predictor",
+    "session_id": "rehearsal-001-condition-v02"
+  },
+  "input_artifacts": [
+    {
+      "artifact_id": "view-v02",
+      "sha256": "66c79ce735e6a7377b4c181bdba190df24c01bee67d2fc5ce0de71300e042ab4"
+    }
+  ],
+  "pollution": {
+    "familiarity": {
+      "exact_result_knowledge": "none",
+      "exact_rule_knowledge": "none",
+      "exact_variant_knowledge": "none",
+      "project_exposure": "none",
+      "recognized_family": null,
+      "recognized_work": null,
+      "recognition_status": "none",
+      "related_genre_experience": "none"
+    },
+    "integrity_exposures": [],
+    "stage_update_note": null
+  },
+  "reconstruction_answers": [
+    {
+      "case_id": "CA-R2",
+      "confidence_percent": 100,
+      "uniqueness": "uniquely_recoverable",
+      "recovered_facts": [
+        {
+          "fact_id": "fact.sampling",
+          "claim": "配置值为 0，因此每次更新开始时读取当前步骤的原始输入：第 1 步读取 2，第 2 步读取 5。",
+          "recovery_status": "recovered",
+          "supporting_record_ids": [
+            "rec.sampling-policy"
+          ]
+        },
+        {
+          "fact_id": "fact.update",
+          "claim": "每一步按 state.total := state.total + value.sampled 更新状态。",
+          "recovery_status": "recovered",
+          "supporting_record_ids": [
+            "rec.accumulator-process"
+          ]
+        },
+        {
+          "fact_id": "fact.order",
+          "claim": "同一步内先读取 value.sampled，再执行 state.total 更新。",
+          "recovery_status": "recovered",
+          "supporting_record_ids": [
+            "rec.step-order"
+          ]
+        },
+        {
+          "fact_id": "fact.state-transition",
+          "claim": "state.total 从 0 经第 1 步更新为 2，再经第 2 步更新为 7。",
+          "recovery_status": "recovered",
+          "supporting_record_ids": [
+            "rec.sampling-policy",
+            "rec.accumulator-process",
+            "rec.step-order"
+          ]
+        },
+        {
+          "fact_id": "fact.stop-boundary",
+          "claim": "停止边界位于第 2 步完成之后，届时读取 state.total，值为 7。",
+          "recovery_status": "recovered",
+          "supporting_record_ids": []
+        }
+      ],
+      "compatible_branches": [],
+      "assumptions": [],
+      "ambiguities": []
+    }
+  ],
+  "audit_checks": [],
+  "audit_decision": null,
+  "findings": [],
+  "prediction_answers": []
+}

@@ -1,0 +1,172 @@
+{
+  "$schema": "https://github.com/onovich/Game-Primitives/blob/main/research/calibration-tests/continuous-action-pilot/schema/role-submission-0.1.0.schema.json",
+  "artifact_type": "reconstruction_submission",
+  "artifact_version": "0.1.0",
+  "run_id": "rehearsal-001",
+  "condition_id": "condition-v01",
+  "stage": "reconstruction",
+  "submission_id": "submission.reconstruct.v01",
+  "task_id": "task.reconstruct.v01",
+  "submitted_at": "2026-07-26T18:00:00Z",
+  "first_submission": true,
+  "prior_stage_submission_sha256": null,
+  "actor": {
+    "identifier": "blind-v01",
+    "model": "Codex delegated agent",
+    "model_version": "current-thread-runtime",
+    "reasoning_effort": "xhigh",
+    "role": "blind_reconstructor_predictor",
+    "session_id": "rehearsal-001-condition-v01"
+  },
+  "input_artifacts": [
+    {
+      "artifact_id": "view-v01",
+      "sha256": "c46650c9b9a0180d835f0d71a413180f95cce7d117bf0b3230ede257afd838e8"
+    }
+  ],
+  "pollution": {
+    "familiarity": {
+      "exact_result_knowledge": "none",
+      "exact_rule_knowledge": "none",
+      "exact_variant_knowledge": "none",
+      "project_exposure": "none",
+      "recognized_family": null,
+      "recognized_work": null,
+      "recognition_status": "none",
+      "related_genre_experience": "none"
+    },
+    "integrity_exposures": [],
+    "stage_update_note": null
+  },
+  "reconstruction_answers": [
+    {
+      "case_id": "CA-R2",
+      "confidence_percent": 97,
+      "uniqueness": "multiple_compatible_structures",
+      "recovered_facts": [
+        {
+          "fact_id": "fact.initial_state",
+          "claim": "执行开始时 state.total 的值为 0。",
+          "recovery_status": "recovered",
+          "supporting_record_ids": [
+            "state.total"
+          ]
+        },
+        {
+          "fact_id": "fact.raw_inputs",
+          "claim": "第 1 步关联的原始输入值为 2，第 2 步关联的原始输入值为 5；该记录本身不声明系统何时或是否读取这些值。",
+          "recovery_status": "recovered",
+          "supporting_record_ids": [
+            "view-v01"
+          ]
+        },
+        {
+          "fact_id": "fact.operations",
+          "claim": "op.accumulate 在第 1 步和第 2 步各发生一次，并在两步中都写入 state.total。",
+          "recovery_status": "recovered",
+          "supporting_record_ids": [
+            "op.accumulate",
+            "state.total"
+          ]
+        },
+        {
+          "fact_id": "fact.stop_boundary",
+          "claim": "停止边界是第 2 步完成之后的 stop.after-step-2。",
+          "recovery_status": "recovered",
+          "supporting_record_ids": [
+            "stop.after-step-2"
+          ]
+        },
+        {
+          "fact_id": "fact.observation",
+          "claim": "停止时的观测 obs.total-at-stop 读取 state.total。",
+          "recovery_status": "recovered",
+          "supporting_record_ids": [
+            "obs.total-at-stop",
+            "state.total",
+            "stop.after-step-2"
+          ]
+        },
+        {
+          "fact_id": "fact.input_read_timing",
+          "claim": "无法恢复原始输入是在对应步骤的状态写入之前、之后、其他时刻读取，还是根本未被该操作读取。",
+          "recovery_status": "not_recoverable",
+          "supporting_record_ids": [
+            "view-v01"
+          ]
+        },
+        {
+          "fact_id": "fact.update_rule",
+          "claim": "无法恢复 op.accumulate 写入 state.total 时采用的更新函数，也无法确定它是否使用当前输入、先前输入或 opaque configuration。",
+          "recovery_status": "not_recoverable",
+          "supporting_record_ids": [
+            "op.accumulate",
+            "v-q",
+            "view-v01"
+          ]
+        },
+        {
+          "fact_id": "fact.within_step_order",
+          "claim": "除每一步存在一次写入外，输入读取、配置求值与状态更新在同一步内的相对顺序不可恢复。",
+          "recovery_status": "not_recoverable",
+          "supporting_record_ids": [
+            "op.accumulate",
+            "v-q",
+            "view-v01"
+          ]
+        }
+      ],
+      "compatible_branches": [
+        {
+          "branch_id": "branch.read_before_write",
+          "description": "每一步先读取该步的原始输入，再由 op.accumulate 基于旧状态及该输入写回 state.total；第 2 步完成后停止并读取写回后的字段。",
+          "supporting_record_ids": [
+            "op.accumulate",
+            "state.total",
+            "obs.total-at-stop",
+            "stop.after-step-2",
+            "view-v01"
+          ]
+        },
+        {
+          "branch_id": "branch.write_before_read",
+          "description": "每一步先由 op.accumulate 根据旧状态、配置或其他未展示信息写入 state.total，随后才读取并缓存或记录该步原始输入，使其不参与同一步写入；第 2 步完成后停止并读取该字段。",
+          "supporting_record_ids": [
+            "op.accumulate",
+            "state.total",
+            "v-q",
+            "obs.total-at-stop",
+            "stop.after-step-2",
+            "view-v01"
+          ]
+        },
+        {
+          "branch_id": "branch.input_not_consumed",
+          "description": "原始输入仅存在于外部输入轨迹中，op.accumulate 在两步中写入 state.total 但不读取这些输入；停止仍发生在第 2 步之后，并在该边界读取当前字段。",
+          "supporting_record_ids": [
+            "op.accumulate",
+            "state.total",
+            "obs.total-at-stop",
+            "stop.after-step-2",
+            "view-v01"
+          ]
+        }
+      ],
+      "assumptions": [
+        "仅将视图明确声明的事件、字段和值视为可恢复事实。",
+        "兼容结构分支只是证明非唯一性的存在性示例，不表示任一分支是真实规则。"
+      ],
+      "ambiguities": [
+        "每个原始输入何时以及是否被系统读取。",
+        "state.total 的具体更新函数。",
+        "当前输入、先前输入和状态写入之间的依赖关系。",
+        "v-q 的 active_value 对输入读取或状态更新是否有影响。",
+        "同一步内输入读取、配置求值和状态写入的相对顺序。"
+      ]
+    }
+  ],
+  "audit_checks": [],
+  "audit_decision": null,
+  "findings": [],
+  "prediction_answers": []
+}
