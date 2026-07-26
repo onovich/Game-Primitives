@@ -13,3 +13,5 @@
 第四次 v02 替补没有沿用指定的顶层制品结构，输出了 `schema_version`、`input_records` 等另一套字段；该提交在第一阶段即失效。
 
 第五次 v02 替补的重构有效，但预测把配置写成 `baseline`／`variant`、使用不存在的 `scalar` 类型、把值写成裸数或 `null`，并增加了未声明的 `status`。该两阶段链同样退出。
+
+第六次 v02 替补的重构有效，预测也正确使用了配置寻址和类型化值，却漏掉 `confidence_percent` 与 `prediction_status`。这进一步表明完整信封不宜依赖自由手写。
