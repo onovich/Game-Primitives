@@ -121,7 +121,7 @@
           "type": "integer"
         },
         "truth_bundle_name": {
-          "const": "truth.json"
+          "const": "sealed-truth.json"
         }
       },
       "required": [
