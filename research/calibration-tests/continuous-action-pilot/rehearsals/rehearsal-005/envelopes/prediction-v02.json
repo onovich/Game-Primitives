@@ -1,0 +1,53 @@
+{
+  "$schema": "https://github.com/onovich/Game-Primitives/blob/main/research/calibration-tests/continuous-action-pilot/schema/blind-response-interface-0.1.0.schema.json",
+  "actor": {
+    "identifier": "interface-r005-v02",
+    "model": "Codex delegated agent",
+    "model_version": "current-thread-runtime",
+    "reasoning_effort": "xhigh",
+    "role": "blind_reconstructor_predictor",
+    "session_id": "rehearsal-005-condition-v02"
+  },
+  "artifact_type": "role_submission_envelope",
+  "artifact_version": "0.1.0",
+  "condition_id": "condition-v02",
+  "dispatch_artifacts": [
+    {
+      "artifact_id": "task.predict.neutral",
+      "sha256": "5b1383b0f0be0ccec8b027c5f4a896766b8e8b4aff747e1f5c90b6999ee13720"
+    },
+    {
+      "artifact_id": "variant-envelope",
+      "sha256": "63c0ba94ce5a5a3da22c6733dfdac9a53438cdec4895384ee36652813a4f08a1"
+    },
+    {
+      "artifact_id": "response-template-prediction",
+      "sha256": "cf68425306de3586a1cdab45e8a50d969156d3f432e35070b03390ff1eff28e3"
+    },
+    {
+      "artifact_id": "submission.reconstruct.v02.interface-r005",
+      "sha256": "8ce07aebe45f4c3ff9e36388de510855a0f1140335fb644f52dc5190fc1d4b02"
+    }
+  ],
+  "first_submission": true,
+  "output_schema": {
+    "path": "research/calibration-tests/continuous-action-pilot/schema/role-submission-0.1.2.schema.json",
+    "sha256": "ce1bcbb603550ec42afa9023191666b0ef45096b4c0efd1a3b42150c83577f95"
+  },
+  "packager": {
+    "path": "research/calibration-tests/continuous-action-pilot/tools/build-role-submission.py",
+    "sha256": "36039f998a026ea9da27f509d2ed79d4e46dbae8f7f1b0ac43e3027f810edbaf"
+  },
+  "prior_stage_submission_sha256": "8ce07aebe45f4c3ff9e36388de510855a0f1140335fb644f52dc5190fc1d4b02",
+  "received_at": "2026-07-26T19:25:22Z",
+  "response_schema": {
+    "path": "research/calibration-tests/continuous-action-pilot/schema/blind-response-interface-0.1.0.schema.json",
+    "sha256": "0713d415af2ff3dddc1604b1519f5cc06ffa4933d32cc4c20d56608c2e61bdf7"
+  },
+  "run_id": "rehearsal-005",
+  "stage": "prediction",
+  "submission_id": "submission.predict.v02.interface-r005",
+  "target_artifact_type": "prediction_submission",
+  "target_artifact_version": "0.1.2",
+  "task_id": "task.predict.neutral"
+}

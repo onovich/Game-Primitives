@@ -1,0 +1,206 @@
+{
+  "$schema": "https://github.com/onovich/Game-Primitives/blob/main/research/calibration-tests/continuous-action-pilot/schema/role-submission-0.1.2.schema.json",
+  "actor": {
+    "identifier": "interface-r005-v02",
+    "model": "Codex delegated agent",
+    "model_version": "current-thread-runtime",
+    "reasoning_effort": "xhigh",
+    "role": "blind_reconstructor_predictor",
+    "session_id": "rehearsal-005-condition-v02"
+  },
+  "artifact_type": "prediction_submission",
+  "artifact_version": "0.1.2",
+  "audit_checks": [],
+  "audit_decision": null,
+  "condition_id": "condition-v02",
+  "findings": [],
+  "first_submission": true,
+  "input_artifacts": [
+    {
+      "artifact_id": "task.predict.neutral",
+      "sha256": "5b1383b0f0be0ccec8b027c5f4a896766b8e8b4aff747e1f5c90b6999ee13720"
+    },
+    {
+      "artifact_id": "variant-envelope",
+      "sha256": "63c0ba94ce5a5a3da22c6733dfdac9a53438cdec4895384ee36652813a4f08a1"
+    },
+    {
+      "artifact_id": "response-template-prediction",
+      "sha256": "cf68425306de3586a1cdab45e8a50d969156d3f432e35070b03390ff1eff28e3"
+    },
+    {
+      "artifact_id": "submission.reconstruct.v02.interface-r005",
+      "sha256": "8ce07aebe45f4c3ff9e36388de510855a0f1140335fb644f52dc5190fc1d4b02"
+    }
+  ],
+  "packaging": {
+    "copied_fields": [
+      "pollution",
+      "prediction_answers"
+    ],
+    "envelope_path": "research/calibration-tests/continuous-action-pilot/rehearsals/rehearsal-005/envelopes/prediction-v02.json",
+    "envelope_sha256": "f4a37424150b7da0c71179a93f2f9ece4a62fbb0bf2ca81f910760b34e7a5a04",
+    "mode": "deterministic_field_copy",
+    "semantic_copy_verified": true,
+    "tool_path": "research/calibration-tests/continuous-action-pilot/tools/build-role-submission.py",
+    "tool_sha256": "36039f998a026ea9da27f509d2ed79d4e46dbae8f7f1b0ac43e3027f810edbaf"
+  },
+  "pollution": {
+    "familiarity": {
+      "exact_result_knowledge": "none",
+      "exact_rule_knowledge": "none",
+      "exact_variant_knowledge": "none",
+      "project_exposure": "none",
+      "recognition_status": "none",
+      "recognized_family": null,
+      "recognized_work": null,
+      "related_genre_experience": "unknown"
+    },
+    "integrity_exposures": [],
+    "stage_update_note": null
+  },
+  "prediction_answers": [
+    {
+      "assumptions": [],
+      "case_id": "CA-R2",
+      "compatible_alternatives": [
+        {
+          "alternative_id": "raw-input-addition",
+          "description": "v-q has no effect; both configurations add the two raw inputs and produce 7.",
+          "expectations": [
+            {
+              "configuration_id": "config.baseline",
+              "expectation_kind": "exact",
+              "observation_id": "obs.total-at-stop",
+              "tolerance_rule_id": null,
+              "value": {
+                "serialized_value": "7",
+                "unit": "integer",
+                "value_type": "integer"
+              }
+            },
+            {
+              "configuration_id": "config.variant",
+              "expectation_kind": "exact",
+              "observation_id": "obs.total-at-stop",
+              "tolerance_rule_id": null,
+              "value": {
+                "serialized_value": "7",
+                "unit": "integer",
+                "value_type": "integer"
+              }
+            }
+          ]
+        },
+        {
+          "alternative_id": "binary-input-gate",
+          "description": "v-q gates input reading; 0 suppresses both inputs while 1 passes both raw inputs, producing baseline 0 and variant 7.",
+          "expectations": [
+            {
+              "configuration_id": "config.baseline",
+              "expectation_kind": "exact",
+              "observation_id": "obs.total-at-stop",
+              "tolerance_rule_id": null,
+              "value": {
+                "serialized_value": "0",
+                "unit": "integer",
+                "value_type": "integer"
+              }
+            },
+            {
+              "configuration_id": "config.variant",
+              "expectation_kind": "exact",
+              "observation_id": "obs.total-at-stop",
+              "tolerance_rule_id": null,
+              "value": {
+                "serialized_value": "7",
+                "unit": "integer",
+                "value_type": "integer"
+              }
+            }
+          ]
+        },
+        {
+          "alternative_id": "binary-scale-selector",
+          "description": "v-q selects an input multiplier; 0 uses the raw inputs and 1 doubles them, producing baseline 7 and variant 14.",
+          "expectations": [
+            {
+              "configuration_id": "config.baseline",
+              "expectation_kind": "exact",
+              "observation_id": "obs.total-at-stop",
+              "tolerance_rule_id": null,
+              "value": {
+                "serialized_value": "7",
+                "unit": "integer",
+                "value_type": "integer"
+              }
+            },
+            {
+              "configuration_id": "config.variant",
+              "expectation_kind": "exact",
+              "observation_id": "obs.total-at-stop",
+              "tolerance_rule_id": null,
+              "value": {
+                "serialized_value": "14",
+                "unit": "integer",
+                "value_type": "integer"
+              }
+            }
+          ]
+        }
+      ],
+      "confidence_percent": 99,
+      "expectations": [
+        {
+          "configuration_id": "config.baseline",
+          "expectation_kind": "status",
+          "observation_id": "obs.total-at-stop",
+          "tolerance_rule_id": null,
+          "value": {
+            "serialized_value": "indeterminate",
+            "unit": null,
+            "value_type": "status"
+          }
+        },
+        {
+          "configuration_id": "config.variant",
+          "expectation_kind": "status",
+          "observation_id": "obs.total-at-stop",
+          "tolerance_rule_id": null,
+          "value": {
+            "serialized_value": "indeterminate",
+            "unit": null,
+            "value_type": "status"
+          }
+        }
+      ],
+      "prediction_status": "indeterminate",
+      "reasoning": "The view and variant envelope do not specify how v-q affects input reading or state updating. Multiple compatible mappings therefore produce different exact baseline and variant totals while preserving every declared invariant.",
+      "supporting_record_ids": [
+        "state.total",
+        "step1",
+        "step2",
+        "v-q",
+        "op.accumulate",
+        "stop.after-step-2",
+        "obs.total-at-stop",
+        "config.baseline",
+        "config.variant"
+      ]
+    }
+  ],
+  "prior_stage_submission_sha256": "8ce07aebe45f4c3ff9e36388de510855a0f1140335fb644f52dc5190fc1d4b02",
+  "raw_payload": {
+    "artifact_id": "payload.submission.predict.v02.interface-r005",
+    "path": "research/calibration-tests/continuous-action-pilot/rehearsals/rehearsal-005/raw/prediction-v02.payload.json",
+    "schema_path": "research/calibration-tests/continuous-action-pilot/schema/blind-response-interface-0.1.0.schema.json",
+    "schema_sha256": "0713d415af2ff3dddc1604b1519f5cc06ffa4933d32cc4c20d56608c2e61bdf7",
+    "sha256": "d2639928cf75469f7948a25a63e5eb6b30c0bb38396be7a01442c424ccaecc09"
+  },
+  "reconstruction_answers": [],
+  "run_id": "rehearsal-005",
+  "stage": "prediction",
+  "submission_id": "submission.predict.v02.interface-r005",
+  "submitted_at": "2026-07-26T19:25:22Z",
+  "task_id": "task.predict.neutral"
+}
