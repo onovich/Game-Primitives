@@ -1,0 +1,134 @@
+{
+  "$schema": "https://github.com/onovich/Game-Primitives/blob/main/research/calibration-tests/continuous-action-pilot/schema/role-submission-0.1.0.schema.json",
+  "artifact_type": "prediction_submission",
+  "artifact_version": "0.1.0",
+  "run_id": "rehearsal-001",
+  "condition_id": "condition-v01",
+  "stage": "prediction",
+  "submission_id": "submission.predict.v01",
+  "task_id": "task.predict.neutral",
+  "submitted_at": "2026-07-26T18:05:00Z",
+  "first_submission": true,
+  "prior_stage_submission_sha256": "f725e97f8c736059da1915d03d3a018f5b370ef1eb64cf5c60c6aa3fa4318d27",
+  "actor": {
+    "identifier": "blind-v01",
+    "model": "Codex delegated agent",
+    "model_version": "current-thread-runtime",
+    "reasoning_effort": "xhigh",
+    "role": "blind_reconstructor_predictor",
+    "session_id": "rehearsal-001-condition-v01"
+  },
+  "input_artifacts": [
+    {
+      "artifact_id": "variant-envelope",
+      "sha256": "0632c748864a2b26d72e027ef29adb71afbfcd726938d56ad00ad580913b8b4f"
+    },
+    {
+      "artifact_id": "submission.reconstruct.v01",
+      "sha256": "f725e97f8c736059da1915d03d3a018f5b370ef1eb64cf5c60c6aa3fa4318d27"
+    }
+  ],
+  "pollution": {
+    "familiarity": {
+      "exact_result_knowledge": "none",
+      "exact_rule_knowledge": "none",
+      "exact_variant_knowledge": "none",
+      "project_exposure": "none",
+      "recognized_family": null,
+      "recognized_work": null,
+      "recognition_status": "none",
+      "related_genre_experience": "none"
+    },
+    "integrity_exposures": [],
+    "stage_update_note": "仅收到冻结的中立变体信封和自己的第一阶段提交散列。"
+  },
+  "reconstruction_answers": [],
+  "prediction_answers": [
+    {
+      "case_id": "CA-R2",
+      "confidence_percent": 99,
+      "prediction_status": "indeterminate",
+      "expectations": [
+        {
+          "expectation_kind": "status",
+          "observation_id": "obs.total-at-stop",
+          "tolerance_rule_id": null,
+          "value": {
+            "serialized_value": "indeterminate",
+            "unit": null,
+            "value_type": "status"
+          }
+        }
+      ],
+      "compatible_alternatives": [
+        {
+          "alternative_id": "alternative.input_sum",
+          "description": "每一步先读取当前原始输入，再按 state.total 新值等于旧值加当前输入写回；v-q 不参与更新。expectations 依次为基线和变体。",
+          "expectations": [
+            {
+              "expectation_kind": "exact",
+              "observation_id": "obs.total-at-stop",
+              "tolerance_rule_id": null,
+              "value": {
+                "serialized_value": "7",
+                "unit": "integer",
+                "value_type": "integer"
+              }
+            },
+            {
+              "expectation_kind": "exact",
+              "observation_id": "obs.total-at-stop",
+              "tolerance_rule_id": null,
+              "value": {
+                "serialized_value": "7",
+                "unit": "integer",
+                "value_type": "integer"
+              }
+            }
+          ]
+        },
+        {
+          "alternative_id": "alternative.configuration_only",
+          "description": "每一步不消费原始输入，而按 state.total 新值等于旧值加 v-q 写回；原始输入仅被外部记录。expectations 依次为基线和变体。",
+          "expectations": [
+            {
+              "expectation_kind": "exact",
+              "observation_id": "obs.total-at-stop",
+              "tolerance_rule_id": null,
+              "value": {
+                "serialized_value": "0",
+                "unit": "integer",
+                "value_type": "integer"
+              }
+            },
+            {
+              "expectation_kind": "exact",
+              "observation_id": "obs.total-at-stop",
+              "tolerance_rule_id": null,
+              "value": {
+                "serialized_value": "2",
+                "unit": "integer",
+                "value_type": "integer"
+              }
+            }
+          ]
+        }
+      ],
+      "reasoning": "中立信封只规定 v-q 从基线值 0 变为变体值 1，并保持列出的结构不变量；它没有规定 v-q、原始输入和状态写入之间的函数关系。冻结重构也判定这些关系不可恢复，因此不能从动作名称推断唯一数值。每个 compatible_alternatives.expectations 数组均严格按基线、变体顺序排列。",
+      "supporting_record_ids": [
+        "submission.reconstruct.v01",
+        "variant-envelope",
+        "v-q",
+        "obs.total-at-stop",
+        "stop.after-step-2"
+      ],
+      "assumptions": [
+        "信封列出的 invariants 在基线与变体间保持不变，唯一明确干预是 v-q 从 0 变为 1。",
+        "相容替代结构及其数值仅用于证明不可唯一确定，不主张其中任一结构为真实规则。"
+      ]
+    }
+  ],
+  "audit_checks": [],
+  "audit_decision": null,
+  "findings": []
+}

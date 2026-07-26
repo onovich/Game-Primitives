@@ -1,0 +1,86 @@
+{
+  "$schema": "https://github.com/onovich/Game-Primitives/blob/main/research/calibration-tests/continuous-action-pilot/schema/role-submission-0.1.0.schema.json",
+  "artifact_type": "prediction_submission",
+  "artifact_version": "0.1.0",
+  "run_id": "rehearsal-001",
+  "condition_id": "condition-v02",
+  "stage": "prediction",
+  "submission_id": "submission.predict.v02",
+  "task_id": "task.predict.neutral",
+  "submitted_at": "2026-07-26T18:05:00Z",
+  "first_submission": true,
+  "prior_stage_submission_sha256": "6b5558f64de949f3de0c6fc7e5f2a3adaf285e4364a3f4db270fc419679abecf",
+  "actor": {
+    "identifier": "blind-v02",
+    "model": "Codex delegated agent",
+    "model_version": "current-thread-runtime",
+    "reasoning_effort": "xhigh",
+    "role": "blind_reconstructor_predictor",
+    "session_id": "rehearsal-001-condition-v02"
+  },
+  "input_artifacts": [
+    {
+      "artifact_id": "variant-envelope",
+      "sha256": "0632c748864a2b26d72e027ef29adb71afbfcd726938d56ad00ad580913b8b4f"
+    },
+    {
+      "artifact_id": "submission.reconstruct.v02",
+      "sha256": "6b5558f64de949f3de0c6fc7e5f2a3adaf285e4364a3f4db270fc419679abecf"
+    }
+  ],
+  "pollution": {
+    "familiarity": {
+      "exact_result_knowledge": "none",
+      "exact_rule_knowledge": "none",
+      "exact_variant_knowledge": "none",
+      "project_exposure": "none",
+      "recognized_family": null,
+      "recognized_work": null,
+      "recognition_status": "none",
+      "related_genre_experience": "none"
+    },
+    "integrity_exposures": [],
+    "stage_update_note": "仅收到冻结的中立变体信封和自己的第一阶段提交散列。"
+  },
+  "reconstruction_answers": [],
+  "prediction_answers": [
+    {
+      "case_id": "CA-R2",
+      "confidence_percent": 100,
+      "prediction_status": "determinate",
+      "expectations": [
+        {
+          "expectation_kind": "exact",
+          "observation_id": "obs.total-at-stop",
+          "tolerance_rule_id": null,
+          "value": {
+            "serialized_value": "7",
+            "unit": "integer",
+            "value_type": "integer"
+          }
+        },
+        {
+          "expectation_kind": "exact",
+          "observation_id": "obs.total-at-stop",
+          "tolerance_rule_id": null,
+          "value": {
+            "serialized_value": "4",
+            "unit": "integer",
+            "value_type": "integer"
+          }
+        }
+      ],
+      "compatible_alternatives": [],
+      "reasoning": "expectations 按基线、变体顺序排列。基线配置值 0 在每次更新开始时读取当前步骤输入，因此依次采样 2、5，停止时 state.total 为 7。变体配置值 1 在片段入口读取第一步输入并在后续更新复用，因此两步均使用 2，停止时 state.total 为 4。",
+      "supporting_record_ids": [
+        "rec.sampling-policy",
+        "rec.accumulator-process",
+        "rec.step-order"
+      ],
+      "assumptions": []
+    }
+  ],
+  "audit_checks": [],
+  "audit_decision": null,
+  "findings": []
+}
