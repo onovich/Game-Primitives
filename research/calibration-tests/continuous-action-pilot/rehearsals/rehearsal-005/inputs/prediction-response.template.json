@@ -1,0 +1,54 @@
+{
+  "$schema": "https://github.com/onovich/Game-Primitives/blob/main/research/calibration-tests/continuous-action-pilot/schema/blind-response-interface-0.1.0.schema.json",
+  "artifact_type": "prediction_response_payload",
+  "artifact_version": "0.1.0",
+  "pollution": {
+    "familiarity": {
+      "exact_result_knowledge": "<none|suspected|known|unknown>",
+      "exact_rule_knowledge": "<none|suspected|known|unknown>",
+      "exact_variant_knowledge": "<none|suspected|known|unknown>",
+      "project_exposure": "<none|limited|substantial|unknown>",
+      "recognition_status": "<none|suspected|identified>",
+      "recognized_family": null,
+      "recognized_work": null,
+      "related_genre_experience": "<none|limited|extensive|unknown>"
+    },
+    "integrity_exposures": [],
+    "stage_update_note": null
+  },
+  "prediction_answers": [
+    {
+      "assumptions": [],
+      "case_id": "CA-R2",
+      "compatible_alternatives": [],
+      "confidence_percent": -1,
+      "expectations": [
+        {
+          "configuration_id": "config.baseline",
+          "expectation_kind": "<direction|exact|set|status>",
+          "observation_id": "obs.total-at-stop",
+          "tolerance_rule_id": null,
+          "value": {
+            "serialized_value": "<required-string>",
+            "unit": "integer",
+            "value_type": "<boolean|decimal|direction|id|id_set|integer|rational|status|string>"
+          }
+        },
+        {
+          "configuration_id": "config.variant",
+          "expectation_kind": "<direction|exact|set|status>",
+          "observation_id": "obs.total-at-stop",
+          "tolerance_rule_id": null,
+          "value": {
+            "serialized_value": "<required-string>",
+            "unit": "integer",
+            "value_type": "<boolean|decimal|direction|id|id_set|integer|rational|status|string>"
+          }
+        }
+      ],
+      "prediction_status": "<determinate|indeterminate>",
+      "reasoning": "<required-explanation>",
+      "supporting_record_ids": []
+    }
+  ]
+}

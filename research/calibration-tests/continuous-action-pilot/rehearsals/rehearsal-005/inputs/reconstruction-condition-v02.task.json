@@ -1,0 +1,64 @@
+{
+  "$schema": "https://github.com/onovich/Game-Primitives/blob/main/research/calibration-tests/continuous-action-pilot/schema/task-packet-0.1.1.schema.json",
+  "allowed_configurations": [],
+  "allowed_observations": [],
+  "artifact_type": "reconstruction_task_packet",
+  "artifact_version": "0.1.1",
+  "assembled_output_schema": {
+    "path": "research/calibration-tests/continuous-action-pilot/schema/role-submission-0.1.2.schema.json",
+    "sha256": "ce1bcbb603550ec42afa9023191666b0ef45096b4c0efd1a3b42150c83577f95"
+  },
+  "behavior_scope": "structural_only",
+  "case_ids": [
+    "CA-R2"
+  ],
+  "condition_id": "condition-v02",
+  "created_at": "2026-07-26T19:19:04Z",
+  "forbidden_actions": [
+    "access_other_condition",
+    "access_other_submission",
+    "access_package_outside_dispatch",
+    "access_truth_or_result",
+    "create_child_task",
+    "external_search",
+    "read_shared_workspace",
+    "tool_call"
+  ],
+  "input_artifacts": [
+    {
+      "artifact_id": "view-v02",
+      "path": "research/calibration-tests/continuous-action-pilot/rehearsals/rehearsal-005/inputs/view-v02.json",
+      "sha256": "1deaa4898d6051ea3822614000897f0d04da731a9b84fb71a889d67dc15c4aef"
+    },
+    {
+      "artifact_id": "response-template-reconstruction",
+      "path": "research/calibration-tests/continuous-action-pilot/rehearsals/rehearsal-005/inputs/reconstruction-response.template.json",
+      "sha256": "5fe70a0b006227b9644e094b6b9d5c241b34caf58d442af2a0e5e4425271e1e6"
+    }
+  ],
+  "instructions": [
+    "只根据随任务提供的条件视图回答；不得使用工具、网络、共享工作区、其他条件、既有项目上下文、真值或执行结果。",
+    "使用随任务提供的 reconstruction payload 模板；替换全部尖括号占位符，返回单一 JSON 对象，不要 Markdown 代码围栏或附加文字。",
+    "每个 reconstruction_answers 项只能包含 case_id、confidence_percent、uniqueness、recovered_facts、compatible_branches、ambiguities、assumptions；uniqueness 只能是 insufficient_information、multiple_compatible_structures、uniquely_recoverable。",
+    "每个 recovered_facts 项只能包含 fact_id、claim、recovery_status、supporting_record_ids；recovery_status 只能是 inferred_with_assumption、not_recoverable、recovered。",
+    "每个 compatible_branches 项只能包含 branch_id、description、supporting_record_ids；若结构不唯一，至少给出两个相容分支。",
+    "污染自报中的 knowledge 值只能是 none、suspected、known、unknown；project_exposure 只能是 none、limited、substantial、unknown；related_genre_experience 只能是 none、limited、extensive、unknown；recognition_status 只能是 none、suspected、identified。",
+    "不要填写运行、任务、条件、actor、session、提交时间、输入散列、前阶段散列或审核字段；它们由保管工具生成。"
+  ],
+  "output_schema": {
+    "path": "research/calibration-tests/continuous-action-pilot/schema/blind-response-interface-0.1.0.schema.json",
+    "sha256": "0713d415af2ff3dddc1604b1519f5cc06ffa4933d32cc4c20d56608c2e61bdf7"
+  },
+  "representation_version": "CA-SR 0.1",
+  "required_audit_checks": [],
+  "run_id": "rehearsal-005",
+  "stage1_submission_required": false,
+  "stop_boundary_refs": [
+    "stop.after-step-2"
+  ],
+  "target_encoding_sha256": null,
+  "target_view_sha256": "1deaa4898d6051ea3822614000897f0d04da731a9b84fb71a889d67dc15c4aef",
+  "task_id": "task.reconstruct.v02",
+  "tolerance_rule_refs": [],
+  "variant_interventions": []
+}

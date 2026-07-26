@@ -1,0 +1,106 @@
+{
+  "$schema": "https://github.com/onovich/Game-Primitives/blob/main/research/calibration-tests/continuous-action-pilot/schema/task-packet-0.1.1.schema.json",
+  "allowed_configurations": [
+    "config.baseline",
+    "config.variant"
+  ],
+  "allowed_observations": [
+    {
+      "allowed_value_types": [
+        "integer"
+      ],
+      "description": "在第二步更新完成后的 state.total 精确整数值",
+      "observation_id": "obs.total-at-stop",
+      "tolerance_rule_id": null,
+      "unit": "integer"
+    }
+  ],
+  "artifact_type": "prediction_task_packet",
+  "artifact_version": "0.1.1",
+  "assembled_output_schema": {
+    "path": "research/calibration-tests/continuous-action-pilot/schema/role-submission-0.1.2.schema.json",
+    "sha256": "ce1bcbb603550ec42afa9023191666b0ef45096b4c0efd1a3b42150c83577f95"
+  },
+  "behavior_scope": "structural_only",
+  "case_ids": [
+    "CA-R2"
+  ],
+  "condition_id": null,
+  "created_at": "2026-07-26T19:19:04Z",
+  "forbidden_actions": [
+    "access_other_condition",
+    "access_other_submission",
+    "access_package_outside_dispatch",
+    "access_truth_or_result",
+    "create_child_task",
+    "external_search",
+    "read_shared_workspace",
+    "tool_call"
+  ],
+  "input_artifacts": [
+    {
+      "artifact_id": "variant-envelope",
+      "path": "research/calibration-tests/continuous-action-pilot/rehearsals/rehearsal-005/inputs/variant-envelope.json",
+      "sha256": "63c0ba94ce5a5a3da22c6733dfdac9a53438cdec4895384ee36652813a4f08a1"
+    },
+    {
+      "artifact_id": "response-template-prediction",
+      "path": "research/calibration-tests/continuous-action-pilot/rehearsals/rehearsal-005/inputs/prediction-response.template.json",
+      "sha256": "cf68425306de3586a1cdab45e8a50d969156d3f432e35070b03390ff1eff28e3"
+    }
+  ],
+  "instructions": [
+    "继续只使用第一阶段条件视图、自己的冻结重构和本阶段变体信封；不得使用工具、网络、共享工作区、另一条件、真值、结果或他人提交。",
+    "使用随任务提供的 prediction payload 模板；替换全部尖括号占位符，返回单一 JSON 对象，不要 Markdown 代码围栏或附加文字。",
+    "每个 prediction_answers 项只能包含 case_id、confidence_percent、prediction_status、expectations、compatible_alternatives、reasoning、supporting_record_ids、assumptions。",
+    "主 expectations 已预置全部配置—观察量对；每项只能包含 configuration_id、expectation_kind、observation_id、tolerance_rule_id、value。value 只能包含 serialized_value、unit、value_type。",
+    "prediction_status 只能是 determinate 或 indeterminate。若为 indeterminate，compatible_alternatives 至少两个；每个替代只能包含 alternative_id、description、expectations，且 expectations 同样恰好覆盖 config.baseline 与 config.variant。",
+    "整数精确值使用 expectation_kind exact、value_type integer、unit integer；不确定状态使用 expectation_kind status、serialized_value indeterminate、value_type status、unit null。",
+    "污染自报枚举与第一阶段相同；stage_update_note 可以说明本阶段新增材料，但不得写入未见内容。",
+    "不要填写运行、任务、条件、actor、session、提交时间、输入散列、前阶段散列或审核字段；它们由保管工具生成。"
+  ],
+  "output_schema": {
+    "path": "research/calibration-tests/continuous-action-pilot/schema/blind-response-interface-0.1.0.schema.json",
+    "sha256": "0713d415af2ff3dddc1604b1519f5cc06ffa4933d32cc4c20d56608c2e61bdf7"
+  },
+  "representation_version": "CA-SR 0.1",
+  "required_audit_checks": [],
+  "run_id": "rehearsal-005",
+  "stage1_submission_required": true,
+  "stop_boundary_refs": [
+    "stop.after-step-2"
+  ],
+  "target_encoding_sha256": null,
+  "target_view_sha256": null,
+  "task_id": "task.predict.neutral",
+  "tolerance_rule_refs": [],
+  "variant_interventions": [
+    {
+      "baseline_value": {
+        "serialized_value": "0",
+        "unit": null,
+        "value_type": "integer"
+      },
+      "case_id": "CA-R2",
+      "invariant_ids": [
+        "inv.initial-state",
+        "inv.input-trace",
+        "inv.operation-count",
+        "inv.operation-identity",
+        "inv.step-order",
+        "inv.output-contract",
+        "inv.stop-boundary"
+      ],
+      "observation_ids": [
+        "obs.total-at-stop"
+      ],
+      "stop_boundary_id": "stop.after-step-2",
+      "variable_id": "v-q",
+      "variant_value": {
+        "serialized_value": "1",
+        "unit": null,
+        "value_type": "integer"
+      }
+    }
+  ]
+}

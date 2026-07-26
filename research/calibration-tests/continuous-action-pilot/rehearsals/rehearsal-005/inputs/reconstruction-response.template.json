@@ -1,0 +1,30 @@
+{
+  "$schema": "https://github.com/onovich/Game-Primitives/blob/main/research/calibration-tests/continuous-action-pilot/schema/blind-response-interface-0.1.0.schema.json",
+  "artifact_type": "reconstruction_response_payload",
+  "artifact_version": "0.1.0",
+  "pollution": {
+    "familiarity": {
+      "exact_result_knowledge": "<none|suspected|known|unknown>",
+      "exact_rule_knowledge": "<none|suspected|known|unknown>",
+      "exact_variant_knowledge": "<none|suspected|known|unknown>",
+      "project_exposure": "<none|limited|substantial|unknown>",
+      "recognition_status": "<none|suspected|identified>",
+      "recognized_family": null,
+      "recognized_work": null,
+      "related_genre_experience": "<none|limited|extensive|unknown>"
+    },
+    "integrity_exposures": [],
+    "stage_update_note": null
+  },
+  "reconstruction_answers": [
+    {
+      "ambiguities": [],
+      "assumptions": [],
+      "case_id": "CA-R2",
+      "compatible_branches": [],
+      "confidence_percent": -1,
+      "recovered_facts": [],
+      "uniqueness": "<insufficient_information|multiple_compatible_structures|uniquely_recoverable>"
+    }
+  ]
+}
