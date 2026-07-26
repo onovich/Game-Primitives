@@ -1,0 +1,12 @@
+{
+  "algorithm": "SHA-256",
+  "artifact_type": "rehearsal_truth_commitment",
+  "artifact_version": "0.1.0",
+  "combination": "secret_nonce_bytes || exact_truth_bundle_bytes",
+  "commitment": "ba8900ffd505c8d14940fc03b492596c133e0bb7c5c1616daf58e0216162dddc",
+  "created_at": "2026-07-26T17:52:08Z",
+  "nonce_length_bytes": 32,
+  "run_id": "rehearsal-001",
+  "truth_bundle_bytes": 6249,
+  "truth_bundle_name": "sealed-truth.json"
+}

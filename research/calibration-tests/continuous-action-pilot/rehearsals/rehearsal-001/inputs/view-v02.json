@@ -1,0 +1,95 @@
+{
+  "artifact_type": "rehearsal_condition_view",
+  "artifact_version": "0.1.0",
+  "behavior_scope": "structural_only",
+  "case_id": "CA-R2",
+  "condition_id": "condition-v02",
+  "initial_state": [
+    {
+      "field_id": "state.total",
+      "value": 0
+    }
+  ],
+  "input_trace": [
+    {
+      "raw_value": 2,
+      "step": 1
+    },
+    {
+      "raw_value": 5,
+      "step": 2
+    }
+  ],
+  "opaque_configuration": {
+    "active_value": 0,
+    "allowed_values": [
+      0,
+      1
+    ],
+    "variable_id": "v-q"
+  },
+  "operational_records": [
+    {
+      "record_id": "rec.sampling-policy",
+      "record_type": "input_sampling_policy",
+      "rules": [
+        {
+          "configuration_value": 0,
+          "read_semantics": "在每次更新开始时读取当前步骤的原始输入"
+        },
+        {
+          "configuration_value": 1,
+          "read_semantics": "在片段入口读取第一步的原始输入，此后每次更新复用该值"
+        }
+      ],
+      "sampled_value_id": "value.sampled"
+    },
+    {
+      "record_id": "rec.accumulator-process",
+      "record_type": "state_update_process",
+      "update_rule": "state.total := state.total + value.sampled",
+      "write_field_id": "state.total"
+    },
+    {
+      "ordering": [
+        "读取 value.sampled",
+        "执行 state.total 更新"
+      ],
+      "record_id": "rec.step-order",
+      "record_type": "within_step_order"
+    }
+  ],
+  "operation_trace": [
+    {
+      "operation_id": "op.accumulate",
+      "record_refs": [
+        "rec.sampling-policy",
+        "rec.accumulator-process",
+        "rec.step-order"
+      ],
+      "step": 1
+    },
+    {
+      "operation_id": "op.accumulate",
+      "record_refs": [
+        "rec.sampling-policy",
+        "rec.accumulator-process",
+        "rec.step-order"
+      ],
+      "step": 2
+    }
+  ],
+  "output_contract": {
+    "observation_id": "obs.total-at-stop",
+    "read_field_id": "state.total",
+    "stop_boundary_id": "stop.after-step-2"
+  },
+  "run_id": "rehearsal-001",
+  "time_base": {
+    "ordered_steps": [
+      1,
+      2
+    ],
+    "time_base_id": "time.discrete-step"
+  }
+}
