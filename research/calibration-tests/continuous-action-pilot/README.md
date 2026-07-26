@@ -26,6 +26,7 @@
 - [`ca-sr-artifact-0.1.0.schema.json`](schema/ca-sr-artifact-0.1.0.schema.json)：来源包、CA-SR 规范编码、机械生成视图和投影规则。
 - [`task-packet-0.1.0.schema.json`](schema/task-packet-0.1.0.schema.json)：来源编码、来源审核、重构和预测的冻结派发信封。
 - [`role-submission-0.1.0.schema.json`](schema/role-submission-0.1.0.schema.json)：来源审核、重构、预测和揭示后制品审核的首次提交。
+- [`role-submission-0.1.1.schema.json`](schema/role-submission-0.1.1.schema.json)：保留 0.1.0 并给预测期望增加必填 `configuration_id`，修复 `rehearsal-001` 发现的基线／变体寻址缺口。
 - [`execution-artifact-0.1.0.schema.json`](schema/execution-artifact-0.1.0.schema.json)：执行计划、原始轨迹包和派生执行结果。
 - [`truth-reveal-0.1.0.schema.json`](schema/truth-reveal-0.1.0.schema.json)：密封真值与揭示后的承诺复算记录。
 - [`run-report-0.1.0.schema.json`](schema/run-report-0.1.0.schema.json)：逐角色硬条件向量、两条结论轴、跨案例义务和组级结论。
