@@ -31,6 +31,7 @@
 - [`truth-reveal-0.1.0.schema.json`](schema/truth-reveal-0.1.0.schema.json)：密封真值与揭示后的承诺复算记录。
 - [`run-report-0.1.0.schema.json`](schema/run-report-0.1.0.schema.json)：逐角色硬条件向量、两条结论轴、跨案例义务和组级结论。
 - [`rehearsal-input-0.1.0.schema.json`](schema/rehearsal-input-0.1.0.schema.json)：仅供虚构彩排使用的条件视图、变体信封与真值承诺。
+- [`rehearsal-input-0.1.1.schema.json`](schema/rehearsal-input-0.1.1.schema.json)：保留 0.1.0，并把写死的 `rehearsal-001` 放宽为带三位编号的排演 ID。
 - [`markdown-document-0.1.0.schema.json`](schema/markdown-document-0.1.0.schema.json)：把说明性 Markdown 作为完整字符串进行最小格式校验。
 
 ## 计划中的轮次结构
