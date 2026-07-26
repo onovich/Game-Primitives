@@ -1,0 +1,168 @@
+{
+  "$schema": "https://github.com/onovich/Game-Primitives/blob/main/research/calibration-tests/continuous-action-pilot/schema/execution-artifact-0.1.0.schema.json",
+  "artifact_type": "execution_plan",
+  "artifact_version": "0.1.0",
+  "case_results": [],
+  "cases": [
+    {
+      "case_id": "CA-R2",
+      "comparators": [
+        {
+          "allowed_observation_ids": [
+            "obs.initial-total",
+            "obs.operation-count",
+            "obs.operation-identity",
+            "obs.raw-input",
+            "obs.stop-boundary",
+            "obs.total-at-stop"
+          ],
+          "comparator_id": "comparator.exact-total",
+          "implementation": {
+            "artifact_id": "rehearsal-comparator",
+            "path": "research/calibration-tests/continuous-action-pilot/rehearsals/rehearsal-004/fixtures/rehearsal-comparator.ps1",
+            "sha256": "46dcd00d3fd8792d233c5e15a9d5b85f76cbb4a17941ac7c866ece9d8dca72c5"
+          },
+          "tolerance_rules": [
+            {
+              "comparison": "exact",
+              "observation_id": "obs.total-at-stop",
+              "tolerance_rule_id": "tolerance.exact-total",
+              "value": {
+                "serialized_value": "0",
+                "unit": "integer",
+                "value_type": "integer"
+              }
+            }
+          ]
+        }
+      ],
+      "configurations": [
+        {
+          "build_command": [
+            "no build; execute the frozen PowerShell source directly"
+          ],
+          "configuration_id": "config.baseline",
+          "expected_binary_path": "research/calibration-tests/continuous-action-pilot/rehearsals/rehearsal-004/fixtures/rehearsal-fixture.ps1",
+          "fixture_artifacts": [
+            {
+              "artifact_id": "rehearsal-fixture",
+              "path": "research/calibration-tests/continuous-action-pilot/rehearsals/rehearsal-004/fixtures/rehearsal-fixture.ps1",
+              "sha256": "2eba0767afcacfe3d18573dcb6b2596262057724d644024e6d83ae9f8cb2a318"
+            }
+          ],
+          "run_command": [
+            "powershell",
+            "-NoProfile",
+            "-File",
+            "research/calibration-tests/continuous-action-pilot/rehearsals/rehearsal-004/fixtures/rehearsal-fixture.ps1",
+            "-Configuration",
+            "baseline"
+          ],
+          "semantic_role": "baseline"
+        },
+        {
+          "build_command": [
+            "no build; execute the frozen PowerShell source directly"
+          ],
+          "configuration_id": "config.variant",
+          "expected_binary_path": "research/calibration-tests/continuous-action-pilot/rehearsals/rehearsal-004/fixtures/rehearsal-fixture.ps1",
+          "fixture_artifacts": [
+            {
+              "artifact_id": "rehearsal-fixture",
+              "path": "research/calibration-tests/continuous-action-pilot/rehearsals/rehearsal-004/fixtures/rehearsal-fixture.ps1",
+              "sha256": "2eba0767afcacfe3d18573dcb6b2596262057724d644024e6d83ae9f8cb2a318"
+            }
+          ],
+          "run_command": [
+            "powershell",
+            "-NoProfile",
+            "-File",
+            "research/calibration-tests/continuous-action-pilot/rehearsals/rehearsal-004/fixtures/rehearsal-fixture.ps1",
+            "-Configuration",
+            "variant"
+          ],
+          "semantic_role": "variant"
+        }
+      ],
+      "environment_refs": [
+        "env.windows-powershell"
+      ],
+      "formal_input": {
+        "artifact_id": "variant-envelope",
+        "path": "research/calibration-tests/continuous-action-pilot/rehearsals/rehearsal-004/inputs/variant-envelope.json",
+        "sha256": "1ca9239b3b38a06adacb1c6bd8dffb51d86eb480eef76fc1b2099da5af4ed4c4"
+      },
+      "invariants": [
+        {
+          "comparator_id": "comparator.exact-total",
+          "description": "初始累积值在两个配置中均为 0。",
+          "invariant_id": "inv.initial-state",
+          "observation_ids": [
+            "obs.initial-total"
+          ]
+        },
+        {
+          "comparator_id": "comparator.exact-total",
+          "description": "两个配置使用相同的原始输入序列 [2,5]。",
+          "invariant_id": "inv.input-trace",
+          "observation_ids": [
+            "obs.raw-input"
+          ]
+        },
+        {
+          "comparator_id": "comparator.exact-total",
+          "description": "两个配置都执行两次 op.accumulate。",
+          "invariant_id": "inv.operation-count",
+          "observation_ids": [
+            "obs.operation-count"
+          ]
+        },
+        {
+          "comparator_id": "comparator.exact-total",
+          "description": "两个配置的操作身份均为 op.accumulate。",
+          "invariant_id": "inv.operation-identity",
+          "observation_ids": [
+            "obs.operation-identity"
+          ]
+        },
+        {
+          "comparator_id": "comparator.exact-total",
+          "description": "两个配置都在第二步更新完成后停止。",
+          "invariant_id": "inv.stop-boundary",
+          "observation_ids": [
+            "obs.stop-boundary"
+          ]
+        }
+      ],
+      "negative_control": false,
+      "repetition_count": 2,
+      "source_commit": "bdf922813ba2fdad72d4825680cdbc11b9242d24",
+      "stop_boundary_id": "stop.after-step-2",
+      "time_base_ids": [
+        "time.discrete-step"
+      ]
+    }
+  ],
+  "created_at": "2026-07-26T18:58:45Z",
+  "environments": [
+    {
+      "environment_id": "env.windows-powershell",
+      "name": "Windows PowerShell",
+      "platform": "Windows",
+      "version": "5.1.26100.8875"
+    }
+  ],
+  "execution_plan_sha256": null,
+  "executions": [],
+  "finished_at": null,
+  "fixture_lock": {
+    "artifact_id": "rehearsal-fixture",
+    "path": "research/calibration-tests/continuous-action-pilot/rehearsals/rehearsal-004/fixtures/rehearsal-fixture.ps1",
+    "sha256": "2eba0767afcacfe3d18573dcb6b2596262057724d644024e6d83ae9f8cb2a318"
+  },
+  "prediction_set_digest": null,
+  "protocol_version": "0.1.0",
+  "run_id": "rehearsal-004",
+  "started_at": null,
+  "trace_bundle_sha256": null
+}
