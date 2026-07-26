@@ -1,0 +1,184 @@
+{
+  "$defs": {
+    "caseId": {
+      "pattern": "^CA-R[1-3]$",
+      "type": "string"
+    },
+    "caseProbe": {
+      "additionalProperties": false,
+      "properties": {
+        "blockers": {
+          "items": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "case_id": {
+          "$ref": "#/$defs/caseId"
+        },
+        "next_safe_action": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "status": {
+          "enum": [
+            "blocked_missing_toolchain",
+            "not_checked",
+            "ready_for_compatibility_probe",
+            "ready_for_neutral_probe"
+          ]
+        }
+      },
+      "required": [
+        "blockers",
+        "case_id",
+        "next_safe_action",
+        "status"
+      ],
+      "type": "object"
+    },
+    "localId": {
+      "pattern": "^[a-z0-9][a-z0-9._-]*$",
+      "type": "string"
+    },
+    "toolRecord": {
+      "additionalProperties": false,
+      "properties": {
+        "detected_version": {
+          "oneOf": [
+            {
+              "minLength": 1,
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "evidence": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "executable_path": {
+          "oneOf": [
+            {
+              "minLength": 1,
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "expected_version": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "required_by": {
+          "items": {
+            "$ref": "#/$defs/caseId"
+          },
+          "type": "array",
+          "uniqueItems": true
+        },
+        "status": {
+          "enum": [
+            "alternative_available",
+            "exact_available",
+            "missing",
+            "not_checked",
+            "version_mismatch"
+          ]
+        },
+        "tool_id": {
+          "$ref": "#/$defs/localId"
+        }
+      },
+      "required": [
+        "detected_version",
+        "evidence",
+        "executable_path",
+        "expected_version",
+        "required_by",
+        "status",
+        "tool_id"
+      ],
+      "type": "object"
+    }
+  },
+  "$id": "https://github.com/onovich/Game-Primitives/blob/main/research/calibration-tests/continuous-action-pilot/schema/build-feasibility-0.1.0.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "$schema": {
+      "const": "https://github.com/onovich/Game-Primitives/blob/main/research/calibration-tests/continuous-action-pilot/schema/build-feasibility-0.1.0.schema.json"
+    },
+    "artifact_type": {
+      "const": "build_feasibility_probe"
+    },
+    "artifact_version": {
+      "const": "0.1.0"
+    },
+    "cases": {
+      "items": {
+        "$ref": "#/$defs/caseProbe"
+      },
+      "maxItems": 3,
+      "minItems": 3,
+      "type": "array"
+    },
+    "formal_input_executed": {
+      "const": false
+    },
+    "formal_result_produced": {
+      "const": false
+    },
+    "host": {
+      "additionalProperties": false,
+      "properties": {
+        "architecture": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "operating_system": {
+          "minLength": 1,
+          "type": "string"
+        }
+      },
+      "required": [
+        "architecture",
+        "operating_system"
+      ],
+      "type": "object"
+    },
+    "probed_at": {
+      "format": "date-time",
+      "type": "string"
+    },
+    "run_id": {
+      "const": "continuous-001"
+    },
+    "tools": {
+      "items": {
+        "$ref": "#/$defs/toolRecord"
+      },
+      "minItems": 1,
+      "type": "array"
+    }
+  },
+  "required": [
+    "$schema",
+    "artifact_type",
+    "artifact_version",
+    "cases",
+    "formal_input_executed",
+    "formal_result_produced",
+    "host",
+    "probed_at",
+    "run_id",
+    "tools"
+  ],
+  "title": "Game Primitives Continuous Action Build Feasibility Probe 0.1.0",
+  "type": "object"
+}

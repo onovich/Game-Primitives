@@ -1,0 +1,98 @@
+{
+  "$schema": "https://github.com/onovich/Game-Primitives/blob/main/research/calibration-tests/continuous-action-pilot/schema/build-feasibility-0.1.0.schema.json",
+  "artifact_type": "build_feasibility_probe",
+  "artifact_version": "0.1.0",
+  "cases": [
+    {
+      "blockers": [
+        "冻结来源声明的 Unity 2018.1.1f1 未安装；现有 Unity 6000.4.8f1 不能替代正式工具链。"
+      ],
+      "case_id": "CA-R1",
+      "next_safe_action": "从 Unity 官方归档核对 2018.1.1f1 的可取得性；取得前不构建或迁移工程。",
+      "status": "blocked_missing_toolchain"
+    },
+    {
+      "blockers": [
+        "源码时代的 GCC 2.95 未安装；现代 MSVC 的兼容差异尚未分类。"
+      ],
+      "case_id": "CA-R2",
+      "next_safe_action": "用 MSVC 19.50 只做未修改 bg_pmove 模块的兼容性编译探针，把兼容、仪器和规则变体补丁分开。",
+      "status": "ready_for_compatibility_probe"
+    },
+    {
+      "blockers": [
+        "冻结 global.json 请求 .NET SDK 8.0.100；本机只安装 10.0.102。"
+      ],
+      "case_id": "CA-R3",
+      "next_safe_action": "取得隔离的 .NET 8 SDK 后先恢复依赖与编译现有测试，不运行项目冻结的单物件正式输入。",
+      "status": "blocked_missing_toolchain"
+    }
+  ],
+  "formal_input_executed": false,
+  "formal_result_produced": false,
+  "host": {
+    "architecture": "X64",
+    "operating_system": "Microsoft Windows 10.0.26200"
+  },
+  "probed_at": "2026-07-26T19:43:59Z",
+  "run_id": "continuous-001",
+  "tools": [
+    {
+      "detected_version": "10.0.102",
+      "evidence": "dotnet --list-sdks 与 dotnet --version",
+      "executable_path": "C:\\Program Files\\dotnet\\dotnet.exe",
+      "expected_version": "8.0.100 with latestFeature roll-forward",
+      "required_by": [
+        "CA-R3"
+      ],
+      "status": "version_mismatch",
+      "tool_id": "tool.dotnet-sdk"
+    },
+    {
+      "detected_version": "2.53.0.windows.1",
+      "evidence": "git --version",
+      "executable_path": "C:\\Program Files\\Git\\cmd\\git.exe",
+      "expected_version": "version capable of fetching exact commits",
+      "required_by": [
+        "CA-R1",
+        "CA-R2",
+        "CA-R3"
+      ],
+      "status": "exact_available",
+      "tool_id": "tool.git"
+    },
+    {
+      "detected_version": null,
+      "evidence": "gcc was not present on PATH",
+      "executable_path": null,
+      "expected_version": "source-era GCC 2.95",
+      "required_by": [
+        "CA-R2"
+      ],
+      "status": "missing",
+      "tool_id": "tool.gcc-source-era"
+    },
+    {
+      "detected_version": "Microsoft C/C++ 19.50.35723 x64",
+      "evidence": "direct invocation of the installed cl.exe",
+      "executable_path": "C:\\Program Files\\Microsoft Visual Studio\\18\\Community\\VC\\Tools\\MSVC\\14.50.35717\\bin\\Hostx64\\x64\\cl.exe",
+      "expected_version": "modern compiler for a compatibility-only probe",
+      "required_by": [
+        "CA-R2"
+      ],
+      "status": "alternative_available",
+      "tool_id": "tool.msvc-probe"
+    },
+    {
+      "detected_version": "6000.4.8f1",
+      "evidence": "Unity.exe -version -quit -batchmode",
+      "executable_path": "C:\\Program Files\\Unity\\Hub\\Editor\\6000.4.8f1\\Editor\\Unity.exe",
+      "expected_version": "2018.1.1f1",
+      "required_by": [
+        "CA-R1"
+      ],
+      "status": "version_mismatch",
+      "tool_id": "tool.unity-editor"
+    }
+  ]
+}
