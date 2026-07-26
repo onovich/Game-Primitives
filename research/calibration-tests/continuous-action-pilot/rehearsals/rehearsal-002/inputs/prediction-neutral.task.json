@@ -1,0 +1,89 @@
+{
+  "$schema": "https://github.com/onovich/Game-Primitives/blob/main/research/calibration-tests/continuous-action-pilot/schema/task-packet-0.1.0.schema.json",
+  "allowed_observations": [
+    {
+      "allowed_value_types": [
+        "integer"
+      ],
+      "description": "在第二步更新完成后的 state.total 精确整数值",
+      "observation_id": "obs.total-at-stop",
+      "tolerance_rule_id": null,
+      "unit": "integer"
+    }
+  ],
+  "artifact_type": "prediction_task_packet",
+  "artifact_version": "0.1.0",
+  "behavior_scope": "structural_only",
+  "case_ids": [
+    "CA-R2"
+  ],
+  "condition_id": null,
+  "created_at": "2026-07-26T18:10:28Z",
+  "forbidden_actions": [
+    "access_other_condition",
+    "access_other_submission",
+    "access_package_outside_dispatch",
+    "access_truth_or_result",
+    "create_child_task",
+    "external_search",
+    "read_shared_workspace",
+    "tool_call"
+  ],
+  "input_artifacts": [
+    {
+      "artifact_id": "variant-envelope",
+      "path": "research/calibration-tests/continuous-action-pilot/rehearsals/rehearsal-002/inputs/variant-envelope.json",
+      "sha256": "edee576a30644e08fe3f22cd17ff981454d29a56fa19807bf8b3289d7d4c428e"
+    }
+  ],
+  "instructions": [
+    "继续只使用第一阶段收到的条件视图、自己的已冻结重构和本信封。",
+    "分别预测基线与变体在停止边界上的 obs.total-at-stop；若视图不足以唯一确定，必须回答 indeterminate 并给出相容分支。",
+    "给出推导所依赖的记录标识；不得访问工具、网络、共享工作区、另一条件、真值、结果或他人提交。",
+    "输出一份符合 role-submission 0.1.0 的 prediction_submission 首次提交，并引用第一阶段提交的精确 SHA-256。"
+  ],
+  "output_schema": {
+    "path": "research/calibration-tests/continuous-action-pilot/schema/role-submission-0.1.1.schema.json",
+    "sha256": "45bb21217f462371e7d16d64560a5ce48a207c7370dd0644d96587568f908b1e"
+  },
+  "representation_version": "CA-SR 0.1",
+  "required_audit_checks": [],
+  "run_id": "rehearsal-002",
+  "stage1_submission_required": true,
+  "stop_boundary_refs": [
+    "stop.after-step-2"
+  ],
+  "target_encoding_sha256": null,
+  "target_view_sha256": null,
+  "task_id": "task.predict.neutral",
+  "tolerance_rule_refs": [],
+  "variant_interventions": [
+    {
+      "baseline_value": {
+        "serialized_value": "0",
+        "unit": null,
+        "value_type": "integer"
+      },
+      "case_id": "CA-R2",
+      "invariant_ids": [
+        "inv.initial-state",
+        "inv.input-trace",
+        "inv.operation-count",
+        "inv.operation-identity",
+        "inv.step-order",
+        "inv.output-contract",
+        "inv.stop-boundary"
+      ],
+      "observation_ids": [
+        "obs.total-at-stop"
+      ],
+      "stop_boundary_id": "stop.after-step-2",
+      "variable_id": "v-q",
+      "variant_value": {
+        "serialized_value": "1",
+        "unit": null,
+        "value_type": "integer"
+      }
+    }
+  ]
+}
