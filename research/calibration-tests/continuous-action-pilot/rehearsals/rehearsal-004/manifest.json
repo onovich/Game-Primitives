@@ -1,0 +1,210 @@
+{
+  "$schema": "https://github.com/onovich/Game-Primitives/blob/main/research/calibration-tests/continuous-action-pilot/schema/run-manifest-0.1.0.schema.json",
+  "artifact_type": "rehearsal_manifest",
+  "artifact_version": "0.1.0",
+  "artifacts": [
+    {
+      "artifact_id": "readme",
+      "artifact_kind": "documentation",
+      "artifact_version": "0.1.0",
+      "audience": [
+        "public_archive"
+      ],
+      "decision_relevant": false,
+      "included_in_frozen_set": true,
+      "path": "README.md",
+      "release_stage": "preparation",
+      "schema_path": "research/calibration-tests/continuous-action-pilot/schema/markdown-document-0.1.0.schema.json",
+      "schema_sha256": "89827f39031c7d26f430584bb2f3e64c3600213a8e45e994da2c4120cb3f09a3",
+      "sha256": "0eead75bc760f598f55482b25b4b5abc3a06b8e22c4c2557bd7794e15f588df3",
+      "supersedes_artifact_id": null
+    },
+    {
+      "artifact_id": "frozen-set-preimage",
+      "artifact_kind": "audit",
+      "artifact_version": "0.1.0",
+      "audience": [
+        "custodian",
+        "public_archive"
+      ],
+      "decision_relevant": true,
+      "included_in_frozen_set": false,
+      "path": "inputs/frozen-set-preimage.tsv",
+      "release_stage": "preparation",
+      "schema_path": "research/calibration-tests/continuous-action-pilot/schema/frozen-set-preimage-0.1.0.schema.json",
+      "schema_sha256": "7914907b9fb8e1166aeafa4a1507018ea0d4718e5daee9c7235807905a8d5948",
+      "sha256": "b0c67021f5b63ab6897b4999cfaa7d994722e7245c9802339047b6f5e271b541",
+      "supersedes_artifact_id": null
+    },
+    {
+      "artifact_id": "prediction-neutral-task",
+      "artifact_kind": "task_packet",
+      "artifact_version": "0.1.0",
+      "audience": [
+        "all_blind_testers",
+        "custodian",
+        "public_after_reveal"
+      ],
+      "decision_relevant": true,
+      "included_in_frozen_set": true,
+      "path": "inputs/prediction-neutral.task.json",
+      "release_stage": "prediction",
+      "schema_path": "research/calibration-tests/continuous-action-pilot/schema/task-packet-0.1.0.schema.json",
+      "schema_sha256": "a8e79c02ec515debfe71eecc07a11b481b5312e27ff94d8da1d138714d131e9d",
+      "sha256": "8a9b80240eae7b0a92df3fb43a87131d9b88f30293f782bf6686827e810e3ba6",
+      "supersedes_artifact_id": null
+    },
+    {
+      "artifact_id": "projection-spec",
+      "artifact_kind": "documentation",
+      "artifact_version": "0.1.0",
+      "audience": [
+        "custodian",
+        "public_after_reveal",
+        "source_auditor"
+      ],
+      "decision_relevant": true,
+      "included_in_frozen_set": true,
+      "path": "inputs/projection-spec.md",
+      "release_stage": "view_generation",
+      "schema_path": "research/calibration-tests/continuous-action-pilot/schema/markdown-document-0.1.0.schema.json",
+      "schema_sha256": "89827f39031c7d26f430584bb2f3e64c3600213a8e45e994da2c4120cb3f09a3",
+      "sha256": "a769815c169d26d197bc1ec6b6229c75b1a7579d9d312eb52de26bffd09c8be2",
+      "supersedes_artifact_id": null
+    },
+    {
+      "artifact_id": "reconstruction-task-v01",
+      "artifact_kind": "task_packet",
+      "artifact_version": "0.1.0",
+      "audience": [
+        "condition-v01",
+        "custodian",
+        "public_after_reveal"
+      ],
+      "decision_relevant": true,
+      "included_in_frozen_set": true,
+      "path": "inputs/reconstruction-condition-v01.task.json",
+      "release_stage": "reconstruction",
+      "schema_path": "research/calibration-tests/continuous-action-pilot/schema/task-packet-0.1.0.schema.json",
+      "schema_sha256": "a8e79c02ec515debfe71eecc07a11b481b5312e27ff94d8da1d138714d131e9d",
+      "sha256": "819cda12ea22065d614f36f251213b78de587ea2fd6dabe7e710bbf315002332",
+      "supersedes_artifact_id": null
+    },
+    {
+      "artifact_id": "reconstruction-task-v02",
+      "artifact_kind": "task_packet",
+      "artifact_version": "0.1.0",
+      "audience": [
+        "condition-v02",
+        "custodian",
+        "public_after_reveal"
+      ],
+      "decision_relevant": true,
+      "included_in_frozen_set": true,
+      "path": "inputs/reconstruction-condition-v02.task.json",
+      "release_stage": "reconstruction",
+      "schema_path": "research/calibration-tests/continuous-action-pilot/schema/task-packet-0.1.0.schema.json",
+      "schema_sha256": "a8e79c02ec515debfe71eecc07a11b481b5312e27ff94d8da1d138714d131e9d",
+      "sha256": "6f6a4303e238f87ade82eaba96e8a0e4f8104a66cc3de75e3b427692705c139e",
+      "supersedes_artifact_id": null
+    },
+    {
+      "artifact_id": "truth-commitment",
+      "artifact_kind": "truth",
+      "artifact_version": "0.1.0",
+      "audience": [
+        "all_blind_testers",
+        "custodian",
+        "public_archive"
+      ],
+      "decision_relevant": true,
+      "included_in_frozen_set": true,
+      "path": "inputs/truth-commitment.json",
+      "release_stage": "preparation",
+      "schema_path": "research/calibration-tests/continuous-action-pilot/schema/rehearsal-input-0.1.1.schema.json",
+      "schema_sha256": "3b87db188a09a09f8f18e3a1871f14840eaae05c66280d4e684b8e27ca99a7c9",
+      "sha256": "8340febfb2b648965e9b0d77ebaf83cb25364497faeeb973c1e662ea160b722b",
+      "supersedes_artifact_id": null
+    },
+    {
+      "artifact_id": "variant-envelope",
+      "artifact_kind": "fixture",
+      "artifact_version": "0.1.0",
+      "audience": [
+        "all_blind_testers",
+        "custodian",
+        "public_after_reveal"
+      ],
+      "decision_relevant": true,
+      "included_in_frozen_set": true,
+      "path": "inputs/variant-envelope.json",
+      "release_stage": "prediction",
+      "schema_path": "research/calibration-tests/continuous-action-pilot/schema/rehearsal-input-0.1.1.schema.json",
+      "schema_sha256": "3b87db188a09a09f8f18e3a1871f14840eaae05c66280d4e684b8e27ca99a7c9",
+      "sha256": "1ca9239b3b38a06adacb1c6bd8dffb51d86eb480eef76fc1b2099da5af4ed4c4",
+      "supersedes_artifact_id": null
+    },
+    {
+      "artifact_id": "view-v01",
+      "artifact_kind": "fixture",
+      "artifact_version": "0.1.0",
+      "audience": [
+        "condition-v01",
+        "custodian",
+        "public_after_reveal"
+      ],
+      "decision_relevant": true,
+      "included_in_frozen_set": true,
+      "path": "inputs/view-v01.json",
+      "release_stage": "view_generation",
+      "schema_path": "research/calibration-tests/continuous-action-pilot/schema/rehearsal-input-0.1.1.schema.json",
+      "schema_sha256": "3b87db188a09a09f8f18e3a1871f14840eaae05c66280d4e684b8e27ca99a7c9",
+      "sha256": "d812db13cd33b6bdc4f6be3c83553ffc07e954c04511c2df7a8d959aa3bcf782",
+      "supersedes_artifact_id": null
+    },
+    {
+      "artifact_id": "view-v02",
+      "artifact_kind": "fixture",
+      "artifact_version": "0.1.0",
+      "audience": [
+        "condition-v02",
+        "custodian",
+        "public_after_reveal"
+      ],
+      "decision_relevant": true,
+      "included_in_frozen_set": true,
+      "path": "inputs/view-v02.json",
+      "release_stage": "view_generation",
+      "schema_path": "research/calibration-tests/continuous-action-pilot/schema/rehearsal-input-0.1.1.schema.json",
+      "schema_sha256": "3b87db188a09a09f8f18e3a1871f14840eaae05c66280d4e684b8e27ca99a7c9",
+      "sha256": "c47d624206d5bf4effa0b575f3ddc0bff7c8954256b9fe210e60f33488d53f27",
+      "supersedes_artifact_id": null
+    }
+  ],
+  "created_at": "2026-07-26T18:36:37Z",
+  "freeze_commit": "62595a65b9878869dfd473b669f51b8ef683746e",
+  "frozen_artifact_set_digest": "b0c67021f5b63ab6897b4999cfaa7d994722e7245c9802339047b6f5e271b541",
+  "protocol_version": "0.1.0",
+  "run_id": "rehearsal-004",
+  "schema_version": "0.1.0",
+  "stage": "preparation",
+  "stage_digests": [
+    {
+      "artifact_set_digest": "b0c67021f5b63ab6897b4999cfaa7d994722e7245c9802339047b6f5e271b541",
+      "git_commit": "62595a65b9878869dfd473b669f51b8ef683746e",
+      "recorded_at": "2026-07-26T18:36:37Z",
+      "stage": "preparation"
+    }
+  ],
+  "status": "frozen",
+  "truth_commitment": {
+    "algorithm": "SHA-256",
+    "combination": "secret_nonce_bytes || exact_truth_bundle_bytes",
+    "commitment": "166750a564cdfa082ef644f1264ee4e5305dd67e16a73ec89afeb1504324a696",
+    "created_at": "2026-07-26T18:35:54Z",
+    "nonce_length_bytes": 32,
+    "truth_bundle_bytes": 6249,
+    "truth_bundle_name": "sealed-truth.json"
+  },
+  "updated_at": "2026-07-26T18:36:37Z"
+}
