@@ -1,6 +1,6 @@
 # 连续行动先行组测试工作区
 
-- 状态：CA-07 已冻结；`rehearsal-004` 的阶段链通过，盲测回答接口修订已实现并等待聚焦彩排；正式轮次未运行
+- 状态：CA-07 已冻结；`rehearsal-004` 的阶段链与 `rehearsal-005` 的盲测回答接口均通过；正式包尚未冻结，正式轮次未运行
 - 受测表示：[连续行动结构表示 v0.1](../../../theory/CONTINUOUS-ACTION-REPRESENTATION-0.1.md)
 - 执行与结论规则：[CA-06](../../continuous-action-pilot-ca-06-execution-and-verdicts.md)
 - 制品与放行规则：[CA-07](../../continuous-action-pilot-ca-07-artifacts-and-release.md)
@@ -50,8 +50,9 @@
 | `rehearsal-002` | `procedure_fail` | 冻结集合根摘要不可按文档算法复算 |
 | `rehearsal-003` | `procedure_fail` | 任务包保留了旧输入散列 |
 | `rehearsal-004` | `procedure_pass` | 六项阶段链闭合；完整提交接口仍过于脆弱 |
+| `rehearsal-005` | `procedure_pass` | 两种条件的四份原始首答直接有效；机器装配逐字节可重复 |
 
-失败轮次、无效首答和已冻结 README 均原样保留。`rehearsal-004` 的通过是程序结论，不是理论证据；其接口限制由 ADR 0116 另行修订。
+失败轮次、无效首答和已冻结 README 均原样保留。两次通过都是程序结论，不是理论证据；ADR 0116 的接口限制已经由 `rehearsal-005` 聚焦复测解除。
 
 ## 计划中的轮次结构
 
@@ -65,7 +66,7 @@ continuous-action-pilot/
     └── continuous-001/
 ```
 
-`rehearsals/` 只使用无游戏意义的虚构材料验证“重构冻结 → 预测 → 执行 → 揭示”的新增顺序，不产生理论证据。`runs/` 才保存正式证据轮次。失败彩排和失效轮次必须永久保留，修订使用新编号。
+`rehearsals/` 只使用无游戏意义的虚构材料验证阶段顺序或聚焦方法接口，不产生理论证据。`runs/` 才保存正式证据轮次。失败彩排和失效轮次必须永久保留，修订使用新编号。
 
 ## 放行边界
 

@@ -1,8 +1,9 @@
 # 连续行动先行组：盲测回答接口修订
 
-- 状态：方法已实现；等待聚焦彩排
+- 状态：方法已实现，并由 `rehearsal-005` 聚焦彩排通过；正式人工门尚未召开
 - 日期：2026-07-27
 - 依据：[rehearsal-004 报告](calibration-tests/continuous-action-pilot/rehearsals/rehearsal-004/reports/findings.md)
+- 复测：[rehearsal-005 报告](calibration-tests/continuous-action-pilot/rehearsals/rehearsal-005/reports/findings.md)
 - 决策记录：[ADR 0116](../docs/adr/0116-separate-blind-payloads-from-generated-submission-envelopes.md)
 
 ## 1. 修订目的
@@ -128,3 +129,5 @@ reconstruction_answers | prediction_answers
 6. 预测提交重复装配逐字节相同。
 
 任一项失败都永久保留该次聚焦彩排，并在新编号修订。通过只解除“盲测回答接口不可操作”的阻断，不产生理论证据，也不替代正式人工门。
+
+`rehearsal-005` 已以两个全新空白会话覆盖可确定与不确定预测；四份原始首答均直接有效，四个派生提交均通过双次逐字节复现。因此本节的接口阻断已解除。后续任务是把 0.1.1／0.1.2 接口用于正式包制作，而不是继续增加虚构接口彩排。
