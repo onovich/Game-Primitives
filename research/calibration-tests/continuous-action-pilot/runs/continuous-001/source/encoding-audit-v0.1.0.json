@@ -1,0 +1,112 @@
+{
+  "$schema": "https://github.com/onovich/Game-Primitives/blob/main/research/calibration-tests/continuous-action-pilot/schema/role-submission-0.1.2.schema.json",
+  "actor": {
+    "identifier": "source-auditor-c001",
+    "model": "gpt-5.6-terra",
+    "model_version": "gpt-5.6-terra",
+    "reasoning_effort": "high",
+    "role": "source_auditor",
+    "session_id": "/root/source_auditor_c001"
+  },
+  "artifact_type": "source_fidelity_audit",
+  "artifact_version": "0.1.2",
+  "audit_checks": [
+    {
+      "check_id": "case_scope",
+      "evidence": "三案的 controlled_variable_id、formal_input_ref、起止观察边界与排除范围逐项保留在规范编码中；编码未把夹具轨迹或运行终值冒充来源事实。",
+      "status": "passed",
+      "target_artifact_ids": [
+        "source-packet.continuous-001",
+        "source.canonical-encoding-v0.1.0"
+      ]
+    },
+    {
+      "check_id": "cross_case_obligations",
+      "evidence": "CA-R1 明确记录了动作实现载体 medium.r1.fighter-state-machine；CA-R3 通过 edge.r3.effect-gates-reentry 和 time.r3.commit-before-reentry-check 闭合了正式效果提交到后续响应机会的关系，且未把通知臆断为玩家反馈。",
+      "status": "passed",
+      "target_artifact_ids": [
+        "representation.ca-sr-0.1",
+        "source.canonical-encoding-v0.1.0"
+      ]
+    },
+    {
+      "check_id": "provenance_fidelity",
+      "evidence": "已核对冻结编码的来源事实均以本案 locator_id 标注。CA-R1 的输入边沿、取消许可、缓冲/执行窗口与 whiff 条件分别对应 r1.input-history、r1.cancel-permission-rule、r1.cancel-table、r1.cancel-permission-data；CA-R2 的子步、空中移动与加速对应 r2.outer-step、r2.single-step、r2.air-move、r2.acceleration；CA-R3 的候选、分类和提交对应 r3.input-press、r3.hit-circle-result、r3.result-order、r3.apply-result。",
+      "status": "passed",
+      "target_artifact_ids": [
+        "source-packet.continuous-001",
+        "source.canonical-encoding-v0.1.0"
+      ]
+    },
+    {
+      "check_id": "reference_closure",
+      "evidence": "递归核验全部 provenance_refs：每一项均闭合到所属案例 source-packet 中声明的 locator_id，未发现跨案 locator 或未声明定位。内部记录引用均由同案 references、rules、time_bases、state_channels、operational_records 或任务明确的停止边界承载。",
+      "status": "passed",
+      "target_artifact_ids": [
+        "source-packet.continuous-001",
+        "source.canonical-encoding-v0.1.0",
+        "task.source-encoding.continuous-001"
+      ]
+    },
+    {
+      "check_id": "source_determinacy",
+      "evidence": "未由冻结定位确定的夹具轨迹、R1 积压语义、R2 的 8 ms 配置值/终值/跨工具链容差、R3 的具体通知观察者和 OD5 精确窗口均已明确标为 source_underdetermined；未发现以零、空值或外部默认值伪装未知来源事实。",
+      "status": "passed",
+      "target_artifact_ids": [
+        "source-packet.continuous-001",
+        "source.canonical-encoding-v0.1.0"
+      ]
+    },
+    {
+      "check_id": "source_representation_distinction",
+      "evidence": "作品和实现身份仅位于 audit_identity；blind_description、规则、状态通道和关系使用角色中立的结构表述。夹具约定、测量终值与派生预测没有被写作 source_fact。",
+      "status": "passed",
+      "target_artifact_ids": [
+        "representation.ca-sr-0.1",
+        "source.canonical-encoding-v0.1.0"
+      ]
+    },
+    {
+      "check_id": "typed_representation",
+      "evidence": "三案均将输入、规则动作、动作实例、过程、正式事件、结算、效果、状态通道、时间基准和具类型关系分别编码；R1 的采样—映射—实例化、R2 的 modulates/reads/writes、R3 的 adjudicates_as/resolves_to/commits/gates 未退化为无类型 relation。",
+      "status": "passed",
+      "target_artifact_ids": [
+        "representation.ca-sr-0.1",
+        "source.canonical-encoding-v0.1.0"
+      ]
+    }
+  ],
+  "audit_decision": "approved",
+  "condition_id": null,
+  "findings": [],
+  "first_submission": true,
+  "input_artifacts": [
+    {
+      "artifact_id": "representation.ca-sr-0.1",
+      "sha256": "7361c6d757bed33d5ef5a14055671c0dd720ed505900dcdb3e500564866046e9"
+    },
+    {
+      "artifact_id": "source-packet.continuous-001",
+      "sha256": "c7757f1ce74af15c25433bbf32cb94bbd4d1c497d5637470803ef1cf09328d12"
+    },
+    {
+      "artifact_id": "source.canonical-encoding-v0.1.0",
+      "sha256": "0ca359886db636f065254b1a84c151c3b40b6442c7c503318944c534ea9738c3"
+    },
+    {
+      "artifact_id": "task.source-encoding.continuous-001",
+      "sha256": "50cd682c317384398fd5215ed01c592a5560587d55e6667163a960781c662fcd"
+    }
+  ],
+  "packaging": null,
+  "pollution": null,
+  "prediction_answers": [],
+  "prior_stage_submission_sha256": null,
+  "raw_payload": null,
+  "reconstruction_answers": [],
+  "run_id": "continuous-001",
+  "stage": "source_audit",
+  "submission_id": "submission.source-auditor-c001.continuous-001",
+  "submitted_at": "2026-07-26T19:55:21Z",
+  "task_id": "task.source-audit.continuous-001"
+}
