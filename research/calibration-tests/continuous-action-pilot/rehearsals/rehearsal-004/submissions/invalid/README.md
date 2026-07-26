@@ -11,3 +11,5 @@
 第三次 v02 替补的重构有效，但预测在每个 `compatible_alternatives` 对象中增加了未声明字段 `supporting_record_ids`。依照第二阶段失效规则，该执行者的两阶段链不进入有效配置；新的空白替补必须从第一阶段重做。
 
 第四次 v02 替补没有沿用指定的顶层制品结构，输出了 `schema_version`、`input_records` 等另一套字段；该提交在第一阶段即失效。
+
+第五次 v02 替补的重构有效，但预测把配置写成 `baseline`／`variant`、使用不存在的 `scalar` 类型、把值写成裸数或 `null`，并增加了未声明的 `status`。该两阶段链同样退出。
