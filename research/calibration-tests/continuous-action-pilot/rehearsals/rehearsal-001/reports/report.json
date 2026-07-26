@@ -1,0 +1,40 @@
+{
+  "$schema": "https://github.com/onovich/Game-Primitives/blob/main/research/calibration-tests/continuous-action-pilot/schema/run-report-0.1.0.schema.json",
+  "artifact_type": "rehearsal_report",
+  "artifact_version": "0.1.0",
+  "checks": [
+    {
+      "check_id": "check.freeze-and-manifest",
+      "evidence": "输入、视图、任务、投影与承诺先于盲测派发冻结；清单的 9 个条目均通过逐字节散列、Schema 散列、内容 Schema 与冻结集合摘要复算。",
+      "status": "passed"
+    },
+    {
+      "check_id": "check.staged-isolation",
+      "evidence": "两个空白会话仅收到各自条件；重构提交归档并推送后，才向同一会话派发字节相同的中立变体信封。",
+      "status": "passed"
+    },
+    {
+      "check_id": "check.submission-chain",
+      "evidence": "四份首次提交均通过 role-submission 0.1.0；两份预测分别引用自己已归档的重构 SHA-256，未出现跨条件或完整性暴露。",
+      "status": "passed"
+    },
+    {
+      "check_id": "check.execution-order",
+      "evidence": "预测先归档；执行计划与夹具随后冻结；基线和变体各在两个前台子进程中运行，原始输出先归档，比较器后运行，重复结果一致。",
+      "status": "passed"
+    },
+    {
+      "check_id": "check.commitment-reveal",
+      "evidence": "揭示写入首次产生 1 字节额外换行并被精确字节校验拒绝；纠正写入后真值为 6249 字节，真值散列及 nonce || truth 承诺均与准备阶段完全一致。",
+      "status": "passed"
+    },
+    {
+      "check_id": "check.prediction-addressing",
+      "evidence": "role-submission 0.1.0 的 predictionExpectation 没有 configuration_id，同一 observation_id 的基线值与变体值只能依赖数组顺序和自由文本区分，无法安全进行机器比较。",
+      "status": "failed"
+    }
+  ],
+  "finished_at": "2026-07-26T18:06:51Z",
+  "procedure_result": "procedure_fail",
+  "run_id": "rehearsal-001"
+}
