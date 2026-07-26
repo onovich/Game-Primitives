@@ -1,6 +1,6 @@
 # 连续行动先行组测试工作区
 
-- 状态：CA-07 已冻结；`rehearsal-004` 的阶段链与 `rehearsal-005` 的盲测回答接口均通过；正式包尚未冻结，正式轮次未运行
+- 状态：CA-07 已冻结；`continuous-001` 已进入来源包制作，正式包尚未冻结，正式轮次未运行
 - 受测表示：[连续行动结构表示 v0.1](../../../theory/CONTINUOUS-ACTION-REPRESENTATION-0.1.md)
 - 执行与结论规则：[CA-06](../../continuous-action-pilot-ca-06-execution-and-verdicts.md)
 - 制品与放行规则：[CA-07](../../continuous-action-pilot-ca-07-artifacts-and-release.md)
@@ -24,6 +24,7 @@
 ## Schema
 
 - [`run-manifest-0.1.0.schema.json`](schema/run-manifest-0.1.0.schema.json)：正式轮次或彩排的状态、阶段、制品索引、冻结集合摘要和真值承诺。
+- [`run-manifest-0.1.1.schema.json`](schema/run-manifest-0.1.1.schema.json)：为正式包增加原始回答、机器信封、真实 actor 与原始执行制品种类；保留 0.1.0 供既有彩排复算。
 - [`ca-sr-artifact-0.1.0.schema.json`](schema/ca-sr-artifact-0.1.0.schema.json)：来源包、CA-SR 规范编码、机械生成视图和投影规则。
 - [`task-packet-0.1.0.schema.json`](schema/task-packet-0.1.0.schema.json)：来源编码、来源审核、重构和预测的冻结派发信封。
 - [`task-packet-0.1.1.schema.json`](schema/task-packet-0.1.1.schema.json)：为盲测任务增加允许配置与装配后输出 Schema；保留 0.1.0 供既有轮次复算。
@@ -32,16 +33,20 @@
 - [`role-submission-0.1.2.schema.json`](schema/role-submission-0.1.2.schema.json)：把原始盲测 payload、机器信封与装配工具散列绑定到派生提交。
 - [`blind-response-interface-0.1.0.schema.json`](schema/blind-response-interface-0.1.0.schema.json)：阶段专用的盲测语义 payload 与机器信封。
 - [`execution-artifact-0.1.0.schema.json`](schema/execution-artifact-0.1.0.schema.json)：执行计划、原始轨迹包和派生执行结果。
+- [`execution-artifact-0.1.1.schema.json`](schema/execution-artifact-0.1.1.schema.json)：要求执行轨迹直接绑定原始调用／输出，执行结果直接绑定比较器输出。
 - [`truth-reveal-0.1.0.schema.json`](schema/truth-reveal-0.1.0.schema.json)：密封真值与揭示后的承诺复算记录。
 - [`run-report-0.1.0.schema.json`](schema/run-report-0.1.0.schema.json)：逐角色硬条件向量、两条结论轴、跨案例义务和组级结论。
 - [`rehearsal-input-0.1.0.schema.json`](schema/rehearsal-input-0.1.0.schema.json)：仅供虚构彩排使用的条件视图、变体信封与真值承诺。
 - [`rehearsal-input-0.1.1.schema.json`](schema/rehearsal-input-0.1.1.schema.json)：保留 0.1.0，并把写死的 `rehearsal-001` 放宽为带三位编号的排演 ID。
 - [`markdown-document-0.1.0.schema.json`](schema/markdown-document-0.1.0.schema.json)：把说明性 Markdown 作为完整字符串进行最小格式校验。
+- [`text-artifact-0.1.0.schema.json`](schema/text-artifact-0.1.0.schema.json)：把脚本、补丁、日志和其他 UTF-8 文本作为完整字符串进行最小校验。
 - [`frozen-set-preimage-0.1.0.schema.json`](schema/frozen-set-preimage-0.1.0.schema.json)：约束冻结集合根摘要所使用的逐行 TSV 前像，便于独立复算。
 
 根摘要应同时通过 [`verify-frozen-manifest.py`](tools/verify-frozen-manifest.py) 复算。校验器只读清单、制品与 Schema；不会修正已经冻结的值。
 
 盲测回答使用 [`build-role-submission.py`](tools/build-role-submission.py) 渲染结构模板、捕获机器信封、确定性装配并复核。修订理由与边界见[盲测回答接口修订](../../continuous-action-pilot-blind-response-interface.md)。
+
+正式包使用 [`verify-run-package.py`](tools/verify-run-package.py) 统一检查 Schema、自声明版本、规范字节、清单与嵌套散列引用、任务输入／输出、冻结集合摘要及冻结锚点提交。`preparing` 包可以通过结构检查；人工门前还必须以 `--require-frozen` 通过。
 
 ## 彩排记录
 
