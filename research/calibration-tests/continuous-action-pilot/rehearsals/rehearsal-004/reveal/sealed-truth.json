@@ -1,0 +1,190 @@
+{
+  "$schema": "https://github.com/onovich/Game-Primitives/blob/main/research/calibration-tests/continuous-action-pilot/schema/truth-reveal-0.1.0.schema.json",
+  "alias_witnesses": [
+    {
+      "case_id": "CA-R2",
+      "compatible_structures": [
+        {
+          "description": "配置值 0 逐步读取当前输入；配置值 1 在入口锁存第一步输入。变体因此把第二步读取值从 5 改为 2。",
+          "predicted_observations": [
+            {
+              "comparison": "exact",
+              "configuration_id": "config.baseline",
+              "observation_id": "obs.total-at-stop",
+              "tolerance_rule_id": null,
+              "value": {
+                "serialized_value": "7",
+                "unit": "integer",
+                "value_type": "integer"
+              }
+            },
+            {
+              "comparison": "exact",
+              "configuration_id": "config.variant",
+              "observation_id": "obs.total-at-stop",
+              "tolerance_rule_id": null,
+              "value": {
+                "serialized_value": "4",
+                "unit": "integer",
+                "value_type": "integer"
+              }
+            }
+          ],
+          "structure_id": "structure.sampling-switch"
+        },
+        {
+          "description": "每一步始终读取当前输入；不透明配置变量不参与累积过程。变体不改变第二步读取值。",
+          "predicted_observations": [
+            {
+              "comparison": "exact",
+              "configuration_id": "config.baseline",
+              "observation_id": "obs.total-at-stop",
+              "tolerance_rule_id": null,
+              "value": {
+                "serialized_value": "7",
+                "unit": "integer",
+                "value_type": "integer"
+              }
+            },
+            {
+              "comparison": "exact",
+              "configuration_id": "config.variant",
+              "observation_id": "obs.total-at-stop",
+              "tolerance_rule_id": null,
+              "value": {
+                "serialized_value": "7",
+                "unit": "integer",
+                "value_type": "integer"
+              }
+            }
+          ],
+          "structure_id": "structure.inert-configuration"
+        }
+      ],
+      "differing_observation_ids": [
+        "obs.total-at-stop"
+      ],
+      "shared_projection_digest": "c47d624206d5bf4effa0b575f3ddc0bff7c8954256b9fe210e60f33488d53f27",
+      "witness_id": "witness.atomic-alias"
+    }
+  ],
+  "artifact_type": "sealed_truth",
+  "artifact_version": "0.1.0",
+  "case_truths": [
+    {
+      "alias_witness_ids": [
+        "witness.atomic-alias"
+      ],
+      "case_id": "CA-R2",
+      "expected_observations": [
+        {
+          "comparison": "exact",
+          "configuration_id": "config.baseline",
+          "observation_id": "obs.total-at-stop",
+          "tolerance_rule_id": null,
+          "value": {
+            "serialized_value": "7",
+            "unit": "integer",
+            "value_type": "integer"
+          }
+        },
+        {
+          "comparison": "exact",
+          "configuration_id": "config.variant",
+          "observation_id": "obs.total-at-stop",
+          "tolerance_rule_id": null,
+          "value": {
+            "serialized_value": "4",
+            "unit": "integer",
+            "value_type": "integer"
+          }
+        }
+      ],
+      "expected_prediction_status": "determinate",
+      "required_reconstruction_facts": [
+        {
+          "description": "配置值 0 在每次更新开始时读取当前步骤输入。",
+          "fact_id": "fact.current-step-sampling",
+          "required_support_record_ids": [
+            "rec.sampling-policy"
+          ]
+        },
+        {
+          "description": "配置值 1 在片段入口锁存第一步输入并在后续更新复用。",
+          "fact_id": "fact.entry-latched-sampling",
+          "required_support_record_ids": [
+            "rec.sampling-policy"
+          ]
+        },
+        {
+          "description": "每次更新执行 state.total := state.total + value.sampled。",
+          "fact_id": "fact.accumulator-update",
+          "required_support_record_ids": [
+            "rec.accumulator-process"
+          ]
+        },
+        {
+          "description": "同一步内先读取采样值，再更新累积状态。",
+          "fact_id": "fact.within-step-order",
+          "required_support_record_ids": [
+            "rec.step-order"
+          ]
+        }
+      ]
+    }
+  ],
+  "condition_mapping": [
+    {
+      "condition_id": "condition-v01",
+      "view_kind": "blind_rich_view"
+    },
+    {
+      "condition_id": "condition-v02",
+      "view_kind": "atomic_projection"
+    }
+  ],
+  "created_at": "2026-07-26T18:35:54Z",
+  "hard_condition_rules": [
+    {
+      "condition_id": "CA-H01",
+      "failure_effect": "inconclusive",
+      "requirement": "排演来源与执行规则由冻结的虚构夹具完整决定。"
+    },
+    {
+      "condition_id": "CA-H02",
+      "failure_effect": "model_failure",
+      "requirement": "丰富视图应能唯一恢复采样、更新与同一步顺序。"
+    },
+    {
+      "condition_id": "CA-H03",
+      "failure_effect": "core_claim_refuted",
+      "requirement": "压缩视图应至少与两个产生不同变体预测的结构相容。"
+    },
+    {
+      "condition_id": "CA-H04",
+      "failure_effect": "core_claim_refuted",
+      "requirement": "确定性夹具应产生基线 7、变体 4，且全部不变量成立。"
+    }
+  ],
+  "input_artifacts": [
+    {
+      "artifact_id": "view-v01",
+      "sha256": "d812db13cd33b6bdc4f6be3c83553ffc07e954c04511c2df7a8d959aa3bcf782"
+    },
+    {
+      "artifact_id": "view-v02",
+      "sha256": "c47d624206d5bf4effa0b575f3ddc0bff7c8954256b9fe210e60f33488d53f27"
+    },
+    {
+      "artifact_id": "variant-envelope",
+      "sha256": "1ca9239b3b38a06adacb1c6bd8dffb51d86eb480eef76fc1b2099da5af4ed4c4"
+    },
+    {
+      "artifact_id": "projection-spec",
+      "sha256": "a769815c169d26d197bc1ec6b6229c75b1a7579d9d312eb52de26bffd09c8be2"
+    }
+  ],
+  "projection_spec_sha256": "a769815c169d26d197bc1ec6b6229c75b1a7579d9d312eb52de26bffd09c8be2",
+  "protocol_version": "0.1.0",
+  "run_id": "rehearsal-004"
+}

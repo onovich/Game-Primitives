@@ -1,0 +1,17 @@
+{
+  "$schema": "https://github.com/onovich/Game-Primitives/blob/main/research/calibration-tests/continuous-action-pilot/schema/truth-reveal-0.1.0.schema.json",
+  "algorithm": "SHA-256",
+  "artifact_type": "truth_reveal",
+  "artifact_version": "0.1.0",
+  "combination": "secret_nonce_bytes || exact_truth_bundle_bytes",
+  "commitment": "166750a564cdfa082ef644f1264ee4e5305dd67e16a73ec89afeb1504324a696",
+  "commitment_recomputed": "166750a564cdfa082ef644f1264ee4e5305dd67e16a73ec89afeb1504324a696",
+  "commitment_verified": true,
+  "execution_result_sha256": "811bcb629c63a45f3e7e30d75c9a1675fad388042b7e4da109bed566ea7edf11",
+  "prediction_set_digest": "ee9cb7a52012c0925a340ce71c5ae3b47ca4f798a59e45c2b2136c0653f1c063",
+  "revealed_at": "2026-07-26T19:01:11Z",
+  "run_id": "rehearsal-004",
+  "secret_nonce_hex": "885f0b9a6b70175a06cda2bfbbc996213c0a7985d0b90347aa177b1e1d8fec30",
+  "truth_bundle_bytes": 6249,
+  "truth_bundle_sha256": "52b57af7e3d969a707dfc5fbaaf9fd4f82794e91533d32df6adf4880ee0ea75b"
+}
