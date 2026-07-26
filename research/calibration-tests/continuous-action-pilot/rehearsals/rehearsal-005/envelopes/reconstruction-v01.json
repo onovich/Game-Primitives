@@ -1,0 +1,49 @@
+{
+  "$schema": "https://github.com/onovich/Game-Primitives/blob/main/research/calibration-tests/continuous-action-pilot/schema/blind-response-interface-0.1.0.schema.json",
+  "actor": {
+    "identifier": "interface-r005-v01",
+    "model": "Codex delegated agent",
+    "model_version": "current-thread-runtime",
+    "reasoning_effort": "xhigh",
+    "role": "blind_reconstructor_predictor",
+    "session_id": "rehearsal-005-condition-v01"
+  },
+  "artifact_type": "role_submission_envelope",
+  "artifact_version": "0.1.0",
+  "condition_id": "condition-v01",
+  "dispatch_artifacts": [
+    {
+      "artifact_id": "task.reconstruct.v01",
+      "sha256": "cbd69a84960a457890e69f6471b4a425bd1bc340bb9a9715435c1d44522c3f54"
+    },
+    {
+      "artifact_id": "view-v01",
+      "sha256": "2deb70d280d6bcdf88e4e3025dc13ff5e9fde0c9d504c1f36ae4480a2ab42d5d"
+    },
+    {
+      "artifact_id": "response-template-reconstruction",
+      "sha256": "5fe70a0b006227b9644e094b6b9d5c241b34caf58d442af2a0e5e4425271e1e6"
+    }
+  ],
+  "first_submission": true,
+  "output_schema": {
+    "path": "research/calibration-tests/continuous-action-pilot/schema/role-submission-0.1.2.schema.json",
+    "sha256": "ce1bcbb603550ec42afa9023191666b0ef45096b4c0efd1a3b42150c83577f95"
+  },
+  "packager": {
+    "path": "research/calibration-tests/continuous-action-pilot/tools/build-role-submission.py",
+    "sha256": "36039f998a026ea9da27f509d2ed79d4e46dbae8f7f1b0ac43e3027f810edbaf"
+  },
+  "prior_stage_submission_sha256": null,
+  "received_at": "2026-07-26T19:23:30Z",
+  "response_schema": {
+    "path": "research/calibration-tests/continuous-action-pilot/schema/blind-response-interface-0.1.0.schema.json",
+    "sha256": "0713d415af2ff3dddc1604b1519f5cc06ffa4933d32cc4c20d56608c2e61bdf7"
+  },
+  "run_id": "rehearsal-005",
+  "stage": "reconstruction",
+  "submission_id": "submission.reconstruct.v01.interface-r005",
+  "target_artifact_type": "reconstruction_submission",
+  "target_artifact_version": "0.1.2",
+  "task_id": "task.reconstruct.v01"
+}

@@ -1,0 +1,8 @@
+{
+  "identifier": "interface-r005-v01",
+  "model": "Codex delegated agent",
+  "model_version": "current-thread-runtime",
+  "reasoning_effort": "xhigh",
+  "role": "blind_reconstructor_predictor",
+  "session_id": "rehearsal-005-condition-v01"
+}

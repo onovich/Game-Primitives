@@ -1,0 +1,131 @@
+{
+  "$schema": "https://github.com/onovich/Game-Primitives/blob/main/research/calibration-tests/continuous-action-pilot/schema/role-submission-0.1.2.schema.json",
+  "actor": {
+    "identifier": "interface-r005-v01",
+    "model": "Codex delegated agent",
+    "model_version": "current-thread-runtime",
+    "reasoning_effort": "xhigh",
+    "role": "blind_reconstructor_predictor",
+    "session_id": "rehearsal-005-condition-v01"
+  },
+  "artifact_type": "reconstruction_submission",
+  "artifact_version": "0.1.2",
+  "audit_checks": [],
+  "audit_decision": null,
+  "condition_id": "condition-v01",
+  "findings": [],
+  "first_submission": true,
+  "input_artifacts": [
+    {
+      "artifact_id": "task.reconstruct.v01",
+      "sha256": "cbd69a84960a457890e69f6471b4a425bd1bc340bb9a9715435c1d44522c3f54"
+    },
+    {
+      "artifact_id": "view-v01",
+      "sha256": "2deb70d280d6bcdf88e4e3025dc13ff5e9fde0c9d504c1f36ae4480a2ab42d5d"
+    },
+    {
+      "artifact_id": "response-template-reconstruction",
+      "sha256": "5fe70a0b006227b9644e094b6b9d5c241b34caf58d442af2a0e5e4425271e1e6"
+    }
+  ],
+  "packaging": {
+    "copied_fields": [
+      "pollution",
+      "reconstruction_answers"
+    ],
+    "envelope_path": "research/calibration-tests/continuous-action-pilot/rehearsals/rehearsal-005/envelopes/reconstruction-v01.json",
+    "envelope_sha256": "31b39ce51c99c29008d935b879d33c31cbdde05cc2b12b373346218e3201abd6",
+    "mode": "deterministic_field_copy",
+    "semantic_copy_verified": true,
+    "tool_path": "research/calibration-tests/continuous-action-pilot/tools/build-role-submission.py",
+    "tool_sha256": "36039f998a026ea9da27f509d2ed79d4e46dbae8f7f1b0ac43e3027f810edbaf"
+  },
+  "pollution": {
+    "familiarity": {
+      "exact_result_knowledge": "none",
+      "exact_rule_knowledge": "none",
+      "exact_variant_knowledge": "none",
+      "project_exposure": "none",
+      "recognition_status": "none",
+      "recognized_family": null,
+      "recognized_work": null,
+      "related_genre_experience": "unknown"
+    },
+    "integrity_exposures": [],
+    "stage_update_note": null
+  },
+  "prediction_answers": [],
+  "prior_stage_submission_sha256": null,
+  "raw_payload": {
+    "artifact_id": "payload.submission.reconstruct.v01.interface-r005",
+    "path": "research/calibration-tests/continuous-action-pilot/rehearsals/rehearsal-005/raw/reconstruction-v01.payload.json",
+    "schema_path": "research/calibration-tests/continuous-action-pilot/schema/blind-response-interface-0.1.0.schema.json",
+    "schema_sha256": "0713d415af2ff3dddc1604b1519f5cc06ffa4933d32cc4c20d56608c2e61bdf7",
+    "sha256": "df99687649a3e0945bc941e3089cadc1aff64573835dafb22883ab188b62d0f9"
+  },
+  "reconstruction_answers": [
+    {
+      "ambiguities": [],
+      "assumptions": [],
+      "case_id": "CA-R2",
+      "compatible_branches": [],
+      "confidence_percent": 100,
+      "recovered_facts": [
+        {
+          "claim": "v-q 的当前值为 0。",
+          "fact_id": "ca-r2.variant-value",
+          "recovery_status": "recovered",
+          "supporting_record_ids": [
+            "rec.sampling-policy"
+          ]
+        },
+        {
+          "claim": "step1 更新开始时读取当前步骤原始输入，因此 value.sampled 为 2。",
+          "fact_id": "ca-r2.step-1-sample",
+          "recovery_status": "recovered",
+          "supporting_record_ids": [
+            "rec.sampling-policy",
+            "rec.step-order"
+          ]
+        },
+        {
+          "claim": "step1 执行后 state.total 为 2。",
+          "fact_id": "ca-r2.step-1-total",
+          "recovery_status": "recovered",
+          "supporting_record_ids": [
+            "rec.accumulator-process",
+            "rec.step-order"
+          ]
+        },
+        {
+          "claim": "step2 更新开始时重新读取当前步骤原始输入，因此 value.sampled 为 5。",
+          "fact_id": "ca-r2.step-2-sample",
+          "recovery_status": "recovered",
+          "supporting_record_ids": [
+            "rec.sampling-policy",
+            "rec.step-order"
+          ]
+        },
+        {
+          "claim": "step2 执行后停止，obs.total-at-stop 为 7。",
+          "fact_id": "ca-r2.observed-total",
+          "recovery_status": "recovered",
+          "supporting_record_ids": [
+            "rec.sampling-policy",
+            "rec.accumulator-process",
+            "rec.step-order",
+            "stop.after-step-2",
+            "obs.total-at-stop"
+          ]
+        }
+      ],
+      "uniqueness": "uniquely_recoverable"
+    }
+  ],
+  "run_id": "rehearsal-005",
+  "stage": "reconstruction",
+  "submission_id": "submission.reconstruct.v01.interface-r005",
+  "submitted_at": "2026-07-26T19:23:30Z",
+  "task_id": "task.reconstruct.v01"
+}

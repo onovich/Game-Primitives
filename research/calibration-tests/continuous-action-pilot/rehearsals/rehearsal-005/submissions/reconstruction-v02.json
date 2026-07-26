@@ -1,0 +1,170 @@
+{
+  "$schema": "https://github.com/onovich/Game-Primitives/blob/main/research/calibration-tests/continuous-action-pilot/schema/role-submission-0.1.2.schema.json",
+  "actor": {
+    "identifier": "interface-r005-v02",
+    "model": "Codex delegated agent",
+    "model_version": "current-thread-runtime",
+    "reasoning_effort": "xhigh",
+    "role": "blind_reconstructor_predictor",
+    "session_id": "rehearsal-005-condition-v02"
+  },
+  "artifact_type": "reconstruction_submission",
+  "artifact_version": "0.1.2",
+  "audit_checks": [],
+  "audit_decision": null,
+  "condition_id": "condition-v02",
+  "findings": [],
+  "first_submission": true,
+  "input_artifacts": [
+    {
+      "artifact_id": "task.reconstruct.v02",
+      "sha256": "5bcad0ca7478b2be60d95eb9ff2b5b2c1b5aa65bca900d6c3eabbd07baf275cf"
+    },
+    {
+      "artifact_id": "view-v02",
+      "sha256": "1deaa4898d6051ea3822614000897f0d04da731a9b84fb71a889d67dc15c4aef"
+    },
+    {
+      "artifact_id": "response-template-reconstruction",
+      "sha256": "5fe70a0b006227b9644e094b6b9d5c241b34caf58d442af2a0e5e4425271e1e6"
+    }
+  ],
+  "packaging": {
+    "copied_fields": [
+      "pollution",
+      "reconstruction_answers"
+    ],
+    "envelope_path": "research/calibration-tests/continuous-action-pilot/rehearsals/rehearsal-005/envelopes/reconstruction-v02.json",
+    "envelope_sha256": "129bd169b3f71a96fbf032a89c530a20c887fbbdc9295ad38cec72d2584d73bf",
+    "mode": "deterministic_field_copy",
+    "semantic_copy_verified": true,
+    "tool_path": "research/calibration-tests/continuous-action-pilot/tools/build-role-submission.py",
+    "tool_sha256": "36039f998a026ea9da27f509d2ed79d4e46dbae8f7f1b0ac43e3027f810edbaf"
+  },
+  "pollution": {
+    "familiarity": {
+      "exact_result_knowledge": "none",
+      "exact_rule_knowledge": "none",
+      "exact_variant_knowledge": "none",
+      "project_exposure": "none",
+      "recognition_status": "none",
+      "recognized_family": null,
+      "recognized_work": null,
+      "related_genre_experience": "unknown"
+    },
+    "integrity_exposures": [],
+    "stage_update_note": null
+  },
+  "prediction_answers": [],
+  "prior_stage_submission_sha256": null,
+  "raw_payload": {
+    "artifact_id": "payload.submission.reconstruct.v02.interface-r005",
+    "path": "research/calibration-tests/continuous-action-pilot/rehearsals/rehearsal-005/raw/reconstruction-v02.payload.json",
+    "schema_path": "research/calibration-tests/continuous-action-pilot/schema/blind-response-interface-0.1.0.schema.json",
+    "schema_sha256": "0713d415af2ff3dddc1604b1519f5cc06ffa4933d32cc4c20d56608c2e61bdf7",
+    "sha256": "316ea96ff36b066040c96795184bf581790545262e81f65dfc0f99f96f5c4f14"
+  },
+  "reconstruction_answers": [
+    {
+      "ambiguities": [],
+      "assumptions": [],
+      "case_id": "CA-R2",
+      "compatible_branches": [
+        {
+          "branch_id": "raw-input-addition",
+          "description": "v-q does not alter either input or update; each accumulation adds the raw input, so the stopped total is 7.",
+          "supporting_record_ids": [
+            "state.total",
+            "step1",
+            "step2",
+            "v-q",
+            "op.accumulate",
+            "stop.after-step-2",
+            "obs.total-at-stop"
+          ]
+        },
+        {
+          "branch_id": "zero-gated-input",
+          "description": "v-q at 0 maps each raw input to 0 before accumulation; both operations still occur and write state.total, so the stopped total is 0.",
+          "supporting_record_ids": [
+            "state.total",
+            "step1",
+            "step2",
+            "v-q",
+            "op.accumulate",
+            "stop.after-step-2",
+            "obs.total-at-stop"
+          ]
+        }
+      ],
+      "confidence_percent": 98,
+      "recovered_facts": [
+        {
+          "claim": "state.total initially equals 0.",
+          "fact_id": "initial-total",
+          "recovery_status": "recovered",
+          "supporting_record_ids": [
+            "state.total"
+          ]
+        },
+        {
+          "claim": "The raw inputs are 2 at step1 and 5 at step2.",
+          "fact_id": "raw-inputs",
+          "recovery_status": "recovered",
+          "supporting_record_ids": [
+            "step1",
+            "step2"
+          ]
+        },
+        {
+          "claim": "step1 and step2 each execute op.accumulate and write state.total.",
+          "fact_id": "operation-occurrences",
+          "recovery_status": "recovered",
+          "supporting_record_ids": [
+            "step1",
+            "step2",
+            "op.accumulate",
+            "state.total"
+          ]
+        },
+        {
+          "claim": "v-q currently equals 0 and permits values 0 or 1.",
+          "fact_id": "variable-state",
+          "recovery_status": "recovered",
+          "supporting_record_ids": [
+            "v-q"
+          ]
+        },
+        {
+          "claim": "Execution stops after step2 and observes state.total at that boundary.",
+          "fact_id": "observation-boundary",
+          "recovery_status": "recovered",
+          "supporting_record_ids": [
+            "stop.after-step-2",
+            "obs.total-at-stop",
+            "state.total"
+          ]
+        },
+        {
+          "claim": "The numeric value of obs.total-at-stop is not recoverable because the relationship among v-q, input reading, and state updating is undeclared.",
+          "fact_id": "stopped-total-value",
+          "recovery_status": "not_recoverable",
+          "supporting_record_ids": [
+            "v-q",
+            "step1",
+            "step2",
+            "op.accumulate",
+            "state.total",
+            "obs.total-at-stop"
+          ]
+        }
+      ],
+      "uniqueness": "multiple_compatible_structures"
+    }
+  ],
+  "run_id": "rehearsal-005",
+  "stage": "reconstruction",
+  "submission_id": "submission.reconstruct.v02.interface-r005",
+  "submitted_at": "2026-07-26T19:23:30Z",
+  "task_id": "task.reconstruct.v02"
+}
