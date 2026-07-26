@@ -1,0 +1,193 @@
+{
+  "$schema": "https://github.com/onovich/Game-Primitives/blob/main/research/calibration-tests/continuous-action-pilot/schema/run-manifest-0.1.0.schema.json",
+  "artifact_type": "rehearsal_manifest",
+  "artifact_version": "0.1.0",
+  "artifacts": [
+    {
+      "artifact_id": "readme",
+      "artifact_kind": "documentation",
+      "artifact_version": "0.1.0",
+      "audience": [
+        "public_archive"
+      ],
+      "decision_relevant": false,
+      "included_in_frozen_set": true,
+      "path": "README.md",
+      "release_stage": "preparation",
+      "schema_path": "research/calibration-tests/continuous-action-pilot/schema/markdown-document-0.1.0.schema.json",
+      "schema_sha256": "89827f39031c7d26f430584bb2f3e64c3600213a8e45e994da2c4120cb3f09a3",
+      "sha256": "11a02bdef3c8574b4ff6f2b240eff812f481ad1984fd8da238cbaed79d66f9f6",
+      "supersedes_artifact_id": null
+    },
+    {
+      "artifact_id": "prediction-neutral-task",
+      "artifact_kind": "task_packet",
+      "artifact_version": "0.1.0",
+      "audience": [
+        "all_blind_testers",
+        "custodian",
+        "public_after_reveal"
+      ],
+      "decision_relevant": true,
+      "included_in_frozen_set": true,
+      "path": "inputs/prediction-neutral.task.json",
+      "release_stage": "prediction",
+      "schema_path": "research/calibration-tests/continuous-action-pilot/schema/task-packet-0.1.0.schema.json",
+      "schema_sha256": "a8e79c02ec515debfe71eecc07a11b481b5312e27ff94d8da1d138714d131e9d",
+      "sha256": "2747bce8b9e39a1b6fc29d115ed676aadcd209729f0bdbad49bc1f47b42f2072",
+      "supersedes_artifact_id": null
+    },
+    {
+      "artifact_id": "projection-spec",
+      "artifact_kind": "documentation",
+      "artifact_version": "0.1.0",
+      "audience": [
+        "custodian",
+        "public_after_reveal",
+        "source_auditor"
+      ],
+      "decision_relevant": true,
+      "included_in_frozen_set": true,
+      "path": "inputs/projection-spec.md",
+      "release_stage": "view_generation",
+      "schema_path": "research/calibration-tests/continuous-action-pilot/schema/markdown-document-0.1.0.schema.json",
+      "schema_sha256": "89827f39031c7d26f430584bb2f3e64c3600213a8e45e994da2c4120cb3f09a3",
+      "sha256": "047eba092a2015d429b4fe969fef3b03ee7232414bceb133f7516f9d449c30d2",
+      "supersedes_artifact_id": null
+    },
+    {
+      "artifact_id": "reconstruction-task-v01",
+      "artifact_kind": "task_packet",
+      "artifact_version": "0.1.0",
+      "audience": [
+        "condition-v01",
+        "custodian",
+        "public_after_reveal"
+      ],
+      "decision_relevant": true,
+      "included_in_frozen_set": true,
+      "path": "inputs/reconstruction-condition-v01.task.json",
+      "release_stage": "reconstruction",
+      "schema_path": "research/calibration-tests/continuous-action-pilot/schema/task-packet-0.1.0.schema.json",
+      "schema_sha256": "a8e79c02ec515debfe71eecc07a11b481b5312e27ff94d8da1d138714d131e9d",
+      "sha256": "b6cb510ea2692ca0d98acf039bd5771c49a71f4e95247b9c2cf8cd30fe589fcf",
+      "supersedes_artifact_id": null
+    },
+    {
+      "artifact_id": "reconstruction-task-v02",
+      "artifact_kind": "task_packet",
+      "artifact_version": "0.1.0",
+      "audience": [
+        "condition-v02",
+        "custodian",
+        "public_after_reveal"
+      ],
+      "decision_relevant": true,
+      "included_in_frozen_set": true,
+      "path": "inputs/reconstruction-condition-v02.task.json",
+      "release_stage": "reconstruction",
+      "schema_path": "research/calibration-tests/continuous-action-pilot/schema/task-packet-0.1.0.schema.json",
+      "schema_sha256": "a8e79c02ec515debfe71eecc07a11b481b5312e27ff94d8da1d138714d131e9d",
+      "sha256": "895e5b18a03c25f35a690ad8538585042487d851f37b27d81c26830ce8ff2d2f",
+      "supersedes_artifact_id": null
+    },
+    {
+      "artifact_id": "truth-commitment",
+      "artifact_kind": "truth",
+      "artifact_version": "0.1.0",
+      "audience": [
+        "all_blind_testers",
+        "custodian",
+        "public_archive"
+      ],
+      "decision_relevant": true,
+      "included_in_frozen_set": true,
+      "path": "inputs/truth-commitment.json",
+      "release_stage": "preparation",
+      "schema_path": "research/calibration-tests/continuous-action-pilot/schema/rehearsal-input-0.1.1.schema.json",
+      "schema_sha256": "3b87db188a09a09f8f18e3a1871f14840eaae05c66280d4e684b8e27ca99a7c9",
+      "sha256": "a40b90d4f827e9a643120792c0a993add6f3ccf50a89fd41d50912c71d5df464",
+      "supersedes_artifact_id": null
+    },
+    {
+      "artifact_id": "variant-envelope",
+      "artifact_kind": "fixture",
+      "artifact_version": "0.1.0",
+      "audience": [
+        "all_blind_testers",
+        "custodian",
+        "public_after_reveal"
+      ],
+      "decision_relevant": true,
+      "included_in_frozen_set": true,
+      "path": "inputs/variant-envelope.json",
+      "release_stage": "prediction",
+      "schema_path": "research/calibration-tests/continuous-action-pilot/schema/rehearsal-input-0.1.1.schema.json",
+      "schema_sha256": "3b87db188a09a09f8f18e3a1871f14840eaae05c66280d4e684b8e27ca99a7c9",
+      "sha256": "edee576a30644e08fe3f22cd17ff981454d29a56fa19807bf8b3289d7d4c428e",
+      "supersedes_artifact_id": null
+    },
+    {
+      "artifact_id": "view-v01",
+      "artifact_kind": "fixture",
+      "artifact_version": "0.1.0",
+      "audience": [
+        "condition-v01",
+        "custodian",
+        "public_after_reveal"
+      ],
+      "decision_relevant": true,
+      "included_in_frozen_set": true,
+      "path": "inputs/view-v01.json",
+      "release_stage": "view_generation",
+      "schema_path": "research/calibration-tests/continuous-action-pilot/schema/rehearsal-input-0.1.1.schema.json",
+      "schema_sha256": "3b87db188a09a09f8f18e3a1871f14840eaae05c66280d4e684b8e27ca99a7c9",
+      "sha256": "020e6458e93cbe9904bac0968bc96c3f4aef2472767a4af101360571995ab1b8",
+      "supersedes_artifact_id": null
+    },
+    {
+      "artifact_id": "view-v02",
+      "artifact_kind": "fixture",
+      "artifact_version": "0.1.0",
+      "audience": [
+        "condition-v02",
+        "custodian",
+        "public_after_reveal"
+      ],
+      "decision_relevant": true,
+      "included_in_frozen_set": true,
+      "path": "inputs/view-v02.json",
+      "release_stage": "view_generation",
+      "schema_path": "research/calibration-tests/continuous-action-pilot/schema/rehearsal-input-0.1.1.schema.json",
+      "schema_sha256": "3b87db188a09a09f8f18e3a1871f14840eaae05c66280d4e684b8e27ca99a7c9",
+      "sha256": "d38db6f5cabb9e23661f43c1a16127de6cfaf767cfcf3921a95f3353b8c7d4b1",
+      "supersedes_artifact_id": null
+    }
+  ],
+  "created_at": "2026-07-26T18:12:21Z",
+  "freeze_commit": "2d299b73bf1e36ffafd35f0676f0f7a52368bc35",
+  "frozen_artifact_set_digest": "060a0ace37c306b55af9d06978b5f2bdac4192fcc8229ad0151c496a51514d3f",
+  "protocol_version": "0.1.0",
+  "run_id": "rehearsal-002",
+  "schema_version": "0.1.0",
+  "stage": "preparation",
+  "stage_digests": [
+    {
+      "artifact_set_digest": "060a0ace37c306b55af9d06978b5f2bdac4192fcc8229ad0151c496a51514d3f",
+      "git_commit": "2d299b73bf1e36ffafd35f0676f0f7a52368bc35",
+      "recorded_at": "2026-07-26T18:12:21Z",
+      "stage": "preparation"
+    }
+  ],
+  "status": "frozen",
+  "truth_commitment": {
+    "algorithm": "SHA-256",
+    "combination": "secret_nonce_bytes || exact_truth_bundle_bytes",
+    "commitment": "c213a8314cb0890e2e1ae7829e7c800c9f2c25d33c533215c50e98294ae96b3e",
+    "created_at": "2026-07-26T18:10:28Z",
+    "nonce_length_bytes": 32,
+    "truth_bundle_bytes": 6249,
+    "truth_bundle_name": "sealed-truth.json"
+  },
+  "updated_at": "2026-07-26T18:12:21Z"
+}
