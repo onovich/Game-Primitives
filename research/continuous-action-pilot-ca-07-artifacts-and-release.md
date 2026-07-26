@@ -4,6 +4,7 @@
 - 日期：2026-07-27
 - 来源决定：[CA-01](continuous-action-pilot-ca-01.md)–[CA-06](continuous-action-pilot-ca-06-execution-and-verdicts.md)
 - 接受记录：[ADR 0115](../docs/adr/0115-freeze-continuous-action-artifacts-rehearsal-and-release.md)
+- 彩排后修订：[ADR 0116](../docs/adr/0116-separate-blind-payloads-from-generated-submission-envelopes.md)
 - 正式工作区：`research/calibration-tests/continuous-action-pilot/`
 
 ## 1. 决策摘要
@@ -345,3 +346,24 @@ invalidated
 
 来源、视图、首次提交、预测、执行与揭示之间仍保持逐字节证据链。当前设计不增加任何**共享术语**，也不改变公开理论主线。
 
+## 12. 彩排结果与接口修订
+
+四次保留的虚构彩排依次发现：
+
+1. `rehearsal-001`：预测值没有配置寻址；
+2. `rehearsal-002`：根摘要不能按冻结算法复算；
+3. `rehearsal-003`：任务包仍引用旧输入散列；
+4. `rehearsal-004`：六项阶段链全部通过，但自由手写完整提交信封产生大量格式失效。
+
+`rehearsal-004` 的 `procedure_pass` 只确认入选有效链的冻结、执行与揭示顺序，不确认理论，也不证明原提交接口可用于正式盲测。
+
+ADR 0116 对第 3、5、6、7 节作以下窄修订：
+
+- 盲测执行者提交阶段专用原始 payload，不再手写完整 `role-submission`；
+- `task-packet 0.1.1` 同时声明原始 payload Schema、允许配置与装配后 Schema；
+- 保管工具在收到首答后生成时间、actor、任务、输入与前阶段散列信封；
+- `role-submission 0.1.2` 是从原始 payload 与信封确定性派生的机器制品；
+- 无效原始首答仍使该执行者链退出，工具不得语义纠错；
+- 正式阶段仍须收齐同一阶段后一次归档，彩排中的增量重试不成为正式先例。
+
+修订的完整契约见[盲测回答接口修订](continuous-action-pilot-blind-response-interface.md)。在聚焦接口彩排通过前，第 10 节人工门不得召开；通过后也仍须取得一次明确放行。

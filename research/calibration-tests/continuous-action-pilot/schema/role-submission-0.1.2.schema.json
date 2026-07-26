@@ -1,0 +1,401 @@
+{
+  "$id": "https://github.com/onovich/Game-Primitives/blob/main/research/calibration-tests/continuous-action-pilot/schema/role-submission-0.1.2.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$defs": {
+    "packagingProvenance": {
+      "additionalProperties": false,
+      "properties": {
+        "copied_fields": {
+          "items": {
+            "enum": [
+              "pollution",
+              "prediction_answers",
+              "reconstruction_answers"
+            ]
+          },
+          "minItems": 2,
+          "type": "array",
+          "uniqueItems": true
+        },
+        "envelope_path": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "envelope_sha256": {
+          "$ref": "https://github.com/onovich/Game-Primitives/blob/main/research/calibration-tests/continuous-action-pilot/schema/role-submission-0.1.1.schema.json#/$defs/sha256"
+        },
+        "mode": {
+          "const": "deterministic_field_copy"
+        },
+        "semantic_copy_verified": {
+          "const": true
+        },
+        "tool_path": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "tool_sha256": {
+          "$ref": "https://github.com/onovich/Game-Primitives/blob/main/research/calibration-tests/continuous-action-pilot/schema/role-submission-0.1.1.schema.json#/$defs/sha256"
+        }
+      },
+      "required": [
+        "copied_fields",
+        "envelope_path",
+        "envelope_sha256",
+        "mode",
+        "semantic_copy_verified",
+        "tool_path",
+        "tool_sha256"
+      ],
+      "type": "object"
+    },
+    "rawPayloadReference": {
+      "additionalProperties": false,
+      "properties": {
+        "artifact_id": {
+          "$ref": "https://github.com/onovich/Game-Primitives/blob/main/research/calibration-tests/continuous-action-pilot/schema/role-submission-0.1.1.schema.json#/$defs/localId"
+        },
+        "path": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "schema_path": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "schema_sha256": {
+          "$ref": "https://github.com/onovich/Game-Primitives/blob/main/research/calibration-tests/continuous-action-pilot/schema/role-submission-0.1.1.schema.json#/$defs/sha256"
+        },
+        "sha256": {
+          "$ref": "https://github.com/onovich/Game-Primitives/blob/main/research/calibration-tests/continuous-action-pilot/schema/role-submission-0.1.1.schema.json#/$defs/sha256"
+        }
+      },
+      "required": [
+        "artifact_id",
+        "path",
+        "schema_path",
+        "schema_sha256",
+        "sha256"
+      ],
+      "type": "object"
+    },
+    "submission": {
+      "additionalProperties": false,
+      "properties": {
+        "$schema": {
+          "const": "https://github.com/onovich/Game-Primitives/blob/main/research/calibration-tests/continuous-action-pilot/schema/role-submission-0.1.2.schema.json"
+        },
+        "actor": {
+          "$ref": "https://github.com/onovich/Game-Primitives/blob/main/research/calibration-tests/continuous-action-pilot/schema/role-submission-0.1.1.schema.json#/$defs/testActor"
+        },
+        "artifact_type": {
+          "enum": [
+            "post_reveal_artifact_audit",
+            "prediction_submission",
+            "reconstruction_submission",
+            "source_fidelity_audit"
+          ]
+        },
+        "artifact_version": {
+          "const": "0.1.2"
+        },
+        "audit_checks": {
+          "items": {
+            "$ref": "https://github.com/onovich/Game-Primitives/blob/main/research/calibration-tests/continuous-action-pilot/schema/role-submission-0.1.1.schema.json#/$defs/auditCheck"
+          },
+          "type": "array"
+        },
+        "audit_decision": {
+          "oneOf": [
+            {
+              "enum": [
+                "approved",
+                "blocked",
+                "revision_required"
+              ]
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "condition_id": {
+          "oneOf": [
+            {
+              "pattern": "^condition-v0[12]$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "findings": {
+          "items": {
+            "$ref": "https://github.com/onovich/Game-Primitives/blob/main/research/calibration-tests/continuous-action-pilot/schema/role-submission-0.1.1.schema.json#/$defs/finding"
+          },
+          "type": "array"
+        },
+        "first_submission": {
+          "const": true
+        },
+        "input_artifacts": {
+          "items": {
+            "$ref": "https://github.com/onovich/Game-Primitives/blob/main/research/calibration-tests/continuous-action-pilot/schema/role-submission-0.1.1.schema.json#/$defs/artifactReference"
+          },
+          "minItems": 1,
+          "type": "array"
+        },
+        "packaging": {
+          "oneOf": [
+            {
+              "$ref": "#/$defs/packagingProvenance"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "pollution": {
+          "oneOf": [
+            {
+              "$ref": "https://github.com/onovich/Game-Primitives/blob/main/research/calibration-tests/continuous-action-pilot/schema/role-submission-0.1.1.schema.json#/$defs/pollution"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "prediction_answers": {
+          "items": {
+            "$ref": "https://github.com/onovich/Game-Primitives/blob/main/research/calibration-tests/continuous-action-pilot/schema/role-submission-0.1.1.schema.json#/$defs/predictionAnswer"
+          },
+          "type": "array"
+        },
+        "prior_stage_submission_sha256": {
+          "oneOf": [
+            {
+              "$ref": "https://github.com/onovich/Game-Primitives/blob/main/research/calibration-tests/continuous-action-pilot/schema/role-submission-0.1.1.schema.json#/$defs/sha256"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "raw_payload": {
+          "oneOf": [
+            {
+              "$ref": "#/$defs/rawPayloadReference"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "reconstruction_answers": {
+          "items": {
+            "$ref": "https://github.com/onovich/Game-Primitives/blob/main/research/calibration-tests/continuous-action-pilot/schema/role-submission-0.1.1.schema.json#/$defs/reconstructionAnswer"
+          },
+          "type": "array"
+        },
+        "run_id": {
+          "pattern": "^(?:continuous|rehearsal)-[0-9]{3}$",
+          "type": "string"
+        },
+        "stage": {
+          "enum": [
+            "post_reveal_audit",
+            "prediction",
+            "reconstruction",
+            "source_audit"
+          ]
+        },
+        "submission_id": {
+          "$ref": "https://github.com/onovich/Game-Primitives/blob/main/research/calibration-tests/continuous-action-pilot/schema/role-submission-0.1.1.schema.json#/$defs/localId"
+        },
+        "submitted_at": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "task_id": {
+          "$ref": "https://github.com/onovich/Game-Primitives/blob/main/research/calibration-tests/continuous-action-pilot/schema/role-submission-0.1.1.schema.json#/$defs/localId"
+        }
+      },
+      "required": [
+        "$schema",
+        "actor",
+        "artifact_type",
+        "artifact_version",
+        "audit_checks",
+        "audit_decision",
+        "condition_id",
+        "findings",
+        "first_submission",
+        "input_artifacts",
+        "packaging",
+        "pollution",
+        "prediction_answers",
+        "prior_stage_submission_sha256",
+        "raw_payload",
+        "reconstruction_answers",
+        "run_id",
+        "stage",
+        "submission_id",
+        "submitted_at",
+        "task_id"
+      ],
+      "type": "object"
+    }
+  },
+  "$ref": "#/$defs/submission",
+  "oneOf": [
+    {
+      "properties": {
+        "artifact_type": {
+          "const": "post_reveal_artifact_audit"
+        },
+        "condition_id": {
+          "type": "null"
+        },
+        "packaging": {
+          "type": "null"
+        },
+        "raw_payload": {
+          "type": "null"
+        },
+        "stage": {
+          "const": "post_reveal_audit"
+        }
+      },
+      "required": [
+        "artifact_type",
+        "audit_checks",
+        "audit_decision",
+        "stage"
+      ]
+    },
+    {
+      "properties": {
+        "artifact_type": {
+          "const": "prediction_submission"
+        },
+        "audit_checks": {
+          "maxItems": 0
+        },
+        "audit_decision": {
+          "type": "null"
+        },
+        "condition_id": {
+          "pattern": "^condition-v0[12]$",
+          "type": "string"
+        },
+        "packaging": {
+          "$ref": "#/$defs/packagingProvenance"
+        },
+        "findings": {
+          "maxItems": 0
+        },
+        "prediction_answers": {
+          "minItems": 1
+        },
+        "prior_stage_submission_sha256": {
+          "$ref": "https://github.com/onovich/Game-Primitives/blob/main/research/calibration-tests/continuous-action-pilot/schema/role-submission-0.1.1.schema.json#/$defs/sha256"
+        },
+        "raw_payload": {
+          "$ref": "#/$defs/rawPayloadReference"
+        },
+        "reconstruction_answers": {
+          "maxItems": 0
+        },
+        "stage": {
+          "const": "prediction"
+        }
+      },
+      "required": [
+        "artifact_type",
+        "condition_id",
+        "packaging",
+        "pollution",
+        "prediction_answers",
+        "prior_stage_submission_sha256",
+        "raw_payload",
+        "stage"
+      ]
+    },
+    {
+      "properties": {
+        "artifact_type": {
+          "const": "reconstruction_submission"
+        },
+        "audit_checks": {
+          "maxItems": 0
+        },
+        "audit_decision": {
+          "type": "null"
+        },
+        "condition_id": {
+          "pattern": "^condition-v0[12]$",
+          "type": "string"
+        },
+        "packaging": {
+          "$ref": "#/$defs/packagingProvenance"
+        },
+        "findings": {
+          "maxItems": 0
+        },
+        "prediction_answers": {
+          "maxItems": 0
+        },
+        "prior_stage_submission_sha256": {
+          "type": "null"
+        },
+        "raw_payload": {
+          "$ref": "#/$defs/rawPayloadReference"
+        },
+        "reconstruction_answers": {
+          "minItems": 1
+        },
+        "stage": {
+          "const": "reconstruction"
+        }
+      },
+      "required": [
+        "artifact_type",
+        "condition_id",
+        "packaging",
+        "pollution",
+        "raw_payload",
+        "reconstruction_answers",
+        "stage"
+      ]
+    },
+    {
+      "properties": {
+        "artifact_type": {
+          "const": "source_fidelity_audit"
+        },
+        "condition_id": {
+          "type": "null"
+        },
+        "packaging": {
+          "type": "null"
+        },
+        "raw_payload": {
+          "type": "null"
+        },
+        "stage": {
+          "const": "source_audit"
+        }
+      },
+      "required": [
+        "artifact_type",
+        "audit_checks",
+        "audit_decision",
+        "findings",
+        "stage"
+      ]
+    }
+  ],
+  "title": "Game Primitives Role Submission 0.1.2",
+  "type": "object"
+}

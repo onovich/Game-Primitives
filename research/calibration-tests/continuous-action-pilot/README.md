@@ -1,6 +1,6 @@
 # 连续行动先行组测试工作区
 
-- 状态：CA-07 已冻结；工作区与 Schema 已建立，尚未建立彩排或正式轮次
+- 状态：CA-07 已冻结；`rehearsal-004` 的阶段链通过，盲测回答接口修订已实现并等待聚焦彩排；正式轮次未运行
 - 受测表示：[连续行动结构表示 v0.1](../../../theory/CONTINUOUS-ACTION-REPRESENTATION-0.1.md)
 - 执行与结论规则：[CA-06](../../continuous-action-pilot-ca-06-execution-and-verdicts.md)
 - 制品与放行规则：[CA-07](../../continuous-action-pilot-ca-07-artifacts-and-release.md)
@@ -25,8 +25,11 @@
 - [`run-manifest-0.1.0.schema.json`](schema/run-manifest-0.1.0.schema.json)：正式轮次或彩排的状态、阶段、制品索引、冻结集合摘要和真值承诺。
 - [`ca-sr-artifact-0.1.0.schema.json`](schema/ca-sr-artifact-0.1.0.schema.json)：来源包、CA-SR 规范编码、机械生成视图和投影规则。
 - [`task-packet-0.1.0.schema.json`](schema/task-packet-0.1.0.schema.json)：来源编码、来源审核、重构和预测的冻结派发信封。
+- [`task-packet-0.1.1.schema.json`](schema/task-packet-0.1.1.schema.json)：为盲测任务增加允许配置与装配后输出 Schema；保留 0.1.0 供既有轮次复算。
 - [`role-submission-0.1.0.schema.json`](schema/role-submission-0.1.0.schema.json)：来源审核、重构、预测和揭示后制品审核的首次提交。
 - [`role-submission-0.1.1.schema.json`](schema/role-submission-0.1.1.schema.json)：保留 0.1.0 并给预测期望增加必填 `configuration_id`，修复 `rehearsal-001` 发现的基线／变体寻址缺口。
+- [`role-submission-0.1.2.schema.json`](schema/role-submission-0.1.2.schema.json)：把原始盲测 payload、机器信封与装配工具散列绑定到派生提交。
+- [`blind-response-interface-0.1.0.schema.json`](schema/blind-response-interface-0.1.0.schema.json)：阶段专用的盲测语义 payload 与机器信封。
 - [`execution-artifact-0.1.0.schema.json`](schema/execution-artifact-0.1.0.schema.json)：执行计划、原始轨迹包和派生执行结果。
 - [`truth-reveal-0.1.0.schema.json`](schema/truth-reveal-0.1.0.schema.json)：密封真值与揭示后的承诺复算记录。
 - [`run-report-0.1.0.schema.json`](schema/run-report-0.1.0.schema.json)：逐角色硬条件向量、两条结论轴、跨案例义务和组级结论。
@@ -36,6 +39,19 @@
 - [`frozen-set-preimage-0.1.0.schema.json`](schema/frozen-set-preimage-0.1.0.schema.json)：约束冻结集合根摘要所使用的逐行 TSV 前像，便于独立复算。
 
 根摘要应同时通过 [`verify-frozen-manifest.py`](tools/verify-frozen-manifest.py) 复算。校验器只读清单、制品与 Schema；不会修正已经冻结的值。
+
+盲测回答使用 [`build-role-submission.py`](tools/build-role-submission.py) 渲染结构模板、捕获机器信封、确定性装配并复核。修订理由与边界见[盲测回答接口修订](../../continuous-action-pilot-blind-response-interface.md)。
+
+## 彩排记录
+
+| 轮次 | 结果 | 发现 |
+| --- | --- | --- |
+| `rehearsal-001` | `procedure_fail` | 预测值缺少配置寻址 |
+| `rehearsal-002` | `procedure_fail` | 冻结集合根摘要不可按文档算法复算 |
+| `rehearsal-003` | `procedure_fail` | 任务包保留了旧输入散列 |
+| `rehearsal-004` | `procedure_pass` | 六项阶段链闭合；完整提交接口仍过于脆弱 |
+
+失败轮次、无效首答和已冻结 README 均原样保留。`rehearsal-004` 的通过是程序结论，不是理论证据；其接口限制由 ADR 0116 另行修订。
 
 ## 计划中的轮次结构
 
