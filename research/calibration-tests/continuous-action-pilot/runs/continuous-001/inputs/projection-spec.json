@@ -1,0 +1,218 @@
+{
+  "$schema": "https://github.com/onovich/Game-Primitives/blob/main/research/calibration-tests/continuous-action-pilot/schema/ca-sr-artifact-0.1.0.schema.json",
+  "artifact_type": "projection_spec",
+  "artifact_version": "0.1.0",
+  "canonical_encoding_sha256": "0ca359886db636f065254b1a84c151c3b40b6442c7c503318944c534ea9738c3",
+  "forbidden_tokens": [
+    "AllJudged",
+    "ApplyResult",
+    "ArmedState",
+    "CanBeHit",
+    "Clock",
+    "CommonActionID",
+    "DifficultyRange",
+    "DrawableHitCircle",
+    "DrawableHitObject",
+    "F00",
+    "FOOTSIES",
+    "Fight",
+    "GameplayRate",
+    "HitCircle",
+    "HitReceptor",
+    "HitResult",
+    "HitWindows",
+    "InputManager",
+    "JudgementResult",
+    "N_ATTACK",
+    "N_SPECIAL",
+    "OD5",
+    "OnNewResult",
+    "OnPressed",
+    "PM_AirMove",
+    "PM_NORMAL",
+    "Pmove",
+    "PmoveSingle",
+    "Quake",
+    "Quake III",
+    "RawTime",
+    "RequestAction",
+    "STAND",
+    "SnapVector",
+    "StartTime",
+    "Time.Current",
+    "UpdateFightState",
+    "canCancelOnWhiff",
+    "cmd.serverTime",
+    "commandTime",
+    "finalTime",
+    "frametime",
+    "hifight",
+    "id-Software",
+    "lazer",
+    "osu!",
+    "osu!lazer",
+    "playerState",
+    "playerState_t",
+    "pm->cmd",
+    "pmove_t",
+    "ppy",
+    "r1.",
+    "r2.",
+    "r3.",
+    "raw_cmd",
+    "rich",
+    "serverTime",
+    "atomic",
+    "used_cmd",
+    "usercmd",
+    "wishspeed"
+  ],
+  "generator_id": "generate-continuous-views",
+  "generator_version": "0.1.0",
+  "projections": [
+    {
+      "projection_id": "projection-v01.gsha256-49f4039a9887d11624127681d38e00a56c9c9f9e28672d9b69d48b1135c9dd71",
+      "rules": [
+        {
+          "from_value": null,
+          "operation": "include_path",
+          "path": "/cases",
+          "rule_id": "rich.01.include-cases",
+          "to_value": "typed-rich-view"
+        },
+        {
+          "from_value": "source-identity",
+          "operation": "redact_text",
+          "path": "/cases/references/audit_identity",
+          "rule_id": "rich.02.redact-audit-identity",
+          "to_value": null
+        },
+        {
+          "from_value": "source-provenance-locators",
+          "operation": "remove_path",
+          "path": "/cases/provenance_refs",
+          "rule_id": "rich.03.remove-provenance",
+          "to_value": null
+        },
+        {
+          "from_value": "source-issues",
+          "operation": "remove_path",
+          "path": "/cases/source_issues",
+          "rule_id": "rich.04.remove-source-issues",
+          "to_value": null
+        },
+        {
+          "from_value": "canonical-local-id",
+          "operation": "rename_id",
+          "path": "/cases",
+          "rule_id": "rich.05.opaque-identifiers",
+          "to_value": "opaque-sequential-id"
+        }
+      ]
+    },
+    {
+      "projection_id": "projection-v02.gsha256-49f4039a9887d11624127681d38e00a56c9c9f9e28672d9b69d48b1135c9dd71",
+      "rules": [
+        {
+          "from_value": null,
+          "operation": "include_path",
+          "path": "/cases/case_scope",
+          "rule_id": "atomic.01.include-scope",
+          "to_value": "boundary-only-scope"
+        },
+        {
+          "from_value": null,
+          "operation": "include_path",
+          "path": "/cases/references",
+          "rule_id": "atomic.02.include-endpoints",
+          "to_value": "opaque-actions-and-effects"
+        },
+        {
+          "from_value": null,
+          "operation": "include_path",
+          "path": "/cases/state_channels",
+          "rule_id": "atomic.03.include-channels",
+          "to_value": "initial-and-stop-fields"
+        },
+        {
+          "from_value": null,
+          "operation": "include_path",
+          "path": "/cases/trace_contract",
+          "rule_id": "atomic.04.include-boundary-trace",
+          "to_value": "start-stop-and-state-output"
+        },
+        {
+          "from_value": "typed-composition",
+          "operation": "remove_path",
+          "path": "/cases/composition_edges",
+          "rule_id": "atomic.05.remove-composition",
+          "to_value": null
+        },
+        {
+          "from_value": "typed-operation",
+          "operation": "remove_path",
+          "path": "/cases/operational_edges",
+          "rule_id": "atomic.06.remove-operational-edges",
+          "to_value": null
+        },
+        {
+          "from_value": "lifecycle-process-adjudication",
+          "operation": "remove_path",
+          "path": "/cases/operational_records",
+          "rule_id": "atomic.07.remove-operational-records",
+          "to_value": null
+        },
+        {
+          "from_value": "rule-frames",
+          "operation": "remove_path",
+          "path": "/cases/rules",
+          "rule_id": "atomic.08.remove-rules",
+          "to_value": null
+        },
+        {
+          "from_value": "source-issues",
+          "operation": "remove_path",
+          "path": "/cases/source_issues",
+          "rule_id": "atomic.09.remove-source-issues",
+          "to_value": null
+        },
+        {
+          "from_value": "typed-time-relations",
+          "operation": "remove_path",
+          "path": "/cases/temporal_edges",
+          "rule_id": "atomic.10.remove-temporal-edges",
+          "to_value": null
+        },
+        {
+          "from_value": "sampling-and-scheduling-clocks",
+          "operation": "remove_path",
+          "path": "/cases/time_bases",
+          "rule_id": "atomic.11.remove-time-bases",
+          "to_value": null
+        },
+        {
+          "from_value": "canonical-local-id",
+          "operation": "rename_id",
+          "path": "/cases",
+          "rule_id": "atomic.12.opaque-identifiers",
+          "to_value": "opaque-sequential-id"
+        },
+        {
+          "from_value": "canonical-observation-start",
+          "operation": "retain_endpoint",
+          "path": "/cases/case_scope/observation_start",
+          "rule_id": "atomic.13.retain-start",
+          "to_value": "generic-start-coordinate"
+        },
+        {
+          "from_value": "canonical-observation-stop",
+          "operation": "retain_endpoint",
+          "path": "/cases/case_scope/observation_stop",
+          "rule_id": "atomic.14.retain-stop",
+          "to_value": "generic-stop-coordinate"
+        }
+      ]
+    }
+  ],
+  "run_id": "continuous-001"
+}

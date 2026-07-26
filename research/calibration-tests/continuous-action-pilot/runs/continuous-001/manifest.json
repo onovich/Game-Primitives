@@ -17,7 +17,7 @@
       "release_stage": "preparation",
       "schema_path": "research/calibration-tests/continuous-action-pilot/schema/markdown-document-0.1.0.schema.json",
       "schema_sha256": "89827f39031c7d26f430584bb2f3e64c3600213a8e45e994da2c4120cb3f09a3",
-      "sha256": "bdf33707ff92d9ced80c17606edb7a973ade78efc2fa71625ca3a72a12efbbb2",
+      "sha256": "15ad900874c305303071d1a1deddba5a71899539f546d50094cfa87091e45d68",
       "supersedes_artifact_id": null
     },
     {
@@ -142,6 +142,80 @@
       "schema_sha256": "ce1bcbb603550ec42afa9023191666b0ef45096b4c0efd1a3b42150c83577f95",
       "sha256": "d3afdd3d8fbb10e4de498f90f17bf28e524357c7e3802aa5be6da1280abcf1d0",
       "supersedes_artifact_id": null
+    },
+    {
+      "artifact_id": "projection.spec-v0.1.0",
+      "artifact_kind": "source",
+      "artifact_version": "0.1.0",
+      "audience": [
+        "custodian",
+        "public_after_reveal",
+        "source_auditor"
+      ],
+      "decision_relevant": true,
+      "included_in_frozen_set": false,
+      "path": "inputs/projection-spec.json",
+      "release_stage": "view_generation",
+      "schema_path": "research/calibration-tests/continuous-action-pilot/schema/ca-sr-artifact-0.1.0.schema.json",
+      "schema_sha256": "80abf62c385d9723090c66601ff6530a6bbec4585292d3c8f81f77c1081d43a5",
+      "sha256": "7039674016a04416ccf945345bf9f9b89a9a7045b0dfcc745c74e5efbdcdfe0a",
+      "supersedes_artifact_id": null
+    },
+    {
+      "artifact_id": "projection.generator-v0.1.0",
+      "artifact_kind": "generator",
+      "artifact_version": "0.1.0",
+      "audience": [
+        "custodian",
+        "public_after_reveal",
+        "source_auditor"
+      ],
+      "decision_relevant": true,
+      "included_in_frozen_set": false,
+      "path": "inputs/generate-continuous-views-v0.1.0.py",
+      "release_stage": "view_generation",
+      "schema_path": "research/calibration-tests/continuous-action-pilot/schema/text-artifact-0.1.0.schema.json",
+      "schema_sha256": "277edbeae2c76e58fc6ba25975f78338d6df435b4fcf68b1caf06f22481a66c3",
+      "sha256": "49f4039a9887d11624127681d38e00a56c9c9f9e28672d9b69d48b1135c9dd71",
+      "supersedes_artifact_id": null
+    },
+    {
+      "artifact_id": "view.stage1-condition-v01-v0.1.0",
+      "artifact_kind": "fixture",
+      "artifact_version": "0.1.0",
+      "audience": [
+        "condition-v01",
+        "custodian",
+        "public_after_reveal",
+        "source_auditor"
+      ],
+      "decision_relevant": true,
+      "included_in_frozen_set": false,
+      "path": "inputs/stage1-view-v01.json",
+      "release_stage": "view_generation",
+      "schema_path": "research/calibration-tests/continuous-action-pilot/schema/ca-sr-artifact-0.1.0.schema.json",
+      "schema_sha256": "80abf62c385d9723090c66601ff6530a6bbec4585292d3c8f81f77c1081d43a5",
+      "sha256": "e88a6151b71b87b56c9b0a7f1bd653b230f4820bd0ea60ae7262ddcc351ff81c",
+      "supersedes_artifact_id": null
+    },
+    {
+      "artifact_id": "view.stage1-condition-v02-v0.1.0",
+      "artifact_kind": "fixture",
+      "artifact_version": "0.1.0",
+      "audience": [
+        "condition-v02",
+        "custodian",
+        "public_after_reveal",
+        "source_auditor"
+      ],
+      "decision_relevant": true,
+      "included_in_frozen_set": false,
+      "path": "inputs/stage1-view-v02.json",
+      "release_stage": "view_generation",
+      "schema_path": "research/calibration-tests/continuous-action-pilot/schema/ca-sr-artifact-0.1.0.schema.json",
+      "schema_sha256": "80abf62c385d9723090c66601ff6530a6bbec4585292d3c8f81f77c1081d43a5",
+      "sha256": "86e484dbdbb0cc5a43bf8735614efcde777548a75537eb88a6131931a5c5be61",
+      "supersedes_artifact_id": null
     }
   ],
   "created_at": "2026-07-26T19:30:02Z",
@@ -150,9 +224,9 @@
   "protocol_version": "0.1.0",
   "run_id": "continuous-001",
   "schema_version": "0.1.1",
-  "stage": "source_encoding",
+  "stage": "view_generation",
   "stage_digests": [],
   "status": "preparing",
   "truth_commitment": null,
-  "updated_at": "2026-07-26T19:56:42Z"
+  "updated_at": "2026-07-26T20:18:06Z"
 }

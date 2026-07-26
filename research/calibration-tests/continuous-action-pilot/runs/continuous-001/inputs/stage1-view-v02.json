@@ -1,0 +1,436 @@
+{
+  "$schema": "https://github.com/onovich/Game-Primitives/blob/main/research/calibration-tests/continuous-action-pilot/schema/ca-sr-artifact-0.1.0.schema.json",
+  "artifact_type": "generated_view",
+  "artifact_version": "0.1.0",
+  "canonical_encoding_sha256": "0ca359886db636f065254b1a84c151c3b40b6442c7c503318944c534ea9738c3",
+  "cases": [
+    {
+      "case_scope": {
+        "case_id": "CA-R1",
+        "controlled_variable_id": "o.a.0001",
+        "formal_input_ref": "o.a.0002",
+        "observation_start": "观察起点：规则相对时间 0；应用已声明初始字段。",
+        "observation_stop": "观察终点：规则相对时间 6；读取已声明终止字段。",
+        "role_id": "CA-R1",
+        "scope_exclusions": []
+      },
+      "composition_edges": [],
+      "operational_edges": [],
+      "operational_records": [],
+      "references": [
+        {
+          "audit_identity": null,
+          "base_type": "action",
+          "blind_description": "不带结构标注的动作 01",
+          "record_id": "o.a.0002",
+          "source_fact": {
+            "provenance_refs": [],
+            "status": "source_underdetermined",
+            "value": null
+          },
+          "test_role": "rule_action"
+        },
+        {
+          "audit_identity": null,
+          "base_type": "state",
+          "blind_description": "允许效果类型 01",
+          "record_id": "o.a.0015",
+          "source_fact": {
+            "provenance_refs": [],
+            "status": "encoded",
+            "value": "该效果类型被允许出现在终止输出；本轮实际结果值未公开。"
+          },
+          "test_role": "effect"
+        },
+        {
+          "audit_identity": null,
+          "base_type": "state",
+          "blind_description": "允许效果类型 02",
+          "record_id": "o.a.0024",
+          "source_fact": {
+            "provenance_refs": [],
+            "status": "encoded",
+            "value": "该效果类型被允许出现在终止输出；本轮实际结果值未公开。"
+          },
+          "test_role": "effect"
+        }
+      ],
+      "rules": [],
+      "source_issues": [],
+      "state_channels": [
+        {
+          "channel_id": "o.a.0042",
+          "coordinate_system": {
+            "provenance_refs": [],
+            "status": "encoded",
+            "value": "输出通道 01"
+          },
+          "equivalence_tolerance": {
+            "provenance_refs": [],
+            "status": "scope_excluded",
+            "value": null
+          },
+          "initial_value": {
+            "provenance_refs": [],
+            "status": "encoded",
+            "value": {
+              "coordinate_system": "输出通道 01",
+              "serialized_value": "false",
+              "time_base_id": null,
+              "unit": null,
+              "value_type": "boolean"
+            }
+          },
+          "precision": {
+            "provenance_refs": [],
+            "status": "scope_excluded",
+            "value": null
+          },
+          "reader_refs": {
+            "provenance_refs": [],
+            "status": "scope_excluded",
+            "values": []
+          },
+          "semantic_ref": {
+            "provenance_refs": [],
+            "status": "scope_excluded",
+            "value": null
+          },
+          "snapshot_boundary": {
+            "provenance_refs": [],
+            "status": "scope_excluded",
+            "value": null
+          },
+          "stop_value": {
+            "provenance_refs": [],
+            "status": "source_underdetermined",
+            "value": null
+          },
+          "unit": {
+            "provenance_refs": [],
+            "status": "not_applicable",
+            "value": null
+          },
+          "value_type": "boolean",
+          "writer_refs": {
+            "provenance_refs": [],
+            "status": "scope_excluded",
+            "values": []
+          }
+        }
+      ],
+      "temporal_edges": [],
+      "time_bases": [],
+      "trace_contract": {
+        "allowed_kinds": [
+          "scope_ended",
+          "scope_started",
+          "state_committed"
+        ],
+        "derivation_algorithm_id": "o.a.0044",
+        "raw_trace_ref": "o.a.0002",
+        "stop_condition_refs": [
+          "o.a.0045"
+        ],
+        "tolerance_rule_refs": []
+      }
+    },
+    {
+      "case_scope": {
+        "case_id": "CA-R2",
+        "controlled_variable_id": "o.b.0001",
+        "formal_input_ref": "o.b.0002",
+        "observation_start": "观察起点：规则相对时间 0；应用已声明初始字段。",
+        "observation_stop": "观察终点：规则相对时间 200 毫秒；读取已声明终止字段。",
+        "role_id": "CA-R2",
+        "scope_exclusions": []
+      },
+      "composition_edges": [],
+      "operational_edges": [],
+      "operational_records": [],
+      "references": [
+        {
+          "audit_identity": null,
+          "base_type": "action",
+          "blind_description": "不带结构标注的动作 01",
+          "record_id": "o.b.0002",
+          "source_fact": {
+            "provenance_refs": [],
+            "status": "source_underdetermined",
+            "value": null
+          },
+          "test_role": "rule_action"
+        },
+        {
+          "audit_identity": null,
+          "base_type": "state",
+          "blind_description": "允许效果类型 01",
+          "record_id": "o.b.0023",
+          "source_fact": {
+            "provenance_refs": [],
+            "status": "encoded",
+            "value": "该效果类型被允许出现在终止输出；本轮实际结果值未公开。"
+          },
+          "test_role": "effect"
+        }
+      ],
+      "rules": [],
+      "source_issues": [],
+      "state_channels": [
+        {
+          "channel_id": "o.b.0010",
+          "coordinate_system": {
+            "provenance_refs": [],
+            "status": "encoded",
+            "value": "输出通道 01"
+          },
+          "equivalence_tolerance": {
+            "provenance_refs": [],
+            "status": "scope_excluded",
+            "value": null
+          },
+          "initial_value": {
+            "provenance_refs": [],
+            "status": "source_underdetermined",
+            "value": null
+          },
+          "precision": {
+            "provenance_refs": [],
+            "status": "scope_excluded",
+            "value": null
+          },
+          "reader_refs": {
+            "provenance_refs": [],
+            "status": "scope_excluded",
+            "values": []
+          },
+          "semantic_ref": {
+            "provenance_refs": [],
+            "status": "scope_excluded",
+            "value": null
+          },
+          "snapshot_boundary": {
+            "provenance_refs": [],
+            "status": "scope_excluded",
+            "value": null
+          },
+          "stop_value": {
+            "provenance_refs": [],
+            "status": "source_underdetermined",
+            "value": null
+          },
+          "unit": {
+            "provenance_refs": [],
+            "status": "source_underdetermined",
+            "value": null
+          },
+          "value_type": "string",
+          "writer_refs": {
+            "provenance_refs": [],
+            "status": "scope_excluded",
+            "values": []
+          }
+        },
+        {
+          "channel_id": "o.b.0012",
+          "coordinate_system": {
+            "provenance_refs": [],
+            "status": "encoded",
+            "value": "输出通道 02"
+          },
+          "equivalence_tolerance": {
+            "provenance_refs": [],
+            "status": "scope_excluded",
+            "value": null
+          },
+          "initial_value": {
+            "provenance_refs": [],
+            "status": "source_underdetermined",
+            "value": null
+          },
+          "precision": {
+            "provenance_refs": [],
+            "status": "scope_excluded",
+            "value": null
+          },
+          "reader_refs": {
+            "provenance_refs": [],
+            "status": "scope_excluded",
+            "values": []
+          },
+          "semantic_ref": {
+            "provenance_refs": [],
+            "status": "scope_excluded",
+            "value": null
+          },
+          "snapshot_boundary": {
+            "provenance_refs": [],
+            "status": "scope_excluded",
+            "value": null
+          },
+          "stop_value": {
+            "provenance_refs": [],
+            "status": "source_underdetermined",
+            "value": null
+          },
+          "unit": {
+            "provenance_refs": [],
+            "status": "source_underdetermined",
+            "value": null
+          },
+          "value_type": "string",
+          "writer_refs": {
+            "provenance_refs": [],
+            "status": "scope_excluded",
+            "values": []
+          }
+        }
+      ],
+      "temporal_edges": [],
+      "time_bases": [],
+      "trace_contract": {
+        "allowed_kinds": [
+          "scope_ended",
+          "scope_started",
+          "state_committed"
+        ],
+        "derivation_algorithm_id": "o.b.0031",
+        "raw_trace_ref": "o.b.0002",
+        "stop_condition_refs": [
+          "o.b.0032"
+        ],
+        "tolerance_rule_refs": []
+      }
+    },
+    {
+      "case_scope": {
+        "case_id": "CA-R3",
+        "controlled_variable_id": "o.c.0001",
+        "formal_input_ref": "o.c.0002",
+        "observation_start": "观察起点：规则相对时间 0；应用已声明初始字段。",
+        "observation_stop": "观察终点：首个声明终止条件满足；读取已声明终止字段。",
+        "role_id": "CA-R3",
+        "scope_exclusions": []
+      },
+      "composition_edges": [],
+      "operational_edges": [],
+      "operational_records": [],
+      "references": [
+        {
+          "audit_identity": null,
+          "base_type": "action",
+          "blind_description": "不带结构标注的动作 01",
+          "record_id": "o.c.0002",
+          "source_fact": {
+            "provenance_refs": [],
+            "status": "source_underdetermined",
+            "value": null
+          },
+          "test_role": "rule_action"
+        },
+        {
+          "audit_identity": null,
+          "base_type": "state",
+          "blind_description": "允许效果类型 01",
+          "record_id": "o.c.0008",
+          "source_fact": {
+            "provenance_refs": [],
+            "status": "encoded",
+            "value": "该效果类型被允许出现在终止输出；本轮实际结果值未公开。"
+          },
+          "test_role": "effect"
+        }
+      ],
+      "rules": [],
+      "source_issues": [],
+      "state_channels": [
+        {
+          "channel_id": "o.c.0027",
+          "coordinate_system": {
+            "provenance_refs": [],
+            "status": "encoded",
+            "value": "输出通道 01"
+          },
+          "equivalence_tolerance": {
+            "provenance_refs": [],
+            "status": "scope_excluded",
+            "value": null
+          },
+          "initial_value": {
+            "provenance_refs": [],
+            "status": "encoded",
+            "value": {
+              "coordinate_system": "输出通道 01",
+              "serialized_value": "true",
+              "time_base_id": null,
+              "unit": null,
+              "value_type": "boolean"
+            }
+          },
+          "precision": {
+            "provenance_refs": [],
+            "status": "scope_excluded",
+            "value": null
+          },
+          "reader_refs": {
+            "provenance_refs": [],
+            "status": "scope_excluded",
+            "values": []
+          },
+          "semantic_ref": {
+            "provenance_refs": [],
+            "status": "scope_excluded",
+            "value": null
+          },
+          "snapshot_boundary": {
+            "provenance_refs": [],
+            "status": "scope_excluded",
+            "value": null
+          },
+          "stop_value": {
+            "provenance_refs": [],
+            "status": "encoded",
+            "value": {
+              "coordinate_system": "输出通道 01",
+              "serialized_value": "false",
+              "time_base_id": null,
+              "unit": null,
+              "value_type": "boolean"
+            }
+          },
+          "unit": {
+            "provenance_refs": [],
+            "status": "not_applicable",
+            "value": null
+          },
+          "value_type": "boolean",
+          "writer_refs": {
+            "provenance_refs": [],
+            "status": "scope_excluded",
+            "values": []
+          }
+        }
+      ],
+      "temporal_edges": [],
+      "time_bases": [],
+      "trace_contract": {
+        "allowed_kinds": [
+          "scope_ended",
+          "scope_started",
+          "state_committed"
+        ],
+        "derivation_algorithm_id": "o.c.0030",
+        "raw_trace_ref": "o.c.0002",
+        "stop_condition_refs": [
+          "o.c.0031"
+        ],
+        "tolerance_rule_refs": []
+      }
+    }
+  ],
+  "condition_id": "condition-v02",
+  "generated_at": "2026-07-27T00:00:00Z",
+  "projection_id": "projection-v02.gsha256-49f4039a9887d11624127681d38e00a56c9c9f9e28672d9b69d48b1135c9dd71",
+  "projection_spec_sha256": "7039674016a04416ccf945345bf9f9b89a9a7045b0dfcc745c74e5efbdcdfe0a",
+  "run_id": "continuous-001"
+}
