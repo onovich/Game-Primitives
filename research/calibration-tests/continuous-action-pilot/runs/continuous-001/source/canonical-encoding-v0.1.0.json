@@ -1,0 +1,3598 @@
+{
+  "$schema": "https://github.com/onovich/Game-Primitives/blob/main/research/calibration-tests/continuous-action-pilot/schema/ca-sr-artifact-0.1.0.schema.json",
+  "artifact_type": "canonical_encoding",
+  "artifact_version": "0.1.0",
+  "cases": [
+    {
+      "case_scope": {
+        "case_id": "CA-R1",
+        "controlled_variable_id": "variable.r1.whiff-cancel-permission",
+        "formal_input_ref": "input.r1.fixed-update-trace",
+        "observation_start": "F00 处于 STAND，无硬直、无缓存动作、命中计数为零；对手位于全部真实攻击框之外。",
+        "observation_stop": "夹具更新 6 完成后，记录当前动作、动作帧、待执行动作、取消资格、接触与命中计数。",
+        "role_id": "CA-R1",
+        "scope_exclusions": [
+          "玩家技能、难度、平衡、手感与策略",
+          "发布二进制与源码快照的逐字节同一性",
+          "人工键盘时序与零售网络路径",
+          "伤害、美术、音频及不必要的原作资产"
+        ]
+      },
+      "composition_edges": [],
+      "operational_edges": [
+        {
+          "condition_ids": [],
+          "edge_id": "edge.r1.signal-sampled",
+          "from_id": "signal.r1.attack-button",
+          "kind": "samples",
+          "scope_ids": [
+            "scope.r1.fight-update"
+          ],
+          "source_fact": {
+            "provenance_refs": [
+              "r1.fixed-loop",
+              "r1.input-history"
+            ],
+            "status": "encoded",
+            "value": "每次战斗固定更新先读取按钮位，再把输入写入历史槽位 0。"
+          },
+          "to_id": "input.r1.sampled-attack"
+        },
+        {
+          "condition_ids": [],
+          "edge_id": "edge.r1.input-mapped-normal",
+          "from_id": "input.r1.sampled-attack",
+          "kind": "maps_to",
+          "scope_ids": [
+            "scope.r1.fight-update"
+          ],
+          "source_fact": {
+            "provenance_refs": [
+              "r1.input-history"
+            ],
+            "status": "encoded",
+            "value": "新按下攻击且当前不在未结束的普通攻击中时，请求普通攻击规则动作。"
+          },
+          "to_id": "action.r1.normal-request"
+        },
+        {
+          "condition_ids": [],
+          "edge_id": "edge.r1.input-mapped-special",
+          "from_id": "input.r1.sampled-attack",
+          "kind": "maps_to",
+          "scope_ids": [
+            "scope.r1.fight-update"
+          ],
+          "source_fact": {
+            "provenance_refs": [
+              "r1.input-history"
+            ],
+            "status": "encoded",
+            "value": "新按下攻击且当前普通攻击尚未结束时，请求特殊攻击规则动作。"
+          },
+          "to_id": "action.r1.special-request"
+        },
+        {
+          "condition_ids": [],
+          "edge_id": "edge.r1.normal-instantiated",
+          "from_id": "action.r1.normal-request",
+          "kind": "instantiates",
+          "scope_ids": [
+            "scope.r1.fight-update"
+          ],
+          "source_fact": {
+            "provenance_refs": [
+              "r1.cancel-permission-rule",
+              "r1.request-commit"
+            ],
+            "status": "encoded",
+            "value": "动作请求通过许可检查时设置为当前动作并重置动作帧、命中计数和缓冲。"
+          },
+          "to_id": "action-instance.r1.normal"
+        },
+        {
+          "condition_ids": [
+            "condition.r1.cancel-window"
+          ],
+          "edge_id": "edge.r1.special-instantiated",
+          "from_id": "action.r1.special-request",
+          "kind": "instantiates",
+          "scope_ids": [
+            "scope.r1.fight-update"
+          ],
+          "source_fact": {
+            "provenance_refs": [
+              "r1.cancel-permission-rule",
+              "r1.cancel-table",
+              "r1.request-commit"
+            ],
+            "status": "encoded",
+            "value": "取消表在执行窗口允许立即设置特殊攻击；在缓冲窗口只保留请求，随后须通过取消资格检查才设置为当前动作。"
+          },
+          "to_id": "action-instance.r1.special"
+        }
+      ],
+      "operational_records": [
+        {
+          "action_legality_rule_refs": {
+            "provenance_refs": [
+              "r1.cancel-permission-rule",
+              "r1.cancel-permission-data",
+              "r1.cancel-table"
+            ],
+            "status": "encoded",
+            "values": [
+              "rule.r1.cancel-permission",
+              "rule.r1.cancel-window"
+            ]
+          },
+          "action_mapping_rule_refs": {
+            "provenance_refs": [
+              "r1.input-history"
+            ],
+            "status": "encoded",
+            "values": [
+              "rule.r1.attack-mapping"
+            ]
+          },
+          "buffer_rule_refs": {
+            "provenance_refs": [
+              "r1.cancel-permission-rule",
+              "r1.cancel-table"
+            ],
+            "status": "encoded",
+            "values": [
+              "rule.r1.cancel-window",
+              "rule.r1.consume-buffer"
+            ]
+          },
+          "controlled_entity_ref": {
+            "provenance_refs": [
+              "r1.fixed-loop"
+            ],
+            "status": "encoded",
+            "value": "entity.r1.fighter"
+          },
+          "implementation_medium_ref": {
+            "provenance_refs": [
+              "r1.fixed-loop",
+              "r1.request-commit"
+            ],
+            "status": "encoded",
+            "value": "medium.r1.fighter-state-machine"
+          },
+          "input_ref": {
+            "provenance_refs": [
+              "r1.input-history"
+            ],
+            "status": "encoded",
+            "value": "input.r1.sampled-attack"
+          },
+          "output_action_refs": {
+            "provenance_refs": [
+              "r1.input-history"
+            ],
+            "status": "encoded",
+            "values": [
+              "action.r1.normal-request",
+              "action.r1.special-request"
+            ]
+          },
+          "recognition_rule_refs": {
+            "provenance_refs": [
+              "r1.input-history"
+            ],
+            "status": "encoded",
+            "values": [
+              "rule.r1.attack-edge"
+            ]
+          },
+          "record_id": "path.r1.attack-cancel",
+          "record_type": "input_action_path",
+          "rejection_outcome_refs": {
+            "provenance_refs": [
+              "r1.cancel-permission-rule"
+            ],
+            "status": "encoded",
+            "values": [
+              "effect.r1.request-rejected"
+            ]
+          },
+          "sampling_rule_refs": {
+            "provenance_refs": [
+              "r1.fixed-loop",
+              "r1.input-history"
+            ],
+            "status": "encoded",
+            "values": [
+              "rule.r1.fixed-sampling"
+            ]
+          },
+          "signal_ref": {
+            "provenance_refs": [
+              "r1.fixed-loop"
+            ],
+            "status": "encoded",
+            "value": "signal.r1.attack-button"
+          },
+          "time_base_ref": {
+            "provenance_refs": [
+              "r1.fixed-loop",
+              "r1.time-base"
+            ],
+            "status": "encoded",
+            "value": "tb.r1.fixed-update"
+          }
+        },
+        {
+          "action_instance_ref": {
+            "provenance_refs": [
+              "r1.cancel-table",
+              "r1.request-commit"
+            ],
+            "status": "encoded",
+            "value": "action-instance.r1.normal"
+          },
+          "action_ref": {
+            "provenance_refs": [
+              "r1.action-ids",
+              "r1.cancel-table"
+            ],
+            "status": "encoded",
+            "value": "action.r1.normal-request"
+          },
+          "candidate_occurrence_ref": {
+            "provenance_refs": [],
+            "status": "not_applicable",
+            "value": null
+          },
+          "effect_ref": {
+            "provenance_refs": [
+              "r1.cancel-permission-rule",
+              "r1.request-commit"
+            ],
+            "status": "encoded",
+            "value": "action-instance.r1.special"
+          },
+          "entry_rule_refs": {
+            "provenance_refs": [
+              "r1.input-history",
+              "r1.request-commit"
+            ],
+            "status": "encoded",
+            "values": [
+              "rule.r1.attack-mapping"
+            ]
+          },
+          "exit_rule_refs": {
+            "provenance_refs": [
+              "r1.cancel-permission-rule",
+              "r1.request-commit"
+            ],
+            "status": "encoded",
+            "values": [
+              "rule.r1.consume-buffer"
+            ]
+          },
+          "milestones": [
+            {
+              "entry_condition_refs": {
+                "provenance_refs": [
+                  "r1.request-commit"
+                ],
+                "status": "encoded",
+                "values": [
+                  "condition.r1.normal-instantiated"
+                ]
+              },
+              "milestone_id": "milestone.r1.normal-frame-zero",
+              "name": "普通攻击实例进入动作帧零",
+              "source_fact": {
+                "provenance_refs": [
+                  "r1.request-commit"
+                ],
+                "status": "encoded",
+                "value": "设置当前动作时把当前动作帧写为请求给定的起始帧，默认值为零。"
+              }
+            },
+            {
+              "entry_condition_refs": {
+                "provenance_refs": [
+                  "r1.cancel-table"
+                ],
+                "status": "encoded",
+                "values": [
+                  "condition.r1.buffer-window"
+                ]
+              },
+              "milestone_id": "milestone.r1.buffer-window",
+              "name": "特殊攻击请求仅可缓冲",
+              "source_fact": {
+                "provenance_refs": [
+                  "r1.cancel-table"
+                ],
+                "status": "encoded",
+                "value": "普通攻击动作帧 1 至 3 的取消项设置 buffer=1、execute=0，目标动作标识为特殊攻击。"
+              }
+            },
+            {
+              "entry_condition_refs": {
+                "provenance_refs": [
+                  "r1.cancel-table"
+                ],
+                "status": "encoded",
+                "values": [
+                  "condition.r1.execute-window"
+                ]
+              },
+              "milestone_id": "milestone.r1.execute-window",
+              "name": "特殊攻击请求可立即执行",
+              "source_fact": {
+                "provenance_refs": [
+                  "r1.cancel-table"
+                ],
+                "status": "encoded",
+                "value": "普通攻击动作帧 4 至 5 的取消项设置 buffer=0、execute=1，目标动作标识为特殊攻击。"
+              }
+            }
+          ],
+          "permission_changes": [
+            {
+              "after": {
+                "provenance_refs": [
+                  "r1.cancel-table"
+                ],
+                "status": "encoded",
+                "value": {
+                  "coordinate_system": "普通攻击取消许可",
+                  "serialized_value": "execute_allowed",
+                  "time_base_id": "tb.r1.fixed-update",
+                  "unit": null,
+                  "value_type": "status"
+                }
+              },
+              "before": {
+                "provenance_refs": [
+                  "r1.cancel-table"
+                ],
+                "status": "encoded",
+                "value": {
+                  "coordinate_system": "普通攻击取消许可",
+                  "serialized_value": "buffer_only",
+                  "time_base_id": "tb.r1.fixed-update",
+                  "unit": null,
+                  "value_type": "status"
+                }
+              },
+              "condition_refs": {
+                "provenance_refs": [
+                  "r1.cancel-table"
+                ],
+                "status": "encoded",
+                "values": [
+                  "condition.r1.execute-window"
+                ]
+              },
+              "permission_id": "permission.r1.special-cancel",
+              "rule_refs": {
+                "provenance_refs": [
+                  "r1.cancel-table"
+                ],
+                "status": "encoded",
+                "values": [
+                  "rule.r1.cancel-window"
+                ]
+              }
+            }
+          ],
+          "process_refs": {
+            "provenance_refs": [
+              "r1.fixed-loop",
+              "r1.update-order"
+            ],
+            "status": "encoded",
+            "values": [
+              "process.r1.fight-update"
+            ]
+          },
+          "record_id": "lifecycle.r1.normal-cancel",
+          "record_type": "action_lifecycle",
+          "transitions": [
+            {
+              "condition_refs": {
+                "provenance_refs": [
+                  "r1.cancel-table",
+                  "r1.request-commit"
+                ],
+                "status": "encoded",
+                "values": [
+                  "condition.r1.buffer-window"
+                ]
+              },
+              "from_milestone_id": "milestone.r1.normal-frame-zero",
+              "rule_refs": {
+                "provenance_refs": [
+                  "r1.cancel-table",
+                  "r1.request-commit"
+                ],
+                "status": "encoded",
+                "values": [
+                  "rule.r1.cancel-window"
+                ]
+              },
+              "to_milestone_id": "milestone.r1.buffer-window",
+              "transition_id": "transition.r1.enter-buffer-window"
+            },
+            {
+              "condition_refs": {
+                "provenance_refs": [
+                  "r1.cancel-table"
+                ],
+                "status": "encoded",
+                "values": [
+                  "condition.r1.execute-window"
+                ]
+              },
+              "from_milestone_id": "milestone.r1.buffer-window",
+              "rule_refs": {
+                "provenance_refs": [
+                  "r1.cancel-table"
+                ],
+                "status": "encoded",
+                "values": [
+                  "rule.r1.cancel-window"
+                ]
+              },
+              "to_milestone_id": "milestone.r1.execute-window",
+              "transition_id": "transition.r1.buffer-to-execute"
+            }
+          ]
+        },
+        {
+          "action_instantiation": {
+            "provenance_refs": [
+              "r1.cancel-permission-rule",
+              "r1.request-commit"
+            ],
+            "status": "encoded",
+            "value": "合法请求立即设置当前动作；仅缓冲的请求须等到取消资格成立后才设置当前动作；其余请求返回拒绝。"
+          },
+          "effect_commitment": {
+            "provenance_refs": [
+              "r1.request-commit"
+            ],
+            "status": "encoded",
+            "value": "设置当前动作同时提交动作标识和起始帧，并清除命中计数与缓冲动作。"
+          },
+          "goal_evaluation": {
+            "provenance_refs": [],
+            "status": "scope_excluded",
+            "value": null
+          },
+          "input_recognition": {
+            "provenance_refs": [
+              "r1.input-history"
+            ],
+            "status": "encoded",
+            "value": "当前输入与上一历史输入异或并与当前位相与，得到本次新按下攻击。"
+          },
+          "record_id": "outcome.r1.cancel-request",
+          "record_type": "outcome_frame",
+          "resolution": {
+            "provenance_refs": [
+              "r1.cancel-permission-data",
+              "r1.cancel-permission-rule",
+              "r1.cancel-table"
+            ],
+            "status": "encoded",
+            "value": "F00 的 canCancelOnWhiff 为假；缓冲特殊攻击的消费还要求当前动作命中过，执行窗口则按取消表立即执行。"
+          }
+        }
+      ],
+      "references": [
+        {
+          "audit_identity": "FOOTSIES CommonActionID.N_ATTACK request",
+          "base_type": "action",
+          "blind_description": "普通攻击规则动作",
+          "record_id": "action.r1.normal-request",
+          "source_fact": {
+            "provenance_refs": [
+              "r1.action-ids",
+              "r1.input-history"
+            ],
+            "status": "encoded",
+            "value": "普通攻击具有独立动作标识，攻击新按下可请求该动作。"
+          },
+          "test_role": "rule_action"
+        },
+        {
+          "audit_identity": "FOOTSIES N_ATTACK current action instance",
+          "base_type": "action",
+          "blind_description": "当前普通攻击的具体实例",
+          "record_id": "action-instance.r1.normal",
+          "source_fact": {
+            "provenance_refs": [
+              "r1.cancel-table",
+              "r1.request-commit"
+            ],
+            "status": "encoded",
+            "value": "普通攻击动作数据有 22 个动作帧；设置为当前动作时建立从起始帧开始的实例状态。"
+          },
+          "test_role": "action_instance"
+        },
+        {
+          "audit_identity": "FOOTSIES CommonActionID.N_SPECIAL request",
+          "base_type": "action",
+          "blind_description": "特殊攻击规则动作",
+          "record_id": "action.r1.special-request",
+          "source_fact": {
+            "provenance_refs": [
+              "r1.action-ids",
+              "r1.input-history"
+            ],
+            "status": "encoded",
+            "value": "当前普通攻击尚未结束时的新攻击按下会请求特殊攻击动作。"
+          },
+          "test_role": "rule_action"
+        },
+        {
+          "audit_identity": "FOOTSIES N_SPECIAL current action instance",
+          "base_type": "action",
+          "blind_description": "获得许可后提交的特殊攻击实例",
+          "record_id": "action-instance.r1.special",
+          "source_fact": {
+            "provenance_refs": [
+              "r1.cancel-permission-rule",
+              "r1.request-commit"
+            ],
+            "status": "encoded",
+            "value": "特殊攻击请求通过取消路径后被设置为当前动作。"
+          },
+          "test_role": "action_instance"
+        },
+        {
+          "audit_identity": "FOOTSIES cancel window predicate",
+          "base_type": "condition",
+          "blind_description": "当前动作帧落入已声明取消窗口",
+          "record_id": "condition.r1.cancel-window",
+          "source_fact": {
+            "provenance_refs": [
+              "r1.cancel-table"
+            ],
+            "status": "encoded",
+            "value": "普通攻击为特殊攻击声明了缓冲窗口和执行窗口。"
+          },
+          "test_role": "process"
+        },
+        {
+          "audit_identity": "FOOTSIES execute window frames 4-5",
+          "base_type": "condition",
+          "blind_description": "立即执行取消窗口",
+          "record_id": "condition.r1.execute-window",
+          "source_fact": {
+            "provenance_refs": [
+              "r1.cancel-table"
+            ],
+            "status": "encoded",
+            "value": "动作帧 4 至 5 的取消项为 execute。"
+          },
+          "test_role": "process"
+        },
+        {
+          "audit_identity": "FOOTSIES buffer window frames 1-3",
+          "base_type": "condition",
+          "blind_description": "仅缓冲取消窗口",
+          "record_id": "condition.r1.buffer-window",
+          "source_fact": {
+            "provenance_refs": [
+              "r1.cancel-table"
+            ],
+            "status": "encoded",
+            "value": "动作帧 1 至 3 的取消项为 buffer。"
+          },
+          "test_role": "process"
+        },
+        {
+          "audit_identity": "FOOTSIES normal action was set",
+          "base_type": "condition",
+          "blind_description": "普通攻击已设置为当前动作",
+          "record_id": "condition.r1.normal-instantiated",
+          "source_fact": {
+            "provenance_refs": [
+              "r1.request-commit"
+            ],
+            "status": "encoded",
+            "value": "设置当前动作会写入动作标识与起始帧。"
+          },
+          "test_role": "process"
+        },
+        {
+          "audit_identity": "FOOTSIES Fighter F00",
+          "base_type": "entity",
+          "blind_description": "接收采样输入并持有动作状态的受控实体",
+          "record_id": "entity.r1.fighter",
+          "source_fact": {
+            "provenance_refs": [
+              "r1.fixed-loop"
+            ],
+            "status": "encoded",
+            "value": "战斗循环把采样输入交给战斗实体并依次更新其动作请求。"
+          },
+          "test_role": "process"
+        },
+        {
+          "audit_identity": "FOOTSIES RequestAction false return",
+          "base_type": "state",
+          "blind_description": "动作请求未获得当前窗口许可",
+          "record_id": "effect.r1.request-rejected",
+          "source_fact": {
+            "provenance_refs": [
+              "r1.cancel-permission-rule"
+            ],
+            "status": "encoded",
+            "value": "动作请求不满足动作结束、同动作排除、总可取消或取消表条件时返回 false。"
+          },
+          "test_role": "effect"
+        },
+        {
+          "audit_identity": "continuous-001 fixed-update input trace",
+          "base_type": "action",
+          "blind_description": "冻结夹具提供的固定更新输入序列",
+          "record_id": "input.r1.fixed-update-trace",
+          "source_fact": {
+            "provenance_refs": [],
+            "status": "source_underdetermined",
+            "value": null
+          },
+          "test_role": "input"
+        },
+        {
+          "audit_identity": "FOOTSIES inputDown[0] attack bit",
+          "base_type": "action",
+          "blind_description": "本次固定更新识别出的攻击新按下",
+          "record_id": "input.r1.sampled-attack",
+          "source_fact": {
+            "provenance_refs": [
+              "r1.input-history"
+            ],
+            "status": "encoded",
+            "value": "输入历史用当前与上一样本的位差识别新按下攻击。"
+          },
+          "test_role": "input"
+        },
+        {
+          "audit_identity": "FOOTSIES Fighter state fields",
+          "base_type": "entity",
+          "blind_description": "保存动作标识、帧、命中计数和缓冲请求的软件状态机",
+          "record_id": "medium.r1.fighter-state-machine",
+          "source_fact": {
+            "provenance_refs": [
+              "r1.cancel-permission-rule",
+              "r1.request-commit"
+            ],
+            "status": "encoded",
+            "value": "行动由 Fighter 对象中的当前动作、动作帧、命中计数和缓冲动作字段实现。"
+          },
+          "test_role": "process"
+        },
+        {
+          "audit_identity": "FOOTSIES UpdateFightState",
+          "base_type": "process",
+          "blind_description": "单次战斗固定更新过程",
+          "record_id": "process.r1.fight-update",
+          "source_fact": {
+            "provenance_refs": [
+              "r1.fixed-loop",
+              "r1.update-order"
+            ],
+            "status": "encoded",
+            "value": "固定更新在 Fight 状态调用战斗更新，后者按输入、动作帧、动作请求、移动、框体和碰撞顺序推进。"
+          },
+          "test_role": "process"
+        },
+        {
+          "audit_identity": "FOOTSIES Fight state update scope",
+          "base_type": "context_scope",
+          "blind_description": "战斗状态内的一次固定更新作用域",
+          "record_id": "scope.r1.fight-update",
+          "source_fact": {
+            "provenance_refs": [
+              "r1.fixed-loop",
+              "r1.update-order"
+            ],
+            "status": "encoded",
+            "value": "只有 Fight 分支且未被调试暂停提前退出时推进该更新作用域。"
+          },
+          "test_role": "process"
+        },
+        {
+          "audit_identity": "FOOTSIES InputManager attack button",
+          "base_type": "action",
+          "blind_description": "固定更新读取的攻击按钮信号",
+          "record_id": "signal.r1.attack-button",
+          "source_fact": {
+            "provenance_refs": [
+              "r1.fixed-loop"
+            ],
+            "status": "encoded",
+            "value": "战斗循环从输入管理器读取攻击按钮并写入 InputData 位。"
+          },
+          "test_role": "input"
+        },
+        {
+          "audit_identity": "FOOTSIES special cancel eligibility",
+          "base_type": "state",
+          "blind_description": "缓冲特殊攻击在当前更新可否被消费",
+          "record_id": "state.r1.cancel-eligibility",
+          "source_fact": {
+            "provenance_refs": [
+              "r1.cancel-permission-data",
+              "r1.cancel-permission-rule"
+            ],
+            "status": "encoded",
+            "value": "资格在角色允许失误取消或当前动作命中计数大于零时成立；F00 的失误取消配置为假。"
+          },
+          "test_role": "process"
+        }
+      ],
+      "rules": [
+        {
+          "rule_id": "rule.r1.attack-edge",
+          "slots": {
+            "action": {
+              "provenance_refs": [
+                "r1.input-history"
+              ],
+              "status": "encoded",
+              "values": [
+                "input.r1.sampled-attack"
+              ]
+            },
+            "actor": {
+              "provenance_refs": [],
+              "status": "not_applicable",
+              "values": []
+            },
+            "context": {
+              "provenance_refs": [
+                "r1.input-history"
+              ],
+              "status": "encoded",
+              "values": [
+                "scope.r1.fight-update"
+              ]
+            },
+            "cost": {
+              "provenance_refs": [],
+              "status": "not_applicable",
+              "values": []
+            },
+            "effects": {
+              "provenance_refs": [
+                "r1.input-history"
+              ],
+              "status": "encoded",
+              "values": [
+                "input.r1.sampled-attack"
+              ]
+            },
+            "feedback": {
+              "provenance_refs": [],
+              "status": "scope_excluded",
+              "values": []
+            },
+            "goals_evaluation": {
+              "provenance_refs": [],
+              "status": "scope_excluded",
+              "values": []
+            },
+            "preconditions": {
+              "provenance_refs": [],
+              "status": "not_applicable",
+              "values": []
+            },
+            "resolution": {
+              "provenance_refs": [],
+              "status": "not_applicable",
+              "values": []
+            },
+            "target": {
+              "provenance_refs": [
+                "r1.input-history"
+              ],
+              "status": "encoded",
+              "values": [
+                "entity.r1.fighter"
+              ]
+            },
+            "trigger": {
+              "provenance_refs": [
+                "r1.input-history"
+              ],
+              "status": "encoded",
+              "values": [
+                "signal.r1.attack-button"
+              ]
+            }
+          },
+          "statement": "当前输入样本相对上一样本的新置位攻击位被识别为攻击新按下。"
+        },
+        {
+          "rule_id": "rule.r1.attack-mapping",
+          "slots": {
+            "action": {
+              "provenance_refs": [
+                "r1.input-history"
+              ],
+              "status": "encoded",
+              "values": [
+                "action.r1.normal-request",
+                "action.r1.special-request"
+              ]
+            },
+            "actor": {
+              "provenance_refs": [],
+              "status": "not_applicable",
+              "values": []
+            },
+            "context": {
+              "provenance_refs": [
+                "r1.input-history"
+              ],
+              "status": "encoded",
+              "values": [
+                "scope.r1.fight-update"
+              ]
+            },
+            "cost": {
+              "provenance_refs": [],
+              "status": "not_applicable",
+              "values": []
+            },
+            "effects": {
+              "provenance_refs": [
+                "r1.input-history"
+              ],
+              "status": "encoded",
+              "values": [
+                "action.r1.normal-request",
+                "action.r1.special-request"
+              ]
+            },
+            "feedback": {
+              "provenance_refs": [],
+              "status": "scope_excluded",
+              "values": []
+            },
+            "goals_evaluation": {
+              "provenance_refs": [],
+              "status": "scope_excluded",
+              "values": []
+            },
+            "preconditions": {
+              "provenance_refs": [
+                "r1.input-history"
+              ],
+              "status": "encoded",
+              "values": [
+                "condition.r1.normal-instantiated"
+              ]
+            },
+            "resolution": {
+              "provenance_refs": [],
+              "status": "not_applicable",
+              "values": []
+            },
+            "target": {
+              "provenance_refs": [
+                "r1.input-history"
+              ],
+              "status": "encoded",
+              "values": [
+                "entity.r1.fighter"
+              ]
+            },
+            "trigger": {
+              "provenance_refs": [
+                "r1.input-history"
+              ],
+              "status": "encoded",
+              "values": [
+                "input.r1.sampled-attack"
+              ]
+            }
+          },
+          "statement": "攻击新按下在普通攻击尚未结束时映射为特殊攻击请求，否则映射为普通攻击请求。"
+        },
+        {
+          "rule_id": "rule.r1.cancel-permission",
+          "slots": {
+            "action": {
+              "provenance_refs": [
+                "r1.cancel-permission-rule"
+              ],
+              "status": "encoded",
+              "values": [
+                "action.r1.special-request"
+              ]
+            },
+            "actor": {
+              "provenance_refs": [],
+              "status": "not_applicable",
+              "values": []
+            },
+            "context": {
+              "provenance_refs": [
+                "r1.cancel-permission-rule"
+              ],
+              "status": "encoded",
+              "values": [
+                "scope.r1.fight-update"
+              ]
+            },
+            "cost": {
+              "provenance_refs": [],
+              "status": "not_applicable",
+              "values": []
+            },
+            "effects": {
+              "provenance_refs": [
+                "r1.cancel-permission-rule"
+              ],
+              "status": "encoded",
+              "values": [
+                "action-instance.r1.special",
+                "effect.r1.request-rejected"
+              ]
+            },
+            "feedback": {
+              "provenance_refs": [],
+              "status": "scope_excluded",
+              "values": []
+            },
+            "goals_evaluation": {
+              "provenance_refs": [],
+              "status": "scope_excluded",
+              "values": []
+            },
+            "preconditions": {
+              "provenance_refs": [
+                "r1.cancel-permission-data",
+                "r1.cancel-permission-rule"
+              ],
+              "status": "encoded",
+              "values": [
+                "state.r1.cancel-eligibility"
+              ]
+            },
+            "resolution": {
+              "provenance_refs": [
+                "r1.cancel-permission-rule"
+              ],
+              "status": "encoded",
+              "values": [
+                "effect.r1.request-rejected"
+              ]
+            },
+            "target": {
+              "provenance_refs": [
+                "r1.cancel-permission-rule"
+              ],
+              "status": "encoded",
+              "values": [
+                "entity.r1.fighter"
+              ]
+            },
+            "trigger": {
+              "provenance_refs": [
+                "r1.cancel-permission-rule"
+              ],
+              "status": "encoded",
+              "values": [
+                "action.r1.special-request"
+              ]
+            }
+          },
+          "statement": "缓冲动作只有在角色允许失误取消或当前动作已命中时才可被消费；F00 的失误取消配置为假。"
+        },
+        {
+          "rule_id": "rule.r1.cancel-window",
+          "slots": {
+            "action": {
+              "provenance_refs": [
+                "r1.cancel-table"
+              ],
+              "status": "encoded",
+              "values": [
+                "action.r1.special-request"
+              ]
+            },
+            "actor": {
+              "provenance_refs": [],
+              "status": "not_applicable",
+              "values": []
+            },
+            "context": {
+              "provenance_refs": [
+                "r1.cancel-table"
+              ],
+              "status": "encoded",
+              "values": [
+                "action-instance.r1.normal"
+              ]
+            },
+            "cost": {
+              "provenance_refs": [],
+              "status": "not_applicable",
+              "values": []
+            },
+            "effects": {
+              "provenance_refs": [
+                "r1.cancel-table"
+              ],
+              "status": "encoded",
+              "values": [
+                "action-instance.r1.special"
+              ]
+            },
+            "feedback": {
+              "provenance_refs": [],
+              "status": "scope_excluded",
+              "values": []
+            },
+            "goals_evaluation": {
+              "provenance_refs": [],
+              "status": "scope_excluded",
+              "values": []
+            },
+            "preconditions": {
+              "provenance_refs": [
+                "r1.cancel-table"
+              ],
+              "status": "encoded",
+              "values": [
+                "condition.r1.buffer-window",
+                "condition.r1.execute-window"
+              ]
+            },
+            "resolution": {
+              "provenance_refs": [
+                "r1.cancel-table"
+              ],
+              "status": "encoded",
+              "values": [
+                "condition.r1.cancel-window"
+              ]
+            },
+            "target": {
+              "provenance_refs": [
+                "r1.cancel-table"
+              ],
+              "status": "encoded",
+              "values": [
+                "action-instance.r1.normal"
+              ]
+            },
+            "trigger": {
+              "provenance_refs": [
+                "r1.cancel-table"
+              ],
+              "status": "encoded",
+              "values": [
+                "action.r1.special-request"
+              ]
+            }
+          },
+          "statement": "普通攻击帧 1 至 3 仅缓冲特殊攻击，帧 4 至 5 可立即执行特殊攻击。"
+        },
+        {
+          "rule_id": "rule.r1.consume-buffer",
+          "slots": {
+            "action": {
+              "provenance_refs": [
+                "r1.cancel-permission-rule",
+                "r1.request-commit"
+              ],
+              "status": "encoded",
+              "values": [
+                "action.r1.special-request"
+              ]
+            },
+            "actor": {
+              "provenance_refs": [],
+              "status": "not_applicable",
+              "values": []
+            },
+            "context": {
+              "provenance_refs": [
+                "r1.cancel-permission-rule"
+              ],
+              "status": "encoded",
+              "values": [
+                "scope.r1.fight-update"
+              ]
+            },
+            "cost": {
+              "provenance_refs": [],
+              "status": "not_applicable",
+              "values": []
+            },
+            "effects": {
+              "provenance_refs": [
+                "r1.request-commit"
+              ],
+              "status": "encoded",
+              "values": [
+                "action-instance.r1.special"
+              ]
+            },
+            "feedback": {
+              "provenance_refs": [],
+              "status": "scope_excluded",
+              "values": []
+            },
+            "goals_evaluation": {
+              "provenance_refs": [],
+              "status": "scope_excluded",
+              "values": []
+            },
+            "preconditions": {
+              "provenance_refs": [
+                "r1.cancel-permission-rule"
+              ],
+              "status": "encoded",
+              "values": [
+                "state.r1.cancel-eligibility"
+              ]
+            },
+            "resolution": {
+              "provenance_refs": [
+                "r1.request-commit"
+              ],
+              "status": "encoded",
+              "values": [
+                "action-instance.r1.special"
+              ]
+            },
+            "target": {
+              "provenance_refs": [
+                "r1.request-commit"
+              ],
+              "status": "encoded",
+              "values": [
+                "entity.r1.fighter"
+              ]
+            },
+            "trigger": {
+              "provenance_refs": [
+                "r1.cancel-permission-rule"
+              ],
+              "status": "encoded",
+              "values": [
+                "action.r1.special-request"
+              ]
+            }
+          },
+          "statement": "存在缓冲动作、取消资格成立且无硬直时，把缓冲动作设置为当前动作并清除缓冲。"
+        },
+        {
+          "rule_id": "rule.r1.fixed-sampling",
+          "slots": {
+            "action": {
+              "provenance_refs": [
+                "r1.fixed-loop"
+              ],
+              "status": "encoded",
+              "values": [
+                "input.r1.sampled-attack"
+              ]
+            },
+            "actor": {
+              "provenance_refs": [],
+              "status": "not_applicable",
+              "values": []
+            },
+            "context": {
+              "provenance_refs": [
+                "r1.fixed-loop"
+              ],
+              "status": "encoded",
+              "values": [
+                "scope.r1.fight-update"
+              ]
+            },
+            "cost": {
+              "provenance_refs": [],
+              "status": "not_applicable",
+              "values": []
+            },
+            "effects": {
+              "provenance_refs": [
+                "r1.input-history"
+              ],
+              "status": "encoded",
+              "values": [
+                "input.r1.sampled-attack"
+              ]
+            },
+            "feedback": {
+              "provenance_refs": [],
+              "status": "scope_excluded",
+              "values": []
+            },
+            "goals_evaluation": {
+              "provenance_refs": [],
+              "status": "scope_excluded",
+              "values": []
+            },
+            "preconditions": {
+              "provenance_refs": [
+                "r1.fixed-loop"
+              ],
+              "status": "encoded",
+              "values": [
+                "scope.r1.fight-update"
+              ]
+            },
+            "resolution": {
+              "provenance_refs": [],
+              "status": "not_applicable",
+              "values": []
+            },
+            "target": {
+              "provenance_refs": [
+                "r1.fixed-loop"
+              ],
+              "status": "encoded",
+              "values": [
+                "entity.r1.fighter"
+              ]
+            },
+            "trigger": {
+              "provenance_refs": [
+                "r1.fixed-loop"
+              ],
+              "status": "encoded",
+              "values": [
+                "tb.r1.fixed-update"
+              ]
+            }
+          },
+          "statement": "Fight 分支每个固定更新先读取输入并更新输入历史，再推进动作帧和动作请求。"
+        }
+      ],
+      "source_issues": [
+        {
+          "description": "冻结来源未给出连续夹具输入序列的逐更新位值，也未给出更新 6 的实际终止状态；这些属于后续夹具或测量事实，不能从规则源码猜测。",
+          "issue_id": "issue.r1.fixture-trace-underdetermined",
+          "locator_refs": [
+            "r1.fixed-loop",
+            "r1.input-history",
+            "r1.update-order"
+          ],
+          "status": "source_underdetermined"
+        },
+        {
+          "description": "来源给出调试暂停会提前退出当前 FixedUpdate，但未在所列定位中规定引擎固定更新的积压、追赶和暂停恢复语义。",
+          "issue_id": "issue.r1.backlog-underdetermined",
+          "locator_refs": [
+            "r1.fixed-loop",
+            "r1.time-base"
+          ],
+          "status": "source_underdetermined"
+        }
+      ],
+      "state_channels": [
+        {
+          "channel_id": "channel.r1.cancel-eligibility",
+          "coordinate_system": {
+            "provenance_refs": [
+              "r1.cancel-permission-rule"
+            ],
+            "status": "encoded",
+            "value": "当前 Fighter 动作状态"
+          },
+          "equivalence_tolerance": {
+            "provenance_refs": [],
+            "status": "not_applicable",
+            "value": null
+          },
+          "initial_value": {
+            "provenance_refs": [
+              "r1.cancel-permission-data",
+              "r1.cancel-permission-rule"
+            ],
+            "status": "encoded",
+            "value": {
+              "coordinate_system": "当前 Fighter 动作状态",
+              "serialized_value": "false",
+              "time_base_id": "tb.r1.fixed-update",
+              "unit": null,
+              "value_type": "boolean"
+            }
+          },
+          "precision": {
+            "provenance_refs": [],
+            "status": "not_applicable",
+            "value": null
+          },
+          "reader_refs": {
+            "provenance_refs": [
+              "r1.cancel-permission-rule"
+            ],
+            "status": "encoded",
+            "values": [
+              "rule.r1.consume-buffer"
+            ]
+          },
+          "semantic_ref": {
+            "provenance_refs": [
+              "r1.cancel-permission-rule"
+            ],
+            "status": "encoded",
+            "value": "state.r1.cancel-eligibility"
+          },
+          "snapshot_boundary": {
+            "provenance_refs": [
+              "r1.update-order"
+            ],
+            "status": "encoded",
+            "value": "当前固定更新的动作请求阶段读取当前命中计数和角色失误取消配置。"
+          },
+          "stop_value": {
+            "provenance_refs": [],
+            "status": "source_underdetermined",
+            "value": null
+          },
+          "unit": {
+            "provenance_refs": [],
+            "status": "not_applicable",
+            "value": null
+          },
+          "value_type": "boolean",
+          "writer_refs": {
+            "provenance_refs": [
+              "r1.cancel-permission-rule",
+              "r1.request-commit"
+            ],
+            "status": "encoded",
+            "values": [
+              "process.r1.fight-update"
+            ]
+          }
+        }
+      ],
+      "temporal_edges": [
+        {
+          "condition_ids": [],
+          "edge_id": "time.r1.sample-before-request",
+          "from_id": "input.r1.sampled-attack",
+          "kind": "before",
+          "source_fact": {
+            "provenance_refs": [
+              "r1.update-order"
+            ],
+            "status": "encoded",
+            "value": "战斗更新先更新输入，再递增动作帧并更新动作请求。"
+          },
+          "time_base_refs": [
+            "tb.r1.fixed-update"
+          ],
+          "to_id": "action.r1.special-request"
+        }
+      ],
+      "time_bases": [
+        {
+          "advance_condition": {
+            "provenance_refs": [
+              "r1.fixed-loop"
+            ],
+            "status": "encoded",
+            "value": "Unity FixedUpdate 进入 Fight 分支且调试暂停检查未提前退出时推进一次战斗更新。"
+          },
+          "coordinate_type": "integer_step",
+          "cross_time_mappings": [],
+          "fixed_step": {
+            "provenance_refs": [
+              "r1.time-base"
+            ],
+            "status": "encoded",
+            "value": {
+              "coordinate_system": "Unity 固定时间步",
+              "serialized_value": "1/50",
+              "time_base_id": "tb.r1.fixed-update",
+              "unit": "second",
+              "value_type": "rational"
+            }
+          },
+          "owner_ref": {
+            "provenance_refs": [
+              "r1.fixed-loop"
+            ],
+            "status": "encoded",
+            "value": "process.r1.fight-update"
+          },
+          "pause_and_backlog": {
+            "provenance_refs": [],
+            "status": "source_underdetermined",
+            "value": null
+          },
+          "phase_order": {
+            "provenance_refs": [
+              "r1.update-order"
+            ],
+            "status": "encoded",
+            "value": "读取并记录输入，更新输入历史，递增动作帧，更新动作请求，更新移动与框体，最后处理碰撞。"
+          },
+          "sorting_rule": {
+            "provenance_refs": [
+              "r1.fixed-loop"
+            ],
+            "status": "encoded",
+            "value": "以 frameCount 每次 Fight 固定更新递增所得的整数更新序号排序。"
+          },
+          "time_base_id": "tb.r1.fixed-update",
+          "unit": {
+            "provenance_refs": [
+              "r1.time-base"
+            ],
+            "status": "encoded",
+            "value": "fixed update"
+          }
+        }
+      ],
+      "trace_contract": {
+        "allowed_kinds": [
+          "action_legality_evaluated",
+          "effect_committed",
+          "input_arrived",
+          "input_buffered",
+          "input_recognized",
+          "input_sampled",
+          "lifecycle_milestone_reached",
+          "permission_changed",
+          "scope_ended",
+          "scope_started",
+          "state_committed",
+          "state_sampled"
+        ],
+        "derivation_algorithm_id": "algorithm.r1.none-source-only",
+        "raw_trace_ref": "input.r1.fixed-update-trace",
+        "stop_condition_refs": [
+          "stop.r1.update-6"
+        ],
+        "tolerance_rule_refs": []
+      }
+    },
+    {
+      "case_scope": {
+        "case_id": "CA-R2",
+        "controlled_variable_id": "variable.r2.input-sampling-policy",
+        "formal_input_ref": "input.r2.usercmd-trace",
+        "observation_start": "PM_NORMAL 空中状态从 origin=(0,0,4096)、velocity=(0,0,0) 开始；固定子步为 8 ms。",
+        "observation_stop": "第 25 个子步完成，即规则时间 200 ms；保存 raw_cmd、used_cmd、分支、接触、速度与位置。",
+        "role_id": "CA-R2",
+        "scope_exclusions": [
+          "零售可执行文件与商业游戏数据",
+          "武器、跳跃、水体、伤害与碰撞事件",
+          "玩家控制感、技巧、策略与体验",
+          "渲染帧率、真实墙钟与人工输入设备"
+        ]
+      },
+      "composition_edges": [],
+      "operational_edges": [
+        {
+          "condition_ids": [],
+          "edge_id": "edge.r2.command-modulates-process",
+          "from_id": "input.r2.used-command",
+          "kind": "modulates",
+          "scope_ids": [
+            "scope.r2.air-movement"
+          ],
+          "source_fact": {
+            "provenance_refs": [
+              "r2.air-move",
+              "r2.single-step"
+            ],
+            "status": "encoded",
+            "value": "每个移动子步读取当前命令的前后和侧向分量，形成期望方向与期望速度并调制同一空中移动过程。"
+          },
+          "to_id": "process.r2.air-movement"
+        },
+        {
+          "condition_ids": [],
+          "edge_id": "edge.r2.process-read-command",
+          "from_id": "process.r2.air-movement",
+          "kind": "reads",
+          "scope_ids": [
+            "scope.r2.air-movement"
+          ],
+          "source_fact": {
+            "provenance_refs": [
+              "r2.air-move"
+            ],
+            "status": "encoded",
+            "value": "空中移动读取当前命令分量。"
+          },
+          "to_id": "channel.r2.used-command"
+        },
+        {
+          "condition_ids": [],
+          "edge_id": "edge.r2.process-read-origin",
+          "from_id": "process.r2.air-movement",
+          "kind": "reads",
+          "scope_ids": [
+            "scope.r2.air-movement"
+          ],
+          "source_fact": {
+            "provenance_refs": [
+              "r2.single-step"
+            ],
+            "status": "encoded",
+            "value": "单步开始保存先前位置，移动分支随后基于玩家状态推进。"
+          },
+          "to_id": "channel.r2.origin"
+        },
+        {
+          "condition_ids": [],
+          "edge_id": "edge.r2.process-read-velocity",
+          "from_id": "process.r2.air-movement",
+          "kind": "reads",
+          "scope_ids": [
+            "scope.r2.air-movement"
+          ],
+          "source_fact": {
+            "provenance_refs": [
+              "r2.acceleration",
+              "r2.single-step"
+            ],
+            "status": "encoded",
+            "value": "加速规则读取当前速度在期望方向上的投影，单步开始也保存先前速度。"
+          },
+          "to_id": "channel.r2.velocity"
+        },
+        {
+          "condition_ids": [],
+          "edge_id": "edge.r2.process-scheduled",
+          "from_id": "process.r2.air-movement",
+          "kind": "scheduled_by",
+          "scope_ids": [
+            "scope.r2.air-movement"
+          ],
+          "source_fact": {
+            "provenance_refs": [
+              "r2.outer-step",
+              "r2.single-step"
+            ],
+            "status": "encoded",
+            "value": "外层移动把命令时间区间切成子步，每个子步调用一次单步过程。"
+          },
+          "to_id": "tb.r2.command-time"
+        },
+        {
+          "condition_ids": [],
+          "edge_id": "edge.r2.process-write-origin",
+          "from_id": "process.r2.air-movement",
+          "kind": "writes",
+          "scope_ids": [
+            "scope.r2.air-movement"
+          ],
+          "source_fact": {
+            "provenance_refs": [
+              "r2.air-move",
+              "r2.single-step"
+            ],
+            "status": "encoded",
+            "value": "空中移动最终调用带重力的步进滑移过程推进位置；所列片段未展开其碰撞细节。"
+          },
+          "to_id": "channel.r2.origin"
+        },
+        {
+          "condition_ids": [],
+          "edge_id": "edge.r2.process-write-velocity",
+          "from_id": "process.r2.air-movement",
+          "kind": "writes",
+          "scope_ids": [
+            "scope.r2.air-movement"
+          ],
+          "source_fact": {
+            "provenance_refs": [
+              "r2.acceleration",
+              "r2.air-move",
+              "r2.single-step"
+            ],
+            "status": "encoded",
+            "value": "空中移动按子步时长与期望速度增量写回速度，单步结束再对速度进行网络带宽用整数化。"
+          },
+          "to_id": "channel.r2.velocity"
+        }
+      ],
+      "operational_records": [
+        {
+          "candidate_output_ref": {
+            "provenance_refs": [],
+            "status": "not_applicable",
+            "value": null
+          },
+          "modulation_rule_refs": {
+            "provenance_refs": [
+              "r2.acceleration",
+              "r2.air-move",
+              "r2.outer-step"
+            ],
+            "status": "encoded",
+            "values": [
+              "rule.r2.air-acceleration",
+              "rule.r2.command-reuse"
+            ]
+          },
+          "pause_rule_refs": {
+            "provenance_refs": [],
+            "status": "source_underdetermined",
+            "values": []
+          },
+          "process_ref": {
+            "provenance_refs": [
+              "r2.air-move",
+              "r2.single-step"
+            ],
+            "status": "encoded",
+            "value": "process.r2.air-movement"
+          },
+          "read_channel_refs": {
+            "provenance_refs": [
+              "r2.acceleration",
+              "r2.air-move",
+              "r2.single-step"
+            ],
+            "status": "encoded",
+            "values": [
+              "channel.r2.origin",
+              "channel.r2.used-command",
+              "channel.r2.velocity"
+            ]
+          },
+          "record_id": "process-profile.r2.air-movement",
+          "record_type": "process_profile",
+          "scope_ref": {
+            "provenance_refs": [
+              "r2.single-step"
+            ],
+            "status": "encoded",
+            "value": "scope.r2.air-movement"
+          },
+          "termination_rule_refs": {
+            "provenance_refs": [
+              "r2.outer-step"
+            ],
+            "status": "encoded",
+            "values": [
+              "rule.r2.outer-loop-stop"
+            ]
+          },
+          "time_base_ref": {
+            "provenance_refs": [
+              "r2.outer-step",
+              "r2.single-step"
+            ],
+            "status": "encoded",
+            "value": "tb.r2.command-time"
+          },
+          "update_rule_refs": {
+            "provenance_refs": [
+              "r2.acceleration",
+              "r2.air-move",
+              "r2.single-step"
+            ],
+            "status": "encoded",
+            "values": [
+              "rule.r2.air-acceleration",
+              "rule.r2.single-step-order"
+            ]
+          },
+          "write_channel_refs": {
+            "provenance_refs": [
+              "r2.acceleration",
+              "r2.air-move",
+              "r2.single-step"
+            ],
+            "status": "encoded",
+            "values": [
+              "channel.r2.origin",
+              "channel.r2.velocity"
+            ]
+          }
+        },
+        {
+          "action_instantiation": {
+            "provenance_refs": [],
+            "status": "not_applicable",
+            "value": null
+          },
+          "effect_commitment": {
+            "provenance_refs": [
+              "r2.acceleration",
+              "r2.air-move",
+              "r2.single-step"
+            ],
+            "status": "encoded",
+            "value": "每个子步把加速和步进滑移结果写回同一个 playerState；单步末尾对速度执行 SnapVector。"
+          },
+          "goal_evaluation": {
+            "provenance_refs": [],
+            "status": "scope_excluded",
+            "value": null
+          },
+          "input_recognition": {
+            "provenance_refs": [
+              "r2.air-move",
+              "r2.outer-step"
+            ],
+            "status": "encoded",
+            "value": "外层移动在连续子步中复用当前 usercmd；空中移动读取其中的 forwardmove 与 rightmove。"
+          },
+          "record_id": "outcome.r2.process-update",
+          "record_type": "outcome_frame",
+          "resolution": {
+            "provenance_refs": [
+              "r2.single-step"
+            ],
+            "status": "encoded",
+            "value": "PM_NORMAL 且未行走的分支进入空中移动；来源同时列出会转入其他移动分支的条件，但本案排除这些分支。"
+          }
+        }
+      ],
+      "references": [
+        {
+          "audit_identity": "Quake III Pmove committed playerState",
+          "base_type": "state",
+          "blind_description": "子步写回的位置与速度状态",
+          "record_id": "effect.r2.state-commit",
+          "source_fact": {
+            "provenance_refs": [
+              "r2.interface",
+              "r2.single-step"
+            ],
+            "status": "encoded",
+            "value": "移动过程以 playerState 和 usercmd 为输入并返回修改后的同一 playerState。"
+          },
+          "test_role": "effect"
+        },
+        {
+          "audit_identity": "continuous-001 usercmd trace",
+          "base_type": "action",
+          "blind_description": "冻结夹具提供的命令序列",
+          "record_id": "input.r2.usercmd-trace",
+          "source_fact": {
+            "provenance_refs": [],
+            "status": "source_underdetermined",
+            "value": null
+          },
+          "test_role": "input"
+        },
+        {
+          "audit_identity": "Quake III raw usercmd",
+          "base_type": "action",
+          "blind_description": "传入外层移动过程的原始命令",
+          "record_id": "input.r2.raw-command",
+          "source_fact": {
+            "provenance_refs": [
+              "r2.interface",
+              "r2.outer-step"
+            ],
+            "status": "encoded",
+            "value": "外层移动以 usercmd 的 serverTime 为最终规则时间，并在循环中更新该命令的子步 serverTime。"
+          },
+          "test_role": "input"
+        },
+        {
+          "audit_identity": "Quake III pm->cmd per substep",
+          "base_type": "action",
+          "blind_description": "当前子步实际读取的命令",
+          "record_id": "input.r2.used-command",
+          "source_fact": {
+            "provenance_refs": [
+              "r2.air-move",
+              "r2.outer-step",
+              "r2.single-step"
+            ],
+            "status": "encoded",
+            "value": "同一个 pmove 命令对象在外层循环的各子步中复用，子步会读取其移动分量。"
+          },
+          "test_role": "input"
+        },
+        {
+          "audit_identity": "Quake III pmove_t/playerState_t",
+          "base_type": "entity",
+          "blind_description": "持有位置、速度与命令时间的受控移动实体",
+          "record_id": "medium.r2.player-state",
+          "source_fact": {
+            "provenance_refs": [
+              "r2.interface",
+              "r2.public-structures"
+            ],
+            "status": "encoded",
+            "value": "移动实现载体是包含 playerState 指针与 usercmd 的 pmove 结构。"
+          },
+          "test_role": "process"
+        },
+        {
+          "audit_identity": "Quake III PM_AirMove",
+          "base_type": "process",
+          "blind_description": "按子步命令持续更新空中轨迹的过程",
+          "record_id": "process.r2.air-movement",
+          "source_fact": {
+            "provenance_refs": [
+              "r2.acceleration",
+              "r2.air-move",
+              "r2.single-step"
+            ],
+            "status": "encoded",
+            "value": "空中移动从命令构造期望方向和速度，施加空中加速，然后执行带重力的步进滑移。"
+          },
+          "test_role": "process"
+        },
+        {
+          "audit_identity": "Quake III PM_NORMAL airborne branch",
+          "base_type": "context_scope",
+          "blind_description": "普通空中移动分支的单个子步作用域",
+          "record_id": "scope.r2.air-movement",
+          "source_fact": {
+            "provenance_refs": [
+              "r2.single-step"
+            ],
+            "status": "encoded",
+            "value": "不处于飞行、抓钩、水跳、游泳或行走分支时调用空中移动。"
+          },
+          "test_role": "process"
+        },
+        {
+          "audit_identity": "Quake III playerState origin",
+          "base_type": "state",
+          "blind_description": "规则空间中的位置状态",
+          "record_id": "state.r2.origin",
+          "source_fact": {
+            "provenance_refs": [
+              "r2.interface",
+              "r2.single-step"
+            ],
+            "status": "encoded",
+            "value": "单步保存先前 origin，移动过程随后更新 playerState。"
+          },
+          "test_role": "process"
+        },
+        {
+          "audit_identity": "Quake III playerState velocity",
+          "base_type": "state",
+          "blind_description": "规则空间中的速度状态",
+          "record_id": "state.r2.velocity",
+          "source_fact": {
+            "provenance_refs": [
+              "r2.acceleration",
+              "r2.single-step"
+            ],
+            "status": "encoded",
+            "value": "加速规则直接增加 playerState velocity，单步末尾对速度进行 SnapVector。"
+          },
+          "test_role": "process"
+        }
+      ],
+      "rules": [
+        {
+          "rule_id": "rule.r2.air-acceleration",
+          "slots": {
+            "action": {
+              "provenance_refs": [
+                "r2.acceleration",
+                "r2.air-move"
+              ],
+              "status": "encoded",
+              "values": [
+                "process.r2.air-movement"
+              ]
+            },
+            "actor": {
+              "provenance_refs": [],
+              "status": "not_applicable",
+              "values": []
+            },
+            "context": {
+              "provenance_refs": [
+                "r2.air-move"
+              ],
+              "status": "encoded",
+              "values": [
+                "scope.r2.air-movement"
+              ]
+            },
+            "cost": {
+              "provenance_refs": [],
+              "status": "not_applicable",
+              "values": []
+            },
+            "effects": {
+              "provenance_refs": [
+                "r2.acceleration"
+              ],
+              "status": "encoded",
+              "values": [
+                "state.r2.velocity"
+              ]
+            },
+            "feedback": {
+              "provenance_refs": [],
+              "status": "scope_excluded",
+              "values": []
+            },
+            "goals_evaluation": {
+              "provenance_refs": [],
+              "status": "scope_excluded",
+              "values": []
+            },
+            "preconditions": {
+              "provenance_refs": [
+                "r2.acceleration"
+              ],
+              "status": "encoded",
+              "values": [
+                "state.r2.velocity"
+              ]
+            },
+            "resolution": {
+              "provenance_refs": [
+                "r2.acceleration"
+              ],
+              "status": "encoded",
+              "values": [
+                "effect.r2.state-commit"
+              ]
+            },
+            "target": {
+              "provenance_refs": [
+                "r2.interface"
+              ],
+              "status": "encoded",
+              "values": [
+                "medium.r2.player-state"
+              ]
+            },
+            "trigger": {
+              "provenance_refs": [
+                "r2.air-move"
+              ],
+              "status": "encoded",
+              "values": [
+                "input.r2.used-command"
+              ]
+            }
+          },
+          "statement": "空中移动把命令分量转换为期望方向和速度；加速度为 accel×frametime×wishspeed，并以剩余可加速度为上限后写入速度。"
+        },
+        {
+          "rule_id": "rule.r2.command-reuse",
+          "slots": {
+            "action": {
+              "provenance_refs": [
+                "r2.outer-step"
+              ],
+              "status": "encoded",
+              "values": [
+                "input.r2.used-command"
+              ]
+            },
+            "actor": {
+              "provenance_refs": [],
+              "status": "not_applicable",
+              "values": []
+            },
+            "context": {
+              "provenance_refs": [
+                "r2.outer-step"
+              ],
+              "status": "encoded",
+              "values": [
+                "scope.r2.air-movement"
+              ]
+            },
+            "cost": {
+              "provenance_refs": [],
+              "status": "not_applicable",
+              "values": []
+            },
+            "effects": {
+              "provenance_refs": [
+                "r2.outer-step"
+              ],
+              "status": "encoded",
+              "values": [
+                "input.r2.used-command"
+              ]
+            },
+            "feedback": {
+              "provenance_refs": [],
+              "status": "scope_excluded",
+              "values": []
+            },
+            "goals_evaluation": {
+              "provenance_refs": [],
+              "status": "scope_excluded",
+              "values": []
+            },
+            "preconditions": {
+              "provenance_refs": [
+                "r2.outer-step"
+              ],
+              "status": "encoded",
+              "values": [
+                "input.r2.raw-command"
+              ]
+            },
+            "resolution": {
+              "provenance_refs": [],
+              "status": "not_applicable",
+              "values": []
+            },
+            "target": {
+              "provenance_refs": [
+                "r2.interface"
+              ],
+              "status": "encoded",
+              "values": [
+                "medium.r2.player-state"
+              ]
+            },
+            "trigger": {
+              "provenance_refs": [
+                "r2.outer-step"
+              ],
+              "status": "encoded",
+              "values": [
+                "tb.r2.command-time"
+              ]
+            }
+          },
+          "statement": "外层 Pmove 在到达 finalTime 前复用当前命令对象，仅把 cmd.serverTime 改为当前子步终点后调用 PmoveSingle。"
+        },
+        {
+          "rule_id": "rule.r2.outer-loop-stop",
+          "slots": {
+            "action": {
+              "provenance_refs": [
+                "r2.outer-step"
+              ],
+              "status": "encoded",
+              "values": [
+                "process.r2.air-movement"
+              ]
+            },
+            "actor": {
+              "provenance_refs": [],
+              "status": "not_applicable",
+              "values": []
+            },
+            "context": {
+              "provenance_refs": [
+                "r2.outer-step"
+              ],
+              "status": "encoded",
+              "values": [
+                "scope.r2.air-movement"
+              ]
+            },
+            "cost": {
+              "provenance_refs": [],
+              "status": "not_applicable",
+              "values": []
+            },
+            "effects": {
+              "provenance_refs": [
+                "r2.outer-step"
+              ],
+              "status": "encoded",
+              "values": [
+                "effect.r2.state-commit"
+              ]
+            },
+            "feedback": {
+              "provenance_refs": [],
+              "status": "scope_excluded",
+              "values": []
+            },
+            "goals_evaluation": {
+              "provenance_refs": [],
+              "status": "scope_excluded",
+              "values": []
+            },
+            "preconditions": {
+              "provenance_refs": [
+                "r2.outer-step"
+              ],
+              "status": "encoded",
+              "values": [
+                "input.r2.raw-command"
+              ]
+            },
+            "resolution": {
+              "provenance_refs": [
+                "r2.outer-step"
+              ],
+              "status": "encoded",
+              "values": [
+                "effect.r2.state-commit"
+              ]
+            },
+            "target": {
+              "provenance_refs": [
+                "r2.interface"
+              ],
+              "status": "encoded",
+              "values": [
+                "medium.r2.player-state"
+              ]
+            },
+            "trigger": {
+              "provenance_refs": [
+                "r2.outer-step"
+              ],
+              "status": "encoded",
+              "values": [
+                "tb.r2.command-time"
+              ]
+            }
+          },
+          "statement": "外层循环在 playerState.commandTime 等于原始命令 finalTime 时停止。"
+        },
+        {
+          "rule_id": "rule.r2.single-step-order",
+          "slots": {
+            "action": {
+              "provenance_refs": [
+                "r2.single-step"
+              ],
+              "status": "encoded",
+              "values": [
+                "process.r2.air-movement"
+              ]
+            },
+            "actor": {
+              "provenance_refs": [],
+              "status": "not_applicable",
+              "values": []
+            },
+            "context": {
+              "provenance_refs": [
+                "r2.single-step"
+              ],
+              "status": "encoded",
+              "values": [
+                "scope.r2.air-movement"
+              ]
+            },
+            "cost": {
+              "provenance_refs": [],
+              "status": "not_applicable",
+              "values": []
+            },
+            "effects": {
+              "provenance_refs": [
+                "r2.single-step"
+              ],
+              "status": "encoded",
+              "values": [
+                "state.r2.origin",
+                "state.r2.velocity"
+              ]
+            },
+            "feedback": {
+              "provenance_refs": [],
+              "status": "scope_excluded",
+              "values": []
+            },
+            "goals_evaluation": {
+              "provenance_refs": [],
+              "status": "scope_excluded",
+              "values": []
+            },
+            "preconditions": {
+              "provenance_refs": [
+                "r2.single-step"
+              ],
+              "status": "encoded",
+              "values": [
+                "scope.r2.air-movement"
+              ]
+            },
+            "resolution": {
+              "provenance_refs": [
+                "r2.single-step"
+              ],
+              "status": "encoded",
+              "values": [
+                "effect.r2.state-commit"
+              ]
+            },
+            "target": {
+              "provenance_refs": [
+                "r2.interface"
+              ],
+              "status": "encoded",
+              "values": [
+                "medium.r2.player-state"
+              ]
+            },
+            "trigger": {
+              "provenance_refs": [
+                "r2.outer-step"
+              ],
+              "status": "encoded",
+              "values": [
+                "tb.r2.command-time"
+              ]
+            }
+          },
+          "statement": "单步先计算并夹紧 msec、更新 commandTime 与 frametime，再选择移动分支；空中分支完成后更新地面/水体等状态并最终 SnapVector 速度。"
+        }
+      ],
+      "source_issues": [
+        {
+          "description": "来源说明固定模式使用 pmove_msec 作为子步上限，但所列定位未给出本夹具的 8 ms 配置值；8 ms 是冻结观察边界中的夹具约定，不冒充来源规则。",
+          "issue_id": "issue.r2.fixed-step-value-underdetermined",
+          "locator_refs": [
+            "r2.outer-step",
+            "r2.public-structures"
+          ],
+          "status": "source_underdetermined"
+        },
+        {
+          "description": "冻结来源未提供 25 个子步的 raw_cmd、used_cmd、位置与速度实测终值，也未规定浮点跨工具链等价容差。",
+          "issue_id": "issue.r2.trace-and-tolerance-underdetermined",
+          "locator_refs": [
+            "r2.acceleration",
+            "r2.air-move",
+            "r2.outer-step",
+            "r2.single-step"
+          ],
+          "status": "source_underdetermined"
+        }
+      ],
+      "state_channels": [
+        {
+          "channel_id": "channel.r2.origin",
+          "coordinate_system": {
+            "provenance_refs": [
+              "r2.public-structures",
+              "r2.single-step"
+            ],
+            "status": "encoded",
+            "value": "playerState 规则世界三维坐标"
+          },
+          "equivalence_tolerance": {
+            "provenance_refs": [],
+            "status": "source_underdetermined",
+            "value": null
+          },
+          "initial_value": {
+            "provenance_refs": [],
+            "status": "source_underdetermined",
+            "value": null
+          },
+          "precision": {
+            "provenance_refs": [
+              "r2.public-structures"
+            ],
+            "status": "encoded",
+            "value": "C float 三分量向量；跨工具链数值精度未进一步冻结。"
+          },
+          "reader_refs": {
+            "provenance_refs": [
+              "r2.single-step"
+            ],
+            "status": "encoded",
+            "values": [
+              "process.r2.air-movement"
+            ]
+          },
+          "semantic_ref": {
+            "provenance_refs": [
+              "r2.interface",
+              "r2.single-step"
+            ],
+            "status": "encoded",
+            "value": "state.r2.origin"
+          },
+          "snapshot_boundary": {
+            "provenance_refs": [
+              "r2.single-step"
+            ],
+            "status": "encoded",
+            "value": "每个 PmoveSingle 开始时复制为 previous_origin，移动分支在本子步中写回。"
+          },
+          "stop_value": {
+            "provenance_refs": [],
+            "status": "source_underdetermined",
+            "value": null
+          },
+          "unit": {
+            "provenance_refs": [],
+            "status": "source_underdetermined",
+            "value": null
+          },
+          "value_type": "string",
+          "writer_refs": {
+            "provenance_refs": [
+              "r2.air-move"
+            ],
+            "status": "encoded",
+            "values": [
+              "process.r2.air-movement"
+            ]
+          }
+        },
+        {
+          "channel_id": "channel.r2.used-command",
+          "coordinate_system": {
+            "provenance_refs": [
+              "r2.interface",
+              "r2.public-structures"
+            ],
+            "status": "encoded",
+            "value": "usercmd 离散命令字段"
+          },
+          "equivalence_tolerance": {
+            "provenance_refs": [],
+            "status": "not_applicable",
+            "value": null
+          },
+          "initial_value": {
+            "provenance_refs": [],
+            "status": "source_underdetermined",
+            "value": null
+          },
+          "precision": {
+            "provenance_refs": [
+              "r2.public-structures"
+            ],
+            "status": "encoded",
+            "value": "前后、侧向和竖向移动为有符号 8 位字段；serverTime 为整数。"
+          },
+          "reader_refs": {
+            "provenance_refs": [
+              "r2.air-move",
+              "r2.single-step"
+            ],
+            "status": "encoded",
+            "values": [
+              "process.r2.air-movement"
+            ]
+          },
+          "semantic_ref": {
+            "provenance_refs": [
+              "r2.air-move",
+              "r2.outer-step"
+            ],
+            "status": "encoded",
+            "value": "input.r2.used-command"
+          },
+          "snapshot_boundary": {
+            "provenance_refs": [
+              "r2.outer-step"
+            ],
+            "status": "encoded",
+            "value": "每次外层循环设置子步 serverTime 后调用一次 PmoveSingle；其他命令字段沿用同一个 pmove 命令对象。"
+          },
+          "stop_value": {
+            "provenance_refs": [],
+            "status": "source_underdetermined",
+            "value": null
+          },
+          "unit": {
+            "provenance_refs": [],
+            "status": "not_applicable",
+            "value": null
+          },
+          "value_type": "string",
+          "writer_refs": {
+            "provenance_refs": [
+              "r2.outer-step"
+            ],
+            "status": "encoded",
+            "values": [
+              "rule.r2.command-reuse"
+            ]
+          }
+        },
+        {
+          "channel_id": "channel.r2.velocity",
+          "coordinate_system": {
+            "provenance_refs": [
+              "r2.public-structures",
+              "r2.single-step"
+            ],
+            "status": "encoded",
+            "value": "playerState 规则世界三维速度"
+          },
+          "equivalence_tolerance": {
+            "provenance_refs": [],
+            "status": "source_underdetermined",
+            "value": null
+          },
+          "initial_value": {
+            "provenance_refs": [],
+            "status": "source_underdetermined",
+            "value": null
+          },
+          "precision": {
+            "provenance_refs": [
+              "r2.public-structures",
+              "r2.single-step"
+            ],
+            "status": "encoded",
+            "value": "过程内部为 C float 三分量向量；单步末尾经 SnapVector 整数化。"
+          },
+          "reader_refs": {
+            "provenance_refs": [
+              "r2.acceleration",
+              "r2.single-step"
+            ],
+            "status": "encoded",
+            "values": [
+              "process.r2.air-movement"
+            ]
+          },
+          "semantic_ref": {
+            "provenance_refs": [
+              "r2.acceleration",
+              "r2.single-step"
+            ],
+            "status": "encoded",
+            "value": "state.r2.velocity"
+          },
+          "snapshot_boundary": {
+            "provenance_refs": [
+              "r2.single-step"
+            ],
+            "status": "encoded",
+            "value": "每个 PmoveSingle 开始时复制为 previous_velocity，移动分支写回，单步末尾 SnapVector。"
+          },
+          "stop_value": {
+            "provenance_refs": [],
+            "status": "source_underdetermined",
+            "value": null
+          },
+          "unit": {
+            "provenance_refs": [],
+            "status": "source_underdetermined",
+            "value": null
+          },
+          "value_type": "string",
+          "writer_refs": {
+            "provenance_refs": [
+              "r2.acceleration",
+              "r2.air-move",
+              "r2.single-step"
+            ],
+            "status": "encoded",
+            "values": [
+              "process.r2.air-movement"
+            ]
+          }
+        }
+      ],
+      "temporal_edges": [
+        {
+          "condition_ids": [],
+          "edge_id": "time.r2.command-before-update",
+          "from_id": "input.r2.used-command",
+          "kind": "before",
+          "source_fact": {
+            "provenance_refs": [
+              "r2.air-move",
+              "r2.single-step"
+            ],
+            "status": "encoded",
+            "value": "单步先确定时间并更新视角与分支条件，空中移动随后读取命令并写回速度和位置。"
+          },
+          "time_base_refs": [
+            "tb.r2.command-time"
+          ],
+          "to_id": "effect.r2.state-commit"
+        }
+      ],
+      "time_bases": [
+        {
+          "advance_condition": {
+            "provenance_refs": [
+              "r2.outer-step"
+            ],
+            "status": "encoded",
+            "value": "只要 playerState.commandTime 不等于原始命令 finalTime，外层循环就生成下一个子步并调用 PmoveSingle。"
+          },
+          "coordinate_type": "integer_step",
+          "cross_time_mappings": [],
+          "fixed_step": {
+            "provenance_refs": [],
+            "status": "source_underdetermined",
+            "value": null
+          },
+          "owner_ref": {
+            "provenance_refs": [
+              "r2.outer-step"
+            ],
+            "status": "encoded",
+            "value": "process.r2.air-movement"
+          },
+          "pause_and_backlog": {
+            "provenance_refs": [],
+            "status": "source_underdetermined",
+            "value": null
+          },
+          "phase_order": {
+            "provenance_refs": [
+              "r2.outer-step",
+              "r2.single-step"
+            ],
+            "status": "encoded",
+            "value": "外层确定子步 msec 并设置 cmd.serverTime；单步计算 frametime、选择空中移动分支、更新状态，最后 SnapVector 速度。"
+          },
+          "sorting_rule": {
+            "provenance_refs": [
+              "r2.outer-step"
+            ],
+            "status": "encoded",
+            "value": "按严格递增的 playerState.commandTime 排序，直到等于原始命令 finalTime。"
+          },
+          "time_base_id": "tb.r2.command-time",
+          "unit": {
+            "provenance_refs": [
+              "r2.single-step"
+            ],
+            "status": "encoded",
+            "value": "millisecond"
+          }
+        }
+      ],
+      "trace_contract": {
+        "allowed_kinds": [
+          "effect_committed",
+          "input_sampled",
+          "process_update",
+          "scope_ended",
+          "scope_started",
+          "state_committed",
+          "state_sampled"
+        ],
+        "derivation_algorithm_id": "algorithm.r2.none-source-only",
+        "raw_trace_ref": "input.r2.usercmd-trace",
+        "stop_condition_refs": [
+          "stop.r2.200-ms"
+        ],
+        "tolerance_rule_refs": []
+      }
+    },
+    {
+      "case_scope": {
+        "case_id": "CA-R3",
+        "controlled_variable_id": "variable.r3.adjudication-schedule",
+        "formal_input_ref": "input.r3.single-candidate",
+        "observation_start": "OD5 的单个 HitCircle 在 StartTime=T 于圆心收到一次有效候选按下。",
+        "observation_stop": "正式结果提交、RawTime 与通知记录完成，并记录同一物件再次接受输入的许可关闭时点。",
+        "role_id": "CA-R3",
+        "scope_exclusions": [
+          "在线成绩、玩家数据、商业音乐与原作皮肤",
+          "普通渲染时钟与非确定性调度",
+          "玩家准确度、节奏能力、难度与感受",
+          "品牌、市场版本行为与未冻结规则集"
+        ]
+      },
+      "composition_edges": [],
+      "operational_edges": [
+        {
+          "condition_ids": [],
+          "edge_id": "edge.r3.candidate-adjudicated",
+          "from_id": "input.r3.candidate-press",
+          "kind": "adjudicates_as",
+          "scope_ids": [
+            "scope.r3.single-object"
+          ],
+          "source_fact": {
+            "provenance_refs": [
+              "r3.candidate-path",
+              "r3.hit-circle-result",
+              "r3.input-press"
+            ],
+            "status": "encoded",
+            "value": "可命中且位于接收区域的左右键按下调用结果更新；用户触发路径先按时间偏移分类并通过可命中检查。"
+          },
+          "to_id": "event.r3.formal-judgement"
+        },
+        {
+          "condition_ids": [],
+          "edge_id": "edge.r3.effect-gates-reentry",
+          "from_id": "effect.r3.result-committed",
+          "kind": "gates",
+          "scope_ids": [
+            "scope.r3.single-object"
+          ],
+          "source_fact": {
+            "provenance_refs": [
+              "r3.apply-result",
+              "r3.candidate-path"
+            ],
+            "status": "encoded",
+            "value": "结果提交后对象进入已裁定状态；接收器的 CanBeHit 条件为未全部裁定，因此同一对象不再接受后续候选按下。"
+          },
+          "to_id": "input.r3.reentry-opportunity"
+        },
+        {
+          "condition_ids": [],
+          "edge_id": "edge.r3.event-resolved",
+          "from_id": "event.r3.formal-judgement",
+          "kind": "resolves_to",
+          "scope_ids": [
+            "scope.r3.single-object"
+          ],
+          "source_fact": {
+            "provenance_refs": [
+              "r3.hit-circle-result",
+              "r3.result-order"
+            ],
+            "status": "encoded",
+            "value": "绝对时间偏移按允许结果及窗口顺序分类，得到正式结算类型。"
+          },
+          "to_id": "resolution.r3.hit-result"
+        },
+        {
+          "condition_ids": [],
+          "edge_id": "edge.r3.resolution-committed",
+          "from_id": "resolution.r3.hit-result",
+          "kind": "commits",
+          "scope_ids": [
+            "scope.r3.single-object"
+          ],
+          "source_fact": {
+            "provenance_refs": [
+              "r3.apply-result"
+            ],
+            "status": "encoded",
+            "value": "ApplyResult 验证结果类型后写入 RawTime 与 GameplayRate、更新 ArmedState 并调用 OnNewResult。"
+          },
+          "to_id": "effect.r3.result-committed"
+        }
+      ],
+      "operational_records": [
+        {
+          "adjudicator_ref": {
+            "provenance_refs": [
+              "r3.apply-result",
+              "r3.hit-circle-result"
+            ],
+            "status": "encoded",
+            "value": "process.r3.drawable-adjudicator"
+          },
+          "candidate_occurrence_ref": {
+            "provenance_refs": [
+              "r3.input-press"
+            ],
+            "status": "encoded",
+            "value": "input.r3.candidate-press"
+          },
+          "effect_ref": {
+            "provenance_refs": [
+              "r3.apply-result"
+            ],
+            "status": "encoded",
+            "value": "effect.r3.result-committed"
+          },
+          "formal_event_ref": {
+            "provenance_refs": [
+              "r3.hit-circle-result"
+            ],
+            "status": "encoded",
+            "value": "event.r3.formal-judgement"
+          },
+          "record_id": "adjudication.r3.hit-circle",
+          "record_type": "adjudication_path",
+          "resolution_ref": {
+            "provenance_refs": [
+              "r3.hit-circle-result",
+              "r3.result-order"
+            ],
+            "status": "encoded",
+            "value": "resolution.r3.hit-result"
+          },
+          "review_rule_refs": {
+            "provenance_refs": [
+              "r3.apply-result",
+              "r3.candidate-path"
+            ],
+            "status": "encoded",
+            "values": [
+              "rule.r3.no-second-result"
+            ]
+          },
+          "stages": [
+            {
+              "input_ref": {
+                "provenance_refs": [
+                  "r3.input-press"
+                ],
+                "status": "encoded",
+                "value": "input.r3.candidate-press"
+              },
+              "output_ref": {
+                "provenance_refs": [
+                  "r3.candidate-path",
+                  "r3.input-press"
+                ],
+                "status": "encoded",
+                "value": "event.r3.formal-judgement"
+              },
+              "rule_refs": {
+                "provenance_refs": [
+                  "r3.candidate-path",
+                  "r3.input-press"
+                ],
+                "status": "encoded",
+                "values": [
+                  "rule.r3.candidate-acceptance"
+                ]
+              },
+              "stage_id": "stage.r3.detection",
+              "stage_kind": "detection",
+              "time_base_ref": {
+                "provenance_refs": [
+                  "r3.hit-circle-result"
+                ],
+                "status": "encoded",
+                "value": "tb.r3.gameplay-clock"
+              }
+            },
+            {
+              "input_ref": {
+                "provenance_refs": [
+                  "r3.hit-circle-result"
+                ],
+                "status": "encoded",
+                "value": "event.r3.formal-judgement"
+              },
+              "output_ref": {
+                "provenance_refs": [
+                  "r3.hit-circle-result",
+                  "r3.result-order"
+                ],
+                "status": "encoded",
+                "value": "resolution.r3.hit-result"
+              },
+              "rule_refs": {
+                "provenance_refs": [
+                  "r3.hit-circle-result",
+                  "r3.hit-windows",
+                  "r3.result-order"
+                ],
+                "status": "encoded",
+                "values": [
+                  "rule.r3.result-classification"
+                ]
+              },
+              "stage_id": "stage.r3.classification",
+              "stage_kind": "classification",
+              "time_base_ref": {
+                "provenance_refs": [
+                  "r3.hit-circle-result"
+                ],
+                "status": "encoded",
+                "value": "tb.r3.gameplay-clock"
+              }
+            },
+            {
+              "input_ref": {
+                "provenance_refs": [
+                  "r3.hit-circle-result"
+                ],
+                "status": "encoded",
+                "value": "resolution.r3.hit-result"
+              },
+              "output_ref": {
+                "provenance_refs": [
+                  "r3.apply-result"
+                ],
+                "status": "encoded",
+                "value": "effect.r3.result-committed"
+              },
+              "rule_refs": {
+                "provenance_refs": [
+                  "r3.apply-result"
+                ],
+                "status": "encoded",
+                "values": [
+                  "rule.r3.result-commit"
+                ]
+              },
+              "stage_id": "stage.r3.commit",
+              "stage_kind": "commit",
+              "time_base_ref": {
+                "provenance_refs": [
+                  "r3.apply-result"
+                ],
+                "status": "encoded",
+                "value": "tb.r3.gameplay-clock"
+              }
+            }
+          ]
+        },
+        {
+          "action_instantiation": {
+            "provenance_refs": [],
+            "status": "not_applicable",
+            "value": null
+          },
+          "effect_commitment": {
+            "provenance_refs": [
+              "r3.apply-result"
+            ],
+            "status": "encoded",
+            "value": "结果类型通过存在性与合法范围验证后，系统写入 RawTime、GameplayRate，更新命中或未命中状态并通知 OnNewResult。"
+          },
+          "goal_evaluation": {
+            "provenance_refs": [
+              "r3.apply-result"
+            ],
+            "status": "source_underdetermined",
+            "value": null
+          },
+          "input_recognition": {
+            "provenance_refs": [
+              "r3.candidate-path",
+              "r3.input-press"
+            ],
+            "status": "encoded",
+            "value": "对象未全部裁定、动作为左右键且指针位于接收区域时，按下被接受并调用结果更新。"
+          },
+          "record_id": "outcome.r3.single-candidate",
+          "record_type": "outcome_frame",
+          "resolution": {
+            "provenance_refs": [
+              "r3.hit-circle-result",
+              "r3.hit-windows",
+              "r3.result-order"
+            ],
+            "status": "encoded",
+            "value": "用户触发路径以当前游戏时间相对物件结束时间的偏移取得窗口结果，再要求结果非 None 且可命中检查返回 Hit，才进入结果提交。"
+          }
+        }
+      ],
+      "references": [
+        {
+          "audit_identity": "osu!lazer committed JudgementResult",
+          "base_type": "state",
+          "blind_description": "已验证并通知响应者的正式结果效果",
+          "record_id": "effect.r3.result-committed",
+          "source_fact": {
+            "provenance_refs": [
+              "r3.apply-result"
+            ],
+            "status": "encoded",
+            "value": "结果提交写入 RawTime 与 GameplayRate，更新 ArmedState，随后调用 OnNewResult。"
+          },
+          "test_role": "effect"
+        },
+        {
+          "audit_identity": "osu!lazer user-triggered drawable judgement",
+          "base_type": "state",
+          "blind_description": "候选输入通过可命中检查后形成的正式裁定事件",
+          "record_id": "event.r3.formal-judgement",
+          "source_fact": {
+            "provenance_refs": [
+              "r3.hit-circle-result"
+            ],
+            "status": "encoded",
+            "value": "用户触发检查只有在窗口结果非 None 且 CheckHittable 返回 Hit 时调用 ApplyResult。"
+          },
+          "test_role": "event"
+        },
+        {
+          "audit_identity": "osu!lazer HitReceptor accepted press",
+          "base_type": "action",
+          "blind_description": "在接收区域内且对象仍可命中时接受的候选按下",
+          "record_id": "input.r3.candidate-press",
+          "source_fact": {
+            "provenance_refs": [
+              "r3.candidate-path",
+              "r3.input-press"
+            ],
+            "status": "encoded",
+            "value": "左右键按下仅在 CanBeHit 成立时处理；位于接收区域时调用 Hit 并返回 true。"
+          },
+          "test_role": "input"
+        },
+        {
+          "audit_identity": "osu!lazer HitReceptor post-result input opportunity",
+          "base_type": "action",
+          "blind_description": "同一对象再次接受候选按下的后续响应机会",
+          "record_id": "input.r3.reentry-opportunity",
+          "source_fact": {
+            "provenance_refs": [
+              "r3.candidate-path",
+              "r3.input-press"
+            ],
+            "status": "encoded",
+            "value": "CanBeHit 被定义为未全部裁定；条件为假时 OnPressed 立即返回 false。"
+          },
+          "test_role": "input"
+        },
+        {
+          "audit_identity": "continuous-001 single candidate fixture",
+          "base_type": "action",
+          "blind_description": "冻结夹具在规则时点提供的单次候选按下",
+          "record_id": "input.r3.single-candidate",
+          "source_fact": {
+            "provenance_refs": [],
+            "status": "source_underdetermined",
+            "value": null
+          },
+          "test_role": "input"
+        },
+        {
+          "audit_identity": "osu!lazer DrawableHitCircle result path",
+          "base_type": "process",
+          "blind_description": "单物件候选检测、窗口分类与结果提交过程",
+          "record_id": "process.r3.drawable-adjudicator",
+          "source_fact": {
+            "provenance_refs": [
+              "r3.apply-result",
+              "r3.hit-circle-result"
+            ],
+            "status": "encoded",
+            "value": "DrawableHitCircle 检查用户触发结果，基类 ApplyResult 负责验证、写入时间、更新状态并通知。"
+          },
+          "test_role": "process"
+        },
+        {
+          "audit_identity": "osu!lazer HitResult selected by HitWindows",
+          "base_type": "state",
+          "blind_description": "按绝对时间偏移和允许窗口得到的结算类型",
+          "record_id": "resolution.r3.hit-result",
+          "source_fact": {
+            "provenance_refs": [
+              "r3.hit-circle-result",
+              "r3.hit-windows",
+              "r3.result-order"
+            ],
+            "status": "encoded",
+            "value": "分类取时间偏移绝对值，按从高到低的结果顺序返回第一个允许且偏移不超过窗口的结果，否则为 None。"
+          },
+          "test_role": "resolution"
+        },
+        {
+          "audit_identity": "osu!lazer single DrawableHitCircle scope",
+          "base_type": "context_scope",
+          "blind_description": "单个可命中对象从候选输入到结果通知的作用域",
+          "record_id": "scope.r3.single-object",
+          "source_fact": {
+            "provenance_refs": [
+              "r3.apply-result",
+              "r3.candidate-path"
+            ],
+            "status": "encoded",
+            "value": "接收器的 CanBeHit 依赖该对象是否已全部裁定，结果提交也拒绝已有结果的对象。"
+          },
+          "test_role": "process"
+        },
+        {
+          "audit_identity": "osu!lazer AllJudged/CanBeHit state",
+          "base_type": "state",
+          "blind_description": "同一对象是否仍许可新的候选按下",
+          "record_id": "state.r3.input-permission",
+          "source_fact": {
+            "provenance_refs": [
+              "r3.apply-result",
+              "r3.candidate-path"
+            ],
+            "status": "encoded",
+            "value": "接收器只在对象未全部裁定时可命中；提交已有结果会被拒绝。"
+          },
+          "test_role": "process"
+        }
+      ],
+      "rules": [
+        {
+          "rule_id": "rule.r3.candidate-acceptance",
+          "slots": {
+            "action": {
+              "provenance_refs": [
+                "r3.input-press"
+              ],
+              "status": "encoded",
+              "values": [
+                "input.r3.candidate-press"
+              ]
+            },
+            "actor": {
+              "provenance_refs": [],
+              "status": "not_applicable",
+              "values": []
+            },
+            "context": {
+              "provenance_refs": [
+                "r3.candidate-path"
+              ],
+              "status": "encoded",
+              "values": [
+                "scope.r3.single-object"
+              ]
+            },
+            "cost": {
+              "provenance_refs": [],
+              "status": "not_applicable",
+              "values": []
+            },
+            "effects": {
+              "provenance_refs": [
+                "r3.candidate-path",
+                "r3.input-press"
+              ],
+              "status": "encoded",
+              "values": [
+                "event.r3.formal-judgement"
+              ]
+            },
+            "feedback": {
+              "provenance_refs": [],
+              "status": "scope_excluded",
+              "values": []
+            },
+            "goals_evaluation": {
+              "provenance_refs": [],
+              "status": "scope_excluded",
+              "values": []
+            },
+            "preconditions": {
+              "provenance_refs": [
+                "r3.candidate-path",
+                "r3.input-press"
+              ],
+              "status": "encoded",
+              "values": [
+                "state.r3.input-permission"
+              ]
+            },
+            "resolution": {
+              "provenance_refs": [
+                "r3.hit-circle-result"
+              ],
+              "status": "encoded",
+              "values": [
+                "event.r3.formal-judgement"
+              ]
+            },
+            "target": {
+              "provenance_refs": [
+                "r3.candidate-path"
+              ],
+              "status": "encoded",
+              "values": [
+                "process.r3.drawable-adjudicator"
+              ]
+            },
+            "trigger": {
+              "provenance_refs": [
+                "r3.input-press"
+              ],
+              "status": "encoded",
+              "values": [
+                "input.r3.candidate-press"
+              ]
+            }
+          },
+          "statement": "对象尚未全部裁定、按下为左右键且指针位于接收区域时，候选按下调用用户触发的结果更新。"
+        },
+        {
+          "rule_id": "rule.r3.no-second-result",
+          "slots": {
+            "action": {
+              "provenance_refs": [
+                "r3.apply-result",
+                "r3.input-press"
+              ],
+              "status": "encoded",
+              "values": [
+                "input.r3.reentry-opportunity"
+              ]
+            },
+            "actor": {
+              "provenance_refs": [],
+              "status": "not_applicable",
+              "values": []
+            },
+            "context": {
+              "provenance_refs": [
+                "r3.candidate-path"
+              ],
+              "status": "encoded",
+              "values": [
+                "scope.r3.single-object"
+              ]
+            },
+            "cost": {
+              "provenance_refs": [],
+              "status": "not_applicable",
+              "values": []
+            },
+            "effects": {
+              "provenance_refs": [
+                "r3.candidate-path",
+                "r3.input-press"
+              ],
+              "status": "encoded",
+              "values": [
+                "state.r3.input-permission"
+              ]
+            },
+            "feedback": {
+              "provenance_refs": [],
+              "status": "scope_excluded",
+              "values": []
+            },
+            "goals_evaluation": {
+              "provenance_refs": [],
+              "status": "scope_excluded",
+              "values": []
+            },
+            "preconditions": {
+              "provenance_refs": [
+                "r3.apply-result"
+              ],
+              "status": "encoded",
+              "values": [
+                "effect.r3.result-committed"
+              ]
+            },
+            "resolution": {
+              "provenance_refs": [
+                "r3.apply-result"
+              ],
+              "status": "encoded",
+              "values": [
+                "effect.r3.result-committed"
+              ]
+            },
+            "target": {
+              "provenance_refs": [
+                "r3.candidate-path"
+              ],
+              "status": "encoded",
+              "values": [
+                "process.r3.drawable-adjudicator"
+              ]
+            },
+            "trigger": {
+              "provenance_refs": [
+                "r3.input-press"
+              ],
+              "status": "encoded",
+              "values": [
+                "input.r3.reentry-opportunity"
+              ]
+            }
+          },
+          "statement": "结果已存在或对象已全部裁定时，同一对象不再接受新的候选按下，也不能再次提交结果。"
+        },
+        {
+          "rule_id": "rule.r3.result-classification",
+          "slots": {
+            "action": {
+              "provenance_refs": [
+                "r3.hit-circle-result",
+                "r3.result-order"
+              ],
+              "status": "encoded",
+              "values": [
+                "event.r3.formal-judgement"
+              ]
+            },
+            "actor": {
+              "provenance_refs": [],
+              "status": "not_applicable",
+              "values": []
+            },
+            "context": {
+              "provenance_refs": [
+                "r3.hit-circle-result"
+              ],
+              "status": "encoded",
+              "values": [
+                "scope.r3.single-object"
+              ]
+            },
+            "cost": {
+              "provenance_refs": [],
+              "status": "not_applicable",
+              "values": []
+            },
+            "effects": {
+              "provenance_refs": [
+                "r3.result-order"
+              ],
+              "status": "encoded",
+              "values": [
+                "resolution.r3.hit-result"
+              ]
+            },
+            "feedback": {
+              "provenance_refs": [],
+              "status": "scope_excluded",
+              "values": []
+            },
+            "goals_evaluation": {
+              "provenance_refs": [],
+              "status": "source_underdetermined",
+              "values": []
+            },
+            "preconditions": {
+              "provenance_refs": [
+                "r3.hit-windows",
+                "r3.result-order"
+              ],
+              "status": "encoded",
+              "values": [
+                "event.r3.formal-judgement"
+              ]
+            },
+            "resolution": {
+              "provenance_refs": [
+                "r3.hit-circle-result",
+                "r3.result-order"
+              ],
+              "status": "encoded",
+              "values": [
+                "resolution.r3.hit-result"
+              ]
+            },
+            "target": {
+              "provenance_refs": [
+                "r3.hit-circle-result"
+              ],
+              "status": "encoded",
+              "values": [
+                "process.r3.drawable-adjudicator"
+              ]
+            },
+            "trigger": {
+              "provenance_refs": [
+                "r3.hit-circle-result"
+              ],
+              "status": "encoded",
+              "values": [
+                "event.r3.formal-judgement"
+              ]
+            }
+          },
+          "statement": "用户触发检查以当前时间相对物件结束时间的偏移调用窗口分类；分类使用绝对偏移并返回第一个允许且在窗内的结果。"
+        },
+        {
+          "rule_id": "rule.r3.result-commit",
+          "slots": {
+            "action": {
+              "provenance_refs": [
+                "r3.apply-result"
+              ],
+              "status": "encoded",
+              "values": [
+                "resolution.r3.hit-result"
+              ]
+            },
+            "actor": {
+              "provenance_refs": [],
+              "status": "not_applicable",
+              "values": []
+            },
+            "context": {
+              "provenance_refs": [
+                "r3.apply-result"
+              ],
+              "status": "encoded",
+              "values": [
+                "scope.r3.single-object"
+              ]
+            },
+            "cost": {
+              "provenance_refs": [],
+              "status": "not_applicable",
+              "values": []
+            },
+            "effects": {
+              "provenance_refs": [
+                "r3.apply-result"
+              ],
+              "status": "encoded",
+              "values": [
+                "effect.r3.result-committed",
+                "state.r3.input-permission"
+              ]
+            },
+            "feedback": {
+              "provenance_refs": [
+                "r3.apply-result"
+              ],
+              "status": "encoded",
+              "values": [
+                "effect.r3.result-committed"
+              ]
+            },
+            "goals_evaluation": {
+              "provenance_refs": [
+                "r3.apply-result"
+              ],
+              "status": "source_underdetermined",
+              "values": []
+            },
+            "preconditions": {
+              "provenance_refs": [
+                "r3.apply-result"
+              ],
+              "status": "encoded",
+              "values": [
+                "resolution.r3.hit-result"
+              ]
+            },
+            "resolution": {
+              "provenance_refs": [
+                "r3.apply-result"
+              ],
+              "status": "encoded",
+              "values": [
+                "effect.r3.result-committed"
+              ]
+            },
+            "target": {
+              "provenance_refs": [
+                "r3.apply-result"
+              ],
+              "status": "encoded",
+              "values": [
+                "process.r3.drawable-adjudicator"
+              ]
+            },
+            "trigger": {
+              "provenance_refs": [
+                "r3.hit-circle-result"
+              ],
+              "status": "encoded",
+              "values": [
+                "resolution.r3.hit-result"
+              ]
+            }
+          },
+          "statement": "结果类型必须先被写入且落在裁定允许范围内；随后记录 RawTime 和 GameplayRate、更新 ArmedState 并通知 OnNewResult。"
+        }
+      ],
+      "source_issues": [
+        {
+          "description": "所列来源明确通知 OnNewResult，并注释响应者可包括 ScoreProcessor，但未给出本案具体订阅者、记分更新或参与者可得反馈时点，因此不把通知等同于玩家反馈或目标评价。",
+          "issue_id": "issue.r3.notification-observer-underdetermined",
+          "locator_refs": [
+            "r3.apply-result"
+          ],
+          "status": "source_underdetermined"
+        },
+        {
+          "description": "所列来源给出 OD 窗口范围及调用 DifficultyRange 的方式，但未列出 DifficultyRange 的插值实现；因此不从冻结定位单独计算 OD5 的精确毫秒阈值。",
+          "issue_id": "issue.r3.od5-exact-window-underdetermined",
+          "locator_refs": [
+            "r3.hit-windows",
+            "r3.result-order"
+          ],
+          "status": "source_underdetermined"
+        }
+      ],
+      "state_channels": [
+        {
+          "channel_id": "channel.r3.input-permission",
+          "coordinate_system": {
+            "provenance_refs": [
+              "r3.candidate-path"
+            ],
+            "status": "encoded",
+            "value": "单个可命中对象的裁定状态"
+          },
+          "equivalence_tolerance": {
+            "provenance_refs": [],
+            "status": "not_applicable",
+            "value": null
+          },
+          "initial_value": {
+            "provenance_refs": [
+              "r3.candidate-path",
+              "r3.input-press"
+            ],
+            "status": "encoded",
+            "value": {
+              "coordinate_system": "单个可命中对象的裁定状态",
+              "serialized_value": "true",
+              "time_base_id": "tb.r3.gameplay-clock",
+              "unit": null,
+              "value_type": "boolean"
+            }
+          },
+          "precision": {
+            "provenance_refs": [],
+            "status": "not_applicable",
+            "value": null
+          },
+          "reader_refs": {
+            "provenance_refs": [
+              "r3.candidate-path",
+              "r3.input-press"
+            ],
+            "status": "encoded",
+            "values": [
+              "rule.r3.candidate-acceptance",
+              "rule.r3.no-second-result"
+            ]
+          },
+          "semantic_ref": {
+            "provenance_refs": [
+              "r3.candidate-path"
+            ],
+            "status": "encoded",
+            "value": "state.r3.input-permission"
+          },
+          "snapshot_boundary": {
+            "provenance_refs": [
+              "r3.candidate-path",
+              "r3.input-press"
+            ],
+            "status": "encoded",
+            "value": "每次 OnPressed 入口调用 CanBeHit；提交结果并使对象全部裁定后，后续入口读取为 false。"
+          },
+          "stop_value": {
+            "provenance_refs": [
+              "r3.apply-result",
+              "r3.candidate-path"
+            ],
+            "status": "encoded",
+            "value": {
+              "coordinate_system": "单个可命中对象的裁定状态",
+              "serialized_value": "false",
+              "time_base_id": "tb.r3.gameplay-clock",
+              "unit": null,
+              "value_type": "boolean"
+            }
+          },
+          "unit": {
+            "provenance_refs": [],
+            "status": "not_applicable",
+            "value": null
+          },
+          "value_type": "boolean",
+          "writer_refs": {
+            "provenance_refs": [
+              "r3.apply-result"
+            ],
+            "status": "encoded",
+            "values": [
+              "rule.r3.result-commit"
+            ]
+          }
+        }
+      ],
+      "temporal_edges": [
+        {
+          "condition_ids": [],
+          "edge_id": "time.r3.candidate-before-commit",
+          "from_id": "input.r3.candidate-press",
+          "kind": "before",
+          "source_fact": {
+            "provenance_refs": [
+              "r3.apply-result",
+              "r3.hit-circle-result",
+              "r3.input-press"
+            ],
+            "status": "encoded",
+            "value": "候选按下先调用用户触发结果检查和窗口分类，之后才进入 ApplyResult 提交。"
+          },
+          "time_base_refs": [
+            "tb.r3.gameplay-clock"
+          ],
+          "to_id": "effect.r3.result-committed"
+        },
+        {
+          "condition_ids": [],
+          "edge_id": "time.r3.commit-before-reentry-check",
+          "from_id": "effect.r3.result-committed",
+          "kind": "before",
+          "source_fact": {
+            "provenance_refs": [
+              "r3.apply-result",
+              "r3.candidate-path"
+            ],
+            "status": "encoded",
+            "value": "正式结果提交使对象进入已裁定状态，后续 OnPressed 的 CanBeHit 检查因而拒绝同一对象再次输入。"
+          },
+          "time_base_refs": [
+            "tb.r3.gameplay-clock"
+          ],
+          "to_id": "input.r3.reentry-opportunity"
+        }
+      ],
+      "time_bases": [
+        {
+          "advance_condition": {
+            "provenance_refs": [
+              "r3.apply-result",
+              "r3.hit-circle-result"
+            ],
+            "status": "encoded",
+            "value": "DrawableHitObject 读取其 Clock 的 Time.Current；用户触发更新与结果提交均在该游戏时钟坐标下读取当前值。"
+          },
+          "coordinate_type": "rational_time",
+          "cross_time_mappings": [],
+          "fixed_step": {
+            "provenance_refs": [],
+            "status": "not_applicable",
+            "value": null
+          },
+          "owner_ref": {
+            "provenance_refs": [
+              "r3.apply-result"
+            ],
+            "status": "encoded",
+            "value": "process.r3.drawable-adjudicator"
+          },
+          "pause_and_backlog": {
+            "provenance_refs": [],
+            "status": "scope_excluded",
+            "value": null
+          },
+          "phase_order": {
+            "provenance_refs": [
+              "r3.apply-result",
+              "r3.hit-circle-result"
+            ],
+            "status": "encoded",
+            "value": "候选接受，计算相对结束时间的偏移，窗口分类与可命中检查，应用并验证结果，记录 RawTime，更新状态，通知新结果。"
+          },
+          "sorting_rule": {
+            "provenance_refs": [],
+            "status": "source_underdetermined",
+            "value": null
+          },
+          "time_base_id": "tb.r3.gameplay-clock",
+          "unit": {
+            "provenance_refs": [
+              "r3.hit-windows",
+              "r3.result-order"
+            ],
+            "status": "encoded",
+            "value": "millisecond"
+          }
+        }
+      ],
+      "trace_contract": {
+        "allowed_kinds": [
+          "candidate_occurrence",
+          "effect_committed",
+          "formal_event_recorded",
+          "input_arrived",
+          "input_recognized",
+          "resolution_completed",
+          "scope_ended",
+          "scope_started",
+          "state_committed"
+        ],
+        "derivation_algorithm_id": "algorithm.r3.none-source-only",
+        "raw_trace_ref": "input.r3.single-candidate",
+        "stop_condition_refs": [
+          "stop.r3.result-committed"
+        ],
+        "tolerance_rule_refs": []
+      }
+    }
+  ],
+  "created_at": "2026-07-27T00:00:00Z",
+  "encoding_id": "encoding.continuous-001.canonical-v0.1.0",
+  "representation_version": "CA-SR 0.1",
+  "run_id": "continuous-001",
+  "source_packet_sha256": "c7757f1ce74af15c25433bbf32cb94bbd4d1c497d5637470803ef1cf09328d12",
+  "supersedes_encoding_sha256": null
+}

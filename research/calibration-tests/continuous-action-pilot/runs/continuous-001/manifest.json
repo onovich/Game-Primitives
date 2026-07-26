@@ -39,6 +39,24 @@
       "supersedes_artifact_id": null
     },
     {
+      "artifact_id": "build-probe.toolchain-v0.1.1",
+      "artifact_kind": "build_record",
+      "artifact_version": "0.1.0",
+      "audience": [
+        "author",
+        "custodian",
+        "public_archive"
+      ],
+      "decision_relevant": true,
+      "included_in_frozen_set": false,
+      "path": "fixtures/toolchain-probe-v0.1.1.json",
+      "release_stage": "preparation",
+      "schema_path": "research/calibration-tests/continuous-action-pilot/schema/build-feasibility-0.1.0.schema.json",
+      "schema_sha256": "1dae0586896b9989ed945eb0a9eb9b13f9c0998dd2793a080d9619119ec55858",
+      "sha256": "814773fe7fdfd8630861656dcaed6d046ec56d331f31d052d67de7f40f67d4bb",
+      "supersedes_artifact_id": "build-probe.toolchain-v0.1.0"
+    },
+    {
       "artifact_id": "task.source-encoding.continuous-001",
       "artifact_kind": "task_packet",
       "artifact_version": "0.1.1",
@@ -72,6 +90,23 @@
       "schema_sha256": "80abf62c385d9723090c66601ff6530a6bbec4585292d3c8f81f77c1081d43a5",
       "sha256": "c7757f1ce74af15c25433bbf32cb94bbd4d1c497d5637470803ef1cf09328d12",
       "supersedes_artifact_id": null
+    },
+    {
+      "artifact_id": "source.canonical-encoding-v0.1.0",
+      "artifact_kind": "source",
+      "artifact_version": "0.1.0",
+      "audience": [
+        "custodian",
+        "source_auditor"
+      ],
+      "decision_relevant": true,
+      "included_in_frozen_set": false,
+      "path": "source/canonical-encoding-v0.1.0.json",
+      "release_stage": "source_encoding",
+      "schema_path": "research/calibration-tests/continuous-action-pilot/schema/ca-sr-artifact-0.1.0.schema.json",
+      "schema_sha256": "80abf62c385d9723090c66601ff6530a6bbec4585292d3c8f81f77c1081d43a5",
+      "sha256": "0ca359886db636f065254b1a84c151c3b40b6442c7c503318944c534ea9738c3",
+      "supersedes_artifact_id": null
     }
   ],
   "created_at": "2026-07-26T19:30:02Z",
@@ -84,5 +119,5 @@
   "stage_digests": [],
   "status": "preparing",
   "truth_commitment": null,
-  "updated_at": "2026-07-26T19:43:59Z"
+  "updated_at": "2026-07-26T19:51:10Z"
 }
