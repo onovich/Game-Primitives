@@ -1,0 +1,9 @@
+{
+  "$id": "https://github.com/onovich/Game-Primitives/blob/main/research/calibration-tests/continuous-action-pilot/schema/frozen-set-preimage-0.1.0.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "contentMediaType": "text/tab-separated-values",
+  "minLength": 67,
+  "pattern": "^(?:[A-Za-z0-9._/-]+\\t[0-9a-f]{64}\\n)+$",
+  "title": "Game Primitives Frozen Artifact Set Digest Preimage 0.1.0",
+  "type": "string"
+}
