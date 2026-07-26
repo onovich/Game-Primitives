@@ -42,7 +42,7 @@
 
 “第一轮完成”不表示模型完备，也不表示实际对局、复现、测量、玩家行为和体验研究已经完成；这些缺口继续保留在[校准证据积压](research/calibration-evidence-backlog.md)。
 
-第二轮的方法已由[校准协议](research/calibration-cycle-2-protocol.md)确定。首个批次不立即铺开完整类型覆盖，而以“逻辑解谜与状态空间”“连续行动与具身控制”两个互补问题组依次试验强检验，最后召开[校准门 D](research/calibration-gates/gate-d-second-cycle-method-pilot.md)。逻辑组的 `rehearsal-001`、正式轮次 [`logic-001`](research/calibration-tests/logic-pilot/runs/logic-001/) 和[组间方法复核](research/calibration-method-review-logic-to-continuous.md)已经完成；正式结论为**范围内通过**，但证据因所有测试者认出或怀疑原型而降级。连续行动组现在可以进行 `CA-01`–`CA-07` 的命题、案例、表示、变体、角色与制品设计；在这些条件冻结和正式放行前，不启动完整取证。第二轮仍在阶段一中，门 D 尚未召开。
+第二轮的方法已由[校准协议](research/calibration-cycle-2-protocol.md)确定。首个批次不立即铺开完整类型覆盖，而以“逻辑解谜与状态空间”“连续行动与具身控制”两个互补问题组依次试验强检验，最后召开[校准门 D](research/calibration-gates/gate-d-second-cycle-method-pilot.md)。逻辑组的 `rehearsal-001`、正式轮次 [`logic-001`](research/calibration-tests/logic-pilot/runs/logic-001/) 和[组间方法复核](research/calibration-method-review-logic-to-continuous.md)已经完成；正式结论为**范围内通过**，但证据因所有测试者认出或怀疑原型而降级。连续行动组的 [`CA-01` 核心命题推荐稿](research/continuous-action-pilot-ca-01.md)已经形成，尚待作者冻结；随后才进入 `CA-02`–`CA-07` 的案例、表示、变体、角色与制品设计。在这些条件冻结和正式放行前，不启动完整取证。第二轮仍在阶段一中，门 D 尚未召开。
 
 关闭一轮校准不等于进入阶段二；阶段转换仍按下文的证据与稳定性条件判断。
 

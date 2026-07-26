@@ -23,7 +23,9 @@
 - [第一轮案例校准](calibration-cycle-1.md)：结构校准已完成，D-C1–D-C7 已接受；
 - [门 C 总汇报](calibration-gates/gate-c-first-cycle-synthesis.md)：第一轮跨案例结论与关闭边界；
 - [校准证据积压](calibration-evidence-backlog.md)：仍待补的复现、测量、行为与强检验证据；
-- [第二轮案例校准协议](calibration-cycle-2-protocol.md)：方法、两个先行问题组与执行顺序已接受；逻辑组启动方法、执行角色、GP-SR 0.1、流程彩排与人工放行门均已冻结，尚未启动；
+- [第二轮案例校准协议](calibration-cycle-2-protocol.md)：方法与两个先行问题组已接受；逻辑组 `logic-001` 已在声明范围内完成并通过，证据因原型识别降级；
 - [逻辑解谜组一手来源选案](sources/second-cycle-logic-pilot-case-selection.md)：四个锚点、四个**受控测试夹具**及来源／版权／污染边界；
-- [逻辑解谜组测试工作区](calibration-tests/logic-pilot/README.md)：Schema、版本约定、判定字段、`rehearsal-001` 彩排计划与 `logic-001` 轮次骨架；
+- [逻辑解谜组测试工作区](calibration-tests/logic-pilot/README.md)：Schema、版本约定、彩排、`logic-001` 正式制品与比较报告；
+- [逻辑组到连续组的方法复核](calibration-method-review-logic-to-continuous.md)：保留的证据链、必须修订的方法和 `CA-01`–`CA-07` 决策顺序；
+- [连续行动组 CA-01 推荐稿](continuous-action-pilot-ca-01.md)：以工作标签“原子动作别名化”指称核心失真的可反驳命题，尚待作者冻结；
 - [校准门 D](calibration-gates/gate-d-second-cycle-method-pilot.md)：两组完成后复核强检验方法，再决定扩展范围。

@@ -1,6 +1,6 @@
 # 第二轮案例校准协议
 
-- 状态：逻辑解谜组 `logic-001` 已报告，组间方法复核已完成；连续行动组进入前置设计，尚未冻结案例或启动正式测试
+- 状态：逻辑解谜组 `logic-001` 已报告；连续行动组 `CA-01` 推荐稿已形成但尚未冻结，未选择案例或启动正式测试
 - 日期：2026-07-27
 - 项目阶段：阶段一·开放研究
 - 来源决定：D-C7、D2-1、D2-2、D2-3、D2-4、D2-5a–c 与 D2-6a–q；[ADR 0100](../docs/adr/0100-require-strong-tests-beyond-structural-expressibility.md)；[ADR 0101](../docs/adr/0101-pilot-the-second-cycle-with-two-contrasting-groups.md)；[ADR 0102](../docs/adr/0102-run-the-logic-puzzle-pilot-before-continuous-action.md)；[ADR 0103](../docs/adr/0103-test-puzzle-judgment-and-rule-boundaries-with-four-case-roles.md)；[ADR 0104](../docs/adr/0104-freeze-dual-material-logic-puzzle-pilot-cases.md)；[ADR 0105](../docs/adr/0105-use-procedural-blinding-and-answer-commitments-for-logic-pilot.md)；[ADR 0106](../docs/adr/0106-use-versioned-json-run-artifacts-for-logic-pilot.md)；[ADR 0107](../docs/adr/0107-freeze-logic-pilot-verdicts-contamination-and-scope.md)；[ADR 0108](../docs/adr/0108-freeze-logic-pilot-execution-representation-and-rehearsal.md)
@@ -53,7 +53,7 @@
 | 顺序 | 试验组 | 主要检验对象 | 固定的最低强检验 | 本轮暂不冻结 |
 | --- | --- | --- | --- | --- |
 | 1 | **逻辑解谜与状态空间组** | **动作合法性**、**局部一致性**、**全局可完成性**与**规则变换边界** | **重构测试＋近邻辨别测试＋独立标注测试** | `logic-001` 已报告为**范围内通过**；证据因原型识别降级 |
-| 2 | **连续行动与具身控制组** | 动作／事件／过程、时间、空间、行动实现载体与输入反馈 | **重构测试＋设计变体测试** | `CA-01`–`CA-07` 的命题、案例、表示、变体、角色与制品尚待冻结 |
+| 2 | **连续行动与具身控制组** | 动作／事件／过程、时间、空间、行动实现载体与输入反馈 | **重构测试＋设计变体测试** | [`CA-01` 核心命题推荐稿](continuous-action-pilot-ca-01.md)尚待冻结；`CA-02`–`CA-07` 尚待决定 |
 
 两组不是“主流组”和“垂直组”的简单分工。连续行动内部也要包含纵深或边界压力，逻辑解谜也要使用读者熟悉的锚点；每组都必须说明为什么可能推翻当前模型。
 

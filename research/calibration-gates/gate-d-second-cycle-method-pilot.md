@@ -1,6 +1,6 @@
 # 校准门 D：第二轮强检验方法试验
 
-- 状态：逻辑解谜组与组间方法复核已完成；连续行动组进入前置设计，门 D 尚未召开
+- 状态：逻辑解谜组与组间方法复核已完成；连续行动组 `CA-01` 推荐稿已形成，门 D 尚未召开
 - 日期：2026-07-27
 - 所属阶段：阶段一·开放研究，第二轮案例校准准备
 - 来源决定：D2-1、D2-2、D2-3、D2-4、D2-5a–c 与 D2-6a–q；[ADR 0101](../../docs/adr/0101-pilot-the-second-cycle-with-two-contrasting-groups.md)；[ADR 0102](../../docs/adr/0102-run-the-logic-puzzle-pilot-before-continuous-action.md)；[ADR 0103](../../docs/adr/0103-test-puzzle-judgment-and-rule-boundaries-with-four-case-roles.md)；[ADR 0104](../../docs/adr/0104-freeze-dual-material-logic-puzzle-pilot-cases.md)；[ADR 0105](../../docs/adr/0105-use-procedural-blinding-and-answer-commitments-for-logic-pilot.md)；[ADR 0106](../../docs/adr/0106-use-versioned-json-run-artifacts-for-logic-pilot.md)；[ADR 0107](../../docs/adr/0107-freeze-logic-pilot-verdicts-contamination-and-scope.md)；[ADR 0108](../../docs/adr/0108-freeze-logic-pilot-execution-representation-and-rehearsal.md)
@@ -24,7 +24,7 @@
 | 顺序 | 试验组 | 主要压力 | 必做强检验 | 条件检验 | 尚待决定 |
 | --- | --- | --- | --- | --- | --- |
 | 1 | **逻辑解谜与状态空间组** | **动作合法性**、**局部一致性**、**全局可完成性**、不可逆状态与**规则变换边界** | **重构测试＋近邻辨别测试＋独立标注测试** | 本轮禁止行为主张；若新增则转证据积压 | `logic-001` 与组间方法复核均已完成 |
-| 2 | **连续行动与具身控制组** | 动作／事件／过程，连续时间与空间，输入反馈，行动实现载体 | **重构测试＋设计变体测试** | 涉及原语边界时独立标注；涉及技能、难度或体验时行为取证 | `CA-01`–`CA-07` 的命题、案例、表示、变体、角色与制品 |
+| 2 | **连续行动与具身控制组** | 动作／事件／过程，连续时间与空间，输入反馈，行动实现载体 | **重构测试＋设计变体测试** | 涉及原语边界时独立标注；涉及技能、难度或体验时行为取证 | [`CA-01` 推荐稿](../continuous-action-pilot-ca-01.md)尚待冻结；`CA-02`–`CA-07` 尚待决定 |
 
 两个组都必须记录为什么预期当前模型会失败。仅因作品经典、流行或属于目标类型，不能取得样本席位。
 
@@ -56,6 +56,8 @@ D2-6 已冻结并执行 `1＋1＋2＋2` 角色、空白会话**独立执行**、
 逻辑解谜组第 1–8 项启动方法决定、执行方法与正式取证均已完成。`logic-001` 的四项硬条件全部 `recovered`，两份独立标注在结构意义上一致，承诺验证通过，因此按冻结规则判为**范围内通过**。四份提交都出现原型识别或怀疑，证据统一降级保留；该限制不使提交失效，但禁止把成功完全归因于 GP-SR 0.1。逻辑组的完整比较见[正式报告](../calibration-tests/logic-pilot/runs/logic-001/reports/logic-001-comparison.md)。
 
 [组间方法复核](../calibration-method-review-logic-to-continuous.md)已经完成。复核保留来源审核、冻结输入、首次提交、承诺揭示、Schema／哈希与行为主张门；要求连续行动组拆分熟悉度限制和完整性污染，分别冻结重构、变体与组级汇总判定表，并增加连续实现／轨迹证据和事前预测承诺。复核不改变任何候选状态，也不把 `logic-001` 结论扩张到连续行动。
+
+连续行动组已经形成 [`CA-01` 核心失真与可反驳命题推荐稿](../continuous-action-pilot-ca-01.md)。推荐稿以工作标签“原子动作别名化”指称核心失真，要求中间边界同时满足规则可查询、可独立改变和具有反事实后果；它不预设“连续动作原语”，也尚未取得作者冻结，因此不能据此启动正式取证。
 
 ## 4. 门审输入
 
