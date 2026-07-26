@@ -74,6 +74,23 @@
       "supersedes_artifact_id": null
     },
     {
+      "artifact_id": "task.source-audit.continuous-001",
+      "artifact_kind": "task_packet",
+      "artifact_version": "0.1.1",
+      "audience": [
+        "custodian",
+        "source_auditor"
+      ],
+      "decision_relevant": true,
+      "included_in_frozen_set": false,
+      "path": "inputs/source-audit-packet.json",
+      "release_stage": "source_audit",
+      "schema_path": "research/calibration-tests/continuous-action-pilot/schema/task-packet-0.1.1.schema.json",
+      "schema_sha256": "5ea28b5c60b85f9ec94358ef017d384a7d84ad6c29ba6ef6a9e8e82b794f179d",
+      "sha256": "b207989284f429568a45bc775e28e2b04642d1a9f7e2248666b6817b831e22ad",
+      "supersedes_artifact_id": null
+    },
+    {
       "artifact_id": "source-packet.continuous-001",
       "artifact_kind": "source",
       "artifact_version": "0.1.0",
@@ -119,5 +136,5 @@
   "stage_digests": [],
   "status": "preparing",
   "truth_commitment": null,
-  "updated_at": "2026-07-26T19:51:10Z"
+  "updated_at": "2026-07-26T19:52:48Z"
 }
