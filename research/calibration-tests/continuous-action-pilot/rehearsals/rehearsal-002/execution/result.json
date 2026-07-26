@@ -1,0 +1,116 @@
+{
+  "$schema": "https://github.com/onovich/Game-Primitives/blob/main/research/calibration-tests/continuous-action-pilot/schema/execution-artifact-0.1.0.schema.json",
+  "artifact_type": "execution_result",
+  "artifact_version": "0.1.0",
+  "case_results": [
+    {
+      "case_id": "CA-R2",
+      "comparison_records": [
+        {
+          "comparator_id": "comparator.exact-total",
+          "evidence_observation_ids": [
+            "obs.total-at-stop"
+          ],
+          "result": "different"
+        }
+      ],
+      "execution_ids": [
+        "exec.baseline.1",
+        "exec.baseline.2",
+        "exec.variant.1",
+        "exec.variant.2"
+      ],
+      "execution_status": "completed",
+      "invariant_results": [
+        {
+          "evidence_observation_ids": [
+            "obs.initial-total"
+          ],
+          "invariant_id": "inv.initial-state",
+          "status": "held"
+        },
+        {
+          "evidence_observation_ids": [
+            "obs.raw-input"
+          ],
+          "invariant_id": "inv.input-trace",
+          "status": "held"
+        },
+        {
+          "evidence_observation_ids": [
+            "obs.operation-count"
+          ],
+          "invariant_id": "inv.operation-count",
+          "status": "held"
+        },
+        {
+          "evidence_observation_ids": [
+            "obs.operation-identity"
+          ],
+          "invariant_id": "inv.operation-identity",
+          "status": "held"
+        },
+        {
+          "evidence_observation_ids": [
+            "obs.stop-boundary"
+          ],
+          "invariant_id": "inv.stop-boundary",
+          "status": "held"
+        }
+      ],
+      "negative_control_result": null,
+      "observations": [
+        {
+          "configuration_id": "config.baseline",
+          "execution_ids": [
+            "exec.baseline.1",
+            "exec.baseline.2"
+          ],
+          "observation_id": "obs.total-at-stop",
+          "value": {
+            "serialized_value": "7",
+            "unit": "integer",
+            "value_type": "integer"
+          }
+        },
+        {
+          "configuration_id": "config.variant",
+          "execution_ids": [
+            "exec.variant.1",
+            "exec.variant.2"
+          ],
+          "observation_id": "obs.total-at-stop",
+          "value": {
+            "serialized_value": "4",
+            "unit": "integer",
+            "value_type": "integer"
+          }
+        }
+      ],
+      "repeat_consistency": "consistent"
+    }
+  ],
+  "cases": [],
+  "created_at": "2026-07-26T18:21:25.400Z",
+  "environments": [
+    {
+      "environment_id": "env.windows-powershell",
+      "name": "Windows PowerShell",
+      "platform": "Windows",
+      "version": "5.1.26100.8875"
+    }
+  ],
+  "executions": [],
+  "execution_plan_sha256": "f56f4699184603b7040946f8ec4b569fab999d1d1bfa6bd7655c53184d45e2f4",
+  "finished_at": "2026-07-26T18:21:25.333Z",
+  "fixture_lock": {
+    "artifact_id": "rehearsal-fixture",
+    "path": "research/calibration-tests/continuous-action-pilot/rehearsals/rehearsal-002/fixtures/rehearsal-fixture.ps1",
+    "sha256": "6864875ad6022c86f79b63220609472e7875ec73936f78870c16bd5eb9d301fd"
+  },
+  "prediction_set_digest": "1392756f94068f4dd83d38f8862a82d6e58cd903ab74bb25ea22988edb1c5829",
+  "protocol_version": "0.1.0",
+  "run_id": "rehearsal-002",
+  "started_at": "2026-07-26T18:21:24.503Z",
+  "trace_bundle_sha256": "1bae6f3cb4eed4905eb460a5e49fe9efc6ead76de1a63f687b4b6e5b5f45d641"
+}
