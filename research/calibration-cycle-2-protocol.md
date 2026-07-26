@@ -1,10 +1,11 @@
 # 第二轮案例校准协议
 
-- 状态：方法、两个先行问题组与执行顺序已接受；逻辑解谜组启动方法、执行角色、GP-SR 0.1、流程彩排与人工放行门均已冻结；`rehearsal-001` 待执行，正式测试尚未启动
-- 日期：2026-07-22
+- 状态：逻辑解谜组 `logic-001` 已报告，组间方法复核已完成；连续行动组进入前置设计，尚未冻结案例或启动正式测试
+- 日期：2026-07-27
 - 项目阶段：阶段一·开放研究
 - 来源决定：D-C7、D2-1、D2-2、D2-3、D2-4、D2-5a–c 与 D2-6a–q；[ADR 0100](../docs/adr/0100-require-strong-tests-beyond-structural-expressibility.md)；[ADR 0101](../docs/adr/0101-pilot-the-second-cycle-with-two-contrasting-groups.md)；[ADR 0102](../docs/adr/0102-run-the-logic-puzzle-pilot-before-continuous-action.md)；[ADR 0103](../docs/adr/0103-test-puzzle-judgment-and-rule-boundaries-with-four-case-roles.md)；[ADR 0104](../docs/adr/0104-freeze-dual-material-logic-puzzle-pilot-cases.md)；[ADR 0105](../docs/adr/0105-use-procedural-blinding-and-answer-commitments-for-logic-pilot.md)；[ADR 0106](../docs/adr/0106-use-versioned-json-run-artifacts-for-logic-pilot.md)；[ADR 0107](../docs/adr/0107-freeze-logic-pilot-verdicts-contamination-and-scope.md)；[ADR 0108](../docs/adr/0108-freeze-logic-pilot-execution-representation-and-rehearsal.md)
 - 前序结果：[第一轮十二案跨案例总汇报](calibration-gates/gate-c-first-cycle-synthesis.md)
+- 当前复核：[从逻辑解谜组到连续行动组的组间方法复核](calibration-method-review-logic-to-continuous.md)
 
 ## 1. 第二轮要回答什么
 
@@ -51,12 +52,12 @@
 
 | 顺序 | 试验组 | 主要检验对象 | 固定的最低强检验 | 本轮暂不冻结 |
 | --- | --- | --- | --- | --- |
-| 1 | **逻辑解谜与状态空间组** | **动作合法性**、**局部一致性**、**全局可完成性**与**规则变换边界** | **重构测试＋近邻辨别测试＋独立标注测试** | 无待决方法项；实际制品与执行者尚待准备 |
-| 2 | **连续行动与具身控制组** | 动作／事件／过程、时间、空间、行动实现载体与输入反馈 | **重构测试＋设计变体测试** | 具体游戏、版本、组内角色与行为取证范围 |
+| 1 | **逻辑解谜与状态空间组** | **动作合法性**、**局部一致性**、**全局可完成性**与**规则变换边界** | **重构测试＋近邻辨别测试＋独立标注测试** | `logic-001` 已报告为**范围内通过**；证据因原型识别降级 |
+| 2 | **连续行动与具身控制组** | 动作／事件／过程、时间、空间、行动实现载体与输入反馈 | **重构测试＋设计变体测试** | `CA-01`–`CA-07` 的命题、案例、表示、变体、角色与制品尚待冻结 |
 
 两组不是“主流组”和“垂直组”的简单分工。连续行动内部也要包含纵深或边界压力，逻辑解谜也要使用读者熟悉的锚点；每组都必须说明为什么可能推翻当前模型。
 
-逻辑解谜组完成必做强检验后，先进行一次组间方法复核，只检查测试说明、输入隔离、污染记录、输出格式和工作负担。连续行动组随后使用复核后的方法执行；组间复核不提前决定候选状态，也不代替门 D。
+逻辑解谜组完成必做强检验后，已经进行[组间方法复核](calibration-method-review-logic-to-continuous.md)。复核只检查测试说明、输入隔离、污染记录、输出格式和工作负担，不提前决定候选状态，也不代替门 D。结论是保留可审计证据链，同时拆分熟悉度与完整性污染、分开任务判定表与组级汇总，并为连续实现、轨迹和事前变体预测增加专门制品。
 
 #### 2.1.1 逻辑解谜组的冻结命题
 
@@ -113,7 +114,7 @@ D2-5a 接受关于**程序性盲化**与**答案承诺**的[决定](../docs/adr/
 
 D2-5b 接受[版本化 JSON 测试轮次决定](../docs/adr/0106-use-versioned-json-run-artifacts-for-logic-pilot.md)。结构化制品只在 JSON 中维护数据真值；Markdown 只承载说明、任务文本与生成视图。JSON 使用 UTF-8 无 BOM、LF、两个空格缩进、排序字段和单一末尾换行，并由 Draft 2020-12 JSON Schema 约束。
 
-测试工作区固定为 [`research/calibration-tests/logic-pilot/`](calibration-tests/logic-pilot/)，每次执行按 `runs/<run_id>/` 保存说明、输入、承诺、提交、揭示与报告。首轮标识为 `logic-001`，当前状态为 `preparing`。**首次提交**后若任务语义、输入或承诺发生变化，必须新建轮次，不能覆盖旧制品。
+测试工作区固定为 [`research/calibration-tests/logic-pilot/`](calibration-tests/logic-pilot/)，每次执行按 `runs/<run_id>/` 保存说明、输入、承诺、提交、揭示与报告。首轮 `logic-001` 已进入 `reported`；其完整证据链永久保留。**首次提交**后若任务语义、输入或承诺发生变化，必须新建轮次，不能覆盖旧制品。
 
 答案、映射与 `secret_nonce` 在揭示前没有仓库内副本；测试保管者继续在仓库外保存。轮次清单、**答案承诺**、输入信封、提交、真值与报告 Schema 已建立；具体网格、图、状态和规则词块 payload Schema 随实际输入制作。
 
@@ -132,7 +133,7 @@ D2-5c 接受[判定、污染与主张范围决定](../docs/adr/0107-freeze-logic
 
 本轮 `behavior_scope` 固定为 `structural_only`。玩家策略、难度、平衡和体验陈述不参与硬条件判断：能撤回则撤回，仍需研究则移交[校准证据积压](calibration-evidence-backlog.md)；若总体结论依赖这类主张，则不能判为**范围内通过**。
 
-至此逻辑组第 1–8 项启动方法决定均已冻结，但 `logic-001` 仍只有骨架与 Schema。完成说明、测试本地术语表、payload Schema、匿名输入、仓库外真值、公开承诺及执行者分派后，才可把轮次从 `preparing` 改为 `frozen`。
+逻辑组第 1–8 项启动方法决定、测试制品、正式执行、揭示与报告均已完成。`logic-001` 四项硬条件全部 `recovered`，总体为**范围内通过**；四份提交因原型识别或怀疑而统一降级保留。该结果只适用于 `structural_only` 范围。
 
 #### 2.1.6 执行角色、受测表示与流程彩排
 
@@ -144,15 +145,15 @@ D2-6a–q 接受[执行、表示与彩排决定](../docs/adr/0108-freeze-logic-p
 
 重构包固定为四个锚点项目，标注包固定为八个匿名 A／B 状态项目；两包分别随机一次并共同冻结，同类执行者看见相同输入与顺序。提交采用结构化 JSON 与自然语言说明并存的混合格式，允许 `indeterminate`，置信度不计分。
 
-正式测试前先在 [`rehearsals/rehearsal-001/`](calibration-tests/logic-pilot/rehearsals/rehearsal-001/) 用虚构材料完成一次**流程彩排**。彩排只验证冻结字节、相同派发、两份互不可见提交、提交哈希、共享工作区隔离、承诺复算、Schema、Git 顺序与污染记录，不产生理论结论；任何失败都保留并转入新的彩排编号。
+正式测试前已在 [`rehearsals/rehearsal-001/`](calibration-tests/logic-pilot/rehearsals/rehearsal-001/) 用虚构材料完成一次**流程彩排**。彩排以 `procedure_pass` 通过，只验证冻结字节、相同派发、两份互不可见提交、提交哈希、共享工作区隔离、承诺复算、Schema、Git 顺序与污染记录，不产生理论结论。
 
-`logic-001` 只有在 GP-SR 0.1、说明、术语表、来源编码、payload Schema、输入、哈希和公开承诺全部提交推送后才能进入 `frozen`。首个 `frozen` 提交以后，测试者可见字节发生任何改变都必须保留该轮并创建 `logic-002`。彩排通过且正式冻结包完成后，仍须向作者展示提交、清单、哈希和承诺，取得明确放行才可派发正式任务。
+`logic-001` 已按上述条件冻结，并在作者明确放行后完成正式派发。首个 `frozen` 提交以后没有改写测试者可见字节；提交、揭示和报告按独立 Git 提交保存。
 
 ### 2.2 校准门 D
 
 两组完成后进入[校准门 D](calibration-gates/gate-d-second-cycle-method-pilot.md)，先决定强检验的输入隔离、通过标准、标注方法和工作负担是否需要修订，再决定是否扩展到社会裁定、硬核模拟与持续世界等案例组。
 
-执行顺序固定为逻辑解谜组在先、连续行动组在后。连续行动候选池可以提前讨论，但完整取证与强检验执行在组间方法复核后启动。门 D 必须等待两组结果，避免只用形式清晰或只用连续复杂案例评价方法。
+执行顺序固定为逻辑解谜组在先、连续行动组在后。组间方法复核已经完成，连续行动组现在可以进行命题、案例与制品的前置设计；完整取证仍须等待 `CA-01`–`CA-07` 冻结和正式放行。门 D 必须等待两组结果，避免只用形式清晰或只用连续复杂案例评价方法。
 
 ## 3. 强检验矩阵
 

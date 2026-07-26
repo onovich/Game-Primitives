@@ -36,13 +36,13 @@
 - 目录、术语和表示法频繁调整。
 - 形成局部清晰的文章或页面，但不把它们自动视为书稿章节。
 
-### 当前子周期：第一轮已关闭，第二轮逻辑先行组准备中
+### 当前子周期：第一轮已关闭，第二轮连续行动组前置设计中
 
 项目仍处于阶段一。第一轮由 **4 个深度案例与 8 个标准案例**组成，已于 2026-07-22 在声明的结构范围内完成案例包、失败归并、跨案总汇报与 D-C1–D-C7 决策。具体范围与关闭边界见 [`research/calibration-cycle-1.md`](research/calibration-cycle-1.md)和[门 C 总汇报](research/calibration-gates/gate-c-first-cycle-synthesis.md)。
 
 “第一轮完成”不表示模型完备，也不表示实际对局、复现、测量、玩家行为和体验研究已经完成；这些缺口继续保留在[校准证据积压](research/calibration-evidence-backlog.md)。
 
-第二轮的方法已由[校准协议](research/calibration-cycle-2-protocol.md)确定。首个批次不立即铺开完整类型覆盖，而以“逻辑解谜与状态空间”“连续行动与具身控制”两个互补问题组依次试验强检验：先用逻辑解谜校准重构、近邻和独立标注方法，经组间复核后再进入连续行动，最后召开[校准门 D](research/calibration-gates/gate-d-second-cycle-method-pilot.md)。逻辑组已经冻结“**动作合法性**—**局部一致性**—**全局可完成性**—**规则变换边界**”的检验命题与四种案例角色，采用数独、《仓库番》、Slitherlink 与《Baba Is You》的**锚点案例**材料配合 `FX-L01`–`FX-L04` **受控测试夹具**，并以**来源编码**、独立重构、匿名标注、**答案承诺**和污染声明实施**程序性盲化**；结构化制品采用版本化 JSON 测试轮次，四项硬条件、污染失效规则、**强检验结论**与 `structural_only` 行为边界也已冻结。执行采用 `1＋1＋2＋2` 角色配置和空白会话**独立执行**，受测表示固定为 [GP-SR 0.1](theory/STRUCTURAL-REPRESENTATION-0.1.md)；正式材料前先完成 `rehearsal-001` **流程彩排**。第二轮尚未启动。
+第二轮的方法已由[校准协议](research/calibration-cycle-2-protocol.md)确定。首个批次不立即铺开完整类型覆盖，而以“逻辑解谜与状态空间”“连续行动与具身控制”两个互补问题组依次试验强检验，最后召开[校准门 D](research/calibration-gates/gate-d-second-cycle-method-pilot.md)。逻辑组的 `rehearsal-001`、正式轮次 [`logic-001`](research/calibration-tests/logic-pilot/runs/logic-001/) 和[组间方法复核](research/calibration-method-review-logic-to-continuous.md)已经完成；正式结论为**范围内通过**，但证据因所有测试者认出或怀疑原型而降级。连续行动组现在可以进行 `CA-01`–`CA-07` 的命题、案例、表示、变体、角色与制品设计；在这些条件冻结和正式放行前，不启动完整取证。第二轮仍在阶段一中，门 D 尚未召开。
 
 关闭一轮校准不等于进入阶段二；阶段转换仍按下文的证据与稳定性条件判断。
 
