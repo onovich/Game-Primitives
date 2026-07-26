@@ -1,0 +1,40 @@
+{
+  "$schema": "https://github.com/onovich/Game-Primitives/blob/main/research/calibration-tests/continuous-action-pilot/schema/run-report-0.1.0.schema.json",
+  "artifact_type": "rehearsal_report",
+  "artifact_version": "0.1.0",
+  "checks": [
+    {
+      "check_id": "check.raw-stage1-first-attempt",
+      "evidence": "两个全新空白会话的第一条重构回答原样归档；v01 与 v02 payload SHA-256 分别为 df99687649a3e0945bc941e3089cadc1aff64573835dafb22883ab188b62d0f9 和 316ea96ff36b066040c96795184bf581790545262e81f65dfc0f99f96f5c4f14。两者首次即通过 blind-response-interface 0.1.0 与任务案例覆盖检查，没有纠错轮次。",
+      "status": "passed"
+    },
+    {
+      "check_id": "check.stage1-deterministic-assembly",
+      "evidence": "机器信封 SHA-256 分别为 31b39ce51c99c29008d935b879d33c31cbdde05cc2b12b373346218e3201abd6 和 129bd169b3f71a96fbf032a89c530a20c887fbbdc9295ad38cec72d2584d73bf。每组相同 payload 与信封独立装配两次，生成提交 SHA-256 稳定为 5986d226ea1b91893a2a005fa043e01c18716dc7aeb02077d1f14007eac632fa 和 8ce07aebe45f4c3ff9e36388de510855a0f1140335fb644f52dc5190fc1d4b02。",
+      "status": "passed"
+    },
+    {
+      "check_id": "check.raw-stage2-first-attempt",
+      "evidence": "两名原执行者在自己的第一阶段冻结后继续同一会话；v01 与 v02 的第一条预测 payload SHA-256 分别为 7efa9115a33817493a8c6f5f561d57a4037247ad3e0e2abc1ac9a0fd04c91196 和 d2639928cf75469f7948a25a63e5eb6b30c0bb38396be7a01442c424ccaecc09。两者首次即通过 Schema、配置—观察量覆盖、类型、容差与相容替代检查。",
+      "status": "passed"
+    },
+    {
+      "check_id": "check.stage2-continuity",
+      "evidence": "预测信封 fc83691054dc1d7637d47dfeb82bdb9c1df94dad61a7edea33080baabee41eab 与 f4a37424150b7da0c71179a93f2f9ece4a62fbb0bf2ca81f910760b34e7a5a04 分别核对同一 actor、session、run 与 condition，并绑定各自重构提交 5986d226ea1b91893a2a005fa043e01c18716dc7aeb02077d1f14007eac632fa 和 8ce07aebe45f4c3ff9e36388de510855a0f1140335fb644f52dc5190fc1d4b02；另一条件与他人回答未进入各自会话。",
+      "status": "passed"
+    },
+    {
+      "check_id": "check.raw-hash-binding",
+      "evidence": "四份 role-submission 0.1.2 都直接记录自己的原始 payload 路径、精确 SHA-256、响应 Schema SHA-256、信封路径与 SHA-256、装配工具路径与 SHA-256 36039f998a026ea9da27f509d2ed79d4e46dbae8f7f1b0ac43e3027f810edbaf；信封同时绑定任务、视图或变体模板以及预测所需的前阶段提交。",
+      "status": "passed"
+    },
+    {
+      "check_id": "check.byte-reproducibility",
+      "evidence": "四个派生提交均以相同 payload 和相同信封重复装配两次并逐字节比较，结果一致；verify 子命令又从原始 payload 与信封重建并验证规范 JSON。最终预测提交 SHA-256 为 9ea3361e5692729f7725342f712a6f808727bdb2fd8f43abcfd8d72e67404525 和 c7121f9ce8b5798fcabd6a84fb4f88f9ff401968e84ab907e1b5be7fbac4d009。",
+      "status": "passed"
+    }
+  ],
+  "finished_at": "2026-07-26T19:25:51Z",
+  "procedure_result": "procedure_pass",
+  "run_id": "rehearsal-005"
+}
