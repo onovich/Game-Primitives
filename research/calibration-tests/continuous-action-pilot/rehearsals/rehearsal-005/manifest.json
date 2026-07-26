@@ -1,0 +1,166 @@
+{
+  "$schema": "https://github.com/onovich/Game-Primitives/blob/main/research/calibration-tests/continuous-action-pilot/schema/run-manifest-0.1.0.schema.json",
+  "artifact_type": "rehearsal_manifest",
+  "artifact_version": "0.1.0",
+  "artifacts": [
+    {
+      "artifact_id": "readme",
+      "artifact_kind": "documentation",
+      "artifact_version": "0.1.0",
+      "audience": [
+        "public_archive"
+      ],
+      "decision_relevant": false,
+      "included_in_frozen_set": true,
+      "path": "README.md",
+      "release_stage": "preparation",
+      "schema_path": "research/calibration-tests/continuous-action-pilot/schema/markdown-document-0.1.0.schema.json",
+      "schema_sha256": "89827f39031c7d26f430584bb2f3e64c3600213a8e45e994da2c4120cb3f09a3",
+      "sha256": "35f15b97dd29547a5a15beaa0b5691a09d544e5c6b9338aeb2944143a1f6e9b8",
+      "supersedes_artifact_id": null
+    },
+    {
+      "artifact_id": "frozen-set-preimage",
+      "artifact_kind": "audit",
+      "artifact_version": "0.1.0",
+      "audience": [
+        "custodian",
+        "public_archive"
+      ],
+      "decision_relevant": true,
+      "included_in_frozen_set": false,
+      "path": "inputs/frozen-set-preimage.tsv",
+      "release_stage": "preparation",
+      "schema_path": "research/calibration-tests/continuous-action-pilot/schema/frozen-set-preimage-0.1.0.schema.json",
+      "schema_sha256": "7914907b9fb8e1166aeafa4a1507018ea0d4718e5daee9c7235807905a8d5948",
+      "sha256": "466d834de8014caca1912c05162668576065582f6940dac51afd38f24a26227a",
+      "supersedes_artifact_id": null
+    },
+    {
+      "artifact_id": "prediction-neutral-task",
+      "artifact_kind": "task_packet",
+      "artifact_version": "0.1.1",
+      "audience": [
+        "all_blind_testers",
+        "custodian",
+        "public_archive"
+      ],
+      "decision_relevant": true,
+      "included_in_frozen_set": true,
+      "path": "inputs/prediction-neutral.task.json",
+      "release_stage": "prediction",
+      "schema_path": "research/calibration-tests/continuous-action-pilot/schema/task-packet-0.1.1.schema.json",
+      "schema_sha256": "5ea28b5c60b85f9ec94358ef017d384a7d84ad6c29ba6ef6a9e8e82b794f179d",
+      "sha256": "5b1383b0f0be0ccec8b027c5f4a896766b8e8b4aff747e1f5c90b6999ee13720",
+      "supersedes_artifact_id": null
+    },
+    {
+      "artifact_id": "reconstruction-task-v01",
+      "artifact_kind": "task_packet",
+      "artifact_version": "0.1.1",
+      "audience": [
+        "condition-v01",
+        "custodian",
+        "public_archive"
+      ],
+      "decision_relevant": true,
+      "included_in_frozen_set": true,
+      "path": "inputs/reconstruction-condition-v01.task.json",
+      "release_stage": "reconstruction",
+      "schema_path": "research/calibration-tests/continuous-action-pilot/schema/task-packet-0.1.1.schema.json",
+      "schema_sha256": "5ea28b5c60b85f9ec94358ef017d384a7d84ad6c29ba6ef6a9e8e82b794f179d",
+      "sha256": "cbd69a84960a457890e69f6471b4a425bd1bc340bb9a9715435c1d44522c3f54",
+      "supersedes_artifact_id": null
+    },
+    {
+      "artifact_id": "reconstruction-task-v02",
+      "artifact_kind": "task_packet",
+      "artifact_version": "0.1.1",
+      "audience": [
+        "condition-v02",
+        "custodian",
+        "public_archive"
+      ],
+      "decision_relevant": true,
+      "included_in_frozen_set": true,
+      "path": "inputs/reconstruction-condition-v02.task.json",
+      "release_stage": "reconstruction",
+      "schema_path": "research/calibration-tests/continuous-action-pilot/schema/task-packet-0.1.1.schema.json",
+      "schema_sha256": "5ea28b5c60b85f9ec94358ef017d384a7d84ad6c29ba6ef6a9e8e82b794f179d",
+      "sha256": "5bcad0ca7478b2be60d95eb9ff2b5b2c1b5aa65bca900d6c3eabbd07baf275cf",
+      "supersedes_artifact_id": null
+    },
+    {
+      "artifact_id": "variant-envelope",
+      "artifact_kind": "fixture",
+      "artifact_version": "0.1.0",
+      "audience": [
+        "all_blind_testers",
+        "custodian",
+        "public_archive"
+      ],
+      "decision_relevant": true,
+      "included_in_frozen_set": true,
+      "path": "inputs/variant-envelope.json",
+      "release_stage": "prediction",
+      "schema_path": "research/calibration-tests/continuous-action-pilot/schema/rehearsal-input-0.1.1.schema.json",
+      "schema_sha256": "3b87db188a09a09f8f18e3a1871f14840eaae05c66280d4e684b8e27ca99a7c9",
+      "sha256": "63c0ba94ce5a5a3da22c6733dfdac9a53438cdec4895384ee36652813a4f08a1",
+      "supersedes_artifact_id": null
+    },
+    {
+      "artifact_id": "view-v01",
+      "artifact_kind": "fixture",
+      "artifact_version": "0.1.0",
+      "audience": [
+        "condition-v01",
+        "custodian",
+        "public_archive"
+      ],
+      "decision_relevant": true,
+      "included_in_frozen_set": true,
+      "path": "inputs/view-v01.json",
+      "release_stage": "view_generation",
+      "schema_path": "research/calibration-tests/continuous-action-pilot/schema/rehearsal-input-0.1.1.schema.json",
+      "schema_sha256": "3b87db188a09a09f8f18e3a1871f14840eaae05c66280d4e684b8e27ca99a7c9",
+      "sha256": "2deb70d280d6bcdf88e4e3025dc13ff5e9fde0c9d504c1f36ae4480a2ab42d5d",
+      "supersedes_artifact_id": null
+    },
+    {
+      "artifact_id": "view-v02",
+      "artifact_kind": "fixture",
+      "artifact_version": "0.1.0",
+      "audience": [
+        "condition-v02",
+        "custodian",
+        "public_archive"
+      ],
+      "decision_relevant": true,
+      "included_in_frozen_set": true,
+      "path": "inputs/view-v02.json",
+      "release_stage": "view_generation",
+      "schema_path": "research/calibration-tests/continuous-action-pilot/schema/rehearsal-input-0.1.1.schema.json",
+      "schema_sha256": "3b87db188a09a09f8f18e3a1871f14840eaae05c66280d4e684b8e27ca99a7c9",
+      "sha256": "1deaa4898d6051ea3822614000897f0d04da731a9b84fb71a889d67dc15c4aef",
+      "supersedes_artifact_id": null
+    }
+  ],
+  "created_at": "2026-07-26T19:20:25Z",
+  "freeze_commit": "1244e0a67f33b91f9f4234496584481e1b9dea8b",
+  "frozen_artifact_set_digest": "466d834de8014caca1912c05162668576065582f6940dac51afd38f24a26227a",
+  "protocol_version": "0.1.0",
+  "run_id": "rehearsal-005",
+  "schema_version": "0.1.0",
+  "stage": "preparation",
+  "stage_digests": [
+    {
+      "artifact_set_digest": "466d834de8014caca1912c05162668576065582f6940dac51afd38f24a26227a",
+      "git_commit": "1244e0a67f33b91f9f4234496584481e1b9dea8b",
+      "recorded_at": "2026-07-26T19:20:25Z",
+      "stage": "preparation"
+    }
+  ],
+  "status": "frozen",
+  "truth_commitment": null,
+  "updated_at": "2026-07-26T19:20:25Z"
+}
