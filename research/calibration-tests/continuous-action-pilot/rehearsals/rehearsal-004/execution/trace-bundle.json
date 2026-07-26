@@ -1,0 +1,402 @@
+{
+  "$schema": "https://github.com/onovich/Game-Primitives/blob/main/research/calibration-tests/continuous-action-pilot/schema/execution-artifact-0.1.0.schema.json",
+  "artifact_type": "trace_bundle",
+  "artifact_version": "0.1.0",
+  "case_results": [],
+  "cases": [],
+  "created_at": "2026-07-26T18:59:39.313Z",
+  "environments": [
+    {
+      "environment_id": "env.windows-powershell",
+      "name": "Windows PowerShell",
+      "platform": "Windows",
+      "version": "5.1.26100.8875"
+    }
+  ],
+  "execution_plan_sha256": "3c8aa2c57062fd7948716002755352717f3b98494dad1ed8c07ad7fade1a353f",
+  "executions": [
+    {
+      "binary_sha256": "2eba0767afcacfe3d18573dcb6b2596262057724d644024e6d83ae9f8cb2a318",
+      "case_id": "CA-R2",
+      "configuration_id": "config.baseline",
+      "environment_id": "env.windows-powershell",
+      "execution_id": "exec.baseline.1",
+      "finished_at": "2026-07-26T18:59:38.745Z",
+      "process_exit_code": 0,
+      "repetition_index": 1,
+      "started_at": "2026-07-26T18:59:38.538Z",
+      "trace_entries": [
+        {
+          "fields": [
+            {
+              "field_id": "obs.initial-total",
+              "value": {
+                "serialized_value": "0",
+                "unit": "integer",
+                "value_type": "integer"
+              }
+            },
+            {
+              "field_id": "obs.raw-input",
+              "value": {
+                "serialized_value": "[2,5]",
+                "unit": null,
+                "value_type": "string"
+              }
+            },
+            {
+              "field_id": "obs.sampled-values",
+              "value": {
+                "serialized_value": "[2,5]",
+                "unit": null,
+                "value_type": "string"
+              }
+            },
+            {
+              "field_id": "obs.operation-count",
+              "value": {
+                "serialized_value": "2",
+                "unit": "count",
+                "value_type": "integer"
+              }
+            },
+            {
+              "field_id": "obs.operation-identity",
+              "value": {
+                "serialized_value": "op.accumulate",
+                "unit": null,
+                "value_type": "id"
+              }
+            },
+            {
+              "field_id": "obs.stop-boundary",
+              "value": {
+                "serialized_value": "stop.after-step-2",
+                "unit": null,
+                "value_type": "id"
+              }
+            },
+            {
+              "field_id": "obs.total-at-stop",
+              "value": {
+                "serialized_value": "7",
+                "unit": "integer",
+                "value_type": "integer"
+              }
+            }
+          ],
+          "kind": "state_sampled",
+          "provenance_kind": "instrument_measurement",
+          "provenance_locator_id": "raw.stdout.line-1",
+          "serialization_ordinal": 0,
+          "structure_record_ids": [
+            "rec.sampling-policy",
+            "rec.accumulator-process",
+            "rec.step-order"
+          ],
+          "subject_ids": [
+            "state.total"
+          ],
+          "time_marks": [
+            {
+              "denominator": "1",
+              "numerator": "2",
+              "time_base_id": "time.discrete-step"
+            }
+          ],
+          "trace_entry_id": "trace.baseline.1.stop"
+        }
+      ]
+    },
+    {
+      "binary_sha256": "2eba0767afcacfe3d18573dcb6b2596262057724d644024e6d83ae9f8cb2a318",
+      "case_id": "CA-R2",
+      "configuration_id": "config.baseline",
+      "environment_id": "env.windows-powershell",
+      "execution_id": "exec.baseline.2",
+      "finished_at": "2026-07-26T18:59:38.929Z",
+      "process_exit_code": 0,
+      "repetition_index": 2,
+      "started_at": "2026-07-26T18:59:38.747Z",
+      "trace_entries": [
+        {
+          "fields": [
+            {
+              "field_id": "obs.initial-total",
+              "value": {
+                "serialized_value": "0",
+                "unit": "integer",
+                "value_type": "integer"
+              }
+            },
+            {
+              "field_id": "obs.raw-input",
+              "value": {
+                "serialized_value": "[2,5]",
+                "unit": null,
+                "value_type": "string"
+              }
+            },
+            {
+              "field_id": "obs.sampled-values",
+              "value": {
+                "serialized_value": "[2,5]",
+                "unit": null,
+                "value_type": "string"
+              }
+            },
+            {
+              "field_id": "obs.operation-count",
+              "value": {
+                "serialized_value": "2",
+                "unit": "count",
+                "value_type": "integer"
+              }
+            },
+            {
+              "field_id": "obs.operation-identity",
+              "value": {
+                "serialized_value": "op.accumulate",
+                "unit": null,
+                "value_type": "id"
+              }
+            },
+            {
+              "field_id": "obs.stop-boundary",
+              "value": {
+                "serialized_value": "stop.after-step-2",
+                "unit": null,
+                "value_type": "id"
+              }
+            },
+            {
+              "field_id": "obs.total-at-stop",
+              "value": {
+                "serialized_value": "7",
+                "unit": "integer",
+                "value_type": "integer"
+              }
+            }
+          ],
+          "kind": "state_sampled",
+          "provenance_kind": "instrument_measurement",
+          "provenance_locator_id": "raw.stdout.line-2",
+          "serialization_ordinal": 0,
+          "structure_record_ids": [
+            "rec.sampling-policy",
+            "rec.accumulator-process",
+            "rec.step-order"
+          ],
+          "subject_ids": [
+            "state.total"
+          ],
+          "time_marks": [
+            {
+              "denominator": "1",
+              "numerator": "2",
+              "time_base_id": "time.discrete-step"
+            }
+          ],
+          "trace_entry_id": "trace.baseline.2.stop"
+        }
+      ]
+    },
+    {
+      "binary_sha256": "2eba0767afcacfe3d18573dcb6b2596262057724d644024e6d83ae9f8cb2a318",
+      "case_id": "CA-R2",
+      "configuration_id": "config.variant",
+      "environment_id": "env.windows-powershell",
+      "execution_id": "exec.variant.1",
+      "finished_at": "2026-07-26T18:59:39.125Z",
+      "process_exit_code": 0,
+      "repetition_index": 1,
+      "started_at": "2026-07-26T18:59:38.929Z",
+      "trace_entries": [
+        {
+          "fields": [
+            {
+              "field_id": "obs.initial-total",
+              "value": {
+                "serialized_value": "0",
+                "unit": "integer",
+                "value_type": "integer"
+              }
+            },
+            {
+              "field_id": "obs.raw-input",
+              "value": {
+                "serialized_value": "[2,5]",
+                "unit": null,
+                "value_type": "string"
+              }
+            },
+            {
+              "field_id": "obs.sampled-values",
+              "value": {
+                "serialized_value": "[2,2]",
+                "unit": null,
+                "value_type": "string"
+              }
+            },
+            {
+              "field_id": "obs.operation-count",
+              "value": {
+                "serialized_value": "2",
+                "unit": "count",
+                "value_type": "integer"
+              }
+            },
+            {
+              "field_id": "obs.operation-identity",
+              "value": {
+                "serialized_value": "op.accumulate",
+                "unit": null,
+                "value_type": "id"
+              }
+            },
+            {
+              "field_id": "obs.stop-boundary",
+              "value": {
+                "serialized_value": "stop.after-step-2",
+                "unit": null,
+                "value_type": "id"
+              }
+            },
+            {
+              "field_id": "obs.total-at-stop",
+              "value": {
+                "serialized_value": "4",
+                "unit": "integer",
+                "value_type": "integer"
+              }
+            }
+          ],
+          "kind": "state_sampled",
+          "provenance_kind": "instrument_measurement",
+          "provenance_locator_id": "raw.stdout.line-3",
+          "serialization_ordinal": 0,
+          "structure_record_ids": [
+            "rec.sampling-policy",
+            "rec.accumulator-process",
+            "rec.step-order"
+          ],
+          "subject_ids": [
+            "state.total"
+          ],
+          "time_marks": [
+            {
+              "denominator": "1",
+              "numerator": "2",
+              "time_base_id": "time.discrete-step"
+            }
+          ],
+          "trace_entry_id": "trace.variant.1.stop"
+        }
+      ]
+    },
+    {
+      "binary_sha256": "2eba0767afcacfe3d18573dcb6b2596262057724d644024e6d83ae9f8cb2a318",
+      "case_id": "CA-R2",
+      "configuration_id": "config.variant",
+      "environment_id": "env.windows-powershell",
+      "execution_id": "exec.variant.2",
+      "finished_at": "2026-07-26T18:59:39.313Z",
+      "process_exit_code": 0,
+      "repetition_index": 2,
+      "started_at": "2026-07-26T18:59:39.125Z",
+      "trace_entries": [
+        {
+          "fields": [
+            {
+              "field_id": "obs.initial-total",
+              "value": {
+                "serialized_value": "0",
+                "unit": "integer",
+                "value_type": "integer"
+              }
+            },
+            {
+              "field_id": "obs.raw-input",
+              "value": {
+                "serialized_value": "[2,5]",
+                "unit": null,
+                "value_type": "string"
+              }
+            },
+            {
+              "field_id": "obs.sampled-values",
+              "value": {
+                "serialized_value": "[2,2]",
+                "unit": null,
+                "value_type": "string"
+              }
+            },
+            {
+              "field_id": "obs.operation-count",
+              "value": {
+                "serialized_value": "2",
+                "unit": "count",
+                "value_type": "integer"
+              }
+            },
+            {
+              "field_id": "obs.operation-identity",
+              "value": {
+                "serialized_value": "op.accumulate",
+                "unit": null,
+                "value_type": "id"
+              }
+            },
+            {
+              "field_id": "obs.stop-boundary",
+              "value": {
+                "serialized_value": "stop.after-step-2",
+                "unit": null,
+                "value_type": "id"
+              }
+            },
+            {
+              "field_id": "obs.total-at-stop",
+              "value": {
+                "serialized_value": "4",
+                "unit": "integer",
+                "value_type": "integer"
+              }
+            }
+          ],
+          "kind": "state_sampled",
+          "provenance_kind": "instrument_measurement",
+          "provenance_locator_id": "raw.stdout.line-4",
+          "serialization_ordinal": 0,
+          "structure_record_ids": [
+            "rec.sampling-policy",
+            "rec.accumulator-process",
+            "rec.step-order"
+          ],
+          "subject_ids": [
+            "state.total"
+          ],
+          "time_marks": [
+            {
+              "denominator": "1",
+              "numerator": "2",
+              "time_base_id": "time.discrete-step"
+            }
+          ],
+          "trace_entry_id": "trace.variant.2.stop"
+        }
+      ]
+    }
+  ],
+  "finished_at": "2026-07-26T18:59:39.313Z",
+  "fixture_lock": {
+    "artifact_id": "rehearsal-fixture",
+    "path": "research/calibration-tests/continuous-action-pilot/rehearsals/rehearsal-004/fixtures/rehearsal-fixture.ps1",
+    "sha256": "2eba0767afcacfe3d18573dcb6b2596262057724d644024e6d83ae9f8cb2a318"
+  },
+  "prediction_set_digest": "ee9cb7a52012c0925a340ce71c5ae3b47ca4f798a59e45c2b2136c0653f1c063",
+  "protocol_version": "0.1.0",
+  "run_id": "rehearsal-004",
+  "started_at": "2026-07-26T18:59:38.538Z",
+  "trace_bundle_sha256": null
+}

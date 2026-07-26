@@ -1,0 +1,11 @@
+{
+  "artifact_type": "rehearsal_comparator_stdout",
+  "artifact_version": "0.1.0",
+  "baseline_total": 7,
+  "case_id": "CA-R2",
+  "comparator_id": "comparator.exact-total",
+  "comparison": "different",
+  "observation_id": "obs.total-at-stop",
+  "run_id": "rehearsal-004",
+  "variant_total": 4
+}
