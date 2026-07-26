@@ -13,6 +13,13 @@ def sha256(data: bytes) -> str:
     return hashlib.sha256(data).hexdigest()
 
 
+def resolve_repo_path(repo_root: Path, relative_path: str) -> Path:
+    candidate = (repo_root / relative_path).resolve()
+    if not candidate.is_relative_to(repo_root):
+        raise ValueError(f"path escapes repository root: {relative_path}")
+    return candidate
+
+
 def main() -> int:
     parser = argparse.ArgumentParser()
     parser.add_argument("manifest", type=Path)
@@ -55,6 +62,49 @@ def main() -> int:
 
         if entry["included_in_frozen_set"]:
             frozen_lines.append(f"{entry['path']}\t{entry['sha256']}\n")
+
+        if entry["artifact_kind"] == "task_packet":
+            task = json.loads(artifact_path.read_text(encoding="utf-8"))
+            input_hashes: list[str] = []
+            for input_entry in task["input_artifacts"]:
+                input_path = resolve_repo_path(repo_root, input_entry["path"])
+                actual_input_hash = sha256(input_path.read_bytes())
+                input_hashes.append(actual_input_hash)
+                if actual_input_hash != input_entry["sha256"]:
+                    failures.append(
+                        {
+                            "kind": "task_input_sha256",
+                            "path": input_entry["path"],
+                            "expected": input_entry["sha256"],
+                            "actual": actual_input_hash,
+                        }
+                    )
+
+            for field_name in ("target_encoding_sha256", "target_view_sha256"):
+                target_hash = task[field_name]
+                if target_hash is not None and target_hash not in input_hashes:
+                    failures.append(
+                        {
+                            "kind": field_name,
+                            "path": entry["path"],
+                            "expected": "one of the task input artifact hashes",
+                            "actual": target_hash,
+                        }
+                    )
+
+            output_schema_path = resolve_repo_path(
+                repo_root, task["output_schema"]["path"]
+            )
+            actual_output_schema_hash = sha256(output_schema_path.read_bytes())
+            if actual_output_schema_hash != task["output_schema"]["sha256"]:
+                failures.append(
+                    {
+                        "kind": "task_output_schema_sha256",
+                        "path": task["output_schema"]["path"],
+                        "expected": task["output_schema"]["sha256"],
+                        "actual": actual_output_schema_hash,
+                    }
+                )
 
     preimage_bytes = "".join(sorted(frozen_lines)).encode("utf-8")
     actual_digest = sha256(preimage_bytes)
