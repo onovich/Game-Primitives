@@ -9,3 +9,4 @@
 
 两份原件永久保留且不被改写。因为真值、变体和另一条件尚未向它们暴露，本轮允许从新的空白会话取得替补首次提交；替补必须使用不同的 actor 与 submission ID。
 
+第一次 v02 替补已经改正对象结构，但在 `supporting_record_ids` 中使用了大写 `CA-R2`，仍不符合局部 ID 约束；其原件保存为 `reconstruction-v02.r1.attempt.json`。
