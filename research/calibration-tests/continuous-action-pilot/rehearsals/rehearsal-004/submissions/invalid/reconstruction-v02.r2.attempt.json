@@ -1,0 +1,136 @@
+{
+  "$schema": "https://github.com/onovich/Game-Primitives/blob/main/research/calibration-tests/continuous-action-pilot/schema/role-submission-0.1.1.schema.json",
+  "artifact_type": "reconstruction_submission",
+  "artifact_version": "0.1.1",
+  "run_id": "rehearsal-004",
+  "condition_id": "condition-v02",
+  "stage": "reconstruction",
+  "submission_id": "submission.reconstruct.v02.r2",
+  "task_id": "task.reconstruct.v02",
+  "submitted_at": "2026-07-26T18:40:00Z",
+  "first_submission": true,
+  "prior_stage_submission_sha256": null,
+  "actor": {
+    "identifier": "blind4-v02-r2",
+    "model": "Codex delegated agent",
+    "model_version": "current-thread-runtime",
+    "reasoning_effort": "xhigh",
+    "role": "blind_reconstructor_predictor",
+    "session_id": "rehearsal-004-condition-v02-r2"
+  },
+  "input_artifacts": [
+    {
+      "artifact_id": "view-v02",
+      "sha256": "c47d624206d5bf4effa0b575f3ddc0bff7c8954256b9fe210e60f33488d53f27"
+    }
+  ],
+  "pollution": {
+    "familiarity": {
+      "exact_result_knowledge": "none",
+      "exact_rule_knowledge": "none",
+      "exact_variant_knowledge": "none",
+      "project_exposure": "none",
+      "related_genre_experience": "none",
+      "recognized_family": null,
+      "recognized_work": null,
+      "recognition_status": "none"
+    },
+    "integrity_exposures": [],
+    "stage_update_note": null
+  },
+  "reconstruction_answers": [
+    {
+      "case_id": "CA-R2",
+      "confidence_percent": 99,
+      "uniqueness": "multiple_compatible_structures",
+      "recovered_facts": [
+        {
+          "fact_id": "initial-total",
+          "claim": "初始 state.total 为 0。",
+          "recovery_status": "directly_stated",
+          "supporting_record_ids": [
+            "view-v02"
+          ]
+        },
+        {
+          "fact_id": "raw-inputs",
+          "claim": "步骤 1 和步骤 2 的原始输入分别为 2 和 5。",
+          "recovery_status": "directly_stated",
+          "supporting_record_ids": [
+            "view-v02"
+          ]
+        },
+        {
+          "fact_id": "operation-writes",
+          "claim": "步骤 1 和步骤 2 各发生一次 op.accumulate，且每次都写入 state.total。",
+          "recovery_status": "directly_stated",
+          "supporting_record_ids": [
+            "view-v02"
+          ]
+        },
+        {
+          "fact_id": "configuration-value",
+          "claim": "不透明配置 v-q 的活动值为 0，允许值为 0 或 1。",
+          "recovery_status": "directly_stated",
+          "supporting_record_ids": [
+            "view-v02"
+          ]
+        },
+        {
+          "fact_id": "stop-observation",
+          "claim": "停止边界位于步骤 2 完成之后，obs.total-at-stop 在该边界读取 state.total。",
+          "recovery_status": "directly_stated",
+          "supporting_record_ids": [
+            "view-v02"
+          ]
+        },
+        {
+          "fact_id": "relationship-gap",
+          "claim": "条件视图未规定 v-q、原始输入读取和 state.total 更新之间的关系，也未规定同一步内读取与写入的先后顺序。",
+          "recovery_status": "directly_stated",
+          "supporting_record_ids": [
+            "view-v02"
+          ]
+        }
+      ],
+      "compatible_branches": [
+        {
+          "branch_id": "read-before-add",
+          "description": "每一步先读取该步原始输入，再令 state.total 等于旧值加输入并写回；v-q 不参与该更新。轨迹为 0→2→7，步骤 2 后的停止观察值为 7。",
+          "supporting_record_ids": [
+            "view-v02"
+          ]
+        },
+        {
+          "branch_id": "read-before-replace",
+          "description": "每一步先读取该步原始输入，再以输入值覆盖 state.total；v-q=0 可被忽略或用于选择该分支。轨迹为 0→2→5，步骤 2 后的停止观察值为 5。",
+          "supporting_record_ids": [
+            "view-v02"
+          ]
+        },
+        {
+          "branch_id": "write-before-read",
+          "description": "每一步先将旧的 state.total 原样写回，再读取该步原始输入供独立记录而不影响 total；v-q 不参与可观察更新。轨迹为 0→0→0，步骤 2 后的停止观察值为 0。",
+          "supporting_record_ids": [
+            "view-v02"
+          ]
+        }
+      ],
+      "assumptions": [
+        "不依据 op.accumulate 的名称推断加法公式。",
+        "在没有相反约束时，写入允许与旧值相同。",
+        "停止观察发生在步骤 2 的全部内部动作完成之后。"
+      ],
+      "ambiguities": [
+        "无法确定原始输入是在 total 写入之前、之后还是根本不由该操作读取。",
+        "无法确定 total 的更新公式以及 v-q 是否参与更新。",
+        "无法确定同一步内输入读取、配置读取、计算和状态写入的精确顺序。",
+        "因此无法唯一确定停止时的 state.total。"
+      ]
+    }
+  ],
+  "prediction_answers": [],
+  "audit_checks": [],
+  "audit_decision": null,
+  "findings": []
+}
