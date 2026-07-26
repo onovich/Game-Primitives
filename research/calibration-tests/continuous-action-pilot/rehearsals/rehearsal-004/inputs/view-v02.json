@@ -1,0 +1,56 @@
+{
+  "artifact_type": "rehearsal_condition_view",
+  "artifact_version": "0.1.0",
+  "behavior_scope": "structural_only",
+  "case_id": "CA-R2",
+  "condition_id": "condition-v02",
+  "initial_state": [
+    {
+      "field_id": "state.total",
+      "value": 0
+    }
+  ],
+  "input_trace": [
+    {
+      "raw_value": 2,
+      "step": 1
+    },
+    {
+      "raw_value": 5,
+      "step": 2
+    }
+  ],
+  "opaque_configuration": {
+    "active_value": 0,
+    "allowed_values": [
+      0,
+      1
+    ],
+    "variable_id": "v-q"
+  },
+  "operation_trace": [
+    {
+      "operation_id": "op.accumulate",
+      "step": 1,
+      "writes": [
+        "state.total"
+      ]
+    },
+    {
+      "operation_id": "op.accumulate",
+      "step": 2,
+      "writes": [
+        "state.total"
+      ]
+    }
+  ],
+  "output_contract": {
+    "observation_id": "obs.total-at-stop",
+    "read_field_id": "state.total",
+    "stop_boundary_id": "stop.after-step-2"
+  },
+  "projection_notice": "本视图只声明操作发生、原始输入与可观察字段；未声明配置变量、输入读取和状态更新之间的关系。",
+  "run_id": "rehearsal-004"
+}
+
+
