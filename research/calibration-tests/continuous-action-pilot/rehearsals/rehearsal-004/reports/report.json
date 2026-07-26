@@ -1,0 +1,40 @@
+{
+  "$schema": "https://github.com/onovich/Game-Primitives/blob/main/research/calibration-tests/continuous-action-pilot/schema/run-report-0.1.0.schema.json",
+  "artifact_type": "rehearsal_report",
+  "artifact_version": "0.1.0",
+  "checks": [
+    {
+      "check_id": "check.stage1-freeze",
+      "evidence": "入选的 condition-v01 与 condition-v02 重构分别以 SHA-256 2ed31828f4c96acdc2616e1aaf87ab6b07906ce6e22940b397320894ed123ef5 和 a6de1fb94b3720e8dc5eb13d1531a1626ebc2db32f9e7f050379590cef5d9f08 冻结后才进入各自第二阶段。八份 Schema 无效尝试原样保留，失效链均未进入有效预测集合；替补执行者从新的空白会话重做第一阶段。",
+      "status": "passed"
+    },
+    {
+      "check_id": "check.stage2-continuity",
+      "evidence": "两份入选预测均由各自入选重构的同一 actor.identifier 与 session_id 继续完成，prior_stage_submission_sha256 分别精确绑定 2ed31828f4c96acdc2616e1aaf87ab6b07906ce6e22940b397320894ed123ef5 和 a6de1fb94b3720e8dc5eb13d1531a1626ebc2db32f9e7f050379590cef5d9f08。",
+      "status": "passed"
+    },
+    {
+      "check_id": "check.condition-isolation",
+      "evidence": "入选链和每条替补链均从独立空白会话开始，只接收自己的单一条件视图；第二阶段只增加中性变体信封和本执行者的冻结重构。另一条件、其他执行者提交、条件含义、精确结果与密封真值均未进入盲测上下文；无效尝试也未作为替补上下文继承。",
+      "status": "passed"
+    },
+    {
+      "check_id": "check.prediction-before-execution",
+      "evidence": "入选预测 SHA-256 为 2104785dd85bcd55cb91bee222ce534d0f0ccf9f4a93e24a560d56e139805dba 和 832bb86f4619deb24ae03e607fc32d35627b90084c206ed184d76028fff7d2c4；规范 prediction-set-preimage.tsv 在确定性执行前冻结，其 SHA-256 与 prediction_set_digest 均为 ee9cb7a52012c0925a340ce71c5ae3b47ca4f798a59e45c2b2136c0653f1c063。每个结果期望均显式绑定 configuration_id。",
+      "status": "passed"
+    },
+    {
+      "check_id": "check.execution-before-reveal",
+      "evidence": "执行计划先以 SHA-256 3c8aa2c57062fd7948716002755352717f3b98494dad1ed8c07ad7fade1a353f 冻结；四次前台执行均以退出码 0 完成，基线两次为 7、变体两次为 4。原始输出、调用记录、轨迹与结果在提交 28f8c2e 前完成归档，执行结果 SHA-256 为 811bcb629c63a45f3e7e30d75c9a1675fad388042b7e4da109bed566ea7edf11；真值随后才在提交 70cfff2 揭示。",
+      "status": "passed"
+    },
+    {
+      "check_id": "check.hash-closure",
+      "evidence": "冻结清单的九个纳入项、对应 Schema、任务包输入与目标引用均可复算；规范前像与 frozen_artifact_set_digest 同为 b0c67021f5b63ab6897b4999cfaa7d994722e7245c9802339047b6f5e271b541。预测集合、执行结果和揭示记录逐级引用闭合，truth bundle SHA-256 为 52b57af7e3d969a707dfc5fbaaf9fd4f82794e91533d32df6adf4880ee0ea75b，承诺 166750a564cdfa082ef644f1264ee4e5305dd67e16a73ec89afeb1504324a696 可由 nonce 与精确真值字节复算。",
+      "status": "passed"
+    }
+  ],
+  "finished_at": "2026-07-26T19:03:12Z",
+  "procedure_result": "procedure_pass",
+  "run_id": "rehearsal-004"
+}
