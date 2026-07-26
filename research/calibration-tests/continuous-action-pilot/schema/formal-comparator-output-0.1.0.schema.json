@@ -1,0 +1,1541 @@
+{
+  "$id": "https://github.com/onovich/Game-Primitives/blob/main/research/calibration-tests/continuous-action-pilot/schema/formal-comparator-output-0.1.0.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$defs": {
+    "artifact": {
+      "additionalProperties": false,
+      "properties": {
+        "artifact_id": {
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]*$",
+          "type": "string"
+        },
+        "sha256": {
+          "not": {
+            "const": "0000000000000000000000000000000000000000000000000000000000000000"
+          },
+          "pattern": "^[0-9a-f]{64}$",
+          "type": "string"
+        }
+      },
+      "required": [
+        "artifact_id",
+        "sha256"
+      ],
+      "type": "object"
+    },
+    "booleanValue": {
+      "additionalProperties": false,
+      "properties": {
+        "serialized_value": {
+          "enum": [
+            "false",
+            "true"
+          ]
+        },
+        "unit": {
+          "type": "null"
+        },
+        "value_type": {
+          "const": "boolean"
+        }
+      },
+      "required": [
+        "serialized_value",
+        "unit",
+        "value_type"
+      ],
+      "type": "object"
+    },
+    "configurationArtifact": {
+      "additionalProperties": false,
+      "properties": {
+        "artifacts": {
+          "items": {
+            "$ref": "#/$defs/artifact"
+          },
+          "minItems": 1,
+          "type": "array"
+        },
+        "configuration_id": {
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]*$",
+          "type": "string"
+        }
+      },
+      "required": [
+        "configuration_id",
+        "artifacts"
+      ],
+      "type": "object"
+    },
+    "decimalMillisecondValue": {
+      "additionalProperties": false,
+      "properties": {
+        "serialized_value": {
+          "pattern": "^-?(?:0|[1-9][0-9]*)(?:\\.[0-9]+)?$",
+          "type": "string"
+        },
+        "unit": {
+          "const": "millisecond"
+        },
+        "value_type": {
+          "const": "decimal"
+        }
+      },
+      "required": [
+        "serialized_value",
+        "unit",
+        "value_type"
+      ],
+      "type": "object"
+    },
+    "directionEngineUnitPerSecondValue": {
+      "additionalProperties": false,
+      "properties": {
+        "serialized_value": {
+          "enum": [
+            "negative",
+            "zero",
+            "positive"
+          ]
+        },
+        "unit": {
+          "const": "engine_unit_per_second"
+        },
+        "value_type": {
+          "const": "direction"
+        }
+      },
+      "required": [
+        "serialized_value",
+        "unit",
+        "value_type"
+      ],
+      "type": "object"
+    },
+    "directionEngineUnitValue": {
+      "additionalProperties": false,
+      "properties": {
+        "serialized_value": {
+          "enum": [
+            "negative",
+            "zero",
+            "positive"
+          ]
+        },
+        "unit": {
+          "const": "engine_unit"
+        },
+        "value_type": {
+          "const": "direction"
+        }
+      },
+      "required": [
+        "serialized_value",
+        "unit",
+        "value_type"
+      ],
+      "type": "object"
+    },
+    "directionSequenceValue": {
+      "additionalProperties": false,
+      "properties": {
+        "serialized_value": {
+          "pattern": "^000:forward=(?:negative|zero|positive),right=(?:negative|zero|positive)\\|001:forward=(?:negative|zero|positive),right=(?:negative|zero|positive)\\|002:forward=(?:negative|zero|positive),right=(?:negative|zero|positive)\\|003:forward=(?:negative|zero|positive),right=(?:negative|zero|positive)\\|004:forward=(?:negative|zero|positive),right=(?:negative|zero|positive)\\|005:forward=(?:negative|zero|positive),right=(?:negative|zero|positive)\\|006:forward=(?:negative|zero|positive),right=(?:negative|zero|positive)\\|007:forward=(?:negative|zero|positive),right=(?:negative|zero|positive)\\|008:forward=(?:negative|zero|positive),right=(?:negative|zero|positive)\\|009:forward=(?:negative|zero|positive),right=(?:negative|zero|positive)\\|010:forward=(?:negative|zero|positive),right=(?:negative|zero|positive)\\|011:forward=(?:negative|zero|positive),right=(?:negative|zero|positive)\\|012:forward=(?:negative|zero|positive),right=(?:negative|zero|positive)\\|013:forward=(?:negative|zero|positive),right=(?:negative|zero|positive)\\|014:forward=(?:negative|zero|positive),right=(?:negative|zero|positive)\\|015:forward=(?:negative|zero|positive),right=(?:negative|zero|positive)\\|016:forward=(?:negative|zero|positive),right=(?:negative|zero|positive)\\|017:forward=(?:negative|zero|positive),right=(?:negative|zero|positive)\\|018:forward=(?:negative|zero|positive),right=(?:negative|zero|positive)\\|019:forward=(?:negative|zero|positive),right=(?:negative|zero|positive)\\|020:forward=(?:negative|zero|positive),right=(?:negative|zero|positive)\\|021:forward=(?:negative|zero|positive),right=(?:negative|zero|positive)\\|022:forward=(?:negative|zero|positive),right=(?:negative|zero|positive)\\|023:forward=(?:negative|zero|positive),right=(?:negative|zero|positive)\\|024:forward=(?:negative|zero|positive),right=(?:negative|zero|positive)$",
+          "type": "string"
+        },
+        "unit": {
+          "type": "null"
+        },
+        "value_type": {
+          "const": "string"
+        }
+      },
+      "required": [
+        "serialized_value",
+        "unit",
+        "value_type"
+      ],
+      "type": "object"
+    },
+    "idValue": {
+      "additionalProperties": false,
+      "properties": {
+        "serialized_value": {
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9._:-]*$",
+          "type": "string"
+        },
+        "unit": {
+          "type": "null"
+        },
+        "value_type": {
+          "const": "id"
+        }
+      },
+      "required": [
+        "serialized_value",
+        "unit",
+        "value_type"
+      ],
+      "type": "object"
+    },
+    "integerCountValue": {
+      "additionalProperties": false,
+      "properties": {
+        "serialized_value": {
+          "pattern": "^-?(?:0|[1-9][0-9]*)$",
+          "type": "string"
+        },
+        "unit": {
+          "const": "count"
+        },
+        "value_type": {
+          "const": "integer"
+        }
+      },
+      "required": [
+        "serialized_value",
+        "unit",
+        "value_type"
+      ],
+      "type": "object"
+    },
+    "integerMillisecondValue": {
+      "additionalProperties": false,
+      "properties": {
+        "serialized_value": {
+          "pattern": "^-?(?:0|[1-9][0-9]*)$",
+          "type": "string"
+        },
+        "unit": {
+          "const": "millisecond"
+        },
+        "value_type": {
+          "const": "integer"
+        }
+      },
+      "required": [
+        "serialized_value",
+        "unit",
+        "value_type"
+      ],
+      "type": "object"
+    },
+    "invariantResult": {
+      "additionalProperties": false,
+      "properties": {
+        "invariant_id": {
+          "pattern": "^inv\\.[abc]\\.[0-9]{4}$",
+          "type": "string"
+        },
+        "status": {
+          "enum": [
+            "held",
+            "violated",
+            "not_evaluable"
+          ]
+        }
+      },
+      "required": [
+        "invariant_id",
+        "status"
+      ],
+      "type": "object"
+    },
+    "negativeControl": {
+      "additionalProperties": false,
+      "properties": {
+        "configuration_artifacts": {
+          "items": {
+            "$ref": "#/$defs/configurationArtifact"
+          },
+          "type": "array"
+        },
+        "control_id": {
+          "const": "NEG-01"
+        },
+        "status": {
+          "enum": [
+            "held",
+            "violated",
+            "not_evaluable"
+          ]
+        }
+      },
+      "required": [
+        "control_id",
+        "status",
+        "configuration_artifacts"
+      ],
+      "type": "object"
+    },
+    "observationRecord": {
+      "additionalProperties": false,
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "observation_id": {
+                "enum": [
+                  "obs.a.0001",
+                  "obs.a.0003",
+                  "obs.b.0005",
+                  "obs.c.0003"
+                ]
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "actual_value": {
+                "oneOf": [
+                  {
+                    "$ref": "#/$defs/idValue"
+                  },
+                  {
+                    "$ref": "#/$defs/statusValue"
+                  }
+                ]
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "observation_id": {
+                "const": "obs.a.0002"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "actual_value": {
+                "oneOf": [
+                  {
+                    "$ref": "#/$defs/booleanValue"
+                  },
+                  {
+                    "$ref": "#/$defs/statusValue"
+                  }
+                ]
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "observation_id": {
+                "enum": [
+                  "obs.a.0004",
+                  "obs.a.0005",
+                  "obs.b.0004",
+                  "obs.c.0001",
+                  "obs.c.0005"
+                ]
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "actual_value": {
+                "oneOf": [
+                  {
+                    "$ref": "#/$defs/integerCountValue"
+                  },
+                  {
+                    "$ref": "#/$defs/statusValue"
+                  }
+                ]
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "observation_id": {
+                "const": "obs.b.0001"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "actual_value": {
+                "oneOf": [
+                  {
+                    "$ref": "#/$defs/directionSequenceValue"
+                  },
+                  {
+                    "$ref": "#/$defs/statusValue"
+                  }
+                ]
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "observation_id": {
+                "const": "obs.b.0002"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "actual_value": {
+                "oneOf": [
+                  {
+                    "$ref": "#/$defs/directionEngineUnitPerSecondValue"
+                  },
+                  {
+                    "$ref": "#/$defs/statusValue"
+                  }
+                ]
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "observation_id": {
+                "const": "obs.b.0003"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "actual_value": {
+                "oneOf": [
+                  {
+                    "$ref": "#/$defs/directionEngineUnitValue"
+                  },
+                  {
+                    "$ref": "#/$defs/statusValue"
+                  }
+                ]
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "observation_id": {
+                "const": "obs.c.0002"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "actual_value": {
+                "oneOf": [
+                  {
+                    "$ref": "#/$defs/integerMillisecondValue"
+                  },
+                  {
+                    "$ref": "#/$defs/statusValue"
+                  }
+                ]
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "observation_id": {
+                "enum": [
+                  "obs.c.0004",
+                  "obs.c.0006"
+                ]
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "actual_value": {
+                "oneOf": [
+                  {
+                    "$ref": "#/$defs/decimalMillisecondValue"
+                  },
+                  {
+                    "$ref": "#/$defs/statusValue"
+                  }
+                ]
+              }
+            }
+          }
+        }
+      ],
+      "properties": {
+        "actual_value": {
+          "type": "object"
+        },
+        "configuration_id": {
+          "enum": [
+            "config.baseline",
+            "config.variant"
+          ]
+        },
+        "observation_id": {
+          "enum": [
+            "obs.a.0001",
+            "obs.a.0002",
+            "obs.a.0003",
+            "obs.a.0004",
+            "obs.a.0005",
+            "obs.b.0001",
+            "obs.b.0002",
+            "obs.b.0003",
+            "obs.b.0004",
+            "obs.b.0005",
+            "obs.c.0001",
+            "obs.c.0002",
+            "obs.c.0003",
+            "obs.c.0004",
+            "obs.c.0005",
+            "obs.c.0006"
+          ]
+        },
+        "tolerance_rule_id": {
+          "enum": [
+            "tol.a.0001",
+            "tol.b.0001",
+            "tol.b.0002",
+            "tol.c.0001",
+            "tol.c.0002"
+          ]
+        }
+      },
+      "required": [
+        "configuration_id",
+        "observation_id",
+        "actual_value",
+        "tolerance_rule_id"
+      ],
+      "type": "object"
+    },
+    "statusValue": {
+      "additionalProperties": false,
+      "properties": {
+        "serialized_value": {
+          "enum": [
+            "indeterminate",
+            "none",
+            "not_evaluable",
+            "not_observed"
+          ]
+        },
+        "unit": {
+          "type": "null"
+        },
+        "value_type": {
+          "const": "status"
+        }
+      },
+      "required": [
+        "serialized_value",
+        "unit",
+        "value_type"
+      ],
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "comparator_status": {
+            "const": "passed"
+          }
+        },
+        "required": [
+          "comparator_status"
+        ]
+      },
+      "then": {
+        "properties": {
+          "invariants": {
+            "items": {
+              "properties": {
+                "status": {
+                  "const": "held"
+                }
+              }
+            }
+          },
+          "negative_controls": {
+            "items": {
+              "properties": {
+                "status": {
+                  "const": "held"
+                }
+              }
+            }
+          },
+          "observations": {
+            "items": {
+              "properties": {
+                "actual_value": {
+                  "not": {
+                    "$ref": "#/$defs/statusValue"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "case_id": {
+            "const": "CA-R1"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "configuration_artifacts": {
+            "maxItems": 2,
+            "minItems": 2,
+            "prefixItems": [
+              {
+                "properties": {
+                  "artifacts": {
+                    "maxItems": 1,
+                    "minItems": 1,
+                    "prefixItems": [
+                      {
+                        "properties": {
+                          "artifact_id": {
+                            "const": "config.baseline.raw-trace"
+                          }
+                        }
+                      }
+                    ]
+                  },
+                  "configuration_id": {
+                    "const": "config.baseline"
+                  }
+                }
+              },
+              {
+                "properties": {
+                  "artifacts": {
+                    "maxItems": 1,
+                    "minItems": 1,
+                    "prefixItems": [
+                      {
+                        "properties": {
+                          "artifact_id": {
+                            "const": "config.variant.raw-trace"
+                          }
+                        }
+                      }
+                    ]
+                  },
+                  "configuration_id": {
+                    "const": "config.variant"
+                  }
+                }
+              }
+            ]
+          },
+          "invariants": {
+            "maxItems": 6,
+            "minItems": 6,
+            "prefixItems": [
+              {
+                "properties": {
+                  "invariant_id": {
+                    "const": "inv.a.0001"
+                  }
+                }
+              },
+              {
+                "properties": {
+                  "invariant_id": {
+                    "const": "inv.a.0002"
+                  }
+                }
+              },
+              {
+                "properties": {
+                  "invariant_id": {
+                    "const": "inv.a.0003"
+                  }
+                }
+              },
+              {
+                "properties": {
+                  "invariant_id": {
+                    "const": "inv.a.0004"
+                  }
+                }
+              },
+              {
+                "properties": {
+                  "invariant_id": {
+                    "const": "inv.a.0005"
+                  }
+                }
+              },
+              {
+                "properties": {
+                  "invariant_id": {
+                    "const": "inv.a.0006"
+                  }
+                }
+              }
+            ]
+          },
+          "negative_controls": {
+            "maxItems": 0
+          },
+          "observations": {
+            "maxItems": 10,
+            "minItems": 10,
+            "prefixItems": [
+              {
+                "properties": {
+                  "configuration_id": {
+                    "const": "config.baseline"
+                  },
+                  "observation_id": {
+                    "const": "obs.a.0001"
+                  },
+                  "tolerance_rule_id": {
+                    "const": "tol.a.0001"
+                  }
+                }
+              },
+              {
+                "properties": {
+                  "configuration_id": {
+                    "const": "config.baseline"
+                  },
+                  "observation_id": {
+                    "const": "obs.a.0002"
+                  },
+                  "tolerance_rule_id": {
+                    "const": "tol.a.0001"
+                  }
+                }
+              },
+              {
+                "properties": {
+                  "configuration_id": {
+                    "const": "config.baseline"
+                  },
+                  "observation_id": {
+                    "const": "obs.a.0003"
+                  },
+                  "tolerance_rule_id": {
+                    "const": "tol.a.0001"
+                  }
+                }
+              },
+              {
+                "properties": {
+                  "configuration_id": {
+                    "const": "config.baseline"
+                  },
+                  "observation_id": {
+                    "const": "obs.a.0004"
+                  },
+                  "tolerance_rule_id": {
+                    "const": "tol.a.0001"
+                  }
+                }
+              },
+              {
+                "properties": {
+                  "configuration_id": {
+                    "const": "config.baseline"
+                  },
+                  "observation_id": {
+                    "const": "obs.a.0005"
+                  },
+                  "tolerance_rule_id": {
+                    "const": "tol.a.0001"
+                  }
+                }
+              },
+              {
+                "properties": {
+                  "configuration_id": {
+                    "const": "config.variant"
+                  },
+                  "observation_id": {
+                    "const": "obs.a.0001"
+                  },
+                  "tolerance_rule_id": {
+                    "const": "tol.a.0001"
+                  }
+                }
+              },
+              {
+                "properties": {
+                  "configuration_id": {
+                    "const": "config.variant"
+                  },
+                  "observation_id": {
+                    "const": "obs.a.0002"
+                  },
+                  "tolerance_rule_id": {
+                    "const": "tol.a.0001"
+                  }
+                }
+              },
+              {
+                "properties": {
+                  "configuration_id": {
+                    "const": "config.variant"
+                  },
+                  "observation_id": {
+                    "const": "obs.a.0003"
+                  },
+                  "tolerance_rule_id": {
+                    "const": "tol.a.0001"
+                  }
+                }
+              },
+              {
+                "properties": {
+                  "configuration_id": {
+                    "const": "config.variant"
+                  },
+                  "observation_id": {
+                    "const": "obs.a.0004"
+                  },
+                  "tolerance_rule_id": {
+                    "const": "tol.a.0001"
+                  }
+                }
+              },
+              {
+                "properties": {
+                  "configuration_id": {
+                    "const": "config.variant"
+                  },
+                  "observation_id": {
+                    "const": "obs.a.0005"
+                  },
+                  "tolerance_rule_id": {
+                    "const": "tol.a.0001"
+                  }
+                }
+              }
+            ]
+          },
+          "stop_boundary_id": {
+            "const": "o.a.0042"
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "case_id": {
+            "const": "CA-R2"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "configuration_artifacts": {
+            "maxItems": 2,
+            "minItems": 2,
+            "prefixItems": [
+              {
+                "properties": {
+                  "artifacts": {
+                    "maxItems": 2,
+                    "minItems": 2,
+                    "prefixItems": [
+                      {
+                        "properties": {
+                          "artifact_id": {
+                            "const": "config.baseline.replica-a"
+                          }
+                        }
+                      },
+                      {
+                        "properties": {
+                          "artifact_id": {
+                            "const": "config.baseline.replica-b"
+                          }
+                        }
+                      }
+                    ]
+                  },
+                  "configuration_id": {
+                    "const": "config.baseline"
+                  }
+                }
+              },
+              {
+                "properties": {
+                  "artifacts": {
+                    "maxItems": 2,
+                    "minItems": 2,
+                    "prefixItems": [
+                      {
+                        "properties": {
+                          "artifact_id": {
+                            "const": "config.variant.replica-a"
+                          }
+                        }
+                      },
+                      {
+                        "properties": {
+                          "artifact_id": {
+                            "const": "config.variant.replica-b"
+                          }
+                        }
+                      }
+                    ]
+                  },
+                  "configuration_id": {
+                    "const": "config.variant"
+                  }
+                }
+              }
+            ]
+          },
+          "invariants": {
+            "maxItems": 7,
+            "minItems": 7,
+            "prefixItems": [
+              {
+                "properties": {
+                  "invariant_id": {
+                    "const": "inv.b.0001"
+                  }
+                }
+              },
+              {
+                "properties": {
+                  "invariant_id": {
+                    "const": "inv.b.0002"
+                  }
+                }
+              },
+              {
+                "properties": {
+                  "invariant_id": {
+                    "const": "inv.b.0003"
+                  }
+                }
+              },
+              {
+                "properties": {
+                  "invariant_id": {
+                    "const": "inv.b.0004"
+                  }
+                }
+              },
+              {
+                "properties": {
+                  "invariant_id": {
+                    "const": "inv.b.0005"
+                  }
+                }
+              },
+              {
+                "properties": {
+                  "invariant_id": {
+                    "const": "inv.b.0006"
+                  }
+                }
+              },
+              {
+                "properties": {
+                  "invariant_id": {
+                    "const": "inv.b.0007"
+                  }
+                }
+              }
+            ]
+          },
+          "negative_controls": {
+            "maxItems": 0
+          },
+          "observations": {
+            "maxItems": 10,
+            "minItems": 10,
+            "prefixItems": [
+              {
+                "properties": {
+                  "configuration_id": {
+                    "const": "config.baseline"
+                  },
+                  "observation_id": {
+                    "const": "obs.b.0001"
+                  },
+                  "tolerance_rule_id": {
+                    "const": "tol.b.0001"
+                  }
+                }
+              },
+              {
+                "properties": {
+                  "configuration_id": {
+                    "const": "config.baseline"
+                  },
+                  "observation_id": {
+                    "const": "obs.b.0002"
+                  },
+                  "tolerance_rule_id": {
+                    "const": "tol.b.0002"
+                  }
+                }
+              },
+              {
+                "properties": {
+                  "configuration_id": {
+                    "const": "config.baseline"
+                  },
+                  "observation_id": {
+                    "const": "obs.b.0003"
+                  },
+                  "tolerance_rule_id": {
+                    "const": "tol.b.0002"
+                  }
+                }
+              },
+              {
+                "properties": {
+                  "configuration_id": {
+                    "const": "config.baseline"
+                  },
+                  "observation_id": {
+                    "const": "obs.b.0004"
+                  },
+                  "tolerance_rule_id": {
+                    "const": "tol.b.0001"
+                  }
+                }
+              },
+              {
+                "properties": {
+                  "configuration_id": {
+                    "const": "config.baseline"
+                  },
+                  "observation_id": {
+                    "const": "obs.b.0005"
+                  },
+                  "tolerance_rule_id": {
+                    "const": "tol.b.0001"
+                  }
+                }
+              },
+              {
+                "properties": {
+                  "configuration_id": {
+                    "const": "config.variant"
+                  },
+                  "observation_id": {
+                    "const": "obs.b.0001"
+                  },
+                  "tolerance_rule_id": {
+                    "const": "tol.b.0001"
+                  }
+                }
+              },
+              {
+                "properties": {
+                  "configuration_id": {
+                    "const": "config.variant"
+                  },
+                  "observation_id": {
+                    "const": "obs.b.0002"
+                  },
+                  "tolerance_rule_id": {
+                    "const": "tol.b.0002"
+                  }
+                }
+              },
+              {
+                "properties": {
+                  "configuration_id": {
+                    "const": "config.variant"
+                  },
+                  "observation_id": {
+                    "const": "obs.b.0003"
+                  },
+                  "tolerance_rule_id": {
+                    "const": "tol.b.0002"
+                  }
+                }
+              },
+              {
+                "properties": {
+                  "configuration_id": {
+                    "const": "config.variant"
+                  },
+                  "observation_id": {
+                    "const": "obs.b.0004"
+                  },
+                  "tolerance_rule_id": {
+                    "const": "tol.b.0001"
+                  }
+                }
+              },
+              {
+                "properties": {
+                  "configuration_id": {
+                    "const": "config.variant"
+                  },
+                  "observation_id": {
+                    "const": "obs.b.0005"
+                  },
+                  "tolerance_rule_id": {
+                    "const": "tol.b.0001"
+                  }
+                }
+              }
+            ]
+          },
+          "stop_boundary_id": {
+            "const": "o.b.0030"
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "case_id": {
+            "const": "CA-R3"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "configuration_artifacts": {
+            "maxItems": 2,
+            "minItems": 2,
+            "prefixItems": [
+              {
+                "properties": {
+                  "artifacts": {
+                    "maxItems": 1,
+                    "minItems": 1,
+                    "prefixItems": [
+                      {
+                        "properties": {
+                          "artifact_id": {
+                            "const": "config.baseline.raw-trace"
+                          }
+                        }
+                      }
+                    ]
+                  },
+                  "configuration_id": {
+                    "const": "config.baseline"
+                  }
+                }
+              },
+              {
+                "properties": {
+                  "artifacts": {
+                    "maxItems": 1,
+                    "minItems": 1,
+                    "prefixItems": [
+                      {
+                        "properties": {
+                          "artifact_id": {
+                            "const": "config.variant.raw-trace"
+                          }
+                        }
+                      }
+                    ]
+                  },
+                  "configuration_id": {
+                    "const": "config.variant"
+                  }
+                }
+              }
+            ]
+          },
+          "invariants": {
+            "maxItems": 7,
+            "minItems": 7,
+            "prefixItems": [
+              {
+                "properties": {
+                  "invariant_id": {
+                    "const": "inv.c.0001"
+                  }
+                }
+              },
+              {
+                "properties": {
+                  "invariant_id": {
+                    "const": "inv.c.0002"
+                  }
+                }
+              },
+              {
+                "properties": {
+                  "invariant_id": {
+                    "const": "inv.c.0003"
+                  }
+                }
+              },
+              {
+                "properties": {
+                  "invariant_id": {
+                    "const": "inv.c.0004"
+                  }
+                }
+              },
+              {
+                "properties": {
+                  "invariant_id": {
+                    "const": "inv.c.0005"
+                  }
+                }
+              },
+              {
+                "properties": {
+                  "invariant_id": {
+                    "const": "inv.c.0006"
+                  }
+                }
+              },
+              {
+                "properties": {
+                  "invariant_id": {
+                    "const": "inv.c.0007"
+                  }
+                }
+              }
+            ]
+          },
+          "negative_controls": {
+            "maxItems": 1,
+            "minItems": 1,
+            "prefixItems": [
+              {
+                "properties": {
+                  "configuration_artifacts": {
+                    "maxItems": 2,
+                    "minItems": 2,
+                    "prefixItems": [
+                      {
+                        "properties": {
+                          "artifacts": {
+                            "maxItems": 1,
+                            "minItems": 1,
+                            "prefixItems": [
+                              {
+                                "properties": {
+                                  "artifact_id": {
+                                    "const": "negative_control_a.raw-trace"
+                                  }
+                                }
+                              }
+                            ]
+                          },
+                          "configuration_id": {
+                            "const": "negative_control_a"
+                          }
+                        }
+                      },
+                      {
+                        "properties": {
+                          "artifacts": {
+                            "maxItems": 1,
+                            "minItems": 1,
+                            "prefixItems": [
+                              {
+                                "properties": {
+                                  "artifact_id": {
+                                    "const": "negative_control_b.raw-trace"
+                                  }
+                                }
+                              }
+                            ]
+                          },
+                          "configuration_id": {
+                            "const": "negative_control_b"
+                          }
+                        }
+                      }
+                    ]
+                  }
+                }
+              }
+            ]
+          },
+          "observations": {
+            "maxItems": 12,
+            "minItems": 12,
+            "prefixItems": [
+              {
+                "properties": {
+                  "configuration_id": {
+                    "const": "config.baseline"
+                  },
+                  "observation_id": {
+                    "const": "obs.c.0001"
+                  },
+                  "tolerance_rule_id": {
+                    "const": "tol.c.0001"
+                  }
+                }
+              },
+              {
+                "properties": {
+                  "configuration_id": {
+                    "const": "config.baseline"
+                  },
+                  "observation_id": {
+                    "const": "obs.c.0002"
+                  },
+                  "tolerance_rule_id": {
+                    "const": "tol.c.0002"
+                  }
+                }
+              },
+              {
+                "properties": {
+                  "configuration_id": {
+                    "const": "config.baseline"
+                  },
+                  "observation_id": {
+                    "const": "obs.c.0003"
+                  },
+                  "tolerance_rule_id": {
+                    "const": "tol.c.0001"
+                  }
+                }
+              },
+              {
+                "properties": {
+                  "configuration_id": {
+                    "const": "config.baseline"
+                  },
+                  "observation_id": {
+                    "const": "obs.c.0004"
+                  },
+                  "tolerance_rule_id": {
+                    "const": "tol.c.0002"
+                  }
+                }
+              },
+              {
+                "properties": {
+                  "configuration_id": {
+                    "const": "config.baseline"
+                  },
+                  "observation_id": {
+                    "const": "obs.c.0005"
+                  },
+                  "tolerance_rule_id": {
+                    "const": "tol.c.0001"
+                  }
+                }
+              },
+              {
+                "properties": {
+                  "configuration_id": {
+                    "const": "config.baseline"
+                  },
+                  "observation_id": {
+                    "const": "obs.c.0006"
+                  },
+                  "tolerance_rule_id": {
+                    "const": "tol.c.0002"
+                  }
+                }
+              },
+              {
+                "properties": {
+                  "configuration_id": {
+                    "const": "config.variant"
+                  },
+                  "observation_id": {
+                    "const": "obs.c.0001"
+                  },
+                  "tolerance_rule_id": {
+                    "const": "tol.c.0001"
+                  }
+                }
+              },
+              {
+                "properties": {
+                  "configuration_id": {
+                    "const": "config.variant"
+                  },
+                  "observation_id": {
+                    "const": "obs.c.0002"
+                  },
+                  "tolerance_rule_id": {
+                    "const": "tol.c.0002"
+                  }
+                }
+              },
+              {
+                "properties": {
+                  "configuration_id": {
+                    "const": "config.variant"
+                  },
+                  "observation_id": {
+                    "const": "obs.c.0003"
+                  },
+                  "tolerance_rule_id": {
+                    "const": "tol.c.0001"
+                  }
+                }
+              },
+              {
+                "properties": {
+                  "configuration_id": {
+                    "const": "config.variant"
+                  },
+                  "observation_id": {
+                    "const": "obs.c.0004"
+                  },
+                  "tolerance_rule_id": {
+                    "const": "tol.c.0002"
+                  }
+                }
+              },
+              {
+                "properties": {
+                  "configuration_id": {
+                    "const": "config.variant"
+                  },
+                  "observation_id": {
+                    "const": "obs.c.0005"
+                  },
+                  "tolerance_rule_id": {
+                    "const": "tol.c.0001"
+                  }
+                }
+              },
+              {
+                "properties": {
+                  "configuration_id": {
+                    "const": "config.variant"
+                  },
+                  "observation_id": {
+                    "const": "obs.c.0006"
+                  },
+                  "tolerance_rule_id": {
+                    "const": "tol.c.0002"
+                  }
+                }
+              }
+            ]
+          },
+          "stop_boundary_id": {
+            "const": "o.c.0032"
+          }
+        }
+      }
+    }
+  ],
+  "properties": {
+    "artifact_type": {
+      "const": "formal_comparator_output"
+    },
+    "artifact_version": {
+      "const": "0.1.0"
+    },
+    "case_id": {
+      "enum": [
+        "CA-R1",
+        "CA-R2",
+        "CA-R3"
+      ]
+    },
+    "comparator_status": {
+      "enum": [
+        "failed",
+        "passed"
+      ]
+    },
+    "configuration_artifacts": {
+      "items": {
+        "$ref": "#/$defs/configurationArtifact"
+      },
+      "type": "array"
+    },
+    "execution_permit_sha256": {
+      "not": {
+        "const": "0000000000000000000000000000000000000000000000000000000000000000"
+      },
+      "pattern": "^[0-9a-f]{64}$",
+      "type": "string"
+    },
+    "formal_input_sha256": {
+      "not": {
+        "const": "0000000000000000000000000000000000000000000000000000000000000000"
+      },
+      "pattern": "^[0-9a-f]{64}$",
+      "type": "string"
+    },
+    "invariants": {
+      "items": {
+        "$ref": "#/$defs/invariantResult"
+      },
+      "type": "array"
+    },
+    "negative_controls": {
+      "items": {
+        "$ref": "#/$defs/negativeControl"
+      },
+      "type": "array"
+    },
+    "observations": {
+      "items": {
+        "$ref": "#/$defs/observationRecord"
+      },
+      "type": "array"
+    },
+    "prediction_set_digest": {
+      "not": {
+        "const": "0000000000000000000000000000000000000000000000000000000000000000"
+      },
+      "pattern": "^[0-9a-f]{64}$",
+      "type": "string"
+    },
+    "run_id": {
+      "const": "continuous-001"
+    },
+    "stop_boundary_id": {
+      "enum": [
+        "o.a.0042",
+        "o.b.0030",
+        "o.c.0032"
+      ]
+    }
+  },
+  "required": [
+    "artifact_type",
+    "artifact_version",
+    "run_id",
+    "case_id",
+    "stop_boundary_id",
+    "execution_permit_sha256",
+    "formal_input_sha256",
+    "prediction_set_digest",
+    "comparator_status",
+    "configuration_artifacts",
+    "observations",
+    "invariants",
+    "negative_controls"
+  ],
+  "type": "object"
+}

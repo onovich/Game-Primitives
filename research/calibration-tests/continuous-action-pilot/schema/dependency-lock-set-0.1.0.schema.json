@@ -1,0 +1,148 @@
+{
+  "$defs": {
+    "lockFile": {
+      "additionalProperties": false,
+      "properties": {
+        "artifact_id": {
+          "pattern": "^dependency-lock\\.ca-r3\\.[a-z-]+$",
+          "type": "string"
+        },
+        "bytes": {
+          "minimum": 1,
+          "type": "integer"
+        },
+        "path": {
+          "pattern": "^research/calibration-tests/continuous-action-pilot/runs/continuous-001/fixtures/r3/dependency-locks/[A-Za-z0-9.]+\\.packages\\.lock\\.json$",
+          "type": "string"
+        },
+        "sha256": {
+          "pattern": "^[0-9a-f]{64}$",
+          "type": "string"
+        },
+        "source_tree_path": {
+          "pattern": "^[A-Za-z0-9.]+/packages\\.lock\\.json$",
+          "type": "string"
+        }
+      },
+      "required": [
+        "artifact_id",
+        "bytes",
+        "path",
+        "sha256",
+        "source_tree_path"
+      ],
+      "type": "object"
+    }
+  },
+  "$id": "https://github.com/onovich/Game-Primitives/blob/main/research/calibration-tests/continuous-action-pilot/schema/dependency-lock-set-0.1.0.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "$schema": {
+      "const": "https://github.com/onovich/Game-Primitives/blob/main/research/calibration-tests/continuous-action-pilot/schema/dependency-lock-set-0.1.0.schema.json"
+    },
+    "artifact_type": {
+      "const": "continuous_action_dependency_lock_set"
+    },
+    "artifact_version": {
+      "const": "0.1.0"
+    },
+    "case_id": {
+      "const": "CA-R3"
+    },
+    "copy_semantics": {
+      "const": "byte_for_byte"
+    },
+    "created_at": {
+      "format": "date-time",
+      "type": "string"
+    },
+    "formal_input_executed": {
+      "const": false
+    },
+    "lock_files": {
+      "items": false,
+      "maxItems": 3,
+      "minItems": 3,
+      "prefixItems": [
+        {
+          "allOf": [
+            {
+              "$ref": "#/$defs/lockFile"
+            },
+            {
+              "const": {
+                "artifact_id": "dependency-lock.ca-r3.game",
+                "bytes": 93044,
+                "path": "research/calibration-tests/continuous-action-pilot/runs/continuous-001/fixtures/r3/dependency-locks/osu.Game.packages.lock.json",
+                "sha256": "48952c1c2acfc6634f8f0675dd0c9a43667808db3885711519c5a7562e0fa723",
+                "source_tree_path": "osu.Game/packages.lock.json"
+              }
+            }
+          ]
+        },
+        {
+          "allOf": [
+            {
+              "$ref": "#/$defs/lockFile"
+            },
+            {
+              "const": {
+                "artifact_id": "dependency-lock.ca-r3.ruleset",
+                "bytes": 93345,
+                "path": "research/calibration-tests/continuous-action-pilot/runs/continuous-001/fixtures/r3/dependency-locks/osu.Game.Rulesets.Osu.packages.lock.json",
+                "sha256": "2b1612fb68477937bbc4a86437138cd3ae850a25871eb18ce4a626022658d7ae",
+                "source_tree_path": "osu.Game.Rulesets.Osu/packages.lock.json"
+              }
+            }
+          ]
+        },
+        {
+          "allOf": [
+            {
+              "$ref": "#/$defs/lockFile"
+            },
+            {
+              "const": {
+                "artifact_id": "dependency-lock.ca-r3.tests",
+                "bytes": 98448,
+                "path": "research/calibration-tests/continuous-action-pilot/runs/continuous-001/fixtures/r3/dependency-locks/osu.Game.Rulesets.Osu.Tests.packages.lock.json",
+                "sha256": "86a9c02930a3ce76d3aac7facf7261324026f189c37785d1a7530afa72669a8a",
+                "source_tree_path": "osu.Game.Rulesets.Osu.Tests/packages.lock.json"
+              }
+            }
+          ]
+        }
+      ],
+      "type": "array"
+    },
+    "repository_url": {
+      "const": "https://github.com/ppy/osu"
+    },
+    "run_id": {
+      "const": "continuous-001"
+    },
+    "source_commit": {
+      "const": "5da71008b082d1a77e4bb301dc98886f1f24b895"
+    },
+    "target_project": {
+      "const": "osu.Game.Rulesets.Osu.Tests/osu.Game.Rulesets.Osu.Tests.csproj"
+    }
+  },
+  "required": [
+    "$schema",
+    "artifact_type",
+    "artifact_version",
+    "case_id",
+    "copy_semantics",
+    "created_at",
+    "formal_input_executed",
+    "lock_files",
+    "repository_url",
+    "run_id",
+    "source_commit",
+    "target_project"
+  ],
+  "title": "Game Primitives CA-R3 Dependency Lock Set 0.1.0",
+  "type": "object"
+}

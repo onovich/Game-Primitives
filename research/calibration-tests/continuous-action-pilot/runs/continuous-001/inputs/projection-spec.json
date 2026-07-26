@@ -2,7 +2,7 @@
   "$schema": "https://github.com/onovich/Game-Primitives/blob/main/research/calibration-tests/continuous-action-pilot/schema/ca-sr-artifact-0.1.0.schema.json",
   "artifact_type": "projection_spec",
   "artifact_version": "0.1.0",
-  "canonical_encoding_sha256": "0ca359886db636f065254b1a84c151c3b40b6442c7c503318944c534ea9738c3",
+  "canonical_encoding_sha256": "5682e1bb395a2c7e02df914b3a464005d195a736bc0dc0d88594f7ee3611e5c3",
   "forbidden_tokens": [
     "AllJudged",
     "ApplyResult",
@@ -71,7 +71,7 @@
   "generator_version": "0.1.0",
   "projections": [
     {
-      "projection_id": "projection-v01.gsha256-6bf05513b5b82cafa1ac2dd3514c3f18f78130dbd5b0cad68bb040e696fbfb31",
+      "projection_id": "projection-v01.gsha256-9b2681df8f2b09255001da6c167216484fc75ada1e5ca95f0699a00a3bad1d85",
       "rules": [
         {
           "from_value": null,
@@ -111,7 +111,7 @@
       ]
     },
     {
-      "projection_id": "projection-v02.gsha256-6bf05513b5b82cafa1ac2dd3514c3f18f78130dbd5b0cad68bb040e696fbfb31",
+      "projection_id": "projection-v02.gsha256-9b2681df8f2b09255001da6c167216484fc75ada1e5ca95f0699a00a3bad1d85",
       "rules": [
         {
           "from_value": null,

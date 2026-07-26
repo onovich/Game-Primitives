@@ -2,7 +2,7 @@
   "$schema": "https://github.com/onovich/Game-Primitives/blob/main/research/calibration-tests/continuous-action-pilot/schema/ca-sr-artifact-0.1.0.schema.json",
   "artifact_type": "generated_view",
   "artifact_version": "0.1.0",
-  "canonical_encoding_sha256": "0ca359886db636f065254b1a84c151c3b40b6442c7c503318944c534ea9738c3",
+  "canonical_encoding_sha256": "5682e1bb395a2c7e02df914b3a464005d195a736bc0dc0d88594f7ee3611e5c3",
   "cases": [
     {
       "case_scope": {
@@ -97,6 +97,21 @@
             "value": "取消表在执行窗口允许立即设置特殊攻击；在缓冲窗口只保留请求，随后须通过取消资格检查才设置为当前动作。"
           },
           "to_id": "o.a.0015"
+        },
+        {
+          "condition_ids": [],
+          "edge_id": "o.a.0016",
+          "from_id": "o.a.0001",
+          "kind": "gates",
+          "scope_ids": [
+            "o.a.0005"
+          ],
+          "source_fact": {
+            "provenance_refs": [],
+            "status": "encoded",
+            "value": "项目夹具规定该独立规则负责改变已缓存的另一动作请求能否越过取消资格门并进入动作实例；请求形成、动作映射与缓存关系保持冻结。"
+          },
+          "to_id": "o.a.0015"
         }
       ],
       "operational_records": [
@@ -105,34 +120,34 @@
             "provenance_refs": [],
             "status": "encoded",
             "values": [
-              "o.a.0016",
-              "o.a.0017"
+              "o.a.0017",
+              "o.a.0018"
             ]
           },
           "action_mapping_rule_refs": {
             "provenance_refs": [],
             "status": "encoded",
             "values": [
-              "o.a.0018"
+              "o.a.0019"
             ]
           },
           "buffer_rule_refs": {
             "provenance_refs": [],
             "status": "encoded",
             "values": [
-              "o.a.0017",
-              "o.a.0019"
+              "o.a.0018",
+              "o.a.0020"
             ]
           },
           "controlled_entity_ref": {
             "provenance_refs": [],
             "status": "encoded",
-            "value": "o.a.0020"
+            "value": "o.a.0021"
           },
           "implementation_medium_ref": {
             "provenance_refs": [],
             "status": "encoded",
-            "value": "o.a.0021"
+            "value": "o.a.0022"
           },
           "input_ref": {
             "provenance_refs": [],
@@ -151,23 +166,23 @@
             "provenance_refs": [],
             "status": "encoded",
             "values": [
-              "o.a.0022"
+              "o.a.0023"
             ]
           },
-          "record_id": "o.a.0023",
+          "record_id": "o.a.0024",
           "record_type": "input_action_path",
           "rejection_outcome_refs": {
             "provenance_refs": [],
             "status": "encoded",
             "values": [
-              "o.a.0024"
+              "o.a.0025"
             ]
           },
           "sampling_rule_refs": {
             "provenance_refs": [],
             "status": "encoded",
             "values": [
-              "o.a.0025"
+              "o.a.0026"
             ]
           },
           "signal_ref": {
@@ -178,7 +193,7 @@
           "time_base_ref": {
             "provenance_refs": [],
             "status": "encoded",
-            "value": "o.a.0026"
+            "value": "o.a.0027"
           }
         },
         {
@@ -206,14 +221,14 @@
             "provenance_refs": [],
             "status": "encoded",
             "values": [
-              "o.a.0018"
+              "o.a.0019"
             ]
           },
           "exit_rule_refs": {
             "provenance_refs": [],
             "status": "encoded",
             "values": [
-              "o.a.0019"
+              "o.a.0020"
             ]
           },
           "milestones": [
@@ -222,10 +237,10 @@
                 "provenance_refs": [],
                 "status": "encoded",
                 "values": [
-                  "o.a.0027"
+                  "o.a.0028"
                 ]
               },
-              "milestone_id": "o.a.0028",
+              "milestone_id": "o.a.0029",
               "name": "普通攻击实例进入动作帧零",
               "source_fact": {
                 "provenance_refs": [],
@@ -238,10 +253,10 @@
                 "provenance_refs": [],
                 "status": "encoded",
                 "values": [
-                  "o.a.0029"
+                  "o.a.0030"
                 ]
               },
-              "milestone_id": "o.a.0030",
+              "milestone_id": "o.a.0031",
               "name": "特殊攻击请求仅可缓冲",
               "source_fact": {
                 "provenance_refs": [],
@@ -254,10 +269,10 @@
                 "provenance_refs": [],
                 "status": "encoded",
                 "values": [
-                  "o.a.0031"
+                  "o.a.0032"
                 ]
               },
-              "milestone_id": "o.a.0032",
+              "milestone_id": "o.a.0033",
               "name": "特殊攻击请求可立即执行",
               "source_fact": {
                 "provenance_refs": [],
@@ -274,7 +289,7 @@
                 "value": {
                   "coordinate_system": "普通攻击取消许可",
                   "serialized_value": "value.a.0001",
-                  "time_base_id": "o.a.0026",
+                  "time_base_id": "o.a.0027",
                   "unit": null,
                   "value_type": "status"
                 }
@@ -285,7 +300,7 @@
                 "value": {
                   "coordinate_system": "普通攻击取消许可",
                   "serialized_value": "value.a.0002",
-                  "time_base_id": "o.a.0026",
+                  "time_base_id": "o.a.0027",
                   "unit": null,
                   "value_type": "status"
                 }
@@ -294,15 +309,15 @@
                 "provenance_refs": [],
                 "status": "encoded",
                 "values": [
-                  "o.a.0031"
+                  "o.a.0032"
                 ]
               },
-              "permission_id": "o.a.0033",
+              "permission_id": "o.a.0034",
               "rule_refs": {
                 "provenance_refs": [],
                 "status": "encoded",
                 "values": [
-                  "o.a.0017"
+                  "o.a.0018"
                 ]
               }
             }
@@ -311,10 +326,10 @@
             "provenance_refs": [],
             "status": "encoded",
             "values": [
-              "o.a.0034"
+              "o.a.0035"
             ]
           },
-          "record_id": "o.a.0035",
+          "record_id": "o.a.0036",
           "record_type": "action_lifecycle",
           "transitions": [
             {
@@ -322,38 +337,38 @@
                 "provenance_refs": [],
                 "status": "encoded",
                 "values": [
-                  "o.a.0029"
+                  "o.a.0030"
                 ]
               },
-              "from_milestone_id": "o.a.0028",
+              "from_milestone_id": "o.a.0029",
               "rule_refs": {
                 "provenance_refs": [],
                 "status": "encoded",
                 "values": [
-                  "o.a.0017"
+                  "o.a.0018"
                 ]
               },
-              "to_milestone_id": "o.a.0030",
-              "transition_id": "o.a.0036"
+              "to_milestone_id": "o.a.0031",
+              "transition_id": "o.a.0037"
             },
             {
               "condition_refs": {
                 "provenance_refs": [],
                 "status": "encoded",
                 "values": [
-                  "o.a.0031"
+                  "o.a.0032"
                 ]
               },
-              "from_milestone_id": "o.a.0030",
+              "from_milestone_id": "o.a.0031",
               "rule_refs": {
                 "provenance_refs": [],
                 "status": "encoded",
                 "values": [
-                  "o.a.0017"
+                  "o.a.0018"
                 ]
               },
-              "to_milestone_id": "o.a.0032",
-              "transition_id": "o.a.0037"
+              "to_milestone_id": "o.a.0033",
+              "transition_id": "o.a.0038"
             }
           ]
         },
@@ -378,7 +393,7 @@
             "status": "encoded",
             "value": "当前输入与上一历史输入异或并与当前位相与，得到本次新按下攻击。"
           },
-          "record_id": "o.a.0038",
+          "record_id": "o.a.0039",
           "record_type": "outcome_frame",
           "resolution": {
             "provenance_refs": [],
@@ -452,7 +467,7 @@
           "audit_identity": null,
           "base_type": "condition",
           "blind_description": "立即执行取消窗口",
-          "record_id": "o.a.0031",
+          "record_id": "o.a.0032",
           "source_fact": {
             "provenance_refs": [],
             "status": "encoded",
@@ -464,7 +479,7 @@
           "audit_identity": null,
           "base_type": "condition",
           "blind_description": "仅缓冲取消窗口",
-          "record_id": "o.a.0029",
+          "record_id": "o.a.0030",
           "source_fact": {
             "provenance_refs": [],
             "status": "encoded",
@@ -476,7 +491,7 @@
           "audit_identity": null,
           "base_type": "condition",
           "blind_description": "普通攻击已设置为当前动作",
-          "record_id": "o.a.0027",
+          "record_id": "o.a.0028",
           "source_fact": {
             "provenance_refs": [],
             "status": "encoded",
@@ -488,7 +503,7 @@
           "audit_identity": null,
           "base_type": "entity",
           "blind_description": "接收采样输入并持有动作状态的受控实体",
-          "record_id": "o.a.0020",
+          "record_id": "o.a.0021",
           "source_fact": {
             "provenance_refs": [],
             "status": "encoded",
@@ -500,7 +515,7 @@
           "audit_identity": null,
           "base_type": "state",
           "blind_description": "动作请求未获得当前窗口许可",
-          "record_id": "o.a.0024",
+          "record_id": "o.a.0025",
           "source_fact": {
             "provenance_refs": [],
             "status": "encoded",
@@ -515,8 +530,8 @@
           "record_id": "o.a.0002",
           "source_fact": {
             "provenance_refs": [],
-            "status": "source_underdetermined",
-            "value": null
+            "status": "encoded",
+            "value": "正式输入接口以夹具固定更新编号和攻击输入事件为字段：更新 0 按下、更新 1 释放、更新 2 再次按下、更新 3 至 6 中立；该接口不包含运行输出。"
           },
           "test_role": "input"
         },
@@ -536,7 +551,7 @@
           "audit_identity": null,
           "base_type": "entity",
           "blind_description": "保存动作标识、帧、命中计数和缓冲请求的软件状态机",
-          "record_id": "o.a.0021",
+          "record_id": "o.a.0022",
           "source_fact": {
             "provenance_refs": [],
             "status": "encoded",
@@ -548,7 +563,7 @@
           "audit_identity": null,
           "base_type": "process",
           "blind_description": "单次战斗固定更新过程",
-          "record_id": "o.a.0034",
+          "record_id": "o.a.0035",
           "source_fact": {
             "provenance_refs": [],
             "status": "encoded",
@@ -584,18 +599,54 @@
           "audit_identity": null,
           "base_type": "state",
           "blind_description": "缓冲特殊攻击在当前更新可否被消费",
-          "record_id": "o.a.0039",
+          "record_id": "o.a.0040",
           "source_fact": {
             "provenance_refs": [],
             "status": "encoded",
             "value": "资格在角色允许失误取消或当前动作命中计数大于零时成立；受控实体 的失误取消配置为假。"
           },
           "test_role": "process"
+        },
+        {
+          "audit_identity": null,
+          "base_type": "rule",
+          "blind_description": "按固定更新坐标整理冻结结构字段的轨迹派生规则",
+          "record_id": "o.a.0041",
+          "source_fact": {
+            "provenance_refs": [],
+            "status": "encoded",
+            "value": "夹具按固定更新编号依序记录输入、动作、动作帧、待执行记录、取消资格、接触与命中字段，并在冻结停止点截断；派生规则不引入事前预测。"
+          },
+          "test_role": "process"
+        },
+        {
+          "audit_identity": null,
+          "base_type": "condition",
+          "blind_description": "第七个固定更新完成后的冻结观察停止点",
+          "record_id": "o.a.0042",
+          "source_fact": {
+            "provenance_refs": [],
+            "status": "encoded",
+            "value": "停止边界是夹具更新 6 完成后；此时只读取已登记的动作、动作帧、待执行记录、取消资格、接触与命中字段。"
+          },
+          "test_role": "event"
+        },
+        {
+          "audit_identity": null,
+          "base_type": "rule",
+          "blind_description": "决定已缓存动作请求能否越过取消资格门的独立规则职责",
+          "record_id": "o.a.0001",
+          "source_fact": {
+            "provenance_refs": [],
+            "status": "encoded",
+            "value": "项目夹具只改变已缓存的另一动作请求是否具备越过取消资格门的规则关系；输入识别、动作映射、缓存窗口、执行窗口和动作公式保持冻结。"
+          },
+          "test_role": "rule_action"
         }
       ],
       "rules": [
         {
-          "rule_id": "o.a.0022",
+          "rule_id": "o.a.0023",
           "slots": {
             "action": {
               "provenance_refs": [],
@@ -652,7 +703,7 @@
               "provenance_refs": [],
               "status": "encoded",
               "values": [
-                "o.a.0020"
+                "o.a.0021"
               ]
             },
             "trigger": {
@@ -666,7 +717,7 @@
           "statement": "当前输入样本相对上一样本的新置位攻击位被识别为攻击新按下。"
         },
         {
-          "rule_id": "o.a.0018",
+          "rule_id": "o.a.0019",
           "slots": {
             "action": {
               "provenance_refs": [],
@@ -715,7 +766,7 @@
               "provenance_refs": [],
               "status": "encoded",
               "values": [
-                "o.a.0027"
+                "o.a.0028"
               ]
             },
             "resolution": {
@@ -727,7 +778,7 @@
               "provenance_refs": [],
               "status": "encoded",
               "values": [
-                "o.a.0020"
+                "o.a.0021"
               ]
             },
             "trigger": {
@@ -741,7 +792,7 @@
           "statement": "攻击新按下在普通攻击尚未结束时映射为特殊攻击请求，否则映射为普通攻击请求。"
         },
         {
-          "rule_id": "o.a.0016",
+          "rule_id": "o.a.0017",
           "slots": {
             "action": {
               "provenance_refs": [],
@@ -772,7 +823,7 @@
               "status": "encoded",
               "values": [
                 "o.a.0015",
-                "o.a.0024"
+                "o.a.0025"
               ]
             },
             "feedback": {
@@ -789,21 +840,21 @@
               "provenance_refs": [],
               "status": "encoded",
               "values": [
-                "o.a.0039"
+                "o.a.0040"
               ]
             },
             "resolution": {
               "provenance_refs": [],
               "status": "encoded",
               "values": [
-                "o.a.0024"
+                "o.a.0025"
               ]
             },
             "target": {
               "provenance_refs": [],
               "status": "encoded",
               "values": [
-                "o.a.0020"
+                "o.a.0021"
               ]
             },
             "trigger": {
@@ -817,7 +868,7 @@
           "statement": "缓冲动作只有在角色允许失误取消或当前动作已命中时才可被消费；受控实体 的失误取消配置为假。"
         },
         {
-          "rule_id": "o.a.0017",
+          "rule_id": "o.a.0018",
           "slots": {
             "action": {
               "provenance_refs": [],
@@ -864,8 +915,8 @@
               "provenance_refs": [],
               "status": "encoded",
               "values": [
-                "o.a.0029",
-                "o.a.0031"
+                "o.a.0030",
+                "o.a.0032"
               ]
             },
             "resolution": {
@@ -893,7 +944,7 @@
           "statement": "普通攻击帧 1 至 3 仅缓冲特殊攻击，帧 4 至 5 可立即执行特殊攻击。"
         },
         {
-          "rule_id": "o.a.0019",
+          "rule_id": "o.a.0020",
           "slots": {
             "action": {
               "provenance_refs": [],
@@ -940,7 +991,7 @@
               "provenance_refs": [],
               "status": "encoded",
               "values": [
-                "o.a.0039"
+                "o.a.0040"
               ]
             },
             "resolution": {
@@ -954,7 +1005,7 @@
               "provenance_refs": [],
               "status": "encoded",
               "values": [
-                "o.a.0020"
+                "o.a.0021"
               ]
             },
             "trigger": {
@@ -968,7 +1019,7 @@
           "statement": "存在缓冲动作、取消资格成立且无硬直时，把缓冲动作设置为当前动作并清除缓冲。"
         },
         {
-          "rule_id": "o.a.0025",
+          "rule_id": "o.a.0026",
           "slots": {
             "action": {
               "provenance_refs": [],
@@ -1027,14 +1078,14 @@
               "provenance_refs": [],
               "status": "encoded",
               "values": [
-                "o.a.0020"
+                "o.a.0021"
               ]
             },
             "trigger": {
               "provenance_refs": [],
               "status": "encoded",
               "values": [
-                "o.a.0026"
+                "o.a.0027"
               ]
             }
           },
@@ -1044,7 +1095,7 @@
       "source_issues": [],
       "state_channels": [
         {
-          "channel_id": "o.a.0042",
+          "channel_id": "o.a.0045",
           "coordinate_system": {
             "provenance_refs": [],
             "status": "encoded",
@@ -1061,7 +1112,7 @@
             "value": {
               "coordinate_system": "当前 受控实体 动作状态",
               "serialized_value": "false",
-              "time_base_id": "o.a.0026",
+              "time_base_id": "o.a.0027",
               "unit": null,
               "value_type": "boolean"
             }
@@ -1075,13 +1126,13 @@
             "provenance_refs": [],
             "status": "encoded",
             "values": [
-              "o.a.0019"
+              "o.a.0020"
             ]
           },
           "semantic_ref": {
             "provenance_refs": [],
             "status": "encoded",
-            "value": "o.a.0039"
+            "value": "o.a.0040"
           },
           "snapshot_boundary": {
             "provenance_refs": [],
@@ -1103,7 +1154,7 @@
             "provenance_refs": [],
             "status": "encoded",
             "values": [
-              "o.a.0034"
+              "o.a.0035"
             ]
           }
         }
@@ -1111,7 +1162,7 @@
       "temporal_edges": [
         {
           "condition_ids": [],
-          "edge_id": "o.a.0043",
+          "edge_id": "o.a.0046",
           "from_id": "o.a.0006",
           "kind": "before",
           "source_fact": {
@@ -1120,7 +1171,7 @@
             "value": "战斗更新先更新输入，再递增动作帧并更新动作请求。"
           },
           "time_base_refs": [
-            "o.a.0026"
+            "o.a.0027"
           ],
           "to_id": "o.a.0010"
         }
@@ -1140,7 +1191,7 @@
             "value": {
               "coordinate_system": "内部标识 固定时间步",
               "serialized_value": "1/50",
-              "time_base_id": "o.a.0026",
+              "time_base_id": "o.a.0027",
               "unit": "内部标识",
               "value_type": "rational"
             }
@@ -1148,7 +1199,7 @@
           "owner_ref": {
             "provenance_refs": [],
             "status": "encoded",
-            "value": "o.a.0034"
+            "value": "o.a.0035"
           },
           "pause_and_backlog": {
             "provenance_refs": [],
@@ -1165,7 +1216,7 @@
             "status": "encoded",
             "value": "以 内部标识 每次 规则更新 固定更新递增所得的整数更新序号排序。"
           },
-          "time_base_id": "o.a.0026",
+          "time_base_id": "o.a.0027",
           "unit": {
             "provenance_refs": [],
             "status": "encoded",
@@ -1188,10 +1239,10 @@
           "state_committed",
           "state_sampled"
         ],
-        "derivation_algorithm_id": "o.a.0044",
+        "derivation_algorithm_id": "o.a.0041",
         "raw_trace_ref": "o.a.0002",
         "stop_condition_refs": [
-          "o.a.0045"
+          "o.a.0042"
         ],
         "tolerance_rule_refs": []
       }
@@ -1231,6 +1282,21 @@
         {
           "condition_ids": [],
           "edge_id": "o.b.0007",
+          "from_id": "o.b.0001",
+          "kind": "modulates",
+          "scope_ids": [
+            "o.b.0005"
+          ],
+          "source_fact": {
+            "provenance_refs": [],
+            "status": "encoded",
+            "value": "项目夹具规定该独立规则负责改变每个子步从原始命令到实际使用命令的选择关系；原始输入文件与后续移动公式保持冻结。"
+          },
+          "to_id": "o.b.0004"
+        },
+        {
+          "condition_ids": [],
+          "edge_id": "o.b.0008",
           "from_id": "o.b.0006",
           "kind": "reads",
           "scope_ids": [
@@ -1241,11 +1307,11 @@
             "status": "encoded",
             "value": "空中移动读取当前命令分量。"
           },
-          "to_id": "o.b.0008"
+          "to_id": "o.b.0009"
         },
         {
           "condition_ids": [],
-          "edge_id": "o.b.0009",
+          "edge_id": "o.b.0010",
           "from_id": "o.b.0006",
           "kind": "reads",
           "scope_ids": [
@@ -1256,11 +1322,11 @@
             "status": "encoded",
             "value": "单步开始保存先前位置，移动分支随后基于玩家状态推进。"
           },
-          "to_id": "o.b.0010"
+          "to_id": "o.b.0011"
         },
         {
           "condition_ids": [],
-          "edge_id": "o.b.0011",
+          "edge_id": "o.b.0012",
           "from_id": "o.b.0006",
           "kind": "reads",
           "scope_ids": [
@@ -1271,11 +1337,11 @@
             "status": "encoded",
             "value": "加速规则读取当前速度在期望方向上的投影，单步开始也保存先前速度。"
           },
-          "to_id": "o.b.0012"
+          "to_id": "o.b.0013"
         },
         {
           "condition_ids": [],
-          "edge_id": "o.b.0013",
+          "edge_id": "o.b.0014",
           "from_id": "o.b.0006",
           "kind": "scheduled_by",
           "scope_ids": [
@@ -1286,22 +1352,7 @@
             "status": "encoded",
             "value": "外层移动把命令时间区间切成子步，每个子步调用一次单步过程。"
           },
-          "to_id": "o.b.0014"
-        },
-        {
-          "condition_ids": [],
-          "edge_id": "o.b.0015",
-          "from_id": "o.b.0006",
-          "kind": "writes",
-          "scope_ids": [
-            "o.b.0005"
-          ],
-          "source_fact": {
-            "provenance_refs": [],
-            "status": "encoded",
-            "value": "空中移动最终调用带重力的步进滑移过程推进位置；所列片段未展开其碰撞细节。"
-          },
-          "to_id": "o.b.0010"
+          "to_id": "o.b.0015"
         },
         {
           "condition_ids": [],
@@ -1314,9 +1365,24 @@
           "source_fact": {
             "provenance_refs": [],
             "status": "encoded",
+            "value": "空中移动最终调用带重力的步进滑移过程推进位置；所列片段未展开其碰撞细节。"
+          },
+          "to_id": "o.b.0011"
+        },
+        {
+          "condition_ids": [],
+          "edge_id": "o.b.0017",
+          "from_id": "o.b.0006",
+          "kind": "writes",
+          "scope_ids": [
+            "o.b.0005"
+          ],
+          "source_fact": {
+            "provenance_refs": [],
+            "status": "encoded",
             "value": "空中移动按子步时长与期望速度增量写回速度，单步结束再对速度进行网络带宽用整数化。"
           },
-          "to_id": "o.b.0012"
+          "to_id": "o.b.0013"
         }
       ],
       "operational_records": [
@@ -1330,8 +1396,8 @@
             "provenance_refs": [],
             "status": "encoded",
             "values": [
-              "o.b.0017",
-              "o.b.0018"
+              "o.b.0018",
+              "o.b.0019"
             ]
           },
           "pause_rule_refs": {
@@ -1348,12 +1414,12 @@
             "provenance_refs": [],
             "status": "encoded",
             "values": [
-              "o.b.0010",
-              "o.b.0008",
-              "o.b.0012"
+              "o.b.0011",
+              "o.b.0009",
+              "o.b.0013"
             ]
           },
-          "record_id": "o.b.0019",
+          "record_id": "o.b.0020",
           "record_type": "process_profile",
           "scope_ref": {
             "provenance_refs": [],
@@ -1364,28 +1430,28 @@
             "provenance_refs": [],
             "status": "encoded",
             "values": [
-              "o.b.0020"
+              "o.b.0021"
             ]
           },
           "time_base_ref": {
             "provenance_refs": [],
             "status": "encoded",
-            "value": "o.b.0014"
+            "value": "o.b.0015"
           },
           "update_rule_refs": {
             "provenance_refs": [],
             "status": "encoded",
             "values": [
-              "o.b.0017",
-              "o.b.0021"
+              "o.b.0018",
+              "o.b.0022"
             ]
           },
           "write_channel_refs": {
             "provenance_refs": [],
             "status": "encoded",
             "values": [
-              "o.b.0010",
-              "o.b.0012"
+              "o.b.0011",
+              "o.b.0013"
             ]
           }
         },
@@ -1410,7 +1476,7 @@
             "status": "encoded",
             "value": "外层移动在连续子步中复用当前 输入命令；空中移动读取其中的 内部标识 与 内部标识。"
           },
-          "record_id": "o.b.0022",
+          "record_id": "o.b.0023",
           "record_type": "outcome_frame",
           "resolution": {
             "provenance_refs": [],
@@ -1424,7 +1490,7 @@
           "audit_identity": null,
           "base_type": "state",
           "blind_description": "子步写回的位置与速度状态",
-          "record_id": "o.b.0023",
+          "record_id": "o.b.0024",
           "source_fact": {
             "provenance_refs": [],
             "status": "encoded",
@@ -1439,8 +1505,8 @@
           "record_id": "o.b.0002",
           "source_fact": {
             "provenance_refs": [],
-            "status": "source_underdetermined",
-            "value": null
+            "status": "encoded",
+            "value": "正式输入接口按 8 毫秒 子步提供原始方向字段：子步 0 至 4 的 内部标识 为 127、内部标识 为 0，子步 5 至 24 的 内部标识 为 0、内部标识 为 127；其他命令字段关闭，接口不包含运行输出。"
           },
           "test_role": "input"
         },
@@ -1448,7 +1514,7 @@
           "audit_identity": null,
           "base_type": "action",
           "blind_description": "传入外层移动过程的原始命令",
-          "record_id": "o.b.0024",
+          "record_id": "o.b.0025",
           "source_fact": {
             "provenance_refs": [],
             "status": "encoded",
@@ -1472,7 +1538,7 @@
           "audit_identity": null,
           "base_type": "entity",
           "blind_description": "持有位置、速度与命令时间的受控移动实体",
-          "record_id": "o.b.0025",
+          "record_id": "o.b.0026",
           "source_fact": {
             "provenance_refs": [],
             "status": "encoded",
@@ -1508,7 +1574,7 @@
           "audit_identity": null,
           "base_type": "state",
           "blind_description": "规则空间中的位置状态",
-          "record_id": "o.b.0026",
+          "record_id": "o.b.0027",
           "source_fact": {
             "provenance_refs": [],
             "status": "encoded",
@@ -1520,18 +1586,54 @@
           "audit_identity": null,
           "base_type": "state",
           "blind_description": "规则空间中的速度状态",
-          "record_id": "o.b.0027",
+          "record_id": "o.b.0028",
           "source_fact": {
             "provenance_refs": [],
             "status": "encoded",
             "value": "加速规则直接增加 受控状态 速度，单步末尾对速度进行 数值量化。"
           },
           "test_role": "process"
+        },
+        {
+          "audit_identity": null,
+          "base_type": "rule",
+          "blind_description": "按固定子步顺序整理命令与状态字段的轨迹派生规则",
+          "record_id": "o.b.0029",
+          "source_fact": {
+            "provenance_refs": [],
+            "status": "encoded",
+            "value": "夹具按子步命令时间依序记录 原始命令、本步命令、分支、接触、速度与位置字段，并在冻结停止点截断；派生规则不引入事前预测。"
+          },
+          "test_role": "process"
+        },
+        {
+          "audit_identity": null,
+          "base_type": "condition",
+          "blind_description": "第二十五个固定子步完成时的冻结观察停止点",
+          "record_id": "o.b.0030",
+          "source_fact": {
+            "provenance_refs": [],
+            "status": "encoded",
+            "value": "停止边界是第 25 个 8 毫秒 子步完成、规则时间到达 200 毫秒 时；此时只读取已登记的命令、分支、接触、速度与位置字段。"
+          },
+          "test_role": "event"
+        },
+        {
+          "audit_identity": null,
+          "base_type": "rule",
+          "blind_description": "决定每个过程子步采用哪一份方向输入的独立规则职责",
+          "record_id": "o.b.0001",
+          "source_fact": {
+            "provenance_refs": [],
+            "status": "encoded",
+            "value": "项目夹具只改变运行中从 原始命令 到 本步命令 的选择关系；原始输入轨迹、子步时长、初始状态和移动公式保持冻结。"
+          },
+          "test_role": "rule_action"
         }
       ],
       "rules": [
         {
-          "rule_id": "o.b.0017",
+          "rule_id": "o.b.0018",
           "slots": {
             "action": {
               "provenance_refs": [],
@@ -1561,7 +1663,7 @@
               "provenance_refs": [],
               "status": "encoded",
               "values": [
-                "o.b.0027"
+                "o.b.0028"
               ]
             },
             "feedback": {
@@ -1578,21 +1680,21 @@
               "provenance_refs": [],
               "status": "encoded",
               "values": [
-                "o.b.0027"
+                "o.b.0028"
               ]
             },
             "resolution": {
               "provenance_refs": [],
               "status": "encoded",
               "values": [
-                "o.b.0023"
+                "o.b.0024"
               ]
             },
             "target": {
               "provenance_refs": [],
               "status": "encoded",
               "values": [
-                "o.b.0025"
+                "o.b.0026"
               ]
             },
             "trigger": {
@@ -1606,7 +1708,7 @@
           "statement": "空中移动把命令分量转换为期望方向和速度；加速度为 加速度系数×步长时间×期望速度，并以剩余可加速度为上限后写入速度。"
         },
         {
-          "rule_id": "o.b.0018",
+          "rule_id": "o.b.0019",
           "slots": {
             "action": {
               "provenance_refs": [],
@@ -1653,7 +1755,7 @@
               "provenance_refs": [],
               "status": "encoded",
               "values": [
-                "o.b.0024"
+                "o.b.0025"
               ]
             },
             "resolution": {
@@ -1665,93 +1767,18 @@
               "provenance_refs": [],
               "status": "encoded",
               "values": [
-                "o.b.0025"
+                "o.b.0026"
               ]
             },
             "trigger": {
               "provenance_refs": [],
               "status": "encoded",
               "values": [
-                "o.b.0014"
+                "o.b.0015"
               ]
             }
           },
           "statement": "外层 运动更新 在到达 终止时间 前复用当前命令对象，仅把 内部标识命令时间 改为当前子步终点后调用 单步运动更新。"
-        },
-        {
-          "rule_id": "o.b.0020",
-          "slots": {
-            "action": {
-              "provenance_refs": [],
-              "status": "encoded",
-              "values": [
-                "o.b.0006"
-              ]
-            },
-            "actor": {
-              "provenance_refs": [],
-              "status": "not_applicable",
-              "values": []
-            },
-            "context": {
-              "provenance_refs": [],
-              "status": "encoded",
-              "values": [
-                "o.b.0005"
-              ]
-            },
-            "cost": {
-              "provenance_refs": [],
-              "status": "not_applicable",
-              "values": []
-            },
-            "effects": {
-              "provenance_refs": [],
-              "status": "encoded",
-              "values": [
-                "o.b.0023"
-              ]
-            },
-            "feedback": {
-              "provenance_refs": [],
-              "status": "scope_excluded",
-              "values": []
-            },
-            "goals_evaluation": {
-              "provenance_refs": [],
-              "status": "scope_excluded",
-              "values": []
-            },
-            "preconditions": {
-              "provenance_refs": [],
-              "status": "encoded",
-              "values": [
-                "o.b.0024"
-              ]
-            },
-            "resolution": {
-              "provenance_refs": [],
-              "status": "encoded",
-              "values": [
-                "o.b.0023"
-              ]
-            },
-            "target": {
-              "provenance_refs": [],
-              "status": "encoded",
-              "values": [
-                "o.b.0025"
-              ]
-            },
-            "trigger": {
-              "provenance_refs": [],
-              "status": "encoded",
-              "values": [
-                "o.b.0014"
-              ]
-            }
-          },
-          "statement": "外层循环在 受控状态.状态时间 等于原始命令 终止时间 时停止。"
         },
         {
           "rule_id": "o.b.0021",
@@ -1784,8 +1811,83 @@
               "provenance_refs": [],
               "status": "encoded",
               "values": [
-                "o.b.0026",
-                "o.b.0027"
+                "o.b.0024"
+              ]
+            },
+            "feedback": {
+              "provenance_refs": [],
+              "status": "scope_excluded",
+              "values": []
+            },
+            "goals_evaluation": {
+              "provenance_refs": [],
+              "status": "scope_excluded",
+              "values": []
+            },
+            "preconditions": {
+              "provenance_refs": [],
+              "status": "encoded",
+              "values": [
+                "o.b.0025"
+              ]
+            },
+            "resolution": {
+              "provenance_refs": [],
+              "status": "encoded",
+              "values": [
+                "o.b.0024"
+              ]
+            },
+            "target": {
+              "provenance_refs": [],
+              "status": "encoded",
+              "values": [
+                "o.b.0026"
+              ]
+            },
+            "trigger": {
+              "provenance_refs": [],
+              "status": "encoded",
+              "values": [
+                "o.b.0015"
+              ]
+            }
+          },
+          "statement": "外层循环在 受控状态.状态时间 等于原始命令 终止时间 时停止。"
+        },
+        {
+          "rule_id": "o.b.0022",
+          "slots": {
+            "action": {
+              "provenance_refs": [],
+              "status": "encoded",
+              "values": [
+                "o.b.0006"
+              ]
+            },
+            "actor": {
+              "provenance_refs": [],
+              "status": "not_applicable",
+              "values": []
+            },
+            "context": {
+              "provenance_refs": [],
+              "status": "encoded",
+              "values": [
+                "o.b.0005"
+              ]
+            },
+            "cost": {
+              "provenance_refs": [],
+              "status": "not_applicable",
+              "values": []
+            },
+            "effects": {
+              "provenance_refs": [],
+              "status": "encoded",
+              "values": [
+                "o.b.0027",
+                "o.b.0028"
               ]
             },
             "feedback": {
@@ -1809,21 +1911,21 @@
               "provenance_refs": [],
               "status": "encoded",
               "values": [
-                "o.b.0023"
+                "o.b.0024"
               ]
             },
             "target": {
               "provenance_refs": [],
               "status": "encoded",
               "values": [
-                "o.b.0025"
+                "o.b.0026"
               ]
             },
             "trigger": {
               "provenance_refs": [],
               "status": "encoded",
               "values": [
-                "o.b.0014"
+                "o.b.0015"
               ]
             }
           },
@@ -1833,7 +1935,7 @@
       "source_issues": [],
       "state_channels": [
         {
-          "channel_id": "o.b.0010",
+          "channel_id": "o.b.0011",
           "coordinate_system": {
             "provenance_refs": [],
             "status": "encoded",
@@ -1864,7 +1966,7 @@
           "semantic_ref": {
             "provenance_refs": [],
             "status": "encoded",
-            "value": "o.b.0026"
+            "value": "o.b.0027"
           },
           "snapshot_boundary": {
             "provenance_refs": [],
@@ -1891,7 +1993,7 @@
           }
         },
         {
-          "channel_id": "o.b.0008",
+          "channel_id": "o.b.0009",
           "coordinate_system": {
             "provenance_refs": [],
             "status": "encoded",
@@ -1944,12 +2046,12 @@
             "provenance_refs": [],
             "status": "encoded",
             "values": [
-              "o.b.0018"
+              "o.b.0019"
             ]
           }
         },
         {
-          "channel_id": "o.b.0012",
+          "channel_id": "o.b.0013",
           "coordinate_system": {
             "provenance_refs": [],
             "status": "encoded",
@@ -1980,7 +2082,7 @@
           "semantic_ref": {
             "provenance_refs": [],
             "status": "encoded",
-            "value": "o.b.0027"
+            "value": "o.b.0028"
           },
           "snapshot_boundary": {
             "provenance_refs": [],
@@ -2010,7 +2112,7 @@
       "temporal_edges": [
         {
           "condition_ids": [],
-          "edge_id": "o.b.0030",
+          "edge_id": "o.b.0033",
           "from_id": "o.b.0004",
           "kind": "before",
           "source_fact": {
@@ -2019,9 +2121,9 @@
             "value": "单步先确定时间并更新视角与分支条件，空中移动随后读取命令并写回速度和位置。"
           },
           "time_base_refs": [
-            "o.b.0014"
+            "o.b.0015"
           ],
-          "to_id": "o.b.0023"
+          "to_id": "o.b.0024"
         }
       ],
       "time_bases": [
@@ -2058,7 +2160,7 @@
             "status": "encoded",
             "value": "按严格递增的 受控状态.状态时间 排序，直到等于原始命令 终止时间。"
           },
-          "time_base_id": "o.b.0014",
+          "time_base_id": "o.b.0015",
           "unit": {
             "provenance_refs": [],
             "status": "encoded",
@@ -2076,10 +2178,10 @@
           "state_committed",
           "state_sampled"
         ],
-        "derivation_algorithm_id": "o.b.0031",
+        "derivation_algorithm_id": "o.b.0029",
         "raw_trace_ref": "o.b.0002",
         "stop_condition_refs": [
-          "o.b.0032"
+          "o.b.0030"
         ],
         "tolerance_rule_refs": []
       }
@@ -2105,21 +2207,36 @@
           "condition_ids": [],
           "edge_id": "o.c.0003",
           "from_id": "o.c.0004",
-          "kind": "adjudicates_as",
+          "kind": "recognizes_as",
           "scope_ids": [
             "o.c.0005"
           ],
           "source_fact": {
             "provenance_refs": [],
             "status": "encoded",
-            "value": "可命中且位于接收区域的左右键按下调用结果更新；用户触发路径先按时间偏移分类并通过可命中检查。"
+            "value": "对象尚未全部裁定、按下为左右键且指针位于接收区域时，接收器接受候选并调用 内部标识；接受候选不等于形成正式裁定。"
           },
           "to_id": "o.c.0006"
         },
         {
           "condition_ids": [],
           "edge_id": "o.c.0007",
-          "from_id": "o.c.0008",
+          "from_id": "o.c.0006",
+          "kind": "scheduled_by",
+          "scope_ids": [
+            "o.c.0005"
+          ],
+          "source_fact": {
+            "provenance_refs": [],
+            "status": "encoded",
+            "value": "项目夹具规定该独立规则负责改变候选被接受后何时调用同一裁定路径；候选事实、窗口分类、可命中检查与结果提交路径保持冻结。"
+          },
+          "to_id": "o.c.0001"
+        },
+        {
+          "condition_ids": [],
+          "edge_id": "o.c.0008",
+          "from_id": "o.c.0009",
           "kind": "gates",
           "scope_ids": [
             "o.c.0005"
@@ -2129,11 +2246,11 @@
             "status": "encoded",
             "value": "结果提交后对象进入已裁定状态；接收器的 输入许可检查 条件为未全部裁定，因此同一对象不再接受后续候选按下。"
           },
-          "to_id": "o.c.0009"
+          "to_id": "o.c.0010"
         },
         {
           "condition_ids": [],
-          "edge_id": "o.c.0010",
+          "edge_id": "o.c.0011",
           "from_id": "o.c.0006",
           "kind": "resolves_to",
           "scope_ids": [
@@ -2142,14 +2259,29 @@
           "source_fact": {
             "provenance_refs": [],
             "status": "encoded",
-            "value": "绝对时间偏移按允许结果及窗口顺序分类，得到正式结算类型。"
+            "value": "已接受候选进入用户触发检查；绝对时间偏移按允许结果及窗口顺序分类，先得到待复核的结算类型。"
           },
-          "to_id": "o.c.0011"
+          "to_id": "o.c.0012"
         },
         {
           "condition_ids": [],
-          "edge_id": "o.c.0012",
-          "from_id": "o.c.0011",
+          "edge_id": "o.c.0013",
+          "from_id": "o.c.0012",
+          "kind": "adjudicates_as",
+          "scope_ids": [
+            "o.c.0005"
+          ],
+          "source_fact": {
+            "provenance_refs": [],
+            "status": "encoded",
+            "value": "只有窗口分类结果非 内部标识 且 内部标识 返回 内部标识 时，用户触发路径才形成可交给 结果提交入口 的正式裁定事件。"
+          },
+          "to_id": "o.c.0014"
+        },
+        {
+          "condition_ids": [],
+          "edge_id": "o.c.0015",
+          "from_id": "o.c.0014",
           "kind": "commits",
           "scope_ids": [
             "o.c.0005"
@@ -2157,9 +2289,9 @@
           "source_fact": {
             "provenance_refs": [],
             "status": "encoded",
-            "value": "结果提交入口 验证结果类型后写入 原始时间记录 与 规则速率记录、更新 对象准备状态 并调用 结果通知。"
+            "value": "通过窗口分类与 内部标识 复核的正式事件进入 结果提交入口；验证结果类型后写入 原始时间记录 与 规则速率记录、更新 对象准备状态 并调用 结果通知。"
           },
-          "to_id": "o.c.0008"
+          "to_id": "o.c.0009"
         }
       ],
       "operational_records": [
@@ -2167,7 +2299,7 @@
           "adjudicator_ref": {
             "provenance_refs": [],
             "status": "encoded",
-            "value": "o.c.0013"
+            "value": "o.c.0016"
           },
           "candidate_occurrence_ref": {
             "provenance_refs": [],
@@ -2177,25 +2309,26 @@
           "effect_ref": {
             "provenance_refs": [],
             "status": "encoded",
-            "value": "o.c.0008"
+            "value": "o.c.0009"
           },
           "formal_event_ref": {
             "provenance_refs": [],
             "status": "encoded",
-            "value": "o.c.0006"
+            "value": "o.c.0014"
           },
-          "record_id": "o.c.0014",
+          "record_id": "o.c.0017",
           "record_type": "adjudication_path",
           "resolution_ref": {
             "provenance_refs": [],
             "status": "encoded",
-            "value": "o.c.0011"
+            "value": "o.c.0012"
           },
           "review_rule_refs": {
             "provenance_refs": [],
             "status": "encoded",
             "values": [
-              "o.c.0015"
+              "o.c.0018",
+              "o.c.0019"
             ]
           },
           "stages": [
@@ -2214,15 +2347,15 @@
                 "provenance_refs": [],
                 "status": "encoded",
                 "values": [
-                  "o.c.0016"
+                  "o.c.0020"
                 ]
               },
-              "stage_id": "o.c.0017",
+              "stage_id": "o.c.0021",
               "stage_kind": "detection",
               "time_base_ref": {
                 "provenance_refs": [],
                 "status": "encoded",
-                "value": "o.c.0018"
+                "value": "o.c.0022"
               }
             },
             {
@@ -2234,47 +2367,73 @@
               "output_ref": {
                 "provenance_refs": [],
                 "status": "encoded",
-                "value": "o.c.0011"
+                "value": "o.c.0012"
               },
               "rule_refs": {
                 "provenance_refs": [],
                 "status": "encoded",
                 "values": [
-                  "o.c.0019"
+                  "o.c.0023"
                 ]
               },
-              "stage_id": "o.c.0020",
+              "stage_id": "o.c.0024",
               "stage_kind": "classification",
               "time_base_ref": {
                 "provenance_refs": [],
                 "status": "encoded",
-                "value": "o.c.0018"
+                "value": "o.c.0022"
               }
             },
             {
               "input_ref": {
                 "provenance_refs": [],
                 "status": "encoded",
-                "value": "o.c.0011"
+                "value": "o.c.0012"
               },
               "output_ref": {
                 "provenance_refs": [],
                 "status": "encoded",
-                "value": "o.c.0008"
+                "value": "o.c.0014"
               },
               "rule_refs": {
                 "provenance_refs": [],
                 "status": "encoded",
                 "values": [
-                  "o.c.0021"
+                  "o.c.0018"
                 ]
               },
-              "stage_id": "o.c.0022",
+              "stage_id": "o.c.0025",
+              "stage_kind": "recheck",
+              "time_base_ref": {
+                "provenance_refs": [],
+                "status": "encoded",
+                "value": "o.c.0022"
+              }
+            },
+            {
+              "input_ref": {
+                "provenance_refs": [],
+                "status": "encoded",
+                "value": "o.c.0014"
+              },
+              "output_ref": {
+                "provenance_refs": [],
+                "status": "encoded",
+                "value": "o.c.0009"
+              },
+              "rule_refs": {
+                "provenance_refs": [],
+                "status": "encoded",
+                "values": [
+                  "o.c.0026"
+                ]
+              },
+              "stage_id": "o.c.0027",
               "stage_kind": "commit",
               "time_base_ref": {
                 "provenance_refs": [],
                 "status": "encoded",
-                "value": "o.c.0018"
+                "value": "o.c.0022"
               }
             }
           ]
@@ -2300,7 +2459,7 @@
             "status": "encoded",
             "value": "对象未全部裁定、动作为左右键且指针位于接收区域时，按下被接受并调用结果更新。"
           },
-          "record_id": "o.c.0023",
+          "record_id": "o.c.0028",
           "record_type": "outcome_frame",
           "resolution": {
             "provenance_refs": [],
@@ -2314,7 +2473,7 @@
           "audit_identity": null,
           "base_type": "state",
           "blind_description": "已验证并通知响应者的正式结果效果",
-          "record_id": "o.c.0008",
+          "record_id": "o.c.0009",
           "source_fact": {
             "provenance_refs": [],
             "status": "encoded",
@@ -2326,11 +2485,23 @@
           "audit_identity": null,
           "base_type": "state",
           "blind_description": "候选输入通过可命中检查后形成的正式裁定事件",
-          "record_id": "o.c.0006",
+          "record_id": "o.c.0014",
           "source_fact": {
             "provenance_refs": [],
             "status": "encoded",
             "value": "用户触发检查只有在窗口结果非 内部标识 且 内部标识 返回 内部标识 时调用 结果提交入口。"
+          },
+          "test_role": "event"
+        },
+        {
+          "audit_identity": null,
+          "base_type": "state",
+          "blind_description": "通过接收器资格与区域检查、等待窗口分类的已接受候选事件",
+          "record_id": "o.c.0006",
+          "source_fact": {
+            "provenance_refs": [],
+            "status": "encoded",
+            "value": "对象未全部裁定、动作为左右键且指针位于接收区域时，接收器接受候选并调用 内部标识；此时尚未完成窗口分类或 内部标识 复核。"
           },
           "test_role": "event"
         },
@@ -2350,7 +2521,7 @@
           "audit_identity": null,
           "base_type": "action",
           "blind_description": "同一对象再次接受候选按下的后续响应机会",
-          "record_id": "o.c.0009",
+          "record_id": "o.c.0010",
           "source_fact": {
             "provenance_refs": [],
             "status": "encoded",
@@ -2365,8 +2536,8 @@
           "record_id": "o.c.0002",
           "source_fact": {
             "provenance_refs": [],
-            "status": "source_underdetermined",
-            "value": null
+            "status": "encoded",
+            "value": "正式输入接口在规则时点 内部标识、对象圆心位置提供一次有效候选按下，并保持输入记录至裁定完成；字段只描述候选时点、位置、按键与次数，不包含预期结果。"
           },
           "test_role": "input"
         },
@@ -2374,7 +2545,7 @@
           "audit_identity": null,
           "base_type": "process",
           "blind_description": "单物件候选检测、窗口分类与结果提交过程",
-          "record_id": "o.c.0013",
+          "record_id": "o.c.0016",
           "source_fact": {
             "provenance_refs": [],
             "status": "encoded",
@@ -2386,7 +2557,7 @@
           "audit_identity": null,
           "base_type": "state",
           "blind_description": "按绝对时间偏移和允许窗口得到的结算类型",
-          "record_id": "o.c.0011",
+          "record_id": "o.c.0012",
           "source_fact": {
             "provenance_refs": [],
             "status": "encoded",
@@ -2410,18 +2581,66 @@
           "audit_identity": null,
           "base_type": "state",
           "blind_description": "同一对象是否仍许可新的候选按下",
-          "record_id": "o.c.0024",
+          "record_id": "o.c.0029",
           "source_fact": {
             "provenance_refs": [],
             "status": "encoded",
             "value": "接收器只在对象未全部裁定时可命中；提交已有结果会被拒绝。"
           },
           "test_role": "process"
+        },
+        {
+          "audit_identity": null,
+          "base_type": "state",
+          "blind_description": "窗口分类后对当前结算类型的可命中复核状态",
+          "record_id": "o.c.0030",
+          "source_fact": {
+            "provenance_refs": [],
+            "status": "encoded",
+            "value": "用户触发检查要求窗口分类结果非 内部标识，且 内部标识 对该结果返回 内部标识，才调用 结果提交入口。"
+          },
+          "test_role": "process"
+        },
+        {
+          "audit_identity": null,
+          "base_type": "rule",
+          "blind_description": "按候选、裁定与提交顺序整理冻结字段的轨迹派生规则",
+          "record_id": "o.c.0031",
+          "source_fact": {
+            "provenance_refs": [],
+            "status": "encoded",
+            "value": "夹具按候选、裁定调用、相对偏移、窗口、正式结果字段、原始时间记录 字段、通知、已裁定状态与后续输入许可的顺序记录结构事件，并在冻结停止点截断；派生规则不引入事前预测。"
+          },
+          "test_role": "process"
+        },
+        {
+          "audit_identity": null,
+          "base_type": "condition",
+          "blind_description": "正式提交与后续输入许可记录完成后的冻结观察停止点",
+          "record_id": "o.c.0032",
+          "source_fact": {
+            "provenance_refs": [],
+            "status": "encoded",
+            "value": "停止边界是正式结果提交、原始时间记录 与通知字段记录完成，并记录同一对象再次接受输入的许可关闭时点；该定义不写入实际结果值。"
+          },
+          "test_role": "event"
+        },
+        {
+          "audit_identity": null,
+          "base_type": "rule",
+          "blind_description": "决定候选发生后何时调用同一裁定路径的独立规则职责",
+          "record_id": "o.c.0001",
+          "source_fact": {
+            "provenance_refs": [],
+            "status": "encoded",
+            "value": "项目夹具只改变候选到裁定调用之间的调度关系；候选事实、判定窗口、可命中检查、分类规则与结果提交路径保持冻结。"
+          },
+          "test_role": "rule_action"
         }
       ],
       "rules": [
         {
-          "rule_id": "o.c.0016",
+          "rule_id": "o.c.0020",
           "slots": {
             "action": {
               "provenance_refs": [],
@@ -2468,7 +2687,7 @@
               "provenance_refs": [],
               "status": "encoded",
               "values": [
-                "o.c.0024"
+                "o.c.0029"
               ]
             },
             "resolution": {
@@ -2482,7 +2701,7 @@
               "provenance_refs": [],
               "status": "encoded",
               "values": [
-                "o.c.0013"
+                "o.c.0016"
               ]
             },
             "trigger": {
@@ -2493,82 +2712,7 @@
               ]
             }
           },
-          "statement": "对象尚未全部裁定、按下为左右键且指针位于接收区域时，候选按下调用用户触发的结果更新。"
-        },
-        {
-          "rule_id": "o.c.0015",
-          "slots": {
-            "action": {
-              "provenance_refs": [],
-              "status": "encoded",
-              "values": [
-                "o.c.0009"
-              ]
-            },
-            "actor": {
-              "provenance_refs": [],
-              "status": "not_applicable",
-              "values": []
-            },
-            "context": {
-              "provenance_refs": [],
-              "status": "encoded",
-              "values": [
-                "o.c.0005"
-              ]
-            },
-            "cost": {
-              "provenance_refs": [],
-              "status": "not_applicable",
-              "values": []
-            },
-            "effects": {
-              "provenance_refs": [],
-              "status": "encoded",
-              "values": [
-                "o.c.0024"
-              ]
-            },
-            "feedback": {
-              "provenance_refs": [],
-              "status": "scope_excluded",
-              "values": []
-            },
-            "goals_evaluation": {
-              "provenance_refs": [],
-              "status": "scope_excluded",
-              "values": []
-            },
-            "preconditions": {
-              "provenance_refs": [],
-              "status": "encoded",
-              "values": [
-                "o.c.0008"
-              ]
-            },
-            "resolution": {
-              "provenance_refs": [],
-              "status": "encoded",
-              "values": [
-                "o.c.0008"
-              ]
-            },
-            "target": {
-              "provenance_refs": [],
-              "status": "encoded",
-              "values": [
-                "o.c.0013"
-              ]
-            },
-            "trigger": {
-              "provenance_refs": [],
-              "status": "encoded",
-              "values": [
-                "o.c.0009"
-              ]
-            }
-          },
-          "statement": "结果已存在或对象已全部裁定时，同一对象不再接受新的候选按下，也不能再次提交结果。"
+          "statement": "对象尚未全部裁定、按下为左右键且指针位于接收区域时，接收器接受候选并调用用户触发检查；该候选尚不是正式裁定事件。"
         },
         {
           "rule_id": "o.c.0019",
@@ -2577,6 +2721,81 @@
               "provenance_refs": [],
               "status": "encoded",
               "values": [
+                "o.c.0010"
+              ]
+            },
+            "actor": {
+              "provenance_refs": [],
+              "status": "not_applicable",
+              "values": []
+            },
+            "context": {
+              "provenance_refs": [],
+              "status": "encoded",
+              "values": [
+                "o.c.0005"
+              ]
+            },
+            "cost": {
+              "provenance_refs": [],
+              "status": "not_applicable",
+              "values": []
+            },
+            "effects": {
+              "provenance_refs": [],
+              "status": "encoded",
+              "values": [
+                "o.c.0029"
+              ]
+            },
+            "feedback": {
+              "provenance_refs": [],
+              "status": "scope_excluded",
+              "values": []
+            },
+            "goals_evaluation": {
+              "provenance_refs": [],
+              "status": "scope_excluded",
+              "values": []
+            },
+            "preconditions": {
+              "provenance_refs": [],
+              "status": "encoded",
+              "values": [
+                "o.c.0009"
+              ]
+            },
+            "resolution": {
+              "provenance_refs": [],
+              "status": "encoded",
+              "values": [
+                "o.c.0009"
+              ]
+            },
+            "target": {
+              "provenance_refs": [],
+              "status": "encoded",
+              "values": [
+                "o.c.0016"
+              ]
+            },
+            "trigger": {
+              "provenance_refs": [],
+              "status": "encoded",
+              "values": [
+                "o.c.0010"
+              ]
+            }
+          },
+          "statement": "结果已存在或对象已全部裁定时，同一对象不再接受新的候选按下，也不能再次提交结果。"
+        },
+        {
+          "rule_id": "o.c.0023",
+          "slots": {
+            "action": {
+              "provenance_refs": [],
+              "status": "encoded",
+              "values": [
                 "o.c.0006"
               ]
             },
@@ -2601,7 +2820,7 @@
               "provenance_refs": [],
               "status": "encoded",
               "values": [
-                "o.c.0011"
+                "o.c.0012"
               ]
             },
             "feedback": {
@@ -2625,14 +2844,14 @@
               "provenance_refs": [],
               "status": "encoded",
               "values": [
-                "o.c.0011"
+                "o.c.0012"
               ]
             },
             "target": {
               "provenance_refs": [],
               "status": "encoded",
               "values": [
-                "o.c.0013"
+                "o.c.0016"
               ]
             },
             "trigger": {
@@ -2643,16 +2862,16 @@
               ]
             }
           },
-          "statement": "用户触发检查以当前时间相对物件结束时间的偏移调用窗口分类；分类使用绝对偏移并返回第一个允许且在窗内的结果。"
+          "statement": "已接受候选以当前时间相对物件结束时间的偏移调用窗口分类；分类使用绝对偏移并返回第一个允许且在窗内的待复核结果。"
         },
         {
-          "rule_id": "o.c.0021",
+          "rule_id": "o.c.0018",
           "slots": {
             "action": {
               "provenance_refs": [],
               "status": "encoded",
               "values": [
-                "o.c.0011"
+                "o.c.0012"
               ]
             },
             "actor": {
@@ -2676,15 +2895,91 @@
               "provenance_refs": [],
               "status": "encoded",
               "values": [
-                "o.c.0008",
-                "o.c.0024"
+                "o.c.0014"
+              ]
+            },
+            "feedback": {
+              "provenance_refs": [],
+              "status": "scope_excluded",
+              "values": []
+            },
+            "goals_evaluation": {
+              "provenance_refs": [],
+              "status": "source_underdetermined",
+              "values": []
+            },
+            "preconditions": {
+              "provenance_refs": [],
+              "status": "encoded",
+              "values": [
+                "o.c.0012",
+                "o.c.0030"
+              ]
+            },
+            "resolution": {
+              "provenance_refs": [],
+              "status": "encoded",
+              "values": [
+                "o.c.0014"
+              ]
+            },
+            "target": {
+              "provenance_refs": [],
+              "status": "encoded",
+              "values": [
+                "o.c.0016"
+              ]
+            },
+            "trigger": {
+              "provenance_refs": [],
+              "status": "encoded",
+              "values": [
+                "o.c.0012"
+              ]
+            }
+          },
+          "statement": "只有窗口分类结果非 内部标识 且 内部标识 返回 内部标识 时，待复核结果才形成可交给 结果提交入口 的正式裁定事件。"
+        },
+        {
+          "rule_id": "o.c.0026",
+          "slots": {
+            "action": {
+              "provenance_refs": [],
+              "status": "encoded",
+              "values": [
+                "o.c.0014"
+              ]
+            },
+            "actor": {
+              "provenance_refs": [],
+              "status": "not_applicable",
+              "values": []
+            },
+            "context": {
+              "provenance_refs": [],
+              "status": "encoded",
+              "values": [
+                "o.c.0005"
+              ]
+            },
+            "cost": {
+              "provenance_refs": [],
+              "status": "not_applicable",
+              "values": []
+            },
+            "effects": {
+              "provenance_refs": [],
+              "status": "encoded",
+              "values": [
+                "o.c.0009",
+                "o.c.0029"
               ]
             },
             "feedback": {
               "provenance_refs": [],
               "status": "encoded",
               "values": [
-                "o.c.0008"
+                "o.c.0009"
               ]
             },
             "goals_evaluation": {
@@ -2696,38 +2991,38 @@
               "provenance_refs": [],
               "status": "encoded",
               "values": [
-                "o.c.0011"
+                "o.c.0014"
               ]
             },
             "resolution": {
               "provenance_refs": [],
               "status": "encoded",
               "values": [
-                "o.c.0008"
+                "o.c.0009"
               ]
             },
             "target": {
               "provenance_refs": [],
               "status": "encoded",
               "values": [
-                "o.c.0013"
+                "o.c.0016"
               ]
             },
             "trigger": {
               "provenance_refs": [],
               "status": "encoded",
               "values": [
-                "o.c.0011"
+                "o.c.0014"
               ]
             }
           },
-          "statement": "结果类型必须先被写入且落在裁定允许范围内；随后记录 原始时间记录 和 规则速率记录、更新 对象准备状态 并通知 结果通知。"
+          "statement": "正式裁定事件交给 结果提交入口 后，结果类型仍须通过存在性与允许范围验证；随后记录 原始时间记录 和 规则速率记录、更新 对象准备状态 并通知 结果通知。"
         }
       ],
       "source_issues": [],
       "state_channels": [
         {
-          "channel_id": "o.c.0027",
+          "channel_id": "o.c.0035",
           "coordinate_system": {
             "provenance_refs": [],
             "status": "encoded",
@@ -2744,7 +3039,7 @@
             "value": {
               "coordinate_system": "单个可命中对象的裁定状态",
               "serialized_value": "true",
-              "time_base_id": "o.c.0018",
+              "time_base_id": "o.c.0022",
               "unit": null,
               "value_type": "boolean"
             }
@@ -2758,14 +3053,14 @@
             "provenance_refs": [],
             "status": "encoded",
             "values": [
-              "o.c.0016",
-              "o.c.0015"
+              "o.c.0020",
+              "o.c.0019"
             ]
           },
           "semantic_ref": {
             "provenance_refs": [],
             "status": "encoded",
-            "value": "o.c.0024"
+            "value": "o.c.0029"
           },
           "snapshot_boundary": {
             "provenance_refs": [],
@@ -2778,7 +3073,7 @@
             "value": {
               "coordinate_system": "单个可命中对象的裁定状态",
               "serialized_value": "false",
-              "time_base_id": "o.c.0018",
+              "time_base_id": "o.c.0022",
               "unit": null,
               "value_type": "boolean"
             }
@@ -2793,7 +3088,7 @@
             "provenance_refs": [],
             "status": "encoded",
             "values": [
-              "o.c.0021"
+              "o.c.0026"
             ]
           }
         }
@@ -2801,7 +3096,7 @@
       "temporal_edges": [
         {
           "condition_ids": [],
-          "edge_id": "o.c.0028",
+          "edge_id": "o.c.0036",
           "from_id": "o.c.0004",
           "kind": "before",
           "source_fact": {
@@ -2810,14 +3105,14 @@
             "value": "候选按下先调用用户触发结果检查和窗口分类，之后才进入 结果提交入口 提交。"
           },
           "time_base_refs": [
-            "o.c.0018"
+            "o.c.0022"
           ],
-          "to_id": "o.c.0008"
+          "to_id": "o.c.0009"
         },
         {
           "condition_ids": [],
-          "edge_id": "o.c.0029",
-          "from_id": "o.c.0008",
+          "edge_id": "o.c.0037",
+          "from_id": "o.c.0009",
           "kind": "before",
           "source_fact": {
             "provenance_refs": [],
@@ -2825,9 +3120,9 @@
             "value": "正式结果提交使对象进入已裁定状态，后续 候选输入入口 的 输入许可检查 检查因而拒绝同一对象再次输入。"
           },
           "time_base_refs": [
-            "o.c.0018"
+            "o.c.0022"
           ],
-          "to_id": "o.c.0009"
+          "to_id": "o.c.0010"
         }
       ],
       "time_bases": [
@@ -2847,7 +3142,7 @@
           "owner_ref": {
             "provenance_refs": [],
             "status": "encoded",
-            "value": "o.c.0013"
+            "value": "o.c.0016"
           },
           "pause_and_backlog": {
             "provenance_refs": [],
@@ -2864,7 +3159,7 @@
             "status": "source_underdetermined",
             "value": null
           },
-          "time_base_id": "o.c.0018",
+          "time_base_id": "o.c.0022",
           "unit": {
             "provenance_refs": [],
             "status": "encoded",
@@ -2884,10 +3179,10 @@
           "scope_started",
           "state_committed"
         ],
-        "derivation_algorithm_id": "o.c.0030",
+        "derivation_algorithm_id": "o.c.0031",
         "raw_trace_ref": "o.c.0002",
         "stop_condition_refs": [
-          "o.c.0031"
+          "o.c.0032"
         ],
         "tolerance_rule_refs": []
       }
@@ -2895,7 +3190,7 @@
   ],
   "condition_id": "condition-v01",
   "generated_at": "2026-07-27T00:00:00Z",
-  "projection_id": "projection-v01.gsha256-6bf05513b5b82cafa1ac2dd3514c3f18f78130dbd5b0cad68bb040e696fbfb31",
-  "projection_spec_sha256": "e768e9b4e77edfd938e71ea680bd8cfdb1f8c9cf456e5d8a829c7a7ca58f8641",
+  "projection_id": "projection-v01.gsha256-9b2681df8f2b09255001da6c167216484fc75ada1e5ca95f0699a00a3bad1d85",
+  "projection_spec_sha256": "7ac0fe8a33c2d75a38bde2df3b804f89012a9acc712f83cd090139141ae60ec0",
   "run_id": "continuous-001"
 }

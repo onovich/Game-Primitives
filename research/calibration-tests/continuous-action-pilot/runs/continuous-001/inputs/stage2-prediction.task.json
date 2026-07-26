@@ -1,0 +1,1198 @@
+{
+  "$schema": "https://github.com/onovich/Game-Primitives/blob/main/research/calibration-tests/continuous-action-pilot/schema/task-packet-0.1.2.schema.json",
+  "allowed_configurations": [
+    "config.baseline",
+    "config.variant"
+  ],
+  "allowed_observations": [
+    {
+      "allowed_value_types": [
+        "id",
+        "status"
+      ],
+      "description": "更新 2 完成后保存的待执行动作标识",
+      "observation_id": "obs.a.0001",
+      "tolerance_rule_id": "tol.a.0001",
+      "unit": null
+    },
+    {
+      "allowed_value_types": [
+        "boolean",
+        "status"
+      ],
+      "description": "更新 3 的动作请求处理前，已保存请求是否具备执行资格",
+      "observation_id": "obs.a.0002",
+      "tolerance_rule_id": "tol.a.0001",
+      "unit": null
+    },
+    {
+      "allowed_value_types": [
+        "id",
+        "status"
+      ],
+      "description": "停止边界的当前动作标识",
+      "observation_id": "obs.a.0003",
+      "tolerance_rule_id": "tol.a.0001",
+      "unit": null
+    },
+    {
+      "allowed_value_types": [
+        "integer",
+        "status"
+      ],
+      "description": "观察片段内的真实接触总数",
+      "observation_id": "obs.a.0004",
+      "tolerance_rule_id": "tol.a.0001",
+      "unit": "count"
+    },
+    {
+      "allowed_value_types": [
+        "integer",
+        "status"
+      ],
+      "description": "观察片段内的命中总数",
+      "observation_id": "obs.a.0005",
+      "tolerance_rule_id": "tol.a.0001",
+      "unit": "count"
+    },
+    {
+      "allowed_value_types": [
+        "status",
+        "string"
+      ],
+      "description": "25 个子步中移动更新实际读取的方向标识有序串",
+      "observation_id": "obs.b.0001",
+      "tolerance_rule_id": "tol.b.0001",
+      "unit": null
+    },
+    {
+      "allowed_value_types": [
+        "direction",
+        "status"
+      ],
+      "description": "停止边界第二水平轴速度的零或非零方向类别",
+      "observation_id": "obs.b.0002",
+      "tolerance_rule_id": "tol.b.0002",
+      "unit": "engine_unit_per_second"
+    },
+    {
+      "allowed_value_types": [
+        "direction",
+        "status"
+      ],
+      "description": "停止边界第二水平轴位置的零或非零方向类别",
+      "observation_id": "obs.b.0003",
+      "tolerance_rule_id": "tol.b.0002",
+      "unit": "engine_unit"
+    },
+    {
+      "allowed_value_types": [
+        "integer",
+        "status"
+      ],
+      "description": "观察片段内的非空接触总数",
+      "observation_id": "obs.b.0004",
+      "tolerance_rule_id": "tol.b.0001",
+      "unit": "count"
+    },
+    {
+      "allowed_value_types": [
+        "id",
+        "status"
+      ],
+      "description": "每个子步实际采用的过程分支标识",
+      "observation_id": "obs.b.0005",
+      "tolerance_rule_id": "tol.b.0001",
+      "unit": null
+    },
+    {
+      "allowed_value_types": [
+        "integer",
+        "status"
+      ],
+      "description": "停止边界前被接受的候选输入总数",
+      "observation_id": "obs.c.0001",
+      "tolerance_rule_id": "tol.c.0001",
+      "unit": "count"
+    },
+    {
+      "allowed_value_types": [
+        "integer",
+        "status"
+      ],
+      "description": "正式裁定调用相对候选发生时刻的规则时间偏移",
+      "observation_id": "obs.c.0002",
+      "tolerance_rule_id": "tol.c.0002",
+      "unit": "millisecond"
+    },
+    {
+      "allowed_value_types": [
+        "id",
+        "status"
+      ],
+      "description": "正式提交的结果类别标识",
+      "observation_id": "obs.c.0003",
+      "tolerance_rule_id": "tol.c.0001",
+      "unit": null
+    },
+    {
+      "allowed_value_types": [
+        "decimal",
+        "status"
+      ],
+      "description": "正式结果记录的原始规则时间",
+      "observation_id": "obs.c.0004",
+      "tolerance_rule_id": "tol.c.0002",
+      "unit": "millisecond"
+    },
+    {
+      "allowed_value_types": [
+        "integer",
+        "status"
+      ],
+      "description": "正式结果通知总数",
+      "observation_id": "obs.c.0005",
+      "tolerance_rule_id": "tol.c.0001",
+      "unit": "count"
+    },
+    {
+      "allowed_value_types": [
+        "decimal",
+        "status"
+      ],
+      "description": "同一对象再次接受候选的规则许可关闭时刻",
+      "observation_id": "obs.c.0006",
+      "tolerance_rule_id": "tol.c.0002",
+      "unit": "millisecond"
+    }
+  ],
+  "artifact_type": "prediction_task_packet",
+  "artifact_version": "0.1.2",
+  "assembled_output_schema": {
+    "path": "research/calibration-tests/continuous-action-pilot/schema/role-submission-0.1.2.schema.json",
+    "sha256": "ce1bcbb603550ec42afa9023191666b0ef45096b4c0efd1a3b42150c83577f95"
+  },
+  "behavior_scope": "structural_only",
+  "case_ids": [
+    "CA-R1",
+    "CA-R2",
+    "CA-R3"
+  ],
+  "condition_id": null,
+  "created_at": "2026-07-27T01:00:00Z",
+  "forbidden_actions": [
+    "access_other_condition",
+    "access_other_submission",
+    "access_package_outside_dispatch",
+    "access_truth_or_result",
+    "create_child_task",
+    "external_search",
+    "read_shared_workspace",
+    "tool_call"
+  ],
+  "input_artifacts": [
+    {
+      "artifact_id": "envelope.continuous-001.stage2.v0.1.0",
+      "path": "research/calibration-tests/continuous-action-pilot/runs/continuous-001/inputs/stage2-variant-envelope.json",
+      "sha256": "f4501e153cd103c0ec7a184c89e12aa57d4a9ef128e416654ad332a10c7702d1"
+    },
+    {
+      "artifact_id": "template.prediction.continuous-001",
+      "path": "research/calibration-tests/continuous-action-pilot/runs/continuous-001/inputs/prediction-response.template.json",
+      "sha256": "c992554cbfd115de4063163cce9d2d16816a645cd3c2647bc42b6a33b8eed5af"
+    }
+  ],
+  "instructions": [
+    "在完成并冻结第一阶段后，继续只使用原会话的条件视图、自己的冻结重构、本任务、中性变体信封和回答模板；不得使用工具、网络、共享工作区、包外文件、另一条件、其他提交、真值或结果。",
+    "复制回答模板中的 template_payload，替换全部尖括号占位符，返回一个符合回答 Schema 的单一 JSON 对象；不要返回模板外壳、Markdown 代码围栏或附加文字。",
+    "每案的主 expectations 必须恰好覆盖中性信封给出的两个配置与全部 observation_id 的笛卡尔积，不得遗漏、重复或增加配置—观察量组合。",
+    "变量 ID 与数值本身不解释因果职责；预测只能由第一阶段允许材料、自己的冻结重构和信封所列干预与不变量推出。",
+    "tol.a.0001、tol.b.0001 与 tol.c.0001 使用精确离散值、标识或计数相等；tol.b.0002 只比较冻结数值量化后的 negative、zero、positive 三种方向类别，正零和负零都编码为 zero；tol.c.0002 的绝对毫秒差阈值为零。",
+    "prediction_status 只能是 determinate 或 indeterminate。若为 indeterminate，主 expectations 使用 status/indeterminate，并至少给出两个仍符合材料、但对同一配置—观察量产生不同预测的完整 compatible_alternatives。",
+    "每个 compatible_alternatives 项必须给出完整的两个配置与全部观察量组合；不能用一个猜测结果代替缺失的结构推导。",
+    "不变量和停止点由执行设施按信封定义核验；参与者需要声明其推导依赖与无法判定条件，但不预测运行后的 held 或 violated 值。",
+    "confidence_percent 必须是零至一百的整数；推导引用只使用允许记录、关系、变量、不变量、观察量、时间基准、容差和停止边界 ID。",
+    "污染自报枚举与第一阶段相同；stage_update_note 只记录本阶段实际新增暴露，不得写入未见内容。",
+    "不要填写运行、任务、条件、actor、session、提交时间、输入散列、前阶段散列或审核字段；这些字段由保管工具机械生成。"
+  ],
+  "output_schema": {
+    "path": "research/calibration-tests/continuous-action-pilot/schema/blind-response-interface-0.1.0.schema.json",
+    "sha256": "a4ab92704a626b5f9a67850595dc0c6bf154dccbd18d5f81776cc30dfa3e58d1"
+  },
+  "representation_version": "CA-SR 0.1",
+  "required_audit_checks": [],
+  "run_id": "continuous-001",
+  "stage1_submission_required": true,
+  "stop_boundary_refs": [
+    "o.a.0042",
+    "o.b.0030",
+    "o.c.0032"
+  ],
+  "target_encoding_sha256": null,
+  "target_view_sha256": null,
+  "task_id": "task.predict.neutral",
+  "tolerance_rule_refs": [
+    "tol.a.0001",
+    "tol.b.0001",
+    "tol.b.0002",
+    "tol.c.0001",
+    "tol.c.0002"
+  ],
+  "variant_interventions": [
+    {
+      "baseline_value": {
+        "serialized_value": "0",
+        "unit": null,
+        "value_type": "integer"
+      },
+      "case_id": "CA-R1",
+      "formal_input_spec": {
+        "events": [
+          {
+            "at": {
+              "serialized_value": "0",
+              "unit": "fixture_update",
+              "value_type": "integer"
+            },
+            "event_id": "event.a.0001",
+            "fields": [
+              {
+                "field_id": "o.a.0004",
+                "value": {
+                  "serialized_value": "true",
+                  "unit": null,
+                  "value_type": "boolean"
+                }
+              }
+            ],
+            "sequence_index": 0
+          },
+          {
+            "at": {
+              "serialized_value": "1",
+              "unit": "fixture_update",
+              "value_type": "integer"
+            },
+            "event_id": "event.a.0002",
+            "fields": [
+              {
+                "field_id": "o.a.0004",
+                "value": {
+                  "serialized_value": "false",
+                  "unit": null,
+                  "value_type": "boolean"
+                }
+              }
+            ],
+            "sequence_index": 1
+          },
+          {
+            "at": {
+              "serialized_value": "2",
+              "unit": "fixture_update",
+              "value_type": "integer"
+            },
+            "event_id": "event.a.0003",
+            "fields": [
+              {
+                "field_id": "o.a.0004",
+                "value": {
+                  "serialized_value": "true",
+                  "unit": null,
+                  "value_type": "boolean"
+                }
+              }
+            ],
+            "sequence_index": 2
+          },
+          {
+            "at": {
+              "serialized_value": "3",
+              "unit": "fixture_update",
+              "value_type": "integer"
+            },
+            "event_id": "event.a.0004",
+            "fields": [
+              {
+                "field_id": "o.a.0004",
+                "value": {
+                  "serialized_value": "false",
+                  "unit": null,
+                  "value_type": "boolean"
+                }
+              }
+            ],
+            "sequence_index": 3
+          },
+          {
+            "at": {
+              "serialized_value": "4",
+              "unit": "fixture_update",
+              "value_type": "integer"
+            },
+            "event_id": "event.a.0005",
+            "fields": [
+              {
+                "field_id": "o.a.0004",
+                "value": {
+                  "serialized_value": "false",
+                  "unit": null,
+                  "value_type": "boolean"
+                }
+              }
+            ],
+            "sequence_index": 4
+          },
+          {
+            "at": {
+              "serialized_value": "5",
+              "unit": "fixture_update",
+              "value_type": "integer"
+            },
+            "event_id": "event.a.0006",
+            "fields": [
+              {
+                "field_id": "o.a.0004",
+                "value": {
+                  "serialized_value": "false",
+                  "unit": null,
+                  "value_type": "boolean"
+                }
+              }
+            ],
+            "sequence_index": 5
+          },
+          {
+            "at": {
+              "serialized_value": "6",
+              "unit": "fixture_update",
+              "value_type": "integer"
+            },
+            "event_id": "event.a.0007",
+            "fields": [
+              {
+                "field_id": "o.a.0004",
+                "value": {
+                  "serialized_value": "false",
+                  "unit": null,
+                  "value_type": "boolean"
+                }
+              }
+            ],
+            "sequence_index": 6
+          }
+        ],
+        "formal_input_id": "o.a.0002",
+        "time_base": {
+          "origin": {
+            "serialized_value": "0",
+            "unit": "fixture_update",
+            "value_type": "integer"
+          },
+          "tick_unit": "fixture_update",
+          "time_base_id": "o.a.0027"
+        }
+      },
+      "initial_state_specs": [
+        {
+          "field_id": "o.a.0022",
+          "value": {
+            "serialized_value": "idle_no_stun_no_buffer_zero_hits_no_contact",
+            "unit": null,
+            "value_type": "status"
+          }
+        }
+      ],
+      "invariant_ids": [
+        "inv.a.0001",
+        "inv.a.0002",
+        "inv.a.0003",
+        "inv.a.0004",
+        "inv.a.0005",
+        "inv.a.0006"
+      ],
+      "invariant_specs": [
+        {
+          "description": "两配置使用同一冻结构建、初始状态与观察仪器。",
+          "invariant_id": "inv.a.0001"
+        },
+        {
+          "description": "两配置的两个动作定义、动作帧与映射关系完全相同。",
+          "invariant_id": "inv.a.0002"
+        },
+        {
+          "description": "两配置的请求缓存窗口、执行窗口与更新顺序完全相同。",
+          "invariant_id": "inv.a.0003"
+        },
+        {
+          "description": "两配置接收逐字节相同的七次输入更新。",
+          "invariant_id": "inv.a.0004"
+        },
+        {
+          "description": "整个片段无接触、无命中，另一实体与人工控制均不参与。",
+          "invariant_id": "inv.a.0005"
+        },
+        {
+          "description": "两配置使用同一停止点、观察字段与记录粒度。",
+          "invariant_id": "inv.a.0006"
+        }
+      ],
+      "observation_ids": [
+        "obs.a.0001",
+        "obs.a.0002",
+        "obs.a.0003",
+        "obs.a.0004",
+        "obs.a.0005"
+      ],
+      "stop_boundary_id": "o.a.0042",
+      "stop_boundary_spec": {
+        "boundary_kind": "after_event",
+        "coordinate": {
+          "serialized_value": "6",
+          "unit": "fixture_update",
+          "value_type": "integer"
+        },
+        "description": "第七次输入更新完成并记录全部声明观察量后停止。",
+        "stop_boundary_id": "o.a.0042"
+      },
+      "tolerance_specs": [
+        {
+          "comparison_kind": "exact",
+          "threshold": null,
+          "tolerance_rule_id": "tol.a.0001"
+        }
+      ],
+      "variable_id": "o.a.0001",
+      "variant_value": {
+        "serialized_value": "1",
+        "unit": null,
+        "value_type": "integer"
+      }
+    },
+    {
+      "baseline_value": {
+        "serialized_value": "0",
+        "unit": null,
+        "value_type": "integer"
+      },
+      "case_id": "CA-R2",
+      "formal_input_spec": {
+        "events": [
+          {
+            "at": {
+              "serialized_value": "8",
+              "unit": "millisecond",
+              "value_type": "integer"
+            },
+            "event_id": "event.b.0001",
+            "fields": [
+              {
+                "field_id": "o.b.0025",
+                "value": {
+                  "serialized_value": "axis1_127_axis2_0",
+                  "unit": "direction_pair",
+                  "value_type": "status"
+                }
+              }
+            ],
+            "sequence_index": 0
+          },
+          {
+            "at": {
+              "serialized_value": "16",
+              "unit": "millisecond",
+              "value_type": "integer"
+            },
+            "event_id": "event.b.0002",
+            "fields": [
+              {
+                "field_id": "o.b.0025",
+                "value": {
+                  "serialized_value": "axis1_127_axis2_0",
+                  "unit": "direction_pair",
+                  "value_type": "status"
+                }
+              }
+            ],
+            "sequence_index": 1
+          },
+          {
+            "at": {
+              "serialized_value": "24",
+              "unit": "millisecond",
+              "value_type": "integer"
+            },
+            "event_id": "event.b.0003",
+            "fields": [
+              {
+                "field_id": "o.b.0025",
+                "value": {
+                  "serialized_value": "axis1_127_axis2_0",
+                  "unit": "direction_pair",
+                  "value_type": "status"
+                }
+              }
+            ],
+            "sequence_index": 2
+          },
+          {
+            "at": {
+              "serialized_value": "32",
+              "unit": "millisecond",
+              "value_type": "integer"
+            },
+            "event_id": "event.b.0004",
+            "fields": [
+              {
+                "field_id": "o.b.0025",
+                "value": {
+                  "serialized_value": "axis1_127_axis2_0",
+                  "unit": "direction_pair",
+                  "value_type": "status"
+                }
+              }
+            ],
+            "sequence_index": 3
+          },
+          {
+            "at": {
+              "serialized_value": "40",
+              "unit": "millisecond",
+              "value_type": "integer"
+            },
+            "event_id": "event.b.0005",
+            "fields": [
+              {
+                "field_id": "o.b.0025",
+                "value": {
+                  "serialized_value": "axis1_127_axis2_0",
+                  "unit": "direction_pair",
+                  "value_type": "status"
+                }
+              }
+            ],
+            "sequence_index": 4
+          },
+          {
+            "at": {
+              "serialized_value": "48",
+              "unit": "millisecond",
+              "value_type": "integer"
+            },
+            "event_id": "event.b.0006",
+            "fields": [
+              {
+                "field_id": "o.b.0025",
+                "value": {
+                  "serialized_value": "axis1_0_axis2_127",
+                  "unit": "direction_pair",
+                  "value_type": "status"
+                }
+              }
+            ],
+            "sequence_index": 5
+          },
+          {
+            "at": {
+              "serialized_value": "56",
+              "unit": "millisecond",
+              "value_type": "integer"
+            },
+            "event_id": "event.b.0007",
+            "fields": [
+              {
+                "field_id": "o.b.0025",
+                "value": {
+                  "serialized_value": "axis1_0_axis2_127",
+                  "unit": "direction_pair",
+                  "value_type": "status"
+                }
+              }
+            ],
+            "sequence_index": 6
+          },
+          {
+            "at": {
+              "serialized_value": "64",
+              "unit": "millisecond",
+              "value_type": "integer"
+            },
+            "event_id": "event.b.0008",
+            "fields": [
+              {
+                "field_id": "o.b.0025",
+                "value": {
+                  "serialized_value": "axis1_0_axis2_127",
+                  "unit": "direction_pair",
+                  "value_type": "status"
+                }
+              }
+            ],
+            "sequence_index": 7
+          },
+          {
+            "at": {
+              "serialized_value": "72",
+              "unit": "millisecond",
+              "value_type": "integer"
+            },
+            "event_id": "event.b.0009",
+            "fields": [
+              {
+                "field_id": "o.b.0025",
+                "value": {
+                  "serialized_value": "axis1_0_axis2_127",
+                  "unit": "direction_pair",
+                  "value_type": "status"
+                }
+              }
+            ],
+            "sequence_index": 8
+          },
+          {
+            "at": {
+              "serialized_value": "80",
+              "unit": "millisecond",
+              "value_type": "integer"
+            },
+            "event_id": "event.b.0010",
+            "fields": [
+              {
+                "field_id": "o.b.0025",
+                "value": {
+                  "serialized_value": "axis1_0_axis2_127",
+                  "unit": "direction_pair",
+                  "value_type": "status"
+                }
+              }
+            ],
+            "sequence_index": 9
+          },
+          {
+            "at": {
+              "serialized_value": "88",
+              "unit": "millisecond",
+              "value_type": "integer"
+            },
+            "event_id": "event.b.0011",
+            "fields": [
+              {
+                "field_id": "o.b.0025",
+                "value": {
+                  "serialized_value": "axis1_0_axis2_127",
+                  "unit": "direction_pair",
+                  "value_type": "status"
+                }
+              }
+            ],
+            "sequence_index": 10
+          },
+          {
+            "at": {
+              "serialized_value": "96",
+              "unit": "millisecond",
+              "value_type": "integer"
+            },
+            "event_id": "event.b.0012",
+            "fields": [
+              {
+                "field_id": "o.b.0025",
+                "value": {
+                  "serialized_value": "axis1_0_axis2_127",
+                  "unit": "direction_pair",
+                  "value_type": "status"
+                }
+              }
+            ],
+            "sequence_index": 11
+          },
+          {
+            "at": {
+              "serialized_value": "104",
+              "unit": "millisecond",
+              "value_type": "integer"
+            },
+            "event_id": "event.b.0013",
+            "fields": [
+              {
+                "field_id": "o.b.0025",
+                "value": {
+                  "serialized_value": "axis1_0_axis2_127",
+                  "unit": "direction_pair",
+                  "value_type": "status"
+                }
+              }
+            ],
+            "sequence_index": 12
+          },
+          {
+            "at": {
+              "serialized_value": "112",
+              "unit": "millisecond",
+              "value_type": "integer"
+            },
+            "event_id": "event.b.0014",
+            "fields": [
+              {
+                "field_id": "o.b.0025",
+                "value": {
+                  "serialized_value": "axis1_0_axis2_127",
+                  "unit": "direction_pair",
+                  "value_type": "status"
+                }
+              }
+            ],
+            "sequence_index": 13
+          },
+          {
+            "at": {
+              "serialized_value": "120",
+              "unit": "millisecond",
+              "value_type": "integer"
+            },
+            "event_id": "event.b.0015",
+            "fields": [
+              {
+                "field_id": "o.b.0025",
+                "value": {
+                  "serialized_value": "axis1_0_axis2_127",
+                  "unit": "direction_pair",
+                  "value_type": "status"
+                }
+              }
+            ],
+            "sequence_index": 14
+          },
+          {
+            "at": {
+              "serialized_value": "128",
+              "unit": "millisecond",
+              "value_type": "integer"
+            },
+            "event_id": "event.b.0016",
+            "fields": [
+              {
+                "field_id": "o.b.0025",
+                "value": {
+                  "serialized_value": "axis1_0_axis2_127",
+                  "unit": "direction_pair",
+                  "value_type": "status"
+                }
+              }
+            ],
+            "sequence_index": 15
+          },
+          {
+            "at": {
+              "serialized_value": "136",
+              "unit": "millisecond",
+              "value_type": "integer"
+            },
+            "event_id": "event.b.0017",
+            "fields": [
+              {
+                "field_id": "o.b.0025",
+                "value": {
+                  "serialized_value": "axis1_0_axis2_127",
+                  "unit": "direction_pair",
+                  "value_type": "status"
+                }
+              }
+            ],
+            "sequence_index": 16
+          },
+          {
+            "at": {
+              "serialized_value": "144",
+              "unit": "millisecond",
+              "value_type": "integer"
+            },
+            "event_id": "event.b.0018",
+            "fields": [
+              {
+                "field_id": "o.b.0025",
+                "value": {
+                  "serialized_value": "axis1_0_axis2_127",
+                  "unit": "direction_pair",
+                  "value_type": "status"
+                }
+              }
+            ],
+            "sequence_index": 17
+          },
+          {
+            "at": {
+              "serialized_value": "152",
+              "unit": "millisecond",
+              "value_type": "integer"
+            },
+            "event_id": "event.b.0019",
+            "fields": [
+              {
+                "field_id": "o.b.0025",
+                "value": {
+                  "serialized_value": "axis1_0_axis2_127",
+                  "unit": "direction_pair",
+                  "value_type": "status"
+                }
+              }
+            ],
+            "sequence_index": 18
+          },
+          {
+            "at": {
+              "serialized_value": "160",
+              "unit": "millisecond",
+              "value_type": "integer"
+            },
+            "event_id": "event.b.0020",
+            "fields": [
+              {
+                "field_id": "o.b.0025",
+                "value": {
+                  "serialized_value": "axis1_0_axis2_127",
+                  "unit": "direction_pair",
+                  "value_type": "status"
+                }
+              }
+            ],
+            "sequence_index": 19
+          },
+          {
+            "at": {
+              "serialized_value": "168",
+              "unit": "millisecond",
+              "value_type": "integer"
+            },
+            "event_id": "event.b.0021",
+            "fields": [
+              {
+                "field_id": "o.b.0025",
+                "value": {
+                  "serialized_value": "axis1_0_axis2_127",
+                  "unit": "direction_pair",
+                  "value_type": "status"
+                }
+              }
+            ],
+            "sequence_index": 20
+          },
+          {
+            "at": {
+              "serialized_value": "176",
+              "unit": "millisecond",
+              "value_type": "integer"
+            },
+            "event_id": "event.b.0022",
+            "fields": [
+              {
+                "field_id": "o.b.0025",
+                "value": {
+                  "serialized_value": "axis1_0_axis2_127",
+                  "unit": "direction_pair",
+                  "value_type": "status"
+                }
+              }
+            ],
+            "sequence_index": 21
+          },
+          {
+            "at": {
+              "serialized_value": "184",
+              "unit": "millisecond",
+              "value_type": "integer"
+            },
+            "event_id": "event.b.0023",
+            "fields": [
+              {
+                "field_id": "o.b.0025",
+                "value": {
+                  "serialized_value": "axis1_0_axis2_127",
+                  "unit": "direction_pair",
+                  "value_type": "status"
+                }
+              }
+            ],
+            "sequence_index": 22
+          },
+          {
+            "at": {
+              "serialized_value": "192",
+              "unit": "millisecond",
+              "value_type": "integer"
+            },
+            "event_id": "event.b.0024",
+            "fields": [
+              {
+                "field_id": "o.b.0025",
+                "value": {
+                  "serialized_value": "axis1_0_axis2_127",
+                  "unit": "direction_pair",
+                  "value_type": "status"
+                }
+              }
+            ],
+            "sequence_index": 23
+          },
+          {
+            "at": {
+              "serialized_value": "200",
+              "unit": "millisecond",
+              "value_type": "integer"
+            },
+            "event_id": "event.b.0025",
+            "fields": [
+              {
+                "field_id": "o.b.0025",
+                "value": {
+                  "serialized_value": "axis1_0_axis2_127",
+                  "unit": "direction_pair",
+                  "value_type": "status"
+                }
+              }
+            ],
+            "sequence_index": 24
+          }
+        ],
+        "formal_input_id": "o.b.0002",
+        "time_base": {
+          "origin": {
+            "serialized_value": "0",
+            "unit": "millisecond",
+            "value_type": "integer"
+          },
+          "tick_unit": "millisecond",
+          "time_base_id": "o.b.0015"
+        }
+      },
+      "initial_state_specs": [
+        {
+          "field_id": "o.b.0011",
+          "value": {
+            "serialized_value": "axis1_0_axis2_0_altitude_4096",
+            "unit": "coordinate_triplet",
+            "value_type": "status"
+          }
+        },
+        {
+          "field_id": "o.b.0013",
+          "value": {
+            "serialized_value": "axis1_0_axis2_0_vertical_0",
+            "unit": "velocity_triplet",
+            "value_type": "status"
+          }
+        }
+      ],
+      "invariant_ids": [
+        "inv.b.0001",
+        "inv.b.0002",
+        "inv.b.0003",
+        "inv.b.0004",
+        "inv.b.0005",
+        "inv.b.0006",
+        "inv.b.0007"
+      ],
+      "invariant_specs": [
+        {
+          "description": "两配置使用同一冻结构建、兼容层与观察仪器。",
+          "invariant_id": "inv.b.0001"
+        },
+        {
+          "description": "两配置接收逐字节相同的二十五步原始方向序列。",
+          "invariant_id": "inv.b.0002"
+        },
+        {
+          "description": "两配置的初始位置、速度、朝向与过程模式完全相同。",
+          "invariant_id": "inv.b.0003"
+        },
+        {
+          "description": "两配置使用相同的八毫秒固定子步与二百毫秒停止点。",
+          "invariant_id": "inv.b.0004"
+        },
+        {
+          "description": "两配置的加速、摩擦、重力、量化与写回公式完全相同。",
+          "invariant_id": "inv.b.0005"
+        },
+        {
+          "description": "整个片段保持在声明过程内，碰撞世界为空且接触数为零。",
+          "invariant_id": "inv.b.0006"
+        },
+        {
+          "description": "除控制变量指定的输入选取关系外，不改变任何规则关系。",
+          "invariant_id": "inv.b.0007"
+        }
+      ],
+      "observation_ids": [
+        "obs.b.0001",
+        "obs.b.0002",
+        "obs.b.0003",
+        "obs.b.0004",
+        "obs.b.0005"
+      ],
+      "stop_boundary_id": "o.b.0030",
+      "stop_boundary_spec": {
+        "boundary_kind": "rule_time_reached",
+        "coordinate": {
+          "serialized_value": "200",
+          "unit": "millisecond",
+          "value_type": "integer"
+        },
+        "description": "第二十五个八毫秒子步完成并记录声明状态后停止。",
+        "stop_boundary_id": "o.b.0030"
+      },
+      "tolerance_specs": [
+        {
+          "comparison_kind": "exact",
+          "threshold": null,
+          "tolerance_rule_id": "tol.b.0001"
+        },
+        {
+          "comparison_kind": "zero_or_nonzero_direction",
+          "threshold": null,
+          "tolerance_rule_id": "tol.b.0002"
+        }
+      ],
+      "variable_id": "o.b.0001",
+      "variant_value": {
+        "serialized_value": "1",
+        "unit": null,
+        "value_type": "integer"
+      }
+    },
+    {
+      "baseline_value": {
+        "serialized_value": "0",
+        "unit": "millisecond",
+        "value_type": "integer"
+      },
+      "case_id": "CA-R3",
+      "formal_input_spec": {
+        "events": [
+          {
+            "at": {
+              "serialized_value": "1000",
+              "unit": "millisecond",
+              "value_type": "integer"
+            },
+            "event_id": "event.c.0001",
+            "fields": [
+              {
+                "field_id": "o.c.0004",
+                "value": {
+                  "serialized_value": "accepted_candidate",
+                  "unit": null,
+                  "value_type": "status"
+                }
+              }
+            ],
+            "sequence_index": 0
+          }
+        ],
+        "formal_input_id": "o.c.0002",
+        "time_base": {
+          "origin": {
+            "serialized_value": "0",
+            "unit": "millisecond",
+            "value_type": "integer"
+          },
+          "tick_unit": "millisecond",
+          "time_base_id": "o.c.0022"
+        }
+      },
+      "initial_state_specs": [
+        {
+          "field_id": "o.c.0016",
+          "value": {
+            "serialized_value": "single_object_difficulty5_start1000_centered",
+            "unit": null,
+            "value_type": "status"
+          }
+        },
+        {
+          "field_id": "o.c.0035",
+          "value": {
+            "serialized_value": "open",
+            "unit": null,
+            "value_type": "status"
+          }
+        }
+      ],
+      "invariant_ids": [
+        "inv.c.0001",
+        "inv.c.0002",
+        "inv.c.0003",
+        "inv.c.0004",
+        "inv.c.0005",
+        "inv.c.0006",
+        "inv.c.0007"
+      ],
+      "invariant_specs": [
+        {
+          "description": "两配置使用同一冻结构建与同一观察仪器。",
+          "invariant_id": "inv.c.0001"
+        },
+        {
+          "description": "两配置都只有一个对象，其难度值为五，起始时刻为一千毫秒。",
+          "invariant_id": "inv.c.0002"
+        },
+        {
+          "description": "两配置都在对象中心于起始时刻接受一次相同候选。",
+          "invariant_id": "inv.c.0003"
+        },
+        {
+          "description": "两配置都恰好一次调用同一裁定路径。",
+          "invariant_id": "inv.c.0004"
+        },
+        {
+          "description": "两配置使用同一手动规则时钟，只允许控制变量改变调用延迟。",
+          "invariant_id": "inv.c.0005"
+        },
+        {
+          "description": "分类半窗固定为四十九点五毫秒与九十九点五毫秒。",
+          "invariant_id": "inv.c.0006"
+        },
+        {
+          "description": "主试验的呈现开关保持开启；呈现负对照与主试验分离。",
+          "invariant_id": "inv.c.0007"
+        }
+      ],
+      "observation_ids": [
+        "obs.c.0001",
+        "obs.c.0002",
+        "obs.c.0003",
+        "obs.c.0004",
+        "obs.c.0005",
+        "obs.c.0006"
+      ],
+      "stop_boundary_id": "o.c.0032",
+      "stop_boundary_spec": {
+        "boundary_kind": "first_declared_condition",
+        "coordinate": null,
+        "description": "正式结果、结果通知与同一对象的许可关闭均记录后立即停止。",
+        "stop_boundary_id": "o.c.0032"
+      },
+      "tolerance_specs": [
+        {
+          "comparison_kind": "exact",
+          "threshold": null,
+          "tolerance_rule_id": "tol.c.0001"
+        },
+        {
+          "comparison_kind": "absolute_delta",
+          "threshold": {
+            "serialized_value": "0",
+            "unit": "millisecond",
+            "value_type": "integer"
+          },
+          "tolerance_rule_id": "tol.c.0002"
+        }
+      ],
+      "variable_id": "o.c.0001",
+      "variant_value": {
+        "serialized_value": "75",
+        "unit": "millisecond",
+        "value_type": "integer"
+      }
+    }
+  ]
+}

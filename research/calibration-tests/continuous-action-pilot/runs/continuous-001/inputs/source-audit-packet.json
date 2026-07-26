@@ -1,9 +1,9 @@
 {
-  "$schema": "https://github.com/onovich/Game-Primitives/blob/main/research/calibration-tests/continuous-action-pilot/schema/task-packet-0.1.1.schema.json",
+  "$schema": "https://github.com/onovich/Game-Primitives/blob/main/research/calibration-tests/continuous-action-pilot/schema/task-packet-0.1.2.schema.json",
   "allowed_configurations": [],
   "allowed_observations": [],
   "artifact_type": "source_audit_task_packet",
-  "artifact_version": "0.1.1",
+  "artifact_version": "0.1.2",
   "assembled_output_schema": null,
   "behavior_scope": "structural_only",
   "case_ids": [
@@ -12,7 +12,7 @@
     "CA-R3"
   ],
   "condition_id": null,
-  "created_at": "2026-07-26T19:52:21Z",
+  "created_at": "2026-07-26T21:35:00Z",
   "forbidden_actions": [
     "access_other_submission",
     "access_package_outside_dispatch",
@@ -30,17 +30,17 @@
     {
       "artifact_id": "source-packet.continuous-001",
       "path": "research/calibration-tests/continuous-action-pilot/runs/continuous-001/source/source-packet.json",
-      "sha256": "c7757f1ce74af15c25433bbf32cb94bbd4d1c497d5637470803ef1cf09328d12"
+      "sha256": "cd7976fb67823da2986cd5f425de0ccd5c088abc9b9e0a1a56c351956dba8082"
     },
     {
       "artifact_id": "source.canonical-encoding-v0.1.0",
       "path": "research/calibration-tests/continuous-action-pilot/runs/continuous-001/source/canonical-encoding-v0.1.0.json",
-      "sha256": "0ca359886db636f065254b1a84c151c3b40b6442c7c503318944c534ea9738c3"
+      "sha256": "5682e1bb395a2c7e02df914b3a464005d195a736bc0dc0d88594f7ee3611e5c3"
     },
     {
       "artifact_id": "task.source-encoding.continuous-001",
       "path": "research/calibration-tests/continuous-action-pilot/runs/continuous-001/inputs/source-encoding-packet.json",
-      "sha256": "50cd682c317384398fd5215ed01c592a5560587d55e6667163a960781c662fcd"
+      "sha256": "bafa2689ffd7c80e34a1aeeb998cafdb76ccf79f9691e2c1e5aed5d85fe201c9"
     }
   ],
   "instructions": [
@@ -49,6 +49,8 @@
     "reference_closure 必须同时检查：来源事实只能引用本案 locator_id；内部记录引用必须闭合于本案定义或编码任务明确给出的停止边界；不得把任务夹具、推导、测量或实现猜测冒充来源事实。",
     "source_determinacy 必须检查：冻结来源不能确定的夹具轨迹、实测终值、目标评价、反馈可得性、跨工具链容差或时钟语义是否被明确保留为 source_underdetermined、representation_gap、scope_excluded 或 not_applicable。",
     "source_representation_distinction 与 typed_representation 必须检查：audit_identity 可以保留来源身份，但 blind_description 和结构关系不能以作品名、函数名或来源术语替代 CA-SR 类型；不要执行投影视图的身份泄漏审计，那属于下一道独立审计。",
+    "逐案确认 controlled_variable_id 由 project_fixture 定义为独立规则职责，并真实进入有类型关系；它不得携带控制值、预测或结果，游戏来源与项目夹具证据不得混用。",
+    "逐案确认 formal_input_ref、derivation_algorithm_id 与 stop_condition_refs 都有项目夹具定义，且定义只给输入接口、派生和停止语义，不把实测轨迹或答案伪装成来源事实。",
     "每个 required_audit_checks 项必须生成一个同名 check_id 的 audit_checks 记录；发现问题时给出精确 JSON 定位、来源 locator_id、严重性与所需修改。任一阻断发现应使 audit_decision 为 revision_required 或 blocked。",
     "输出一个 artifact_type=source_fidelity_audit、artifact_version=0.1.2、stage=source_audit 的 role submission；actor.role 必须为 source_auditor，packaging、pollution、prior_stage_submission_sha256 与 raw_payload 为 null，prediction_answers 与 reconstruction_answers 为空数组。",
     "输出只包含一个通过声明 Schema 的 JSON 对象，使用 UTF-8 无 BOM、LF、两空格缩进、递归键排序和单一末尾换行。"
@@ -63,6 +65,7 @@
     "cross_case_obligations",
     "provenance_fidelity",
     "reference_closure",
+    "single_variable_isolation",
     "source_determinacy",
     "source_representation_distinction",
     "typed_representation"
@@ -74,7 +77,7 @@
     "stop.r2.200-ms",
     "stop.r3.result-committed"
   ],
-  "target_encoding_sha256": "0ca359886db636f065254b1a84c151c3b40b6442c7c503318944c534ea9738c3",
+  "target_encoding_sha256": "5682e1bb395a2c7e02df914b3a464005d195a736bc0dc0d88594f7ee3611e5c3",
   "target_view_sha256": null,
   "task_id": "task.source-audit.continuous-001",
   "tolerance_rule_refs": [],

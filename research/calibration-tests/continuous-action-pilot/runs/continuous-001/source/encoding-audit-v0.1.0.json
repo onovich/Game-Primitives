@@ -1,77 +1,77 @@
 {
   "$schema": "https://github.com/onovich/Game-Primitives/blob/main/research/calibration-tests/continuous-action-pilot/schema/role-submission-0.1.2.schema.json",
   "actor": {
-    "identifier": "source-auditor-c001",
-    "model": "gpt-5.6-terra",
-    "model_version": "gpt-5.6-terra",
+    "identifier": "codex.source-auditor.continuous-001",
+    "model": "Codex",
+    "model_version": "GPT-5",
     "reasoning_effort": "high",
     "role": "source_auditor",
-    "session_id": "/root/source_auditor_c001"
+    "session_id": "session.source-fidelity-reaudit.continuous-001"
   },
   "artifact_type": "source_fidelity_audit",
   "artifact_version": "0.1.2",
   "audit_checks": [
     {
       "check_id": "case_scope",
-      "evidence": "三案的 controlled_variable_id、formal_input_ref、起止观察边界与排除范围逐项保留在规范编码中；编码未把夹具轨迹或运行终值冒充来源事实。",
+      "evidence": "CA-R1、CA-R2、CA-R3 的 role_id、观察起止边界、formal_input_ref 与 scope_exclusions 均与 source-packet 对应案例一致。；三个 formal_input_ref 均由本案 project_fixture 定义接口和事件字段，且未写入运行输出。",
       "status": "passed",
       "target_artifact_ids": [
-        "source-packet.continuous-001",
         "source.canonical-encoding-v0.1.0"
       ]
     },
     {
       "check_id": "cross_case_obligations",
-      "evidence": "CA-R1 明确记录了动作实现载体 medium.r1.fighter-state-machine；CA-R3 通过 edge.r3.effect-gates-reentry 和 time.r3.commit-before-reentry-check 闭合了正式效果提交到后续响应机会的关系，且未把通知臆断为玩家反馈。",
+      "evidence": "各案均编码实现载体、停止边界与轨迹契约；CA-R3 还编码正式效果到同一对象后续输入机会的门控关系。；CA-R3 已显式区分候选按下、已接受候选、窗口分类、CheckHittable 复核、正式事件、效果提交与后续输入机会。",
       "status": "passed",
       "target_artifact_ids": [
-        "representation.ca-sr-0.1",
         "source.canonical-encoding-v0.1.0"
       ]
     },
     {
       "check_id": "provenance_fidelity",
-      "evidence": "已核对冻结编码的来源事实均以本案 locator_id 标注。CA-R1 的输入边沿、取消许可、缓冲/执行窗口与 whiff 条件分别对应 r1.input-history、r1.cancel-permission-rule、r1.cancel-table、r1.cancel-permission-data；CA-R2 的子步、空中移动与加速对应 r2.outer-step、r2.single-step、r2.air-move、r2.acceleration；CA-R3 的候选、分类和提交对应 r3.input-press、r3.hit-circle-result、r3.result-order、r3.apply-result。",
+      "evidence": "CA-R1 与 CA-R2 的核心来源陈述与各自官方定位相符，project_fixture 事实也保持独立证据身份。；CA-R3 与官方定位一致：接收器接受候选并调用用户触发检查，随后以调用时的时间偏移分类、执行 CheckHittable 复核，通过后形成正式裁定事件，再由 ApplyResult 验证、写时、更新状态并通知。",
       "status": "passed",
       "target_artifact_ids": [
-        "source-packet.continuous-001",
         "source.canonical-encoding-v0.1.0"
       ]
     },
     {
       "check_id": "reference_closure",
-      "evidence": "递归核验全部 provenance_refs：每一项均闭合到所属案例 source-packet 中声明的 locator_id，未发现跨案 locator 或未声明定位。内部记录引用均由同案 references、rules、time_bases、state_channels、operational_records 或任务明确的停止边界承载。",
+      "evidence": "所有来源 provenance_refs/locator_refs 均闭合于本案 source-packet locator_id，所有内部 ID 在各自案例内均有定义。；CA-R3 的 event.r3.accepted-candidate、resolution.r3.hit-result、state.r3.check-hittable、event.r3.formal-judgement 与 effect.r3.result-committed 形成语义闭合的顺序链。",
       "status": "passed",
       "target_artifact_ids": [
-        "source-packet.continuous-001",
-        "source.canonical-encoding-v0.1.0",
-        "task.source-encoding.continuous-001"
+        "source.canonical-encoding-v0.1.0"
+      ]
+    },
+    {
+      "check_id": "single_variable_isolation",
+      "evidence": "三个 controlled_variable_id 均只引用本案 project_fixture，均声明保持不变项，且未在该变量记录中携带基线/变体控制值、预测或运行结果。；CA-R1、CA-R2、CA-R3 的变量分别进入 gates、modulates、scheduled_by 有类型关系；CA-R3 只调度已接受候选何时进入同一裁定路径，分类、复核、正式事件与提交职责保持来源定义。",
+      "status": "passed",
+      "target_artifact_ids": [
+        "source.canonical-encoding-v0.1.0"
       ]
     },
     {
       "check_id": "source_determinacy",
-      "evidence": "未由冻结定位确定的夹具轨迹、R1 积压语义、R2 的 8 ms 配置值/终值/跨工具链容差、R3 的具体通知观察者和 OD5 精确窗口均已明确标为 source_underdetermined；未发现以零、空值或外部默认值伪装未知来源事实。",
+      "evidence": "未由冻结官方来源确定的夹具实测终值、跨工具链容差、暂停积压语义、通知观察者与 OD5 精确插值均保留为 source_underdetermined。；formal_input、派生字段接口与 stop_condition 由 project_fixture 定义，未伪装成游戏来源事实。",
       "status": "passed",
       "target_artifact_ids": [
-        "source-packet.continuous-001",
         "source.canonical-encoding-v0.1.0"
       ]
     },
     {
       "check_id": "source_representation_distinction",
-      "evidence": "作品和实现身份仅位于 audit_identity；blind_description、规则、状态通道和关系使用角色中立的结构表述。夹具约定、测量终值与派生预测没有被写作 source_fact。",
+      "evidence": "audit_identity 保留作品与函数身份，blind_description 使用 CA-SR 职责描述；project_fixture 与游戏源码 locator 没有混作同一证据身份。；未发现预测答案、变体运行轨迹或实际终态写入 canonical encoding。",
       "status": "passed",
       "target_artifact_ids": [
-        "representation.ca-sr-0.1",
         "source.canonical-encoding-v0.1.0"
       ]
     },
     {
       "check_id": "typed_representation",
-      "evidence": "三案均将输入、规则动作、动作实例、过程、正式事件、结算、效果、状态通道、时间基准和具类型关系分别编码；R1 的采样—映射—实例化、R2 的 modulates/reads/writes、R3 的 adjudicates_as/resolves_to/commits/gates 未退化为无类型 relation。",
+      "evidence": "CA-R1 与 CA-R2 的输入、过程、状态通道及变量职责进入了有类型规则或关系。；CA-R3 以 event.r3.accepted-candidate 承载候选接受，以 resolution.r3.hit-result 承载分类，以 state.r3.check-hittable 和 rule.r3.formal-result-acceptance 承载复核，再形成 event.r3.formal-judgement 并提交 effect.r3.result-committed。",
       "status": "passed",
       "target_artifact_ids": [
-        "representation.ca-sr-0.1",
         "source.canonical-encoding-v0.1.0"
       ]
     }
@@ -87,15 +87,15 @@
     },
     {
       "artifact_id": "source-packet.continuous-001",
-      "sha256": "c7757f1ce74af15c25433bbf32cb94bbd4d1c497d5637470803ef1cf09328d12"
+      "sha256": "cd7976fb67823da2986cd5f425de0ccd5c088abc9b9e0a1a56c351956dba8082"
     },
     {
       "artifact_id": "source.canonical-encoding-v0.1.0",
-      "sha256": "0ca359886db636f065254b1a84c151c3b40b6442c7c503318944c534ea9738c3"
+      "sha256": "5682e1bb395a2c7e02df914b3a464005d195a736bc0dc0d88594f7ee3611e5c3"
     },
     {
       "artifact_id": "task.source-encoding.continuous-001",
-      "sha256": "50cd682c317384398fd5215ed01c592a5560587d55e6667163a960781c662fcd"
+      "sha256": "bafa2689ffd7c80e34a1aeeb998cafdb76ccf79f9691e2c1e5aed5d85fe201c9"
     }
   ],
   "packaging": null,
@@ -106,7 +106,7 @@
   "reconstruction_answers": [],
   "run_id": "continuous-001",
   "stage": "source_audit",
-  "submission_id": "submission.source-auditor-c001.continuous-001",
-  "submitted_at": "2026-07-26T19:55:21Z",
+  "submission_id": "audit.continuous-001.source-fidelity-v0.1.0",
+  "submitted_at": "2026-07-26T21:28:17Z",
   "task_id": "task.source-audit.continuous-001"
 }

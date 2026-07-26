@@ -1,9 +1,9 @@
 {
-  "$schema": "https://github.com/onovich/Game-Primitives/blob/main/research/calibration-tests/continuous-action-pilot/schema/task-packet-0.1.1.schema.json",
+  "$schema": "https://github.com/onovich/Game-Primitives/blob/main/research/calibration-tests/continuous-action-pilot/schema/task-packet-0.1.2.schema.json",
   "allowed_configurations": [],
   "allowed_observations": [],
   "artifact_type": "source_encoding_task_packet",
-  "artifact_version": "0.1.1",
+  "artifact_version": "0.1.2",
   "assembled_output_schema": null,
   "behavior_scope": "structural_only",
   "case_ids": [
@@ -12,7 +12,7 @@
     "CA-R3"
   ],
   "condition_id": null,
-  "created_at": "2026-07-26T19:30:02Z",
+  "created_at": "2026-07-26T21:09:48Z",
   "forbidden_actions": [
     "access_other_submission",
     "access_package_outside_dispatch",
@@ -30,7 +30,7 @@
     {
       "artifact_id": "source-packet.continuous-001",
       "path": "research/calibration-tests/continuous-action-pilot/runs/continuous-001/source/source-packet.json",
-      "sha256": "c7757f1ce74af15c25433bbf32cb94bbd4d1c497d5637470803ef1cf09328d12"
+      "sha256": "cd7976fb67823da2986cd5f425de0ccd5c088abc9b9e0a1a56c351956dba8082"
     }
   ],
   "instructions": [
@@ -38,6 +38,10 @@
     "为 CA-R1、CA-R2、CA-R3 生成一个 artifact_type=canonical_encoding、artifact_version=0.1.0 的统一规范编码；run_id 必须为 continuous-001，source_packet_sha256 必须精确绑定来源包。",
     "编码来源中的基线结构与冻结观察边界，不编码项目事前预测、变体运行结果、作品评价、玩家行为或体验判断。",
     "每项来源事实必须引用来源包中的 locator_id；规则推导、项目夹具约定、仪器测量与来源事实必须保持不同证据身份。",
+    "每案的 controlled_variable_id 都必须被定义为 base_type=rule、test_role=rule_action 的项目夹具记录，并进入至少一条有类型规则或关系，使丰富视图可追踪它负责改变哪一关系；不得把控制值、预期输出或项目预测写入该记录。",
+    "controlled_variable_id 的职责只能引用本案 project_fixture 定位；游戏来源事实与项目设计约定不得互相冒充。压缩投影是否删除该职责关系由后续生成器和投影审核决定。",
+    "每案 trace_contract 的 derivation_algorithm_id 与 stop_condition_refs 必须有本案可读记录定义，不得只留下裸 ID；项目规定的派生算法与停止点使用 project_fixture 证据身份。",
+    "formal_input_ref 必须由 project_fixture 定义输入接口和事件字段语义，不再标为 source_underdetermined；可以编码冻结输入的结构，但不得编码预测或运行结果。",
     "不得用源码函数、作品专名或来源术语替代 CA-SR 的有类型结构；audit_identity 可以保留来源身份，blind_description 必须能够去身份阅读。",
     "无法从冻结来源确定的必要事实必须记录为 source_underdetermined；当前表示无法无损表达时记录 representation_gap，不得猜测补全。",
     "每案必须形成可检查的时间基准、输入到动作或过程或裁定的操作关系、状态通道、停止边界与轨迹契约；同时覆盖行动实现载体和正式结果到后续响应机会两项跨案义务。",

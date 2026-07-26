@@ -2,7 +2,7 @@
   "$schema": "https://github.com/onovich/Game-Primitives/blob/main/research/calibration-tests/continuous-action-pilot/schema/ca-sr-artifact-0.1.0.schema.json",
   "artifact_type": "generated_view",
   "artifact_version": "0.1.0",
-  "canonical_encoding_sha256": "0ca359886db636f065254b1a84c151c3b40b6442c7c503318944c534ea9738c3",
+  "canonical_encoding_sha256": "5682e1bb395a2c7e02df914b3a464005d195a736bc0dc0d88594f7ee3611e5c3",
   "cases": [
     {
       "case_scope": {
@@ -25,10 +25,34 @@
           "record_id": "o.a.0002",
           "source_fact": {
             "provenance_refs": [],
-            "status": "source_underdetermined",
-            "value": null
+            "status": "encoded",
+            "value": "该动作标识由规范输入机械保留；中间边界未公开。"
           },
-          "test_role": "rule_action"
+          "test_role": "input"
+        },
+        {
+          "audit_identity": null,
+          "base_type": "process",
+          "blind_description": "边界输出派生过程 01",
+          "record_id": "o.a.0041",
+          "source_fact": {
+            "provenance_refs": [],
+            "status": "encoded",
+            "value": "该过程从允许的边界记录生成终止输出；中间更新关系未公开。"
+          },
+          "test_role": "process"
+        },
+        {
+          "audit_identity": null,
+          "base_type": "condition",
+          "blind_description": "观察终止条件 01",
+          "record_id": "o.a.0042",
+          "source_fact": {
+            "provenance_refs": [],
+            "status": "encoded",
+            "value": "该条件标识观察片段的声明终点；具体中间关系未公开。"
+          },
+          "test_role": "process"
         },
         {
           "audit_identity": null,
@@ -46,7 +70,7 @@
           "audit_identity": null,
           "base_type": "state",
           "blind_description": "允许效果类型 02",
-          "record_id": "o.a.0024",
+          "record_id": "o.a.0025",
           "source_fact": {
             "provenance_refs": [],
             "status": "encoded",
@@ -59,7 +83,7 @@
       "source_issues": [],
       "state_channels": [
         {
-          "channel_id": "o.a.0042",
+          "channel_id": "o.a.0045",
           "coordinate_system": {
             "provenance_refs": [],
             "status": "encoded",
@@ -127,10 +151,10 @@
           "scope_started",
           "state_committed"
         ],
-        "derivation_algorithm_id": "o.a.0044",
+        "derivation_algorithm_id": "o.a.0041",
         "raw_trace_ref": "o.a.0002",
         "stop_condition_refs": [
-          "o.a.0045"
+          "o.a.0042"
         ],
         "tolerance_rule_refs": []
       }
@@ -156,16 +180,40 @@
           "record_id": "o.b.0002",
           "source_fact": {
             "provenance_refs": [],
-            "status": "source_underdetermined",
-            "value": null
+            "status": "encoded",
+            "value": "该动作标识由规范输入机械保留；中间边界未公开。"
           },
-          "test_role": "rule_action"
+          "test_role": "input"
+        },
+        {
+          "audit_identity": null,
+          "base_type": "process",
+          "blind_description": "边界输出派生过程 01",
+          "record_id": "o.b.0029",
+          "source_fact": {
+            "provenance_refs": [],
+            "status": "encoded",
+            "value": "该过程从允许的边界记录生成终止输出；中间更新关系未公开。"
+          },
+          "test_role": "process"
+        },
+        {
+          "audit_identity": null,
+          "base_type": "condition",
+          "blind_description": "观察终止条件 01",
+          "record_id": "o.b.0030",
+          "source_fact": {
+            "provenance_refs": [],
+            "status": "encoded",
+            "value": "该条件标识观察片段的声明终点；具体中间关系未公开。"
+          },
+          "test_role": "process"
         },
         {
           "audit_identity": null,
           "base_type": "state",
           "blind_description": "允许效果类型 01",
-          "record_id": "o.b.0023",
+          "record_id": "o.b.0024",
           "source_fact": {
             "provenance_refs": [],
             "status": "encoded",
@@ -178,7 +226,7 @@
       "source_issues": [],
       "state_channels": [
         {
-          "channel_id": "o.b.0010",
+          "channel_id": "o.b.0011",
           "coordinate_system": {
             "provenance_refs": [],
             "status": "encoded",
@@ -232,7 +280,7 @@
           }
         },
         {
-          "channel_id": "o.b.0012",
+          "channel_id": "o.b.0013",
           "coordinate_system": {
             "provenance_refs": [],
             "status": "encoded",
@@ -294,10 +342,10 @@
           "scope_started",
           "state_committed"
         ],
-        "derivation_algorithm_id": "o.b.0031",
+        "derivation_algorithm_id": "o.b.0029",
         "raw_trace_ref": "o.b.0002",
         "stop_condition_refs": [
-          "o.b.0032"
+          "o.b.0030"
         ],
         "tolerance_rule_refs": []
       }
@@ -323,16 +371,40 @@
           "record_id": "o.c.0002",
           "source_fact": {
             "provenance_refs": [],
-            "status": "source_underdetermined",
-            "value": null
+            "status": "encoded",
+            "value": "该动作标识由规范输入机械保留；中间边界未公开。"
           },
-          "test_role": "rule_action"
+          "test_role": "input"
+        },
+        {
+          "audit_identity": null,
+          "base_type": "process",
+          "blind_description": "边界输出派生过程 01",
+          "record_id": "o.c.0031",
+          "source_fact": {
+            "provenance_refs": [],
+            "status": "encoded",
+            "value": "该过程从允许的边界记录生成终止输出；中间更新关系未公开。"
+          },
+          "test_role": "process"
+        },
+        {
+          "audit_identity": null,
+          "base_type": "condition",
+          "blind_description": "观察终止条件 01",
+          "record_id": "o.c.0032",
+          "source_fact": {
+            "provenance_refs": [],
+            "status": "encoded",
+            "value": "该条件标识观察片段的声明终点；具体中间关系未公开。"
+          },
+          "test_role": "process"
         },
         {
           "audit_identity": null,
           "base_type": "state",
           "blind_description": "允许效果类型 01",
-          "record_id": "o.c.0008",
+          "record_id": "o.c.0009",
           "source_fact": {
             "provenance_refs": [],
             "status": "encoded",
@@ -345,7 +417,7 @@
       "source_issues": [],
       "state_channels": [
         {
-          "channel_id": "o.c.0027",
+          "channel_id": "o.c.0035",
           "coordinate_system": {
             "provenance_refs": [],
             "status": "encoded",
@@ -419,10 +491,10 @@
           "scope_started",
           "state_committed"
         ],
-        "derivation_algorithm_id": "o.c.0030",
+        "derivation_algorithm_id": "o.c.0031",
         "raw_trace_ref": "o.c.0002",
         "stop_condition_refs": [
-          "o.c.0031"
+          "o.c.0032"
         ],
         "tolerance_rule_refs": []
       }
@@ -430,7 +502,7 @@
   ],
   "condition_id": "condition-v02",
   "generated_at": "2026-07-27T00:00:00Z",
-  "projection_id": "projection-v02.gsha256-6bf05513b5b82cafa1ac2dd3514c3f18f78130dbd5b0cad68bb040e696fbfb31",
-  "projection_spec_sha256": "e768e9b4e77edfd938e71ea680bd8cfdb1f8c9cf456e5d8a829c7a7ca58f8641",
+  "projection_id": "projection-v02.gsha256-9b2681df8f2b09255001da6c167216484fc75ada1e5ca95f0699a00a3bad1d85",
+  "projection_spec_sha256": "7ac0fe8a33c2d75a38bde2df3b804f89012a9acc712f83cd090139141ae60ec0",
   "run_id": "continuous-001"
 }

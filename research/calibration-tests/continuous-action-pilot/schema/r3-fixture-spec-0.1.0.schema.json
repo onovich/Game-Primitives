@@ -1,0 +1,214 @@
+{
+  "$id": "https://github.com/onovich/Game-Primitives/blob/main/research/calibration-tests/continuous-action-pilot/schema/r3-fixture-spec-0.1.0.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "$schema": {
+      "const": "https://github.com/onovich/Game-Primitives/blob/main/research/calibration-tests/continuous-action-pilot/schema/r3-fixture-spec-0.1.0.schema.json"
+    },
+    "artifact_type": {
+      "const": "continuous_action_r3_fixture_spec"
+    },
+    "artifact_version": {
+      "const": "0.1.0"
+    },
+    "case_id": {
+      "const": "CA-R3"
+    },
+    "configurations": {
+      "const": [
+        {
+          "adjudication_delay_ms": 0,
+          "configuration_id": "config.baseline",
+          "hit_animations": true
+        },
+        {
+          "adjudication_delay_ms": 75,
+          "configuration_id": "config.variant",
+          "hit_animations": true
+        }
+      ]
+    },
+    "controlled_variable": {
+      "const": {
+        "allowed_values_ms": [
+          0,
+          75
+        ],
+        "variable_id": "o.c.0001"
+      }
+    },
+    "formal_input_id": {
+      "const": "o.c.0002"
+    },
+    "identifier_mapping": {
+      "const": {
+        "input.r3.single-candidate": "o.c.0002",
+        "stop.r3.result-notification-score-and-reentry-closure": "o.c.0032",
+        "time.r3.deterministic-manual-clock": "o.c.0022",
+        "variable.r3.adjudication-schedule": "o.c.0001"
+      }
+    },
+    "invariants": {
+      "const": [
+        {
+          "invariant_id": "inv.c.0001",
+          "statement": "Both primary configurations use the same frozen source commit and byte-identical additive observation patch."
+        },
+        {
+          "invariant_id": "inv.c.0002",
+          "statement": "Both primary configurations use one OD5 HitCircle at T=1000 ms."
+        },
+        {
+          "invariant_id": "inv.c.0003",
+          "statement": "Both primary configurations submit one centre LeftButton candidate at T."
+        },
+        {
+          "invariant_id": "inv.c.0004",
+          "statement": "Both primary configurations capture and invoke the same original HitArea.Hit delegate exactly once."
+        },
+        {
+          "invariant_id": "inv.c.0005",
+          "statement": "Both primary configurations use the same ManualClock and differ only in whether the captured delegate is invoked at T or T+75 ms."
+        },
+        {
+          "invariant_id": "inv.c.0006",
+          "statement": "Both primary configurations record the same candidate, adjudication, result, RawTime, notification, scoring, Judged, and re-entry-closure fields."
+        },
+        {
+          "invariant_id": "inv.c.0007",
+          "statement": "HitAnimations remains true in both primary configurations and is varied only in the separate NEG-01 negative control."
+        }
+      ]
+    },
+    "negative_control": {
+      "const": {
+        "configurations": [
+          {
+            "adjudication_delay_ms": 0,
+            "configuration_id": "negative_control_a",
+            "hit_animations": true
+          },
+          {
+            "adjudication_delay_ms": 0,
+            "configuration_id": "negative_control_b",
+            "hit_animations": false
+          }
+        ],
+        "control_id": "NEG-01",
+        "intervention": "At a fixed 0 ms adjudication delay, switch only HitAnimations from true to false.",
+        "mechanism_fields_required_equal": [
+          "candidate_accepted",
+          "candidate_time_ms",
+          "adjudication_time_ms",
+          "raw_time_ms",
+          "result",
+          "judged",
+          "notification_count",
+          "score_notification_count",
+          "score_judged_hits",
+          "score_combo",
+          "score_total",
+          "reentry_allowed_after_candidate",
+          "reentry_allowed_at_notification",
+          "reentry_closed_time_ms",
+          "production_can_be_hit_after_result",
+          "time_offset_ms"
+        ]
+      }
+    },
+    "observations": {
+      "const": [
+        {
+          "observation_id": "obs.c.0001",
+          "statement": "candidate acceptance and candidate time"
+        },
+        {
+          "observation_id": "obs.c.0002",
+          "statement": "production HitArea.Hit delegate identity and adjudication time"
+        },
+        {
+          "observation_id": "obs.c.0003",
+          "statement": "result classification, internal RawTime, and public time offset"
+        },
+        {
+          "observation_id": "obs.c.0004",
+          "statement": "OnNewResult notification count and time"
+        },
+        {
+          "observation_id": "obs.c.0005",
+          "statement": "ScoreProcessor notification, judged-hit count, combo, and total score"
+        },
+        {
+          "observation_id": "obs.c.0006",
+          "statement": "Judged state, closure of the original CanBeHit re-entry gate, and ordered event trace"
+        }
+      ]
+    },
+    "pre_gate_policy": {
+      "const": {
+        "allowed": [
+          "copy additive observation patch into an isolated source clone",
+          "copy dependency lock files into that clone",
+          "locked restore of osu.Game.Rulesets.Osu.Tests.csproj",
+          "build osu.Game.Rulesets.Osu.Tests.csproj",
+          "list TestFormalAdjudicationSchedule without executing it"
+        ],
+        "formal_comparator_allowed": false,
+        "formal_input_executed": false,
+        "formal_result_created": false,
+        "prohibited": [
+          "execute TestFormalAdjudicationSchedule",
+          "set any GAME_PRIMITIVES formal execution-permit, formal-input, prediction-set, run, or case environment variable",
+          "run config.baseline or config.variant",
+          "run NEG-01",
+          "invoke the formal comparator"
+        ]
+      }
+    },
+    "run_id": {
+      "const": "continuous-001"
+    },
+    "stop_boundary_id": {
+      "const": "o.c.0032"
+    },
+    "target": {
+      "const": {
+        "commit": "5da71008b082d1a77e4bb301dc98886f1f24b895",
+        "project": "osu.Game.Rulesets.Osu.Tests/osu.Game.Rulesets.Osu.Tests.csproj",
+        "repository": "https://github.com/ppy/osu",
+        "test_filter": "osu.Game.Rulesets.Osu.Tests.TestSceneGamePrimitivesR3.TestFormalAdjudicationSchedule"
+      }
+    },
+    "time_base_id": {
+      "const": "o.c.0022"
+    },
+    "tolerance_rule_ids": {
+      "const": [
+        "tol.c.0001",
+        "tol.c.0002"
+      ]
+    }
+  },
+  "required": [
+    "$schema",
+    "artifact_type",
+    "artifact_version",
+    "case_id",
+    "configurations",
+    "controlled_variable",
+    "formal_input_id",
+    "identifier_mapping",
+    "invariants",
+    "negative_control",
+    "observations",
+    "pre_gate_policy",
+    "run_id",
+    "stop_boundary_id",
+    "target",
+    "time_base_id",
+    "tolerance_rule_ids"
+  ],
+  "title": "Game Primitives CA-R3 Fixture Specification 0.1.0",
+  "type": "object"
+}

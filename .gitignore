@@ -12,3 +12,7 @@ Desktop.ini
 
 # Local research render/download cache
 /tmp/
+
+# Generated language caches
+__pycache__/
+*.py[cod]

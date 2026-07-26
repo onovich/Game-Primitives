@@ -1,0 +1,124 @@
+{
+  "artifact_type": "fixture_lock_case_draft",
+  "artifact_version": "0.1.0",
+  "case_lock": {
+    "build_gate_status": "passed",
+    "case_id": "CA-R3",
+    "comparator_artifacts": [
+      {
+        "artifact_id": "comparator.ca-r3.formal-v0.1.0",
+        "path": "research/calibration-tests/continuous-action-pilot/runs/continuous-001/fixtures/r3/compare-osu-r3-formal-v0.1.0.ps1",
+        "sha256": "a4a35b0513f00f2cc848a626ca4834210982154a7552fa06d89585f3e7a86da8"
+      }
+    ],
+    "compatibility_patch_set": {
+      "artifacts": [],
+      "configuration_artifacts": [],
+      "patch_role": "compatibility",
+      "realization": "not_applicable"
+    },
+    "fixture_artifacts": [
+      {
+        "artifact_id": "fixture.ca-r3.observation-source",
+        "path": "research/calibration-tests/continuous-action-pilot/runs/continuous-001/fixtures/r3/TestSceneGamePrimitivesR3.cs",
+        "sha256": "f383e4604f6ab65ff66be6619fe6558da9083e6a57aecaadb24b292f234ef006"
+      },
+      {
+        "artifact_id": "fixture.ca-r3.spec",
+        "path": "research/calibration-tests/continuous-action-pilot/runs/continuous-001/fixtures/r3/r3-fixture-spec-v0.1.0.json",
+        "sha256": "6bff1307be4cd595bb41e10606207c0343a66cd661ea01324e01a1c6b3ccb07b"
+      },
+      {
+        "artifact_id": "fixture.ca-r3.dependency-lock-set",
+        "path": "research/calibration-tests/continuous-action-pilot/runs/continuous-001/fixtures/r3/dependency-lock-set-v0.1.0.json",
+        "sha256": "9f9f8f4fe02dbdc3f676657d092414068f0403bbf19439623c09fef180fec275"
+      },
+      {
+        "artifact_id": "fixture.ca-r3.build-list-runner",
+        "path": "research/calibration-tests/continuous-action-pilot/runs/continuous-001/fixtures/r3/run-osu-r3-build-list-v0.1.0.ps1",
+        "sha256": "a1a16ee178349938360d0589595e48151269be182759febad5cc3b9613c1895f"
+      },
+      {
+        "artifact_id": "fixture.ca-r3.formal-runner",
+        "path": "research/calibration-tests/continuous-action-pilot/runs/continuous-001/fixtures/r3/run-osu-r3-formal-v0.1.0.ps1",
+        "sha256": "29926ac65c2c92605a2d756f0fdc76d41031e2180521750f746cbc680d5c564c"
+      }
+    ],
+    "fixture_id": "fixture.ca-r3.osu-adjudication-schedule",
+    "formal_input_artifacts": [
+      {
+        "artifact_id": "input.ca-r3.single-candidate",
+        "path": "research/calibration-tests/continuous-action-pilot/runs/continuous-001/fixtures/r3/formal-input-r3-v0.1.0.json",
+        "sha256": "d3b08090411312da03979f067793d15f25f33d6015e1448b761dc1db460eeb21"
+      }
+    ],
+    "formal_input_executed": false,
+    "invariant_ids": [
+      "inv.c.0001",
+      "inv.c.0002",
+      "inv.c.0003",
+      "inv.c.0004",
+      "inv.c.0005",
+      "inv.c.0006",
+      "inv.c.0007"
+    ],
+    "observation_patch_set": {
+      "artifacts": [
+        {
+          "artifact_id": "patch.ca-r3.observation-source",
+          "path": "research/calibration-tests/continuous-action-pilot/runs/continuous-001/fixtures/r3/TestSceneGamePrimitivesR3.cs",
+          "sha256": "f383e4604f6ab65ff66be6619fe6558da9083e6a57aecaadb24b292f234ef006"
+        }
+      ],
+      "configuration_artifacts": [],
+      "patch_role": "observation",
+      "realization": "patch"
+    },
+    "preparation_probe_artifacts": [
+      {
+        "artifact_id": "probe.ca-r3.neutral-v0.1.0",
+        "path": "research/calibration-tests/continuous-action-pilot/runs/continuous-001/fixtures/r3/osu-neutral-probe-v0.1.0.md",
+        "sha256": "8b281c5fe28efa7c83509b6c27f9c9e8cc8b8f14f590cfea32f81dd669f27e76"
+      },
+      {
+        "artifact_id": "probe.ca-r3.build-list-v0.1.0",
+        "path": "research/calibration-tests/continuous-action-pilot/runs/continuous-001/fixtures/r3/r3-build-list-evidence-v0.1.0.json",
+        "sha256": "d19a2aff05068fb13304c325e19cc6e09cbb921053fdfa6c1b8818024563e49b"
+      }
+    ],
+    "source_identity": {
+      "clean_tree_required": true,
+      "commit_sha": "5da71008b082d1a77e4bb301dc98886f1f24b895",
+      "repository_url": "https://github.com/ppy/osu",
+      "source_identity_artifacts": [
+        {
+          "artifact_id": "source-packet.continuous-001",
+          "path": "research/calibration-tests/continuous-action-pilot/runs/continuous-001/source/source-packet.json",
+          "sha256": "cd7976fb67823da2986cd5f425de0ccd5c088abc9b9e0a1a56c351956dba8082"
+        }
+      ]
+    },
+    "stop_boundary_id": "o.c.0032",
+    "tolerance_rule_ids": [
+      "tol.c.0001",
+      "tol.c.0002"
+    ],
+    "variant_patch_set": {
+      "artifacts": [],
+      "configuration_artifacts": [
+        {
+          "artifact_id": "fixture.ca-r3.spec",
+          "path": "research/calibration-tests/continuous-action-pilot/runs/continuous-001/fixtures/r3/r3-fixture-spec-v0.1.0.json",
+          "sha256": "6bff1307be4cd595bb41e10606207c0343a66cd661ea01324e01a1c6b3ccb07b"
+        }
+      ],
+      "patch_role": "variant",
+      "realization": "configuration_only"
+    }
+  },
+  "created_at": "2026-07-26T22:54:24Z",
+  "draft_status": "awaiting_root_fixture_lock_assembly",
+  "formal_execution_authorized": false,
+  "root_lock_schema_target": "https://github.com/onovich/Game-Primitives/blob/main/research/calibration-tests/continuous-action-pilot/schema/fixture-lock-0.1.0.schema.json",
+  "run_id": "continuous-001"
+}

@@ -62,6 +62,12 @@
           "source_id": "source.footsies-1.5.0"
         },
         {
+          "locator_id": "r1.project-variant-contract",
+          "locator_kind": "project_fixture",
+          "locator_value": "https://github.com/onovich/Game-Primitives/blob/33fbdb79f2bab95753b9dbee06fcfcbf1c2a460d/research/continuous-action-pilot-ca-05-variants.md#2-ca-r1已缓存请求能否越过取消资格门",
+          "source_id": "source.game-primitives-ca05"
+        },
+        {
           "locator_id": "r1.request-commit",
           "locator_kind": "source_file_lines",
           "locator_value": "https://github.com/hifight/Footsies/blob/7eaaad799bb7912625c15af9407c2c67e6305d75/Assets/Script/Fighter.cs#L531-L556",
@@ -93,7 +99,8 @@
         }
       ],
       "source_ids": [
-        "source.footsies-1.5.0"
+        "source.footsies-1.5.0",
+        "source.game-primitives-ca05"
       ]
     },
     {
@@ -149,6 +156,12 @@
           "source_id": "source.quake3-gpl"
         },
         {
+          "locator_id": "r2.project-variant-contract",
+          "locator_kind": "project_fixture",
+          "locator_value": "https://github.com/onovich/Game-Primitives/blob/33fbdb79f2bab95753b9dbee06fcfcbf1c2a460d/research/continuous-action-pilot-ca-05-variants.md#3-ca-r2运行过程逐步重采样还是入口锁存",
+          "source_id": "source.game-primitives-ca05"
+        },
+        {
           "locator_id": "r2.public-structures",
           "locator_kind": "source_file_lines",
           "locator_value": "https://github.com/id-Software/Quake-III-Arena/blob/dbe4ddb10315479fc00086f08e25d968b4b43c49/code/game/bg_public.h#L119-L195",
@@ -174,6 +187,7 @@
         }
       ],
       "source_ids": [
+        "source.game-primitives-ca05",
         "source.quake3-gpl"
       ]
     },
@@ -242,6 +256,12 @@
           "source_id": "source.osu-lazer-2026.726.0"
         },
         {
+          "locator_id": "r3.project-variant-contract",
+          "locator_kind": "project_fixture",
+          "locator_value": "https://github.com/onovich/Game-Primitives/blob/33fbdb79f2bab95753b9dbee06fcfcbf1c2a460d/research/continuous-action-pilot-ca-05-variants.md#4-ca-r3候选立即裁定还是延迟裁定",
+          "source_id": "source.game-primitives-ca05"
+        },
+        {
           "locator_id": "r3.result-order",
           "locator_kind": "source_file_lines",
           "locator_value": "https://github.com/ppy/osu/blob/5da71008b082d1a77e4bb301dc98886f1f24b895/osu.Game/Rulesets/Scoring/HitWindows.cs#L37-L109",
@@ -267,11 +287,12 @@
         }
       ],
       "source_ids": [
+        "source.game-primitives-ca05",
         "source.osu-lazer-2026.726.0"
       ]
     }
   ],
-  "created_at": "2026-07-26T19:30:02Z",
+  "created_at": "2026-07-26T21:09:48Z",
   "run_id": "continuous-001",
   "source_packet_id": "source-packet.continuous-001",
   "sources": [
@@ -288,6 +309,15 @@
         }
       ],
       "work_title": "FOOTSIES source tag 1.5.0"
+    },
+    {
+      "commit": "33fbdb79f2bab95753b9dbee06fcfcbf1c2a460d",
+      "license": "No repository license declared; project-authored research protocol used internally",
+      "repository_url": "https://github.com/onovich/Game-Primitives",
+      "source_id": "source.game-primitives-ca05",
+      "tag": null,
+      "toolchain": [],
+      "work_title": "Game Primitives CA-05 controlled-variable protocol"
     },
     {
       "commit": "5da71008b082d1a77e4bb301dc98886f1f24b895",

@@ -19,6 +19,805 @@
       ],
       "type": "object"
     },
+    "expectationPair": {
+      "$ref": "https://github.com/onovich/Game-Primitives/blob/main/research/calibration-tests/continuous-action-pilot/schema/role-submission-0.1.1.schema.json#/$defs/predictionExpectation",
+      "properties": {
+        "configuration_id": {
+          "type": "string"
+        },
+        "observation_id": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "configuration_id",
+        "observation_id"
+      ],
+      "type": "object"
+    },
+    "indeterminateExpectation": {
+      "properties": {
+        "expectation_kind": {
+          "const": "status"
+        },
+        "value": {
+          "properties": {
+            "serialized_value": {
+              "const": "indeterminate"
+            },
+            "unit": {
+              "type": "null"
+            },
+            "value_type": {
+              "const": "status"
+            }
+          }
+        }
+      },
+      "type": "object"
+    },
+    "r1ExpectationSet": {
+      "items": {
+        "$ref": "#/$defs/expectationPair"
+      },
+      "maxItems": 10,
+      "minItems": 10,
+      "type": "array",
+      "uniqueItems": true,
+      "$defs": {
+        "baselineA1": {
+          "$ref": "#/$defs/r1ExpectationSet/$defs/pairs/baselineA1"
+        },
+        "variantA1": {
+          "$ref": "#/$defs/r1ExpectationSet/$defs/pairs/variantA1"
+        },
+        "baselineA2": {
+          "$ref": "#/$defs/r1ExpectationSet/$defs/pairs/baselineA2"
+        },
+        "variantA2": {
+          "$ref": "#/$defs/r1ExpectationSet/$defs/pairs/variantA2"
+        },
+        "baselineA3": {
+          "$ref": "#/$defs/r1ExpectationSet/$defs/pairs/baselineA3"
+        },
+        "variantA3": {
+          "$ref": "#/$defs/r1ExpectationSet/$defs/pairs/variantA3"
+        },
+        "baselineA4": {
+          "$ref": "#/$defs/r1ExpectationSet/$defs/pairs/baselineA4"
+        },
+        "variantA4": {
+          "$ref": "#/$defs/r1ExpectationSet/$defs/pairs/variantA4"
+        },
+        "baselineA5": {
+          "$ref": "#/$defs/r1ExpectationSet/$defs/pairs/baselineA5"
+        },
+        "variantA5": {
+          "$ref": "#/$defs/r1ExpectationSet/$defs/pairs/variantA5"
+        },
+        "pairs": {
+          "baselineA1": {
+            "$ref": "#/$defs/expectationPair",
+            "properties": {
+              "configuration_id": {
+                "const": "config.baseline"
+              },
+              "observation_id": {
+                "const": "obs.a.0001"
+              }
+            }
+          },
+          "variantA1": {
+            "$ref": "#/$defs/expectationPair",
+            "properties": {
+              "configuration_id": {
+                "const": "config.variant"
+              },
+              "observation_id": {
+                "const": "obs.a.0001"
+              }
+            }
+          },
+          "baselineA2": {
+            "$ref": "#/$defs/expectationPair",
+            "properties": {
+              "configuration_id": {
+                "const": "config.baseline"
+              },
+              "observation_id": {
+                "const": "obs.a.0002"
+              }
+            }
+          },
+          "variantA2": {
+            "$ref": "#/$defs/expectationPair",
+            "properties": {
+              "configuration_id": {
+                "const": "config.variant"
+              },
+              "observation_id": {
+                "const": "obs.a.0002"
+              }
+            }
+          },
+          "baselineA3": {
+            "$ref": "#/$defs/expectationPair",
+            "properties": {
+              "configuration_id": {
+                "const": "config.baseline"
+              },
+              "observation_id": {
+                "const": "obs.a.0003"
+              }
+            }
+          },
+          "variantA3": {
+            "$ref": "#/$defs/expectationPair",
+            "properties": {
+              "configuration_id": {
+                "const": "config.variant"
+              },
+              "observation_id": {
+                "const": "obs.a.0003"
+              }
+            }
+          },
+          "baselineA4": {
+            "$ref": "#/$defs/expectationPair",
+            "properties": {
+              "configuration_id": {
+                "const": "config.baseline"
+              },
+              "observation_id": {
+                "const": "obs.a.0004"
+              }
+            }
+          },
+          "variantA4": {
+            "$ref": "#/$defs/expectationPair",
+            "properties": {
+              "configuration_id": {
+                "const": "config.variant"
+              },
+              "observation_id": {
+                "const": "obs.a.0004"
+              }
+            }
+          },
+          "baselineA5": {
+            "$ref": "#/$defs/expectationPair",
+            "properties": {
+              "configuration_id": {
+                "const": "config.baseline"
+              },
+              "observation_id": {
+                "const": "obs.a.0005"
+              }
+            }
+          },
+          "variantA5": {
+            "$ref": "#/$defs/expectationPair",
+            "properties": {
+              "configuration_id": {
+                "const": "config.variant"
+              },
+              "observation_id": {
+                "const": "obs.a.0005"
+              }
+            }
+          }
+        }
+      },
+      "allOf": [
+        {
+          "contains": {
+            "$ref": "#/$defs/r1ExpectationSet/$defs/baselineA1"
+          },
+          "maxContains": 1,
+          "minContains": 1
+        },
+        {
+          "contains": {
+            "$ref": "#/$defs/r1ExpectationSet/$defs/variantA1"
+          },
+          "maxContains": 1,
+          "minContains": 1
+        },
+        {
+          "contains": {
+            "$ref": "#/$defs/r1ExpectationSet/$defs/baselineA2"
+          },
+          "maxContains": 1,
+          "minContains": 1
+        },
+        {
+          "contains": {
+            "$ref": "#/$defs/r1ExpectationSet/$defs/variantA2"
+          },
+          "maxContains": 1,
+          "minContains": 1
+        },
+        {
+          "contains": {
+            "$ref": "#/$defs/r1ExpectationSet/$defs/baselineA3"
+          },
+          "maxContains": 1,
+          "minContains": 1
+        },
+        {
+          "contains": {
+            "$ref": "#/$defs/r1ExpectationSet/$defs/variantA3"
+          },
+          "maxContains": 1,
+          "minContains": 1
+        },
+        {
+          "contains": {
+            "$ref": "#/$defs/r1ExpectationSet/$defs/baselineA4"
+          },
+          "maxContains": 1,
+          "minContains": 1
+        },
+        {
+          "contains": {
+            "$ref": "#/$defs/r1ExpectationSet/$defs/variantA4"
+          },
+          "maxContains": 1,
+          "minContains": 1
+        },
+        {
+          "contains": {
+            "$ref": "#/$defs/r1ExpectationSet/$defs/baselineA5"
+          },
+          "maxContains": 1,
+          "minContains": 1
+        },
+        {
+          "contains": {
+            "$ref": "#/$defs/r1ExpectationSet/$defs/variantA5"
+          },
+          "maxContains": 1,
+          "minContains": 1
+        }
+      ]
+    },
+    "r2ExpectationSet": {
+      "items": {
+        "$ref": "#/$defs/expectationPair"
+      },
+      "maxItems": 10,
+      "minItems": 10,
+      "type": "array",
+      "uniqueItems": true,
+      "$defs": {
+        "baselineB1": {
+          "$ref": "#/$defs/expectationPair",
+          "properties": {
+            "configuration_id": {
+              "const": "config.baseline"
+            },
+            "observation_id": {
+              "const": "obs.b.0001"
+            }
+          }
+        },
+        "variantB1": {
+          "$ref": "#/$defs/expectationPair",
+          "properties": {
+            "configuration_id": {
+              "const": "config.variant"
+            },
+            "observation_id": {
+              "const": "obs.b.0001"
+            }
+          }
+        },
+        "baselineB2": {
+          "$ref": "#/$defs/expectationPair",
+          "properties": {
+            "configuration_id": {
+              "const": "config.baseline"
+            },
+            "observation_id": {
+              "const": "obs.b.0002"
+            }
+          }
+        },
+        "variantB2": {
+          "$ref": "#/$defs/expectationPair",
+          "properties": {
+            "configuration_id": {
+              "const": "config.variant"
+            },
+            "observation_id": {
+              "const": "obs.b.0002"
+            }
+          }
+        },
+        "baselineB3": {
+          "$ref": "#/$defs/expectationPair",
+          "properties": {
+            "configuration_id": {
+              "const": "config.baseline"
+            },
+            "observation_id": {
+              "const": "obs.b.0003"
+            }
+          }
+        },
+        "variantB3": {
+          "$ref": "#/$defs/expectationPair",
+          "properties": {
+            "configuration_id": {
+              "const": "config.variant"
+            },
+            "observation_id": {
+              "const": "obs.b.0003"
+            }
+          }
+        },
+        "baselineB4": {
+          "$ref": "#/$defs/expectationPair",
+          "properties": {
+            "configuration_id": {
+              "const": "config.baseline"
+            },
+            "observation_id": {
+              "const": "obs.b.0004"
+            }
+          }
+        },
+        "variantB4": {
+          "$ref": "#/$defs/expectationPair",
+          "properties": {
+            "configuration_id": {
+              "const": "config.variant"
+            },
+            "observation_id": {
+              "const": "obs.b.0004"
+            }
+          }
+        },
+        "baselineB5": {
+          "$ref": "#/$defs/expectationPair",
+          "properties": {
+            "configuration_id": {
+              "const": "config.baseline"
+            },
+            "observation_id": {
+              "const": "obs.b.0005"
+            }
+          }
+        },
+        "variantB5": {
+          "$ref": "#/$defs/expectationPair",
+          "properties": {
+            "configuration_id": {
+              "const": "config.variant"
+            },
+            "observation_id": {
+              "const": "obs.b.0005"
+            }
+          }
+        }
+      },
+      "allOf": [
+        {
+          "contains": {
+            "$ref": "#/$defs/r2ExpectationSet/$defs/baselineB1"
+          },
+          "maxContains": 1,
+          "minContains": 1
+        },
+        {
+          "contains": {
+            "$ref": "#/$defs/r2ExpectationSet/$defs/variantB1"
+          },
+          "maxContains": 1,
+          "minContains": 1
+        },
+        {
+          "contains": {
+            "$ref": "#/$defs/r2ExpectationSet/$defs/baselineB2"
+          },
+          "maxContains": 1,
+          "minContains": 1
+        },
+        {
+          "contains": {
+            "$ref": "#/$defs/r2ExpectationSet/$defs/variantB2"
+          },
+          "maxContains": 1,
+          "minContains": 1
+        },
+        {
+          "contains": {
+            "$ref": "#/$defs/r2ExpectationSet/$defs/baselineB3"
+          },
+          "maxContains": 1,
+          "minContains": 1
+        },
+        {
+          "contains": {
+            "$ref": "#/$defs/r2ExpectationSet/$defs/variantB3"
+          },
+          "maxContains": 1,
+          "minContains": 1
+        },
+        {
+          "contains": {
+            "$ref": "#/$defs/r2ExpectationSet/$defs/baselineB4"
+          },
+          "maxContains": 1,
+          "minContains": 1
+        },
+        {
+          "contains": {
+            "$ref": "#/$defs/r2ExpectationSet/$defs/variantB4"
+          },
+          "maxContains": 1,
+          "minContains": 1
+        },
+        {
+          "contains": {
+            "$ref": "#/$defs/r2ExpectationSet/$defs/baselineB5"
+          },
+          "maxContains": 1,
+          "minContains": 1
+        },
+        {
+          "contains": {
+            "$ref": "#/$defs/r2ExpectationSet/$defs/variantB5"
+          },
+          "maxContains": 1,
+          "minContains": 1
+        }
+      ]
+    },
+    "r3ExpectationSet": {
+      "items": {
+        "$ref": "#/$defs/expectationPair"
+      },
+      "maxItems": 12,
+      "minItems": 12,
+      "type": "array",
+      "uniqueItems": true,
+      "$defs": {
+        "baselineC1": {
+          "$ref": "#/$defs/expectationPair",
+          "properties": {
+            "configuration_id": {
+              "const": "config.baseline"
+            },
+            "observation_id": {
+              "const": "obs.c.0001"
+            }
+          }
+        },
+        "variantC1": {
+          "$ref": "#/$defs/expectationPair",
+          "properties": {
+            "configuration_id": {
+              "const": "config.variant"
+            },
+            "observation_id": {
+              "const": "obs.c.0001"
+            }
+          }
+        },
+        "baselineC2": {
+          "$ref": "#/$defs/expectationPair",
+          "properties": {
+            "configuration_id": {
+              "const": "config.baseline"
+            },
+            "observation_id": {
+              "const": "obs.c.0002"
+            }
+          }
+        },
+        "variantC2": {
+          "$ref": "#/$defs/expectationPair",
+          "properties": {
+            "configuration_id": {
+              "const": "config.variant"
+            },
+            "observation_id": {
+              "const": "obs.c.0002"
+            }
+          }
+        },
+        "baselineC3": {
+          "$ref": "#/$defs/expectationPair",
+          "properties": {
+            "configuration_id": {
+              "const": "config.baseline"
+            },
+            "observation_id": {
+              "const": "obs.c.0003"
+            }
+          }
+        },
+        "variantC3": {
+          "$ref": "#/$defs/expectationPair",
+          "properties": {
+            "configuration_id": {
+              "const": "config.variant"
+            },
+            "observation_id": {
+              "const": "obs.c.0003"
+            }
+          }
+        },
+        "baselineC4": {
+          "$ref": "#/$defs/expectationPair",
+          "properties": {
+            "configuration_id": {
+              "const": "config.baseline"
+            },
+            "observation_id": {
+              "const": "obs.c.0004"
+            }
+          }
+        },
+        "variantC4": {
+          "$ref": "#/$defs/expectationPair",
+          "properties": {
+            "configuration_id": {
+              "const": "config.variant"
+            },
+            "observation_id": {
+              "const": "obs.c.0004"
+            }
+          }
+        },
+        "baselineC5": {
+          "$ref": "#/$defs/expectationPair",
+          "properties": {
+            "configuration_id": {
+              "const": "config.baseline"
+            },
+            "observation_id": {
+              "const": "obs.c.0005"
+            }
+          }
+        },
+        "variantC5": {
+          "$ref": "#/$defs/expectationPair",
+          "properties": {
+            "configuration_id": {
+              "const": "config.variant"
+            },
+            "observation_id": {
+              "const": "obs.c.0005"
+            }
+          }
+        },
+        "baselineC6": {
+          "$ref": "#/$defs/expectationPair",
+          "properties": {
+            "configuration_id": {
+              "const": "config.baseline"
+            },
+            "observation_id": {
+              "const": "obs.c.0006"
+            }
+          }
+        },
+        "variantC6": {
+          "$ref": "#/$defs/expectationPair",
+          "properties": {
+            "configuration_id": {
+              "const": "config.variant"
+            },
+            "observation_id": {
+              "const": "obs.c.0006"
+            }
+          }
+        }
+      },
+      "allOf": [
+        {
+          "contains": {
+            "$ref": "#/$defs/r3ExpectationSet/$defs/baselineC1"
+          },
+          "maxContains": 1,
+          "minContains": 1
+        },
+        {
+          "contains": {
+            "$ref": "#/$defs/r3ExpectationSet/$defs/variantC1"
+          },
+          "maxContains": 1,
+          "minContains": 1
+        },
+        {
+          "contains": {
+            "$ref": "#/$defs/r3ExpectationSet/$defs/baselineC2"
+          },
+          "maxContains": 1,
+          "minContains": 1
+        },
+        {
+          "contains": {
+            "$ref": "#/$defs/r3ExpectationSet/$defs/variantC2"
+          },
+          "maxContains": 1,
+          "minContains": 1
+        },
+        {
+          "contains": {
+            "$ref": "#/$defs/r3ExpectationSet/$defs/baselineC3"
+          },
+          "maxContains": 1,
+          "minContains": 1
+        },
+        {
+          "contains": {
+            "$ref": "#/$defs/r3ExpectationSet/$defs/variantC3"
+          },
+          "maxContains": 1,
+          "minContains": 1
+        },
+        {
+          "contains": {
+            "$ref": "#/$defs/r3ExpectationSet/$defs/baselineC4"
+          },
+          "maxContains": 1,
+          "minContains": 1
+        },
+        {
+          "contains": {
+            "$ref": "#/$defs/r3ExpectationSet/$defs/variantC4"
+          },
+          "maxContains": 1,
+          "minContains": 1
+        },
+        {
+          "contains": {
+            "$ref": "#/$defs/r3ExpectationSet/$defs/baselineC5"
+          },
+          "maxContains": 1,
+          "minContains": 1
+        },
+        {
+          "contains": {
+            "$ref": "#/$defs/r3ExpectationSet/$defs/variantC5"
+          },
+          "maxContains": 1,
+          "minContains": 1
+        },
+        {
+          "contains": {
+            "$ref": "#/$defs/r3ExpectationSet/$defs/baselineC6"
+          },
+          "maxContains": 1,
+          "minContains": 1
+        },
+        {
+          "contains": {
+            "$ref": "#/$defs/r3ExpectationSet/$defs/variantC6"
+          },
+          "maxContains": 1,
+          "minContains": 1
+        }
+      ]
+    },
+    "predictionAnswerR1": {
+      "$ref": "#/$defs/predictionAnswerBase",
+      "properties": {
+        "case_id": {
+          "const": "CA-R1"
+        },
+        "compatible_alternatives": {
+          "items": {
+            "$ref": "#/$defs/predictionAlternativeR1"
+          }
+        },
+        "expectations": {
+          "$ref": "#/$defs/r1ExpectationSet"
+        }
+      }
+    },
+    "predictionAnswerR2": {
+      "$ref": "#/$defs/predictionAnswerBase",
+      "properties": {
+        "case_id": {
+          "const": "CA-R2"
+        },
+        "compatible_alternatives": {
+          "items": {
+            "$ref": "#/$defs/predictionAlternativeR2"
+          }
+        },
+        "expectations": {
+          "$ref": "#/$defs/r2ExpectationSet"
+        }
+      }
+    },
+    "predictionAnswerR3": {
+      "$ref": "#/$defs/predictionAnswerBase",
+      "properties": {
+        "case_id": {
+          "const": "CA-R3"
+        },
+        "compatible_alternatives": {
+          "items": {
+            "$ref": "#/$defs/predictionAlternativeR3"
+          }
+        },
+        "expectations": {
+          "$ref": "#/$defs/r3ExpectationSet"
+        }
+      }
+    },
+    "predictionAnswerBase": {
+      "allOf": [
+        {
+          "$ref": "https://github.com/onovich/Game-Primitives/blob/main/research/calibration-tests/continuous-action-pilot/schema/role-submission-0.1.1.schema.json#/$defs/predictionAnswer"
+        },
+        {
+          "if": {
+            "properties": {
+              "prediction_status": {
+                "const": "indeterminate"
+              }
+            },
+            "required": [
+              "prediction_status"
+            ]
+          },
+          "then": {
+            "properties": {
+              "compatible_alternatives": {
+                "minItems": 2
+              },
+              "expectations": {
+                "items": {
+                  "$ref": "#/$defs/indeterminateExpectation"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "properties": {
+        "assumptions": {
+          "uniqueItems": true
+        },
+        "compatible_alternatives": {
+          "type": "array",
+          "uniqueItems": true
+        },
+        "supporting_record_ids": {
+          "uniqueItems": true
+        }
+      }
+    },
+    "predictionAlternativeR1": {
+      "$ref": "https://github.com/onovich/Game-Primitives/blob/main/research/calibration-tests/continuous-action-pilot/schema/role-submission-0.1.1.schema.json#/$defs/predictionAlternative",
+      "properties": {
+        "expectations": {
+          "$ref": "#/$defs/r1ExpectationSet"
+        }
+      }
+    },
+    "predictionAlternativeR2": {
+      "$ref": "https://github.com/onovich/Game-Primitives/blob/main/research/calibration-tests/continuous-action-pilot/schema/role-submission-0.1.1.schema.json#/$defs/predictionAlternative",
+      "properties": {
+        "expectations": {
+          "$ref": "#/$defs/r2ExpectationSet"
+        }
+      }
+    },
+    "predictionAlternativeR3": {
+      "$ref": "https://github.com/onovich/Game-Primitives/blob/main/research/calibration-tests/continuous-action-pilot/schema/role-submission-0.1.1.schema.json#/$defs/predictionAlternative",
+      "properties": {
+        "expectations": {
+          "$ref": "#/$defs/r3ExpectationSet"
+        }
+      }
+    },
     "predictionPayload": {
       "additionalProperties": false,
       "properties": {
@@ -36,10 +835,45 @@
         },
         "prediction_answers": {
           "items": {
-            "$ref": "https://github.com/onovich/Game-Primitives/blob/main/research/calibration-tests/continuous-action-pilot/schema/role-submission-0.1.1.schema.json#/$defs/predictionAnswer"
+            "oneOf": [
+              {
+                "$ref": "#/$defs/predictionAnswerR1"
+              },
+              {
+                "$ref": "#/$defs/predictionAnswerR2"
+              },
+              {
+                "$ref": "#/$defs/predictionAnswerR3"
+              }
+            ]
           },
-          "minItems": 1,
-          "type": "array"
+          "maxItems": 3,
+          "minItems": 3,
+          "type": "array",
+          "uniqueItems": true,
+          "allOf": [
+            {
+              "contains": {
+                "$ref": "#/$defs/predictionAnswerR1"
+              },
+              "maxContains": 1,
+              "minContains": 1
+            },
+            {
+              "contains": {
+                "$ref": "#/$defs/predictionAnswerR2"
+              },
+              "maxContains": 1,
+              "minContains": 1
+            },
+            {
+              "contains": {
+                "$ref": "#/$defs/predictionAnswerR3"
+              },
+              "maxContains": 1,
+              "minContains": 1
+            }
+          ]
         }
       },
       "required": [
@@ -50,6 +884,23 @@
         "prediction_answers"
       ],
       "type": "object"
+    },
+    "reconstructionAnswer": {
+      "$ref": "https://github.com/onovich/Game-Primitives/blob/main/research/calibration-tests/continuous-action-pilot/schema/role-submission-0.1.1.schema.json#/$defs/reconstructionAnswer",
+      "properties": {
+        "ambiguities": {
+          "uniqueItems": true
+        },
+        "assumptions": {
+          "uniqueItems": true
+        },
+        "compatible_branches": {
+          "uniqueItems": true
+        },
+        "recovered_facts": {
+          "uniqueItems": true
+        }
+      }
     },
     "reconstructionPayload": {
       "additionalProperties": false,
@@ -68,10 +919,45 @@
         },
         "reconstruction_answers": {
           "items": {
-            "$ref": "https://github.com/onovich/Game-Primitives/blob/main/research/calibration-tests/continuous-action-pilot/schema/role-submission-0.1.1.schema.json#/$defs/reconstructionAnswer"
+            "oneOf": [
+              {
+                "$ref": "#/$defs/reconstructionAnswerR1"
+              },
+              {
+                "$ref": "#/$defs/reconstructionAnswerR2"
+              },
+              {
+                "$ref": "#/$defs/reconstructionAnswerR3"
+              }
+            ]
           },
-          "minItems": 1,
-          "type": "array"
+          "maxItems": 3,
+          "minItems": 3,
+          "type": "array",
+          "uniqueItems": true,
+          "allOf": [
+            {
+              "contains": {
+                "$ref": "#/$defs/reconstructionAnswerR1"
+              },
+              "maxContains": 1,
+              "minContains": 1
+            },
+            {
+              "contains": {
+                "$ref": "#/$defs/reconstructionAnswerR2"
+              },
+              "maxContains": 1,
+              "minContains": 1
+            },
+            {
+              "contains": {
+                "$ref": "#/$defs/reconstructionAnswerR3"
+              },
+              "maxContains": 1,
+              "minContains": 1
+            }
+          ]
         }
       },
       "required": [
@@ -82,6 +968,30 @@
         "reconstruction_answers"
       ],
       "type": "object"
+    },
+    "reconstructionAnswerR1": {
+      "$ref": "#/$defs/reconstructionAnswer",
+      "properties": {
+        "case_id": {
+          "const": "CA-R1"
+        }
+      }
+    },
+    "reconstructionAnswerR2": {
+      "$ref": "#/$defs/reconstructionAnswer",
+      "properties": {
+        "case_id": {
+          "const": "CA-R2"
+        }
+      }
+    },
+    "reconstructionAnswerR3": {
+      "$ref": "#/$defs/reconstructionAnswer",
+      "properties": {
+        "case_id": {
+          "const": "CA-R3"
+        }
+      }
     },
     "submissionEnvelope": {
       "additionalProperties": false,
@@ -153,7 +1063,8 @@
             "$ref": "https://github.com/onovich/Game-Primitives/blob/main/research/calibration-tests/continuous-action-pilot/schema/role-submission-0.1.1.schema.json#/$defs/artifactReference"
           },
           "minItems": 2,
-          "type": "array"
+          "type": "array",
+          "uniqueItems": true
         },
         "first_submission": {
           "const": true

@@ -1,0 +1,961 @@
+{
+  "$defs": {
+    "artifactReference": {
+      "additionalProperties": false,
+      "properties": {
+        "path": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "sha256": {
+          "$ref": "#/$defs/sha256"
+        }
+      },
+      "required": [
+        "path",
+        "sha256"
+      ],
+      "type": "object"
+    },
+    "contractArtifacts": {
+      "additionalProperties": false,
+      "properties": {
+        "ca_r1_raw_trace_schema": {
+          "allOf": [
+            {
+              "$ref": "#/$defs/artifactReference"
+            },
+            {
+              "properties": {
+                "path": {
+                  "const": "research/calibration-tests/continuous-action-pilot/schema/ca-r1-raw-trace-0.1.0.schema.json"
+                }
+              }
+            }
+          ]
+        },
+        "ca_r2_raw_trace_schema": {
+          "allOf": [
+            {
+              "$ref": "#/$defs/artifactReference"
+            },
+            {
+              "properties": {
+                "path": {
+                  "const": "research/calibration-tests/continuous-action-pilot/schema/ca-r2-raw-trace-0.1.0.schema.json"
+                }
+              }
+            }
+          ]
+        },
+        "ca_r3_raw_trace_schema": {
+          "allOf": [
+            {
+              "$ref": "#/$defs/artifactReference"
+            },
+            {
+              "properties": {
+                "path": {
+                  "const": "research/calibration-tests/continuous-action-pilot/schema/ca-r3-raw-trace-0.1.0.schema.json"
+                }
+              }
+            }
+          ]
+        },
+        "execution_permit_materializer": {
+          "allOf": [
+            {
+              "$ref": "#/$defs/artifactReference"
+            },
+            {
+              "properties": {
+                "path": {
+                  "const": "research/calibration-tests/continuous-action-pilot/tools/materialize-execution-permit.py"
+                }
+              }
+            }
+          ]
+        },
+        "execution_permit_schema": {
+          "allOf": [
+            {
+              "$ref": "#/$defs/artifactReference"
+            },
+            {
+              "properties": {
+                "path": {
+                  "const": "research/calibration-tests/continuous-action-pilot/schema/formal-execution-permit-0.1.0.schema.json"
+                }
+              }
+            }
+          ]
+        },
+        "execution_permit_verifier": {
+          "allOf": [
+            {
+              "$ref": "#/$defs/artifactReference"
+            },
+            {
+              "properties": {
+                "path": {
+                  "const": "research/calibration-tests/continuous-action-pilot/tools/verify-formal-execution-permit.py"
+                }
+              }
+            }
+          ]
+        },
+        "formal_comparator_output_schema": {
+          "allOf": [
+            {
+              "$ref": "#/$defs/artifactReference"
+            },
+            {
+              "properties": {
+                "path": {
+                  "const": "research/calibration-tests/continuous-action-pilot/schema/formal-comparator-output-0.1.0.schema.json"
+                }
+              }
+            }
+          ]
+        },
+        "raw_trace_verifier": {
+          "allOf": [
+            {
+              "$ref": "#/$defs/artifactReference"
+            },
+            {
+              "properties": {
+                "path": {
+                  "const": "research/calibration-tests/continuous-action-pilot/tools/verify-formal-raw-trace.py"
+                }
+              }
+            }
+          ]
+        },
+        "submission_builder": {
+          "allOf": [
+            {
+              "$ref": "#/$defs/artifactReference"
+            },
+            {
+              "properties": {
+                "path": {
+                  "const": "research/calibration-tests/continuous-action-pilot/tools/build-role-submission.py"
+                }
+              }
+            }
+          ]
+        }
+      },
+      "required": [
+        "ca_r1_raw_trace_schema",
+        "ca_r2_raw_trace_schema",
+        "ca_r3_raw_trace_schema",
+        "execution_permit_materializer",
+        "execution_permit_schema",
+        "execution_permit_verifier",
+        "formal_comparator_output_schema",
+        "raw_trace_verifier",
+        "submission_builder"
+      ],
+      "type": "object"
+    },
+    "r1ExecutionTarget": {
+      "additionalProperties": false,
+      "properties": {
+        "case_id": {
+          "const": "CA-R1"
+        },
+        "comparator": {
+          "allOf": [
+            {
+              "$ref": "#/$defs/artifactReference"
+            },
+            {
+              "properties": {
+                "path": {
+                  "const": "research/calibration-tests/continuous-action-pilot/runs/continuous-001/fixtures/r1/compare-footsies-r1-v0.1.0.ps1"
+                }
+              }
+            }
+          ]
+        },
+        "formal_input": {
+          "allOf": [
+            {
+              "$ref": "#/$defs/artifactReference"
+            },
+            {
+              "properties": {
+                "path": {
+                  "const": "research/calibration-tests/continuous-action-pilot/runs/continuous-001/fixtures/r1/footsies-r1-formal-input-v0.1.0.json"
+                }
+              }
+            }
+          ]
+        },
+        "formal_runner": {
+          "allOf": [
+            {
+              "$ref": "#/$defs/artifactReference"
+            },
+            {
+              "properties": {
+                "path": {
+                  "const": "research/calibration-tests/continuous-action-pilot/runs/continuous-001/fixtures/r1/run-footsies-r1-formal-v0.1.0.ps1"
+                }
+              }
+            }
+          ]
+        },
+        "raw_trace_schema": {
+          "allOf": [
+            {
+              "$ref": "#/$defs/artifactReference"
+            },
+            {
+              "properties": {
+                "path": {
+                  "const": "research/calibration-tests/continuous-action-pilot/schema/ca-r1-raw-trace-0.1.0.schema.json"
+                }
+              }
+            }
+          ]
+        },
+        "support_artifacts": {
+          "$ref": "#/$defs/r1SupportArtifacts"
+        },
+        "test_body": {
+          "allOf": [
+            {
+              "$ref": "#/$defs/artifactReference"
+            },
+            {
+              "properties": {
+                "path": {
+                  "const": "research/calibration-tests/continuous-action-pilot/runs/continuous-001/fixtures/r1/footsies-r1-observation-v0.1.0.cs"
+                }
+              }
+            }
+          ]
+        }
+      },
+      "required": [
+        "case_id",
+        "comparator",
+        "formal_input",
+        "formal_runner",
+        "raw_trace_schema",
+        "support_artifacts",
+        "test_body"
+      ],
+      "type": "object"
+    },
+    "r1SupportArtifacts": {
+      "additionalProperties": false,
+      "properties": {
+        "test_body_metadata": {
+          "allOf": [
+            {
+              "$ref": "#/$defs/artifactReference"
+            },
+            {
+              "properties": {
+                "path": {
+                  "const": "research/calibration-tests/continuous-action-pilot/runs/continuous-001/fixtures/r1/footsies-r1-observation-v0.1.0.cs.meta"
+                }
+              }
+            }
+          ]
+        },
+        "variant_patch": {
+          "allOf": [
+            {
+              "$ref": "#/$defs/artifactReference"
+            },
+            {
+              "properties": {
+                "path": {
+                  "const": "research/calibration-tests/continuous-action-pilot/runs/continuous-001/fixtures/r1/footsies-r1-whiff-cancel-v0.1.0.patch"
+                }
+              }
+            }
+          ]
+        }
+      },
+      "required": [
+        "test_body_metadata",
+        "variant_patch"
+      ],
+      "type": "object"
+    },
+    "r2ExecutionTarget": {
+      "additionalProperties": false,
+      "properties": {
+        "case_id": {
+          "const": "CA-R2"
+        },
+        "comparator": {
+          "allOf": [
+            {
+              "$ref": "#/$defs/artifactReference"
+            },
+            {
+              "properties": {
+                "path": {
+                  "const": "research/calibration-tests/continuous-action-pilot/runs/continuous-001/fixtures/r2/compare-q3-formal-traces-v0.1.0.ps1"
+                }
+              }
+            }
+          ]
+        },
+        "formal_input": {
+          "allOf": [
+            {
+              "$ref": "#/$defs/artifactReference"
+            },
+            {
+              "properties": {
+                "path": {
+                  "const": "research/calibration-tests/continuous-action-pilot/runs/continuous-001/fixtures/r2/r2-formal-input-v0.1.0.json"
+                }
+              }
+            }
+          ]
+        },
+        "formal_runner": {
+          "allOf": [
+            {
+              "$ref": "#/$defs/artifactReference"
+            },
+            {
+              "properties": {
+                "path": {
+                  "const": "research/calibration-tests/continuous-action-pilot/runs/continuous-001/fixtures/r2/run-q3-formal-guarded-v0.1.0.ps1"
+                }
+              }
+            }
+          ]
+        },
+        "raw_trace_schema": {
+          "allOf": [
+            {
+              "$ref": "#/$defs/artifactReference"
+            },
+            {
+              "properties": {
+                "path": {
+                  "const": "research/calibration-tests/continuous-action-pilot/schema/ca-r2-raw-trace-0.1.0.schema.json"
+                }
+              }
+            }
+          ]
+        },
+        "support_artifacts": {
+          "$ref": "#/$defs/r2SupportArtifacts"
+        },
+        "test_body": {
+          "allOf": [
+            {
+              "$ref": "#/$defs/artifactReference"
+            },
+            {
+              "properties": {
+                "path": {
+                  "const": "research/calibration-tests/continuous-action-pilot/runs/continuous-001/fixtures/r2/q3-formal-harness-v0.1.0.c"
+                }
+              }
+            }
+          ]
+        }
+      },
+      "required": [
+        "case_id",
+        "comparator",
+        "formal_input",
+        "formal_runner",
+        "raw_trace_schema",
+        "support_artifacts",
+        "test_body"
+      ],
+      "type": "object"
+    },
+    "r2SupportArtifacts": {
+      "additionalProperties": false,
+      "properties": {
+        "build_runner": {
+          "allOf": [
+            {
+              "$ref": "#/$defs/artifactReference"
+            },
+            {
+              "properties": {
+                "path": {
+                  "const": "research/calibration-tests/continuous-action-pilot/runs/continuous-001/fixtures/r2/build-q3-formal-fixture-v0.1.0.ps1"
+                }
+              }
+            }
+          ]
+        },
+        "compatibility_patch": {
+          "allOf": [
+            {
+              "$ref": "#/$defs/artifactReference"
+            },
+            {
+              "properties": {
+                "path": {
+                  "const": "research/calibration-tests/continuous-action-pilot/runs/continuous-001/fixtures/r2/q3-msvc-x64-compatibility-v0.1.0.patch"
+                }
+              }
+            }
+          ]
+        },
+        "compatibility_source": {
+          "allOf": [
+            {
+              "$ref": "#/$defs/artifactReference"
+            },
+            {
+              "properties": {
+                "path": {
+                  "const": "research/calibration-tests/continuous-action-pilot/runs/continuous-001/fixtures/r2/q3-formal-compatibility-v0.1.0.c"
+                }
+              }
+            }
+          ]
+        },
+        "harness_header": {
+          "allOf": [
+            {
+              "$ref": "#/$defs/artifactReference"
+            },
+            {
+              "properties": {
+                "path": {
+                  "const": "research/calibration-tests/continuous-action-pilot/runs/continuous-001/fixtures/r2/q3-formal-fixture-v0.1.0.h"
+                }
+              }
+            }
+          ]
+        },
+        "observation_patch": {
+          "allOf": [
+            {
+              "$ref": "#/$defs/artifactReference"
+            },
+            {
+              "properties": {
+                "path": {
+                  "const": "research/calibration-tests/continuous-action-pilot/runs/continuous-001/fixtures/r2/q3-observation-v0.1.0.patch"
+                }
+              }
+            }
+          ]
+        },
+        "variant_patch": {
+          "allOf": [
+            {
+              "$ref": "#/$defs/artifactReference"
+            },
+            {
+              "properties": {
+                "path": {
+                  "const": "research/calibration-tests/continuous-action-pilot/runs/continuous-001/fixtures/r2/q3-entry-latch-variant-v0.1.0.patch"
+                }
+              }
+            }
+          ]
+        }
+      },
+      "required": [
+        "build_runner",
+        "compatibility_patch",
+        "compatibility_source",
+        "harness_header",
+        "observation_patch",
+        "variant_patch"
+      ],
+      "type": "object"
+    },
+    "r3ExecutionTarget": {
+      "additionalProperties": false,
+      "properties": {
+        "case_id": {
+          "const": "CA-R3"
+        },
+        "comparator": {
+          "allOf": [
+            {
+              "$ref": "#/$defs/artifactReference"
+            },
+            {
+              "properties": {
+                "path": {
+                  "const": "research/calibration-tests/continuous-action-pilot/runs/continuous-001/fixtures/r3/compare-osu-r3-formal-v0.1.0.ps1"
+                }
+              }
+            }
+          ]
+        },
+        "formal_input": {
+          "allOf": [
+            {
+              "$ref": "#/$defs/artifactReference"
+            },
+            {
+              "properties": {
+                "path": {
+                  "const": "research/calibration-tests/continuous-action-pilot/runs/continuous-001/fixtures/r3/formal-input-r3-v0.1.0.json"
+                }
+              }
+            }
+          ]
+        },
+        "formal_runner": {
+          "allOf": [
+            {
+              "$ref": "#/$defs/artifactReference"
+            },
+            {
+              "properties": {
+                "path": {
+                  "const": "research/calibration-tests/continuous-action-pilot/runs/continuous-001/fixtures/r3/run-osu-r3-formal-v0.1.0.ps1"
+                }
+              }
+            }
+          ]
+        },
+        "raw_trace_schema": {
+          "allOf": [
+            {
+              "$ref": "#/$defs/artifactReference"
+            },
+            {
+              "properties": {
+                "path": {
+                  "const": "research/calibration-tests/continuous-action-pilot/schema/ca-r3-raw-trace-0.1.0.schema.json"
+                }
+              }
+            }
+          ]
+        },
+        "support_artifacts": {
+          "$ref": "#/$defs/r3SupportArtifacts"
+        },
+        "test_body": {
+          "allOf": [
+            {
+              "$ref": "#/$defs/artifactReference"
+            },
+            {
+              "properties": {
+                "path": {
+                  "const": "research/calibration-tests/continuous-action-pilot/runs/continuous-001/fixtures/r3/TestSceneGamePrimitivesR3.cs"
+                }
+              }
+            }
+          ]
+        }
+      },
+      "required": [
+        "case_id",
+        "comparator",
+        "formal_input",
+        "formal_runner",
+        "raw_trace_schema",
+        "support_artifacts",
+        "test_body"
+      ],
+      "type": "object"
+    },
+    "r3SupportArtifacts": {
+      "additionalProperties": false,
+      "properties": {
+        "build_list_evidence": {
+          "allOf": [
+            {
+              "$ref": "#/$defs/artifactReference"
+            },
+            {
+              "properties": {
+                "path": {
+                  "const": "research/calibration-tests/continuous-action-pilot/runs/continuous-001/fixtures/r3/r3-build-list-evidence-v0.1.0.json"
+                }
+              }
+            }
+          ]
+        },
+        "build_runner": {
+          "allOf": [
+            {
+              "$ref": "#/$defs/artifactReference"
+            },
+            {
+              "properties": {
+                "path": {
+                  "const": "research/calibration-tests/continuous-action-pilot/runs/continuous-001/fixtures/r3/run-osu-r3-build-list-v0.1.0.ps1"
+                }
+              }
+            }
+          ]
+        },
+        "dependency_lock_set": {
+          "allOf": [
+            {
+              "$ref": "#/$defs/artifactReference"
+            },
+            {
+              "properties": {
+                "path": {
+                  "const": "research/calibration-tests/continuous-action-pilot/runs/continuous-001/fixtures/r3/dependency-lock-set-v0.1.0.json"
+                }
+              }
+            }
+          ]
+        },
+        "fixture_spec": {
+          "allOf": [
+            {
+              "$ref": "#/$defs/artifactReference"
+            },
+            {
+              "properties": {
+                "path": {
+                  "const": "research/calibration-tests/continuous-action-pilot/runs/continuous-001/fixtures/r3/r3-fixture-spec-v0.1.0.json"
+                }
+              }
+            }
+          ]
+        }
+      },
+      "required": [
+        "build_list_evidence",
+        "build_runner",
+        "dependency_lock_set",
+        "fixture_spec"
+      ],
+      "type": "object"
+    },
+    "seatPrediction": {
+      "additionalProperties": false,
+      "properties": {
+        "condition_id": {
+          "enum": [
+            "condition-v01",
+            "condition-v02"
+          ]
+        },
+        "seat_id": {
+          "enum": [
+            "p01",
+            "p02",
+            "p03",
+            "p04"
+          ]
+        },
+        "submission": {
+          "$ref": "#/$defs/artifactReference"
+        }
+      },
+      "required": [
+        "condition_id",
+        "seat_id",
+        "submission"
+      ],
+      "type": "object"
+    },
+    "sha256": {
+      "pattern": "^(?!0{64}$)[0-9a-f]{64}$",
+      "type": "string"
+    }
+  },
+  "$id": "https://github.com/onovich/Game-Primitives/blob/main/research/calibration-tests/continuous-action-pilot/schema/formal-execution-permit-0.1.0.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "$schema": {
+      "const": "https://github.com/onovich/Game-Primitives/blob/main/research/calibration-tests/continuous-action-pilot/schema/formal-execution-permit-0.1.0.schema.json"
+    },
+    "artifact_type": {
+      "const": "formal_execution_permit"
+    },
+    "artifact_version": {
+      "const": "0.1.0"
+    },
+    "authorization_lineage": {
+      "additionalProperties": false,
+      "properties": {
+        "freeze_commit": {
+          "pattern": "^[0-9a-f]{40}$",
+          "type": "string"
+        },
+        "frozen_artifact_set_digest": {
+          "$ref": "#/$defs/sha256"
+        },
+        "frozen_manifest_path": {
+          "const": "research/calibration-tests/continuous-action-pilot/runs/continuous-001/manifest.json"
+        }
+      },
+      "required": [
+        "freeze_commit",
+        "frozen_artifact_set_digest",
+        "frozen_manifest_path"
+      ],
+      "type": "object"
+    },
+    "contract_artifacts": {
+      "$ref": "#/$defs/contractArtifacts"
+    },
+    "execution_targets": {
+      "items": false,
+      "maxItems": 3,
+      "minItems": 3,
+      "prefixItems": [
+        {
+          "$ref": "#/$defs/r1ExecutionTarget"
+        },
+        {
+          "$ref": "#/$defs/r2ExecutionTarget"
+        },
+        {
+          "$ref": "#/$defs/r3ExecutionTarget"
+        }
+      ],
+      "type": "array"
+    },
+    "human_gate_authorization": {
+      "allOf": [
+        {
+          "$ref": "#/$defs/artifactReference"
+        },
+        {
+          "properties": {
+            "path": {
+              "const": "research/calibration-tests/continuous-action-pilot/runs/continuous-001/submissions/dispatch/human-gate-authorization.json"
+            }
+          }
+        }
+      ]
+    },
+    "permit_id": {
+      "const": "execution-permit.continuous-001"
+    },
+    "permit_state": {
+      "const": "ready_for_formal_execution"
+    },
+    "prediction_set": {
+      "additionalProperties": false,
+      "properties": {
+        "prediction_set_digest": {
+          "$ref": "#/$defs/sha256"
+        },
+        "preimage": {
+          "allOf": [
+            {
+              "$ref": "#/$defs/artifactReference"
+            },
+            {
+              "properties": {
+                "path": {
+                  "const": "research/calibration-tests/continuous-action-pilot/runs/continuous-001/submissions/prediction-set-preimage.tsv"
+                }
+              }
+            }
+          ]
+        },
+        "seat_predictions": {
+          "items": false,
+          "maxItems": 4,
+          "minItems": 4,
+          "prefixItems": [
+            {
+              "allOf": [
+                {
+                  "$ref": "#/$defs/seatPrediction"
+                },
+                {
+                  "properties": {
+                    "condition_id": {
+                      "const": "condition-v01"
+                    },
+                    "seat_id": {
+                      "const": "p01"
+                    },
+                    "submission": {
+                      "properties": {
+                        "path": {
+                          "const": "research/calibration-tests/continuous-action-pilot/runs/continuous-001/submissions/p01-stage2.json"
+                        }
+                      }
+                    }
+                  }
+                }
+              ]
+            },
+            {
+              "allOf": [
+                {
+                  "$ref": "#/$defs/seatPrediction"
+                },
+                {
+                  "properties": {
+                    "condition_id": {
+                      "const": "condition-v01"
+                    },
+                    "seat_id": {
+                      "const": "p02"
+                    },
+                    "submission": {
+                      "properties": {
+                        "path": {
+                          "const": "research/calibration-tests/continuous-action-pilot/runs/continuous-001/submissions/p02-stage2.json"
+                        }
+                      }
+                    }
+                  }
+                }
+              ]
+            },
+            {
+              "allOf": [
+                {
+                  "$ref": "#/$defs/seatPrediction"
+                },
+                {
+                  "properties": {
+                    "condition_id": {
+                      "const": "condition-v02"
+                    },
+                    "seat_id": {
+                      "const": "p03"
+                    },
+                    "submission": {
+                      "properties": {
+                        "path": {
+                          "const": "research/calibration-tests/continuous-action-pilot/runs/continuous-001/submissions/p03-stage2.json"
+                        }
+                      }
+                    }
+                  }
+                }
+              ]
+            },
+            {
+              "allOf": [
+                {
+                  "$ref": "#/$defs/seatPrediction"
+                },
+                {
+                  "properties": {
+                    "condition_id": {
+                      "const": "condition-v02"
+                    },
+                    "seat_id": {
+                      "const": "p04"
+                    },
+                    "submission": {
+                      "properties": {
+                        "path": {
+                          "const": "research/calibration-tests/continuous-action-pilot/runs/continuous-001/submissions/p04-stage2.json"
+                        }
+                      }
+                    }
+                  }
+                }
+              ]
+            }
+          ],
+          "type": "array"
+        }
+      },
+      "required": [
+        "prediction_set_digest",
+        "preimage",
+        "seat_predictions"
+      ],
+      "type": "object"
+    },
+    "run_id": {
+      "const": "continuous-001"
+    },
+    "scope": {
+      "additionalProperties": false,
+      "properties": {
+        "case_ids": {
+          "items": false,
+          "maxItems": 3,
+          "minItems": 3,
+          "prefixItems": [
+            {
+              "const": "CA-R1"
+            },
+            {
+              "const": "CA-R2"
+            },
+            {
+              "const": "CA-R3"
+            }
+          ],
+          "type": "array"
+        },
+        "operations": {
+          "items": false,
+          "maxItems": 2,
+          "minItems": 2,
+          "prefixItems": [
+            {
+              "const": "formal_fixture_execution"
+            },
+            {
+              "const": "formal_comparison"
+            }
+          ],
+          "type": "array"
+        }
+      },
+      "required": [
+        "case_ids",
+        "operations"
+      ],
+      "type": "object"
+    },
+    "state_at_materialization": {
+      "additionalProperties": false,
+      "properties": {
+        "formal_input_executed": {
+          "const": false
+        },
+        "formal_result_produced": {
+          "const": false
+        },
+        "predictions_frozen": {
+          "const": true
+        }
+      },
+      "required": [
+        "formal_input_executed",
+        "formal_result_produced",
+        "predictions_frozen"
+      ],
+      "type": "object"
+    }
+  },
+  "required": [
+    "$schema",
+    "artifact_type",
+    "artifact_version",
+    "authorization_lineage",
+    "contract_artifacts",
+    "execution_targets",
+    "human_gate_authorization",
+    "permit_id",
+    "permit_state",
+    "prediction_set",
+    "run_id",
+    "scope",
+    "state_at_materialization"
+  ],
+  "title": "continuous-001 Formal Execution Permit 0.1.0",
+  "type": "object"
+}

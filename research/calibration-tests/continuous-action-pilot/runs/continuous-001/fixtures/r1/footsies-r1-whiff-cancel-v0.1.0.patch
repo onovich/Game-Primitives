@@ -1,0 +1,12 @@
+diff --git a/Assets/Fighter/F00/F00.asset b/Assets/Fighter/F00/F00.asset
+--- a/Assets/Fighter/F00/F00.asset
++++ b/Assets/Fighter/F00/F00.asset
+@@ -16,7 +16,7 @@ MonoBehaviour:
+   backwardMoveSpeed: 1.8
+   dashAllowFrame: 9
+   specialAttackHoldFrame: 60
+-  canCancelOnWhiff: 0
++  canCancelOnWhiff: 1
+   baseHurtBoxRect:
+     serializedVersion: 2
+     x: 0

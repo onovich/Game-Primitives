@@ -1,0 +1,121 @@
+{
+  "build_gate_status": "passed",
+  "case_id": "CA-R2",
+  "comparator_artifacts": [
+    {
+      "artifact_id": "r2.comparator.q3-formal-traces.v0.1.0",
+      "path": "research/calibration-tests/continuous-action-pilot/runs/continuous-001/fixtures/r2/compare-q3-formal-traces-v0.1.0.ps1",
+      "sha256": "655e1ed263eee4cbedf668b7a0dfec9bc8e58caafb3416e0f62749114d2386c9"
+    }
+  ],
+  "compatibility_patch_set": {
+    "artifacts": [
+      {
+        "artifact_id": "r2.patch.q3-msvc-x64-compatibility.v0.1.0",
+        "path": "research/calibration-tests/continuous-action-pilot/runs/continuous-001/fixtures/r2/q3-msvc-x64-compatibility-v0.1.0.patch",
+        "sha256": "f435cf87bd2b222da5da09b02306c00a61a3b96a958d049e1638ae7b75e82b79"
+      }
+    ],
+    "configuration_artifacts": [],
+    "patch_role": "compatibility",
+    "realization": "patch"
+  },
+  "fixture_artifacts": [
+    {
+      "artifact_id": "r2.fixture.q3-formal-header.v0.1.0",
+      "path": "research/calibration-tests/continuous-action-pilot/runs/continuous-001/fixtures/r2/q3-formal-fixture-v0.1.0.h",
+      "sha256": "2ada739f42ccb24758d7aca22908ba74583a976f1ac180662929d131c24c5acd"
+    },
+    {
+      "artifact_id": "r2.fixture.q3-formal-compatibility.v0.1.0",
+      "path": "research/calibration-tests/continuous-action-pilot/runs/continuous-001/fixtures/r2/q3-formal-compatibility-v0.1.0.c",
+      "sha256": "c1211b6eca0dd9807ba8c5d633ff454dc7882d9a2d74d720b3ed2ee662d1b485"
+    },
+    {
+      "artifact_id": "r2.fixture.q3-formal-harness.v0.1.0",
+      "path": "research/calibration-tests/continuous-action-pilot/runs/continuous-001/fixtures/r2/q3-formal-harness-v0.1.0.c",
+      "sha256": "cffcbcfd63e5b99a4d73047756d318abeb2743c6f1f5b156e5b708e2096d7bbb"
+    },
+    {
+      "artifact_id": "r2.runner.q3-formal-build.v0.1.0",
+      "path": "research/calibration-tests/continuous-action-pilot/runs/continuous-001/fixtures/r2/build-q3-formal-fixture-v0.1.0.ps1",
+      "sha256": "f8fae44f5c75deac2818558a82940f5127bc6252cea6c2eaa2bc065fb967e431"
+    },
+    {
+      "artifact_id": "r2.runner.q3-formal-guarded.v0.1.0",
+      "path": "research/calibration-tests/continuous-action-pilot/runs/continuous-001/fixtures/r2/run-q3-formal-guarded-v0.1.0.ps1",
+      "sha256": "1eb7eea4675cb00cf9fb2d0d0a66c634814f716ee8ac30dea3e2ab0bb3284332"
+    }
+  ],
+  "fixture_id": "fixture.continuous-001.ca-r2.q3-msvc-x64",
+  "formal_input_artifacts": [
+    {
+      "artifact_id": "r2.input.usercmd-trace.v0.1.0",
+      "path": "research/calibration-tests/continuous-action-pilot/runs/continuous-001/fixtures/r2/r2-formal-input-v0.1.0.json",
+      "sha256": "5ce6cb8eb8b9ef9669059b1e504154c643f644abce7988b1896e45c56b600b7e"
+    }
+  ],
+  "formal_input_executed": false,
+  "invariant_ids": [
+    "inv.b.0001",
+    "inv.b.0002",
+    "inv.b.0003",
+    "inv.b.0004",
+    "inv.b.0005",
+    "inv.b.0006",
+    "inv.b.0007"
+  ],
+  "observation_patch_set": {
+    "artifacts": [
+      {
+        "artifact_id": "r2.patch.q3-observation.v0.1.0",
+        "path": "research/calibration-tests/continuous-action-pilot/runs/continuous-001/fixtures/r2/q3-observation-v0.1.0.patch",
+        "sha256": "c24e2ca8d6ad3893002060e6829a521b6f5f2dcb48933a19d663325b42cdf5bb"
+      }
+    ],
+    "configuration_artifacts": [],
+    "patch_role": "observation",
+    "realization": "patch"
+  },
+  "preparation_probe_artifacts": [
+    {
+      "artifact_id": "r2.probe.q3-neutral.v0.1.0",
+      "path": "research/calibration-tests/continuous-action-pilot/runs/continuous-001/fixtures/r2/q3-neutral-probe-v0.1.0.md",
+      "sha256": "3b0b8b1853a9b1e0a514bd37ae647a79bb0ea5a462b9c2e46b0735f7b5a29d03"
+    },
+    {
+      "artifact_id": "r2.probe.q3-formal-fixture-preparation.v0.1.0",
+      "path": "research/calibration-tests/continuous-action-pilot/runs/continuous-001/fixtures/r2/q3-formal-fixture-preparation-v0.1.0.md",
+      "sha256": "9e4ef297e63b1b63c37ce2c678bff06212fc7388027d40af2edf5f7aeb8ffb19"
+    }
+  ],
+  "source_identity": {
+    "clean_tree_required": true,
+    "commit_sha": "dbe4ddb10315479fc00086f08e25d968b4b43c49",
+    "repository_url": "https://github.com/id-Software/Quake-III-Arena.git",
+    "source_identity_artifacts": [
+      {
+        "artifact_id": "source-packet.continuous-001",
+        "path": "research/calibration-tests/continuous-action-pilot/runs/continuous-001/source/source-packet.json",
+        "sha256": "cd7976fb67823da2986cd5f425de0ccd5c088abc9b9e0a1a56c351956dba8082"
+      }
+    ]
+  },
+  "stop_boundary_id": "o.b.0030",
+  "tolerance_rule_ids": [
+    "tol.b.0001",
+    "tol.b.0002"
+  ],
+  "variant_patch_set": {
+    "artifacts": [
+      {
+        "artifact_id": "r2.patch.q3-entry-latch-variant.v0.1.0",
+        "path": "research/calibration-tests/continuous-action-pilot/runs/continuous-001/fixtures/r2/q3-entry-latch-variant-v0.1.0.patch",
+        "sha256": "1a276587cd763eeb593cb4af78f11acc3bd21bcb191a85ae014f4729ff5b23f2"
+      }
+    ],
+    "configuration_artifacts": [],
+    "patch_role": "variant",
+    "realization": "patch"
+  }
+}

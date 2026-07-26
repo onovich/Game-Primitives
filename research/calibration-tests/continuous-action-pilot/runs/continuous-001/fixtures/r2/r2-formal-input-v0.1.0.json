@@ -1,0 +1,2185 @@
+{
+  "$schema": "https://github.com/onovich/Game-Primitives/blob/main/research/calibration-tests/continuous-action-pilot/schema/formal-input-trace-0.1.0.schema.json",
+  "artifact_type": "formal_input_trace",
+  "artifact_version": "0.1.0",
+  "case_id": "CA-R2",
+  "created_at": "2026-07-27T00:00:00Z",
+  "fixture_configuration_fields": [
+    {
+      "field_id": "fixture.pm-type",
+      "value": {
+        "serialized_value": "PM_NORMAL",
+        "unit": null,
+        "value_type": "id"
+      }
+    },
+    {
+      "field_id": "fixture.origin",
+      "value": {
+        "serialized_value": "0,0,4096",
+        "unit": "source-coordinate",
+        "value_type": "string"
+      }
+    },
+    {
+      "field_id": "fixture.velocity",
+      "value": {
+        "serialized_value": "0,0,0",
+        "unit": "source-coordinate-per-second",
+        "value_type": "string"
+      }
+    },
+    {
+      "field_id": "fixture.yaw",
+      "value": {
+        "serialized_value": "0",
+        "unit": "degree",
+        "value_type": "integer"
+      }
+    },
+    {
+      "field_id": "fixture.speed",
+      "value": {
+        "serialized_value": "320",
+        "unit": "source-coordinate-per-second",
+        "value_type": "integer"
+      }
+    },
+    {
+      "field_id": "fixture.gravity",
+      "value": {
+        "serialized_value": "800",
+        "unit": "source-coordinate-per-second-squared",
+        "value_type": "integer"
+      }
+    },
+    {
+      "field_id": "fixture.collision-world",
+      "value": {
+        "serialized_value": "empty",
+        "unit": null,
+        "value_type": "status"
+      }
+    },
+    {
+      "field_id": "fixture.pmove-fixed",
+      "value": {
+        "serialized_value": "true",
+        "unit": null,
+        "value_type": "boolean"
+      }
+    },
+    {
+      "field_id": "fixture.pmove-msec",
+      "value": {
+        "serialized_value": "8",
+        "unit": "millisecond",
+        "value_type": "integer"
+      }
+    },
+    {
+      "field_id": "fixture.platform-scope",
+      "value": {
+        "serialized_value": "MSVC-x64",
+        "unit": null,
+        "value_type": "id"
+      }
+    }
+  ],
+  "formal_input_id": "o.b.0002",
+  "input_events": [
+    {
+      "at": {
+        "serialized_value": "8",
+        "unit": "millisecond",
+        "value_type": "integer"
+      },
+      "event_id": "input.r2.step-00",
+      "fields": [
+        {
+          "field_id": "cmd.server-time",
+          "value": {
+            "serialized_value": "8",
+            "unit": "millisecond",
+            "value_type": "integer"
+          }
+        },
+        {
+          "field_id": "cmd.angle-0",
+          "value": {
+            "serialized_value": "0",
+            "unit": "short-angle",
+            "value_type": "integer"
+          }
+        },
+        {
+          "field_id": "cmd.angle-1",
+          "value": {
+            "serialized_value": "0",
+            "unit": "short-angle",
+            "value_type": "integer"
+          }
+        },
+        {
+          "field_id": "cmd.angle-2",
+          "value": {
+            "serialized_value": "0",
+            "unit": "short-angle",
+            "value_type": "integer"
+          }
+        },
+        {
+          "field_id": "cmd.buttons",
+          "value": {
+            "serialized_value": "0",
+            "unit": null,
+            "value_type": "integer"
+          }
+        },
+        {
+          "field_id": "cmd.weapon",
+          "value": {
+            "serialized_value": "0",
+            "unit": null,
+            "value_type": "integer"
+          }
+        },
+        {
+          "field_id": "cmd.forwardmove",
+          "value": {
+            "serialized_value": "127",
+            "unit": "signed-byte",
+            "value_type": "integer"
+          }
+        },
+        {
+          "field_id": "cmd.rightmove",
+          "value": {
+            "serialized_value": "0",
+            "unit": "signed-byte",
+            "value_type": "integer"
+          }
+        },
+        {
+          "field_id": "cmd.upmove",
+          "value": {
+            "serialized_value": "0",
+            "unit": "signed-byte",
+            "value_type": "integer"
+          }
+        }
+      ],
+      "sequence_index": 0
+    },
+    {
+      "at": {
+        "serialized_value": "16",
+        "unit": "millisecond",
+        "value_type": "integer"
+      },
+      "event_id": "input.r2.step-01",
+      "fields": [
+        {
+          "field_id": "cmd.server-time",
+          "value": {
+            "serialized_value": "16",
+            "unit": "millisecond",
+            "value_type": "integer"
+          }
+        },
+        {
+          "field_id": "cmd.angle-0",
+          "value": {
+            "serialized_value": "0",
+            "unit": "short-angle",
+            "value_type": "integer"
+          }
+        },
+        {
+          "field_id": "cmd.angle-1",
+          "value": {
+            "serialized_value": "0",
+            "unit": "short-angle",
+            "value_type": "integer"
+          }
+        },
+        {
+          "field_id": "cmd.angle-2",
+          "value": {
+            "serialized_value": "0",
+            "unit": "short-angle",
+            "value_type": "integer"
+          }
+        },
+        {
+          "field_id": "cmd.buttons",
+          "value": {
+            "serialized_value": "0",
+            "unit": null,
+            "value_type": "integer"
+          }
+        },
+        {
+          "field_id": "cmd.weapon",
+          "value": {
+            "serialized_value": "0",
+            "unit": null,
+            "value_type": "integer"
+          }
+        },
+        {
+          "field_id": "cmd.forwardmove",
+          "value": {
+            "serialized_value": "127",
+            "unit": "signed-byte",
+            "value_type": "integer"
+          }
+        },
+        {
+          "field_id": "cmd.rightmove",
+          "value": {
+            "serialized_value": "0",
+            "unit": "signed-byte",
+            "value_type": "integer"
+          }
+        },
+        {
+          "field_id": "cmd.upmove",
+          "value": {
+            "serialized_value": "0",
+            "unit": "signed-byte",
+            "value_type": "integer"
+          }
+        }
+      ],
+      "sequence_index": 1
+    },
+    {
+      "at": {
+        "serialized_value": "24",
+        "unit": "millisecond",
+        "value_type": "integer"
+      },
+      "event_id": "input.r2.step-02",
+      "fields": [
+        {
+          "field_id": "cmd.server-time",
+          "value": {
+            "serialized_value": "24",
+            "unit": "millisecond",
+            "value_type": "integer"
+          }
+        },
+        {
+          "field_id": "cmd.angle-0",
+          "value": {
+            "serialized_value": "0",
+            "unit": "short-angle",
+            "value_type": "integer"
+          }
+        },
+        {
+          "field_id": "cmd.angle-1",
+          "value": {
+            "serialized_value": "0",
+            "unit": "short-angle",
+            "value_type": "integer"
+          }
+        },
+        {
+          "field_id": "cmd.angle-2",
+          "value": {
+            "serialized_value": "0",
+            "unit": "short-angle",
+            "value_type": "integer"
+          }
+        },
+        {
+          "field_id": "cmd.buttons",
+          "value": {
+            "serialized_value": "0",
+            "unit": null,
+            "value_type": "integer"
+          }
+        },
+        {
+          "field_id": "cmd.weapon",
+          "value": {
+            "serialized_value": "0",
+            "unit": null,
+            "value_type": "integer"
+          }
+        },
+        {
+          "field_id": "cmd.forwardmove",
+          "value": {
+            "serialized_value": "127",
+            "unit": "signed-byte",
+            "value_type": "integer"
+          }
+        },
+        {
+          "field_id": "cmd.rightmove",
+          "value": {
+            "serialized_value": "0",
+            "unit": "signed-byte",
+            "value_type": "integer"
+          }
+        },
+        {
+          "field_id": "cmd.upmove",
+          "value": {
+            "serialized_value": "0",
+            "unit": "signed-byte",
+            "value_type": "integer"
+          }
+        }
+      ],
+      "sequence_index": 2
+    },
+    {
+      "at": {
+        "serialized_value": "32",
+        "unit": "millisecond",
+        "value_type": "integer"
+      },
+      "event_id": "input.r2.step-03",
+      "fields": [
+        {
+          "field_id": "cmd.server-time",
+          "value": {
+            "serialized_value": "32",
+            "unit": "millisecond",
+            "value_type": "integer"
+          }
+        },
+        {
+          "field_id": "cmd.angle-0",
+          "value": {
+            "serialized_value": "0",
+            "unit": "short-angle",
+            "value_type": "integer"
+          }
+        },
+        {
+          "field_id": "cmd.angle-1",
+          "value": {
+            "serialized_value": "0",
+            "unit": "short-angle",
+            "value_type": "integer"
+          }
+        },
+        {
+          "field_id": "cmd.angle-2",
+          "value": {
+            "serialized_value": "0",
+            "unit": "short-angle",
+            "value_type": "integer"
+          }
+        },
+        {
+          "field_id": "cmd.buttons",
+          "value": {
+            "serialized_value": "0",
+            "unit": null,
+            "value_type": "integer"
+          }
+        },
+        {
+          "field_id": "cmd.weapon",
+          "value": {
+            "serialized_value": "0",
+            "unit": null,
+            "value_type": "integer"
+          }
+        },
+        {
+          "field_id": "cmd.forwardmove",
+          "value": {
+            "serialized_value": "127",
+            "unit": "signed-byte",
+            "value_type": "integer"
+          }
+        },
+        {
+          "field_id": "cmd.rightmove",
+          "value": {
+            "serialized_value": "0",
+            "unit": "signed-byte",
+            "value_type": "integer"
+          }
+        },
+        {
+          "field_id": "cmd.upmove",
+          "value": {
+            "serialized_value": "0",
+            "unit": "signed-byte",
+            "value_type": "integer"
+          }
+        }
+      ],
+      "sequence_index": 3
+    },
+    {
+      "at": {
+        "serialized_value": "40",
+        "unit": "millisecond",
+        "value_type": "integer"
+      },
+      "event_id": "input.r2.step-04",
+      "fields": [
+        {
+          "field_id": "cmd.server-time",
+          "value": {
+            "serialized_value": "40",
+            "unit": "millisecond",
+            "value_type": "integer"
+          }
+        },
+        {
+          "field_id": "cmd.angle-0",
+          "value": {
+            "serialized_value": "0",
+            "unit": "short-angle",
+            "value_type": "integer"
+          }
+        },
+        {
+          "field_id": "cmd.angle-1",
+          "value": {
+            "serialized_value": "0",
+            "unit": "short-angle",
+            "value_type": "integer"
+          }
+        },
+        {
+          "field_id": "cmd.angle-2",
+          "value": {
+            "serialized_value": "0",
+            "unit": "short-angle",
+            "value_type": "integer"
+          }
+        },
+        {
+          "field_id": "cmd.buttons",
+          "value": {
+            "serialized_value": "0",
+            "unit": null,
+            "value_type": "integer"
+          }
+        },
+        {
+          "field_id": "cmd.weapon",
+          "value": {
+            "serialized_value": "0",
+            "unit": null,
+            "value_type": "integer"
+          }
+        },
+        {
+          "field_id": "cmd.forwardmove",
+          "value": {
+            "serialized_value": "127",
+            "unit": "signed-byte",
+            "value_type": "integer"
+          }
+        },
+        {
+          "field_id": "cmd.rightmove",
+          "value": {
+            "serialized_value": "0",
+            "unit": "signed-byte",
+            "value_type": "integer"
+          }
+        },
+        {
+          "field_id": "cmd.upmove",
+          "value": {
+            "serialized_value": "0",
+            "unit": "signed-byte",
+            "value_type": "integer"
+          }
+        }
+      ],
+      "sequence_index": 4
+    },
+    {
+      "at": {
+        "serialized_value": "48",
+        "unit": "millisecond",
+        "value_type": "integer"
+      },
+      "event_id": "input.r2.step-05",
+      "fields": [
+        {
+          "field_id": "cmd.server-time",
+          "value": {
+            "serialized_value": "48",
+            "unit": "millisecond",
+            "value_type": "integer"
+          }
+        },
+        {
+          "field_id": "cmd.angle-0",
+          "value": {
+            "serialized_value": "0",
+            "unit": "short-angle",
+            "value_type": "integer"
+          }
+        },
+        {
+          "field_id": "cmd.angle-1",
+          "value": {
+            "serialized_value": "0",
+            "unit": "short-angle",
+            "value_type": "integer"
+          }
+        },
+        {
+          "field_id": "cmd.angle-2",
+          "value": {
+            "serialized_value": "0",
+            "unit": "short-angle",
+            "value_type": "integer"
+          }
+        },
+        {
+          "field_id": "cmd.buttons",
+          "value": {
+            "serialized_value": "0",
+            "unit": null,
+            "value_type": "integer"
+          }
+        },
+        {
+          "field_id": "cmd.weapon",
+          "value": {
+            "serialized_value": "0",
+            "unit": null,
+            "value_type": "integer"
+          }
+        },
+        {
+          "field_id": "cmd.forwardmove",
+          "value": {
+            "serialized_value": "0",
+            "unit": "signed-byte",
+            "value_type": "integer"
+          }
+        },
+        {
+          "field_id": "cmd.rightmove",
+          "value": {
+            "serialized_value": "127",
+            "unit": "signed-byte",
+            "value_type": "integer"
+          }
+        },
+        {
+          "field_id": "cmd.upmove",
+          "value": {
+            "serialized_value": "0",
+            "unit": "signed-byte",
+            "value_type": "integer"
+          }
+        }
+      ],
+      "sequence_index": 5
+    },
+    {
+      "at": {
+        "serialized_value": "56",
+        "unit": "millisecond",
+        "value_type": "integer"
+      },
+      "event_id": "input.r2.step-06",
+      "fields": [
+        {
+          "field_id": "cmd.server-time",
+          "value": {
+            "serialized_value": "56",
+            "unit": "millisecond",
+            "value_type": "integer"
+          }
+        },
+        {
+          "field_id": "cmd.angle-0",
+          "value": {
+            "serialized_value": "0",
+            "unit": "short-angle",
+            "value_type": "integer"
+          }
+        },
+        {
+          "field_id": "cmd.angle-1",
+          "value": {
+            "serialized_value": "0",
+            "unit": "short-angle",
+            "value_type": "integer"
+          }
+        },
+        {
+          "field_id": "cmd.angle-2",
+          "value": {
+            "serialized_value": "0",
+            "unit": "short-angle",
+            "value_type": "integer"
+          }
+        },
+        {
+          "field_id": "cmd.buttons",
+          "value": {
+            "serialized_value": "0",
+            "unit": null,
+            "value_type": "integer"
+          }
+        },
+        {
+          "field_id": "cmd.weapon",
+          "value": {
+            "serialized_value": "0",
+            "unit": null,
+            "value_type": "integer"
+          }
+        },
+        {
+          "field_id": "cmd.forwardmove",
+          "value": {
+            "serialized_value": "0",
+            "unit": "signed-byte",
+            "value_type": "integer"
+          }
+        },
+        {
+          "field_id": "cmd.rightmove",
+          "value": {
+            "serialized_value": "127",
+            "unit": "signed-byte",
+            "value_type": "integer"
+          }
+        },
+        {
+          "field_id": "cmd.upmove",
+          "value": {
+            "serialized_value": "0",
+            "unit": "signed-byte",
+            "value_type": "integer"
+          }
+        }
+      ],
+      "sequence_index": 6
+    },
+    {
+      "at": {
+        "serialized_value": "64",
+        "unit": "millisecond",
+        "value_type": "integer"
+      },
+      "event_id": "input.r2.step-07",
+      "fields": [
+        {
+          "field_id": "cmd.server-time",
+          "value": {
+            "serialized_value": "64",
+            "unit": "millisecond",
+            "value_type": "integer"
+          }
+        },
+        {
+          "field_id": "cmd.angle-0",
+          "value": {
+            "serialized_value": "0",
+            "unit": "short-angle",
+            "value_type": "integer"
+          }
+        },
+        {
+          "field_id": "cmd.angle-1",
+          "value": {
+            "serialized_value": "0",
+            "unit": "short-angle",
+            "value_type": "integer"
+          }
+        },
+        {
+          "field_id": "cmd.angle-2",
+          "value": {
+            "serialized_value": "0",
+            "unit": "short-angle",
+            "value_type": "integer"
+          }
+        },
+        {
+          "field_id": "cmd.buttons",
+          "value": {
+            "serialized_value": "0",
+            "unit": null,
+            "value_type": "integer"
+          }
+        },
+        {
+          "field_id": "cmd.weapon",
+          "value": {
+            "serialized_value": "0",
+            "unit": null,
+            "value_type": "integer"
+          }
+        },
+        {
+          "field_id": "cmd.forwardmove",
+          "value": {
+            "serialized_value": "0",
+            "unit": "signed-byte",
+            "value_type": "integer"
+          }
+        },
+        {
+          "field_id": "cmd.rightmove",
+          "value": {
+            "serialized_value": "127",
+            "unit": "signed-byte",
+            "value_type": "integer"
+          }
+        },
+        {
+          "field_id": "cmd.upmove",
+          "value": {
+            "serialized_value": "0",
+            "unit": "signed-byte",
+            "value_type": "integer"
+          }
+        }
+      ],
+      "sequence_index": 7
+    },
+    {
+      "at": {
+        "serialized_value": "72",
+        "unit": "millisecond",
+        "value_type": "integer"
+      },
+      "event_id": "input.r2.step-08",
+      "fields": [
+        {
+          "field_id": "cmd.server-time",
+          "value": {
+            "serialized_value": "72",
+            "unit": "millisecond",
+            "value_type": "integer"
+          }
+        },
+        {
+          "field_id": "cmd.angle-0",
+          "value": {
+            "serialized_value": "0",
+            "unit": "short-angle",
+            "value_type": "integer"
+          }
+        },
+        {
+          "field_id": "cmd.angle-1",
+          "value": {
+            "serialized_value": "0",
+            "unit": "short-angle",
+            "value_type": "integer"
+          }
+        },
+        {
+          "field_id": "cmd.angle-2",
+          "value": {
+            "serialized_value": "0",
+            "unit": "short-angle",
+            "value_type": "integer"
+          }
+        },
+        {
+          "field_id": "cmd.buttons",
+          "value": {
+            "serialized_value": "0",
+            "unit": null,
+            "value_type": "integer"
+          }
+        },
+        {
+          "field_id": "cmd.weapon",
+          "value": {
+            "serialized_value": "0",
+            "unit": null,
+            "value_type": "integer"
+          }
+        },
+        {
+          "field_id": "cmd.forwardmove",
+          "value": {
+            "serialized_value": "0",
+            "unit": "signed-byte",
+            "value_type": "integer"
+          }
+        },
+        {
+          "field_id": "cmd.rightmove",
+          "value": {
+            "serialized_value": "127",
+            "unit": "signed-byte",
+            "value_type": "integer"
+          }
+        },
+        {
+          "field_id": "cmd.upmove",
+          "value": {
+            "serialized_value": "0",
+            "unit": "signed-byte",
+            "value_type": "integer"
+          }
+        }
+      ],
+      "sequence_index": 8
+    },
+    {
+      "at": {
+        "serialized_value": "80",
+        "unit": "millisecond",
+        "value_type": "integer"
+      },
+      "event_id": "input.r2.step-09",
+      "fields": [
+        {
+          "field_id": "cmd.server-time",
+          "value": {
+            "serialized_value": "80",
+            "unit": "millisecond",
+            "value_type": "integer"
+          }
+        },
+        {
+          "field_id": "cmd.angle-0",
+          "value": {
+            "serialized_value": "0",
+            "unit": "short-angle",
+            "value_type": "integer"
+          }
+        },
+        {
+          "field_id": "cmd.angle-1",
+          "value": {
+            "serialized_value": "0",
+            "unit": "short-angle",
+            "value_type": "integer"
+          }
+        },
+        {
+          "field_id": "cmd.angle-2",
+          "value": {
+            "serialized_value": "0",
+            "unit": "short-angle",
+            "value_type": "integer"
+          }
+        },
+        {
+          "field_id": "cmd.buttons",
+          "value": {
+            "serialized_value": "0",
+            "unit": null,
+            "value_type": "integer"
+          }
+        },
+        {
+          "field_id": "cmd.weapon",
+          "value": {
+            "serialized_value": "0",
+            "unit": null,
+            "value_type": "integer"
+          }
+        },
+        {
+          "field_id": "cmd.forwardmove",
+          "value": {
+            "serialized_value": "0",
+            "unit": "signed-byte",
+            "value_type": "integer"
+          }
+        },
+        {
+          "field_id": "cmd.rightmove",
+          "value": {
+            "serialized_value": "127",
+            "unit": "signed-byte",
+            "value_type": "integer"
+          }
+        },
+        {
+          "field_id": "cmd.upmove",
+          "value": {
+            "serialized_value": "0",
+            "unit": "signed-byte",
+            "value_type": "integer"
+          }
+        }
+      ],
+      "sequence_index": 9
+    },
+    {
+      "at": {
+        "serialized_value": "88",
+        "unit": "millisecond",
+        "value_type": "integer"
+      },
+      "event_id": "input.r2.step-10",
+      "fields": [
+        {
+          "field_id": "cmd.server-time",
+          "value": {
+            "serialized_value": "88",
+            "unit": "millisecond",
+            "value_type": "integer"
+          }
+        },
+        {
+          "field_id": "cmd.angle-0",
+          "value": {
+            "serialized_value": "0",
+            "unit": "short-angle",
+            "value_type": "integer"
+          }
+        },
+        {
+          "field_id": "cmd.angle-1",
+          "value": {
+            "serialized_value": "0",
+            "unit": "short-angle",
+            "value_type": "integer"
+          }
+        },
+        {
+          "field_id": "cmd.angle-2",
+          "value": {
+            "serialized_value": "0",
+            "unit": "short-angle",
+            "value_type": "integer"
+          }
+        },
+        {
+          "field_id": "cmd.buttons",
+          "value": {
+            "serialized_value": "0",
+            "unit": null,
+            "value_type": "integer"
+          }
+        },
+        {
+          "field_id": "cmd.weapon",
+          "value": {
+            "serialized_value": "0",
+            "unit": null,
+            "value_type": "integer"
+          }
+        },
+        {
+          "field_id": "cmd.forwardmove",
+          "value": {
+            "serialized_value": "0",
+            "unit": "signed-byte",
+            "value_type": "integer"
+          }
+        },
+        {
+          "field_id": "cmd.rightmove",
+          "value": {
+            "serialized_value": "127",
+            "unit": "signed-byte",
+            "value_type": "integer"
+          }
+        },
+        {
+          "field_id": "cmd.upmove",
+          "value": {
+            "serialized_value": "0",
+            "unit": "signed-byte",
+            "value_type": "integer"
+          }
+        }
+      ],
+      "sequence_index": 10
+    },
+    {
+      "at": {
+        "serialized_value": "96",
+        "unit": "millisecond",
+        "value_type": "integer"
+      },
+      "event_id": "input.r2.step-11",
+      "fields": [
+        {
+          "field_id": "cmd.server-time",
+          "value": {
+            "serialized_value": "96",
+            "unit": "millisecond",
+            "value_type": "integer"
+          }
+        },
+        {
+          "field_id": "cmd.angle-0",
+          "value": {
+            "serialized_value": "0",
+            "unit": "short-angle",
+            "value_type": "integer"
+          }
+        },
+        {
+          "field_id": "cmd.angle-1",
+          "value": {
+            "serialized_value": "0",
+            "unit": "short-angle",
+            "value_type": "integer"
+          }
+        },
+        {
+          "field_id": "cmd.angle-2",
+          "value": {
+            "serialized_value": "0",
+            "unit": "short-angle",
+            "value_type": "integer"
+          }
+        },
+        {
+          "field_id": "cmd.buttons",
+          "value": {
+            "serialized_value": "0",
+            "unit": null,
+            "value_type": "integer"
+          }
+        },
+        {
+          "field_id": "cmd.weapon",
+          "value": {
+            "serialized_value": "0",
+            "unit": null,
+            "value_type": "integer"
+          }
+        },
+        {
+          "field_id": "cmd.forwardmove",
+          "value": {
+            "serialized_value": "0",
+            "unit": "signed-byte",
+            "value_type": "integer"
+          }
+        },
+        {
+          "field_id": "cmd.rightmove",
+          "value": {
+            "serialized_value": "127",
+            "unit": "signed-byte",
+            "value_type": "integer"
+          }
+        },
+        {
+          "field_id": "cmd.upmove",
+          "value": {
+            "serialized_value": "0",
+            "unit": "signed-byte",
+            "value_type": "integer"
+          }
+        }
+      ],
+      "sequence_index": 11
+    },
+    {
+      "at": {
+        "serialized_value": "104",
+        "unit": "millisecond",
+        "value_type": "integer"
+      },
+      "event_id": "input.r2.step-12",
+      "fields": [
+        {
+          "field_id": "cmd.server-time",
+          "value": {
+            "serialized_value": "104",
+            "unit": "millisecond",
+            "value_type": "integer"
+          }
+        },
+        {
+          "field_id": "cmd.angle-0",
+          "value": {
+            "serialized_value": "0",
+            "unit": "short-angle",
+            "value_type": "integer"
+          }
+        },
+        {
+          "field_id": "cmd.angle-1",
+          "value": {
+            "serialized_value": "0",
+            "unit": "short-angle",
+            "value_type": "integer"
+          }
+        },
+        {
+          "field_id": "cmd.angle-2",
+          "value": {
+            "serialized_value": "0",
+            "unit": "short-angle",
+            "value_type": "integer"
+          }
+        },
+        {
+          "field_id": "cmd.buttons",
+          "value": {
+            "serialized_value": "0",
+            "unit": null,
+            "value_type": "integer"
+          }
+        },
+        {
+          "field_id": "cmd.weapon",
+          "value": {
+            "serialized_value": "0",
+            "unit": null,
+            "value_type": "integer"
+          }
+        },
+        {
+          "field_id": "cmd.forwardmove",
+          "value": {
+            "serialized_value": "0",
+            "unit": "signed-byte",
+            "value_type": "integer"
+          }
+        },
+        {
+          "field_id": "cmd.rightmove",
+          "value": {
+            "serialized_value": "127",
+            "unit": "signed-byte",
+            "value_type": "integer"
+          }
+        },
+        {
+          "field_id": "cmd.upmove",
+          "value": {
+            "serialized_value": "0",
+            "unit": "signed-byte",
+            "value_type": "integer"
+          }
+        }
+      ],
+      "sequence_index": 12
+    },
+    {
+      "at": {
+        "serialized_value": "112",
+        "unit": "millisecond",
+        "value_type": "integer"
+      },
+      "event_id": "input.r2.step-13",
+      "fields": [
+        {
+          "field_id": "cmd.server-time",
+          "value": {
+            "serialized_value": "112",
+            "unit": "millisecond",
+            "value_type": "integer"
+          }
+        },
+        {
+          "field_id": "cmd.angle-0",
+          "value": {
+            "serialized_value": "0",
+            "unit": "short-angle",
+            "value_type": "integer"
+          }
+        },
+        {
+          "field_id": "cmd.angle-1",
+          "value": {
+            "serialized_value": "0",
+            "unit": "short-angle",
+            "value_type": "integer"
+          }
+        },
+        {
+          "field_id": "cmd.angle-2",
+          "value": {
+            "serialized_value": "0",
+            "unit": "short-angle",
+            "value_type": "integer"
+          }
+        },
+        {
+          "field_id": "cmd.buttons",
+          "value": {
+            "serialized_value": "0",
+            "unit": null,
+            "value_type": "integer"
+          }
+        },
+        {
+          "field_id": "cmd.weapon",
+          "value": {
+            "serialized_value": "0",
+            "unit": null,
+            "value_type": "integer"
+          }
+        },
+        {
+          "field_id": "cmd.forwardmove",
+          "value": {
+            "serialized_value": "0",
+            "unit": "signed-byte",
+            "value_type": "integer"
+          }
+        },
+        {
+          "field_id": "cmd.rightmove",
+          "value": {
+            "serialized_value": "127",
+            "unit": "signed-byte",
+            "value_type": "integer"
+          }
+        },
+        {
+          "field_id": "cmd.upmove",
+          "value": {
+            "serialized_value": "0",
+            "unit": "signed-byte",
+            "value_type": "integer"
+          }
+        }
+      ],
+      "sequence_index": 13
+    },
+    {
+      "at": {
+        "serialized_value": "120",
+        "unit": "millisecond",
+        "value_type": "integer"
+      },
+      "event_id": "input.r2.step-14",
+      "fields": [
+        {
+          "field_id": "cmd.server-time",
+          "value": {
+            "serialized_value": "120",
+            "unit": "millisecond",
+            "value_type": "integer"
+          }
+        },
+        {
+          "field_id": "cmd.angle-0",
+          "value": {
+            "serialized_value": "0",
+            "unit": "short-angle",
+            "value_type": "integer"
+          }
+        },
+        {
+          "field_id": "cmd.angle-1",
+          "value": {
+            "serialized_value": "0",
+            "unit": "short-angle",
+            "value_type": "integer"
+          }
+        },
+        {
+          "field_id": "cmd.angle-2",
+          "value": {
+            "serialized_value": "0",
+            "unit": "short-angle",
+            "value_type": "integer"
+          }
+        },
+        {
+          "field_id": "cmd.buttons",
+          "value": {
+            "serialized_value": "0",
+            "unit": null,
+            "value_type": "integer"
+          }
+        },
+        {
+          "field_id": "cmd.weapon",
+          "value": {
+            "serialized_value": "0",
+            "unit": null,
+            "value_type": "integer"
+          }
+        },
+        {
+          "field_id": "cmd.forwardmove",
+          "value": {
+            "serialized_value": "0",
+            "unit": "signed-byte",
+            "value_type": "integer"
+          }
+        },
+        {
+          "field_id": "cmd.rightmove",
+          "value": {
+            "serialized_value": "127",
+            "unit": "signed-byte",
+            "value_type": "integer"
+          }
+        },
+        {
+          "field_id": "cmd.upmove",
+          "value": {
+            "serialized_value": "0",
+            "unit": "signed-byte",
+            "value_type": "integer"
+          }
+        }
+      ],
+      "sequence_index": 14
+    },
+    {
+      "at": {
+        "serialized_value": "128",
+        "unit": "millisecond",
+        "value_type": "integer"
+      },
+      "event_id": "input.r2.step-15",
+      "fields": [
+        {
+          "field_id": "cmd.server-time",
+          "value": {
+            "serialized_value": "128",
+            "unit": "millisecond",
+            "value_type": "integer"
+          }
+        },
+        {
+          "field_id": "cmd.angle-0",
+          "value": {
+            "serialized_value": "0",
+            "unit": "short-angle",
+            "value_type": "integer"
+          }
+        },
+        {
+          "field_id": "cmd.angle-1",
+          "value": {
+            "serialized_value": "0",
+            "unit": "short-angle",
+            "value_type": "integer"
+          }
+        },
+        {
+          "field_id": "cmd.angle-2",
+          "value": {
+            "serialized_value": "0",
+            "unit": "short-angle",
+            "value_type": "integer"
+          }
+        },
+        {
+          "field_id": "cmd.buttons",
+          "value": {
+            "serialized_value": "0",
+            "unit": null,
+            "value_type": "integer"
+          }
+        },
+        {
+          "field_id": "cmd.weapon",
+          "value": {
+            "serialized_value": "0",
+            "unit": null,
+            "value_type": "integer"
+          }
+        },
+        {
+          "field_id": "cmd.forwardmove",
+          "value": {
+            "serialized_value": "0",
+            "unit": "signed-byte",
+            "value_type": "integer"
+          }
+        },
+        {
+          "field_id": "cmd.rightmove",
+          "value": {
+            "serialized_value": "127",
+            "unit": "signed-byte",
+            "value_type": "integer"
+          }
+        },
+        {
+          "field_id": "cmd.upmove",
+          "value": {
+            "serialized_value": "0",
+            "unit": "signed-byte",
+            "value_type": "integer"
+          }
+        }
+      ],
+      "sequence_index": 15
+    },
+    {
+      "at": {
+        "serialized_value": "136",
+        "unit": "millisecond",
+        "value_type": "integer"
+      },
+      "event_id": "input.r2.step-16",
+      "fields": [
+        {
+          "field_id": "cmd.server-time",
+          "value": {
+            "serialized_value": "136",
+            "unit": "millisecond",
+            "value_type": "integer"
+          }
+        },
+        {
+          "field_id": "cmd.angle-0",
+          "value": {
+            "serialized_value": "0",
+            "unit": "short-angle",
+            "value_type": "integer"
+          }
+        },
+        {
+          "field_id": "cmd.angle-1",
+          "value": {
+            "serialized_value": "0",
+            "unit": "short-angle",
+            "value_type": "integer"
+          }
+        },
+        {
+          "field_id": "cmd.angle-2",
+          "value": {
+            "serialized_value": "0",
+            "unit": "short-angle",
+            "value_type": "integer"
+          }
+        },
+        {
+          "field_id": "cmd.buttons",
+          "value": {
+            "serialized_value": "0",
+            "unit": null,
+            "value_type": "integer"
+          }
+        },
+        {
+          "field_id": "cmd.weapon",
+          "value": {
+            "serialized_value": "0",
+            "unit": null,
+            "value_type": "integer"
+          }
+        },
+        {
+          "field_id": "cmd.forwardmove",
+          "value": {
+            "serialized_value": "0",
+            "unit": "signed-byte",
+            "value_type": "integer"
+          }
+        },
+        {
+          "field_id": "cmd.rightmove",
+          "value": {
+            "serialized_value": "127",
+            "unit": "signed-byte",
+            "value_type": "integer"
+          }
+        },
+        {
+          "field_id": "cmd.upmove",
+          "value": {
+            "serialized_value": "0",
+            "unit": "signed-byte",
+            "value_type": "integer"
+          }
+        }
+      ],
+      "sequence_index": 16
+    },
+    {
+      "at": {
+        "serialized_value": "144",
+        "unit": "millisecond",
+        "value_type": "integer"
+      },
+      "event_id": "input.r2.step-17",
+      "fields": [
+        {
+          "field_id": "cmd.server-time",
+          "value": {
+            "serialized_value": "144",
+            "unit": "millisecond",
+            "value_type": "integer"
+          }
+        },
+        {
+          "field_id": "cmd.angle-0",
+          "value": {
+            "serialized_value": "0",
+            "unit": "short-angle",
+            "value_type": "integer"
+          }
+        },
+        {
+          "field_id": "cmd.angle-1",
+          "value": {
+            "serialized_value": "0",
+            "unit": "short-angle",
+            "value_type": "integer"
+          }
+        },
+        {
+          "field_id": "cmd.angle-2",
+          "value": {
+            "serialized_value": "0",
+            "unit": "short-angle",
+            "value_type": "integer"
+          }
+        },
+        {
+          "field_id": "cmd.buttons",
+          "value": {
+            "serialized_value": "0",
+            "unit": null,
+            "value_type": "integer"
+          }
+        },
+        {
+          "field_id": "cmd.weapon",
+          "value": {
+            "serialized_value": "0",
+            "unit": null,
+            "value_type": "integer"
+          }
+        },
+        {
+          "field_id": "cmd.forwardmove",
+          "value": {
+            "serialized_value": "0",
+            "unit": "signed-byte",
+            "value_type": "integer"
+          }
+        },
+        {
+          "field_id": "cmd.rightmove",
+          "value": {
+            "serialized_value": "127",
+            "unit": "signed-byte",
+            "value_type": "integer"
+          }
+        },
+        {
+          "field_id": "cmd.upmove",
+          "value": {
+            "serialized_value": "0",
+            "unit": "signed-byte",
+            "value_type": "integer"
+          }
+        }
+      ],
+      "sequence_index": 17
+    },
+    {
+      "at": {
+        "serialized_value": "152",
+        "unit": "millisecond",
+        "value_type": "integer"
+      },
+      "event_id": "input.r2.step-18",
+      "fields": [
+        {
+          "field_id": "cmd.server-time",
+          "value": {
+            "serialized_value": "152",
+            "unit": "millisecond",
+            "value_type": "integer"
+          }
+        },
+        {
+          "field_id": "cmd.angle-0",
+          "value": {
+            "serialized_value": "0",
+            "unit": "short-angle",
+            "value_type": "integer"
+          }
+        },
+        {
+          "field_id": "cmd.angle-1",
+          "value": {
+            "serialized_value": "0",
+            "unit": "short-angle",
+            "value_type": "integer"
+          }
+        },
+        {
+          "field_id": "cmd.angle-2",
+          "value": {
+            "serialized_value": "0",
+            "unit": "short-angle",
+            "value_type": "integer"
+          }
+        },
+        {
+          "field_id": "cmd.buttons",
+          "value": {
+            "serialized_value": "0",
+            "unit": null,
+            "value_type": "integer"
+          }
+        },
+        {
+          "field_id": "cmd.weapon",
+          "value": {
+            "serialized_value": "0",
+            "unit": null,
+            "value_type": "integer"
+          }
+        },
+        {
+          "field_id": "cmd.forwardmove",
+          "value": {
+            "serialized_value": "0",
+            "unit": "signed-byte",
+            "value_type": "integer"
+          }
+        },
+        {
+          "field_id": "cmd.rightmove",
+          "value": {
+            "serialized_value": "127",
+            "unit": "signed-byte",
+            "value_type": "integer"
+          }
+        },
+        {
+          "field_id": "cmd.upmove",
+          "value": {
+            "serialized_value": "0",
+            "unit": "signed-byte",
+            "value_type": "integer"
+          }
+        }
+      ],
+      "sequence_index": 18
+    },
+    {
+      "at": {
+        "serialized_value": "160",
+        "unit": "millisecond",
+        "value_type": "integer"
+      },
+      "event_id": "input.r2.step-19",
+      "fields": [
+        {
+          "field_id": "cmd.server-time",
+          "value": {
+            "serialized_value": "160",
+            "unit": "millisecond",
+            "value_type": "integer"
+          }
+        },
+        {
+          "field_id": "cmd.angle-0",
+          "value": {
+            "serialized_value": "0",
+            "unit": "short-angle",
+            "value_type": "integer"
+          }
+        },
+        {
+          "field_id": "cmd.angle-1",
+          "value": {
+            "serialized_value": "0",
+            "unit": "short-angle",
+            "value_type": "integer"
+          }
+        },
+        {
+          "field_id": "cmd.angle-2",
+          "value": {
+            "serialized_value": "0",
+            "unit": "short-angle",
+            "value_type": "integer"
+          }
+        },
+        {
+          "field_id": "cmd.buttons",
+          "value": {
+            "serialized_value": "0",
+            "unit": null,
+            "value_type": "integer"
+          }
+        },
+        {
+          "field_id": "cmd.weapon",
+          "value": {
+            "serialized_value": "0",
+            "unit": null,
+            "value_type": "integer"
+          }
+        },
+        {
+          "field_id": "cmd.forwardmove",
+          "value": {
+            "serialized_value": "0",
+            "unit": "signed-byte",
+            "value_type": "integer"
+          }
+        },
+        {
+          "field_id": "cmd.rightmove",
+          "value": {
+            "serialized_value": "127",
+            "unit": "signed-byte",
+            "value_type": "integer"
+          }
+        },
+        {
+          "field_id": "cmd.upmove",
+          "value": {
+            "serialized_value": "0",
+            "unit": "signed-byte",
+            "value_type": "integer"
+          }
+        }
+      ],
+      "sequence_index": 19
+    },
+    {
+      "at": {
+        "serialized_value": "168",
+        "unit": "millisecond",
+        "value_type": "integer"
+      },
+      "event_id": "input.r2.step-20",
+      "fields": [
+        {
+          "field_id": "cmd.server-time",
+          "value": {
+            "serialized_value": "168",
+            "unit": "millisecond",
+            "value_type": "integer"
+          }
+        },
+        {
+          "field_id": "cmd.angle-0",
+          "value": {
+            "serialized_value": "0",
+            "unit": "short-angle",
+            "value_type": "integer"
+          }
+        },
+        {
+          "field_id": "cmd.angle-1",
+          "value": {
+            "serialized_value": "0",
+            "unit": "short-angle",
+            "value_type": "integer"
+          }
+        },
+        {
+          "field_id": "cmd.angle-2",
+          "value": {
+            "serialized_value": "0",
+            "unit": "short-angle",
+            "value_type": "integer"
+          }
+        },
+        {
+          "field_id": "cmd.buttons",
+          "value": {
+            "serialized_value": "0",
+            "unit": null,
+            "value_type": "integer"
+          }
+        },
+        {
+          "field_id": "cmd.weapon",
+          "value": {
+            "serialized_value": "0",
+            "unit": null,
+            "value_type": "integer"
+          }
+        },
+        {
+          "field_id": "cmd.forwardmove",
+          "value": {
+            "serialized_value": "0",
+            "unit": "signed-byte",
+            "value_type": "integer"
+          }
+        },
+        {
+          "field_id": "cmd.rightmove",
+          "value": {
+            "serialized_value": "127",
+            "unit": "signed-byte",
+            "value_type": "integer"
+          }
+        },
+        {
+          "field_id": "cmd.upmove",
+          "value": {
+            "serialized_value": "0",
+            "unit": "signed-byte",
+            "value_type": "integer"
+          }
+        }
+      ],
+      "sequence_index": 20
+    },
+    {
+      "at": {
+        "serialized_value": "176",
+        "unit": "millisecond",
+        "value_type": "integer"
+      },
+      "event_id": "input.r2.step-21",
+      "fields": [
+        {
+          "field_id": "cmd.server-time",
+          "value": {
+            "serialized_value": "176",
+            "unit": "millisecond",
+            "value_type": "integer"
+          }
+        },
+        {
+          "field_id": "cmd.angle-0",
+          "value": {
+            "serialized_value": "0",
+            "unit": "short-angle",
+            "value_type": "integer"
+          }
+        },
+        {
+          "field_id": "cmd.angle-1",
+          "value": {
+            "serialized_value": "0",
+            "unit": "short-angle",
+            "value_type": "integer"
+          }
+        },
+        {
+          "field_id": "cmd.angle-2",
+          "value": {
+            "serialized_value": "0",
+            "unit": "short-angle",
+            "value_type": "integer"
+          }
+        },
+        {
+          "field_id": "cmd.buttons",
+          "value": {
+            "serialized_value": "0",
+            "unit": null,
+            "value_type": "integer"
+          }
+        },
+        {
+          "field_id": "cmd.weapon",
+          "value": {
+            "serialized_value": "0",
+            "unit": null,
+            "value_type": "integer"
+          }
+        },
+        {
+          "field_id": "cmd.forwardmove",
+          "value": {
+            "serialized_value": "0",
+            "unit": "signed-byte",
+            "value_type": "integer"
+          }
+        },
+        {
+          "field_id": "cmd.rightmove",
+          "value": {
+            "serialized_value": "127",
+            "unit": "signed-byte",
+            "value_type": "integer"
+          }
+        },
+        {
+          "field_id": "cmd.upmove",
+          "value": {
+            "serialized_value": "0",
+            "unit": "signed-byte",
+            "value_type": "integer"
+          }
+        }
+      ],
+      "sequence_index": 21
+    },
+    {
+      "at": {
+        "serialized_value": "184",
+        "unit": "millisecond",
+        "value_type": "integer"
+      },
+      "event_id": "input.r2.step-22",
+      "fields": [
+        {
+          "field_id": "cmd.server-time",
+          "value": {
+            "serialized_value": "184",
+            "unit": "millisecond",
+            "value_type": "integer"
+          }
+        },
+        {
+          "field_id": "cmd.angle-0",
+          "value": {
+            "serialized_value": "0",
+            "unit": "short-angle",
+            "value_type": "integer"
+          }
+        },
+        {
+          "field_id": "cmd.angle-1",
+          "value": {
+            "serialized_value": "0",
+            "unit": "short-angle",
+            "value_type": "integer"
+          }
+        },
+        {
+          "field_id": "cmd.angle-2",
+          "value": {
+            "serialized_value": "0",
+            "unit": "short-angle",
+            "value_type": "integer"
+          }
+        },
+        {
+          "field_id": "cmd.buttons",
+          "value": {
+            "serialized_value": "0",
+            "unit": null,
+            "value_type": "integer"
+          }
+        },
+        {
+          "field_id": "cmd.weapon",
+          "value": {
+            "serialized_value": "0",
+            "unit": null,
+            "value_type": "integer"
+          }
+        },
+        {
+          "field_id": "cmd.forwardmove",
+          "value": {
+            "serialized_value": "0",
+            "unit": "signed-byte",
+            "value_type": "integer"
+          }
+        },
+        {
+          "field_id": "cmd.rightmove",
+          "value": {
+            "serialized_value": "127",
+            "unit": "signed-byte",
+            "value_type": "integer"
+          }
+        },
+        {
+          "field_id": "cmd.upmove",
+          "value": {
+            "serialized_value": "0",
+            "unit": "signed-byte",
+            "value_type": "integer"
+          }
+        }
+      ],
+      "sequence_index": 22
+    },
+    {
+      "at": {
+        "serialized_value": "192",
+        "unit": "millisecond",
+        "value_type": "integer"
+      },
+      "event_id": "input.r2.step-23",
+      "fields": [
+        {
+          "field_id": "cmd.server-time",
+          "value": {
+            "serialized_value": "192",
+            "unit": "millisecond",
+            "value_type": "integer"
+          }
+        },
+        {
+          "field_id": "cmd.angle-0",
+          "value": {
+            "serialized_value": "0",
+            "unit": "short-angle",
+            "value_type": "integer"
+          }
+        },
+        {
+          "field_id": "cmd.angle-1",
+          "value": {
+            "serialized_value": "0",
+            "unit": "short-angle",
+            "value_type": "integer"
+          }
+        },
+        {
+          "field_id": "cmd.angle-2",
+          "value": {
+            "serialized_value": "0",
+            "unit": "short-angle",
+            "value_type": "integer"
+          }
+        },
+        {
+          "field_id": "cmd.buttons",
+          "value": {
+            "serialized_value": "0",
+            "unit": null,
+            "value_type": "integer"
+          }
+        },
+        {
+          "field_id": "cmd.weapon",
+          "value": {
+            "serialized_value": "0",
+            "unit": null,
+            "value_type": "integer"
+          }
+        },
+        {
+          "field_id": "cmd.forwardmove",
+          "value": {
+            "serialized_value": "0",
+            "unit": "signed-byte",
+            "value_type": "integer"
+          }
+        },
+        {
+          "field_id": "cmd.rightmove",
+          "value": {
+            "serialized_value": "127",
+            "unit": "signed-byte",
+            "value_type": "integer"
+          }
+        },
+        {
+          "field_id": "cmd.upmove",
+          "value": {
+            "serialized_value": "0",
+            "unit": "signed-byte",
+            "value_type": "integer"
+          }
+        }
+      ],
+      "sequence_index": 23
+    },
+    {
+      "at": {
+        "serialized_value": "200",
+        "unit": "millisecond",
+        "value_type": "integer"
+      },
+      "event_id": "input.r2.step-24",
+      "fields": [
+        {
+          "field_id": "cmd.server-time",
+          "value": {
+            "serialized_value": "200",
+            "unit": "millisecond",
+            "value_type": "integer"
+          }
+        },
+        {
+          "field_id": "cmd.angle-0",
+          "value": {
+            "serialized_value": "0",
+            "unit": "short-angle",
+            "value_type": "integer"
+          }
+        },
+        {
+          "field_id": "cmd.angle-1",
+          "value": {
+            "serialized_value": "0",
+            "unit": "short-angle",
+            "value_type": "integer"
+          }
+        },
+        {
+          "field_id": "cmd.angle-2",
+          "value": {
+            "serialized_value": "0",
+            "unit": "short-angle",
+            "value_type": "integer"
+          }
+        },
+        {
+          "field_id": "cmd.buttons",
+          "value": {
+            "serialized_value": "0",
+            "unit": null,
+            "value_type": "integer"
+          }
+        },
+        {
+          "field_id": "cmd.weapon",
+          "value": {
+            "serialized_value": "0",
+            "unit": null,
+            "value_type": "integer"
+          }
+        },
+        {
+          "field_id": "cmd.forwardmove",
+          "value": {
+            "serialized_value": "0",
+            "unit": "signed-byte",
+            "value_type": "integer"
+          }
+        },
+        {
+          "field_id": "cmd.rightmove",
+          "value": {
+            "serialized_value": "127",
+            "unit": "signed-byte",
+            "value_type": "integer"
+          }
+        },
+        {
+          "field_id": "cmd.upmove",
+          "value": {
+            "serialized_value": "0",
+            "unit": "signed-byte",
+            "value_type": "integer"
+          }
+        }
+      ],
+      "sequence_index": 24
+    }
+  ],
+  "pre_gate_guard": {
+    "authorization_state": "withheld",
+    "execution_status": "not_executed",
+    "expected_result_included": false,
+    "formal_input_executed": false,
+    "formal_result_created": false
+  },
+  "run_id": "continuous-001",
+  "stop_boundary_id": "o.b.0030",
+  "time_base": {
+    "origin": {
+      "serialized_value": "0",
+      "unit": "millisecond",
+      "value_type": "integer"
+    },
+    "tick_unit": "millisecond",
+    "time_base_id": "o.b.0015"
+  }
+}

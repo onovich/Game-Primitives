@@ -110,6 +110,23 @@
             "value": "取消表在执行窗口允许立即设置特殊攻击；在缓冲窗口只保留请求，随后须通过取消资格检查才设置为当前动作。"
           },
           "to_id": "action-instance.r1.special"
+        },
+        {
+          "condition_ids": [],
+          "edge_id": "edge.r1.variable-gates-special-instantiation",
+          "from_id": "variable.r1.whiff-cancel-permission",
+          "kind": "gates",
+          "scope_ids": [
+            "scope.r1.fight-update"
+          ],
+          "source_fact": {
+            "provenance_refs": [
+              "r1.project-variant-contract"
+            ],
+            "status": "encoded",
+            "value": "项目夹具规定该独立规则负责改变已缓存的另一动作请求能否越过取消资格门并进入动作实例；请求形成、动作映射与缓存关系保持冻结。"
+          },
+          "to_id": "action-instance.r1.special"
         }
       ],
       "operational_records": [
@@ -640,9 +657,11 @@
           "blind_description": "冻结夹具提供的固定更新输入序列",
           "record_id": "input.r1.fixed-update-trace",
           "source_fact": {
-            "provenance_refs": [],
-            "status": "source_underdetermined",
-            "value": null
+            "provenance_refs": [
+              "r1.project-variant-contract"
+            ],
+            "status": "encoded",
+            "value": "正式输入接口以夹具固定更新编号和攻击输入事件为字段：更新 0 按下、更新 1 释放、更新 2 再次按下、更新 3 至 6 中立；该接口不包含运行输出。"
           },
           "test_role": "input"
         },
@@ -733,6 +752,48 @@
             "value": "资格在角色允许失误取消或当前动作命中计数大于零时成立；F00 的失误取消配置为假。"
           },
           "test_role": "process"
+        },
+        {
+          "audit_identity": "continuous-001 CA-R1 trace derivation algorithm",
+          "base_type": "rule",
+          "blind_description": "按固定更新坐标整理冻结结构字段的轨迹派生规则",
+          "record_id": "algorithm.r1.none-source-only",
+          "source_fact": {
+            "provenance_refs": [
+              "r1.project-variant-contract"
+            ],
+            "status": "encoded",
+            "value": "夹具按固定更新编号依序记录输入、动作、动作帧、待执行记录、取消资格、接触与命中字段，并在冻结停止点截断；派生规则不引入事前预测。"
+          },
+          "test_role": "process"
+        },
+        {
+          "audit_identity": "continuous-001 CA-R1 update-6 stop boundary",
+          "base_type": "condition",
+          "blind_description": "第七个固定更新完成后的冻结观察停止点",
+          "record_id": "stop.r1.update-6",
+          "source_fact": {
+            "provenance_refs": [
+              "r1.project-variant-contract"
+            ],
+            "status": "encoded",
+            "value": "停止边界是夹具更新 6 完成后；此时只读取已登记的动作、动作帧、待执行记录、取消资格、接触与命中字段。"
+          },
+          "test_role": "event"
+        },
+        {
+          "audit_identity": "continuous-001 CA-R1 controlled cancellation-permission relation",
+          "base_type": "rule",
+          "blind_description": "决定已缓存动作请求能否越过取消资格门的独立规则职责",
+          "record_id": "variable.r1.whiff-cancel-permission",
+          "source_fact": {
+            "provenance_refs": [
+              "r1.project-variant-contract"
+            ],
+            "status": "encoded",
+            "value": "项目夹具只改变已缓存的另一动作请求是否具备越过取消资格门的规则关系；输入识别、动作映射、缓存窗口、执行窗口和动作公式保持冻结。"
+          },
+          "test_role": "rule_action"
         }
       ],
       "rules": [
@@ -1501,6 +1562,23 @@
         },
         {
           "condition_ids": [],
+          "edge_id": "edge.r2.variable-modulates-command-selection",
+          "from_id": "variable.r2.input-sampling-policy",
+          "kind": "modulates",
+          "scope_ids": [
+            "scope.r2.air-movement"
+          ],
+          "source_fact": {
+            "provenance_refs": [
+              "r2.project-variant-contract"
+            ],
+            "status": "encoded",
+            "value": "项目夹具规定该独立规则负责改变每个子步从原始命令到实际使用命令的选择关系；原始输入文件与后续移动公式保持冻结。"
+          },
+          "to_id": "input.r2.used-command"
+        },
+        {
+          "condition_ids": [],
           "edge_id": "edge.r2.process-read-command",
           "from_id": "process.r2.air-movement",
           "kind": "reads",
@@ -1764,9 +1842,11 @@
           "blind_description": "冻结夹具提供的命令序列",
           "record_id": "input.r2.usercmd-trace",
           "source_fact": {
-            "provenance_refs": [],
-            "status": "source_underdetermined",
-            "value": null
+            "provenance_refs": [
+              "r2.project-variant-contract"
+            ],
+            "status": "encoded",
+            "value": "正式输入接口按 8 ms 子步提供原始方向字段：子步 0 至 4 的 forwardmove 为 127、rightmove 为 0，子步 5 至 24 的 forwardmove 为 0、rightmove 为 127；其他命令字段关闭，接口不包含运行输出。"
           },
           "test_role": "input"
         },
@@ -1875,6 +1955,48 @@
             "value": "加速规则直接增加 playerState velocity，单步末尾对速度进行 SnapVector。"
           },
           "test_role": "process"
+        },
+        {
+          "audit_identity": "continuous-001 CA-R2 trace derivation algorithm",
+          "base_type": "rule",
+          "blind_description": "按固定子步顺序整理命令与状态字段的轨迹派生规则",
+          "record_id": "algorithm.r2.none-source-only",
+          "source_fact": {
+            "provenance_refs": [
+              "r2.project-variant-contract"
+            ],
+            "status": "encoded",
+            "value": "夹具按子步命令时间依序记录 raw_cmd、used_cmd、分支、接触、速度与位置字段，并在冻结停止点截断；派生规则不引入事前预测。"
+          },
+          "test_role": "process"
+        },
+        {
+          "audit_identity": "continuous-001 CA-R2 200-ms stop boundary",
+          "base_type": "condition",
+          "blind_description": "第二十五个固定子步完成时的冻结观察停止点",
+          "record_id": "stop.r2.200-ms",
+          "source_fact": {
+            "provenance_refs": [
+              "r2.project-variant-contract"
+            ],
+            "status": "encoded",
+            "value": "停止边界是第 25 个 8 ms 子步完成、规则时间到达 200 ms 时；此时只读取已登记的命令、分支、接触、速度与位置字段。"
+          },
+          "test_role": "event"
+        },
+        {
+          "audit_identity": "continuous-001 CA-R2 controlled input-selection relation",
+          "base_type": "rule",
+          "blind_description": "决定每个过程子步采用哪一份方向输入的独立规则职责",
+          "record_id": "variable.r2.input-sampling-policy",
+          "source_fact": {
+            "provenance_refs": [
+              "r2.project-variant-contract"
+            ],
+            "status": "encoded",
+            "value": "项目夹具只改变运行中从 raw_cmd 到 used_cmd 的选择关系；原始输入轨迹、子步时长、初始状态和移动公式保持冻结。"
+          },
+          "test_role": "rule_action"
         }
       ],
       "rules": [
@@ -2588,9 +2710,9 @@
       "operational_edges": [
         {
           "condition_ids": [],
-          "edge_id": "edge.r3.candidate-adjudicated",
+          "edge_id": "edge.r3.candidate-accepted",
           "from_id": "input.r3.candidate-press",
-          "kind": "adjudicates_as",
+          "kind": "recognizes_as",
           "scope_ids": [
             "scope.r3.single-object"
           ],
@@ -2601,9 +2723,26 @@
               "r3.input-press"
             ],
             "status": "encoded",
-            "value": "可命中且位于接收区域的左右键按下调用结果更新；用户触发路径先按时间偏移分类并通过可命中检查。"
+            "value": "对象尚未全部裁定、按下为左右键且指针位于接收区域时，接收器接受候选并调用 Hit；接受候选不等于形成正式裁定。"
           },
-          "to_id": "event.r3.formal-judgement"
+          "to_id": "event.r3.accepted-candidate"
+        },
+        {
+          "condition_ids": [],
+          "edge_id": "edge.r3.adjudication-scheduled-by-variable",
+          "from_id": "event.r3.accepted-candidate",
+          "kind": "scheduled_by",
+          "scope_ids": [
+            "scope.r3.single-object"
+          ],
+          "source_fact": {
+            "provenance_refs": [
+              "r3.project-variant-contract"
+            ],
+            "status": "encoded",
+            "value": "项目夹具规定该独立规则负责改变候选被接受后何时调用同一裁定路径；候选事实、窗口分类、可命中检查与结果提交路径保持冻结。"
+          },
+          "to_id": "variable.r3.adjudication-schedule"
         },
         {
           "condition_ids": [],
@@ -2625,8 +2764,8 @@
         },
         {
           "condition_ids": [],
-          "edge_id": "edge.r3.event-resolved",
-          "from_id": "event.r3.formal-judgement",
+          "edge_id": "edge.r3.accepted-candidate-resolved",
+          "from_id": "event.r3.accepted-candidate",
           "kind": "resolves_to",
           "scope_ids": [
             "scope.r3.single-object"
@@ -2637,24 +2776,42 @@
               "r3.result-order"
             ],
             "status": "encoded",
-            "value": "绝对时间偏移按允许结果及窗口顺序分类，得到正式结算类型。"
+            "value": "已接受候选进入用户触发检查；绝对时间偏移按允许结果及窗口顺序分类，先得到待复核的结算类型。"
           },
           "to_id": "resolution.r3.hit-result"
         },
         {
           "condition_ids": [],
-          "edge_id": "edge.r3.resolution-committed",
+          "edge_id": "edge.r3.resolution-adjudicated",
           "from_id": "resolution.r3.hit-result",
+          "kind": "adjudicates_as",
+          "scope_ids": [
+            "scope.r3.single-object"
+          ],
+          "source_fact": {
+            "provenance_refs": [
+              "r3.hit-circle-result"
+            ],
+            "status": "encoded",
+            "value": "只有窗口分类结果非 None 且 CheckHittable 返回 Hit 时，用户触发路径才形成可交给 ApplyResult 的正式裁定事件。"
+          },
+          "to_id": "event.r3.formal-judgement"
+        },
+        {
+          "condition_ids": [],
+          "edge_id": "edge.r3.formal-event-committed",
+          "from_id": "event.r3.formal-judgement",
           "kind": "commits",
           "scope_ids": [
             "scope.r3.single-object"
           ],
           "source_fact": {
             "provenance_refs": [
-              "r3.apply-result"
+              "r3.apply-result",
+              "r3.hit-circle-result"
             ],
             "status": "encoded",
-            "value": "ApplyResult 验证结果类型后写入 RawTime 与 GameplayRate、更新 ArmedState 并调用 OnNewResult。"
+            "value": "通过窗口分类与 CheckHittable 复核的正式事件进入 ApplyResult；验证结果类型后写入 RawTime 与 GameplayRate、更新 ArmedState 并调用 OnNewResult。"
           },
           "to_id": "effect.r3.result-committed"
         }
@@ -2703,10 +2860,12 @@
           "review_rule_refs": {
             "provenance_refs": [
               "r3.apply-result",
-              "r3.candidate-path"
+              "r3.candidate-path",
+              "r3.hit-circle-result"
             ],
             "status": "encoded",
             "values": [
+              "rule.r3.formal-result-acceptance",
               "rule.r3.no-second-result"
             ]
           },
@@ -2725,7 +2884,7 @@
                   "r3.input-press"
                 ],
                 "status": "encoded",
-                "value": "event.r3.formal-judgement"
+                "value": "event.r3.accepted-candidate"
               },
               "rule_refs": {
                 "provenance_refs": [
@@ -2750,10 +2909,11 @@
             {
               "input_ref": {
                 "provenance_refs": [
-                  "r3.hit-circle-result"
+                  "r3.candidate-path",
+                  "r3.input-press"
                 ],
                 "status": "encoded",
-                "value": "event.r3.formal-judgement"
+                "value": "event.r3.accepted-candidate"
               },
               "output_ref": {
                 "provenance_refs": [
@@ -2791,6 +2951,40 @@
                 ],
                 "status": "encoded",
                 "value": "resolution.r3.hit-result"
+              },
+              "output_ref": {
+                "provenance_refs": [
+                  "r3.hit-circle-result"
+                ],
+                "status": "encoded",
+                "value": "event.r3.formal-judgement"
+              },
+              "rule_refs": {
+                "provenance_refs": [
+                  "r3.hit-circle-result"
+                ],
+                "status": "encoded",
+                "values": [
+                  "rule.r3.formal-result-acceptance"
+                ]
+              },
+              "stage_id": "stage.r3.recheck",
+              "stage_kind": "recheck",
+              "time_base_ref": {
+                "provenance_refs": [
+                  "r3.hit-circle-result"
+                ],
+                "status": "encoded",
+                "value": "tb.r3.gameplay-clock"
+              }
+            },
+            {
+              "input_ref": {
+                "provenance_refs": [
+                  "r3.hit-circle-result"
+                ],
+                "status": "encoded",
+                "value": "event.r3.formal-judgement"
               },
               "output_ref": {
                 "provenance_refs": [
@@ -2891,6 +3085,21 @@
           "test_role": "event"
         },
         {
+          "audit_identity": "osu!lazer HitReceptor accepted candidate",
+          "base_type": "state",
+          "blind_description": "通过接收器资格与区域检查、等待窗口分类的已接受候选事件",
+          "record_id": "event.r3.accepted-candidate",
+          "source_fact": {
+            "provenance_refs": [
+              "r3.candidate-path",
+              "r3.input-press"
+            ],
+            "status": "encoded",
+            "value": "对象未全部裁定、动作为左右键且指针位于接收区域时，接收器接受候选并调用 Hit；此时尚未完成窗口分类或 CheckHittable 复核。"
+          },
+          "test_role": "event"
+        },
+        {
           "audit_identity": "osu!lazer HitReceptor accepted press",
           "base_type": "action",
           "blind_description": "在接收区域内且对象仍可命中时接受的候选按下",
@@ -2926,9 +3135,11 @@
           "blind_description": "冻结夹具在规则时点提供的单次候选按下",
           "record_id": "input.r3.single-candidate",
           "source_fact": {
-            "provenance_refs": [],
-            "status": "source_underdetermined",
-            "value": null
+            "provenance_refs": [
+              "r3.project-variant-contract"
+            ],
+            "status": "encoded",
+            "value": "正式输入接口在规则时点 T、对象圆心位置提供一次有效候选按下，并保持输入记录至裁定完成；字段只描述候选时点、位置、按键与次数，不包含预期结果。"
           },
           "test_role": "input"
         },
@@ -2992,6 +3203,62 @@
             "value": "接收器只在对象未全部裁定时可命中；提交已有结果会被拒绝。"
           },
           "test_role": "process"
+        },
+        {
+          "audit_identity": "osu!lazer CheckHittable result",
+          "base_type": "state",
+          "blind_description": "窗口分类后对当前结算类型的可命中复核状态",
+          "record_id": "state.r3.check-hittable",
+          "source_fact": {
+            "provenance_refs": [
+              "r3.hit-circle-result"
+            ],
+            "status": "encoded",
+            "value": "用户触发检查要求窗口分类结果非 None，且 CheckHittable 对该结果返回 Hit，才调用 ApplyResult。"
+          },
+          "test_role": "process"
+        },
+        {
+          "audit_identity": "continuous-001 CA-R3 trace derivation algorithm",
+          "base_type": "rule",
+          "blind_description": "按候选、裁定与提交顺序整理冻结字段的轨迹派生规则",
+          "record_id": "algorithm.r3.none-source-only",
+          "source_fact": {
+            "provenance_refs": [
+              "r3.project-variant-contract"
+            ],
+            "status": "encoded",
+            "value": "夹具按候选、裁定调用、相对偏移、窗口、正式结果字段、RawTime 字段、通知、已裁定状态与后续输入许可的顺序记录结构事件，并在冻结停止点截断；派生规则不引入事前预测。"
+          },
+          "test_role": "process"
+        },
+        {
+          "audit_identity": "continuous-001 CA-R3 result-commit stop boundary",
+          "base_type": "condition",
+          "blind_description": "正式提交与后续输入许可记录完成后的冻结观察停止点",
+          "record_id": "stop.r3.result-committed",
+          "source_fact": {
+            "provenance_refs": [
+              "r3.project-variant-contract"
+            ],
+            "status": "encoded",
+            "value": "停止边界是正式结果提交、RawTime 与通知字段记录完成，并记录同一对象再次接受输入的许可关闭时点；该定义不写入实际结果值。"
+          },
+          "test_role": "event"
+        },
+        {
+          "audit_identity": "continuous-001 CA-R3 controlled adjudication-scheduling relation",
+          "base_type": "rule",
+          "blind_description": "决定候选发生后何时调用同一裁定路径的独立规则职责",
+          "record_id": "variable.r3.adjudication-schedule",
+          "source_fact": {
+            "provenance_refs": [
+              "r3.project-variant-contract"
+            ],
+            "status": "encoded",
+            "value": "项目夹具只改变候选到裁定调用之间的调度关系；候选事实、判定窗口、可命中检查、分类规则与结果提交路径保持冻结。"
+          },
+          "test_role": "rule_action"
         }
       ],
       "rules": [
@@ -3033,7 +3300,7 @@
               ],
               "status": "encoded",
               "values": [
-                "event.r3.formal-judgement"
+                "event.r3.accepted-candidate"
               ]
             },
             "feedback": {
@@ -3062,7 +3329,7 @@
               ],
               "status": "encoded",
               "values": [
-                "event.r3.formal-judgement"
+                "event.r3.accepted-candidate"
               ]
             },
             "target": {
@@ -3084,7 +3351,7 @@
               ]
             }
           },
-          "statement": "对象尚未全部裁定、按下为左右键且指针位于接收区域时，候选按下调用用户触发的结果更新。"
+          "statement": "对象尚未全部裁定、按下为左右键且指针位于接收区域时，接收器接受候选并调用用户触发检查；该候选尚不是正式裁定事件。"
         },
         {
           "rule_id": "rule.r3.no-second-result",
@@ -3182,12 +3449,13 @@
           "slots": {
             "action": {
               "provenance_refs": [
+                "r3.candidate-path",
                 "r3.hit-circle-result",
                 "r3.result-order"
               ],
               "status": "encoded",
               "values": [
-                "event.r3.formal-judgement"
+                "event.r3.accepted-candidate"
               ]
             },
             "actor": {
@@ -3235,7 +3503,7 @@
               ],
               "status": "encoded",
               "values": [
-                "event.r3.formal-judgement"
+                "event.r3.accepted-candidate"
               ]
             },
             "resolution": {
@@ -3263,11 +3531,101 @@
               ],
               "status": "encoded",
               "values": [
-                "event.r3.formal-judgement"
+                "event.r3.accepted-candidate"
               ]
             }
           },
-          "statement": "用户触发检查以当前时间相对物件结束时间的偏移调用窗口分类；分类使用绝对偏移并返回第一个允许且在窗内的结果。"
+          "statement": "已接受候选以当前时间相对物件结束时间的偏移调用窗口分类；分类使用绝对偏移并返回第一个允许且在窗内的待复核结果。"
+        },
+        {
+          "rule_id": "rule.r3.formal-result-acceptance",
+          "slots": {
+            "action": {
+              "provenance_refs": [
+                "r3.hit-circle-result"
+              ],
+              "status": "encoded",
+              "values": [
+                "resolution.r3.hit-result"
+              ]
+            },
+            "actor": {
+              "provenance_refs": [],
+              "status": "not_applicable",
+              "values": []
+            },
+            "context": {
+              "provenance_refs": [
+                "r3.hit-circle-result"
+              ],
+              "status": "encoded",
+              "values": [
+                "scope.r3.single-object"
+              ]
+            },
+            "cost": {
+              "provenance_refs": [],
+              "status": "not_applicable",
+              "values": []
+            },
+            "effects": {
+              "provenance_refs": [
+                "r3.hit-circle-result"
+              ],
+              "status": "encoded",
+              "values": [
+                "event.r3.formal-judgement"
+              ]
+            },
+            "feedback": {
+              "provenance_refs": [],
+              "status": "scope_excluded",
+              "values": []
+            },
+            "goals_evaluation": {
+              "provenance_refs": [],
+              "status": "source_underdetermined",
+              "values": []
+            },
+            "preconditions": {
+              "provenance_refs": [
+                "r3.hit-circle-result"
+              ],
+              "status": "encoded",
+              "values": [
+                "resolution.r3.hit-result",
+                "state.r3.check-hittable"
+              ]
+            },
+            "resolution": {
+              "provenance_refs": [
+                "r3.hit-circle-result"
+              ],
+              "status": "encoded",
+              "values": [
+                "event.r3.formal-judgement"
+              ]
+            },
+            "target": {
+              "provenance_refs": [
+                "r3.hit-circle-result"
+              ],
+              "status": "encoded",
+              "values": [
+                "process.r3.drawable-adjudicator"
+              ]
+            },
+            "trigger": {
+              "provenance_refs": [
+                "r3.hit-circle-result"
+              ],
+              "status": "encoded",
+              "values": [
+                "resolution.r3.hit-result"
+              ]
+            }
+          },
+          "statement": "只有窗口分类结果非 None 且 CheckHittable 返回 Hit 时，待复核结果才形成可交给 ApplyResult 的正式裁定事件。"
         },
         {
           "rule_id": "rule.r3.result-commit",
@@ -3278,7 +3636,7 @@
               ],
               "status": "encoded",
               "values": [
-                "resolution.r3.hit-result"
+                "event.r3.formal-judgement"
               ]
             },
             "actor": {
@@ -3332,7 +3690,7 @@
               ],
               "status": "encoded",
               "values": [
-                "resolution.r3.hit-result"
+                "event.r3.formal-judgement"
               ]
             },
             "resolution": {
@@ -3359,11 +3717,11 @@
               ],
               "status": "encoded",
               "values": [
-                "resolution.r3.hit-result"
+                "event.r3.formal-judgement"
               ]
             }
           },
-          "statement": "结果类型必须先被写入且落在裁定允许范围内；随后记录 RawTime 和 GameplayRate、更新 ArmedState 并通知 OnNewResult。"
+          "statement": "正式裁定事件交给 ApplyResult 后，结果类型仍须通过存在性与允许范围验证；随后记录 RawTime 和 GameplayRate、更新 ArmedState 并通知 OnNewResult。"
         }
       ],
       "source_issues": [
@@ -3593,6 +3951,6 @@
   "encoding_id": "encoding.continuous-001.canonical-v0.1.0",
   "representation_version": "CA-SR 0.1",
   "run_id": "continuous-001",
-  "source_packet_sha256": "c7757f1ce74af15c25433bbf32cb94bbd4d1c497d5637470803ef1cf09328d12",
+  "source_packet_sha256": "cd7976fb67823da2986cd5f425de0ccd5c088abc9b9e0a1a56c351956dba8082",
   "supersedes_encoding_sha256": null
 }

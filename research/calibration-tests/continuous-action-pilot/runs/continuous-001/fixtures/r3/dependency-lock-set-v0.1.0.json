@@ -1,0 +1,36 @@
+{
+  "$schema": "https://github.com/onovich/Game-Primitives/blob/main/research/calibration-tests/continuous-action-pilot/schema/dependency-lock-set-0.1.0.schema.json",
+  "artifact_type": "continuous_action_dependency_lock_set",
+  "artifact_version": "0.1.0",
+  "case_id": "CA-R3",
+  "copy_semantics": "byte_for_byte",
+  "created_at": "2026-07-26T22:01:25Z",
+  "formal_input_executed": false,
+  "lock_files": [
+    {
+      "artifact_id": "dependency-lock.ca-r3.game",
+      "bytes": 93044,
+      "path": "research/calibration-tests/continuous-action-pilot/runs/continuous-001/fixtures/r3/dependency-locks/osu.Game.packages.lock.json",
+      "sha256": "48952c1c2acfc6634f8f0675dd0c9a43667808db3885711519c5a7562e0fa723",
+      "source_tree_path": "osu.Game/packages.lock.json"
+    },
+    {
+      "artifact_id": "dependency-lock.ca-r3.ruleset",
+      "bytes": 93345,
+      "path": "research/calibration-tests/continuous-action-pilot/runs/continuous-001/fixtures/r3/dependency-locks/osu.Game.Rulesets.Osu.packages.lock.json",
+      "sha256": "2b1612fb68477937bbc4a86437138cd3ae850a25871eb18ce4a626022658d7ae",
+      "source_tree_path": "osu.Game.Rulesets.Osu/packages.lock.json"
+    },
+    {
+      "artifact_id": "dependency-lock.ca-r3.tests",
+      "bytes": 98448,
+      "path": "research/calibration-tests/continuous-action-pilot/runs/continuous-001/fixtures/r3/dependency-locks/osu.Game.Rulesets.Osu.Tests.packages.lock.json",
+      "sha256": "86a9c02930a3ce76d3aac7facf7261324026f189c37785d1a7530afa72669a8a",
+      "source_tree_path": "osu.Game.Rulesets.Osu.Tests/packages.lock.json"
+    }
+  ],
+  "repository_url": "https://github.com/ppy/osu",
+  "run_id": "continuous-001",
+  "source_commit": "5da71008b082d1a77e4bb301dc98886f1f24b895",
+  "target_project": "osu.Game.Rulesets.Osu.Tests/osu.Game.Rulesets.Osu.Tests.csproj"
+}

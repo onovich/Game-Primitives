@@ -1,0 +1,166 @@
+{
+  "$schema": "https://github.com/onovich/Game-Primitives/blob/main/research/calibration-tests/continuous-action-pilot/schema/r3-build-list-evidence-0.1.0.schema.json",
+  "artifact_type": "continuous_action_r3_build_list_evidence",
+  "artifact_version": "0.1.0",
+  "build_gate_status": "passed",
+  "case_id": "CA-R3",
+  "created_at": "2026-07-26T22:54:24Z",
+  "dependency_lock_set": {
+    "path": "research/calibration-tests/continuous-action-pilot/runs/continuous-001/fixtures/r3/dependency-lock-set-v0.1.0.json",
+    "sha256": "9f9f8f4fe02dbdc3f676657d092414068f0403bbf19439623c09fef180fec275"
+  },
+  "dependency_locks": [
+    {
+      "path": "research/calibration-tests/continuous-action-pilot/runs/continuous-001/fixtures/r3/dependency-locks/osu.Game.packages.lock.json",
+      "sha256": "48952c1c2acfc6634f8f0675dd0c9a43667808db3885711519c5a7562e0fa723"
+    },
+    {
+      "path": "research/calibration-tests/continuous-action-pilot/runs/continuous-001/fixtures/r3/dependency-locks/osu.Game.Rulesets.Osu.packages.lock.json",
+      "sha256": "2b1612fb68477937bbc4a86437138cd3ae850a25871eb18ce4a626022658d7ae"
+    },
+    {
+      "path": "research/calibration-tests/continuous-action-pilot/runs/continuous-001/fixtures/r3/dependency-locks/osu.Game.Rulesets.Osu.Tests.packages.lock.json",
+      "sha256": "86a9c02930a3ce76d3aac7facf7261324026f189c37785d1a7530afa72669a8a"
+    }
+  ],
+  "evidence_files": [
+    {
+      "bytes": 3306,
+      "external_path": "D:/GamePrimitivesToolchains/cache/osu-r3-formal-prep-replay-v0.1.0-r9/probe-summary.json",
+      "sha256": "d4e8456f575eecd83cbdacb1db9cb84fcb0d900d1003afe39b9da21c8cf989b1"
+    },
+    {
+      "bytes": 165591,
+      "external_path": "D:/GamePrimitivesToolchains/cache/osu-r3-formal-prep-replay-v0.1.0-r9/logs/restore-msbuild.log",
+      "sha256": "f296d81bc18ca3d4af448810d8a4f15a9b8444e19cd33390608935f8a4d9ff49"
+    },
+    {
+      "bytes": 487830,
+      "external_path": "D:/GamePrimitivesToolchains/cache/osu-r3-formal-prep-replay-v0.1.0-r9/logs/build-msbuild.log",
+      "sha256": "da1558bd753761be9c539057a54c090dbf8237c5717751f37840553952fd8bfc"
+    },
+    {
+      "bytes": 490,
+      "external_path": "D:/GamePrimitivesToolchains/cache/osu-r3-formal-prep-replay-v0.1.0-r9/logs/list-tests.stdout",
+      "sha256": "efd03376380a9757a6d6137655a0c9b8841d9ee749c2ceaa75447079f662e404"
+    },
+    {
+      "bytes": 0,
+      "external_path": "D:/GamePrimitivesToolchains/cache/osu-r3-formal-prep-replay-v0.1.0-r9/logs/list-tests.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "bytes": 160,
+      "external_path": "D:/GamePrimitivesToolchains/cache/osu-r3-formal-prep-replay-v0.1.0-r9/logs/shutdown.stdout",
+      "sha256": "b8028200bc3b12a3210641024da80eb85dffe587d8192df519108d0a20cfe822"
+    },
+    {
+      "bytes": 0,
+      "external_path": "D:/GamePrimitivesToolchains/cache/osu-r3-formal-prep-replay-v0.1.0-r9/logs/shutdown.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "bytes": 0,
+      "external_path": "D:/GamePrimitivesToolchains/replays/r3-runner-guard-r2.stdout.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "bytes": 703,
+      "external_path": "D:/GamePrimitivesToolchains/replays/r3-runner-guard-r2.stderr.txt",
+      "sha256": "cd9912bca85f4cc8e06a70cbd4e8e43f56dc6c56eb2286bb13b4283c8703daf9"
+    },
+    {
+      "bytes": 0,
+      "external_path": "D:/GamePrimitivesToolchains/replays/r3-comparator-guard-r2.stdout.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "bytes": 708,
+      "external_path": "D:/GamePrimitivesToolchains/replays/r3-comparator-guard-r2.stderr.txt",
+      "sha256": "b9fc5058e689f51c099822a08d5089689dbfa46fdb9f9f2a623cffa098f978d2"
+    }
+  ],
+  "fixture_artifacts": {
+    "build_list_runner_sha256": "a1a16ee178349938360d0589595e48151269be182759febad5cc3b9613c1895f",
+    "comparator_sha256": "a4a35b0513f00f2cc848a626ca4834210982154a7552fa06d89585f3e7a86da8",
+    "fixture_spec_sha256": "6bff1307be4cd595bb41e10606207c0343a66cd661ea01324e01a1c6b3ccb07b",
+    "formal_runner_sha256": "29926ac65c2c92605a2d756f0fdc76d41031e2180521750f746cbc680d5c564c",
+    "observation_patch_sha256": "f383e4604f6ab65ff66be6619fe6558da9083e6a57aecaadb24b292f234ef006"
+  },
+  "formal_execution": {
+    "comparator_executed": false,
+    "comparator_rejected_without_gate": true,
+    "formal_input_executed": false,
+    "formal_result_created": false,
+    "formal_runner_rejected_without_gate": true,
+    "guard_rejection_created_cache": false,
+    "test_body_execution_count": 0
+  },
+  "process_records": [
+    {
+      "alive_after": 0,
+      "exit_code": 0,
+      "pid": 50980,
+      "step": "clone-frozen-source"
+    },
+    {
+      "alive_after": 0,
+      "exit_code": 0,
+      "pid": 74188,
+      "step": "checkout-frozen-commit"
+    },
+    {
+      "alive_after": 0,
+      "exit_code": 0,
+      "pid": 73224,
+      "step": "resolve-dotnet-version"
+    },
+    {
+      "alive_after": 0,
+      "exit_code": 0,
+      "pid": 72112,
+      "step": "locked-restore"
+    },
+    {
+      "alive_after": 0,
+      "exit_code": 0,
+      "pid": 67588,
+      "step": "build-observation-fixture"
+    },
+    {
+      "alive_after": 0,
+      "exit_code": 0,
+      "pid": 74580,
+      "step": "list-formal-test-without-execution"
+    },
+    {
+      "alive_after": 0,
+      "exit_code": 0,
+      "pid": 57732,
+      "step": "shutdown-dotnet-build-servers"
+    },
+    {
+      "alive_after": 0,
+      "exit_code": 1,
+      "pid": 63332,
+      "step": "formal-runner-refusal-without-permit"
+    },
+    {
+      "alive_after": 0,
+      "exit_code": 1,
+      "pid": 75140,
+      "step": "formal-comparator-refusal-without-permit"
+    }
+  ],
+  "project": "osu.Game.Rulesets.Osu.Tests/osu.Game.Rulesets.Osu.Tests.csproj",
+  "results": {
+    "build_error_count": 0,
+    "build_warning_count": 0,
+    "formal_test_discovered": true,
+    "locked_restore_exit_code": 0,
+    "portable_dotnet_remaining": 0,
+    "test_discovery_exit_code": 0
+  },
+  "run_id": "continuous-001",
+  "source_commit": "5da71008b082d1a77e4bb301dc98886f1f24b895"
+}

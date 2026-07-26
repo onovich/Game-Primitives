@@ -1,0 +1,70 @@
+diff --git a/code/game/bg_pmove.c b/code/game/bg_pmove.c
+--- a/code/game/bg_pmove.c
++++ b/code/game/bg_pmove.c
+@@ -24,4 +24,14 @@
+ #include "q_shared.h"
+ #include "bg_public.h"
+ #include "bg_local.h"
++
++#if defined(GAME_PRIMITIVES_OBSERVATION)
++void Q3GP_ObserveBranch(int branch_id);
++void Q3GP_ObserveAirMove(
++	float fmove,
++	float smove,
++	const vec3_t wishdir,
++	float wishspeed
++);
++#endif
+ 
+@@ -632,6 +642,10 @@ static void PM_AirMove( void ) {
+ 	VectorCopy (wishvel, wishdir);
+ 	wishspeed = VectorNormalize(wishdir);
+ 	wishspeed *= scale;
++
++#if defined(GAME_PRIMITIVES_OBSERVATION)
++	Q3GP_ObserveAirMove(fmove, smove, wishdir, wishspeed);
++#endif
+ 
+ 	// not on ground, so little effect on velocity
+ 	PM_Accelerate (wishdir, wishspeed, pm_airaccelerate);
+@@ -1973,22 +1987,40 @@ void PmoveSingle (pmove_t *pmove) {
+ 		PM_InvulnerabilityMove();
+ 	} else
+ #endif
+ 	if ( pm->ps->powerups[PW_FLIGHT] ) {
++#if defined(GAME_PRIMITIVES_OBSERVATION)
++		Q3GP_ObserveBranch(1);
++#endif
+ 		// flight powerup doesn't allow jump and has different friction
+ 		PM_FlyMove();
+ 	} else if (pm->ps->pm_flags & PMF_GRAPPLE_PULL) {
++#if defined(GAME_PRIMITIVES_OBSERVATION)
++		Q3GP_ObserveBranch(2);
++#endif
+ 		PM_GrappleMove();
+ 		// We can wiggle a bit
+ 		PM_AirMove();
+ 	} else if (pm->ps->pm_flags & PMF_TIME_WATERJUMP) {
++#if defined(GAME_PRIMITIVES_OBSERVATION)
++		Q3GP_ObserveBranch(3);
++#endif
+ 		PM_WaterJumpMove();
+ 	} else if ( pm->waterlevel > 1 ) {
++#if defined(GAME_PRIMITIVES_OBSERVATION)
++		Q3GP_ObserveBranch(4);
++#endif
+ 		// swimming
+ 		PM_WaterMove();
+ 	} else if ( pml.walking ) {
++#if defined(GAME_PRIMITIVES_OBSERVATION)
++		Q3GP_ObserveBranch(5);
++#endif
+ 		// walking on ground
+ 		PM_WalkMove();
+ 	} else {
++#if defined(GAME_PRIMITIVES_OBSERVATION)
++		Q3GP_ObserveBranch(6);
++#endif
+ 		// airborne
+ 		PM_AirMove();
+ 	}

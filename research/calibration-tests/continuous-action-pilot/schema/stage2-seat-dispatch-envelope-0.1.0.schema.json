@@ -1,0 +1,470 @@
+{
+  "$id": "https://github.com/onovich/Game-Primitives/blob/main/research/calibration-tests/continuous-action-pilot/schema/stage2-seat-dispatch-envelope-0.1.0.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$defs": {
+    "actorBindingReceipt": {
+      "additionalProperties": false,
+      "properties": {
+        "actor_identifier": {
+          "$ref": "#/$defs/localId"
+        },
+        "actor_object_sha256": {
+          "$ref": "#/$defs/sha256"
+        },
+        "session_id": {
+          "minLength": 1,
+          "type": "string"
+        }
+      },
+      "required": [
+        "actor_identifier",
+        "actor_object_sha256",
+        "session_id"
+      ],
+      "type": "object"
+    },
+    "actorBindingTemplate": {
+      "additionalProperties": false,
+      "properties": {
+        "actor_identifier": {
+          "type": "null"
+        },
+        "actor_object_sha256": {
+          "type": "null"
+        },
+        "session_id": {
+          "type": "null"
+        }
+      },
+      "required": [
+        "actor_identifier",
+        "actor_object_sha256",
+        "session_id"
+      ],
+      "type": "object"
+    },
+    "artifactReference": {
+      "additionalProperties": false,
+      "properties": {
+        "path": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "sha256": {
+          "$ref": "#/$defs/sha256"
+        }
+      },
+      "required": [
+        "path",
+        "sha256"
+      ],
+      "type": "object"
+    },
+    "conditionBindingReceipt": {
+      "additionalProperties": false,
+      "properties": {
+        "condition_id": {
+          "pattern": "^condition-v0[12]$",
+          "type": "string"
+        },
+        "condition_view_path": {
+          "pattern": "^research/calibration-tests/continuous-action-pilot/runs/continuous-001/inputs/stage1-view-v0[12]\\.json$",
+          "type": "string"
+        },
+        "condition_view_sha256": {
+          "$ref": "#/$defs/sha256"
+        }
+      },
+      "required": [
+        "condition_id",
+        "condition_view_path",
+        "condition_view_sha256"
+      ],
+      "type": "object"
+    },
+    "conditionBindingTemplate": {
+      "additionalProperties": false,
+      "properties": {
+        "condition_id": {
+          "pattern": "^condition-v0[12]$",
+          "type": "string"
+        },
+        "condition_view_path": {
+          "pattern": "^research/calibration-tests/continuous-action-pilot/runs/continuous-001/inputs/stage1-view-v0[12]\\.json$",
+          "type": "string"
+        },
+        "condition_view_sha256": {
+          "type": "null"
+        }
+      },
+      "required": [
+        "condition_id",
+        "condition_view_path",
+        "condition_view_sha256"
+      ],
+      "type": "object"
+    },
+    "dependencyEdge": {
+      "additionalProperties": false,
+      "properties": {
+        "document_path": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "schema_path": {
+          "pattern": "^research/calibration-tests/continuous-action-pilot/schema/.+\\.schema\\.json$",
+          "type": "string"
+        }
+      },
+      "required": [
+        "document_path",
+        "schema_path"
+      ],
+      "type": "object"
+    },
+    "localId": {
+      "pattern": "^[a-z0-9][a-z0-9._-]*$",
+      "type": "string"
+    },
+    "lockedFile": {
+      "additionalProperties": false,
+      "properties": {
+        "dispatch_role": {
+          "enum": [
+            "participant_cognitive_input",
+            "facility_schema"
+          ]
+        },
+        "path": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "sha256": {
+          "$ref": "#/$defs/sha256"
+        }
+      },
+      "required": [
+        "dispatch_role",
+        "path",
+        "sha256"
+      ],
+      "type": "object"
+    },
+    "receipt": {
+      "additionalProperties": false,
+      "allOf": [
+        {
+          "$ref": "#/$defs/seatConditionInvariant"
+        }
+      ],
+      "properties": {
+        "$schema": {
+          "const": "https://github.com/onovich/Game-Primitives/blob/main/research/calibration-tests/continuous-action-pilot/schema/stage2-seat-dispatch-envelope-0.1.0.schema.json"
+        },
+        "actor_binding": {
+          "$ref": "#/$defs/actorBindingReceipt"
+        },
+        "artifact_type": {
+          "const": "stage2_seat_dispatch_receipt"
+        },
+        "artifact_version": {
+          "const": "0.1.0"
+        },
+        "authorization_receipt": {
+          "$ref": "#/$defs/artifactReference"
+        },
+        "cohort_lock": {
+          "$ref": "#/$defs/artifactReference"
+        },
+        "condition_binding": {
+          "$ref": "#/$defs/conditionBindingReceipt"
+        },
+        "dispatch_status": {
+          "const": "ready_for_dispatch"
+        },
+        "facility_files": {
+          "items": {
+            "$ref": "#/$defs/lockedFile"
+          },
+          "minItems": 1,
+          "type": "array",
+          "uniqueItems": true
+        },
+        "participant_files": {
+          "items": {
+            "$ref": "#/$defs/lockedFile"
+          },
+          "maxItems": 3,
+          "minItems": 3,
+          "type": "array",
+          "uniqueItems": true
+        },
+        "receipt_id": {
+          "$ref": "#/$defs/localId"
+        },
+        "release_authorized": {
+          "const": true
+        },
+        "run_id": {
+          "const": "continuous-001"
+        },
+        "schema_dependency_closure": {
+          "items": {
+            "$ref": "#/$defs/dependencyEdge"
+          },
+          "minItems": 1,
+          "type": "array",
+          "uniqueItems": true
+        },
+        "seat_id": {
+          "pattern": "^p0[1-4]$",
+          "type": "string"
+        },
+        "stage": {
+          "const": "prediction"
+        },
+        "stage1_dispatch_receipt": {
+          "$ref": "#/$defs/artifactReference"
+        },
+        "stage1_submission": {
+          "$ref": "#/$defs/artifactReference"
+        },
+        "template_source": {
+          "$ref": "#/$defs/artifactReference"
+        }
+      },
+      "required": [
+        "$schema",
+        "actor_binding",
+        "artifact_type",
+        "artifact_version",
+        "authorization_receipt",
+        "cohort_lock",
+        "condition_binding",
+        "dispatch_status",
+        "facility_files",
+        "participant_files",
+        "receipt_id",
+        "release_authorized",
+        "run_id",
+        "schema_dependency_closure",
+        "seat_id",
+        "stage",
+        "stage1_dispatch_receipt",
+        "stage1_submission",
+        "template_source"
+      ],
+      "type": "object"
+    },
+    "seatConditionInvariant": {
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "seat_id": {
+                "enum": [
+                  "p01",
+                  "p02"
+                ]
+              }
+            },
+            "required": [
+              "seat_id"
+            ]
+          },
+          "then": {
+            "properties": {
+              "condition_binding": {
+                "properties": {
+                  "condition_id": {
+                    "const": "condition-v01"
+                  },
+                  "condition_view_path": {
+                    "const": "research/calibration-tests/continuous-action-pilot/runs/continuous-001/inputs/stage1-view-v01.json"
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "seat_id": {
+                "enum": [
+                  "p03",
+                  "p04"
+                ]
+              }
+            },
+            "required": [
+              "seat_id"
+            ]
+          },
+          "then": {
+            "properties": {
+              "condition_binding": {
+                "properties": {
+                  "condition_id": {
+                    "const": "condition-v02"
+                  },
+                  "condition_view_path": {
+                    "const": "research/calibration-tests/continuous-action-pilot/runs/continuous-001/inputs/stage1-view-v02.json"
+                  }
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "sha256": {
+      "pattern": "^[0-9a-f]{64}$",
+      "type": "string"
+    },
+    "template": {
+      "additionalProperties": false,
+      "allOf": [
+        {
+          "$ref": "#/$defs/seatConditionInvariant"
+        }
+      ],
+      "properties": {
+        "$schema": {
+          "const": "https://github.com/onovich/Game-Primitives/blob/main/research/calibration-tests/continuous-action-pilot/schema/stage2-seat-dispatch-envelope-0.1.0.schema.json"
+        },
+        "actor_binding": {
+          "$ref": "#/$defs/actorBindingTemplate"
+        },
+        "artifact_type": {
+          "const": "stage2_seat_dispatch_template"
+        },
+        "artifact_version": {
+          "const": "0.1.0"
+        },
+        "authorization_receipt": {
+          "type": "null"
+        },
+        "cohort_lock": {
+          "type": "null"
+        },
+        "condition_binding": {
+          "$ref": "#/$defs/conditionBindingTemplate"
+        },
+        "dispatch_status": {
+          "const": "template_only"
+        },
+        "facility_files": {
+          "items": {
+            "$ref": "#/$defs/templateFile"
+          },
+          "minItems": 1,
+          "type": "array",
+          "uniqueItems": true
+        },
+        "participant_files": {
+          "items": {
+            "$ref": "#/$defs/templateFile"
+          },
+          "maxItems": 3,
+          "minItems": 3,
+          "type": "array",
+          "uniqueItems": true
+        },
+        "planned_receipt_path": {
+          "pattern": "^research/calibration-tests/continuous-action-pilot/runs/continuous-001/submissions/dispatch/stage2-p0[1-4]\\.json$",
+          "type": "string"
+        },
+        "release_authorized": {
+          "const": false
+        },
+        "run_id": {
+          "const": "continuous-001"
+        },
+        "schema_dependency_closure": {
+          "items": {
+            "$ref": "#/$defs/dependencyEdge"
+          },
+          "minItems": 1,
+          "type": "array",
+          "uniqueItems": true
+        },
+        "seat_id": {
+          "pattern": "^p0[1-4]$",
+          "type": "string"
+        },
+        "stage": {
+          "const": "prediction"
+        },
+        "stage1_dispatch_receipt": {
+          "type": "null"
+        },
+        "stage1_submission": {
+          "type": "null"
+        },
+        "template_id": {
+          "$ref": "#/$defs/localId"
+        },
+        "template_source": {
+          "type": "null"
+        }
+      },
+      "required": [
+        "$schema",
+        "actor_binding",
+        "artifact_type",
+        "artifact_version",
+        "authorization_receipt",
+        "cohort_lock",
+        "condition_binding",
+        "dispatch_status",
+        "facility_files",
+        "participant_files",
+        "planned_receipt_path",
+        "release_authorized",
+        "run_id",
+        "schema_dependency_closure",
+        "seat_id",
+        "stage",
+        "stage1_dispatch_receipt",
+        "stage1_submission",
+        "template_id",
+        "template_source"
+      ],
+      "type": "object"
+    },
+    "templateFile": {
+      "additionalProperties": false,
+      "properties": {
+        "dispatch_role": {
+          "enum": [
+            "participant_cognitive_input",
+            "facility_schema"
+          ]
+        },
+        "path": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "sha256": {
+          "type": "null"
+        }
+      },
+      "required": [
+        "dispatch_role",
+        "path",
+        "sha256"
+      ],
+      "type": "object"
+    }
+  },
+  "oneOf": [
+    {
+      "$ref": "#/$defs/template"
+    },
+    {
+      "$ref": "#/$defs/receipt"
+    }
+  ],
+  "title": "continuous-001 Per-Seat Stage 2 Dispatch Template and Receipt 0.1.0"
+}

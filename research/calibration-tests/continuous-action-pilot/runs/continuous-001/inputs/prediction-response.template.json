@@ -1,0 +1,1163 @@
+{
+  "$schema": "https://github.com/onovich/Game-Primitives/blob/main/research/calibration-tests/continuous-action-pilot/schema/response-template-0.1.0.schema.json",
+  "artifact_type": "prediction_response_template",
+  "artifact_version": "0.1.0",
+  "created_at": "2026-07-27T01:00:00Z",
+  "run_id": "continuous-001",
+  "stage": "prediction",
+  "target_response_schema": {
+    "artifact_id": "schema.blind-response-interface-0.1.0",
+    "path": "research/calibration-tests/continuous-action-pilot/schema/blind-response-interface-0.1.0.schema.json",
+    "sha256": "a4ab92704a626b5f9a67850595dc0c6bf154dccbd18d5f81776cc30dfa3e58d1"
+  },
+  "template_id": "template.prediction.continuous-001",
+  "template_payload": {
+    "$schema": "https://github.com/onovich/Game-Primitives/blob/main/research/calibration-tests/continuous-action-pilot/schema/blind-response-interface-0.1.0.schema.json",
+    "artifact_type": "prediction_response_payload",
+    "artifact_version": "0.1.0",
+    "pollution": {
+      "familiarity": {
+        "exact_result_knowledge": "<none|suspected|known|unknown>",
+        "exact_rule_knowledge": "<none|suspected|known|unknown>",
+        "exact_variant_knowledge": "<none|suspected|known|unknown>",
+        "project_exposure": "<none|limited|substantial|unknown>",
+        "recognition_status": "<none|suspected|identified>",
+        "recognized_family": null,
+        "recognized_work": null,
+        "related_genre_experience": "<none|limited|extensive|unknown>"
+      },
+      "integrity_exposures": [],
+      "stage_update_note": null
+    },
+    "prediction_answers": [
+      {
+        "assumptions": [],
+        "case_id": "CA-R1",
+        "compatible_alternatives": [
+          {
+            "alternative_id": "<required-unique-local-id-1>",
+            "description": "<required-structure-description-1>",
+            "expectations": [
+              {
+                "configuration_id": "config.baseline",
+                "expectation_kind": "<direction|exact|set|status>",
+                "observation_id": "obs.a.0001",
+                "tolerance_rule_id": "tol.a.0001",
+                "value": {
+                  "serialized_value": "<required-string>",
+                  "unit": null,
+                  "value_type": "<boolean|decimal|direction|id|id_set|integer|rational|status|string>"
+                }
+              },
+              {
+                "configuration_id": "config.variant",
+                "expectation_kind": "<direction|exact|set|status>",
+                "observation_id": "obs.a.0001",
+                "tolerance_rule_id": "tol.a.0001",
+                "value": {
+                  "serialized_value": "<required-string>",
+                  "unit": null,
+                  "value_type": "<boolean|decimal|direction|id|id_set|integer|rational|status|string>"
+                }
+              },
+              {
+                "configuration_id": "config.baseline",
+                "expectation_kind": "<direction|exact|set|status>",
+                "observation_id": "obs.a.0002",
+                "tolerance_rule_id": "tol.a.0001",
+                "value": {
+                  "serialized_value": "<required-string>",
+                  "unit": null,
+                  "value_type": "<boolean|decimal|direction|id|id_set|integer|rational|status|string>"
+                }
+              },
+              {
+                "configuration_id": "config.variant",
+                "expectation_kind": "<direction|exact|set|status>",
+                "observation_id": "obs.a.0002",
+                "tolerance_rule_id": "tol.a.0001",
+                "value": {
+                  "serialized_value": "<required-string>",
+                  "unit": null,
+                  "value_type": "<boolean|decimal|direction|id|id_set|integer|rational|status|string>"
+                }
+              },
+              {
+                "configuration_id": "config.baseline",
+                "expectation_kind": "<direction|exact|set|status>",
+                "observation_id": "obs.a.0003",
+                "tolerance_rule_id": "tol.a.0001",
+                "value": {
+                  "serialized_value": "<required-string>",
+                  "unit": null,
+                  "value_type": "<boolean|decimal|direction|id|id_set|integer|rational|status|string>"
+                }
+              },
+              {
+                "configuration_id": "config.variant",
+                "expectation_kind": "<direction|exact|set|status>",
+                "observation_id": "obs.a.0003",
+                "tolerance_rule_id": "tol.a.0001",
+                "value": {
+                  "serialized_value": "<required-string>",
+                  "unit": null,
+                  "value_type": "<boolean|decimal|direction|id|id_set|integer|rational|status|string>"
+                }
+              },
+              {
+                "configuration_id": "config.baseline",
+                "expectation_kind": "<direction|exact|set|status>",
+                "observation_id": "obs.a.0004",
+                "tolerance_rule_id": "tol.a.0001",
+                "value": {
+                  "serialized_value": "<required-string>",
+                  "unit": "count",
+                  "value_type": "<boolean|decimal|direction|id|id_set|integer|rational|status|string>"
+                }
+              },
+              {
+                "configuration_id": "config.variant",
+                "expectation_kind": "<direction|exact|set|status>",
+                "observation_id": "obs.a.0004",
+                "tolerance_rule_id": "tol.a.0001",
+                "value": {
+                  "serialized_value": "<required-string>",
+                  "unit": "count",
+                  "value_type": "<boolean|decimal|direction|id|id_set|integer|rational|status|string>"
+                }
+              },
+              {
+                "configuration_id": "config.baseline",
+                "expectation_kind": "<direction|exact|set|status>",
+                "observation_id": "obs.a.0005",
+                "tolerance_rule_id": "tol.a.0001",
+                "value": {
+                  "serialized_value": "<required-string>",
+                  "unit": "count",
+                  "value_type": "<boolean|decimal|direction|id|id_set|integer|rational|status|string>"
+                }
+              },
+              {
+                "configuration_id": "config.variant",
+                "expectation_kind": "<direction|exact|set|status>",
+                "observation_id": "obs.a.0005",
+                "tolerance_rule_id": "tol.a.0001",
+                "value": {
+                  "serialized_value": "<required-string>",
+                  "unit": "count",
+                  "value_type": "<boolean|decimal|direction|id|id_set|integer|rational|status|string>"
+                }
+              }
+            ]
+          },
+          {
+            "alternative_id": "<required-unique-local-id-2>",
+            "description": "<required-structure-description-2>",
+            "expectations": [
+              {
+                "configuration_id": "config.baseline",
+                "expectation_kind": "<direction|exact|set|status>",
+                "observation_id": "obs.a.0001",
+                "tolerance_rule_id": "tol.a.0001",
+                "value": {
+                  "serialized_value": "<required-string>",
+                  "unit": null,
+                  "value_type": "<boolean|decimal|direction|id|id_set|integer|rational|status|string>"
+                }
+              },
+              {
+                "configuration_id": "config.variant",
+                "expectation_kind": "<direction|exact|set|status>",
+                "observation_id": "obs.a.0001",
+                "tolerance_rule_id": "tol.a.0001",
+                "value": {
+                  "serialized_value": "<required-string>",
+                  "unit": null,
+                  "value_type": "<boolean|decimal|direction|id|id_set|integer|rational|status|string>"
+                }
+              },
+              {
+                "configuration_id": "config.baseline",
+                "expectation_kind": "<direction|exact|set|status>",
+                "observation_id": "obs.a.0002",
+                "tolerance_rule_id": "tol.a.0001",
+                "value": {
+                  "serialized_value": "<required-string>",
+                  "unit": null,
+                  "value_type": "<boolean|decimal|direction|id|id_set|integer|rational|status|string>"
+                }
+              },
+              {
+                "configuration_id": "config.variant",
+                "expectation_kind": "<direction|exact|set|status>",
+                "observation_id": "obs.a.0002",
+                "tolerance_rule_id": "tol.a.0001",
+                "value": {
+                  "serialized_value": "<required-string>",
+                  "unit": null,
+                  "value_type": "<boolean|decimal|direction|id|id_set|integer|rational|status|string>"
+                }
+              },
+              {
+                "configuration_id": "config.baseline",
+                "expectation_kind": "<direction|exact|set|status>",
+                "observation_id": "obs.a.0003",
+                "tolerance_rule_id": "tol.a.0001",
+                "value": {
+                  "serialized_value": "<required-string>",
+                  "unit": null,
+                  "value_type": "<boolean|decimal|direction|id|id_set|integer|rational|status|string>"
+                }
+              },
+              {
+                "configuration_id": "config.variant",
+                "expectation_kind": "<direction|exact|set|status>",
+                "observation_id": "obs.a.0003",
+                "tolerance_rule_id": "tol.a.0001",
+                "value": {
+                  "serialized_value": "<required-string>",
+                  "unit": null,
+                  "value_type": "<boolean|decimal|direction|id|id_set|integer|rational|status|string>"
+                }
+              },
+              {
+                "configuration_id": "config.baseline",
+                "expectation_kind": "<direction|exact|set|status>",
+                "observation_id": "obs.a.0004",
+                "tolerance_rule_id": "tol.a.0001",
+                "value": {
+                  "serialized_value": "<required-string>",
+                  "unit": "count",
+                  "value_type": "<boolean|decimal|direction|id|id_set|integer|rational|status|string>"
+                }
+              },
+              {
+                "configuration_id": "config.variant",
+                "expectation_kind": "<direction|exact|set|status>",
+                "observation_id": "obs.a.0004",
+                "tolerance_rule_id": "tol.a.0001",
+                "value": {
+                  "serialized_value": "<required-string>",
+                  "unit": "count",
+                  "value_type": "<boolean|decimal|direction|id|id_set|integer|rational|status|string>"
+                }
+              },
+              {
+                "configuration_id": "config.baseline",
+                "expectation_kind": "<direction|exact|set|status>",
+                "observation_id": "obs.a.0005",
+                "tolerance_rule_id": "tol.a.0001",
+                "value": {
+                  "serialized_value": "<required-string>",
+                  "unit": "count",
+                  "value_type": "<boolean|decimal|direction|id|id_set|integer|rational|status|string>"
+                }
+              },
+              {
+                "configuration_id": "config.variant",
+                "expectation_kind": "<direction|exact|set|status>",
+                "observation_id": "obs.a.0005",
+                "tolerance_rule_id": "tol.a.0001",
+                "value": {
+                  "serialized_value": "<required-string>",
+                  "unit": "count",
+                  "value_type": "<boolean|decimal|direction|id|id_set|integer|rational|status|string>"
+                }
+              }
+            ]
+          }
+        ],
+        "confidence_percent": -1,
+        "expectations": [
+          {
+            "configuration_id": "config.baseline",
+            "expectation_kind": "<direction|exact|set|status>",
+            "observation_id": "obs.a.0001",
+            "tolerance_rule_id": "tol.a.0001",
+            "value": {
+              "serialized_value": "<required-string>",
+              "unit": null,
+              "value_type": "<boolean|decimal|direction|id|id_set|integer|rational|status|string>"
+            }
+          },
+          {
+            "configuration_id": "config.variant",
+            "expectation_kind": "<direction|exact|set|status>",
+            "observation_id": "obs.a.0001",
+            "tolerance_rule_id": "tol.a.0001",
+            "value": {
+              "serialized_value": "<required-string>",
+              "unit": null,
+              "value_type": "<boolean|decimal|direction|id|id_set|integer|rational|status|string>"
+            }
+          },
+          {
+            "configuration_id": "config.baseline",
+            "expectation_kind": "<direction|exact|set|status>",
+            "observation_id": "obs.a.0002",
+            "tolerance_rule_id": "tol.a.0001",
+            "value": {
+              "serialized_value": "<required-string>",
+              "unit": null,
+              "value_type": "<boolean|decimal|direction|id|id_set|integer|rational|status|string>"
+            }
+          },
+          {
+            "configuration_id": "config.variant",
+            "expectation_kind": "<direction|exact|set|status>",
+            "observation_id": "obs.a.0002",
+            "tolerance_rule_id": "tol.a.0001",
+            "value": {
+              "serialized_value": "<required-string>",
+              "unit": null,
+              "value_type": "<boolean|decimal|direction|id|id_set|integer|rational|status|string>"
+            }
+          },
+          {
+            "configuration_id": "config.baseline",
+            "expectation_kind": "<direction|exact|set|status>",
+            "observation_id": "obs.a.0003",
+            "tolerance_rule_id": "tol.a.0001",
+            "value": {
+              "serialized_value": "<required-string>",
+              "unit": null,
+              "value_type": "<boolean|decimal|direction|id|id_set|integer|rational|status|string>"
+            }
+          },
+          {
+            "configuration_id": "config.variant",
+            "expectation_kind": "<direction|exact|set|status>",
+            "observation_id": "obs.a.0003",
+            "tolerance_rule_id": "tol.a.0001",
+            "value": {
+              "serialized_value": "<required-string>",
+              "unit": null,
+              "value_type": "<boolean|decimal|direction|id|id_set|integer|rational|status|string>"
+            }
+          },
+          {
+            "configuration_id": "config.baseline",
+            "expectation_kind": "<direction|exact|set|status>",
+            "observation_id": "obs.a.0004",
+            "tolerance_rule_id": "tol.a.0001",
+            "value": {
+              "serialized_value": "<required-string>",
+              "unit": "count",
+              "value_type": "<boolean|decimal|direction|id|id_set|integer|rational|status|string>"
+            }
+          },
+          {
+            "configuration_id": "config.variant",
+            "expectation_kind": "<direction|exact|set|status>",
+            "observation_id": "obs.a.0004",
+            "tolerance_rule_id": "tol.a.0001",
+            "value": {
+              "serialized_value": "<required-string>",
+              "unit": "count",
+              "value_type": "<boolean|decimal|direction|id|id_set|integer|rational|status|string>"
+            }
+          },
+          {
+            "configuration_id": "config.baseline",
+            "expectation_kind": "<direction|exact|set|status>",
+            "observation_id": "obs.a.0005",
+            "tolerance_rule_id": "tol.a.0001",
+            "value": {
+              "serialized_value": "<required-string>",
+              "unit": "count",
+              "value_type": "<boolean|decimal|direction|id|id_set|integer|rational|status|string>"
+            }
+          },
+          {
+            "configuration_id": "config.variant",
+            "expectation_kind": "<direction|exact|set|status>",
+            "observation_id": "obs.a.0005",
+            "tolerance_rule_id": "tol.a.0001",
+            "value": {
+              "serialized_value": "<required-string>",
+              "unit": "count",
+              "value_type": "<boolean|decimal|direction|id|id_set|integer|rational|status|string>"
+            }
+          }
+        ],
+        "prediction_status": "<determinate|indeterminate>",
+        "reasoning": "<required-explanation>",
+        "supporting_record_ids": []
+      },
+      {
+        "assumptions": [],
+        "case_id": "CA-R2",
+        "compatible_alternatives": [
+          {
+            "alternative_id": "<required-unique-local-id-1>",
+            "description": "<required-structure-description-1>",
+            "expectations": [
+              {
+                "configuration_id": "config.baseline",
+                "expectation_kind": "<direction|exact|set|status>",
+                "observation_id": "obs.b.0001",
+                "tolerance_rule_id": "tol.b.0001",
+                "value": {
+                  "serialized_value": "<required-string>",
+                  "unit": null,
+                  "value_type": "<boolean|decimal|direction|id|id_set|integer|rational|status|string>"
+                }
+              },
+              {
+                "configuration_id": "config.variant",
+                "expectation_kind": "<direction|exact|set|status>",
+                "observation_id": "obs.b.0001",
+                "tolerance_rule_id": "tol.b.0001",
+                "value": {
+                  "serialized_value": "<required-string>",
+                  "unit": null,
+                  "value_type": "<boolean|decimal|direction|id|id_set|integer|rational|status|string>"
+                }
+              },
+              {
+                "configuration_id": "config.baseline",
+                "expectation_kind": "<direction|exact|set|status>",
+                "observation_id": "obs.b.0002",
+                "tolerance_rule_id": "tol.b.0002",
+                "value": {
+                  "serialized_value": "<required-string>",
+                  "unit": "engine_unit_per_second",
+                  "value_type": "<boolean|decimal|direction|id|id_set|integer|rational|status|string>"
+                }
+              },
+              {
+                "configuration_id": "config.variant",
+                "expectation_kind": "<direction|exact|set|status>",
+                "observation_id": "obs.b.0002",
+                "tolerance_rule_id": "tol.b.0002",
+                "value": {
+                  "serialized_value": "<required-string>",
+                  "unit": "engine_unit_per_second",
+                  "value_type": "<boolean|decimal|direction|id|id_set|integer|rational|status|string>"
+                }
+              },
+              {
+                "configuration_id": "config.baseline",
+                "expectation_kind": "<direction|exact|set|status>",
+                "observation_id": "obs.b.0003",
+                "tolerance_rule_id": "tol.b.0002",
+                "value": {
+                  "serialized_value": "<required-string>",
+                  "unit": "engine_unit",
+                  "value_type": "<boolean|decimal|direction|id|id_set|integer|rational|status|string>"
+                }
+              },
+              {
+                "configuration_id": "config.variant",
+                "expectation_kind": "<direction|exact|set|status>",
+                "observation_id": "obs.b.0003",
+                "tolerance_rule_id": "tol.b.0002",
+                "value": {
+                  "serialized_value": "<required-string>",
+                  "unit": "engine_unit",
+                  "value_type": "<boolean|decimal|direction|id|id_set|integer|rational|status|string>"
+                }
+              },
+              {
+                "configuration_id": "config.baseline",
+                "expectation_kind": "<direction|exact|set|status>",
+                "observation_id": "obs.b.0004",
+                "tolerance_rule_id": "tol.b.0001",
+                "value": {
+                  "serialized_value": "<required-string>",
+                  "unit": "count",
+                  "value_type": "<boolean|decimal|direction|id|id_set|integer|rational|status|string>"
+                }
+              },
+              {
+                "configuration_id": "config.variant",
+                "expectation_kind": "<direction|exact|set|status>",
+                "observation_id": "obs.b.0004",
+                "tolerance_rule_id": "tol.b.0001",
+                "value": {
+                  "serialized_value": "<required-string>",
+                  "unit": "count",
+                  "value_type": "<boolean|decimal|direction|id|id_set|integer|rational|status|string>"
+                }
+              },
+              {
+                "configuration_id": "config.baseline",
+                "expectation_kind": "<direction|exact|set|status>",
+                "observation_id": "obs.b.0005",
+                "tolerance_rule_id": "tol.b.0001",
+                "value": {
+                  "serialized_value": "<required-string>",
+                  "unit": null,
+                  "value_type": "<boolean|decimal|direction|id|id_set|integer|rational|status|string>"
+                }
+              },
+              {
+                "configuration_id": "config.variant",
+                "expectation_kind": "<direction|exact|set|status>",
+                "observation_id": "obs.b.0005",
+                "tolerance_rule_id": "tol.b.0001",
+                "value": {
+                  "serialized_value": "<required-string>",
+                  "unit": null,
+                  "value_type": "<boolean|decimal|direction|id|id_set|integer|rational|status|string>"
+                }
+              }
+            ]
+          },
+          {
+            "alternative_id": "<required-unique-local-id-2>",
+            "description": "<required-structure-description-2>",
+            "expectations": [
+              {
+                "configuration_id": "config.baseline",
+                "expectation_kind": "<direction|exact|set|status>",
+                "observation_id": "obs.b.0001",
+                "tolerance_rule_id": "tol.b.0001",
+                "value": {
+                  "serialized_value": "<required-string>",
+                  "unit": null,
+                  "value_type": "<boolean|decimal|direction|id|id_set|integer|rational|status|string>"
+                }
+              },
+              {
+                "configuration_id": "config.variant",
+                "expectation_kind": "<direction|exact|set|status>",
+                "observation_id": "obs.b.0001",
+                "tolerance_rule_id": "tol.b.0001",
+                "value": {
+                  "serialized_value": "<required-string>",
+                  "unit": null,
+                  "value_type": "<boolean|decimal|direction|id|id_set|integer|rational|status|string>"
+                }
+              },
+              {
+                "configuration_id": "config.baseline",
+                "expectation_kind": "<direction|exact|set|status>",
+                "observation_id": "obs.b.0002",
+                "tolerance_rule_id": "tol.b.0002",
+                "value": {
+                  "serialized_value": "<required-string>",
+                  "unit": "engine_unit_per_second",
+                  "value_type": "<boolean|decimal|direction|id|id_set|integer|rational|status|string>"
+                }
+              },
+              {
+                "configuration_id": "config.variant",
+                "expectation_kind": "<direction|exact|set|status>",
+                "observation_id": "obs.b.0002",
+                "tolerance_rule_id": "tol.b.0002",
+                "value": {
+                  "serialized_value": "<required-string>",
+                  "unit": "engine_unit_per_second",
+                  "value_type": "<boolean|decimal|direction|id|id_set|integer|rational|status|string>"
+                }
+              },
+              {
+                "configuration_id": "config.baseline",
+                "expectation_kind": "<direction|exact|set|status>",
+                "observation_id": "obs.b.0003",
+                "tolerance_rule_id": "tol.b.0002",
+                "value": {
+                  "serialized_value": "<required-string>",
+                  "unit": "engine_unit",
+                  "value_type": "<boolean|decimal|direction|id|id_set|integer|rational|status|string>"
+                }
+              },
+              {
+                "configuration_id": "config.variant",
+                "expectation_kind": "<direction|exact|set|status>",
+                "observation_id": "obs.b.0003",
+                "tolerance_rule_id": "tol.b.0002",
+                "value": {
+                  "serialized_value": "<required-string>",
+                  "unit": "engine_unit",
+                  "value_type": "<boolean|decimal|direction|id|id_set|integer|rational|status|string>"
+                }
+              },
+              {
+                "configuration_id": "config.baseline",
+                "expectation_kind": "<direction|exact|set|status>",
+                "observation_id": "obs.b.0004",
+                "tolerance_rule_id": "tol.b.0001",
+                "value": {
+                  "serialized_value": "<required-string>",
+                  "unit": "count",
+                  "value_type": "<boolean|decimal|direction|id|id_set|integer|rational|status|string>"
+                }
+              },
+              {
+                "configuration_id": "config.variant",
+                "expectation_kind": "<direction|exact|set|status>",
+                "observation_id": "obs.b.0004",
+                "tolerance_rule_id": "tol.b.0001",
+                "value": {
+                  "serialized_value": "<required-string>",
+                  "unit": "count",
+                  "value_type": "<boolean|decimal|direction|id|id_set|integer|rational|status|string>"
+                }
+              },
+              {
+                "configuration_id": "config.baseline",
+                "expectation_kind": "<direction|exact|set|status>",
+                "observation_id": "obs.b.0005",
+                "tolerance_rule_id": "tol.b.0001",
+                "value": {
+                  "serialized_value": "<required-string>",
+                  "unit": null,
+                  "value_type": "<boolean|decimal|direction|id|id_set|integer|rational|status|string>"
+                }
+              },
+              {
+                "configuration_id": "config.variant",
+                "expectation_kind": "<direction|exact|set|status>",
+                "observation_id": "obs.b.0005",
+                "tolerance_rule_id": "tol.b.0001",
+                "value": {
+                  "serialized_value": "<required-string>",
+                  "unit": null,
+                  "value_type": "<boolean|decimal|direction|id|id_set|integer|rational|status|string>"
+                }
+              }
+            ]
+          }
+        ],
+        "confidence_percent": -1,
+        "expectations": [
+          {
+            "configuration_id": "config.baseline",
+            "expectation_kind": "<direction|exact|set|status>",
+            "observation_id": "obs.b.0001",
+            "tolerance_rule_id": "tol.b.0001",
+            "value": {
+              "serialized_value": "<required-string>",
+              "unit": null,
+              "value_type": "<boolean|decimal|direction|id|id_set|integer|rational|status|string>"
+            }
+          },
+          {
+            "configuration_id": "config.variant",
+            "expectation_kind": "<direction|exact|set|status>",
+            "observation_id": "obs.b.0001",
+            "tolerance_rule_id": "tol.b.0001",
+            "value": {
+              "serialized_value": "<required-string>",
+              "unit": null,
+              "value_type": "<boolean|decimal|direction|id|id_set|integer|rational|status|string>"
+            }
+          },
+          {
+            "configuration_id": "config.baseline",
+            "expectation_kind": "<direction|exact|set|status>",
+            "observation_id": "obs.b.0002",
+            "tolerance_rule_id": "tol.b.0002",
+            "value": {
+              "serialized_value": "<required-string>",
+              "unit": "engine_unit_per_second",
+              "value_type": "<boolean|decimal|direction|id|id_set|integer|rational|status|string>"
+            }
+          },
+          {
+            "configuration_id": "config.variant",
+            "expectation_kind": "<direction|exact|set|status>",
+            "observation_id": "obs.b.0002",
+            "tolerance_rule_id": "tol.b.0002",
+            "value": {
+              "serialized_value": "<required-string>",
+              "unit": "engine_unit_per_second",
+              "value_type": "<boolean|decimal|direction|id|id_set|integer|rational|status|string>"
+            }
+          },
+          {
+            "configuration_id": "config.baseline",
+            "expectation_kind": "<direction|exact|set|status>",
+            "observation_id": "obs.b.0003",
+            "tolerance_rule_id": "tol.b.0002",
+            "value": {
+              "serialized_value": "<required-string>",
+              "unit": "engine_unit",
+              "value_type": "<boolean|decimal|direction|id|id_set|integer|rational|status|string>"
+            }
+          },
+          {
+            "configuration_id": "config.variant",
+            "expectation_kind": "<direction|exact|set|status>",
+            "observation_id": "obs.b.0003",
+            "tolerance_rule_id": "tol.b.0002",
+            "value": {
+              "serialized_value": "<required-string>",
+              "unit": "engine_unit",
+              "value_type": "<boolean|decimal|direction|id|id_set|integer|rational|status|string>"
+            }
+          },
+          {
+            "configuration_id": "config.baseline",
+            "expectation_kind": "<direction|exact|set|status>",
+            "observation_id": "obs.b.0004",
+            "tolerance_rule_id": "tol.b.0001",
+            "value": {
+              "serialized_value": "<required-string>",
+              "unit": "count",
+              "value_type": "<boolean|decimal|direction|id|id_set|integer|rational|status|string>"
+            }
+          },
+          {
+            "configuration_id": "config.variant",
+            "expectation_kind": "<direction|exact|set|status>",
+            "observation_id": "obs.b.0004",
+            "tolerance_rule_id": "tol.b.0001",
+            "value": {
+              "serialized_value": "<required-string>",
+              "unit": "count",
+              "value_type": "<boolean|decimal|direction|id|id_set|integer|rational|status|string>"
+            }
+          },
+          {
+            "configuration_id": "config.baseline",
+            "expectation_kind": "<direction|exact|set|status>",
+            "observation_id": "obs.b.0005",
+            "tolerance_rule_id": "tol.b.0001",
+            "value": {
+              "serialized_value": "<required-string>",
+              "unit": null,
+              "value_type": "<boolean|decimal|direction|id|id_set|integer|rational|status|string>"
+            }
+          },
+          {
+            "configuration_id": "config.variant",
+            "expectation_kind": "<direction|exact|set|status>",
+            "observation_id": "obs.b.0005",
+            "tolerance_rule_id": "tol.b.0001",
+            "value": {
+              "serialized_value": "<required-string>",
+              "unit": null,
+              "value_type": "<boolean|decimal|direction|id|id_set|integer|rational|status|string>"
+            }
+          }
+        ],
+        "prediction_status": "<determinate|indeterminate>",
+        "reasoning": "<required-explanation>",
+        "supporting_record_ids": []
+      },
+      {
+        "assumptions": [],
+        "case_id": "CA-R3",
+        "compatible_alternatives": [
+          {
+            "alternative_id": "<required-unique-local-id-1>",
+            "description": "<required-structure-description-1>",
+            "expectations": [
+              {
+                "configuration_id": "config.baseline",
+                "expectation_kind": "<direction|exact|set|status>",
+                "observation_id": "obs.c.0001",
+                "tolerance_rule_id": "tol.c.0001",
+                "value": {
+                  "serialized_value": "<required-string>",
+                  "unit": "count",
+                  "value_type": "<boolean|decimal|direction|id|id_set|integer|rational|status|string>"
+                }
+              },
+              {
+                "configuration_id": "config.variant",
+                "expectation_kind": "<direction|exact|set|status>",
+                "observation_id": "obs.c.0001",
+                "tolerance_rule_id": "tol.c.0001",
+                "value": {
+                  "serialized_value": "<required-string>",
+                  "unit": "count",
+                  "value_type": "<boolean|decimal|direction|id|id_set|integer|rational|status|string>"
+                }
+              },
+              {
+                "configuration_id": "config.baseline",
+                "expectation_kind": "<direction|exact|set|status>",
+                "observation_id": "obs.c.0002",
+                "tolerance_rule_id": "tol.c.0002",
+                "value": {
+                  "serialized_value": "<required-string>",
+                  "unit": "millisecond",
+                  "value_type": "<boolean|decimal|direction|id|id_set|integer|rational|status|string>"
+                }
+              },
+              {
+                "configuration_id": "config.variant",
+                "expectation_kind": "<direction|exact|set|status>",
+                "observation_id": "obs.c.0002",
+                "tolerance_rule_id": "tol.c.0002",
+                "value": {
+                  "serialized_value": "<required-string>",
+                  "unit": "millisecond",
+                  "value_type": "<boolean|decimal|direction|id|id_set|integer|rational|status|string>"
+                }
+              },
+              {
+                "configuration_id": "config.baseline",
+                "expectation_kind": "<direction|exact|set|status>",
+                "observation_id": "obs.c.0003",
+                "tolerance_rule_id": "tol.c.0001",
+                "value": {
+                  "serialized_value": "<required-string>",
+                  "unit": null,
+                  "value_type": "<boolean|decimal|direction|id|id_set|integer|rational|status|string>"
+                }
+              },
+              {
+                "configuration_id": "config.variant",
+                "expectation_kind": "<direction|exact|set|status>",
+                "observation_id": "obs.c.0003",
+                "tolerance_rule_id": "tol.c.0001",
+                "value": {
+                  "serialized_value": "<required-string>",
+                  "unit": null,
+                  "value_type": "<boolean|decimal|direction|id|id_set|integer|rational|status|string>"
+                }
+              },
+              {
+                "configuration_id": "config.baseline",
+                "expectation_kind": "<direction|exact|set|status>",
+                "observation_id": "obs.c.0004",
+                "tolerance_rule_id": "tol.c.0002",
+                "value": {
+                  "serialized_value": "<required-string>",
+                  "unit": "millisecond",
+                  "value_type": "<boolean|decimal|direction|id|id_set|integer|rational|status|string>"
+                }
+              },
+              {
+                "configuration_id": "config.variant",
+                "expectation_kind": "<direction|exact|set|status>",
+                "observation_id": "obs.c.0004",
+                "tolerance_rule_id": "tol.c.0002",
+                "value": {
+                  "serialized_value": "<required-string>",
+                  "unit": "millisecond",
+                  "value_type": "<boolean|decimal|direction|id|id_set|integer|rational|status|string>"
+                }
+              },
+              {
+                "configuration_id": "config.baseline",
+                "expectation_kind": "<direction|exact|set|status>",
+                "observation_id": "obs.c.0005",
+                "tolerance_rule_id": "tol.c.0001",
+                "value": {
+                  "serialized_value": "<required-string>",
+                  "unit": "count",
+                  "value_type": "<boolean|decimal|direction|id|id_set|integer|rational|status|string>"
+                }
+              },
+              {
+                "configuration_id": "config.variant",
+                "expectation_kind": "<direction|exact|set|status>",
+                "observation_id": "obs.c.0005",
+                "tolerance_rule_id": "tol.c.0001",
+                "value": {
+                  "serialized_value": "<required-string>",
+                  "unit": "count",
+                  "value_type": "<boolean|decimal|direction|id|id_set|integer|rational|status|string>"
+                }
+              },
+              {
+                "configuration_id": "config.baseline",
+                "expectation_kind": "<direction|exact|set|status>",
+                "observation_id": "obs.c.0006",
+                "tolerance_rule_id": "tol.c.0002",
+                "value": {
+                  "serialized_value": "<required-string>",
+                  "unit": "millisecond",
+                  "value_type": "<boolean|decimal|direction|id|id_set|integer|rational|status|string>"
+                }
+              },
+              {
+                "configuration_id": "config.variant",
+                "expectation_kind": "<direction|exact|set|status>",
+                "observation_id": "obs.c.0006",
+                "tolerance_rule_id": "tol.c.0002",
+                "value": {
+                  "serialized_value": "<required-string>",
+                  "unit": "millisecond",
+                  "value_type": "<boolean|decimal|direction|id|id_set|integer|rational|status|string>"
+                }
+              }
+            ]
+          },
+          {
+            "alternative_id": "<required-unique-local-id-2>",
+            "description": "<required-structure-description-2>",
+            "expectations": [
+              {
+                "configuration_id": "config.baseline",
+                "expectation_kind": "<direction|exact|set|status>",
+                "observation_id": "obs.c.0001",
+                "tolerance_rule_id": "tol.c.0001",
+                "value": {
+                  "serialized_value": "<required-string>",
+                  "unit": "count",
+                  "value_type": "<boolean|decimal|direction|id|id_set|integer|rational|status|string>"
+                }
+              },
+              {
+                "configuration_id": "config.variant",
+                "expectation_kind": "<direction|exact|set|status>",
+                "observation_id": "obs.c.0001",
+                "tolerance_rule_id": "tol.c.0001",
+                "value": {
+                  "serialized_value": "<required-string>",
+                  "unit": "count",
+                  "value_type": "<boolean|decimal|direction|id|id_set|integer|rational|status|string>"
+                }
+              },
+              {
+                "configuration_id": "config.baseline",
+                "expectation_kind": "<direction|exact|set|status>",
+                "observation_id": "obs.c.0002",
+                "tolerance_rule_id": "tol.c.0002",
+                "value": {
+                  "serialized_value": "<required-string>",
+                  "unit": "millisecond",
+                  "value_type": "<boolean|decimal|direction|id|id_set|integer|rational|status|string>"
+                }
+              },
+              {
+                "configuration_id": "config.variant",
+                "expectation_kind": "<direction|exact|set|status>",
+                "observation_id": "obs.c.0002",
+                "tolerance_rule_id": "tol.c.0002",
+                "value": {
+                  "serialized_value": "<required-string>",
+                  "unit": "millisecond",
+                  "value_type": "<boolean|decimal|direction|id|id_set|integer|rational|status|string>"
+                }
+              },
+              {
+                "configuration_id": "config.baseline",
+                "expectation_kind": "<direction|exact|set|status>",
+                "observation_id": "obs.c.0003",
+                "tolerance_rule_id": "tol.c.0001",
+                "value": {
+                  "serialized_value": "<required-string>",
+                  "unit": null,
+                  "value_type": "<boolean|decimal|direction|id|id_set|integer|rational|status|string>"
+                }
+              },
+              {
+                "configuration_id": "config.variant",
+                "expectation_kind": "<direction|exact|set|status>",
+                "observation_id": "obs.c.0003",
+                "tolerance_rule_id": "tol.c.0001",
+                "value": {
+                  "serialized_value": "<required-string>",
+                  "unit": null,
+                  "value_type": "<boolean|decimal|direction|id|id_set|integer|rational|status|string>"
+                }
+              },
+              {
+                "configuration_id": "config.baseline",
+                "expectation_kind": "<direction|exact|set|status>",
+                "observation_id": "obs.c.0004",
+                "tolerance_rule_id": "tol.c.0002",
+                "value": {
+                  "serialized_value": "<required-string>",
+                  "unit": "millisecond",
+                  "value_type": "<boolean|decimal|direction|id|id_set|integer|rational|status|string>"
+                }
+              },
+              {
+                "configuration_id": "config.variant",
+                "expectation_kind": "<direction|exact|set|status>",
+                "observation_id": "obs.c.0004",
+                "tolerance_rule_id": "tol.c.0002",
+                "value": {
+                  "serialized_value": "<required-string>",
+                  "unit": "millisecond",
+                  "value_type": "<boolean|decimal|direction|id|id_set|integer|rational|status|string>"
+                }
+              },
+              {
+                "configuration_id": "config.baseline",
+                "expectation_kind": "<direction|exact|set|status>",
+                "observation_id": "obs.c.0005",
+                "tolerance_rule_id": "tol.c.0001",
+                "value": {
+                  "serialized_value": "<required-string>",
+                  "unit": "count",
+                  "value_type": "<boolean|decimal|direction|id|id_set|integer|rational|status|string>"
+                }
+              },
+              {
+                "configuration_id": "config.variant",
+                "expectation_kind": "<direction|exact|set|status>",
+                "observation_id": "obs.c.0005",
+                "tolerance_rule_id": "tol.c.0001",
+                "value": {
+                  "serialized_value": "<required-string>",
+                  "unit": "count",
+                  "value_type": "<boolean|decimal|direction|id|id_set|integer|rational|status|string>"
+                }
+              },
+              {
+                "configuration_id": "config.baseline",
+                "expectation_kind": "<direction|exact|set|status>",
+                "observation_id": "obs.c.0006",
+                "tolerance_rule_id": "tol.c.0002",
+                "value": {
+                  "serialized_value": "<required-string>",
+                  "unit": "millisecond",
+                  "value_type": "<boolean|decimal|direction|id|id_set|integer|rational|status|string>"
+                }
+              },
+              {
+                "configuration_id": "config.variant",
+                "expectation_kind": "<direction|exact|set|status>",
+                "observation_id": "obs.c.0006",
+                "tolerance_rule_id": "tol.c.0002",
+                "value": {
+                  "serialized_value": "<required-string>",
+                  "unit": "millisecond",
+                  "value_type": "<boolean|decimal|direction|id|id_set|integer|rational|status|string>"
+                }
+              }
+            ]
+          }
+        ],
+        "confidence_percent": -1,
+        "expectations": [
+          {
+            "configuration_id": "config.baseline",
+            "expectation_kind": "<direction|exact|set|status>",
+            "observation_id": "obs.c.0001",
+            "tolerance_rule_id": "tol.c.0001",
+            "value": {
+              "serialized_value": "<required-string>",
+              "unit": "count",
+              "value_type": "<boolean|decimal|direction|id|id_set|integer|rational|status|string>"
+            }
+          },
+          {
+            "configuration_id": "config.variant",
+            "expectation_kind": "<direction|exact|set|status>",
+            "observation_id": "obs.c.0001",
+            "tolerance_rule_id": "tol.c.0001",
+            "value": {
+              "serialized_value": "<required-string>",
+              "unit": "count",
+              "value_type": "<boolean|decimal|direction|id|id_set|integer|rational|status|string>"
+            }
+          },
+          {
+            "configuration_id": "config.baseline",
+            "expectation_kind": "<direction|exact|set|status>",
+            "observation_id": "obs.c.0002",
+            "tolerance_rule_id": "tol.c.0002",
+            "value": {
+              "serialized_value": "<required-string>",
+              "unit": "millisecond",
+              "value_type": "<boolean|decimal|direction|id|id_set|integer|rational|status|string>"
+            }
+          },
+          {
+            "configuration_id": "config.variant",
+            "expectation_kind": "<direction|exact|set|status>",
+            "observation_id": "obs.c.0002",
+            "tolerance_rule_id": "tol.c.0002",
+            "value": {
+              "serialized_value": "<required-string>",
+              "unit": "millisecond",
+              "value_type": "<boolean|decimal|direction|id|id_set|integer|rational|status|string>"
+            }
+          },
+          {
+            "configuration_id": "config.baseline",
+            "expectation_kind": "<direction|exact|set|status>",
+            "observation_id": "obs.c.0003",
+            "tolerance_rule_id": "tol.c.0001",
+            "value": {
+              "serialized_value": "<required-string>",
+              "unit": null,
+              "value_type": "<boolean|decimal|direction|id|id_set|integer|rational|status|string>"
+            }
+          },
+          {
+            "configuration_id": "config.variant",
+            "expectation_kind": "<direction|exact|set|status>",
+            "observation_id": "obs.c.0003",
+            "tolerance_rule_id": "tol.c.0001",
+            "value": {
+              "serialized_value": "<required-string>",
+              "unit": null,
+              "value_type": "<boolean|decimal|direction|id|id_set|integer|rational|status|string>"
+            }
+          },
+          {
+            "configuration_id": "config.baseline",
+            "expectation_kind": "<direction|exact|set|status>",
+            "observation_id": "obs.c.0004",
+            "tolerance_rule_id": "tol.c.0002",
+            "value": {
+              "serialized_value": "<required-string>",
+              "unit": "millisecond",
+              "value_type": "<boolean|decimal|direction|id|id_set|integer|rational|status|string>"
+            }
+          },
+          {
+            "configuration_id": "config.variant",
+            "expectation_kind": "<direction|exact|set|status>",
+            "observation_id": "obs.c.0004",
+            "tolerance_rule_id": "tol.c.0002",
+            "value": {
+              "serialized_value": "<required-string>",
+              "unit": "millisecond",
+              "value_type": "<boolean|decimal|direction|id|id_set|integer|rational|status|string>"
+            }
+          },
+          {
+            "configuration_id": "config.baseline",
+            "expectation_kind": "<direction|exact|set|status>",
+            "observation_id": "obs.c.0005",
+            "tolerance_rule_id": "tol.c.0001",
+            "value": {
+              "serialized_value": "<required-string>",
+              "unit": "count",
+              "value_type": "<boolean|decimal|direction|id|id_set|integer|rational|status|string>"
+            }
+          },
+          {
+            "configuration_id": "config.variant",
+            "expectation_kind": "<direction|exact|set|status>",
+            "observation_id": "obs.c.0005",
+            "tolerance_rule_id": "tol.c.0001",
+            "value": {
+              "serialized_value": "<required-string>",
+              "unit": "count",
+              "value_type": "<boolean|decimal|direction|id|id_set|integer|rational|status|string>"
+            }
+          },
+          {
+            "configuration_id": "config.baseline",
+            "expectation_kind": "<direction|exact|set|status>",
+            "observation_id": "obs.c.0006",
+            "tolerance_rule_id": "tol.c.0002",
+            "value": {
+              "serialized_value": "<required-string>",
+              "unit": "millisecond",
+              "value_type": "<boolean|decimal|direction|id|id_set|integer|rational|status|string>"
+            }
+          },
+          {
+            "configuration_id": "config.variant",
+            "expectation_kind": "<direction|exact|set|status>",
+            "observation_id": "obs.c.0006",
+            "tolerance_rule_id": "tol.c.0002",
+            "value": {
+              "serialized_value": "<required-string>",
+              "unit": "millisecond",
+              "value_type": "<boolean|decimal|direction|id|id_set|integer|rational|status|string>"
+            }
+          }
+        ],
+        "prediction_status": "<determinate|indeterminate>",
+        "reasoning": "<required-explanation>",
+        "supporting_record_ids": []
+      }
+    ]
+  }
+}

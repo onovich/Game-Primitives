@@ -1,0 +1,383 @@
+{
+  "$defs": {
+    "artifactReference": {
+      "$ref": "https://github.com/onovich/Game-Primitives/blob/main/research/calibration-tests/continuous-action-pilot/schema/task-packet-0.1.0.schema.json#/$defs/artifactReference"
+    },
+    "caseLock": {
+      "additionalProperties": false,
+      "properties": {
+        "build_gate_status": {
+          "const": "passed"
+        },
+        "case_id": {
+          "pattern": "^CA-R[1-3]$",
+          "type": "string"
+        },
+        "comparator_artifacts": {
+          "items": {
+            "$ref": "#/$defs/artifactReference"
+          },
+          "minItems": 1,
+          "type": "array"
+        },
+        "compatibility_patch_set": {
+          "allOf": [
+            {
+              "$ref": "#/$defs/patchSet"
+            },
+            {
+              "properties": {
+                "patch_role": {
+                  "const": "compatibility"
+                }
+              }
+            }
+          ]
+        },
+        "fixture_artifacts": {
+          "items": {
+            "$ref": "#/$defs/artifactReference"
+          },
+          "minItems": 1,
+          "type": "array"
+        },
+        "fixture_id": {
+          "$ref": "#/$defs/localId"
+        },
+        "formal_input_artifacts": {
+          "items": {
+            "$ref": "#/$defs/artifactReference"
+          },
+          "maxItems": 1,
+          "minItems": 1,
+          "type": "array"
+        },
+        "formal_input_executed": {
+          "const": false
+        },
+        "invariant_ids": {
+          "items": {
+            "$ref": "#/$defs/localId"
+          },
+          "minItems": 1,
+          "type": "array",
+          "uniqueItems": true
+        },
+        "observation_patch_set": {
+          "allOf": [
+            {
+              "$ref": "#/$defs/patchSet"
+            },
+            {
+              "properties": {
+                "patch_role": {
+                  "const": "observation"
+                }
+              }
+            }
+          ]
+        },
+        "preparation_probe_artifacts": {
+          "items": {
+            "$ref": "#/$defs/artifactReference"
+          },
+          "minItems": 1,
+          "type": "array"
+        },
+        "source_identity": {
+          "$ref": "#/$defs/sourceIdentity"
+        },
+        "stop_boundary_id": {
+          "$ref": "#/$defs/localId"
+        },
+        "tolerance_rule_ids": {
+          "items": {
+            "$ref": "#/$defs/localId"
+          },
+          "type": "array",
+          "uniqueItems": true
+        },
+        "variant_patch_set": {
+          "allOf": [
+            {
+              "$ref": "#/$defs/patchSet"
+            },
+            {
+              "properties": {
+                "patch_role": {
+                  "const": "variant"
+                }
+              }
+            }
+          ]
+        }
+      },
+      "required": [
+        "build_gate_status",
+        "case_id",
+        "comparator_artifacts",
+        "compatibility_patch_set",
+        "fixture_artifacts",
+        "fixture_id",
+        "formal_input_artifacts",
+        "formal_input_executed",
+        "invariant_ids",
+        "observation_patch_set",
+        "preparation_probe_artifacts",
+        "source_identity",
+        "stop_boundary_id",
+        "tolerance_rule_ids",
+        "variant_patch_set"
+      ],
+      "type": "object"
+    },
+    "localId": {
+      "$ref": "https://github.com/onovich/Game-Primitives/blob/main/research/calibration-tests/continuous-action-pilot/schema/task-packet-0.1.0.schema.json#/$defs/localId"
+    },
+    "patchSet": {
+      "additionalProperties": false,
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "realization": {
+                "const": "patch"
+              }
+            },
+            "required": [
+              "realization"
+            ]
+          },
+          "then": {
+            "properties": {
+              "artifacts": {
+                "minItems": 1
+              },
+              "configuration_artifacts": {
+                "maxItems": 0
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "realization": {
+                "const": "not_applicable"
+              }
+            },
+            "required": [
+              "realization"
+            ]
+          },
+          "then": {
+            "properties": {
+              "artifacts": {
+                "maxItems": 0
+              },
+              "configuration_artifacts": {
+                "maxItems": 0
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "realization": {
+                "const": "configuration_only"
+              }
+            },
+            "required": [
+              "realization"
+            ]
+          },
+          "then": {
+            "properties": {
+              "artifacts": {
+                "maxItems": 0
+              },
+              "configuration_artifacts": {
+                "minItems": 1
+              },
+              "patch_role": {
+                "const": "variant"
+              }
+            }
+          }
+        }
+      ],
+      "properties": {
+        "artifacts": {
+          "items": {
+            "$ref": "#/$defs/artifactReference"
+          },
+          "type": "array",
+          "uniqueItems": true
+        },
+        "configuration_artifacts": {
+          "items": {
+            "$ref": "#/$defs/artifactReference"
+          },
+          "type": "array",
+          "uniqueItems": true
+        },
+        "patch_role": {
+          "enum": [
+            "compatibility",
+            "observation",
+            "variant"
+          ]
+        },
+        "realization": {
+          "enum": [
+            "configuration_only",
+            "not_applicable",
+            "patch"
+          ]
+        }
+      },
+      "required": [
+        "artifacts",
+        "configuration_artifacts",
+        "patch_role",
+        "realization"
+      ],
+      "type": "object"
+    },
+    "sourceIdentity": {
+      "additionalProperties": false,
+      "properties": {
+        "clean_tree_required": {
+          "const": true
+        },
+        "commit_sha": {
+          "pattern": "^[0-9a-f]{40}$",
+          "type": "string"
+        },
+        "repository_url": {
+          "format": "uri",
+          "type": "string"
+        },
+        "source_identity_artifacts": {
+          "items": {
+            "$ref": "#/$defs/artifactReference"
+          },
+          "minItems": 1,
+          "type": "array"
+        }
+      },
+      "required": [
+        "clean_tree_required",
+        "commit_sha",
+        "repository_url",
+        "source_identity_artifacts"
+      ],
+      "type": "object"
+    }
+  },
+  "$id": "https://github.com/onovich/Game-Primitives/blob/main/research/calibration-tests/continuous-action-pilot/schema/fixture-lock-0.1.0.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "$schema": {
+      "const": "https://github.com/onovich/Game-Primitives/blob/main/research/calibration-tests/continuous-action-pilot/schema/fixture-lock-0.1.0.schema.json"
+    },
+    "artifact_type": {
+      "const": "fixture_lock"
+    },
+    "artifact_version": {
+      "const": "0.1.0"
+    },
+    "cases": {
+      "allOf": [
+        {
+          "contains": {
+            "properties": {
+              "case_id": {
+                "const": "CA-R1"
+              }
+            },
+            "required": [
+              "case_id"
+            ]
+          },
+          "maxContains": 1,
+          "minContains": 1
+        },
+        {
+          "contains": {
+            "properties": {
+              "case_id": {
+                "const": "CA-R2"
+              }
+            },
+            "required": [
+              "case_id"
+            ]
+          },
+          "maxContains": 1,
+          "minContains": 1
+        },
+        {
+          "contains": {
+            "properties": {
+              "case_id": {
+                "const": "CA-R3"
+              }
+            },
+            "required": [
+              "case_id"
+            ]
+          },
+          "maxContains": 1,
+          "minContains": 1
+        }
+      ],
+      "items": {
+        "$ref": "#/$defs/caseLock"
+      },
+      "maxItems": 3,
+      "minItems": 3,
+      "type": "array"
+    },
+    "created_at": {
+      "format": "date-time",
+      "type": "string"
+    },
+    "fixture_state": {
+      "const": "locked"
+    },
+    "formal_execution_authorized": {
+      "const": false
+    },
+    "formal_input_executed": {
+      "const": false
+    },
+    "negative_control_artifacts": {
+      "items": {
+        "$ref": "#/$defs/artifactReference"
+      },
+      "minItems": 1,
+      "type": "array"
+    },
+    "run_id": {
+      "pattern": "^continuous-[0-9]{3}$",
+      "type": "string"
+    }
+  },
+  "required": [
+    "$schema",
+    "artifact_type",
+    "artifact_version",
+    "cases",
+    "created_at",
+    "fixture_state",
+    "formal_execution_authorized",
+    "formal_input_executed",
+    "negative_control_artifacts",
+    "run_id"
+  ],
+  "title": "Game Primitives Fixture Lock 0.1.0",
+  "type": "object"
+}

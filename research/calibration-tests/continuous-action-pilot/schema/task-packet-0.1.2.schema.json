@@ -1,0 +1,583 @@
+{
+  "$defs": {
+    "invariantSpec": {
+      "additionalProperties": false,
+      "properties": {
+        "description": {
+          "maxLength": 240,
+          "minLength": 12,
+          "pattern": "^(?!.*(?:[Rr][Ii][Cc][Hh]|[Aa][Tt][Oo][Mm][Ii][Cc])).+$",
+          "type": "string"
+        },
+        "invariant_id": {
+          "$ref": "https://github.com/onovich/Game-Primitives/blob/main/research/calibration-tests/continuous-action-pilot/schema/task-packet-0.1.0.schema.json#/$defs/localId"
+        }
+      },
+      "required": [
+        "description",
+        "invariant_id"
+      ],
+      "type": "object"
+    },
+    "taskPacket": {
+      "additionalProperties": false,
+      "properties": {
+        "$schema": {
+          "const": "https://github.com/onovich/Game-Primitives/blob/main/research/calibration-tests/continuous-action-pilot/schema/task-packet-0.1.2.schema.json"
+        },
+        "allowed_configurations": {
+          "items": {
+            "$ref": "https://github.com/onovich/Game-Primitives/blob/main/research/calibration-tests/continuous-action-pilot/schema/task-packet-0.1.0.schema.json#/$defs/localId"
+          },
+          "type": "array",
+          "uniqueItems": true
+        },
+        "allowed_observations": {
+          "items": {
+            "$ref": "https://github.com/onovich/Game-Primitives/blob/main/research/calibration-tests/continuous-action-pilot/schema/task-packet-0.1.0.schema.json#/$defs/observationSpec"
+          },
+          "type": "array"
+        },
+        "artifact_type": {
+          "enum": [
+            "prediction_task_packet",
+            "projection_audit_task_packet",
+            "reconstruction_task_packet",
+            "source_audit_task_packet",
+            "source_encoding_task_packet"
+          ]
+        },
+        "artifact_version": {
+          "const": "0.1.2"
+        },
+        "assembled_output_schema": {
+          "oneOf": [
+            {
+              "$ref": "https://github.com/onovich/Game-Primitives/blob/main/research/calibration-tests/continuous-action-pilot/schema/task-packet-0.1.0.schema.json#/$defs/outputSchemaReference"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "behavior_scope": {
+          "const": "structural_only"
+        },
+        "case_ids": {
+          "items": {
+            "pattern": "^CA-R[1-3]$",
+            "type": "string"
+          },
+          "minItems": 1,
+          "type": "array",
+          "uniqueItems": true
+        },
+        "condition_id": {
+          "oneOf": [
+            {
+              "pattern": "^condition-v0[12]$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "created_at": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "forbidden_actions": {
+          "items": {
+            "enum": [
+              "access_other_condition",
+              "access_other_submission",
+              "access_package_outside_dispatch",
+              "access_truth_or_result",
+              "create_child_task",
+              "external_search",
+              "read_shared_workspace",
+              "tool_call"
+            ]
+          },
+          "minItems": 1,
+          "type": "array",
+          "uniqueItems": true
+        },
+        "input_artifacts": {
+          "items": {
+            "$ref": "https://github.com/onovich/Game-Primitives/blob/main/research/calibration-tests/continuous-action-pilot/schema/task-packet-0.1.0.schema.json#/$defs/artifactReference"
+          },
+          "minItems": 1,
+          "type": "array",
+          "uniqueItems": true
+        },
+        "instructions": {
+          "items": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "minItems": 1,
+          "type": "array",
+          "uniqueItems": true
+        },
+        "output_schema": {
+          "$ref": "https://github.com/onovich/Game-Primitives/blob/main/research/calibration-tests/continuous-action-pilot/schema/task-packet-0.1.0.schema.json#/$defs/outputSchemaReference"
+        },
+        "representation_version": {
+          "oneOf": [
+            {
+              "const": "CA-SR 0.1"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "required_audit_checks": {
+          "items": {
+            "enum": [
+              "answer_hint_scan",
+              "atomic_projection_equivalence",
+              "baseline_variant_semantic_diff",
+              "case_scope",
+              "cross_case_obligations",
+              "dispatch_symmetry",
+              "formal_build_readiness_integrity",
+              "identity_leak_scan",
+              "invariant_integrity",
+              "projection_fidelity",
+              "provenance_fidelity",
+              "reference_closure",
+              "single_variable_isolation",
+              "source_determinacy",
+              "source_representation_distinction",
+              "stage2_input_closure",
+              "typed_representation"
+            ]
+          },
+          "type": "array",
+          "uniqueItems": true
+        },
+        "run_id": {
+          "pattern": "^(?:continuous|rehearsal)-[0-9]{3}$",
+          "type": "string"
+        },
+        "stage1_submission_required": {
+          "type": "boolean"
+        },
+        "stop_boundary_refs": {
+          "items": {
+            "$ref": "https://github.com/onovich/Game-Primitives/blob/main/research/calibration-tests/continuous-action-pilot/schema/task-packet-0.1.0.schema.json#/$defs/localId"
+          },
+          "type": "array",
+          "uniqueItems": true
+        },
+        "target_encoding_sha256": {
+          "oneOf": [
+            {
+              "$ref": "https://github.com/onovich/Game-Primitives/blob/main/research/calibration-tests/continuous-action-pilot/schema/task-packet-0.1.0.schema.json#/$defs/sha256"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "target_view_sha256": {
+          "oneOf": [
+            {
+              "$ref": "https://github.com/onovich/Game-Primitives/blob/main/research/calibration-tests/continuous-action-pilot/schema/task-packet-0.1.0.schema.json#/$defs/sha256"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "task_id": {
+          "$ref": "https://github.com/onovich/Game-Primitives/blob/main/research/calibration-tests/continuous-action-pilot/schema/task-packet-0.1.0.schema.json#/$defs/localId"
+        },
+        "tolerance_rule_refs": {
+          "items": {
+            "$ref": "https://github.com/onovich/Game-Primitives/blob/main/research/calibration-tests/continuous-action-pilot/schema/task-packet-0.1.0.schema.json#/$defs/localId"
+          },
+          "type": "array",
+          "uniqueItems": true
+        },
+        "variant_interventions": {
+          "items": {
+            "$ref": "#/$defs/variantIntervention"
+          },
+          "type": "array"
+        }
+      },
+      "required": [
+        "$schema",
+        "allowed_configurations",
+        "allowed_observations",
+        "artifact_type",
+        "artifact_version",
+        "assembled_output_schema",
+        "behavior_scope",
+        "case_ids",
+        "condition_id",
+        "created_at",
+        "forbidden_actions",
+        "input_artifacts",
+        "instructions",
+        "output_schema",
+        "representation_version",
+        "required_audit_checks",
+        "run_id",
+        "stage1_submission_required",
+        "stop_boundary_refs",
+        "target_encoding_sha256",
+        "target_view_sha256",
+        "task_id",
+        "tolerance_rule_refs",
+        "variant_interventions"
+      ],
+      "type": "object"
+    },
+    "variantIntervention": {
+      "additionalProperties": false,
+      "properties": {
+        "baseline_value": {
+          "$ref": "https://github.com/onovich/Game-Primitives/blob/main/research/calibration-tests/continuous-action-pilot/schema/task-packet-0.1.0.schema.json#/$defs/typedValue"
+        },
+        "case_id": {
+          "pattern": "^CA-R[1-3]$",
+          "type": "string"
+        },
+        "formal_input_spec": {
+          "$ref": "https://github.com/onovich/Game-Primitives/blob/main/research/calibration-tests/continuous-action-pilot/schema/variant-envelope-0.1.0.schema.json#/$defs/formalInputSpec"
+        },
+        "initial_state_specs": {
+          "items": {
+            "$ref": "https://github.com/onovich/Game-Primitives/blob/main/research/calibration-tests/continuous-action-pilot/schema/variant-envelope-0.1.0.schema.json#/$defs/fieldValueSpec"
+          },
+          "minItems": 1,
+          "type": "array"
+        },
+        "invariant_ids": {
+          "items": {
+            "$ref": "https://github.com/onovich/Game-Primitives/blob/main/research/calibration-tests/continuous-action-pilot/schema/task-packet-0.1.0.schema.json#/$defs/localId"
+          },
+          "minItems": 1,
+          "type": "array",
+          "uniqueItems": true
+        },
+        "invariant_specs": {
+          "items": {
+            "$ref": "#/$defs/invariantSpec"
+          },
+          "minItems": 1,
+          "type": "array"
+        },
+        "observation_ids": {
+          "items": {
+            "$ref": "https://github.com/onovich/Game-Primitives/blob/main/research/calibration-tests/continuous-action-pilot/schema/task-packet-0.1.0.schema.json#/$defs/localId"
+          },
+          "minItems": 1,
+          "type": "array",
+          "uniqueItems": true
+        },
+        "stop_boundary_id": {
+          "$ref": "https://github.com/onovich/Game-Primitives/blob/main/research/calibration-tests/continuous-action-pilot/schema/task-packet-0.1.0.schema.json#/$defs/localId"
+        },
+        "stop_boundary_spec": {
+          "$ref": "https://github.com/onovich/Game-Primitives/blob/main/research/calibration-tests/continuous-action-pilot/schema/variant-envelope-0.1.0.schema.json#/$defs/stopBoundarySpec"
+        },
+        "tolerance_specs": {
+          "items": {
+            "$ref": "https://github.com/onovich/Game-Primitives/blob/main/research/calibration-tests/continuous-action-pilot/schema/variant-envelope-0.1.0.schema.json#/$defs/toleranceSpec"
+          },
+          "type": "array",
+          "uniqueItems": true
+        },
+        "variable_id": {
+          "$ref": "https://github.com/onovich/Game-Primitives/blob/main/research/calibration-tests/continuous-action-pilot/schema/task-packet-0.1.0.schema.json#/$defs/localId"
+        },
+        "variant_value": {
+          "$ref": "https://github.com/onovich/Game-Primitives/blob/main/research/calibration-tests/continuous-action-pilot/schema/task-packet-0.1.0.schema.json#/$defs/typedValue"
+        }
+      },
+      "required": [
+        "baseline_value",
+        "case_id",
+        "formal_input_spec",
+        "initial_state_specs",
+        "invariant_ids",
+        "invariant_specs",
+        "observation_ids",
+        "stop_boundary_id",
+        "stop_boundary_spec",
+        "tolerance_specs",
+        "variable_id",
+        "variant_value"
+      ],
+      "type": "object"
+    }
+  },
+  "$id": "https://github.com/onovich/Game-Primitives/blob/main/research/calibration-tests/continuous-action-pilot/schema/task-packet-0.1.2.schema.json",
+  "$ref": "#/$defs/taskPacket",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "oneOf": [
+    {
+      "properties": {
+        "allowed_configurations": {
+          "allOf": [
+            {
+              "contains": {
+                "const": "config.baseline"
+              },
+              "maxContains": 1,
+              "minContains": 1
+            },
+            {
+              "contains": {
+                "const": "config.variant"
+              },
+              "maxContains": 1,
+              "minContains": 1
+            }
+          ],
+          "maxItems": 2,
+          "minItems": 2
+        },
+        "artifact_type": {
+          "const": "prediction_task_packet"
+        },
+        "assembled_output_schema": {
+          "$ref": "https://github.com/onovich/Game-Primitives/blob/main/research/calibration-tests/continuous-action-pilot/schema/task-packet-0.1.0.schema.json#/$defs/outputSchemaReference"
+        },
+        "condition_id": {
+          "type": "null"
+        },
+        "stage1_submission_required": {
+          "const": true
+        }
+      },
+      "required": [
+        "allowed_configurations",
+        "allowed_observations",
+        "artifact_type",
+        "assembled_output_schema",
+        "stage1_submission_required",
+        "variant_interventions"
+      ]
+    },
+    {
+      "properties": {
+        "allowed_configurations": {
+          "maxItems": 0
+        },
+        "artifact_type": {
+          "const": "projection_audit_task_packet"
+        },
+        "assembled_output_schema": {
+          "type": "null"
+        },
+        "case_ids": {
+          "allOf": [
+            {
+              "contains": {
+                "const": "CA-R1"
+              },
+              "maxContains": 1,
+              "minContains": 1
+            },
+            {
+              "contains": {
+                "const": "CA-R2"
+              },
+              "maxContains": 1,
+              "minContains": 1
+            },
+            {
+              "contains": {
+                "const": "CA-R3"
+              },
+              "maxContains": 1,
+              "minContains": 1
+            }
+          ],
+          "maxItems": 3,
+          "minItems": 3
+        },
+        "condition_id": {
+          "type": "null"
+        },
+        "output_schema": {
+          "properties": {
+            "path": {
+              "const": "research/calibration-tests/continuous-action-pilot/schema/role-submission-0.1.2.schema.json"
+            }
+          }
+        },
+        "representation_version": {
+          "const": "CA-SR 0.1"
+        },
+        "required_audit_checks": {
+          "allOf": [
+            {
+              "contains": {
+                "const": "answer_hint_scan"
+              },
+              "minContains": 1
+            },
+            {
+              "contains": {
+                "const": "atomic_projection_equivalence"
+              },
+              "minContains": 1
+            },
+            {
+              "contains": {
+                "const": "dispatch_symmetry"
+              },
+              "minContains": 1
+            },
+            {
+              "contains": {
+                "const": "formal_build_readiness_integrity"
+              },
+              "minContains": 1
+            },
+            {
+              "contains": {
+                "const": "identity_leak_scan"
+              },
+              "minContains": 1
+            },
+            {
+              "contains": {
+                "const": "invariant_integrity"
+              },
+              "minContains": 1
+            },
+            {
+              "contains": {
+                "const": "projection_fidelity"
+              },
+              "minContains": 1
+            },
+            {
+              "contains": {
+                "const": "reference_closure"
+              },
+              "minContains": 1
+            },
+            {
+              "contains": {
+                "const": "single_variable_isolation"
+              },
+              "minContains": 1
+            },
+            {
+              "contains": {
+                "const": "stage2_input_closure"
+              },
+              "minContains": 1
+            }
+          ]
+        },
+        "stage1_submission_required": {
+          "const": false
+        },
+        "target_encoding_sha256": {
+          "$ref": "https://github.com/onovich/Game-Primitives/blob/main/research/calibration-tests/continuous-action-pilot/schema/task-packet-0.1.0.schema.json#/$defs/sha256"
+        },
+        "target_view_sha256": {
+          "type": "null"
+        },
+        "variant_interventions": {
+          "maxItems": 0
+        }
+      },
+      "required": [
+        "artifact_type",
+        "case_ids",
+        "required_audit_checks",
+        "target_encoding_sha256"
+      ]
+    },
+    {
+      "properties": {
+        "allowed_configurations": {
+          "maxItems": 0
+        },
+        "artifact_type": {
+          "const": "reconstruction_task_packet"
+        },
+        "assembled_output_schema": {
+          "$ref": "https://github.com/onovich/Game-Primitives/blob/main/research/calibration-tests/continuous-action-pilot/schema/task-packet-0.1.0.schema.json#/$defs/outputSchemaReference"
+        },
+        "condition_id": {
+          "pattern": "^condition-v0[12]$",
+          "type": "string"
+        },
+        "stage1_submission_required": {
+          "const": false
+        }
+      },
+      "required": [
+        "artifact_type",
+        "assembled_output_schema",
+        "condition_id",
+        "target_view_sha256"
+      ]
+    },
+    {
+      "properties": {
+        "allowed_configurations": {
+          "maxItems": 0
+        },
+        "artifact_type": {
+          "const": "source_audit_task_packet"
+        },
+        "assembled_output_schema": {
+          "type": "null"
+        },
+        "condition_id": {
+          "type": "null"
+        },
+        "stage1_submission_required": {
+          "const": false
+        }
+      },
+      "required": [
+        "artifact_type",
+        "required_audit_checks",
+        "target_encoding_sha256"
+      ]
+    },
+    {
+      "properties": {
+        "allowed_configurations": {
+          "maxItems": 0
+        },
+        "artifact_type": {
+          "const": "source_encoding_task_packet"
+        },
+        "assembled_output_schema": {
+          "type": "null"
+        },
+        "condition_id": {
+          "type": "null"
+        },
+        "representation_version": {
+          "const": "CA-SR 0.1"
+        },
+        "stage1_submission_required": {
+          "const": false
+        }
+      },
+      "required": [
+        "artifact_type",
+        "representation_version"
+      ]
+    }
+  ],
+  "title": "Game Primitives Task Packet 0.1.2",
+  "type": "object"
+}

@@ -642,8 +642,18 @@ def normalize_v02_reference(
     if kind == "action":
         description = f"不带结构标注的动作 {ordinal:02d}"
         base_type = "action"
-        test_role = "rule_action"
+        test_role = "input"
         statement = "该动作标识由规范输入机械保留；中间边界未公开。"
+    elif kind == "process":
+        description = f"边界输出派生过程 {ordinal:02d}"
+        base_type = "process"
+        test_role = "process"
+        statement = "该过程从允许的边界记录生成终止输出；中间更新关系未公开。"
+    elif kind == "stop":
+        description = f"观察终止条件 {ordinal:02d}"
+        base_type = "condition"
+        test_role = "process"
+        statement = "该条件标识观察片段的声明终点；具体中间关系未公开。"
     else:
         description = f"允许效果类型 {ordinal:02d}"
         base_type = "state"
@@ -754,6 +764,34 @@ def make_v02_cases(
         references = [
             normalize_v02_reference(formal_action_id, 1, "action", action_status)
         ]
+        derivation_id = v01_case["trace_contract"]["derivation_algorithm_id"]
+        derivation_reference = v01_references.get(derivation_id)
+        derivation_status = (
+            derivation_reference["source_fact"]["status"]
+            if derivation_reference is not None
+            else "encoded"
+        )
+        references.append(
+            normalize_v02_reference(
+                derivation_id,
+                1,
+                "process",
+                derivation_status,
+            )
+        )
+        for ordinal, stop_id in enumerate(
+            v01_case["trace_contract"]["stop_condition_refs"],
+            start=1,
+        ):
+            stop_reference = v01_references.get(stop_id)
+            stop_status = (
+                stop_reference["source_fact"]["status"]
+                if stop_reference is not None
+                else "encoded"
+            )
+            references.append(
+                normalize_v02_reference(stop_id, ordinal, "stop", stop_status)
+            )
         for ordinal, effect_id in enumerate(effect_ids(v01_case), start=1):
             source_reference = v01_references.get(effect_id)
             effect_status = (

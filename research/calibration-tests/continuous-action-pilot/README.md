@@ -30,6 +30,18 @@
 - [`build-feasibility-0.1.1.schema.json`](schema/build-feasibility-0.1.1.schema.json)：增加逐文件证据绑定，并区分许可阻断、兼容探针通过和中性探针通过。
 - [`task-packet-0.1.0.schema.json`](schema/task-packet-0.1.0.schema.json)：来源编码、来源审核、重构和预测的冻结派发信封。
 - [`task-packet-0.1.1.schema.json`](schema/task-packet-0.1.1.schema.json)：为盲测任务增加允许配置与装配后输出 Schema；保留 0.1.0 供既有轮次复算。
+- [`task-packet-0.1.2.schema.json`](schema/task-packet-0.1.2.schema.json)：增加第二道 `projection_audit_task_packet`，强制直接绑定机械生成器、投影规范和两份生成视图，并审核唯一变量、中性不变量定义、结构引用闭包、第二阶段输入闭包、投影忠实度、等价闭包与派发对称性；预测任务中的匿名初态、正式输入、不变量、容差和停止点规格必须和中性信封逐项相同。保留旧版本供既有轮次复算。
+- [`fixture-lock-0.1.0.schema.json`](schema/fixture-lock-0.1.0.schema.json)：把三案来源身份、构建门、正式输入与比较器锁定，并分别记录兼容、观察和规则变体是补丁、不适用还是仅配置实现，禁止以空白补丁填位。
+- [`formal-build-readiness-0.1.0.schema.json`](schema/formal-build-readiness-0.1.0.schema.json)：要求三案的基线与变体配置最终构建全部通过，并绑定构建证据和仓库外输出散列；历史工具链探针不能代替它。
+- [`formal-human-gate-authorization-0.1.0.schema.json`](schema/formal-human-gate-authorization-0.1.0.schema.json)：约束冻结后才允许建立的一次性人工放行凭据；正式分支必须绑定清单中的冻结提交、根摘要与真值承诺，以及最终构建记录、夹具锁、投影审核、授权 Schema、派发器、执行许可 Schema／物化器／校验器和只读准备门校验器。合成分支只有在系统临时目录中的无 Git、带专用标记副本里才可物化虚构回执；生产策略明确拒绝它。授权凭据本身不进入冻结清单，避免哈希循环。
+- [`formal-execution-permit-0.1.0.schema.json`](schema/formal-execution-permit-0.1.0.schema.json)：约束四席预测冻结后机械派生的正式执行许可；它同时绑定正式人工授权、规范预测集合前像与摘要、R1—R3 案例范围、正式执行／比较范围，以及每案运行器、输入、测试体、比较器、支持制品和轨迹 Schema 的精确执行目标，并禁止在正式输入已执行或正式结果已产生后物化。
+- [`stage1-seat-dispatch-envelope-0.1.0.schema.json`](schema/stage1-seat-dispatch-envelope-0.1.0.schema.json) 与 [`stage2-seat-dispatch-envelope-0.1.0.schema.json`](schema/stage2-seat-dispatch-envelope-0.1.0.schema.json)：区分永不放行的逐席惰性模板与门后、逐字节绑定授权和参与者输入的新建派发回执。
+- [`stage1-cohort-lock-0.1.0.schema.json`](schema/stage1-cohort-lock-0.1.0.schema.json)：只有四席第一阶段回执、原始回答、机器信封和有效重构提交全部冻结后，才允许建立共同第二阶段输入锁。
+- [`variant-envelope-0.1.0.schema.json`](schema/variant-envelope-0.1.0.schema.json)：只允许盲测者所需的中性变量、配置、观测、不变量、停止和容差信息，不提供来源路径或预期结果；用匿名字段自包含初态、时间基准、完整有序正式输入、中性不变量定义、结构化容差和停止点定义，裸 ID 不算闭合。
+- [`response-template-0.1.0.schema.json`](schema/response-template-0.1.0.schema.json)：验证重构与预测的占位回答模板，不把占位符误当成真实回答。
+- [`formal-input-trace-0.1.0.schema.json`](schema/formal-input-trace-0.1.0.schema.json)：以通用类型化字段和有序事件冻结三案正式输入，并把人工门前状态固定为未授权、未执行且未产生结果。
+- [`formal-comparator-output-0.1.0.schema.json`](schema/formal-comparator-output-0.1.0.schema.json)：约束三案比较器的结构化观测、不变量与负对照结果，并要求结果直接绑定执行许可、正式输入和预测集合摘要；通过状态只允许完整观测、成立不变量和成立负对照。
+- [`ca-r1-raw-trace-0.1.0.schema.json`](schema/ca-r1-raw-trace-0.1.0.schema.json)、[`ca-r2-raw-trace-0.1.0.schema.json`](schema/ca-r2-raw-trace-0.1.0.schema.json) 与 [`ca-r3-raw-trace-0.1.0.schema.json`](schema/ca-r3-raw-trace-0.1.0.schema.json)：分别封闭三案原始轨迹字段、配置、顺序与许可／正式输入／预测集合散列；R2 的 JSONL 在内存中归一化后再做 Schema 校验。
 - [`role-submission-0.1.0.schema.json`](schema/role-submission-0.1.0.schema.json)：来源审核、重构、预测和揭示后制品审核的首次提交。
 - [`role-submission-0.1.1.schema.json`](schema/role-submission-0.1.1.schema.json)：保留 0.1.0 并给预测期望增加必填 `configuration_id`，修复 `rehearsal-001` 发现的基线／变体寻址缺口。
 - [`role-submission-0.1.2.schema.json`](schema/role-submission-0.1.2.schema.json)：把原始盲测 payload、机器信封与装配工具散列绑定到派生提交。
@@ -49,6 +61,26 @@
 盲测回答使用 [`build-role-submission.py`](tools/build-role-submission.py) 渲染结构模板、捕获机器信封、确定性装配并复核。修订理由与边界见[盲测回答接口修订](../../continuous-action-pilot-blind-response-interface.md)。
 
 正式包使用 [`verify-run-package.py`](tools/verify-run-package.py) 统一检查 Schema、自声明版本、规范字节、清单与嵌套散列引用、任务输入／输出、冻结集合摘要及冻结锚点提交。`preparing` 包可以通过结构检查；人工门前还必须以 `--require-frozen` 通过。
+
+[`verify-formal-readiness.py`](tools/verify-formal-readiness.py) 在包校验之上检查人工门所需的完整制品集合、夹具补丁分离、最终构建全通过、中性初态／正式输入／不变量／容差定义、受控变量与输入字段结构引用闭包、中性信封盲化、回答模板覆盖、第二道审核和正式输入未执行标志。第二阶段任务只允许直接派发中性信封与回答模板，不得加入来源专用夹具 JSON。第二道任务必须直接绑定机械生成器、投影规范、两份生成视图、最终夹具锁、执行计划和最终构建准备记录，审核结果再绑定任务及全部任务输入；校验器不会调用夹具、比较器或正式输入。rich 视图里的受控变量、正式输入 ID、时间基准及匿名初态／输入字段必须进入结构关系，atomic 视图才可以按规范删去这些职责边。冻结前可以用普通模式查看缺件，冻结后必须再加 `--require-frozen`。
+
+逐席派发由 [`materialize-dispatch.py`](tools/materialize-dispatch.py) 物化和复核。它不发送消息，也不执行正式输入；只有固定路径的、通过 [`formal-human-gate-authorization-0.1.0`](schema/formal-human-gate-authorization-0.1.0.schema.json) 校验且能复算全部冻结依据的授权凭据才可将模板变成回执。两层合成自检均只使用系统临时目录中的虚构冻结链：
+
+```text
+python research/calibration-tests/continuous-action-pilot/tools/materialize-dispatch.py self-test --repo-root .
+python research/calibration-tests/continuous-action-pilot/tools/self-test-blind-pipeline.py --repo-root .
+```
+
+第二条命令覆盖四个独立 actor／会话、两种条件、两阶段提交、cohort lock，以及合成授权进入生产策略、缺回执、错席位、模板冒充回执和畸形授权的失败关闭；不会复制或运行正式输入、比较器或真实 fixture。
+
+四席预测完成后，执行许可由 [`materialize-execution-permit.py`](tools/materialize-execution-permit.py) 机械生成，再由 [`verify-formal-execution-permit.py`](tools/verify-formal-execution-permit.py) 供三案运行器和比较器统一只读复核。人工授权本身不预填未来预测摘要；`prediction-set-preimage.tsv` 的精确字节散列才成为 `prediction_set_digest`。执行许可自检只在系统临时目录的可弃副本中运行，不读取正式输入，也不调用正式运行器、比较器或 test body：
+
+```text
+python research/calibration-tests/continuous-action-pilot/tools/materialize-execution-permit.py self-test --repo-root .
+python research/calibration-tests/continuous-action-pilot/tools/verify-formal-raw-trace.py self-test --repo-root .
+```
+
+正式运行器与比较器用 [`verify-formal-raw-trace.py`](tools/verify-formal-raw-trace.py) 对每份轨迹做许可复验、执行目标选择、严格解析、案例 Schema 校验和三种散列闭合；案例比较器只有在这一步通过后才解释轨迹语义。
 
 ## 彩排记录
 

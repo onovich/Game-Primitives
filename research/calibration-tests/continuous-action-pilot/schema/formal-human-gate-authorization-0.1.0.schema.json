@@ -1,0 +1,614 @@
+{
+  "$defs": {
+    "artifactReference": {
+      "additionalProperties": false,
+      "properties": {
+        "path": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "sha256": {
+          "$ref": "#/$defs/sha256"
+        }
+      },
+      "required": [
+        "path",
+        "sha256"
+      ],
+      "type": "object"
+    },
+    "authorizationBasis": {
+      "additionalProperties": false,
+      "properties": {
+        "decision": {
+          "enum": [
+            "authorized",
+            "synthetic_only"
+          ]
+        },
+        "message_sha256": {
+          "$ref": "#/$defs/sha256"
+        },
+        "source_kind": {
+          "enum": [
+            "explicit_user_message",
+            "synthetic_self_test"
+          ]
+        },
+        "source_locator": {
+          "minLength": 1,
+          "type": "string"
+        }
+      },
+      "required": [
+        "decision",
+        "message_sha256",
+        "source_kind",
+        "source_locator"
+      ],
+      "type": "object"
+    },
+    "authorizationScopes": {
+      "additionalProperties": false,
+      "properties": {
+        "blind_dispatch_authorized": {
+          "type": "boolean"
+        },
+        "formal_execution_after_prediction_freeze_authorized": {
+          "type": "boolean"
+        },
+        "synthetic_receipt_materialization_authorized": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "blind_dispatch_authorized",
+        "formal_execution_after_prediction_freeze_authorized",
+        "synthetic_receipt_materialization_authorized"
+      ],
+      "type": "object"
+    },
+    "authorizedBy": {
+      "additionalProperties": false,
+      "properties": {
+        "identifier": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "role": {
+          "enum": [
+            "author",
+            "self_test_harness"
+          ]
+        }
+      },
+      "required": [
+        "identifier",
+        "role"
+      ],
+      "type": "object"
+    },
+    "commitment": {
+      "additionalProperties": false,
+      "properties": {
+        "algorithm": {
+          "const": "SHA-256"
+        },
+        "combination": {
+          "const": "secret_nonce_bytes || exact_truth_bundle_bytes"
+        },
+        "commitment": {
+          "$ref": "#/$defs/sha256"
+        },
+        "created_at": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "nonce_length_bytes": {
+          "const": 32
+        },
+        "truth_bundle_bytes": {
+          "minimum": 1,
+          "type": "integer"
+        },
+        "truth_bundle_name": {
+          "const": "sealed-truth.json"
+        }
+      },
+      "required": [
+        "algorithm",
+        "combination",
+        "commitment",
+        "created_at",
+        "nonce_length_bytes",
+        "truth_bundle_bytes",
+        "truth_bundle_name"
+      ],
+      "type": "object"
+    },
+    "contractArtifacts": {
+      "additionalProperties": false,
+      "properties": {
+        "authorization_schema": {
+          "allOf": [
+            {
+              "$ref": "#/$defs/artifactReference"
+            },
+            {
+              "properties": {
+                "path": {
+                  "const": "research/calibration-tests/continuous-action-pilot/schema/formal-human-gate-authorization-0.1.0.schema.json"
+                }
+              }
+            }
+          ]
+        },
+        "ca_r1_raw_trace_schema": {
+          "allOf": [
+            {
+              "$ref": "#/$defs/artifactReference"
+            },
+            {
+              "properties": {
+                "path": {
+                  "const": "research/calibration-tests/continuous-action-pilot/schema/ca-r1-raw-trace-0.1.0.schema.json"
+                }
+              }
+            }
+          ]
+        },
+        "ca_r2_raw_trace_schema": {
+          "allOf": [
+            {
+              "$ref": "#/$defs/artifactReference"
+            },
+            {
+              "properties": {
+                "path": {
+                  "const": "research/calibration-tests/continuous-action-pilot/schema/ca-r2-raw-trace-0.1.0.schema.json"
+                }
+              }
+            }
+          ]
+        },
+        "ca_r3_raw_trace_schema": {
+          "allOf": [
+            {
+              "$ref": "#/$defs/artifactReference"
+            },
+            {
+              "properties": {
+                "path": {
+                  "const": "research/calibration-tests/continuous-action-pilot/schema/ca-r3-raw-trace-0.1.0.schema.json"
+                }
+              }
+            }
+          ]
+        },
+        "dispatch_materializer": {
+          "allOf": [
+            {
+              "$ref": "#/$defs/artifactReference"
+            },
+            {
+              "properties": {
+                "path": {
+                  "const": "research/calibration-tests/continuous-action-pilot/tools/materialize-dispatch.py"
+                }
+              }
+            }
+          ]
+        },
+        "execution_permit_materializer": {
+          "allOf": [
+            {
+              "$ref": "#/$defs/artifactReference"
+            },
+            {
+              "properties": {
+                "path": {
+                  "const": "research/calibration-tests/continuous-action-pilot/tools/materialize-execution-permit.py"
+                }
+              }
+            }
+          ]
+        },
+        "execution_permit_schema": {
+          "allOf": [
+            {
+              "$ref": "#/$defs/artifactReference"
+            },
+            {
+              "properties": {
+                "path": {
+                  "const": "research/calibration-tests/continuous-action-pilot/schema/formal-execution-permit-0.1.0.schema.json"
+                }
+              }
+            }
+          ]
+        },
+        "execution_permit_verifier": {
+          "allOf": [
+            {
+              "$ref": "#/$defs/artifactReference"
+            },
+            {
+              "properties": {
+                "path": {
+                  "const": "research/calibration-tests/continuous-action-pilot/tools/verify-formal-execution-permit.py"
+                }
+              }
+            }
+          ]
+        },
+        "formal_comparator_output_schema": {
+          "allOf": [
+            {
+              "$ref": "#/$defs/artifactReference"
+            },
+            {
+              "properties": {
+                "path": {
+                  "const": "research/calibration-tests/continuous-action-pilot/schema/formal-comparator-output-0.1.0.schema.json"
+                }
+              }
+            }
+          ]
+        },
+        "raw_trace_verifier": {
+          "allOf": [
+            {
+              "$ref": "#/$defs/artifactReference"
+            },
+            {
+              "properties": {
+                "path": {
+                  "const": "research/calibration-tests/continuous-action-pilot/tools/verify-formal-raw-trace.py"
+                }
+              }
+            }
+          ]
+        },
+        "submission_builder": {
+          "allOf": [
+            {
+              "$ref": "#/$defs/artifactReference"
+            },
+            {
+              "properties": {
+                "path": {
+                  "const": "research/calibration-tests/continuous-action-pilot/tools/build-role-submission.py"
+                }
+              }
+            }
+          ]
+        }
+      },
+      "required": [
+        "authorization_schema",
+        "ca_r1_raw_trace_schema",
+        "ca_r2_raw_trace_schema",
+        "ca_r3_raw_trace_schema",
+        "dispatch_materializer",
+        "execution_permit_materializer",
+        "execution_permit_schema",
+        "execution_permit_verifier",
+        "formal_comparator_output_schema",
+        "raw_trace_verifier",
+        "submission_builder"
+      ],
+      "type": "object"
+    },
+    "sha256": {
+      "pattern": "^(?!0{64}$)[0-9a-f]{64}$",
+      "type": "string"
+    },
+    "stateAtAuthorization": {
+      "additionalProperties": false,
+      "properties": {
+        "blind_dispatch_performed": {
+          "const": false
+        },
+        "formal_input_executed": {
+          "const": false
+        },
+        "formal_result_produced": {
+          "const": false
+        }
+      },
+      "required": [
+        "blind_dispatch_performed",
+        "formal_input_executed",
+        "formal_result_produced"
+      ],
+      "type": "object"
+    }
+  },
+  "$id": "https://github.com/onovich/Game-Primitives/blob/main/research/calibration-tests/continuous-action-pilot/schema/formal-human-gate-authorization-0.1.0.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "authorization_context": {
+            "const": "formal_run"
+          }
+        },
+        "required": [
+          "authorization_context"
+        ]
+      },
+      "then": {
+        "properties": {
+          "authorization_basis": {
+            "properties": {
+              "decision": {
+                "const": "authorized"
+              },
+              "source_kind": {
+                "const": "explicit_user_message"
+              }
+            }
+          },
+          "authorization_id": {
+            "const": "authorization.continuous-001.human-gate"
+          },
+          "authorization_phrase": {
+            "const": "RUN_CONTINUOUS_001_FORMAL_AFTER_HUMAN_GATE"
+          },
+          "authorization_scopes": {
+            "properties": {
+              "blind_dispatch_authorized": {
+                "const": true
+              },
+              "formal_execution_after_prediction_freeze_authorized": {
+                "const": true
+              },
+              "synthetic_receipt_materialization_authorized": {
+                "const": false
+              }
+            }
+          },
+          "authorization_state": {
+            "const": "authorized"
+          },
+          "authorized_by": {
+            "properties": {
+              "role": {
+                "const": "author"
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "authorization_context": {
+            "const": "synthetic_self_test"
+          }
+        },
+        "required": [
+          "authorization_context"
+        ]
+      },
+      "then": {
+        "properties": {
+          "authorization_basis": {
+            "properties": {
+              "decision": {
+                "const": "synthetic_only"
+              },
+              "source_kind": {
+                "const": "synthetic_self_test"
+              }
+            }
+          },
+          "authorization_id": {
+            "const": "authorization.continuous-001.synthetic-self-test"
+          },
+          "authorization_phrase": {
+            "const": "SYNTHETIC_SELF_TEST_ONLY_DO_NOT_DISPATCH_OR_EXECUTE"
+          },
+          "authorization_scopes": {
+            "properties": {
+              "blind_dispatch_authorized": {
+                "const": false
+              },
+              "formal_execution_after_prediction_freeze_authorized": {
+                "const": false
+              },
+              "synthetic_receipt_materialization_authorized": {
+                "const": true
+              }
+            }
+          },
+          "authorization_state": {
+            "const": "synthetic_only"
+          },
+          "authorized_by": {
+            "properties": {
+              "role": {
+                "const": "self_test_harness"
+              }
+            }
+          }
+        }
+      }
+    }
+  ],
+  "properties": {
+    "$schema": {
+      "const": "https://github.com/onovich/Game-Primitives/blob/main/research/calibration-tests/continuous-action-pilot/schema/formal-human-gate-authorization-0.1.0.schema.json"
+    },
+    "artifact_type": {
+      "const": "formal_human_gate_authorization"
+    },
+    "artifact_version": {
+      "const": "0.1.0"
+    },
+    "authorization_basis": {
+      "$ref": "#/$defs/authorizationBasis"
+    },
+    "authorization_context": {
+      "enum": [
+        "formal_run",
+        "synthetic_self_test"
+      ]
+    },
+    "authorization_id": {
+      "type": "string"
+    },
+    "authorization_phrase": {
+      "type": "string"
+    },
+    "authorization_scopes": {
+      "$ref": "#/$defs/authorizationScopes"
+    },
+    "authorization_state": {
+      "enum": [
+        "authorized",
+        "synthetic_only"
+      ]
+    },
+    "authorized_at": {
+      "format": "date-time",
+      "type": "string"
+    },
+    "authorized_by": {
+      "$ref": "#/$defs/authorizedBy"
+    },
+    "contract_artifacts": {
+      "$ref": "#/$defs/contractArtifacts"
+    },
+    "final_build_readiness": {
+      "allOf": [
+        {
+          "$ref": "#/$defs/artifactReference"
+        },
+        {
+          "properties": {
+            "path": {
+              "const": "research/calibration-tests/continuous-action-pilot/runs/continuous-001/fixtures/formal-build-readiness-v0.1.0.json"
+            }
+          }
+        }
+      ]
+    },
+    "fixture_lock": {
+      "allOf": [
+        {
+          "$ref": "#/$defs/artifactReference"
+        },
+        {
+          "properties": {
+            "path": {
+              "const": "research/calibration-tests/continuous-action-pilot/runs/continuous-001/fixtures/fixture-lock.json"
+            }
+          }
+        }
+      ]
+    },
+    "formal_readiness_verifier": {
+      "allOf": [
+        {
+          "$ref": "#/$defs/artifactReference"
+        },
+        {
+          "properties": {
+            "path": {
+              "const": "research/calibration-tests/continuous-action-pilot/tools/verify-formal-readiness.py"
+            }
+          }
+        }
+      ]
+    },
+    "freeze_commit": {
+      "pattern": "^[0-9a-f]{40}$",
+      "type": "string"
+    },
+    "frozen_artifact_set_digest": {
+      "$ref": "#/$defs/sha256"
+    },
+    "frozen_manifest_path": {
+      "const": "research/calibration-tests/continuous-action-pilot/runs/continuous-001/manifest.json"
+    },
+    "manifest_status_at_authorization": {
+      "const": "frozen"
+    },
+    "projection_audit": {
+      "allOf": [
+        {
+          "$ref": "#/$defs/artifactReference"
+        },
+        {
+          "properties": {
+            "path": {
+              "const": "research/calibration-tests/continuous-action-pilot/runs/continuous-001/source/projection-audit-v0.1.0.json"
+            }
+          }
+        }
+      ]
+    },
+    "run_id": {
+      "const": "continuous-001"
+    },
+    "state_at_authorization": {
+      "$ref": "#/$defs/stateAtAuthorization"
+    },
+    "truth_commitment": {
+      "$ref": "#/$defs/commitment"
+    },
+    "verification": {
+      "additionalProperties": false,
+      "properties": {
+        "require_frozen": {
+          "const": true
+        },
+        "status": {
+          "const": "passed"
+        },
+        "verified_at": {
+          "format": "date-time",
+          "type": "string"
+        }
+      },
+      "required": [
+        "require_frozen",
+        "status",
+        "verified_at"
+      ],
+      "type": "object"
+    }
+  },
+  "required": [
+    "$schema",
+    "artifact_type",
+    "artifact_version",
+    "authorization_basis",
+    "authorization_context",
+    "authorization_id",
+    "authorization_phrase",
+    "authorization_scopes",
+    "authorization_state",
+    "authorized_at",
+    "authorized_by",
+    "contract_artifacts",
+    "final_build_readiness",
+    "fixture_lock",
+    "formal_readiness_verifier",
+    "frozen_artifact_set_digest",
+    "frozen_manifest_path",
+    "freeze_commit",
+    "manifest_status_at_authorization",
+    "projection_audit",
+    "run_id",
+    "state_at_authorization",
+    "truth_commitment",
+    "verification"
+  ],
+  "title": "continuous-001 Formal Human Gate Authorization 0.1.0",
+  "type": "object"
+}

@@ -1,0 +1,105 @@
+{
+  "$schema": "https://github.com/onovich/Game-Primitives/blob/main/research/calibration-tests/continuous-action-pilot/schema/formal-input-trace-0.1.0.schema.json",
+  "artifact_type": "formal_input_trace",
+  "artifact_version": "0.1.0",
+  "case_id": "CA-R3",
+  "created_at": "2026-07-26T20:52:00Z",
+  "fixture_configuration_fields": [
+    {
+      "field_id": "object.type",
+      "value": {
+        "serialized_value": "hit-circle",
+        "unit": null,
+        "value_type": "id"
+      }
+    },
+    {
+      "field_id": "object.start-time",
+      "value": {
+        "serialized_value": "1000",
+        "unit": "ms",
+        "value_type": "integer"
+      }
+    },
+    {
+      "field_id": "rules.overall-difficulty",
+      "value": {
+        "serialized_value": "5",
+        "unit": null,
+        "value_type": "integer"
+      }
+    },
+    {
+      "field_id": "input.candidate-count",
+      "value": {
+        "serialized_value": "1",
+        "unit": "event",
+        "value_type": "integer"
+      }
+    }
+  ],
+  "formal_input_id": "o.c.0002",
+  "input_events": [
+    {
+      "at": {
+        "serialized_value": "1000",
+        "unit": "ms",
+        "value_type": "integer"
+      },
+      "event_id": "event.r3.candidate-press",
+      "fields": [
+        {
+          "field_id": "action",
+          "value": {
+            "serialized_value": "left-button",
+            "unit": null,
+            "value_type": "id"
+          }
+        },
+        {
+          "field_id": "position.x",
+          "value": {
+            "serialized_value": "256",
+            "unit": "playfield-pixel",
+            "value_type": "integer"
+          }
+        },
+        {
+          "field_id": "position.y",
+          "value": {
+            "serialized_value": "192",
+            "unit": "playfield-pixel",
+            "value_type": "integer"
+          }
+        },
+        {
+          "field_id": "target",
+          "value": {
+            "serialized_value": "single-hit-area",
+            "unit": null,
+            "value_type": "id"
+          }
+        }
+      ],
+      "sequence_index": 0
+    }
+  ],
+  "pre_gate_guard": {
+    "authorization_state": "withheld",
+    "execution_status": "not_executed",
+    "expected_result_included": false,
+    "formal_input_executed": false,
+    "formal_result_created": false
+  },
+  "run_id": "continuous-001",
+  "stop_boundary_id": "o.c.0032",
+  "time_base": {
+    "origin": {
+      "serialized_value": "0",
+      "unit": "ms",
+      "value_type": "integer"
+    },
+    "tick_unit": "ms",
+    "time_base_id": "o.c.0022"
+  }
+}

@@ -1,0 +1,11 @@
+diff --git a/q3-compatibility-mode-v0.1.0.h b/q3-compatibility-mode-v0.1.0.h
+--- a/q3-compatibility-mode-v0.1.0.h
++++ b/q3-compatibility-mode-v0.1.0.h
+@@ -1,6 +1,6 @@
+ #ifndef GAME_PRIMITIVES_Q3_COMPATIBILITY_MODE_V0_1_0_H
+ #define GAME_PRIMITIVES_Q3_COMPATIBILITY_MODE_V0_1_0_H
+ 
+-#error The frozen MSVC x64 compatibility selection has not been applied.
++#define Q3GP_MSVC_X64_COMPATIBILITY 1
+ 
+ #endif

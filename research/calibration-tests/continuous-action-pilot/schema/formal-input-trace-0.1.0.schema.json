@@ -1,0 +1,203 @@
+{
+  "$defs": {
+    "inputEvent": {
+      "additionalProperties": false,
+      "properties": {
+        "at": {
+          "$ref": "#/$defs/typedValue"
+        },
+        "event_id": {
+          "$ref": "#/$defs/localId"
+        },
+        "fields": {
+          "items": {
+            "$ref": "#/$defs/typedField"
+          },
+          "minItems": 1,
+          "type": "array"
+        },
+        "sequence_index": {
+          "minimum": 0,
+          "type": "integer"
+        }
+      },
+      "required": [
+        "at",
+        "event_id",
+        "fields",
+        "sequence_index"
+      ],
+      "type": "object"
+    },
+    "localId": {
+      "pattern": "^[a-z0-9][a-z0-9._-]*$",
+      "type": "string"
+    },
+    "typedField": {
+      "additionalProperties": false,
+      "properties": {
+        "field_id": {
+          "$ref": "#/$defs/localId"
+        },
+        "value": {
+          "$ref": "#/$defs/typedValue"
+        }
+      },
+      "required": [
+        "field_id",
+        "value"
+      ],
+      "type": "object"
+    },
+    "typedValue": {
+      "additionalProperties": false,
+      "properties": {
+        "serialized_value": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "unit": {
+          "oneOf": [
+            {
+              "minLength": 1,
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "value_type": {
+          "enum": [
+            "boolean",
+            "decimal",
+            "direction",
+            "id",
+            "id_set",
+            "integer",
+            "opaque",
+            "rational",
+            "status",
+            "string"
+          ]
+        }
+      },
+      "required": [
+        "serialized_value",
+        "unit",
+        "value_type"
+      ],
+      "type": "object"
+    }
+  },
+  "$id": "https://github.com/onovich/Game-Primitives/blob/main/research/calibration-tests/continuous-action-pilot/schema/formal-input-trace-0.1.0.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "$schema": {
+      "const": "https://github.com/onovich/Game-Primitives/blob/main/research/calibration-tests/continuous-action-pilot/schema/formal-input-trace-0.1.0.schema.json"
+    },
+    "artifact_type": {
+      "const": "formal_input_trace"
+    },
+    "artifact_version": {
+      "const": "0.1.0"
+    },
+    "case_id": {
+      "pattern": "^CA-R[1-3]$",
+      "type": "string"
+    },
+    "created_at": {
+      "format": "date-time",
+      "type": "string"
+    },
+    "fixture_configuration_fields": {
+      "items": {
+        "$ref": "#/$defs/typedField"
+      },
+      "type": "array"
+    },
+    "formal_input_id": {
+      "$ref": "#/$defs/localId"
+    },
+    "input_events": {
+      "items": {
+        "$ref": "#/$defs/inputEvent"
+      },
+      "minItems": 1,
+      "type": "array"
+    },
+    "pre_gate_guard": {
+      "additionalProperties": false,
+      "properties": {
+        "authorization_state": {
+          "const": "withheld"
+        },
+        "execution_status": {
+          "const": "not_executed"
+        },
+        "expected_result_included": {
+          "const": false
+        },
+        "formal_input_executed": {
+          "const": false
+        },
+        "formal_result_created": {
+          "const": false
+        }
+      },
+      "required": [
+        "authorization_state",
+        "execution_status",
+        "expected_result_included",
+        "formal_input_executed",
+        "formal_result_created"
+      ],
+      "type": "object"
+    },
+    "run_id": {
+      "pattern": "^continuous-[0-9]{3}$",
+      "type": "string"
+    },
+    "stop_boundary_id": {
+      "$ref": "#/$defs/localId"
+    },
+    "time_base": {
+      "additionalProperties": false,
+      "properties": {
+        "origin": {
+          "$ref": "#/$defs/typedValue"
+        },
+        "tick_unit": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "time_base_id": {
+          "$ref": "#/$defs/localId"
+        }
+      },
+      "required": [
+        "origin",
+        "tick_unit",
+        "time_base_id"
+      ],
+      "type": "object"
+    }
+  },
+  "required": [
+    "$schema",
+    "artifact_type",
+    "artifact_version",
+    "case_id",
+    "created_at",
+    "fixture_configuration_fields",
+    "formal_input_id",
+    "input_events",
+    "pre_gate_guard",
+    "run_id",
+    "stop_boundary_id",
+    "time_base"
+  ],
+  "title": "Game Primitives Formal Input Trace 0.1.0",
+  "type": "object"
+}

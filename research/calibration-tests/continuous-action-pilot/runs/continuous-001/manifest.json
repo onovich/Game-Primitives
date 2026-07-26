@@ -17,7 +17,7 @@
       "release_stage": "preparation",
       "schema_path": "research/calibration-tests/continuous-action-pilot/schema/markdown-document-0.1.0.schema.json",
       "schema_sha256": "89827f39031c7d26f430584bb2f3e64c3600213a8e45e994da2c4120cb3f09a3",
-      "sha256": "15ad900874c305303071d1a1deddba5a71899539f546d50094cfa87091e45d68",
+      "sha256": "2600e1da90a537ce3c5c70dd12ef2497973c3cf37b54a162b156c70be9cd7c3e",
       "supersedes_artifact_id": null
     },
     {
@@ -325,7 +325,7 @@
     {
       "artifact_id": "task.source-encoding.continuous-001",
       "artifact_kind": "task_packet",
-      "artifact_version": "0.1.1",
+      "artifact_version": "0.1.2",
       "audience": [
         "custodian",
         "source_encoder"
@@ -334,15 +334,15 @@
       "included_in_frozen_set": false,
       "path": "inputs/source-encoding-packet.json",
       "release_stage": "source_encoding",
-      "schema_path": "research/calibration-tests/continuous-action-pilot/schema/task-packet-0.1.1.schema.json",
-      "schema_sha256": "5ea28b5c60b85f9ec94358ef017d384a7d84ad6c29ba6ef6a9e8e82b794f179d",
-      "sha256": "50cd682c317384398fd5215ed01c592a5560587d55e6667163a960781c662fcd",
+      "schema_path": "research/calibration-tests/continuous-action-pilot/schema/task-packet-0.1.2.schema.json",
+      "schema_sha256": "268d31b48fecd57d944d3fd8ee1ec23f5f7e690fab551c7888ca3ae12147ce96",
+      "sha256": "bafa2689ffd7c80e34a1aeeb998cafdb76ccf79f9691e2c1e5aed5d85fe201c9",
       "supersedes_artifact_id": null
     },
     {
       "artifact_id": "task.source-audit.continuous-001",
       "artifact_kind": "task_packet",
-      "artifact_version": "0.1.1",
+      "artifact_version": "0.1.2",
       "audience": [
         "custodian",
         "source_auditor"
@@ -351,9 +351,9 @@
       "included_in_frozen_set": false,
       "path": "inputs/source-audit-packet.json",
       "release_stage": "source_audit",
-      "schema_path": "research/calibration-tests/continuous-action-pilot/schema/task-packet-0.1.1.schema.json",
-      "schema_sha256": "5ea28b5c60b85f9ec94358ef017d384a7d84ad6c29ba6ef6a9e8e82b794f179d",
-      "sha256": "b207989284f429568a45bc775e28e2b04642d1a9f7e2248666b6817b831e22ad",
+      "schema_path": "research/calibration-tests/continuous-action-pilot/schema/task-packet-0.1.2.schema.json",
+      "schema_sha256": "268d31b48fecd57d944d3fd8ee1ec23f5f7e690fab551c7888ca3ae12147ce96",
+      "sha256": "b8a2b4e454666bc0da8ee19b22652fb98325240ee145a1df9958c19852c15298",
       "supersedes_artifact_id": null
     },
     {
@@ -371,7 +371,7 @@
       "release_stage": "source_encoding",
       "schema_path": "research/calibration-tests/continuous-action-pilot/schema/ca-sr-artifact-0.1.0.schema.json",
       "schema_sha256": "80abf62c385d9723090c66601ff6530a6bbec4585292d3c8f81f77c1081d43a5",
-      "sha256": "c7757f1ce74af15c25433bbf32cb94bbd4d1c497d5637470803ef1cf09328d12",
+      "sha256": "cd7976fb67823da2986cd5f425de0ccd5c088abc9b9e0a1a56c351956dba8082",
       "supersedes_artifact_id": null
     },
     {
@@ -388,7 +388,7 @@
       "release_stage": "source_encoding",
       "schema_path": "research/calibration-tests/continuous-action-pilot/schema/ca-sr-artifact-0.1.0.schema.json",
       "schema_sha256": "80abf62c385d9723090c66601ff6530a6bbec4585292d3c8f81f77c1081d43a5",
-      "sha256": "0ca359886db636f065254b1a84c151c3b40b6442c7c503318944c534ea9738c3",
+      "sha256": "5682e1bb395a2c7e02df914b3a464005d195a736bc0dc0d88594f7ee3611e5c3",
       "supersedes_artifact_id": null
     },
     {
@@ -406,7 +406,7 @@
       "release_stage": "source_audit",
       "schema_path": "research/calibration-tests/continuous-action-pilot/schema/role-submission-0.1.2.schema.json",
       "schema_sha256": "ce1bcbb603550ec42afa9023191666b0ef45096b4c0efd1a3b42150c83577f95",
-      "sha256": "d3afdd3d8fbb10e4de498f90f17bf28e524357c7e3802aa5be6da1280abcf1d0",
+      "sha256": "013226c0faee4e233497ba3a4c64f3d3075880f58405ab901afb02695c5f5471",
       "supersedes_artifact_id": null
     },
     {
@@ -424,7 +424,7 @@
       "release_stage": "view_generation",
       "schema_path": "research/calibration-tests/continuous-action-pilot/schema/ca-sr-artifact-0.1.0.schema.json",
       "schema_sha256": "80abf62c385d9723090c66601ff6530a6bbec4585292d3c8f81f77c1081d43a5",
-      "sha256": "e768e9b4e77edfd938e71ea680bd8cfdb1f8c9cf456e5d8a829c7a7ca58f8641",
+      "sha256": "7ac0fe8a33c2d75a38bde2df3b804f89012a9acc712f83cd090139141ae60ec0",
       "supersedes_artifact_id": null
     },
     {
@@ -442,7 +442,7 @@
       "release_stage": "view_generation",
       "schema_path": "research/calibration-tests/continuous-action-pilot/schema/text-artifact-0.1.0.schema.json",
       "schema_sha256": "277edbeae2c76e58fc6ba25975f78338d6df435b4fcf68b1caf06f22481a66c3",
-      "sha256": "6bf05513b5b82cafa1ac2dd3514c3f18f78130dbd5b0cad68bb040e696fbfb31",
+      "sha256": "9b2681df8f2b09255001da6c167216484fc75ada1e5ca95f0699a00a3bad1d85",
       "supersedes_artifact_id": null
     },
     {
@@ -461,7 +461,7 @@
       "release_stage": "view_generation",
       "schema_path": "research/calibration-tests/continuous-action-pilot/schema/ca-sr-artifact-0.1.0.schema.json",
       "schema_sha256": "80abf62c385d9723090c66601ff6530a6bbec4585292d3c8f81f77c1081d43a5",
-      "sha256": "5d42b3ed745b8de0df55a6d606a935e54cc9fab4173d3d3624571fb8981ab3ef",
+      "sha256": "a9ccd9500f92dc3f9619e10b01a8ba8a554f364393286c1af81ee1770956a850",
       "supersedes_artifact_id": null
     },
     {
@@ -480,7 +480,772 @@
       "release_stage": "view_generation",
       "schema_path": "research/calibration-tests/continuous-action-pilot/schema/ca-sr-artifact-0.1.0.schema.json",
       "schema_sha256": "80abf62c385d9723090c66601ff6530a6bbec4585292d3c8f81f77c1081d43a5",
-      "sha256": "30f97e93dde2cde68a81342ae204272aaccc3d54722a2d2d8a3a5c72783ac896",
+      "sha256": "1d472560c46a11a3502b6cc0798bd01d52c48a210a9d3a8cc6c65b416e51a95b",
+      "supersedes_artifact_id": null
+    },
+    {
+      "artifact_id": "actor-plan.continuous-001",
+      "artifact_kind": "actor_descriptor",
+      "artifact_version": "0.1.0",
+      "audience": [
+        "custodian",
+        "public_after_reveal"
+      ],
+      "decision_relevant": true,
+      "included_in_frozen_set": false,
+      "path": "inputs/actor-plan.md",
+      "release_stage": "preparation",
+      "schema_path": "research/calibration-tests/continuous-action-pilot/schema/markdown-document-0.1.0.schema.json",
+      "schema_sha256": "89827f39031c7d26f430584bb2f3e64c3600213a8e45e994da2c4120cb3f09a3",
+      "sha256": "4a14c8429382be88e9ee76a9c7851a7f9aa7f360a96172a8b2ccff8d6456779d",
+      "supersedes_artifact_id": null
+    },
+    {
+      "artifact_id": "generator.stage2-envelope-v0.1.0",
+      "artifact_kind": "generator",
+      "artifact_version": "0.1.0",
+      "audience": [
+        "custodian",
+        "public_after_reveal",
+        "source_auditor"
+      ],
+      "decision_relevant": true,
+      "included_in_frozen_set": false,
+      "path": "inputs/generate-stage2-envelope-v0.1.0.py",
+      "release_stage": "prediction",
+      "schema_path": "research/calibration-tests/continuous-action-pilot/schema/text-artifact-0.1.0.schema.json",
+      "schema_sha256": "277edbeae2c76e58fc6ba25975f78338d6df435b4fcf68b1caf06f22481a66c3",
+      "sha256": "2d68201d8f6e2391fb0d74be64050163f550a6d2cbbfb6bcb78d6c522b6d849d",
+      "supersedes_artifact_id": null
+    },
+    {
+      "artifact_id": "generator.stage2-task-v0.1.0",
+      "artifact_kind": "generator",
+      "artifact_version": "0.1.0",
+      "audience": [
+        "custodian",
+        "public_after_reveal",
+        "source_auditor"
+      ],
+      "decision_relevant": true,
+      "included_in_frozen_set": false,
+      "path": "inputs/generate-stage2-prediction-task-v0.1.0.py",
+      "release_stage": "prediction",
+      "schema_path": "research/calibration-tests/continuous-action-pilot/schema/text-artifact-0.1.0.schema.json",
+      "schema_sha256": "277edbeae2c76e58fc6ba25975f78338d6df435b4fcf68b1caf06f22481a66c3",
+      "sha256": "6a90950104ab7a5bb95095dd427149e44beccdfcddbc4b8a07b0a74149472cba",
+      "supersedes_artifact_id": null
+    },
+    {
+      "artifact_id": "template.reconstruction-response-v0.1.0",
+      "artifact_kind": "fixture",
+      "artifact_version": "0.1.0",
+      "audience": [
+        "all_blind_testers",
+        "custodian",
+        "public_after_reveal"
+      ],
+      "decision_relevant": true,
+      "included_in_frozen_set": false,
+      "path": "inputs/reconstruction-response.template.json",
+      "release_stage": "reconstruction",
+      "schema_path": "research/calibration-tests/continuous-action-pilot/schema/response-template-0.1.0.schema.json",
+      "schema_sha256": "5269053a4eb8c1e279d77aa3e9ab1b91b9f9c79cc9b97cd0c6b4842f53407b0d",
+      "sha256": "1e51c517bedcf79de9d129202aa60ddabaa5cb94703053f3ed80d10d2296c7aa",
+      "supersedes_artifact_id": null
+    },
+    {
+      "artifact_id": "template.prediction-response-v0.1.0",
+      "artifact_kind": "fixture",
+      "artifact_version": "0.1.0",
+      "audience": [
+        "all_blind_testers",
+        "custodian",
+        "public_after_reveal"
+      ],
+      "decision_relevant": true,
+      "included_in_frozen_set": false,
+      "path": "inputs/prediction-response.template.json",
+      "release_stage": "prediction",
+      "schema_path": "research/calibration-tests/continuous-action-pilot/schema/response-template-0.1.0.schema.json",
+      "schema_sha256": "5269053a4eb8c1e279d77aa3e9ab1b91b9f9c79cc9b97cd0c6b4842f53407b0d",
+      "sha256": "c992554cbfd115de4063163cce9d2d16816a645cd3c2647bc42b6a33b8eed5af",
+      "supersedes_artifact_id": null
+    },
+    {
+      "artifact_id": "task.reconstruction.condition-v01",
+      "artifact_kind": "task_packet",
+      "artifact_version": "0.1.2",
+      "audience": [
+        "condition-v01",
+        "custodian",
+        "public_after_reveal"
+      ],
+      "decision_relevant": true,
+      "included_in_frozen_set": false,
+      "path": "inputs/stage1-condition-v01.task.json",
+      "release_stage": "reconstruction",
+      "schema_path": "research/calibration-tests/continuous-action-pilot/schema/task-packet-0.1.2.schema.json",
+      "schema_sha256": "268d31b48fecd57d944d3fd8ee1ec23f5f7e690fab551c7888ca3ae12147ce96",
+      "sha256": "94fe34a01cd693b3fb08775f111409dbb4b172ea223e1df9756bbedf905d19ce",
+      "supersedes_artifact_id": null
+    },
+    {
+      "artifact_id": "task.reconstruction.condition-v02",
+      "artifact_kind": "task_packet",
+      "artifact_version": "0.1.2",
+      "audience": [
+        "condition-v02",
+        "custodian",
+        "public_after_reveal"
+      ],
+      "decision_relevant": true,
+      "included_in_frozen_set": false,
+      "path": "inputs/stage1-condition-v02.task.json",
+      "release_stage": "reconstruction",
+      "schema_path": "research/calibration-tests/continuous-action-pilot/schema/task-packet-0.1.2.schema.json",
+      "schema_sha256": "268d31b48fecd57d944d3fd8ee1ec23f5f7e690fab551c7888ca3ae12147ce96",
+      "sha256": "a74a854df07806706074b608380999a7eb51b0500f72422ae111cddfe98c3ed0",
+      "supersedes_artifact_id": null
+    },
+    {
+      "artifact_id": "task.prediction.continuous-001",
+      "artifact_kind": "task_packet",
+      "artifact_version": "0.1.2",
+      "audience": [
+        "all_blind_testers",
+        "custodian",
+        "public_after_reveal"
+      ],
+      "decision_relevant": true,
+      "included_in_frozen_set": false,
+      "path": "inputs/stage2-prediction.task.json",
+      "release_stage": "prediction",
+      "schema_path": "research/calibration-tests/continuous-action-pilot/schema/task-packet-0.1.2.schema.json",
+      "schema_sha256": "268d31b48fecd57d944d3fd8ee1ec23f5f7e690fab551c7888ca3ae12147ce96",
+      "sha256": "7a4e286c486b03fe3a24875e2db1e95b4024750e5c36af5a993adae54cda388c",
+      "supersedes_artifact_id": null
+    },
+    {
+      "artifact_id": "envelope.variant.stage2-v0.1.0",
+      "artifact_kind": "fixture",
+      "artifact_version": "0.1.0",
+      "audience": [
+        "all_blind_testers",
+        "custodian",
+        "public_after_reveal"
+      ],
+      "decision_relevant": true,
+      "included_in_frozen_set": false,
+      "path": "inputs/stage2-variant-envelope.json",
+      "release_stage": "prediction",
+      "schema_path": "research/calibration-tests/continuous-action-pilot/schema/variant-envelope-0.1.0.schema.json",
+      "schema_sha256": "e91e5f373ffb7a9020130faaded11db8a42a71746d3c1ca243fa3405cfc0d084",
+      "sha256": "f4501e153cd103c0ec7a184c89e12aa57d4a9ef128e416654ad332a10c7702d1",
+      "supersedes_artifact_id": null
+    },
+    {
+      "artifact_id": "dispatch-template.stage1.p01",
+      "artifact_kind": "submission_envelope",
+      "artifact_version": "0.1.0",
+      "audience": [
+        "custodian",
+        "public_after_reveal"
+      ],
+      "decision_relevant": true,
+      "included_in_frozen_set": false,
+      "path": "inputs/stage1-dispatch-p01.template.json",
+      "release_stage": "reconstruction",
+      "schema_path": "research/calibration-tests/continuous-action-pilot/schema/stage1-seat-dispatch-envelope-0.1.0.schema.json",
+      "schema_sha256": "bad120addce7f5d0b846ddc2060c20893ef0fa2e9424b5321b351b4d0c695b90",
+      "sha256": "c8dd8f2bdd00f06a6a292ec116dd9ed53bfcfd19af4209659d3219b3ddec1d79",
+      "supersedes_artifact_id": null
+    },
+    {
+      "artifact_id": "dispatch-template.stage1.p02",
+      "artifact_kind": "submission_envelope",
+      "artifact_version": "0.1.0",
+      "audience": [
+        "custodian",
+        "public_after_reveal"
+      ],
+      "decision_relevant": true,
+      "included_in_frozen_set": false,
+      "path": "inputs/stage1-dispatch-p02.template.json",
+      "release_stage": "reconstruction",
+      "schema_path": "research/calibration-tests/continuous-action-pilot/schema/stage1-seat-dispatch-envelope-0.1.0.schema.json",
+      "schema_sha256": "bad120addce7f5d0b846ddc2060c20893ef0fa2e9424b5321b351b4d0c695b90",
+      "sha256": "774ec953f79da36cea1edf0c22c8894133f99551cbaba9553d317424bf3fa495",
+      "supersedes_artifact_id": null
+    },
+    {
+      "artifact_id": "dispatch-template.stage1.p03",
+      "artifact_kind": "submission_envelope",
+      "artifact_version": "0.1.0",
+      "audience": [
+        "custodian",
+        "public_after_reveal"
+      ],
+      "decision_relevant": true,
+      "included_in_frozen_set": false,
+      "path": "inputs/stage1-dispatch-p03.template.json",
+      "release_stage": "reconstruction",
+      "schema_path": "research/calibration-tests/continuous-action-pilot/schema/stage1-seat-dispatch-envelope-0.1.0.schema.json",
+      "schema_sha256": "bad120addce7f5d0b846ddc2060c20893ef0fa2e9424b5321b351b4d0c695b90",
+      "sha256": "6fdcedd87a29364d2e92a641c8a2ff1cb5aab6987bbbac142345fcb1e87477cc",
+      "supersedes_artifact_id": null
+    },
+    {
+      "artifact_id": "dispatch-template.stage1.p04",
+      "artifact_kind": "submission_envelope",
+      "artifact_version": "0.1.0",
+      "audience": [
+        "custodian",
+        "public_after_reveal"
+      ],
+      "decision_relevant": true,
+      "included_in_frozen_set": false,
+      "path": "inputs/stage1-dispatch-p04.template.json",
+      "release_stage": "reconstruction",
+      "schema_path": "research/calibration-tests/continuous-action-pilot/schema/stage1-seat-dispatch-envelope-0.1.0.schema.json",
+      "schema_sha256": "bad120addce7f5d0b846ddc2060c20893ef0fa2e9424b5321b351b4d0c695b90",
+      "sha256": "5ca49a18c15d8e1cd4e4a6c2322cfe070d5bd35e86462936d5a2117ee4b707bc",
+      "supersedes_artifact_id": null
+    },
+    {
+      "artifact_id": "dispatch-template.stage2.p01",
+      "artifact_kind": "submission_envelope",
+      "artifact_version": "0.1.0",
+      "audience": [
+        "custodian",
+        "public_after_reveal"
+      ],
+      "decision_relevant": true,
+      "included_in_frozen_set": false,
+      "path": "inputs/stage2-dispatch-p01.template.json",
+      "release_stage": "prediction",
+      "schema_path": "research/calibration-tests/continuous-action-pilot/schema/stage2-seat-dispatch-envelope-0.1.0.schema.json",
+      "schema_sha256": "bf34d9a6a7044426e16772cd06163249f2516d4d0d8ab8a3a8a2401179f9300e",
+      "sha256": "a434faa306591aaa1631ba34baf01deb85c19da8fb89b255001fb132202398b7",
+      "supersedes_artifact_id": null
+    },
+    {
+      "artifact_id": "dispatch-template.stage2.p02",
+      "artifact_kind": "submission_envelope",
+      "artifact_version": "0.1.0",
+      "audience": [
+        "custodian",
+        "public_after_reveal"
+      ],
+      "decision_relevant": true,
+      "included_in_frozen_set": false,
+      "path": "inputs/stage2-dispatch-p02.template.json",
+      "release_stage": "prediction",
+      "schema_path": "research/calibration-tests/continuous-action-pilot/schema/stage2-seat-dispatch-envelope-0.1.0.schema.json",
+      "schema_sha256": "bf34d9a6a7044426e16772cd06163249f2516d4d0d8ab8a3a8a2401179f9300e",
+      "sha256": "8686756a89b7a3541d930b1e10d652654979df9317a0add42c87cd93dc76044a",
+      "supersedes_artifact_id": null
+    },
+    {
+      "artifact_id": "dispatch-template.stage2.p03",
+      "artifact_kind": "submission_envelope",
+      "artifact_version": "0.1.0",
+      "audience": [
+        "custodian",
+        "public_after_reveal"
+      ],
+      "decision_relevant": true,
+      "included_in_frozen_set": false,
+      "path": "inputs/stage2-dispatch-p03.template.json",
+      "release_stage": "prediction",
+      "schema_path": "research/calibration-tests/continuous-action-pilot/schema/stage2-seat-dispatch-envelope-0.1.0.schema.json",
+      "schema_sha256": "bf34d9a6a7044426e16772cd06163249f2516d4d0d8ab8a3a8a2401179f9300e",
+      "sha256": "2272293aa02b9202f8f90e4f740eee120c9b203449e1b5dcc00c7e7221b37355",
+      "supersedes_artifact_id": null
+    },
+    {
+      "artifact_id": "dispatch-template.stage2.p04",
+      "artifact_kind": "submission_envelope",
+      "artifact_version": "0.1.0",
+      "audience": [
+        "custodian",
+        "public_after_reveal"
+      ],
+      "decision_relevant": true,
+      "included_in_frozen_set": false,
+      "path": "inputs/stage2-dispatch-p04.template.json",
+      "release_stage": "prediction",
+      "schema_path": "research/calibration-tests/continuous-action-pilot/schema/stage2-seat-dispatch-envelope-0.1.0.schema.json",
+      "schema_sha256": "bf34d9a6a7044426e16772cd06163249f2516d4d0d8ab8a3a8a2401179f9300e",
+      "sha256": "5f4844905fd31818c878e744be6c5da2c4418f6aa4daad9517f7a417e0734a3e",
+      "supersedes_artifact_id": null
+    },
+    {
+      "artifact_id": "build.r1.formal-preparation-v0.1.0",
+      "artifact_kind": "build_record",
+      "artifact_version": "0.1.0",
+      "audience": [
+        "custodian",
+        "public_after_reveal",
+        "source_auditor"
+      ],
+      "decision_relevant": true,
+      "included_in_frozen_set": false,
+      "path": "fixtures/r1/footsies-r1-formal-preparation-v0.1.0.md",
+      "release_stage": "preparation",
+      "schema_path": "research/calibration-tests/continuous-action-pilot/schema/markdown-document-0.1.0.schema.json",
+      "schema_sha256": "89827f39031c7d26f430584bb2f3e64c3600213a8e45e994da2c4120cb3f09a3",
+      "sha256": "f0e06c866c856f39910b4dcab9f01e59a253a02faa2f353fcf8ef0f3a1363a93",
+      "supersedes_artifact_id": null
+    },
+    {
+      "artifact_id": "fixture.r1.observation-source-v0.1.0",
+      "artifact_kind": "fixture",
+      "artifact_version": "0.1.0",
+      "audience": [
+        "custodian",
+        "public_after_reveal",
+        "source_auditor"
+      ],
+      "decision_relevant": true,
+      "included_in_frozen_set": false,
+      "path": "fixtures/r1/footsies-r1-observation-v0.1.0.cs",
+      "release_stage": "preparation",
+      "schema_path": "research/calibration-tests/continuous-action-pilot/schema/text-artifact-0.1.0.schema.json",
+      "schema_sha256": "277edbeae2c76e58fc6ba25975f78338d6df435b4fcf68b1caf06f22481a66c3",
+      "sha256": "312b9a52e5f00510ed01ebef90aa274fbe31ead69306295b1725ebce93991540",
+      "supersedes_artifact_id": null
+    },
+    {
+      "artifact_id": "fixture.r1.observation-meta-v0.1.0",
+      "artifact_kind": "fixture",
+      "artifact_version": "0.1.0",
+      "audience": [
+        "custodian",
+        "public_after_reveal",
+        "source_auditor"
+      ],
+      "decision_relevant": true,
+      "included_in_frozen_set": false,
+      "path": "fixtures/r1/footsies-r1-observation-v0.1.0.cs.meta",
+      "release_stage": "preparation",
+      "schema_path": "research/calibration-tests/continuous-action-pilot/schema/text-artifact-0.1.0.schema.json",
+      "schema_sha256": "277edbeae2c76e58fc6ba25975f78338d6df435b4fcf68b1caf06f22481a66c3",
+      "sha256": "a717d37de71ed2539cc36a54334f943225da299aa6e67dedf9f94eeedd4c7ee6",
+      "supersedes_artifact_id": null
+    },
+    {
+      "artifact_id": "fixture.r1.variant-patch-v0.1.0",
+      "artifact_kind": "fixture",
+      "artifact_version": "0.1.0",
+      "audience": [
+        "custodian",
+        "public_after_reveal",
+        "source_auditor"
+      ],
+      "decision_relevant": true,
+      "included_in_frozen_set": false,
+      "path": "fixtures/r1/footsies-r1-whiff-cancel-v0.1.0.patch",
+      "release_stage": "preparation",
+      "schema_path": "research/calibration-tests/continuous-action-pilot/schema/text-artifact-0.1.0.schema.json",
+      "schema_sha256": "277edbeae2c76e58fc6ba25975f78338d6df435b4fcf68b1caf06f22481a66c3",
+      "sha256": "8ad1a91f40579f38e3867ba8905b53c0d94749716821a7bf3edf670c998fc9bb",
+      "supersedes_artifact_id": null
+    },
+    {
+      "artifact_id": "fixture.r1.formal-input-v0.1.0",
+      "artifact_kind": "fixture",
+      "artifact_version": "0.1.0",
+      "audience": [
+        "custodian",
+        "public_after_reveal",
+        "source_auditor"
+      ],
+      "decision_relevant": true,
+      "included_in_frozen_set": false,
+      "path": "fixtures/r1/footsies-r1-formal-input-v0.1.0.json",
+      "release_stage": "preparation",
+      "schema_path": "research/calibration-tests/continuous-action-pilot/schema/formal-input-trace-0.1.0.schema.json",
+      "schema_sha256": "e1e73d8525bd53b8866d4b6d116c1dd93e51fec6c9befb9b70040630c1f1b52b",
+      "sha256": "6d3e8863ed7fa7d855e90c1784027692cb486c45055c86fee33509479479a424",
+      "supersedes_artifact_id": null
+    },
+    {
+      "artifact_id": "generator.r1.formal-runner-v0.1.0",
+      "artifact_kind": "generator",
+      "artifact_version": "0.1.0",
+      "audience": [
+        "custodian",
+        "public_after_reveal",
+        "source_auditor"
+      ],
+      "decision_relevant": true,
+      "included_in_frozen_set": false,
+      "path": "fixtures/r1/run-footsies-r1-formal-v0.1.0.ps1",
+      "release_stage": "preparation",
+      "schema_path": "research/calibration-tests/continuous-action-pilot/schema/text-artifact-0.1.0.schema.json",
+      "schema_sha256": "277edbeae2c76e58fc6ba25975f78338d6df435b4fcf68b1caf06f22481a66c3",
+      "sha256": "0cdde008547065eea4fab148442655d06975e085c3b9976a5ff07870d3180ba3",
+      "supersedes_artifact_id": null
+    },
+    {
+      "artifact_id": "generator.r1.formal-comparator-v0.1.0",
+      "artifact_kind": "generator",
+      "artifact_version": "0.1.0",
+      "audience": [
+        "custodian",
+        "public_after_reveal",
+        "source_auditor"
+      ],
+      "decision_relevant": true,
+      "included_in_frozen_set": false,
+      "path": "fixtures/r1/compare-footsies-r1-v0.1.0.ps1",
+      "release_stage": "preparation",
+      "schema_path": "research/calibration-tests/continuous-action-pilot/schema/text-artifact-0.1.0.schema.json",
+      "schema_sha256": "277edbeae2c76e58fc6ba25975f78338d6df435b4fcf68b1caf06f22481a66c3",
+      "sha256": "add38413f27a074eb15b1a8da781c99b0b8921b041168c98311e1ce3739e98c3",
+      "supersedes_artifact_id": null
+    },
+    {
+      "artifact_id": "build.r2.formal-preparation-v0.1.0",
+      "artifact_kind": "build_record",
+      "artifact_version": "0.1.0",
+      "audience": [
+        "custodian",
+        "public_after_reveal",
+        "source_auditor"
+      ],
+      "decision_relevant": true,
+      "included_in_frozen_set": false,
+      "path": "fixtures/r2/q3-formal-fixture-preparation-v0.1.0.md",
+      "release_stage": "preparation",
+      "schema_path": "research/calibration-tests/continuous-action-pilot/schema/markdown-document-0.1.0.schema.json",
+      "schema_sha256": "89827f39031c7d26f430584bb2f3e64c3600213a8e45e994da2c4120cb3f09a3",
+      "sha256": "9e4ef297e63b1b63c37ce2c678bff06212fc7388027d40af2edf5f7aeb8ffb19",
+      "supersedes_artifact_id": null
+    },
+    {
+      "artifact_id": "fixture.r2.compatibility-source-v0.1.0",
+      "artifact_kind": "fixture",
+      "artifact_version": "0.1.0",
+      "audience": [
+        "custodian",
+        "public_after_reveal",
+        "source_auditor"
+      ],
+      "decision_relevant": true,
+      "included_in_frozen_set": false,
+      "path": "fixtures/r2/q3-formal-compatibility-v0.1.0.c",
+      "release_stage": "preparation",
+      "schema_path": "research/calibration-tests/continuous-action-pilot/schema/text-artifact-0.1.0.schema.json",
+      "schema_sha256": "277edbeae2c76e58fc6ba25975f78338d6df435b4fcf68b1caf06f22481a66c3",
+      "sha256": "c1211b6eca0dd9807ba8c5d633ff454dc7882d9a2d74d720b3ed2ee662d1b485",
+      "supersedes_artifact_id": null
+    },
+    {
+      "artifact_id": "fixture.r2.harness-header-v0.1.0",
+      "artifact_kind": "fixture",
+      "artifact_version": "0.1.0",
+      "audience": [
+        "custodian",
+        "public_after_reveal",
+        "source_auditor"
+      ],
+      "decision_relevant": true,
+      "included_in_frozen_set": false,
+      "path": "fixtures/r2/q3-formal-fixture-v0.1.0.h",
+      "release_stage": "preparation",
+      "schema_path": "research/calibration-tests/continuous-action-pilot/schema/text-artifact-0.1.0.schema.json",
+      "schema_sha256": "277edbeae2c76e58fc6ba25975f78338d6df435b4fcf68b1caf06f22481a66c3",
+      "sha256": "2ada739f42ccb24758d7aca22908ba74583a976f1ac180662929d131c24c5acd",
+      "supersedes_artifact_id": null
+    },
+    {
+      "artifact_id": "fixture.r2.harness-source-v0.1.0",
+      "artifact_kind": "fixture",
+      "artifact_version": "0.1.0",
+      "audience": [
+        "custodian",
+        "public_after_reveal",
+        "source_auditor"
+      ],
+      "decision_relevant": true,
+      "included_in_frozen_set": false,
+      "path": "fixtures/r2/q3-formal-harness-v0.1.0.c",
+      "release_stage": "preparation",
+      "schema_path": "research/calibration-tests/continuous-action-pilot/schema/text-artifact-0.1.0.schema.json",
+      "schema_sha256": "277edbeae2c76e58fc6ba25975f78338d6df435b4fcf68b1caf06f22481a66c3",
+      "sha256": "cffcbcfd63e5b99a4d73047756d318abeb2743c6f1f5b156e5b708e2096d7bbb",
+      "supersedes_artifact_id": null
+    },
+    {
+      "artifact_id": "fixture.r2.compatibility-patch-v0.1.0",
+      "artifact_kind": "fixture",
+      "artifact_version": "0.1.0",
+      "audience": [
+        "custodian",
+        "public_after_reveal",
+        "source_auditor"
+      ],
+      "decision_relevant": true,
+      "included_in_frozen_set": false,
+      "path": "fixtures/r2/q3-msvc-x64-compatibility-v0.1.0.patch",
+      "release_stage": "preparation",
+      "schema_path": "research/calibration-tests/continuous-action-pilot/schema/text-artifact-0.1.0.schema.json",
+      "schema_sha256": "277edbeae2c76e58fc6ba25975f78338d6df435b4fcf68b1caf06f22481a66c3",
+      "sha256": "f435cf87bd2b222da5da09b02306c00a61a3b96a958d049e1638ae7b75e82b79",
+      "supersedes_artifact_id": null
+    },
+    {
+      "artifact_id": "fixture.r2.observation-patch-v0.1.0",
+      "artifact_kind": "fixture",
+      "artifact_version": "0.1.0",
+      "audience": [
+        "custodian",
+        "public_after_reveal",
+        "source_auditor"
+      ],
+      "decision_relevant": true,
+      "included_in_frozen_set": false,
+      "path": "fixtures/r2/q3-observation-v0.1.0.patch",
+      "release_stage": "preparation",
+      "schema_path": "research/calibration-tests/continuous-action-pilot/schema/text-artifact-0.1.0.schema.json",
+      "schema_sha256": "277edbeae2c76e58fc6ba25975f78338d6df435b4fcf68b1caf06f22481a66c3",
+      "sha256": "c24e2ca8d6ad3893002060e6829a521b6f5f2dcb48933a19d663325b42cdf5bb",
+      "supersedes_artifact_id": null
+    },
+    {
+      "artifact_id": "fixture.r2.variant-patch-v0.1.0",
+      "artifact_kind": "fixture",
+      "artifact_version": "0.1.0",
+      "audience": [
+        "custodian",
+        "public_after_reveal",
+        "source_auditor"
+      ],
+      "decision_relevant": true,
+      "included_in_frozen_set": false,
+      "path": "fixtures/r2/q3-entry-latch-variant-v0.1.0.patch",
+      "release_stage": "preparation",
+      "schema_path": "research/calibration-tests/continuous-action-pilot/schema/text-artifact-0.1.0.schema.json",
+      "schema_sha256": "277edbeae2c76e58fc6ba25975f78338d6df435b4fcf68b1caf06f22481a66c3",
+      "sha256": "1a276587cd763eeb593cb4af78f11acc3bd21bcb191a85ae014f4729ff5b23f2",
+      "supersedes_artifact_id": null
+    },
+    {
+      "artifact_id": "fixture.r2.formal-input-v0.1.0",
+      "artifact_kind": "fixture",
+      "artifact_version": "0.1.0",
+      "audience": [
+        "custodian",
+        "public_after_reveal",
+        "source_auditor"
+      ],
+      "decision_relevant": true,
+      "included_in_frozen_set": false,
+      "path": "fixtures/r2/r2-formal-input-v0.1.0.json",
+      "release_stage": "preparation",
+      "schema_path": "research/calibration-tests/continuous-action-pilot/schema/formal-input-trace-0.1.0.schema.json",
+      "schema_sha256": "e1e73d8525bd53b8866d4b6d116c1dd93e51fec6c9befb9b70040630c1f1b52b",
+      "sha256": "5ce6cb8eb8b9ef9669059b1e504154c643f644abce7988b1896e45c56b600b7e",
+      "supersedes_artifact_id": null
+    },
+    {
+      "artifact_id": "generator.r2.build-runner-v0.1.0",
+      "artifact_kind": "generator",
+      "artifact_version": "0.1.0",
+      "audience": [
+        "custodian",
+        "public_after_reveal",
+        "source_auditor"
+      ],
+      "decision_relevant": true,
+      "included_in_frozen_set": false,
+      "path": "fixtures/r2/build-q3-formal-fixture-v0.1.0.ps1",
+      "release_stage": "preparation",
+      "schema_path": "research/calibration-tests/continuous-action-pilot/schema/text-artifact-0.1.0.schema.json",
+      "schema_sha256": "277edbeae2c76e58fc6ba25975f78338d6df435b4fcf68b1caf06f22481a66c3",
+      "sha256": "f8fae44f5c75deac2818558a82940f5127bc6252cea6c2eaa2bc065fb967e431",
+      "supersedes_artifact_id": null
+    },
+    {
+      "artifact_id": "generator.r2.formal-runner-v0.1.0",
+      "artifact_kind": "generator",
+      "artifact_version": "0.1.0",
+      "audience": [
+        "custodian",
+        "public_after_reveal",
+        "source_auditor"
+      ],
+      "decision_relevant": true,
+      "included_in_frozen_set": false,
+      "path": "fixtures/r2/run-q3-formal-guarded-v0.1.0.ps1",
+      "release_stage": "preparation",
+      "schema_path": "research/calibration-tests/continuous-action-pilot/schema/text-artifact-0.1.0.schema.json",
+      "schema_sha256": "277edbeae2c76e58fc6ba25975f78338d6df435b4fcf68b1caf06f22481a66c3",
+      "sha256": "1eb7eea4675cb00cf9fb2d0d0a66c634814f716ee8ac30dea3e2ab0bb3284332",
+      "supersedes_artifact_id": null
+    },
+    {
+      "artifact_id": "generator.r2.formal-comparator-v0.1.0",
+      "artifact_kind": "generator",
+      "artifact_version": "0.1.0",
+      "audience": [
+        "custodian",
+        "public_after_reveal",
+        "source_auditor"
+      ],
+      "decision_relevant": true,
+      "included_in_frozen_set": false,
+      "path": "fixtures/r2/compare-q3-formal-traces-v0.1.0.ps1",
+      "release_stage": "preparation",
+      "schema_path": "research/calibration-tests/continuous-action-pilot/schema/text-artifact-0.1.0.schema.json",
+      "schema_sha256": "277edbeae2c76e58fc6ba25975f78338d6df435b4fcf68b1caf06f22481a66c3",
+      "sha256": "655e1ed263eee4cbedf668b7a0dfec9bc8e58caafb3416e0f62749114d2386c9",
+      "supersedes_artifact_id": null
+    },
+    {
+      "artifact_id": "fixture.r3.spec-v0.1.0",
+      "artifact_kind": "fixture",
+      "artifact_version": "0.1.0",
+      "audience": [
+        "custodian",
+        "public_after_reveal",
+        "source_auditor"
+      ],
+      "decision_relevant": true,
+      "included_in_frozen_set": false,
+      "path": "fixtures/r3/r3-fixture-spec-v0.1.0.json",
+      "release_stage": "preparation",
+      "schema_path": "research/calibration-tests/continuous-action-pilot/schema/r3-fixture-spec-0.1.0.schema.json",
+      "schema_sha256": "73ec8258eafdf5d1a28e9726c7df65ce145f05e416156052fded860935e1d131",
+      "sha256": "6bff1307be4cd595bb41e10606207c0343a66cd661ea01324e01a1c6b3ccb07b",
+      "supersedes_artifact_id": null
+    },
+    {
+      "artifact_id": "build.r3.formal-evidence-v0.1.0",
+      "artifact_kind": "build_record",
+      "artifact_version": "0.1.0",
+      "audience": [
+        "custodian",
+        "public_after_reveal",
+        "source_auditor"
+      ],
+      "decision_relevant": true,
+      "included_in_frozen_set": false,
+      "path": "fixtures/r3/r3-build-list-evidence-v0.1.0.json",
+      "release_stage": "preparation",
+      "schema_path": "research/calibration-tests/continuous-action-pilot/schema/r3-build-list-evidence-0.1.0.schema.json",
+      "schema_sha256": "7f946ee4abb62f4c997ddb15297cd62f6a1a082a67fdd35c27502d3c94c1d9fd",
+      "sha256": "d19a2aff05068fb13304c325e19cc6e09cbb921053fdfa6c1b8818024563e49b",
+      "supersedes_artifact_id": null
+    },
+    {
+      "artifact_id": "fixture.r3.dependency-lock-set-v0.1.0",
+      "artifact_kind": "fixture",
+      "artifact_version": "0.1.0",
+      "audience": [
+        "custodian",
+        "public_after_reveal",
+        "source_auditor"
+      ],
+      "decision_relevant": true,
+      "included_in_frozen_set": false,
+      "path": "fixtures/r3/dependency-lock-set-v0.1.0.json",
+      "release_stage": "preparation",
+      "schema_path": "research/calibration-tests/continuous-action-pilot/schema/dependency-lock-set-0.1.0.schema.json",
+      "schema_sha256": "ed5a052cb77928a86d56b804b9449bb2dedfab4cf2c98549f2e872073a442f74",
+      "sha256": "9f9f8f4fe02dbdc3f676657d092414068f0403bbf19439623c09fef180fec275",
+      "supersedes_artifact_id": null
+    },
+    {
+      "artifact_id": "fixture.r3.observation-source-v0.1.0",
+      "artifact_kind": "fixture",
+      "artifact_version": "0.1.0",
+      "audience": [
+        "custodian",
+        "public_after_reveal",
+        "source_auditor"
+      ],
+      "decision_relevant": true,
+      "included_in_frozen_set": false,
+      "path": "fixtures/r3/TestSceneGamePrimitivesR3.cs",
+      "release_stage": "preparation",
+      "schema_path": "research/calibration-tests/continuous-action-pilot/schema/text-artifact-0.1.0.schema.json",
+      "schema_sha256": "277edbeae2c76e58fc6ba25975f78338d6df435b4fcf68b1caf06f22481a66c3",
+      "sha256": "f383e4604f6ab65ff66be6619fe6558da9083e6a57aecaadb24b292f234ef006",
+      "supersedes_artifact_id": null
+    },
+    {
+      "artifact_id": "fixture.r3.formal-input-v0.1.0",
+      "artifact_kind": "fixture",
+      "artifact_version": "0.1.0",
+      "audience": [
+        "custodian",
+        "public_after_reveal",
+        "source_auditor"
+      ],
+      "decision_relevant": true,
+      "included_in_frozen_set": false,
+      "path": "fixtures/r3/formal-input-r3-v0.1.0.json",
+      "release_stage": "preparation",
+      "schema_path": "research/calibration-tests/continuous-action-pilot/schema/formal-input-trace-0.1.0.schema.json",
+      "schema_sha256": "e1e73d8525bd53b8866d4b6d116c1dd93e51fec6c9befb9b70040630c1f1b52b",
+      "sha256": "d3b08090411312da03979f067793d15f25f33d6015e1448b761dc1db460eeb21",
+      "supersedes_artifact_id": null
+    },
+    {
+      "artifact_id": "generator.r3.build-list-runner-v0.1.0",
+      "artifact_kind": "generator",
+      "artifact_version": "0.1.0",
+      "audience": [
+        "custodian",
+        "public_after_reveal",
+        "source_auditor"
+      ],
+      "decision_relevant": true,
+      "included_in_frozen_set": false,
+      "path": "fixtures/r3/run-osu-r3-build-list-v0.1.0.ps1",
+      "release_stage": "preparation",
+      "schema_path": "research/calibration-tests/continuous-action-pilot/schema/text-artifact-0.1.0.schema.json",
+      "schema_sha256": "277edbeae2c76e58fc6ba25975f78338d6df435b4fcf68b1caf06f22481a66c3",
+      "sha256": "a1a16ee178349938360d0589595e48151269be182759febad5cc3b9613c1895f",
+      "supersedes_artifact_id": null
+    },
+    {
+      "artifact_id": "generator.r3.formal-runner-v0.1.0",
+      "artifact_kind": "generator",
+      "artifact_version": "0.1.0",
+      "audience": [
+        "custodian",
+        "public_after_reveal",
+        "source_auditor"
+      ],
+      "decision_relevant": true,
+      "included_in_frozen_set": false,
+      "path": "fixtures/r3/run-osu-r3-formal-v0.1.0.ps1",
+      "release_stage": "preparation",
+      "schema_path": "research/calibration-tests/continuous-action-pilot/schema/text-artifact-0.1.0.schema.json",
+      "schema_sha256": "277edbeae2c76e58fc6ba25975f78338d6df435b4fcf68b1caf06f22481a66c3",
+      "sha256": "29926ac65c2c92605a2d756f0fdc76d41031e2180521750f746cbc680d5c564c",
+      "supersedes_artifact_id": null
+    },
+    {
+      "artifact_id": "generator.r3.formal-comparator-v0.1.0",
+      "artifact_kind": "generator",
+      "artifact_version": "0.1.0",
+      "audience": [
+        "custodian",
+        "public_after_reveal",
+        "source_auditor"
+      ],
+      "decision_relevant": true,
+      "included_in_frozen_set": false,
+      "path": "fixtures/r3/compare-osu-r3-formal-v0.1.0.ps1",
+      "release_stage": "preparation",
+      "schema_path": "research/calibration-tests/continuous-action-pilot/schema/text-artifact-0.1.0.schema.json",
+      "schema_sha256": "277edbeae2c76e58fc6ba25975f78338d6df435b4fcf68b1caf06f22481a66c3",
+      "sha256": "a4a35b0513f00f2cc848a626ca4834210982154a7552fa06d89585f3e7a86da8",
       "supersedes_artifact_id": null
     }
   ],
@@ -494,5 +1259,5 @@
   "stage_digests": [],
   "status": "preparing",
   "truth_commitment": null,
-  "updated_at": "2026-07-26T20:25:51Z"
+  "updated_at": "2026-07-26T23:04:17Z"
 }
