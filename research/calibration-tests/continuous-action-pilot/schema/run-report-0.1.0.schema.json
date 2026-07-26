@@ -1,0 +1,546 @@
+{
+  "$id": "https://github.com/onovich/Game-Primitives/blob/main/research/calibration-tests/continuous-action-pilot/schema/run-report-0.1.0.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$defs": {
+    "artifactAuditReport": {
+      "additionalProperties": false,
+      "properties": {
+        "$schema": {
+          "type": "string"
+        },
+        "artifact_type": {
+          "const": "artifact_audit_report"
+        },
+        "artifact_version": {
+          "const": "0.1.0"
+        },
+        "audited_at": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "auditor_submission_sha256": {
+          "$ref": "#/$defs/sha256"
+        },
+        "checks": {
+          "items": {
+            "$ref": "#/$defs/reportCheck"
+          },
+          "minItems": 1,
+          "type": "array"
+        },
+        "findings": {
+          "items": {
+            "$ref": "#/$defs/reportFinding"
+          },
+          "type": "array"
+        },
+        "frozen_artifact_set_digest": {
+          "$ref": "#/$defs/sha256"
+        },
+        "run_id": {
+          "$ref": "#/$defs/runId"
+        },
+        "verdict": {
+          "enum": [
+            "approved",
+            "failed",
+            "not_evaluable"
+          ]
+        }
+      },
+      "required": [
+        "$schema",
+        "artifact_type",
+        "artifact_version",
+        "audited_at",
+        "auditor_submission_sha256",
+        "checks",
+        "findings",
+        "frozen_artifact_set_digest",
+        "run_id",
+        "verdict"
+      ],
+      "type": "object"
+    },
+    "caseRoleResult": {
+      "additionalProperties": false,
+      "properties": {
+        "atomic_prediction_results": {
+          "items": {
+            "$ref": "#/$defs/submissionResult"
+          },
+          "maxItems": 2,
+          "minItems": 2,
+          "type": "array"
+        },
+        "atomic_reconstruction_results": {
+          "items": {
+            "$ref": "#/$defs/submissionResult"
+          },
+          "maxItems": 2,
+          "minItems": 2,
+          "type": "array"
+        },
+        "case_id": {
+          "pattern": "^CA-R[1-3]$",
+          "type": "string"
+        },
+        "compression_claim": {
+          "enum": [
+            "inconclusive",
+            "refuted",
+            "supported_in_scope"
+          ]
+        },
+        "current_representation": {
+          "enum": [
+            "failure",
+            "inconclusive",
+            "sufficient_in_scope"
+          ]
+        },
+        "hard_conditions": {
+          "items": {
+            "$ref": "#/$defs/hardConditionResult"
+          },
+          "maxItems": 4,
+          "minItems": 4,
+          "type": "array"
+        },
+        "invariant_status": {
+          "enum": [
+            "held",
+            "not_evaluable",
+            "violated"
+          ]
+        },
+        "rich_prediction_results": {
+          "items": {
+            "$ref": "#/$defs/submissionResult"
+          },
+          "maxItems": 2,
+          "minItems": 2,
+          "type": "array"
+        },
+        "rich_reconstruction_results": {
+          "items": {
+            "$ref": "#/$defs/submissionResult"
+          },
+          "maxItems": 2,
+          "minItems": 2,
+          "type": "array"
+        },
+        "source_audit_decision": {
+          "enum": [
+            "approved",
+            "blocked",
+            "revision_required"
+          ]
+        }
+      },
+      "required": [
+        "atomic_prediction_results",
+        "atomic_reconstruction_results",
+        "case_id",
+        "compression_claim",
+        "current_representation",
+        "hard_conditions",
+        "invariant_status",
+        "rich_prediction_results",
+        "rich_reconstruction_results",
+        "source_audit_decision"
+      ],
+      "type": "object"
+    },
+    "crossCaseObligation": {
+      "additionalProperties": false,
+      "properties": {
+        "evidence_artifact_ids": {
+          "items": {
+            "$ref": "#/$defs/localId"
+          },
+          "type": "array",
+          "uniqueItems": true
+        },
+        "obligation_id": {
+          "enum": [
+            "action_implementation_medium",
+            "effect_or_feedback_to_response_opportunity"
+          ]
+        },
+        "status": {
+          "enum": [
+            "completed",
+            "not_evaluable",
+            "not_met"
+          ]
+        }
+      },
+      "required": [
+        "evidence_artifact_ids",
+        "obligation_id",
+        "status"
+      ],
+      "type": "object"
+    },
+    "hardConditionResult": {
+      "additionalProperties": false,
+      "properties": {
+        "condition_id": {
+          "enum": [
+            "CA-H01",
+            "CA-H02",
+            "CA-H03",
+            "CA-H04"
+          ]
+        },
+        "evidence_artifact_ids": {
+          "items": {
+            "$ref": "#/$defs/localId"
+          },
+          "type": "array",
+          "uniqueItems": true
+        },
+        "explanation": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "status": {
+          "enum": [
+            "failed",
+            "inconclusive",
+            "invalid",
+            "passed",
+            "refuted"
+          ]
+        }
+      },
+      "required": [
+        "condition_id",
+        "evidence_artifact_ids",
+        "explanation",
+        "status"
+      ],
+      "type": "object"
+    },
+    "localId": {
+      "pattern": "^[a-z0-9][a-z0-9._-]*$",
+      "type": "string"
+    },
+    "rehearsalReport": {
+      "additionalProperties": false,
+      "properties": {
+        "$schema": {
+          "type": "string"
+        },
+        "artifact_type": {
+          "const": "rehearsal_report"
+        },
+        "artifact_version": {
+          "const": "0.1.0"
+        },
+        "checks": {
+          "items": {
+            "$ref": "#/$defs/reportCheck"
+          },
+          "maxItems": 6,
+          "minItems": 6,
+          "type": "array"
+        },
+        "finished_at": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "procedure_result": {
+          "enum": [
+            "procedure_fail",
+            "procedure_pass"
+          ]
+        },
+        "run_id": {
+          "pattern": "^rehearsal-[0-9]{3}$",
+          "type": "string"
+        }
+      },
+      "required": [
+        "$schema",
+        "artifact_type",
+        "artifact_version",
+        "checks",
+        "finished_at",
+        "procedure_result",
+        "run_id"
+      ],
+      "type": "object"
+    },
+    "reportCheck": {
+      "additionalProperties": false,
+      "properties": {
+        "check_id": {
+          "$ref": "#/$defs/localId"
+        },
+        "evidence": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "status": {
+          "enum": [
+            "failed",
+            "not_evaluable",
+            "passed"
+          ]
+        }
+      },
+      "required": [
+        "check_id",
+        "evidence",
+        "status"
+      ],
+      "type": "object"
+    },
+    "reportFinding": {
+      "additionalProperties": false,
+      "properties": {
+        "affected_artifact_ids": {
+          "items": {
+            "$ref": "#/$defs/localId"
+          },
+          "type": "array",
+          "uniqueItems": true
+        },
+        "description": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "finding_id": {
+          "$ref": "#/$defs/localId"
+        },
+        "severity": {
+          "enum": [
+            "blocking",
+            "non_blocking"
+          ]
+        }
+      },
+      "required": [
+        "affected_artifact_ids",
+        "description",
+        "finding_id",
+        "severity"
+      ],
+      "type": "object"
+    },
+    "runId": {
+      "pattern": "^(?:continuous|rehearsal)-[0-9]{3}$",
+      "type": "string"
+    },
+    "runReport": {
+      "additionalProperties": false,
+      "properties": {
+        "$schema": {
+          "type": "string"
+        },
+        "artifact_audit_sha256": {
+          "$ref": "#/$defs/sha256"
+        },
+        "artifact_type": {
+          "const": "continuous_action_run_report"
+        },
+        "artifact_version": {
+          "const": "0.1.0"
+        },
+        "behavior_scope": {
+          "const": "structural_only"
+        },
+        "case_role_results": {
+          "items": {
+            "$ref": "#/$defs/caseRoleResult"
+          },
+          "maxItems": 3,
+          "minItems": 3,
+          "type": "array"
+        },
+        "conclusion_priority_applied": {
+          "enum": [
+            "core_claim_refuted",
+            "inconclusive",
+            "model_failure",
+            "pass_in_scope",
+            "run_invalid"
+          ]
+        },
+        "cross_case_obligations": {
+          "items": {
+            "$ref": "#/$defs/crossCaseObligation"
+          },
+          "maxItems": 2,
+          "minItems": 2,
+          "type": "array"
+        },
+        "execution_result_sha256": {
+          "$ref": "#/$defs/sha256"
+        },
+        "findings": {
+          "items": {
+            "$ref": "#/$defs/reportFinding"
+          },
+          "type": "array"
+        },
+        "finished_at": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "group_conclusion": {
+          "enum": [
+            "core_claim_refuted",
+            "inconclusive",
+            "model_failure",
+            "pass_in_scope",
+            "run_invalid"
+          ]
+        },
+        "negative_control_result": {
+          "enum": [
+            "failed",
+            "invalid",
+            "not_evaluable",
+            "passed"
+          ]
+        },
+        "prediction_set_digest": {
+          "$ref": "#/$defs/sha256"
+        },
+        "run_id": {
+          "pattern": "^continuous-[0-9]{3}$",
+          "type": "string"
+        },
+        "truth_reveal_sha256": {
+          "$ref": "#/$defs/sha256"
+        },
+        "upstream_artifacts": {
+          "items": {
+            "additionalProperties": false,
+            "properties": {
+              "artifact_id": {
+                "$ref": "#/$defs/localId"
+              },
+              "sha256": {
+                "$ref": "#/$defs/sha256"
+              }
+            },
+            "required": [
+              "artifact_id",
+              "sha256"
+            ],
+            "type": "object"
+          },
+          "minItems": 1,
+          "type": "array"
+        }
+      },
+      "required": [
+        "$schema",
+        "artifact_audit_sha256",
+        "artifact_type",
+        "artifact_version",
+        "behavior_scope",
+        "case_role_results",
+        "conclusion_priority_applied",
+        "cross_case_obligations",
+        "execution_result_sha256",
+        "findings",
+        "finished_at",
+        "group_conclusion",
+        "negative_control_result",
+        "prediction_set_digest",
+        "run_id",
+        "truth_reveal_sha256",
+        "upstream_artifacts"
+      ],
+      "type": "object"
+    },
+    "sha256": {
+      "pattern": "^[0-9a-f]{64}$",
+      "type": "string"
+    },
+    "submissionResult": {
+      "additionalProperties": false,
+      "properties": {
+        "familiarity_effect": {
+          "enum": [
+            "downgraded",
+            "none",
+            "not_independent_for_prediction"
+          ]
+        },
+        "integrity_status": {
+          "enum": [
+            "clean",
+            "invalid",
+            "suspected"
+          ]
+        },
+        "prediction_result": {
+          "oneOf": [
+            {
+              "enum": [
+                "indeterminate",
+                "invalid",
+                "matched",
+                "mismatched",
+                "partially_matched"
+              ]
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "reconstruction_result": {
+          "oneOf": [
+            {
+              "enum": [
+                "contradicted",
+                "invalid",
+                "missed",
+                "not_evaluable",
+                "partially_recovered",
+                "recovered"
+              ]
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "submission_id": {
+          "$ref": "#/$defs/localId"
+        },
+        "submission_sha256": {
+          "$ref": "#/$defs/sha256"
+        }
+      },
+      "required": [
+        "familiarity_effect",
+        "integrity_status",
+        "prediction_result",
+        "reconstruction_result",
+        "submission_id",
+        "submission_sha256"
+      ],
+      "type": "object"
+    }
+  },
+  "oneOf": [
+    {
+      "$ref": "#/$defs/artifactAuditReport"
+    },
+    {
+      "$ref": "#/$defs/rehearsalReport"
+    },
+    {
+      "$ref": "#/$defs/runReport"
+    }
+  ],
+  "title": "Game Primitives Continuous Action Run Reports 0.1.0"
+}

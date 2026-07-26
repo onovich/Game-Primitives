@@ -1,0 +1,874 @@
+{
+  "$id": "https://github.com/onovich/Game-Primitives/blob/main/research/calibration-tests/continuous-action-pilot/schema/role-submission-0.1.0.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$defs": {
+    "artifactReference": {
+      "additionalProperties": false,
+      "properties": {
+        "artifact_id": {
+          "$ref": "#/$defs/localId"
+        },
+        "sha256": {
+          "$ref": "#/$defs/sha256"
+        }
+      },
+      "required": [
+        "artifact_id",
+        "sha256"
+      ],
+      "type": "object"
+    },
+    "auditCheck": {
+      "additionalProperties": false,
+      "properties": {
+        "check_id": {
+          "$ref": "#/$defs/localId"
+        },
+        "evidence": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "status": {
+          "enum": [
+            "failed",
+            "not_evaluable",
+            "passed"
+          ]
+        },
+        "target_artifact_ids": {
+          "items": {
+            "$ref": "#/$defs/localId"
+          },
+          "minItems": 1,
+          "type": "array",
+          "uniqueItems": true
+        }
+      },
+      "required": [
+        "check_id",
+        "evidence",
+        "status",
+        "target_artifact_ids"
+      ],
+      "type": "object"
+    },
+    "compatibleBranch": {
+      "additionalProperties": false,
+      "properties": {
+        "branch_id": {
+          "$ref": "#/$defs/localId"
+        },
+        "description": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "supporting_record_ids": {
+          "items": {
+            "$ref": "#/$defs/localId"
+          },
+          "type": "array",
+          "uniqueItems": true
+        }
+      },
+      "required": [
+        "branch_id",
+        "description",
+        "supporting_record_ids"
+      ],
+      "type": "object"
+    },
+    "familiarity": {
+      "additionalProperties": false,
+      "properties": {
+        "exact_result_knowledge": {
+          "$ref": "#/$defs/knowledgeLevel"
+        },
+        "exact_rule_knowledge": {
+          "$ref": "#/$defs/knowledgeLevel"
+        },
+        "exact_variant_knowledge": {
+          "$ref": "#/$defs/knowledgeLevel"
+        },
+        "project_exposure": {
+          "enum": [
+            "limited",
+            "none",
+            "substantial",
+            "unknown"
+          ]
+        },
+        "recognized_family": {
+          "oneOf": [
+            {
+              "minLength": 1,
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "recognized_work": {
+          "oneOf": [
+            {
+              "minLength": 1,
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "recognition_status": {
+          "enum": [
+            "identified",
+            "none",
+            "suspected"
+          ]
+        },
+        "related_genre_experience": {
+          "enum": [
+            "extensive",
+            "limited",
+            "none",
+            "unknown"
+          ]
+        }
+      },
+      "required": [
+        "exact_result_knowledge",
+        "exact_rule_knowledge",
+        "exact_variant_knowledge",
+        "project_exposure",
+        "recognized_family",
+        "recognized_work",
+        "recognition_status",
+        "related_genre_experience"
+      ],
+      "type": "object"
+    },
+    "finding": {
+      "additionalProperties": false,
+      "properties": {
+        "case_ids": {
+          "items": {
+            "pattern": "^(?:CA-R[1-3]|NEG-01)$",
+            "type": "string"
+          },
+          "type": "array",
+          "uniqueItems": true
+        },
+        "category": {
+          "enum": [
+            "answer_hint",
+            "artifact_chain",
+            "behavior_scope",
+            "identity_leak",
+            "invariant_change",
+            "projection_error",
+            "reference_error",
+            "representation_error",
+            "schema_error",
+            "source_ambiguity",
+            "source_error",
+            "variable_isolation"
+          ]
+        },
+        "description": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "finding_id": {
+          "$ref": "#/$defs/localId"
+        },
+        "required_change": {
+          "oneOf": [
+            {
+              "minLength": 1,
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "severity": {
+          "enum": [
+            "blocking",
+            "non_blocking"
+          ]
+        },
+        "source_locator_ids": {
+          "items": {
+            "$ref": "#/$defs/localId"
+          },
+          "type": "array",
+          "uniqueItems": true
+        },
+        "target_locator": {
+          "minLength": 1,
+          "type": "string"
+        }
+      },
+      "required": [
+        "case_ids",
+        "category",
+        "description",
+        "finding_id",
+        "required_change",
+        "severity",
+        "source_locator_ids",
+        "target_locator"
+      ],
+      "type": "object"
+    },
+    "integrityExposure": {
+      "additionalProperties": false,
+      "properties": {
+        "affected_case_ids": {
+          "items": {
+            "pattern": "^(?:CA-R[1-3]|NEG-01)$",
+            "type": "string"
+          },
+          "type": "array",
+          "uniqueItems": true
+        },
+        "description": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "evidence": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "exposure_type": {
+          "enum": [
+            "answer_or_project_prediction",
+            "formal_result",
+            "non_dispatched_artifact",
+            "other_condition",
+            "other_submission",
+            "outside_search",
+            "raw_source_or_identity",
+            "shared_workspace",
+            "truth_nonce_or_mapping",
+            "unfrozen_input"
+          ]
+        },
+        "occurred_at": {
+          "oneOf": [
+            {
+              "format": "date-time",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "stage": {
+          "enum": [
+            "prediction",
+            "reconstruction",
+            "source_audit"
+          ]
+        },
+        "status": {
+          "enum": [
+            "confirmed",
+            "none",
+            "suspected"
+          ]
+        }
+      },
+      "required": [
+        "affected_case_ids",
+        "description",
+        "evidence",
+        "exposure_type",
+        "occurred_at",
+        "stage",
+        "status"
+      ],
+      "type": "object"
+    },
+    "knowledgeLevel": {
+      "enum": [
+        "known",
+        "none",
+        "suspected",
+        "unknown"
+      ]
+    },
+    "localId": {
+      "pattern": "^[a-z0-9][a-z0-9._-]*$",
+      "type": "string"
+    },
+    "pollution": {
+      "additionalProperties": false,
+      "properties": {
+        "familiarity": {
+          "$ref": "#/$defs/familiarity"
+        },
+        "integrity_exposures": {
+          "items": {
+            "$ref": "#/$defs/integrityExposure"
+          },
+          "type": "array"
+        },
+        "stage_update_note": {
+          "oneOf": [
+            {
+              "minLength": 1,
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "required": [
+        "familiarity",
+        "integrity_exposures",
+        "stage_update_note"
+      ],
+      "type": "object"
+    },
+    "predictionAnswer": {
+      "additionalProperties": false,
+      "properties": {
+        "assumptions": {
+          "items": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "case_id": {
+          "pattern": "^(?:CA-R[1-3]|NEG-01)$",
+          "type": "string"
+        },
+        "compatible_alternatives": {
+          "items": {
+            "$ref": "#/$defs/predictionAlternative"
+          },
+          "type": "array"
+        },
+        "confidence_percent": {
+          "maximum": 100,
+          "minimum": 0,
+          "type": "integer"
+        },
+        "expectations": {
+          "items": {
+            "$ref": "#/$defs/predictionExpectation"
+          },
+          "minItems": 1,
+          "type": "array"
+        },
+        "prediction_status": {
+          "enum": [
+            "determinate",
+            "indeterminate"
+          ]
+        },
+        "reasoning": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "supporting_record_ids": {
+          "items": {
+            "$ref": "#/$defs/localId"
+          },
+          "type": "array",
+          "uniqueItems": true
+        }
+      },
+      "required": [
+        "assumptions",
+        "case_id",
+        "compatible_alternatives",
+        "confidence_percent",
+        "expectations",
+        "prediction_status",
+        "reasoning",
+        "supporting_record_ids"
+      ],
+      "type": "object"
+    },
+    "predictionAlternative": {
+      "additionalProperties": false,
+      "properties": {
+        "alternative_id": {
+          "$ref": "#/$defs/localId"
+        },
+        "description": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "expectations": {
+          "items": {
+            "$ref": "#/$defs/predictionExpectation"
+          },
+          "minItems": 1,
+          "type": "array"
+        }
+      },
+      "required": [
+        "alternative_id",
+        "description",
+        "expectations"
+      ],
+      "type": "object"
+    },
+    "predictionExpectation": {
+      "additionalProperties": false,
+      "properties": {
+        "expectation_kind": {
+          "enum": [
+            "direction",
+            "exact",
+            "set",
+            "status"
+          ]
+        },
+        "observation_id": {
+          "$ref": "#/$defs/localId"
+        },
+        "tolerance_rule_id": {
+          "oneOf": [
+            {
+              "$ref": "#/$defs/localId"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "value": {
+          "$ref": "#/$defs/typedValue"
+        }
+      },
+      "required": [
+        "expectation_kind",
+        "observation_id",
+        "tolerance_rule_id",
+        "value"
+      ],
+      "type": "object"
+    },
+    "reconstructionAnswer": {
+      "additionalProperties": false,
+      "properties": {
+        "ambiguities": {
+          "items": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "assumptions": {
+          "items": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "case_id": {
+          "pattern": "^CA-R[1-3]$",
+          "type": "string"
+        },
+        "compatible_branches": {
+          "items": {
+            "$ref": "#/$defs/compatibleBranch"
+          },
+          "type": "array"
+        },
+        "confidence_percent": {
+          "maximum": 100,
+          "minimum": 0,
+          "type": "integer"
+        },
+        "recovered_facts": {
+          "items": {
+            "$ref": "#/$defs/recoveredFact"
+          },
+          "type": "array"
+        },
+        "uniqueness": {
+          "enum": [
+            "insufficient_information",
+            "multiple_compatible_structures",
+            "uniquely_recoverable"
+          ]
+        }
+      },
+      "required": [
+        "ambiguities",
+        "assumptions",
+        "case_id",
+        "compatible_branches",
+        "confidence_percent",
+        "recovered_facts",
+        "uniqueness"
+      ],
+      "type": "object"
+    },
+    "recoveredFact": {
+      "additionalProperties": false,
+      "properties": {
+        "claim": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "fact_id": {
+          "$ref": "#/$defs/localId"
+        },
+        "recovery_status": {
+          "enum": [
+            "inferred_with_assumption",
+            "not_recoverable",
+            "recovered"
+          ]
+        },
+        "supporting_record_ids": {
+          "items": {
+            "$ref": "#/$defs/localId"
+          },
+          "type": "array",
+          "uniqueItems": true
+        }
+      },
+      "required": [
+        "claim",
+        "fact_id",
+        "recovery_status",
+        "supporting_record_ids"
+      ],
+      "type": "object"
+    },
+    "sha256": {
+      "pattern": "^[0-9a-f]{64}$",
+      "type": "string"
+    },
+    "submission": {
+      "additionalProperties": false,
+      "properties": {
+        "$schema": {
+          "type": "string"
+        },
+        "actor": {
+          "$ref": "#/$defs/testActor"
+        },
+        "artifact_type": {
+          "enum": [
+            "post_reveal_artifact_audit",
+            "prediction_submission",
+            "reconstruction_submission",
+            "source_fidelity_audit"
+          ]
+        },
+        "artifact_version": {
+          "const": "0.1.0"
+        },
+        "audit_checks": {
+          "items": {
+            "$ref": "#/$defs/auditCheck"
+          },
+          "type": "array"
+        },
+        "audit_decision": {
+          "oneOf": [
+            {
+              "enum": [
+                "approved",
+                "blocked",
+                "revision_required"
+              ]
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "condition_id": {
+          "oneOf": [
+            {
+              "pattern": "^condition-v0[12]$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "findings": {
+          "items": {
+            "$ref": "#/$defs/finding"
+          },
+          "type": "array"
+        },
+        "first_submission": {
+          "const": true
+        },
+        "input_artifacts": {
+          "items": {
+            "$ref": "#/$defs/artifactReference"
+          },
+          "minItems": 1,
+          "type": "array"
+        },
+        "pollution": {
+          "oneOf": [
+            {
+              "$ref": "#/$defs/pollution"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "prediction_answers": {
+          "items": {
+            "$ref": "#/$defs/predictionAnswer"
+          },
+          "type": "array"
+        },
+        "prior_stage_submission_sha256": {
+          "oneOf": [
+            {
+              "$ref": "#/$defs/sha256"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "reconstruction_answers": {
+          "items": {
+            "$ref": "#/$defs/reconstructionAnswer"
+          },
+          "type": "array"
+        },
+        "run_id": {
+          "pattern": "^(?:continuous|rehearsal)-[0-9]{3}$",
+          "type": "string"
+        },
+        "stage": {
+          "enum": [
+            "post_reveal_audit",
+            "prediction",
+            "reconstruction",
+            "source_audit"
+          ]
+        },
+        "submission_id": {
+          "$ref": "#/$defs/localId"
+        },
+        "submitted_at": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "task_id": {
+          "$ref": "#/$defs/localId"
+        }
+      },
+      "required": [
+        "$schema",
+        "actor",
+        "artifact_type",
+        "artifact_version",
+        "audit_checks",
+        "audit_decision",
+        "condition_id",
+        "findings",
+        "first_submission",
+        "input_artifacts",
+        "pollution",
+        "prediction_answers",
+        "prior_stage_submission_sha256",
+        "reconstruction_answers",
+        "run_id",
+        "stage",
+        "submission_id",
+        "submitted_at",
+        "task_id"
+      ],
+      "type": "object"
+    },
+    "testActor": {
+      "additionalProperties": false,
+      "properties": {
+        "identifier": {
+          "$ref": "#/$defs/localId"
+        },
+        "model": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "model_version": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "reasoning_effort": {
+          "enum": [
+            "high",
+            "low",
+            "max",
+            "medium",
+            "ultra",
+            "xhigh"
+          ]
+        },
+        "role": {
+          "enum": [
+            "blind_reconstructor_predictor",
+            "source_auditor"
+          ]
+        },
+        "session_id": {
+          "minLength": 1,
+          "type": "string"
+        }
+      },
+      "required": [
+        "identifier",
+        "model",
+        "model_version",
+        "reasoning_effort",
+        "role",
+        "session_id"
+      ],
+      "type": "object"
+    },
+    "typedValue": {
+      "additionalProperties": false,
+      "properties": {
+        "serialized_value": {
+          "type": "string"
+        },
+        "unit": {
+          "oneOf": [
+            {
+              "minLength": 1,
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "value_type": {
+          "enum": [
+            "boolean",
+            "decimal",
+            "direction",
+            "id",
+            "id_set",
+            "integer",
+            "rational",
+            "status",
+            "string"
+          ]
+        }
+      },
+      "required": [
+        "serialized_value",
+        "unit",
+        "value_type"
+      ],
+      "type": "object"
+    }
+  },
+  "oneOf": [
+    {
+      "properties": {
+        "artifact_type": {
+          "const": "post_reveal_artifact_audit"
+        },
+        "condition_id": {
+          "type": "null"
+        },
+        "stage": {
+          "const": "post_reveal_audit"
+        }
+      },
+      "required": [
+        "artifact_type",
+        "audit_checks",
+        "audit_decision",
+        "stage"
+      ]
+    },
+    {
+      "properties": {
+        "artifact_type": {
+          "const": "prediction_submission"
+        },
+        "condition_id": {
+          "pattern": "^condition-v0[12]$",
+          "type": "string"
+        },
+        "stage": {
+          "const": "prediction"
+        }
+      },
+      "required": [
+        "artifact_type",
+        "condition_id",
+        "pollution",
+        "prediction_answers",
+        "prior_stage_submission_sha256",
+        "stage"
+      ]
+    },
+    {
+      "properties": {
+        "artifact_type": {
+          "const": "reconstruction_submission"
+        },
+        "condition_id": {
+          "pattern": "^condition-v0[12]$",
+          "type": "string"
+        },
+        "prior_stage_submission_sha256": {
+          "type": "null"
+        },
+        "stage": {
+          "const": "reconstruction"
+        }
+      },
+      "required": [
+        "artifact_type",
+        "condition_id",
+        "pollution",
+        "reconstruction_answers",
+        "stage"
+      ]
+    },
+    {
+      "properties": {
+        "artifact_type": {
+          "const": "source_fidelity_audit"
+        },
+        "condition_id": {
+          "type": "null"
+        },
+        "stage": {
+          "const": "source_audit"
+        }
+      },
+      "required": [
+        "artifact_type",
+        "audit_checks",
+        "audit_decision",
+        "findings",
+        "stage"
+      ]
+    }
+  ],
+  "title": "Game Primitives Continuous Action Role Submissions 0.1.0",
+  "type": "object",
+  "$ref": "#/$defs/submission"
+}

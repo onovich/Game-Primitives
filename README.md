@@ -69,7 +69,7 @@ research/   文献、阅读笔记、证据与开放问题
 
 目前处于开放研究阶段。首版概念边界见 [`theory/FOUNDATIONS.md`](theory/FOUNDATIONS.md)，当前共享词汇见 [`CONTEXT.md`](CONTEXT.md)，带证据状态的第一版候选登记见 [`theory/PRIMITIVE-CANDIDATES.md`](theory/PRIMITIVE-CANDIDATES.md)，暂定书稿问题地图见 [`book/OUTLINE.md`](book/OUTLINE.md)。
 
-[第一轮案例校准](research/calibration-cycle-1.md)已在声明的结构范围内完成：4 个深度案例与 8 个标准案例均已形成案例包，门 A、门 B 与[十二案跨案例总汇报](research/calibration-gates/gate-c-first-cycle-synthesis.md)已经通过，D-C1–D-C7 全部接受。该状态不关闭具体题面／牌序／存档、实体或软件运行、系统测量与行为证据缺口；它们继续记录在[校准证据积压](research/calibration-evidence-backlog.md)。第二轮的逻辑解谜先行组 [`logic-001`](research/calibration-tests/logic-pilot/runs/logic-001/) 已在 `structural_only` 范围内通过，四份证据因原型识别或怀疑而降级保留；随后完成的[组间方法复核](research/calibration-method-review-logic-to-continuous.md)保留可审计证据链，并为连续行动组增加任务判定表分离、预测承诺和连续轨迹要求。连续行动组已经形成 [`CA-01` 核心命题推荐稿](research/continuous-action-pilot-ca-01.md)，建议以工作标签“原子动作别名化”指称可反驳的核心失真；该稿尚待冻结，门 D 尚未召开。
+[第一轮案例校准](research/calibration-cycle-1.md)已在声明的结构范围内完成：4 个深度案例与 8 个标准案例均已形成案例包，门 A、门 B 与[十二案跨案例总汇报](research/calibration-gates/gate-c-first-cycle-synthesis.md)已经通过，D-C1–D-C7 全部接受。该状态不关闭具体题面／牌序／存档、实体或软件运行、系统测量与行为证据缺口；它们继续记录在[校准证据积压](research/calibration-evidence-backlog.md)。第二轮的逻辑解谜先行组 [`logic-001`](research/calibration-tests/logic-pilot/runs/logic-001/) 已在 `structural_only` 范围内通过，四份证据因原型识别或怀疑而降级保留；随后完成的[组间方法复核](research/calibration-method-review-logic-to-continuous.md)保留可审计证据链。连续行动组现已冻结 [`CA-01`–`CA-07`](research/continuous-action-pilot-ca-07-artifacts-and-release.md)：以 *FOOTSIES*、id GPL 移动模块和 osu!lazer 分别检验输入锁定、过程调制与候选裁定，以 [CA-SR 0.1](theory/CONTINUOUS-ACTION-REPRESENTATION-0.1.md)对照机械压缩表示。当前正在建立测试工作区和增量彩排；正式盲测仍须经过一次性人工放行，门 D 尚未召开。
 
 ## 项目状态
 

@@ -1,6 +1,6 @@
 # 从逻辑解谜组到连续行动组的组间方法复核
 
-- 状态：复核完成；[`CA-01` 核心命题推荐稿](continuous-action-pilot-ca-01.md)已形成，尚待作者冻结
+- 状态：复核完成；后续 `CA-01`–`CA-07` 已接受并冻结
 - 日期：2026-07-27
 - 范围：测试说明、输入隔离、污染记录、输出格式与工作负担
 - 前序结果：[`logic-001` 正式比较报告](calibration-tests/logic-pilot/runs/logic-001/reports/logic-001-comparison.md)
@@ -155,11 +155,11 @@ GP-SR 0.1 是逻辑组的冻结快照，不能直接改写。连续行动组需�
 | 编号 | 决策问题 |
 | --- | --- |
 | `CA-01` | 连续行动组要攻击当前模型的哪一个核心失真？ |
-| `CA-02` | 哪些案例角色能分别施压输入、时间、空间、动作生命周期与反馈，而不是只罗列类型？ |
+| `CA-02` | 哪些案例角色能分别施压输入、时间、空间、动作生命周期与反馈，而不是只罗列类型？已由[三个核心角色与一个条件角色](continuous-action-pilot-ca-02-case-roles.md)回答 |
 | `CA-03` | 哪些作品、版本、配置与内容实例最适合担任锚点和受控变体？ |
 | `CA-04` | 连续轨迹和实现事实需要怎样进入新的受测表示？ |
 | `CA-05` | 隔离哪个设计变量，预测什么，什么结果会反驳模型？ |
 | `CA-06` | 采用哪些执行角色、污染规则、行为边界与组级结论？ |
 | `CA-07` | 如何打包、彩排、冻结并取得正式放行？ |
 
-`CA-01` 已形成[核心失真与可反驳命题推荐稿](continuous-action-pilot-ca-01.md)：建议以工作标签“原子动作别名化”指称核心失真，用规则可查询、可独立改变且具有反事实后果的中间边界检验当前模型。该稿尚待作者冻结；冻结后再进入 `CA-02` 的案例角色设计和一手来源驱动选案。仍不应先因作品知名或类型覆盖愿望确定名单，再倒推检验问题。
+七项问题现已分别由 [CA-01](continuous-action-pilot-ca-01.md)、[CA-02](continuous-action-pilot-ca-02-case-roles.md)、[CA-03](continuous-action-pilot-ca-03-case-selection.md)、[CA-SR 0.1](../theory/CONTINUOUS-ACTION-REPRESENTATION-0.1.md)、[CA-05](continuous-action-pilot-ca-05-variants.md)、[CA-06](continuous-action-pilot-ca-06-execution-and-verdicts.md)与 [CA-07](continuous-action-pilot-ca-07-artifacts-and-release.md)回答。下一步是制品准备和增量彩排；正式取证必须等待一次性人工放行。

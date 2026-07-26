@@ -1,0 +1,1761 @@
+{
+  "$id": "https://github.com/onovich/Game-Primitives/blob/main/research/calibration-tests/continuous-action-pilot/schema/ca-sr-artifact-0.1.0.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$defs": {
+    "actionLifecycle": {
+      "additionalProperties": false,
+      "properties": {
+        "action_instance_ref": {
+          "$ref": "#/$defs/idFact"
+        },
+        "action_ref": {
+          "$ref": "#/$defs/idFact"
+        },
+        "candidate_occurrence_ref": {
+          "$ref": "#/$defs/idFact"
+        },
+        "effect_ref": {
+          "$ref": "#/$defs/idFact"
+        },
+        "entry_rule_refs": {
+          "$ref": "#/$defs/idListFact"
+        },
+        "exit_rule_refs": {
+          "$ref": "#/$defs/idListFact"
+        },
+        "milestones": {
+          "items": {
+            "$ref": "#/$defs/lifecycleMilestone"
+          },
+          "type": "array"
+        },
+        "permission_changes": {
+          "items": {
+            "$ref": "#/$defs/permissionChange"
+          },
+          "type": "array"
+        },
+        "process_refs": {
+          "$ref": "#/$defs/idListFact"
+        },
+        "record_id": {
+          "$ref": "#/$defs/localId"
+        },
+        "record_type": {
+          "const": "action_lifecycle"
+        },
+        "transitions": {
+          "items": {
+            "$ref": "#/$defs/lifecycleTransition"
+          },
+          "type": "array"
+        }
+      },
+      "required": [
+        "action_instance_ref",
+        "action_ref",
+        "candidate_occurrence_ref",
+        "effect_ref",
+        "entry_rule_refs",
+        "exit_rule_refs",
+        "milestones",
+        "permission_changes",
+        "process_refs",
+        "record_id",
+        "record_type",
+        "transitions"
+      ],
+      "type": "object"
+    },
+    "adjudicationPath": {
+      "additionalProperties": false,
+      "properties": {
+        "adjudicator_ref": {
+          "$ref": "#/$defs/idFact"
+        },
+        "candidate_occurrence_ref": {
+          "$ref": "#/$defs/idFact"
+        },
+        "effect_ref": {
+          "$ref": "#/$defs/idFact"
+        },
+        "formal_event_ref": {
+          "$ref": "#/$defs/idFact"
+        },
+        "record_id": {
+          "$ref": "#/$defs/localId"
+        },
+        "record_type": {
+          "const": "adjudication_path"
+        },
+        "resolution_ref": {
+          "$ref": "#/$defs/idFact"
+        },
+        "review_rule_refs": {
+          "$ref": "#/$defs/idListFact"
+        },
+        "stages": {
+          "items": {
+            "$ref": "#/$defs/adjudicationStage"
+          },
+          "minItems": 1,
+          "type": "array"
+        }
+      },
+      "required": [
+        "adjudicator_ref",
+        "candidate_occurrence_ref",
+        "effect_ref",
+        "formal_event_ref",
+        "record_id",
+        "record_type",
+        "resolution_ref",
+        "review_rule_refs",
+        "stages"
+      ],
+      "type": "object"
+    },
+    "adjudicationStage": {
+      "additionalProperties": false,
+      "properties": {
+        "input_ref": {
+          "$ref": "#/$defs/idFact"
+        },
+        "output_ref": {
+          "$ref": "#/$defs/idFact"
+        },
+        "rule_refs": {
+          "$ref": "#/$defs/idListFact"
+        },
+        "stage_id": {
+          "$ref": "#/$defs/localId"
+        },
+        "stage_kind": {
+          "enum": [
+            "classification",
+            "commit",
+            "detection",
+            "priority",
+            "recheck",
+            "resolution"
+          ]
+        },
+        "time_base_ref": {
+          "$ref": "#/$defs/idFact"
+        }
+      },
+      "required": [
+        "input_ref",
+        "output_ref",
+        "rule_refs",
+        "stage_id",
+        "stage_kind",
+        "time_base_ref"
+      ],
+      "type": "object"
+    },
+    "canonicalEncoding": {
+      "additionalProperties": false,
+      "properties": {
+        "$schema": {
+          "type": "string"
+        },
+        "artifact_type": {
+          "const": "canonical_encoding"
+        },
+        "artifact_version": {
+          "$ref": "#/$defs/semanticVersion"
+        },
+        "cases": {
+          "items": {
+            "$ref": "#/$defs/caseEncoding"
+          },
+          "minItems": 1,
+          "type": "array"
+        },
+        "created_at": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "encoding_id": {
+          "$ref": "#/$defs/localId"
+        },
+        "representation_version": {
+          "const": "CA-SR 0.1"
+        },
+        "run_id": {
+          "$ref": "#/$defs/runId"
+        },
+        "source_packet_sha256": {
+          "$ref": "#/$defs/sha256"
+        },
+        "supersedes_encoding_sha256": {
+          "oneOf": [
+            {
+              "$ref": "#/$defs/sha256"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "required": [
+        "$schema",
+        "artifact_type",
+        "artifact_version",
+        "cases",
+        "created_at",
+        "encoding_id",
+        "representation_version",
+        "run_id",
+        "source_packet_sha256",
+        "supersedes_encoding_sha256"
+      ],
+      "type": "object"
+    },
+    "caseEncoding": {
+      "additionalProperties": false,
+      "properties": {
+        "case_scope": {
+          "$ref": "#/$defs/caseScope"
+        },
+        "composition_edges": {
+          "items": {
+            "$ref": "#/$defs/compositionEdge"
+          },
+          "type": "array"
+        },
+        "operational_edges": {
+          "items": {
+            "$ref": "#/$defs/operationalEdge"
+          },
+          "type": "array"
+        },
+        "operational_records": {
+          "items": {
+            "$ref": "#/$defs/operationalRecord"
+          },
+          "type": "array"
+        },
+        "references": {
+          "items": {
+            "$ref": "#/$defs/reference"
+          },
+          "type": "array"
+        },
+        "rules": {
+          "items": {
+            "$ref": "#/$defs/ruleFrame"
+          },
+          "type": "array"
+        },
+        "source_issues": {
+          "items": {
+            "$ref": "#/$defs/sourceIssue"
+          },
+          "type": "array"
+        },
+        "state_channels": {
+          "items": {
+            "$ref": "#/$defs/stateChannel"
+          },
+          "type": "array"
+        },
+        "temporal_edges": {
+          "items": {
+            "$ref": "#/$defs/temporalEdge"
+          },
+          "type": "array"
+        },
+        "time_bases": {
+          "items": {
+            "$ref": "#/$defs/timeBase"
+          },
+          "type": "array"
+        },
+        "trace_contract": {
+          "$ref": "#/$defs/traceContract"
+        }
+      },
+      "required": [
+        "case_scope",
+        "composition_edges",
+        "operational_edges",
+        "operational_records",
+        "references",
+        "rules",
+        "source_issues",
+        "state_channels",
+        "temporal_edges",
+        "time_bases",
+        "trace_contract"
+      ],
+      "type": "object"
+    },
+    "caseScope": {
+      "additionalProperties": false,
+      "properties": {
+        "case_id": {
+          "pattern": "^CA-R[1-3]$",
+          "type": "string"
+        },
+        "controlled_variable_id": {
+          "$ref": "#/$defs/localId"
+        },
+        "formal_input_ref": {
+          "$ref": "#/$defs/localId"
+        },
+        "observation_start": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "observation_stop": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "role_id": {
+          "pattern": "^CA-R[1-3]$",
+          "type": "string"
+        },
+        "scope_exclusions": {
+          "items": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "required": [
+        "case_id",
+        "controlled_variable_id",
+        "formal_input_ref",
+        "observation_start",
+        "observation_stop",
+        "role_id",
+        "scope_exclusions"
+      ],
+      "type": "object"
+    },
+    "compositionEdge": {
+      "additionalProperties": false,
+      "properties": {
+        "condition_ids": {
+          "items": {
+            "$ref": "#/$defs/localId"
+          },
+          "type": "array"
+        },
+        "edge_id": {
+          "$ref": "#/$defs/localId"
+        },
+        "from_ids": {
+          "items": {
+            "$ref": "#/$defs/localId"
+          },
+          "minItems": 1,
+          "type": "array"
+        },
+        "kind": {
+          "enum": [
+            "conversion",
+            "coupling",
+            "feedback",
+            "gating",
+            "mutual_exclusion",
+            "nesting",
+            "parallel",
+            "sequence"
+          ]
+        },
+        "scope_ids": {
+          "items": {
+            "$ref": "#/$defs/localId"
+          },
+          "type": "array"
+        },
+        "source_fact": {
+          "$ref": "#/$defs/textFact"
+        },
+        "to_ids": {
+          "items": {
+            "$ref": "#/$defs/localId"
+          },
+          "minItems": 1,
+          "type": "array"
+        }
+      },
+      "required": [
+        "condition_ids",
+        "edge_id",
+        "from_ids",
+        "kind",
+        "scope_ids",
+        "source_fact",
+        "to_ids"
+      ],
+      "type": "object"
+    },
+    "coordinate": {
+      "additionalProperties": false,
+      "properties": {
+        "denominator": {
+          "pattern": "^[1-9][0-9]*$",
+          "type": "string"
+        },
+        "numerator": {
+          "pattern": "^-?[0-9]+$",
+          "type": "string"
+        }
+      },
+      "required": [
+        "denominator",
+        "numerator"
+      ],
+      "type": "object"
+    },
+    "factStatus": {
+      "enum": [
+        "encoded",
+        "not_applicable",
+        "representation_gap",
+        "scope_excluded",
+        "source_underdetermined"
+      ]
+    },
+    "feedbackContract": {
+      "additionalProperties": false,
+      "properties": {
+        "accuracy": {
+          "$ref": "#/$defs/textFact"
+        },
+        "availability_rule_refs": {
+          "$ref": "#/$defs/idListFact"
+        },
+        "content": {
+          "$ref": "#/$defs/textFact"
+        },
+        "latency": {
+          "$ref": "#/$defs/typedValueFact"
+        },
+        "observer_ref": {
+          "$ref": "#/$defs/idFact"
+        },
+        "presentation_medium_ref": {
+          "$ref": "#/$defs/idFact"
+        },
+        "record_id": {
+          "$ref": "#/$defs/localId"
+        },
+        "record_type": {
+          "const": "feedback_contract"
+        },
+        "response_opportunity_refs": {
+          "$ref": "#/$defs/idListFact"
+        },
+        "retention_rule_refs": {
+          "$ref": "#/$defs/idListFact"
+        },
+        "source_ref": {
+          "$ref": "#/$defs/idFact"
+        },
+        "withdrawal_rule_refs": {
+          "$ref": "#/$defs/idListFact"
+        }
+      },
+      "required": [
+        "accuracy",
+        "availability_rule_refs",
+        "content",
+        "latency",
+        "observer_ref",
+        "presentation_medium_ref",
+        "record_id",
+        "record_type",
+        "response_opportunity_refs",
+        "retention_rule_refs",
+        "source_ref",
+        "withdrawal_rule_refs"
+      ],
+      "type": "object"
+    },
+    "generatedView": {
+      "additionalProperties": false,
+      "properties": {
+        "$schema": {
+          "type": "string"
+        },
+        "artifact_type": {
+          "const": "generated_view"
+        },
+        "artifact_version": {
+          "$ref": "#/$defs/semanticVersion"
+        },
+        "canonical_encoding_sha256": {
+          "$ref": "#/$defs/sha256"
+        },
+        "cases": {
+          "items": {
+            "$ref": "#/$defs/caseEncoding"
+          },
+          "minItems": 1,
+          "type": "array"
+        },
+        "condition_id": {
+          "pattern": "^condition-v0[12]$",
+          "type": "string"
+        },
+        "generated_at": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "projection_id": {
+          "$ref": "#/$defs/localId"
+        },
+        "projection_spec_sha256": {
+          "$ref": "#/$defs/sha256"
+        },
+        "run_id": {
+          "$ref": "#/$defs/runId"
+        }
+      },
+      "required": [
+        "$schema",
+        "artifact_type",
+        "artifact_version",
+        "canonical_encoding_sha256",
+        "cases",
+        "condition_id",
+        "generated_at",
+        "projection_id",
+        "projection_spec_sha256",
+        "run_id"
+      ],
+      "type": "object"
+    },
+    "idFact": {
+      "additionalProperties": false,
+      "properties": {
+        "provenance_refs": {
+          "items": {
+            "$ref": "#/$defs/localId"
+          },
+          "type": "array"
+        },
+        "status": {
+          "$ref": "#/$defs/factStatus"
+        },
+        "value": {
+          "oneOf": [
+            {
+              "$ref": "#/$defs/localId"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "required": [
+        "provenance_refs",
+        "status",
+        "value"
+      ],
+      "type": "object"
+    },
+    "idListFact": {
+      "additionalProperties": false,
+      "properties": {
+        "provenance_refs": {
+          "items": {
+            "$ref": "#/$defs/localId"
+          },
+          "type": "array"
+        },
+        "status": {
+          "$ref": "#/$defs/factStatus"
+        },
+        "values": {
+          "items": {
+            "$ref": "#/$defs/localId"
+          },
+          "type": "array",
+          "uniqueItems": true
+        }
+      },
+      "required": [
+        "provenance_refs",
+        "status",
+        "values"
+      ],
+      "type": "object"
+    },
+    "inputActionPath": {
+      "additionalProperties": false,
+      "properties": {
+        "action_legality_rule_refs": {
+          "$ref": "#/$defs/idListFact"
+        },
+        "action_mapping_rule_refs": {
+          "$ref": "#/$defs/idListFact"
+        },
+        "buffer_rule_refs": {
+          "$ref": "#/$defs/idListFact"
+        },
+        "controlled_entity_ref": {
+          "$ref": "#/$defs/idFact"
+        },
+        "implementation_medium_ref": {
+          "$ref": "#/$defs/idFact"
+        },
+        "input_ref": {
+          "$ref": "#/$defs/idFact"
+        },
+        "output_action_refs": {
+          "$ref": "#/$defs/idListFact"
+        },
+        "recognition_rule_refs": {
+          "$ref": "#/$defs/idListFact"
+        },
+        "record_id": {
+          "$ref": "#/$defs/localId"
+        },
+        "record_type": {
+          "const": "input_action_path"
+        },
+        "rejection_outcome_refs": {
+          "$ref": "#/$defs/idListFact"
+        },
+        "sampling_rule_refs": {
+          "$ref": "#/$defs/idListFact"
+        },
+        "signal_ref": {
+          "$ref": "#/$defs/idFact"
+        },
+        "time_base_ref": {
+          "$ref": "#/$defs/idFact"
+        }
+      },
+      "required": [
+        "action_legality_rule_refs",
+        "action_mapping_rule_refs",
+        "buffer_rule_refs",
+        "controlled_entity_ref",
+        "implementation_medium_ref",
+        "input_ref",
+        "output_action_refs",
+        "recognition_rule_refs",
+        "record_id",
+        "record_type",
+        "rejection_outcome_refs",
+        "sampling_rule_refs",
+        "signal_ref",
+        "time_base_ref"
+      ],
+      "type": "object"
+    },
+    "lifecycleMilestone": {
+      "additionalProperties": false,
+      "properties": {
+        "entry_condition_refs": {
+          "$ref": "#/$defs/idListFact"
+        },
+        "milestone_id": {
+          "$ref": "#/$defs/localId"
+        },
+        "name": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "source_fact": {
+          "$ref": "#/$defs/textFact"
+        }
+      },
+      "required": [
+        "entry_condition_refs",
+        "milestone_id",
+        "name",
+        "source_fact"
+      ],
+      "type": "object"
+    },
+    "lifecycleTransition": {
+      "additionalProperties": false,
+      "properties": {
+        "condition_refs": {
+          "$ref": "#/$defs/idListFact"
+        },
+        "from_milestone_id": {
+          "$ref": "#/$defs/localId"
+        },
+        "rule_refs": {
+          "$ref": "#/$defs/idListFact"
+        },
+        "to_milestone_id": {
+          "$ref": "#/$defs/localId"
+        },
+        "transition_id": {
+          "$ref": "#/$defs/localId"
+        }
+      },
+      "required": [
+        "condition_refs",
+        "from_milestone_id",
+        "rule_refs",
+        "to_milestone_id",
+        "transition_id"
+      ],
+      "type": "object"
+    },
+    "localId": {
+      "pattern": "^[a-z0-9][a-z0-9._-]*$",
+      "type": "string"
+    },
+    "operationalEdge": {
+      "additionalProperties": false,
+      "properties": {
+        "condition_ids": {
+          "items": {
+            "$ref": "#/$defs/localId"
+          },
+          "type": "array"
+        },
+        "edge_id": {
+          "$ref": "#/$defs/localId"
+        },
+        "from_id": {
+          "$ref": "#/$defs/localId"
+        },
+        "kind": {
+          "enum": [
+            "adjudicates_as",
+            "cancels",
+            "commits",
+            "detects",
+            "exposes_to",
+            "gates",
+            "instantiates",
+            "maps_to",
+            "modulates",
+            "recognizes_as",
+            "rechecks",
+            "reads",
+            "replaces",
+            "resolves_to",
+            "samples",
+            "scheduled_by",
+            "transitions_to",
+            "writes"
+          ]
+        },
+        "scope_ids": {
+          "items": {
+            "$ref": "#/$defs/localId"
+          },
+          "type": "array"
+        },
+        "source_fact": {
+          "$ref": "#/$defs/textFact"
+        },
+        "to_id": {
+          "$ref": "#/$defs/localId"
+        }
+      },
+      "required": [
+        "condition_ids",
+        "edge_id",
+        "from_id",
+        "kind",
+        "scope_ids",
+        "source_fact",
+        "to_id"
+      ],
+      "type": "object"
+    },
+    "operationalRecord": {
+      "oneOf": [
+        {
+          "$ref": "#/$defs/actionLifecycle"
+        },
+        {
+          "$ref": "#/$defs/adjudicationPath"
+        },
+        {
+          "$ref": "#/$defs/feedbackContract"
+        },
+        {
+          "$ref": "#/$defs/inputActionPath"
+        },
+        {
+          "$ref": "#/$defs/outcomeFrame"
+        },
+        {
+          "$ref": "#/$defs/processProfile"
+        }
+      ]
+    },
+    "outcomeFrame": {
+      "additionalProperties": false,
+      "properties": {
+        "action_instantiation": {
+          "$ref": "#/$defs/textFact"
+        },
+        "effect_commitment": {
+          "$ref": "#/$defs/textFact"
+        },
+        "goal_evaluation": {
+          "$ref": "#/$defs/textFact"
+        },
+        "input_recognition": {
+          "$ref": "#/$defs/textFact"
+        },
+        "record_id": {
+          "$ref": "#/$defs/localId"
+        },
+        "record_type": {
+          "const": "outcome_frame"
+        },
+        "resolution": {
+          "$ref": "#/$defs/textFact"
+        }
+      },
+      "required": [
+        "action_instantiation",
+        "effect_commitment",
+        "goal_evaluation",
+        "input_recognition",
+        "record_id",
+        "record_type",
+        "resolution"
+      ],
+      "type": "object"
+    },
+    "permissionChange": {
+      "additionalProperties": false,
+      "properties": {
+        "after": {
+          "$ref": "#/$defs/typedValueFact"
+        },
+        "before": {
+          "$ref": "#/$defs/typedValueFact"
+        },
+        "condition_refs": {
+          "$ref": "#/$defs/idListFact"
+        },
+        "permission_id": {
+          "$ref": "#/$defs/localId"
+        },
+        "rule_refs": {
+          "$ref": "#/$defs/idListFact"
+        }
+      },
+      "required": [
+        "after",
+        "before",
+        "condition_refs",
+        "permission_id",
+        "rule_refs"
+      ],
+      "type": "object"
+    },
+    "processProfile": {
+      "additionalProperties": false,
+      "properties": {
+        "candidate_output_ref": {
+          "$ref": "#/$defs/idFact"
+        },
+        "modulation_rule_refs": {
+          "$ref": "#/$defs/idListFact"
+        },
+        "pause_rule_refs": {
+          "$ref": "#/$defs/idListFact"
+        },
+        "process_ref": {
+          "$ref": "#/$defs/idFact"
+        },
+        "read_channel_refs": {
+          "$ref": "#/$defs/idListFact"
+        },
+        "record_id": {
+          "$ref": "#/$defs/localId"
+        },
+        "record_type": {
+          "const": "process_profile"
+        },
+        "scope_ref": {
+          "$ref": "#/$defs/idFact"
+        },
+        "termination_rule_refs": {
+          "$ref": "#/$defs/idListFact"
+        },
+        "time_base_ref": {
+          "$ref": "#/$defs/idFact"
+        },
+        "update_rule_refs": {
+          "$ref": "#/$defs/idListFact"
+        },
+        "write_channel_refs": {
+          "$ref": "#/$defs/idListFact"
+        }
+      },
+      "required": [
+        "candidate_output_ref",
+        "modulation_rule_refs",
+        "pause_rule_refs",
+        "process_ref",
+        "read_channel_refs",
+        "record_id",
+        "record_type",
+        "scope_ref",
+        "termination_rule_refs",
+        "time_base_ref",
+        "update_rule_refs",
+        "write_channel_refs"
+      ],
+      "type": "object"
+    },
+    "projectionRule": {
+      "additionalProperties": false,
+      "properties": {
+        "from_value": {
+          "oneOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "operation": {
+          "enum": [
+            "include_path",
+            "redact_text",
+            "remove_path",
+            "rename_id",
+            "retain_endpoint"
+          ]
+        },
+        "path": {
+          "pattern": "^/[A-Za-z0-9._~/-]+$",
+          "type": "string"
+        },
+        "rule_id": {
+          "$ref": "#/$defs/localId"
+        },
+        "to_value": {
+          "oneOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "required": [
+        "from_value",
+        "operation",
+        "path",
+        "rule_id",
+        "to_value"
+      ],
+      "type": "object"
+    },
+    "projectionSpec": {
+      "additionalProperties": false,
+      "properties": {
+        "$schema": {
+          "type": "string"
+        },
+        "artifact_type": {
+          "const": "projection_spec"
+        },
+        "artifact_version": {
+          "$ref": "#/$defs/semanticVersion"
+        },
+        "canonical_encoding_sha256": {
+          "$ref": "#/$defs/sha256"
+        },
+        "forbidden_tokens": {
+          "items": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "type": "array",
+          "uniqueItems": true
+        },
+        "generator_id": {
+          "$ref": "#/$defs/localId"
+        },
+        "generator_version": {
+          "$ref": "#/$defs/semanticVersion"
+        },
+        "projections": {
+          "items": {
+            "additionalProperties": false,
+            "properties": {
+              "projection_id": {
+                "$ref": "#/$defs/localId"
+              },
+              "rules": {
+                "items": {
+                  "$ref": "#/$defs/projectionRule"
+                },
+                "minItems": 1,
+                "type": "array"
+              }
+            },
+            "required": [
+              "projection_id",
+              "rules"
+            ],
+            "type": "object"
+          },
+          "minItems": 2,
+          "type": "array"
+        },
+        "run_id": {
+          "$ref": "#/$defs/runId"
+        }
+      },
+      "required": [
+        "$schema",
+        "artifact_type",
+        "artifact_version",
+        "canonical_encoding_sha256",
+        "forbidden_tokens",
+        "generator_id",
+        "generator_version",
+        "projections",
+        "run_id"
+      ],
+      "type": "object"
+    },
+    "provenanceLocator": {
+      "additionalProperties": false,
+      "properties": {
+        "locator_id": {
+          "$ref": "#/$defs/localId"
+        },
+        "locator_kind": {
+          "enum": [
+            "build_file",
+            "commit",
+            "documentation_section",
+            "instrument_measurement",
+            "project_fixture",
+            "release",
+            "source_file_lines",
+            "tag"
+          ]
+        },
+        "locator_value": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "source_id": {
+          "$ref": "#/$defs/localId"
+        }
+      },
+      "required": [
+        "locator_id",
+        "locator_kind",
+        "locator_value",
+        "source_id"
+      ],
+      "type": "object"
+    },
+    "reference": {
+      "additionalProperties": false,
+      "properties": {
+        "audit_identity": {
+          "oneOf": [
+            {
+              "minLength": 1,
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "base_type": {
+          "enum": [
+            "action",
+            "condition",
+            "context_scope",
+            "entity",
+            "feedback_observation",
+            "goal_evaluation",
+            "process",
+            "relation",
+            "rule",
+            "state"
+          ]
+        },
+        "blind_description": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "record_id": {
+          "$ref": "#/$defs/localId"
+        },
+        "source_fact": {
+          "$ref": "#/$defs/textFact"
+        },
+        "test_role": {
+          "enum": [
+            "action_instance",
+            "effect",
+            "event",
+            "feedback_observation",
+            "input",
+            "process",
+            "resolution",
+            "rule_action"
+          ]
+        }
+      },
+      "required": [
+        "audit_identity",
+        "base_type",
+        "blind_description",
+        "record_id",
+        "source_fact",
+        "test_role"
+      ],
+      "type": "object"
+    },
+    "ruleFrame": {
+      "additionalProperties": false,
+      "properties": {
+        "rule_id": {
+          "$ref": "#/$defs/localId"
+        },
+        "slots": {
+          "additionalProperties": false,
+          "properties": {
+            "action": {
+              "$ref": "#/$defs/idListFact"
+            },
+            "actor": {
+              "$ref": "#/$defs/idListFact"
+            },
+            "context": {
+              "$ref": "#/$defs/idListFact"
+            },
+            "cost": {
+              "$ref": "#/$defs/idListFact"
+            },
+            "effects": {
+              "$ref": "#/$defs/idListFact"
+            },
+            "feedback": {
+              "$ref": "#/$defs/idListFact"
+            },
+            "goals_evaluation": {
+              "$ref": "#/$defs/idListFact"
+            },
+            "preconditions": {
+              "$ref": "#/$defs/idListFact"
+            },
+            "resolution": {
+              "$ref": "#/$defs/idListFact"
+            },
+            "target": {
+              "$ref": "#/$defs/idListFact"
+            },
+            "trigger": {
+              "$ref": "#/$defs/idListFact"
+            }
+          },
+          "required": [
+            "action",
+            "actor",
+            "context",
+            "cost",
+            "effects",
+            "feedback",
+            "goals_evaluation",
+            "preconditions",
+            "resolution",
+            "target",
+            "trigger"
+          ],
+          "type": "object"
+        },
+        "statement": {
+          "minLength": 1,
+          "type": "string"
+        }
+      },
+      "required": [
+        "rule_id",
+        "slots",
+        "statement"
+      ],
+      "type": "object"
+    },
+    "runId": {
+      "pattern": "^(?:continuous|rehearsal)-[0-9]{3}$",
+      "type": "string"
+    },
+    "semanticVersion": {
+      "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$",
+      "type": "string"
+    },
+    "sha256": {
+      "pattern": "^[0-9a-f]{64}$",
+      "type": "string"
+    },
+    "sourceIssue": {
+      "additionalProperties": false,
+      "properties": {
+        "description": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "issue_id": {
+          "$ref": "#/$defs/localId"
+        },
+        "locator_refs": {
+          "items": {
+            "$ref": "#/$defs/localId"
+          },
+          "type": "array"
+        },
+        "status": {
+          "enum": [
+            "representation_gap",
+            "scope_excluded",
+            "source_underdetermined"
+          ]
+        }
+      },
+      "required": [
+        "description",
+        "issue_id",
+        "locator_refs",
+        "status"
+      ],
+      "type": "object"
+    },
+    "sourcePacket": {
+      "additionalProperties": false,
+      "properties": {
+        "$schema": {
+          "type": "string"
+        },
+        "artifact_type": {
+          "const": "source_packet"
+        },
+        "artifact_version": {
+          "$ref": "#/$defs/semanticVersion"
+        },
+        "cases": {
+          "items": {
+            "additionalProperties": false,
+            "properties": {
+              "case_scope": {
+                "$ref": "#/$defs/caseScope"
+              },
+              "locators": {
+                "items": {
+                  "$ref": "#/$defs/provenanceLocator"
+                },
+                "minItems": 1,
+                "type": "array"
+              },
+              "source_ids": {
+                "items": {
+                  "$ref": "#/$defs/localId"
+                },
+                "minItems": 1,
+                "type": "array"
+              }
+            },
+            "required": [
+              "case_scope",
+              "locators",
+              "source_ids"
+            ],
+            "type": "object"
+          },
+          "minItems": 1,
+          "type": "array"
+        },
+        "created_at": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "run_id": {
+          "$ref": "#/$defs/runId"
+        },
+        "source_packet_id": {
+          "$ref": "#/$defs/localId"
+        },
+        "sources": {
+          "items": {
+            "$ref": "#/$defs/sourceRecord"
+          },
+          "minItems": 1,
+          "type": "array"
+        }
+      },
+      "required": [
+        "$schema",
+        "artifact_type",
+        "artifact_version",
+        "cases",
+        "created_at",
+        "run_id",
+        "source_packet_id",
+        "sources"
+      ],
+      "type": "object"
+    },
+    "sourceRecord": {
+      "additionalProperties": false,
+      "properties": {
+        "commit": {
+          "pattern": "^[0-9a-f]{40}$",
+          "type": "string"
+        },
+        "license": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "repository_url": {
+          "format": "uri",
+          "type": "string"
+        },
+        "source_id": {
+          "$ref": "#/$defs/localId"
+        },
+        "tag": {
+          "oneOf": [
+            {
+              "minLength": 1,
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "toolchain": {
+          "items": {
+            "additionalProperties": false,
+            "properties": {
+              "name": {
+                "minLength": 1,
+                "type": "string"
+              },
+              "version": {
+                "minLength": 1,
+                "type": "string"
+              }
+            },
+            "required": [
+              "name",
+              "version"
+            ],
+            "type": "object"
+          },
+          "type": "array"
+        },
+        "work_title": {
+          "minLength": 1,
+          "type": "string"
+        }
+      },
+      "required": [
+        "commit",
+        "license",
+        "repository_url",
+        "source_id",
+        "tag",
+        "toolchain",
+        "work_title"
+      ],
+      "type": "object"
+    },
+    "stateChannel": {
+      "additionalProperties": false,
+      "properties": {
+        "channel_id": {
+          "$ref": "#/$defs/localId"
+        },
+        "coordinate_system": {
+          "$ref": "#/$defs/textFact"
+        },
+        "equivalence_tolerance": {
+          "$ref": "#/$defs/typedValueFact"
+        },
+        "initial_value": {
+          "$ref": "#/$defs/typedValueFact"
+        },
+        "precision": {
+          "$ref": "#/$defs/textFact"
+        },
+        "reader_refs": {
+          "$ref": "#/$defs/idListFact"
+        },
+        "semantic_ref": {
+          "$ref": "#/$defs/idFact"
+        },
+        "snapshot_boundary": {
+          "$ref": "#/$defs/textFact"
+        },
+        "stop_value": {
+          "$ref": "#/$defs/typedValueFact"
+        },
+        "unit": {
+          "$ref": "#/$defs/textFact"
+        },
+        "value_type": {
+          "enum": [
+            "boolean",
+            "decimal",
+            "id",
+            "integer",
+            "rational",
+            "string"
+          ]
+        },
+        "writer_refs": {
+          "$ref": "#/$defs/idListFact"
+        }
+      },
+      "required": [
+        "channel_id",
+        "coordinate_system",
+        "equivalence_tolerance",
+        "initial_value",
+        "precision",
+        "reader_refs",
+        "semantic_ref",
+        "snapshot_boundary",
+        "stop_value",
+        "unit",
+        "value_type",
+        "writer_refs"
+      ],
+      "type": "object"
+    },
+    "temporalEdge": {
+      "additionalProperties": false,
+      "properties": {
+        "condition_ids": {
+          "items": {
+            "$ref": "#/$defs/localId"
+          },
+          "type": "array"
+        },
+        "edge_id": {
+          "$ref": "#/$defs/localId"
+        },
+        "from_id": {
+          "$ref": "#/$defs/localId"
+        },
+        "kind": {
+          "enum": [
+            "at_next_opportunity_of",
+            "before",
+            "during",
+            "overlaps",
+            "simultaneous_with"
+          ]
+        },
+        "source_fact": {
+          "$ref": "#/$defs/textFact"
+        },
+        "time_base_refs": {
+          "items": {
+            "$ref": "#/$defs/localId"
+          },
+          "minItems": 1,
+          "type": "array"
+        },
+        "to_id": {
+          "$ref": "#/$defs/localId"
+        }
+      },
+      "required": [
+        "condition_ids",
+        "edge_id",
+        "from_id",
+        "kind",
+        "source_fact",
+        "time_base_refs",
+        "to_id"
+      ],
+      "type": "object"
+    },
+    "textFact": {
+      "additionalProperties": false,
+      "properties": {
+        "provenance_refs": {
+          "items": {
+            "$ref": "#/$defs/localId"
+          },
+          "type": "array"
+        },
+        "status": {
+          "$ref": "#/$defs/factStatus"
+        },
+        "value": {
+          "oneOf": [
+            {
+              "minLength": 1,
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "required": [
+        "provenance_refs",
+        "status",
+        "value"
+      ],
+      "type": "object"
+    },
+    "timeBase": {
+      "additionalProperties": false,
+      "properties": {
+        "advance_condition": {
+          "$ref": "#/$defs/textFact"
+        },
+        "coordinate_type": {
+          "enum": [
+            "integer_step",
+            "rational_time"
+          ]
+        },
+        "cross_time_mappings": {
+          "items": {
+            "additionalProperties": false,
+            "properties": {
+              "mapping": {
+                "$ref": "#/$defs/textFact"
+              },
+              "target_time_base_id": {
+                "$ref": "#/$defs/localId"
+              }
+            },
+            "required": [
+              "mapping",
+              "target_time_base_id"
+            ],
+            "type": "object"
+          },
+          "type": "array"
+        },
+        "fixed_step": {
+          "$ref": "#/$defs/typedValueFact"
+        },
+        "owner_ref": {
+          "$ref": "#/$defs/idFact"
+        },
+        "phase_order": {
+          "$ref": "#/$defs/textFact"
+        },
+        "pause_and_backlog": {
+          "$ref": "#/$defs/textFact"
+        },
+        "sorting_rule": {
+          "$ref": "#/$defs/textFact"
+        },
+        "time_base_id": {
+          "$ref": "#/$defs/localId"
+        },
+        "unit": {
+          "$ref": "#/$defs/textFact"
+        }
+      },
+      "required": [
+        "advance_condition",
+        "coordinate_type",
+        "cross_time_mappings",
+        "fixed_step",
+        "owner_ref",
+        "phase_order",
+        "pause_and_backlog",
+        "sorting_rule",
+        "time_base_id",
+        "unit"
+      ],
+      "type": "object"
+    },
+    "traceContract": {
+      "additionalProperties": false,
+      "properties": {
+        "allowed_kinds": {
+          "items": {
+            "enum": [
+              "action_legality_evaluated",
+              "candidate_occurrence",
+              "effect_committed",
+              "feedback_available",
+              "feedback_withdrawn",
+              "formal_event_recorded",
+              "input_arrived",
+              "input_buffered",
+              "input_expired",
+              "input_recognized",
+              "input_sampled",
+              "lifecycle_milestone_reached",
+              "permission_changed",
+              "process_update",
+              "resolution_completed",
+              "scope_ended",
+              "scope_started",
+              "state_committed",
+              "state_sampled"
+            ]
+          },
+          "minItems": 1,
+          "type": "array",
+          "uniqueItems": true
+        },
+        "derivation_algorithm_id": {
+          "$ref": "#/$defs/localId"
+        },
+        "raw_trace_ref": {
+          "$ref": "#/$defs/localId"
+        },
+        "stop_condition_refs": {
+          "items": {
+            "$ref": "#/$defs/localId"
+          },
+          "minItems": 1,
+          "type": "array"
+        },
+        "tolerance_rule_refs": {
+          "items": {
+            "$ref": "#/$defs/localId"
+          },
+          "type": "array"
+        }
+      },
+      "required": [
+        "allowed_kinds",
+        "derivation_algorithm_id",
+        "raw_trace_ref",
+        "stop_condition_refs",
+        "tolerance_rule_refs"
+      ],
+      "type": "object"
+    },
+    "typedValue": {
+      "additionalProperties": false,
+      "properties": {
+        "coordinate_system": {
+          "oneOf": [
+            {
+              "minLength": 1,
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "serialized_value": {
+          "type": "string"
+        },
+        "time_base_id": {
+          "oneOf": [
+            {
+              "$ref": "#/$defs/localId"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "unit": {
+          "oneOf": [
+            {
+              "minLength": 1,
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "value_type": {
+          "enum": [
+            "boolean",
+            "decimal",
+            "id",
+            "id_set",
+            "integer",
+            "rational",
+            "status",
+            "string"
+          ]
+        }
+      },
+      "required": [
+        "coordinate_system",
+        "serialized_value",
+        "time_base_id",
+        "unit",
+        "value_type"
+      ],
+      "type": "object"
+    },
+    "typedValueFact": {
+      "additionalProperties": false,
+      "properties": {
+        "provenance_refs": {
+          "items": {
+            "$ref": "#/$defs/localId"
+          },
+          "type": "array"
+        },
+        "status": {
+          "$ref": "#/$defs/factStatus"
+        },
+        "value": {
+          "oneOf": [
+            {
+              "$ref": "#/$defs/typedValue"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "required": [
+        "provenance_refs",
+        "status",
+        "value"
+      ],
+      "type": "object"
+    }
+  },
+  "oneOf": [
+    {
+      "$ref": "#/$defs/canonicalEncoding"
+    },
+    {
+      "$ref": "#/$defs/generatedView"
+    },
+    {
+      "$ref": "#/$defs/projectionSpec"
+    },
+    {
+      "$ref": "#/$defs/sourcePacket"
+    }
+  ],
+  "title": "Game Primitives Continuous Action Structural Artifacts 0.1.0"
+}

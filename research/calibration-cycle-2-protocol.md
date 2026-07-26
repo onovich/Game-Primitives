@@ -1,9 +1,9 @@
 # 第二轮案例校准协议
 
-- 状态：逻辑解谜组 `logic-001` 已报告；连续行动组 `CA-01` 推荐稿已形成但尚未冻结，未选择案例或启动正式测试
+- 状态：逻辑解谜组 `logic-001` 已报告；连续行动组 `CA-01`–`CA-07` 已冻结，进入制品准备与增量彩排
 - 日期：2026-07-27
 - 项目阶段：阶段一·开放研究
-- 来源决定：D-C7、D2-1、D2-2、D2-3、D2-4、D2-5a–c 与 D2-6a–q；[ADR 0100](../docs/adr/0100-require-strong-tests-beyond-structural-expressibility.md)；[ADR 0101](../docs/adr/0101-pilot-the-second-cycle-with-two-contrasting-groups.md)；[ADR 0102](../docs/adr/0102-run-the-logic-puzzle-pilot-before-continuous-action.md)；[ADR 0103](../docs/adr/0103-test-puzzle-judgment-and-rule-boundaries-with-four-case-roles.md)；[ADR 0104](../docs/adr/0104-freeze-dual-material-logic-puzzle-pilot-cases.md)；[ADR 0105](../docs/adr/0105-use-procedural-blinding-and-answer-commitments-for-logic-pilot.md)；[ADR 0106](../docs/adr/0106-use-versioned-json-run-artifacts-for-logic-pilot.md)；[ADR 0107](../docs/adr/0107-freeze-logic-pilot-verdicts-contamination-and-scope.md)；[ADR 0108](../docs/adr/0108-freeze-logic-pilot-execution-representation-and-rehearsal.md)
+- 来源决定：D-C7、D2-1–D2-6、CA-01–CA-07；[ADR 0100](../docs/adr/0100-require-strong-tests-beyond-structural-expressibility.md)–[ADR 0115](../docs/adr/0115-freeze-continuous-action-artifacts-rehearsal-and-release.md)
 - 前序结果：[第一轮十二案跨案例总汇报](calibration-gates/gate-c-first-cycle-synthesis.md)
 - 当前复核：[从逻辑解谜组到连续行动组的组间方法复核](calibration-method-review-logic-to-continuous.md)
 
@@ -53,7 +53,7 @@
 | 顺序 | 试验组 | 主要检验对象 | 固定的最低强检验 | 本轮暂不冻结 |
 | --- | --- | --- | --- | --- |
 | 1 | **逻辑解谜与状态空间组** | **动作合法性**、**局部一致性**、**全局可完成性**与**规则变换边界** | **重构测试＋近邻辨别测试＋独立标注测试** | `logic-001` 已报告为**范围内通过**；证据因原型识别降级 |
-| 2 | **连续行动与具身控制组** | 动作／事件／过程、时间、空间、行动实现载体与输入反馈 | **重构测试＋设计变体测试** | [`CA-01` 核心命题推荐稿](continuous-action-pilot-ca-01.md)尚待冻结；`CA-02`–`CA-07` 尚待决定 |
+| 2 | **连续行动与具身控制组** | 动作／事件／过程、时间、空间、行动实现载体与输入反馈 | **重构测试＋设计变体测试** | [`CA-01`–`CA-07`](continuous-action-pilot-ca-07-artifacts-and-release.md)已冻结；准备工作区与增量彩排 |
 
 两组不是“主流组”和“垂直组”的简单分工。连续行动内部也要包含纵深或边界压力，逻辑解谜也要使用读者熟悉的锚点；每组都必须说明为什么可能推翻当前模型。
 
@@ -153,7 +153,7 @@ D2-6a–q 接受[执行、表示与彩排决定](../docs/adr/0108-freeze-logic-p
 
 两组完成后进入[校准门 D](calibration-gates/gate-d-second-cycle-method-pilot.md)，先决定强检验的输入隔离、通过标准、标注方法和工作负担是否需要修订，再决定是否扩展到社会裁定、硬核模拟与持续世界等案例组。
 
-执行顺序固定为逻辑解谜组在先、连续行动组在后。组间方法复核已经完成，连续行动组现在可以进行命题、案例与制品的前置设计；完整取证仍须等待 `CA-01`–`CA-07` 冻结和正式放行。门 D 必须等待两组结果，避免只用形式清晰或只用连续复杂案例评价方法。
+执行顺序固定为逻辑解谜组在先、连续行动组在后。组间方法复核和连续行动组 `CA-01`–`CA-07` 前置设计已经完成；当前可以制作 Schema、来源编码、夹具、比较器和增量彩排。完整取证仍须等待正式包冻结与一次性人工放行。门 D 必须等待两组结果，避免只用形式清晰或只用连续复杂案例评价方法。
 
 ## 3. 强检验矩阵
 

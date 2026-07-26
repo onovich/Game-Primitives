@@ -1,0 +1,450 @@
+{
+  "$id": "https://github.com/onovich/Game-Primitives/blob/main/research/calibration-tests/continuous-action-pilot/schema/truth-reveal-0.1.0.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$defs": {
+    "aliasWitness": {
+      "additionalProperties": false,
+      "properties": {
+        "case_id": {
+          "pattern": "^CA-R[1-3]$",
+          "type": "string"
+        },
+        "compatible_structures": {
+          "items": {
+            "$ref": "#/$defs/compatibleStructure"
+          },
+          "minItems": 2,
+          "type": "array"
+        },
+        "differing_observation_ids": {
+          "items": {
+            "$ref": "#/$defs/localId"
+          },
+          "minItems": 1,
+          "type": "array",
+          "uniqueItems": true
+        },
+        "shared_projection_digest": {
+          "$ref": "#/$defs/sha256"
+        },
+        "witness_id": {
+          "$ref": "#/$defs/localId"
+        }
+      },
+      "required": [
+        "case_id",
+        "compatible_structures",
+        "differing_observation_ids",
+        "shared_projection_digest",
+        "witness_id"
+      ],
+      "type": "object"
+    },
+    "artifactReference": {
+      "additionalProperties": false,
+      "properties": {
+        "artifact_id": {
+          "$ref": "#/$defs/localId"
+        },
+        "sha256": {
+          "$ref": "#/$defs/sha256"
+        }
+      },
+      "required": [
+        "artifact_id",
+        "sha256"
+      ],
+      "type": "object"
+    },
+    "caseTruth": {
+      "additionalProperties": false,
+      "properties": {
+        "alias_witness_ids": {
+          "items": {
+            "$ref": "#/$defs/localId"
+          },
+          "type": "array",
+          "uniqueItems": true
+        },
+        "case_id": {
+          "pattern": "^(?:CA-R[1-3]|NEG-01)$",
+          "type": "string"
+        },
+        "expected_observations": {
+          "items": {
+            "$ref": "#/$defs/expectedObservation"
+          },
+          "minItems": 1,
+          "type": "array"
+        },
+        "expected_prediction_status": {
+          "enum": [
+            "determinate",
+            "indeterminate"
+          ]
+        },
+        "required_reconstruction_facts": {
+          "items": {
+            "$ref": "#/$defs/requiredFact"
+          },
+          "type": "array"
+        }
+      },
+      "required": [
+        "alias_witness_ids",
+        "case_id",
+        "expected_observations",
+        "expected_prediction_status",
+        "required_reconstruction_facts"
+      ],
+      "type": "object"
+    },
+    "compatibleStructure": {
+      "additionalProperties": false,
+      "properties": {
+        "description": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "predicted_observations": {
+          "items": {
+            "$ref": "#/$defs/expectedObservation"
+          },
+          "minItems": 1,
+          "type": "array"
+        },
+        "structure_id": {
+          "$ref": "#/$defs/localId"
+        }
+      },
+      "required": [
+        "description",
+        "predicted_observations",
+        "structure_id"
+      ],
+      "type": "object"
+    },
+    "conditionMapping": {
+      "additionalProperties": false,
+      "properties": {
+        "condition_id": {
+          "pattern": "^condition-v0[12]$",
+          "type": "string"
+        },
+        "view_kind": {
+          "enum": [
+            "atomic_projection",
+            "blind_rich_view"
+          ]
+        }
+      },
+      "required": [
+        "condition_id",
+        "view_kind"
+      ],
+      "type": "object"
+    },
+    "expectedObservation": {
+      "additionalProperties": false,
+      "properties": {
+        "comparison": {
+          "enum": [
+            "direction",
+            "exact",
+            "set",
+            "status"
+          ]
+        },
+        "configuration_id": {
+          "$ref": "#/$defs/localId"
+        },
+        "observation_id": {
+          "$ref": "#/$defs/localId"
+        },
+        "tolerance_rule_id": {
+          "oneOf": [
+            {
+              "$ref": "#/$defs/localId"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "value": {
+          "$ref": "#/$defs/typedValue"
+        }
+      },
+      "required": [
+        "comparison",
+        "configuration_id",
+        "observation_id",
+        "tolerance_rule_id",
+        "value"
+      ],
+      "type": "object"
+    },
+    "hardConditionRule": {
+      "additionalProperties": false,
+      "properties": {
+        "condition_id": {
+          "enum": [
+            "CA-H01",
+            "CA-H02",
+            "CA-H03",
+            "CA-H04"
+          ]
+        },
+        "failure_effect": {
+          "enum": [
+            "core_claim_refuted",
+            "inconclusive",
+            "model_failure"
+          ]
+        },
+        "requirement": {
+          "minLength": 1,
+          "type": "string"
+        }
+      },
+      "required": [
+        "condition_id",
+        "failure_effect",
+        "requirement"
+      ],
+      "type": "object"
+    },
+    "localId": {
+      "pattern": "^[a-z0-9][a-z0-9._-]*$",
+      "type": "string"
+    },
+    "requiredFact": {
+      "additionalProperties": false,
+      "properties": {
+        "description": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "fact_id": {
+          "$ref": "#/$defs/localId"
+        },
+        "required_support_record_ids": {
+          "items": {
+            "$ref": "#/$defs/localId"
+          },
+          "type": "array",
+          "uniqueItems": true
+        }
+      },
+      "required": [
+        "description",
+        "fact_id",
+        "required_support_record_ids"
+      ],
+      "type": "object"
+    },
+    "sealedTruth": {
+      "additionalProperties": false,
+      "properties": {
+        "$schema": {
+          "type": "string"
+        },
+        "alias_witnesses": {
+          "items": {
+            "$ref": "#/$defs/aliasWitness"
+          },
+          "type": "array"
+        },
+        "artifact_type": {
+          "const": "sealed_truth"
+        },
+        "artifact_version": {
+          "const": "0.1.0"
+        },
+        "case_truths": {
+          "items": {
+            "$ref": "#/$defs/caseTruth"
+          },
+          "minItems": 1,
+          "type": "array"
+        },
+        "condition_mapping": {
+          "items": {
+            "$ref": "#/$defs/conditionMapping"
+          },
+          "maxItems": 2,
+          "minItems": 2,
+          "type": "array"
+        },
+        "created_at": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "hard_condition_rules": {
+          "items": {
+            "$ref": "#/$defs/hardConditionRule"
+          },
+          "maxItems": 4,
+          "minItems": 4,
+          "type": "array"
+        },
+        "input_artifacts": {
+          "items": {
+            "$ref": "#/$defs/artifactReference"
+          },
+          "minItems": 1,
+          "type": "array"
+        },
+        "projection_spec_sha256": {
+          "$ref": "#/$defs/sha256"
+        },
+        "protocol_version": {
+          "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$",
+          "type": "string"
+        },
+        "run_id": {
+          "pattern": "^(?:continuous|rehearsal)-[0-9]{3}$",
+          "type": "string"
+        }
+      },
+      "required": [
+        "$schema",
+        "alias_witnesses",
+        "artifact_type",
+        "artifact_version",
+        "case_truths",
+        "condition_mapping",
+        "created_at",
+        "hard_condition_rules",
+        "input_artifacts",
+        "projection_spec_sha256",
+        "protocol_version",
+        "run_id"
+      ],
+      "type": "object"
+    },
+    "sha256": {
+      "pattern": "^[0-9a-f]{64}$",
+      "type": "string"
+    },
+    "truthReveal": {
+      "additionalProperties": false,
+      "properties": {
+        "$schema": {
+          "type": "string"
+        },
+        "algorithm": {
+          "const": "SHA-256"
+        },
+        "artifact_type": {
+          "const": "truth_reveal"
+        },
+        "artifact_version": {
+          "const": "0.1.0"
+        },
+        "combination": {
+          "const": "secret_nonce_bytes || exact_truth_bundle_bytes"
+        },
+        "commitment": {
+          "$ref": "#/$defs/sha256"
+        },
+        "commitment_recomputed": {
+          "$ref": "#/$defs/sha256"
+        },
+        "commitment_verified": {
+          "type": "boolean"
+        },
+        "execution_result_sha256": {
+          "$ref": "#/$defs/sha256"
+        },
+        "prediction_set_digest": {
+          "$ref": "#/$defs/sha256"
+        },
+        "revealed_at": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "run_id": {
+          "pattern": "^(?:continuous|rehearsal)-[0-9]{3}$",
+          "type": "string"
+        },
+        "secret_nonce_hex": {
+          "pattern": "^[0-9a-f]{64}$",
+          "type": "string"
+        },
+        "truth_bundle_bytes": {
+          "minimum": 1,
+          "type": "integer"
+        },
+        "truth_bundle_sha256": {
+          "$ref": "#/$defs/sha256"
+        }
+      },
+      "required": [
+        "$schema",
+        "algorithm",
+        "artifact_type",
+        "artifact_version",
+        "combination",
+        "commitment",
+        "commitment_recomputed",
+        "commitment_verified",
+        "execution_result_sha256",
+        "prediction_set_digest",
+        "revealed_at",
+        "run_id",
+        "secret_nonce_hex",
+        "truth_bundle_bytes",
+        "truth_bundle_sha256"
+      ],
+      "type": "object"
+    },
+    "typedValue": {
+      "additionalProperties": false,
+      "properties": {
+        "serialized_value": {
+          "type": "string"
+        },
+        "unit": {
+          "oneOf": [
+            {
+              "minLength": 1,
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "value_type": {
+          "enum": [
+            "boolean",
+            "decimal",
+            "direction",
+            "id",
+            "id_set",
+            "integer",
+            "rational",
+            "status",
+            "string"
+          ]
+        }
+      },
+      "required": [
+        "serialized_value",
+        "unit",
+        "value_type"
+      ],
+      "type": "object"
+    }
+  },
+  "oneOf": [
+    {
+      "$ref": "#/$defs/sealedTruth"
+    },
+    {
+      "$ref": "#/$defs/truthReveal"
+    }
+  ],
+  "title": "Game Primitives Continuous Action Truth and Reveal Artifacts 0.1.0"
+}

@@ -27,5 +27,12 @@
 - [逻辑解谜组一手来源选案](sources/second-cycle-logic-pilot-case-selection.md)：四个锚点、四个**受控测试夹具**及来源／版权／污染边界；
 - [逻辑解谜组测试工作区](calibration-tests/logic-pilot/README.md)：Schema、版本约定、彩排、`logic-001` 正式制品与比较报告；
 - [逻辑组到连续组的方法复核](calibration-method-review-logic-to-continuous.md)：保留的证据链、必须修订的方法和 `CA-01`–`CA-07` 决策顺序；
-- [连续行动组 CA-01 推荐稿](continuous-action-pilot-ca-01.md)：以工作标签“原子动作别名化”指称核心失真的可反驳命题，尚待作者冻结；
+- [连续行动组 CA-01](continuous-action-pilot-ca-01.md)：以工作标签“原子动作别名化”指称核心失真的可反驳命题，已经接受并冻结；
+- [连续行动组 CA-02](continuous-action-pilot-ca-02-case-roles.md)：三个核心案例角色、一个条件角色、交接规则与选案门槛；
+- [连续行动组 CA-03](continuous-action-pilot-ca-03-case-selection.md)：*FOOTSIES*、id GPL 移动模块与 osu!lazer 的版本、片段、备选和停止规则；
+- [连续行动组一手来源扫描](sources/continuous-action-ca-02-ca-03-primary-source-scan.md)：候选、源码定位、初步变体、版权边界与开放缺口；
+- [连续行动组 CA-05](continuous-action-pilot-ca-05-variants.md)：三项单变量反事实、一个装饰负对照、重构与预测判定表；
+- [连续行动组 CA-06](continuous-action-pilot-ca-06-execution-and-verdicts.md)：丰富／压缩双条件、执行角色、熟悉度／污染与组级结论；
+- [连续行动组 CA-07](continuous-action-pilot-ca-07-artifacts-and-release.md)：七类制品、增量彩排、冻结纪律和一次性正式派发门；
+- [CA-SR 0.1](../theory/CONTINUOUS-ACTION-REPRESENTATION-0.1.md)：连续行动组的测试伴随表示与轨迹格式；
 - [校准门 D](calibration-gates/gate-d-second-cycle-method-pilot.md)：两组完成后复核强检验方法，再决定扩展范围。

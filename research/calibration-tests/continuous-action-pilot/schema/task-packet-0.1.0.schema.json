@@ -1,0 +1,469 @@
+{
+  "$id": "https://github.com/onovich/Game-Primitives/blob/main/research/calibration-tests/continuous-action-pilot/schema/task-packet-0.1.0.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$defs": {
+    "artifactReference": {
+      "additionalProperties": false,
+      "properties": {
+        "artifact_id": {
+          "$ref": "#/$defs/localId"
+        },
+        "path": {
+          "minLength": 1,
+          "not": {
+            "pattern": "(^|/)\\.\\.(/|$)"
+          },
+          "type": "string"
+        },
+        "sha256": {
+          "$ref": "#/$defs/sha256"
+        }
+      },
+      "required": [
+        "artifact_id",
+        "path",
+        "sha256"
+      ],
+      "type": "object"
+    },
+    "localId": {
+      "pattern": "^[a-z0-9][a-z0-9._-]*$",
+      "type": "string"
+    },
+    "observationSpec": {
+      "additionalProperties": false,
+      "properties": {
+        "allowed_value_types": {
+          "items": {
+            "enum": [
+              "boolean",
+              "decimal",
+              "direction",
+              "id",
+              "integer",
+              "rational",
+              "status",
+              "string"
+            ]
+          },
+          "minItems": 1,
+          "type": "array",
+          "uniqueItems": true
+        },
+        "description": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "observation_id": {
+          "$ref": "#/$defs/localId"
+        },
+        "tolerance_rule_id": {
+          "oneOf": [
+            {
+              "$ref": "#/$defs/localId"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "unit": {
+          "oneOf": [
+            {
+              "minLength": 1,
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "required": [
+        "allowed_value_types",
+        "description",
+        "observation_id",
+        "tolerance_rule_id",
+        "unit"
+      ],
+      "type": "object"
+    },
+    "outputSchemaReference": {
+      "additionalProperties": false,
+      "properties": {
+        "path": {
+          "pattern": "^research/calibration-tests/continuous-action-pilot/schema/[A-Za-z0-9._-]+\\.schema\\.json$",
+          "type": "string"
+        },
+        "sha256": {
+          "$ref": "#/$defs/sha256"
+        }
+      },
+      "required": [
+        "path",
+        "sha256"
+      ],
+      "type": "object"
+    },
+    "sha256": {
+      "pattern": "^[0-9a-f]{64}$",
+      "type": "string"
+    },
+    "taskPacket": {
+      "additionalProperties": false,
+      "properties": {
+        "$schema": {
+          "type": "string"
+        },
+        "allowed_observations": {
+          "items": {
+            "$ref": "#/$defs/observationSpec"
+          },
+          "type": "array"
+        },
+        "artifact_type": {
+          "enum": [
+            "prediction_task_packet",
+            "reconstruction_task_packet",
+            "source_audit_task_packet",
+            "source_encoding_task_packet"
+          ]
+        },
+        "artifact_version": {
+          "const": "0.1.0"
+        },
+        "behavior_scope": {
+          "const": "structural_only"
+        },
+        "case_ids": {
+          "items": {
+            "pattern": "^CA-R[1-3]$",
+            "type": "string"
+          },
+          "minItems": 1,
+          "type": "array",
+          "uniqueItems": true
+        },
+        "condition_id": {
+          "oneOf": [
+            {
+              "pattern": "^condition-v0[12]$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "created_at": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "forbidden_actions": {
+          "items": {
+            "enum": [
+              "access_other_condition",
+              "access_other_submission",
+              "access_package_outside_dispatch",
+              "access_truth_or_result",
+              "create_child_task",
+              "external_search",
+              "read_shared_workspace",
+              "tool_call"
+            ]
+          },
+          "minItems": 1,
+          "type": "array",
+          "uniqueItems": true
+        },
+        "input_artifacts": {
+          "items": {
+            "$ref": "#/$defs/artifactReference"
+          },
+          "minItems": 1,
+          "type": "array"
+        },
+        "instructions": {
+          "items": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "minItems": 1,
+          "type": "array"
+        },
+        "output_schema": {
+          "$ref": "#/$defs/outputSchemaReference"
+        },
+        "representation_version": {
+          "oneOf": [
+            {
+              "const": "CA-SR 0.1"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "required_audit_checks": {
+          "items": {
+            "enum": [
+              "answer_hint_scan",
+              "baseline_variant_semantic_diff",
+              "case_scope",
+              "cross_case_obligations",
+              "identity_leak_scan",
+              "projection_fidelity",
+              "provenance_fidelity",
+              "reference_closure",
+              "source_determinacy",
+              "source_representation_distinction",
+              "typed_representation"
+            ]
+          },
+          "type": "array",
+          "uniqueItems": true
+        },
+        "run_id": {
+          "pattern": "^(?:continuous|rehearsal)-[0-9]{3}$",
+          "type": "string"
+        },
+        "stage1_submission_required": {
+          "type": "boolean"
+        },
+        "stop_boundary_refs": {
+          "items": {
+            "$ref": "#/$defs/localId"
+          },
+          "type": "array",
+          "uniqueItems": true
+        },
+        "target_encoding_sha256": {
+          "oneOf": [
+            {
+              "$ref": "#/$defs/sha256"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "target_view_sha256": {
+          "oneOf": [
+            {
+              "$ref": "#/$defs/sha256"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "task_id": {
+          "$ref": "#/$defs/localId"
+        },
+        "tolerance_rule_refs": {
+          "items": {
+            "$ref": "#/$defs/localId"
+          },
+          "type": "array",
+          "uniqueItems": true
+        },
+        "variant_interventions": {
+          "items": {
+            "$ref": "#/$defs/variantIntervention"
+          },
+          "type": "array"
+        }
+      },
+      "required": [
+        "$schema",
+        "allowed_observations",
+        "artifact_type",
+        "artifact_version",
+        "behavior_scope",
+        "case_ids",
+        "condition_id",
+        "created_at",
+        "forbidden_actions",
+        "input_artifacts",
+        "instructions",
+        "output_schema",
+        "representation_version",
+        "required_audit_checks",
+        "run_id",
+        "stage1_submission_required",
+        "stop_boundary_refs",
+        "target_encoding_sha256",
+        "target_view_sha256",
+        "task_id",
+        "tolerance_rule_refs",
+        "variant_interventions"
+      ],
+      "type": "object"
+    },
+    "typedValue": {
+      "additionalProperties": false,
+      "properties": {
+        "serialized_value": {
+          "type": "string"
+        },
+        "unit": {
+          "oneOf": [
+            {
+              "minLength": 1,
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "value_type": {
+          "enum": [
+            "boolean",
+            "decimal",
+            "id",
+            "id_set",
+            "integer",
+            "rational",
+            "status",
+            "string"
+          ]
+        }
+      },
+      "required": [
+        "serialized_value",
+        "unit",
+        "value_type"
+      ],
+      "type": "object"
+    },
+    "variantIntervention": {
+      "additionalProperties": false,
+      "properties": {
+        "baseline_value": {
+          "$ref": "#/$defs/typedValue"
+        },
+        "case_id": {
+          "pattern": "^CA-R[1-3]$",
+          "type": "string"
+        },
+        "invariant_ids": {
+          "items": {
+            "$ref": "#/$defs/localId"
+          },
+          "minItems": 1,
+          "type": "array",
+          "uniqueItems": true
+        },
+        "observation_ids": {
+          "items": {
+            "$ref": "#/$defs/localId"
+          },
+          "minItems": 1,
+          "type": "array",
+          "uniqueItems": true
+        },
+        "stop_boundary_id": {
+          "$ref": "#/$defs/localId"
+        },
+        "variable_id": {
+          "$ref": "#/$defs/localId"
+        },
+        "variant_value": {
+          "$ref": "#/$defs/typedValue"
+        }
+      },
+      "required": [
+        "baseline_value",
+        "case_id",
+        "invariant_ids",
+        "observation_ids",
+        "stop_boundary_id",
+        "variable_id",
+        "variant_value"
+      ],
+      "type": "object"
+    }
+  },
+  "oneOf": [
+    {
+      "properties": {
+        "artifact_type": {
+          "const": "prediction_task_packet"
+        },
+        "condition_id": {
+          "type": "null"
+        },
+        "stage1_submission_required": {
+          "const": true
+        }
+      },
+      "required": [
+        "allowed_observations",
+        "artifact_type",
+        "stage1_submission_required",
+        "variant_interventions"
+      ]
+    },
+    {
+      "properties": {
+        "artifact_type": {
+          "const": "reconstruction_task_packet"
+        },
+        "condition_id": {
+          "pattern": "^condition-v0[12]$",
+          "type": "string"
+        },
+        "stage1_submission_required": {
+          "const": false
+        }
+      },
+      "required": [
+        "artifact_type",
+        "condition_id",
+        "target_view_sha256"
+      ]
+    },
+    {
+      "properties": {
+        "artifact_type": {
+          "const": "source_audit_task_packet"
+        },
+        "condition_id": {
+          "type": "null"
+        },
+        "stage1_submission_required": {
+          "const": false
+        }
+      },
+      "required": [
+        "artifact_type",
+        "required_audit_checks",
+        "target_encoding_sha256"
+      ]
+    },
+    {
+      "properties": {
+        "artifact_type": {
+          "const": "source_encoding_task_packet"
+        },
+        "condition_id": {
+          "type": "null"
+        },
+        "representation_version": {
+          "const": "CA-SR 0.1"
+        },
+        "stage1_submission_required": {
+          "const": false
+        }
+      },
+      "required": [
+        "artifact_type",
+        "representation_version"
+      ]
+    }
+  ],
+  "title": "Game Primitives Continuous Action Task Packets 0.1.0",
+  "type": "object",
+  "$ref": "#/$defs/taskPacket"
+}

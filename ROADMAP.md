@@ -36,13 +36,13 @@
 - 目录、术语和表示法频繁调整。
 - 形成局部清晰的文章或页面，但不把它们自动视为书稿章节。
 
-### 当前子周期：第一轮已关闭，第二轮连续行动组前置设计中
+### 当前子周期：第一轮已关闭，第二轮连续行动组制品准备中
 
 项目仍处于阶段一。第一轮由 **4 个深度案例与 8 个标准案例**组成，已于 2026-07-22 在声明的结构范围内完成案例包、失败归并、跨案总汇报与 D-C1–D-C7 决策。具体范围与关闭边界见 [`research/calibration-cycle-1.md`](research/calibration-cycle-1.md)和[门 C 总汇报](research/calibration-gates/gate-c-first-cycle-synthesis.md)。
 
 “第一轮完成”不表示模型完备，也不表示实际对局、复现、测量、玩家行为和体验研究已经完成；这些缺口继续保留在[校准证据积压](research/calibration-evidence-backlog.md)。
 
-第二轮的方法已由[校准协议](research/calibration-cycle-2-protocol.md)确定。首个批次不立即铺开完整类型覆盖，而以“逻辑解谜与状态空间”“连续行动与具身控制”两个互补问题组依次试验强检验，最后召开[校准门 D](research/calibration-gates/gate-d-second-cycle-method-pilot.md)。逻辑组的 `rehearsal-001`、正式轮次 [`logic-001`](research/calibration-tests/logic-pilot/runs/logic-001/) 和[组间方法复核](research/calibration-method-review-logic-to-continuous.md)已经完成；正式结论为**范围内通过**，但证据因所有测试者认出或怀疑原型而降级。连续行动组的 [`CA-01` 核心命题推荐稿](research/continuous-action-pilot-ca-01.md)已经形成，尚待作者冻结；随后才进入 `CA-02`–`CA-07` 的案例、表示、变体、角色与制品设计。在这些条件冻结和正式放行前，不启动完整取证。第二轮仍在阶段一中，门 D 尚未召开。
+第二轮的方法已由[校准协议](research/calibration-cycle-2-protocol.md)确定。首个批次不立即铺开完整类型覆盖，而以“逻辑解谜与状态空间”“连续行动与具身控制”两个互补问题组依次试验强检验，最后召开[校准门 D](research/calibration-gates/gate-d-second-cycle-method-pilot.md)。逻辑组的 `rehearsal-001`、正式轮次 [`logic-001`](research/calibration-tests/logic-pilot/runs/logic-001/) 和[组间方法复核](research/calibration-method-review-logic-to-continuous.md)已经完成；正式结论为**范围内通过**，但证据因所有测试者认出或怀疑原型而降级。连续行动组的 [`CA-01`–`CA-07`](research/continuous-action-pilot-ca-07-artifacts-and-release.md) 已冻结核心命题、三个职责、三个官方源码案例、CA-SR 0.1、单变量反事实、双条件执行和一次性正式放行门。当前继续建立测试工作区、Schema 和虚构材料增量彩排；完成正式包并取得明确放行前，不派发正式盲测或运行冻结输入。第二轮仍在阶段一中，门 D 尚未召开。
 
 关闭一轮校准不等于进入阶段二；阶段转换仍按下文的证据与稳定性条件判断。
 
