@@ -1,0 +1,40 @@
+{
+  "$schema": "https://github.com/onovich/Game-Primitives/blob/main/research/calibration-tests/continuous-action-pilot/schema/run-report-0.1.0.schema.json",
+  "artifact_type": "rehearsal_report",
+  "artifact_version": "0.1.0",
+  "checks": [
+    {
+      "check_id": "check.stage1-freeze",
+      "evidence": "冻结清单、规范前像与根摘要能够复算，但两个重构任务包中的输入散列仍指向 rehearsal-002：v01 声明 020e6458…、实际为 293f7560…；v02 声明 d38db6f…、实际为 d9e09f15…。冻结包不能作为自洽派发单元。",
+      "status": "failed"
+    },
+    {
+      "check_id": "check.stage2-continuity",
+      "evidence": "准备门在任何第一阶段派发前终止本轮，没有产生可进入第二阶段的有效重构提交。",
+      "status": "not_evaluable"
+    },
+    {
+      "check_id": "check.condition-isolation",
+      "evidence": "未向盲测执行者派发任何条件，因此没有隔离污染，但本轮也没有形成可评价的隔离执行证据。",
+      "status": "not_evaluable"
+    },
+    {
+      "check_id": "check.prediction-before-execution",
+      "evidence": "预测任务包同样保留旧变体散列 edee576a…，而实际冻结变体为 e871c4ae…。本轮在预测或执行开始前终止。",
+      "status": "failed"
+    },
+    {
+      "check_id": "check.execution-before-reveal",
+      "evidence": "没有执行、结果或揭示制品；准备失败后未跨越受测边界。",
+      "status": "not_evaluable"
+    },
+    {
+      "check_id": "check.hash-closure",
+      "evidence": "清单的 10 个单项散列、9 项冻结集合、849 字节规范前像与根摘要 df684dec1bd2c896a63744cc129d99ba24ee467725f28b133c29815136d2b35f 均能独立复算；失败发生在任务包内部引用闭包，而非根摘要算法。",
+      "status": "passed"
+    }
+  ],
+  "finished_at": "2026-07-26T18:34:12Z",
+  "procedure_result": "procedure_fail",
+  "run_id": "rehearsal-003"
+}
