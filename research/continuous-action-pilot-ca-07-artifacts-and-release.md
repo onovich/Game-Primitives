@@ -5,6 +5,7 @@
 - 来源决定：[CA-01](continuous-action-pilot-ca-01.md)–[CA-06](continuous-action-pilot-ca-06-execution-and-verdicts.md)
 - 接受记录：[ADR 0115](../docs/adr/0115-freeze-continuous-action-artifacts-rehearsal-and-release.md)
 - 彩排后修订：[ADR 0116](../docs/adr/0116-separate-blind-payloads-from-generated-submission-envelopes.md)
+- 正式包修订：[ADR 0117](../docs/adr/0117-freeze-the-formal-run-package-contract.md)
 - 正式工作区：`research/calibration-tests/continuous-action-pilot/`
 
 ## 1. 决策摘要
@@ -54,11 +55,12 @@ CA-07 不授权：
 research/calibration-tests/continuous-action-pilot/
 ├── README.md
 ├── schema/
-│   ├── run-manifest-0.1.0.schema.json
+│   ├── run-manifest-0.1.1.schema.json
 │   ├── ca-sr-artifact-0.1.0.schema.json
-│   ├── task-packet-0.1.0.schema.json
-│   ├── role-submission-0.1.0.schema.json
-│   ├── execution-artifact-0.1.0.schema.json
+│   ├── task-packet-0.1.1.schema.json
+│   ├── blind-response-interface-0.1.0.schema.json
+│   ├── role-submission-0.1.2.schema.json
+│   ├── execution-artifact-0.1.1.schema.json
 │   ├── truth-reveal-0.1.0.schema.json
 │   └── run-report-0.1.0.schema.json
 ├── rehearsals/
@@ -70,7 +72,8 @@ research/calibration-tests/continuous-action-pilot/
         ├── source/
         │   ├── source-packet.json
         │   ├── canonical-encoding-v0.1.0.json
-        │   └── source-audit-v0.1.0.json
+        │   ├── encoding-audit-v0.1.0.json
+        │   └── projection-audit-v0.1.0.json
         ├── inputs/
         │   ├── source-encoding-packet.json
         │   ├── source-audit-packet.json
@@ -88,6 +91,10 @@ research/calibration-tests/continuous-action-pilot/
         │   ├── trace-bundle.json
         │   └── execution-result.json
         ├── submissions/
+        │   ├── actors/
+        │   ├── raw/
+        │   ├── envelopes/
+        │   ├── invalid/
         │   ├── p01-stage1.json
         │   ├── p02-stage1.json
         │   ├── p03-stage1.json
@@ -106,7 +113,7 @@ research/calibration-tests/continuous-action-pilot/
 
 目录只在产生真实制品时创建，不用 `.gitkeep` 预造空层级。JSON 保存结构化事实真值；Markdown 只负责导航、任务说明和生成阅读视图。
 
-## 3. 七个 Schema 家族
+## 3. 八个 Schema 家族
 
 不为三款游戏、两种视图或四名执行者复制格式：
 
@@ -115,6 +122,7 @@ research/calibration-tests/continuous-action-pilot/
 | `run-manifest` | 状态、阶段、制品索引、哈希、可见范围和承诺 |
 | `ca-sr-artifact` | 来源包、规范编码、机械视图和投影规则 |
 | `task-packet` | 编码、审核、重构和预测的自包含派发信封 |
+| `blind-response-interface` | 盲测者原始语义回答与保管者机器信封 |
 | `role-submission` | 来源审核、重构、预测和揭示后制品审核 |
 | `execution-artifact` | 执行计划、轨迹包和执行结果 |
 | `truth-reveal` | 密封真值、映射、别名见证、随机数揭示和承诺复算 |
@@ -175,7 +183,7 @@ SHA-256(secret_nonce_bytes || exact_truth_bundle_bytes)
 
 ```text
 stage-1 submission SHA
-        ↓ prior_submission_sha256
+        ↓ prior_stage_submission_sha256
 stage-2 prediction
         ↓ prediction_set_digest
 execution result
@@ -368,3 +376,5 @@ ADR 0116 对第 3、5、6、7 节作以下窄修订：
 - 正式阶段仍须收齐同一阶段后一次归档，彩排中的增量重试不成为正式先例。
 
 修订的完整契约见[盲测回答接口修订](continuous-action-pilot-blind-response-interface.md)。聚焦接口彩排已经通过，接口阻断解除；现在可以继续制作正式包。第 10 节人工门仍须等全部正式材料冻结后召开，并取得一次明确放行。
+
+正式目录、版本矩阵、两提交冻结协议、门前 actor 计划与门后真实会话身份的分离，以及原始执行输出的直接散列绑定，按[正式轮次包契约](continuous-action-pilot-formal-package-contract.md)执行。该窄修订不改变第 10 节的人工放行要求。

@@ -1,0 +1,326 @@
+{
+  "$defs": {
+    "executionArtifact": {
+      "additionalProperties": false,
+      "properties": {
+        "$schema": {
+          "const": "https://github.com/onovich/Game-Primitives/blob/main/research/calibration-tests/continuous-action-pilot/schema/execution-artifact-0.1.1.schema.json"
+        },
+        "artifact_type": {
+          "enum": [
+            "execution_plan",
+            "execution_result",
+            "trace_bundle"
+          ]
+        },
+        "artifact_version": {
+          "const": "0.1.1"
+        },
+        "case_results": {
+          "items": {
+            "$ref": "https://github.com/onovich/Game-Primitives/blob/main/research/calibration-tests/continuous-action-pilot/schema/execution-artifact-0.1.0.schema.json#/$defs/caseResult"
+          },
+          "type": "array"
+        },
+        "cases": {
+          "items": {
+            "$ref": "https://github.com/onovich/Game-Primitives/blob/main/research/calibration-tests/continuous-action-pilot/schema/execution-artifact-0.1.0.schema.json#/$defs/caseExecutionPlan"
+          },
+          "type": "array"
+        },
+        "created_at": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "derivation_artifacts": {
+          "items": {
+            "$ref": "#/$defs/rawArtifactReference"
+          },
+          "type": "array",
+          "uniqueItems": true
+        },
+        "environments": {
+          "items": {
+            "$ref": "https://github.com/onovich/Game-Primitives/blob/main/research/calibration-tests/continuous-action-pilot/schema/execution-artifact-0.1.0.schema.json#/$defs/environment"
+          },
+          "type": "array"
+        },
+        "execution_plan_sha256": {
+          "oneOf": [
+            {
+              "$ref": "https://github.com/onovich/Game-Primitives/blob/main/research/calibration-tests/continuous-action-pilot/schema/execution-artifact-0.1.0.schema.json#/$defs/sha256"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "executions": {
+          "items": {
+            "$ref": "#/$defs/executionTrace"
+          },
+          "type": "array"
+        },
+        "finished_at": {
+          "oneOf": [
+            {
+              "format": "date-time",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "fixture_lock": {
+          "oneOf": [
+            {
+              "$ref": "https://github.com/onovich/Game-Primitives/blob/main/research/calibration-tests/continuous-action-pilot/schema/execution-artifact-0.1.0.schema.json#/$defs/artifactReference"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "prediction_set_digest": {
+          "oneOf": [
+            {
+              "$ref": "https://github.com/onovich/Game-Primitives/blob/main/research/calibration-tests/continuous-action-pilot/schema/execution-artifact-0.1.0.schema.json#/$defs/sha256"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "protocol_version": {
+          "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$",
+          "type": "string"
+        },
+        "run_id": {
+          "pattern": "^(?:continuous|rehearsal)-[0-9]{3}$",
+          "type": "string"
+        },
+        "started_at": {
+          "oneOf": [
+            {
+              "format": "date-time",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "trace_bundle_sha256": {
+          "oneOf": [
+            {
+              "$ref": "https://github.com/onovich/Game-Primitives/blob/main/research/calibration-tests/continuous-action-pilot/schema/execution-artifact-0.1.0.schema.json#/$defs/sha256"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "required": [
+        "$schema",
+        "artifact_type",
+        "artifact_version",
+        "case_results",
+        "cases",
+        "created_at",
+        "derivation_artifacts",
+        "environments",
+        "execution_plan_sha256",
+        "executions",
+        "finished_at",
+        "fixture_lock",
+        "prediction_set_digest",
+        "protocol_version",
+        "run_id",
+        "started_at",
+        "trace_bundle_sha256"
+      ],
+      "type": "object"
+    },
+    "executionTrace": {
+      "additionalProperties": false,
+      "properties": {
+        "binary_sha256": {
+          "$ref": "https://github.com/onovich/Game-Primitives/blob/main/research/calibration-tests/continuous-action-pilot/schema/execution-artifact-0.1.0.schema.json#/$defs/sha256"
+        },
+        "case_id": {
+          "$ref": "https://github.com/onovich/Game-Primitives/blob/main/research/calibration-tests/continuous-action-pilot/schema/execution-artifact-0.1.0.schema.json#/$defs/caseId"
+        },
+        "configuration_id": {
+          "$ref": "https://github.com/onovich/Game-Primitives/blob/main/research/calibration-tests/continuous-action-pilot/schema/execution-artifact-0.1.0.schema.json#/$defs/localId"
+        },
+        "environment_id": {
+          "$ref": "https://github.com/onovich/Game-Primitives/blob/main/research/calibration-tests/continuous-action-pilot/schema/execution-artifact-0.1.0.schema.json#/$defs/localId"
+        },
+        "execution_id": {
+          "$ref": "https://github.com/onovich/Game-Primitives/blob/main/research/calibration-tests/continuous-action-pilot/schema/execution-artifact-0.1.0.schema.json#/$defs/localId"
+        },
+        "finished_at": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "process_exit_code": {
+          "type": "integer"
+        },
+        "raw_artifacts": {
+          "items": {
+            "$ref": "#/$defs/rawArtifactReference"
+          },
+          "minItems": 1,
+          "type": "array",
+          "uniqueItems": true
+        },
+        "repetition_index": {
+          "minimum": 1,
+          "type": "integer"
+        },
+        "started_at": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "trace_entries": {
+          "items": {
+            "$ref": "https://github.com/onovich/Game-Primitives/blob/main/research/calibration-tests/continuous-action-pilot/schema/execution-artifact-0.1.0.schema.json#/$defs/traceEntry"
+          },
+          "type": "array"
+        }
+      },
+      "required": [
+        "binary_sha256",
+        "case_id",
+        "configuration_id",
+        "environment_id",
+        "execution_id",
+        "finished_at",
+        "process_exit_code",
+        "raw_artifacts",
+        "repetition_index",
+        "started_at",
+        "trace_entries"
+      ],
+      "type": "object"
+    },
+    "rawArtifactReference": {
+      "additionalProperties": false,
+      "properties": {
+        "artifact_id": {
+          "$ref": "https://github.com/onovich/Game-Primitives/blob/main/research/calibration-tests/continuous-action-pilot/schema/execution-artifact-0.1.0.schema.json#/$defs/localId"
+        },
+        "artifact_role": {
+          "enum": [
+            "build_log",
+            "comparator_output",
+            "invocation_record",
+            "process_metadata",
+            "raw_stderr",
+            "raw_stdout",
+            "test_result",
+            "trace_source"
+          ]
+        },
+        "path": {
+          "minLength": 1,
+          "not": {
+            "pattern": "(^|/)\\.\\.(/|$)"
+          },
+          "type": "string"
+        },
+        "sha256": {
+          "$ref": "https://github.com/onovich/Game-Primitives/blob/main/research/calibration-tests/continuous-action-pilot/schema/execution-artifact-0.1.0.schema.json#/$defs/sha256"
+        }
+      },
+      "required": [
+        "artifact_id",
+        "artifact_role",
+        "path",
+        "sha256"
+      ],
+      "type": "object"
+    }
+  },
+  "$id": "https://github.com/onovich/Game-Primitives/blob/main/research/calibration-tests/continuous-action-pilot/schema/execution-artifact-0.1.1.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "oneOf": [
+    {
+      "properties": {
+        "artifact_type": {
+          "const": "execution_plan"
+        },
+        "derivation_artifacts": {
+          "maxItems": 0
+        },
+        "execution_plan_sha256": {
+          "type": "null"
+        },
+        "executions": {
+          "maxItems": 0
+        },
+        "finished_at": {
+          "type": "null"
+        },
+        "prediction_set_digest": {
+          "type": "null"
+        },
+        "started_at": {
+          "type": "null"
+        },
+        "trace_bundle_sha256": {
+          "type": "null"
+        }
+      },
+      "required": [
+        "artifact_type",
+        "cases",
+        "environments",
+        "fixture_lock"
+      ]
+    },
+    {
+      "properties": {
+        "artifact_type": {
+          "const": "execution_result"
+        },
+        "derivation_artifacts": {
+          "minItems": 1
+        }
+      },
+      "required": [
+        "artifact_type",
+        "case_results",
+        "derivation_artifacts",
+        "execution_plan_sha256",
+        "finished_at",
+        "prediction_set_digest",
+        "started_at",
+        "trace_bundle_sha256"
+      ]
+    },
+    {
+      "properties": {
+        "artifact_type": {
+          "const": "trace_bundle"
+        },
+        "derivation_artifacts": {
+          "maxItems": 0
+        }
+      },
+      "required": [
+        "artifact_type",
+        "execution_plan_sha256",
+        "executions",
+        "finished_at",
+        "prediction_set_digest",
+        "started_at"
+      ]
+    }
+  ],
+  "title": "Game Primitives Continuous Action Execution Artifacts 0.1.1",
+  "type": "object",
+  "$ref": "#/$defs/executionArtifact"
+}

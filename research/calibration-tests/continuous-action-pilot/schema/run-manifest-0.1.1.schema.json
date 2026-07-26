@@ -1,0 +1,251 @@
+{
+  "$defs": {
+    "artifactEntry": {
+      "additionalProperties": false,
+      "properties": {
+        "artifact_id": {
+          "$ref": "#/$defs/localId"
+        },
+        "artifact_kind": {
+          "enum": [
+            "actor_descriptor",
+            "audit",
+            "build_record",
+            "documentation",
+            "execution_plan",
+            "execution_raw",
+            "execution_result",
+            "fixture",
+            "generator",
+            "report",
+            "response_payload",
+            "reveal",
+            "source",
+            "submission",
+            "submission_envelope",
+            "task_packet",
+            "trace",
+            "truth"
+          ]
+        },
+        "artifact_version": {
+          "$ref": "https://github.com/onovich/Game-Primitives/blob/main/research/calibration-tests/continuous-action-pilot/schema/run-manifest-0.1.0.schema.json#/$defs/semanticVersion"
+        },
+        "audience": {
+          "items": {
+            "enum": [
+              "all_blind_testers",
+              "author",
+              "condition-v01",
+              "condition-v02",
+              "custodian",
+              "public_after_reveal",
+              "public_archive",
+              "source_auditor",
+              "source_encoder"
+            ]
+          },
+          "minItems": 1,
+          "type": "array",
+          "uniqueItems": true
+        },
+        "decision_relevant": {
+          "type": "boolean"
+        },
+        "included_in_frozen_set": {
+          "type": "boolean"
+        },
+        "path": {
+          "pattern": "^(?:README\\.md|(?:execution|fixtures|inputs|reports|reveal|source|submissions)/[A-Za-z0-9._-]+(?:/[A-Za-z0-9._-]+)*)$",
+          "type": "string"
+        },
+        "release_stage": {
+          "$ref": "https://github.com/onovich/Game-Primitives/blob/main/research/calibration-tests/continuous-action-pilot/schema/run-manifest-0.1.0.schema.json#/$defs/stage"
+        },
+        "schema_path": {
+          "pattern": "^research/calibration-tests/continuous-action-pilot/schema/[A-Za-z0-9._-]+\\.schema\\.json$",
+          "type": "string"
+        },
+        "schema_sha256": {
+          "$ref": "https://github.com/onovich/Game-Primitives/blob/main/research/calibration-tests/continuous-action-pilot/schema/run-manifest-0.1.0.schema.json#/$defs/sha256"
+        },
+        "sha256": {
+          "$ref": "https://github.com/onovich/Game-Primitives/blob/main/research/calibration-tests/continuous-action-pilot/schema/run-manifest-0.1.0.schema.json#/$defs/sha256"
+        },
+        "supersedes_artifact_id": {
+          "oneOf": [
+            {
+              "$ref": "#/$defs/localId"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "required": [
+        "artifact_id",
+        "artifact_kind",
+        "artifact_version",
+        "audience",
+        "decision_relevant",
+        "included_in_frozen_set",
+        "path",
+        "release_stage",
+        "schema_path",
+        "schema_sha256",
+        "sha256",
+        "supersedes_artifact_id"
+      ],
+      "type": "object"
+    },
+    "localId": {
+      "pattern": "^[a-z0-9][a-z0-9._-]*$",
+      "type": "string"
+    },
+    "manifest": {
+      "additionalProperties": false,
+      "properties": {
+        "$schema": {
+          "const": "https://github.com/onovich/Game-Primitives/blob/main/research/calibration-tests/continuous-action-pilot/schema/run-manifest-0.1.1.schema.json"
+        },
+        "artifact_type": {
+          "enum": [
+            "formal_run_manifest",
+            "rehearsal_manifest"
+          ]
+        },
+        "artifact_version": {
+          "const": "0.1.1"
+        },
+        "artifacts": {
+          "items": {
+            "$ref": "#/$defs/artifactEntry"
+          },
+          "type": "array"
+        },
+        "created_at": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "freeze_commit": {
+          "oneOf": [
+            {
+              "pattern": "^[0-9a-f]{40}$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "frozen_artifact_set_digest": {
+          "oneOf": [
+            {
+              "$ref": "https://github.com/onovich/Game-Primitives/blob/main/research/calibration-tests/continuous-action-pilot/schema/run-manifest-0.1.0.schema.json#/$defs/sha256"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "protocol_version": {
+          "$ref": "https://github.com/onovich/Game-Primitives/blob/main/research/calibration-tests/continuous-action-pilot/schema/run-manifest-0.1.0.schema.json#/$defs/semanticVersion"
+        },
+        "run_id": {
+          "pattern": "^(?:continuous|rehearsal)-[0-9]{3}$",
+          "type": "string"
+        },
+        "schema_version": {
+          "const": "0.1.1"
+        },
+        "stage": {
+          "$ref": "https://github.com/onovich/Game-Primitives/blob/main/research/calibration-tests/continuous-action-pilot/schema/run-manifest-0.1.0.schema.json#/$defs/stage"
+        },
+        "stage_digests": {
+          "items": {
+            "$ref": "https://github.com/onovich/Game-Primitives/blob/main/research/calibration-tests/continuous-action-pilot/schema/run-manifest-0.1.0.schema.json#/$defs/stageDigest"
+          },
+          "type": "array"
+        },
+        "status": {
+          "enum": [
+            "collecting",
+            "frozen",
+            "invalidated",
+            "preparing",
+            "reported",
+            "revealed"
+          ]
+        },
+        "truth_commitment": {
+          "oneOf": [
+            {
+              "$ref": "https://github.com/onovich/Game-Primitives/blob/main/research/calibration-tests/continuous-action-pilot/schema/run-manifest-0.1.0.schema.json#/$defs/commitment"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "updated_at": {
+          "format": "date-time",
+          "type": "string"
+        }
+      },
+      "required": [
+        "$schema",
+        "artifact_type",
+        "artifact_version",
+        "artifacts",
+        "created_at",
+        "freeze_commit",
+        "frozen_artifact_set_digest",
+        "protocol_version",
+        "run_id",
+        "schema_version",
+        "stage",
+        "stage_digests",
+        "status",
+        "truth_commitment",
+        "updated_at"
+      ],
+      "type": "object"
+    }
+  },
+  "$id": "https://github.com/onovich/Game-Primitives/blob/main/research/calibration-tests/continuous-action-pilot/schema/run-manifest-0.1.1.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "oneOf": [
+    {
+      "properties": {
+        "artifact_type": {
+          "const": "formal_run_manifest"
+        },
+        "run_id": {
+          "pattern": "^continuous-[0-9]{3}$"
+        }
+      },
+      "required": [
+        "artifact_type",
+        "run_id"
+      ]
+    },
+    {
+      "properties": {
+        "artifact_type": {
+          "const": "rehearsal_manifest"
+        },
+        "run_id": {
+          "pattern": "^rehearsal-[0-9]{3}$"
+        }
+      },
+      "required": [
+        "artifact_type",
+        "run_id"
+      ]
+    }
+  ],
+  "title": "Game Primitives Continuous Action Pilot Run Manifest 0.1.1",
+  "type": "object",
+  "$ref": "#/$defs/manifest"
+}
