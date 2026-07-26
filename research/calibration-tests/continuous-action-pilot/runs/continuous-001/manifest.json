@@ -57,6 +57,272 @@
       "supersedes_artifact_id": "build-probe.toolchain-v0.1.0"
     },
     {
+      "artifact_id": "build-probe.toolchain-v0.1.2",
+      "artifact_kind": "build_record",
+      "artifact_version": "0.1.1",
+      "audience": [
+        "author",
+        "custodian",
+        "public_archive",
+        "source_auditor"
+      ],
+      "decision_relevant": true,
+      "included_in_frozen_set": false,
+      "path": "fixtures/toolchain-probe-v0.1.2.json",
+      "release_stage": "preparation",
+      "schema_path": "research/calibration-tests/continuous-action-pilot/schema/build-feasibility-0.1.1.schema.json",
+      "schema_sha256": "0b19f2bbed30ca2560a628b6f590887acadd9228322e8ad3cbc8dfc9af8ff4dc",
+      "sha256": "3112980d80ba05f58177fae103a97a4a34841ff672bef374f0c99d703637b723",
+      "supersedes_artifact_id": "build-probe.toolchain-v0.1.1"
+    },
+    {
+      "artifact_id": "build.r1.import-log-v0.1.0",
+      "artifact_kind": "build_record",
+      "artifact_version": "0.1.0",
+      "audience": [
+        "author",
+        "custodian",
+        "public_archive",
+        "source_auditor"
+      ],
+      "decision_relevant": true,
+      "included_in_frozen_set": false,
+      "path": "fixtures/r1/footsies-neutral-import-v0.1.0.log",
+      "release_stage": "preparation",
+      "schema_path": "research/calibration-tests/continuous-action-pilot/schema/text-artifact-0.1.0.schema.json",
+      "schema_sha256": "277edbeae2c76e58fc6ba25975f78338d6df435b4fcf68b1caf06f22481a66c3",
+      "sha256": "fb9cee283cbb593c2cbd8852aa048226867da5ac8c92ce4ee18b54d1ee4fbf1b",
+      "supersedes_artifact_id": null
+    },
+    {
+      "artifact_id": "build.r1.report-v0.1.0",
+      "artifact_kind": "build_record",
+      "artifact_version": "0.1.0",
+      "audience": [
+        "author",
+        "custodian",
+        "public_archive",
+        "source_auditor"
+      ],
+      "decision_relevant": true,
+      "included_in_frozen_set": false,
+      "path": "fixtures/r1/footsies-neutral-probe-v0.1.0.md",
+      "release_stage": "preparation",
+      "schema_path": "research/calibration-tests/continuous-action-pilot/schema/markdown-document-0.1.0.schema.json",
+      "schema_sha256": "89827f39031c7d26f430584bb2f3e64c3600213a8e45e994da2c4120cb3f09a3",
+      "sha256": "558e06290524b52cabf6b0c9a3478426e474d6aba15718c610ac94f8f334ad94",
+      "supersedes_artifact_id": null
+    },
+    {
+      "artifact_id": "build.r1.runner-v0.1.0",
+      "artifact_kind": "generator",
+      "artifact_version": "0.1.0",
+      "audience": [
+        "author",
+        "custodian",
+        "public_archive",
+        "source_auditor"
+      ],
+      "decision_relevant": true,
+      "included_in_frozen_set": false,
+      "path": "fixtures/r1/run-footsies-neutral-probe-v0.1.0.ps1",
+      "release_stage": "preparation",
+      "schema_path": "research/calibration-tests/continuous-action-pilot/schema/text-artifact-0.1.0.schema.json",
+      "schema_sha256": "277edbeae2c76e58fc6ba25975f78338d6df435b4fcf68b1caf06f22481a66c3",
+      "sha256": "68bd3ca89ae8b71bdfaa420d4833726ac9a124b6bfd108d519faad8545b5bc64",
+      "supersedes_artifact_id": null
+    },
+    {
+      "artifact_id": "build.r2.build-log-v0.1.0",
+      "artifact_kind": "build_record",
+      "artifact_version": "0.1.0",
+      "audience": [
+        "author",
+        "custodian",
+        "public_archive",
+        "source_auditor"
+      ],
+      "decision_relevant": true,
+      "included_in_frozen_set": false,
+      "path": "fixtures/r2/q3-neutral-build-v0.1.0.log",
+      "release_stage": "preparation",
+      "schema_path": "research/calibration-tests/continuous-action-pilot/schema/text-artifact-0.1.0.schema.json",
+      "schema_sha256": "277edbeae2c76e58fc6ba25975f78338d6df435b4fcf68b1caf06f22481a66c3",
+      "sha256": "98ab379d46c5324cb8761bebcc7edb9905e34903991c25f24fc30fcd7a777de4",
+      "supersedes_artifact_id": null
+    },
+    {
+      "artifact_id": "build.r2.harness-v0.1.0",
+      "artifact_kind": "fixture",
+      "artifact_version": "0.1.0",
+      "audience": [
+        "author",
+        "custodian",
+        "public_archive",
+        "source_auditor"
+      ],
+      "decision_relevant": true,
+      "included_in_frozen_set": false,
+      "path": "fixtures/r2/q3-neutral-harness-v0.1.0.c",
+      "release_stage": "preparation",
+      "schema_path": "research/calibration-tests/continuous-action-pilot/schema/text-artifact-0.1.0.schema.json",
+      "schema_sha256": "277edbeae2c76e58fc6ba25975f78338d6df435b4fcf68b1caf06f22481a66c3",
+      "sha256": "28ba4e1f7b256533ea240d44e7faa8d614bd780efeeacca6dacdf9914e05315d",
+      "supersedes_artifact_id": null
+    },
+    {
+      "artifact_id": "build.r2.report-v0.1.0",
+      "artifact_kind": "build_record",
+      "artifact_version": "0.1.0",
+      "audience": [
+        "author",
+        "custodian",
+        "public_archive",
+        "source_auditor"
+      ],
+      "decision_relevant": true,
+      "included_in_frozen_set": false,
+      "path": "fixtures/r2/q3-neutral-probe-v0.1.0.md",
+      "release_stage": "preparation",
+      "schema_path": "research/calibration-tests/continuous-action-pilot/schema/markdown-document-0.1.0.schema.json",
+      "schema_sha256": "89827f39031c7d26f430584bb2f3e64c3600213a8e45e994da2c4120cb3f09a3",
+      "sha256": "3b0b8b1853a9b1e0a514bd37ae647a79bb0ea5a462b9c2e46b0735f7b5a29d03",
+      "supersedes_artifact_id": null
+    },
+    {
+      "artifact_id": "build.r2.runner-v0.1.0",
+      "artifact_kind": "generator",
+      "artifact_version": "0.1.0",
+      "audience": [
+        "author",
+        "custodian",
+        "public_archive",
+        "source_auditor"
+      ],
+      "decision_relevant": true,
+      "included_in_frozen_set": false,
+      "path": "fixtures/r2/run-q3-neutral-probe-v0.1.0.ps1",
+      "release_stage": "preparation",
+      "schema_path": "research/calibration-tests/continuous-action-pilot/schema/text-artifact-0.1.0.schema.json",
+      "schema_sha256": "277edbeae2c76e58fc6ba25975f78338d6df435b4fcf68b1caf06f22481a66c3",
+      "sha256": "50e307640bc47ab15581d7d6e505df59ef86a9afda87475d0b8f1f5dd458963c",
+      "supersedes_artifact_id": null
+    },
+    {
+      "artifact_id": "build.r2.smoke-log-v0.1.0",
+      "artifact_kind": "build_record",
+      "artifact_version": "0.1.0",
+      "audience": [
+        "author",
+        "custodian",
+        "public_archive",
+        "source_auditor"
+      ],
+      "decision_relevant": true,
+      "included_in_frozen_set": false,
+      "path": "fixtures/r2/q3-neutral-smoke-v0.1.0.log",
+      "release_stage": "preparation",
+      "schema_path": "research/calibration-tests/continuous-action-pilot/schema/text-artifact-0.1.0.schema.json",
+      "schema_sha256": "277edbeae2c76e58fc6ba25975f78338d6df435b4fcf68b1caf06f22481a66c3",
+      "sha256": "fe647bed84fdcbbd92f6baad36ad89c32236f779ac1a5da014dc6099cc965518",
+      "supersedes_artifact_id": null
+    },
+    {
+      "artifact_id": "build.r3.build-log-v0.1.0",
+      "artifact_kind": "build_record",
+      "artifact_version": "0.1.0",
+      "audience": [
+        "author",
+        "custodian",
+        "public_archive",
+        "source_auditor"
+      ],
+      "decision_relevant": true,
+      "included_in_frozen_set": false,
+      "path": "fixtures/r3/osu-neutral-build-v0.1.0.log",
+      "release_stage": "preparation",
+      "schema_path": "research/calibration-tests/continuous-action-pilot/schema/text-artifact-0.1.0.schema.json",
+      "schema_sha256": "277edbeae2c76e58fc6ba25975f78338d6df435b4fcf68b1caf06f22481a66c3",
+      "sha256": "9a2dd9dd7f5bccf62cff2f28da4a324cc1e63141f11a51376af377f91c29334b",
+      "supersedes_artifact_id": null
+    },
+    {
+      "artifact_id": "build.r3.list-tests-log-v0.1.0",
+      "artifact_kind": "build_record",
+      "artifact_version": "0.1.0",
+      "audience": [
+        "author",
+        "custodian",
+        "public_archive",
+        "source_auditor"
+      ],
+      "decision_relevant": true,
+      "included_in_frozen_set": false,
+      "path": "fixtures/r3/osu-neutral-list-tests-v0.1.0.log",
+      "release_stage": "preparation",
+      "schema_path": "research/calibration-tests/continuous-action-pilot/schema/text-artifact-0.1.0.schema.json",
+      "schema_sha256": "277edbeae2c76e58fc6ba25975f78338d6df435b4fcf68b1caf06f22481a66c3",
+      "sha256": "3a01bfaceb19c4d5aaeeb7f9db15f58670cf5a4b3e8af93362128358ac979577",
+      "supersedes_artifact_id": null
+    },
+    {
+      "artifact_id": "build.r3.report-v0.1.0",
+      "artifact_kind": "build_record",
+      "artifact_version": "0.1.0",
+      "audience": [
+        "author",
+        "custodian",
+        "public_archive",
+        "source_auditor"
+      ],
+      "decision_relevant": true,
+      "included_in_frozen_set": false,
+      "path": "fixtures/r3/osu-neutral-probe-v0.1.0.md",
+      "release_stage": "preparation",
+      "schema_path": "research/calibration-tests/continuous-action-pilot/schema/markdown-document-0.1.0.schema.json",
+      "schema_sha256": "89827f39031c7d26f430584bb2f3e64c3600213a8e45e994da2c4120cb3f09a3",
+      "sha256": "8b281c5fe28efa7c83509b6c27f9c9e8cc8b8f14f590cfea32f81dd669f27e76",
+      "supersedes_artifact_id": null
+    },
+    {
+      "artifact_id": "build.r3.restore-log-v0.1.0",
+      "artifact_kind": "build_record",
+      "artifact_version": "0.1.0",
+      "audience": [
+        "author",
+        "custodian",
+        "public_archive",
+        "source_auditor"
+      ],
+      "decision_relevant": true,
+      "included_in_frozen_set": false,
+      "path": "fixtures/r3/osu-neutral-restore-v0.1.0.log",
+      "release_stage": "preparation",
+      "schema_path": "research/calibration-tests/continuous-action-pilot/schema/text-artifact-0.1.0.schema.json",
+      "schema_sha256": "277edbeae2c76e58fc6ba25975f78338d6df435b4fcf68b1caf06f22481a66c3",
+      "sha256": "0078226d16a9fc2a54ebc20f45761b5aa9b8442d616a369fc637499c8df1f78d",
+      "supersedes_artifact_id": null
+    },
+    {
+      "artifact_id": "build.r3.runner-v0.1.0",
+      "artifact_kind": "generator",
+      "artifact_version": "0.1.0",
+      "audience": [
+        "author",
+        "custodian",
+        "public_archive",
+        "source_auditor"
+      ],
+      "decision_relevant": true,
+      "included_in_frozen_set": false,
+      "path": "fixtures/r3/run-osu-neutral-probe-v0.1.0.ps1",
+      "release_stage": "preparation",
+      "schema_path": "research/calibration-tests/continuous-action-pilot/schema/text-artifact-0.1.0.schema.json",
+      "schema_sha256": "277edbeae2c76e58fc6ba25975f78338d6df435b4fcf68b1caf06f22481a66c3",
+      "sha256": "50be1e84ddb0a513c523a7a9f90c60562e6d8d2ee97fd6d0e6c0a08a10c72cd8",
+      "supersedes_artifact_id": null
+    },
+    {
       "artifact_id": "task.source-encoding.continuous-001",
       "artifact_kind": "task_packet",
       "artifact_version": "0.1.1",
@@ -158,7 +424,7 @@
       "release_stage": "view_generation",
       "schema_path": "research/calibration-tests/continuous-action-pilot/schema/ca-sr-artifact-0.1.0.schema.json",
       "schema_sha256": "80abf62c385d9723090c66601ff6530a6bbec4585292d3c8f81f77c1081d43a5",
-      "sha256": "7039674016a04416ccf945345bf9f9b89a9a7045b0dfcc745c74e5efbdcdfe0a",
+      "sha256": "e768e9b4e77edfd938e71ea680bd8cfdb1f8c9cf456e5d8a829c7a7ca58f8641",
       "supersedes_artifact_id": null
     },
     {
@@ -176,7 +442,7 @@
       "release_stage": "view_generation",
       "schema_path": "research/calibration-tests/continuous-action-pilot/schema/text-artifact-0.1.0.schema.json",
       "schema_sha256": "277edbeae2c76e58fc6ba25975f78338d6df435b4fcf68b1caf06f22481a66c3",
-      "sha256": "49f4039a9887d11624127681d38e00a56c9c9f9e28672d9b69d48b1135c9dd71",
+      "sha256": "6bf05513b5b82cafa1ac2dd3514c3f18f78130dbd5b0cad68bb040e696fbfb31",
       "supersedes_artifact_id": null
     },
     {
@@ -195,7 +461,7 @@
       "release_stage": "view_generation",
       "schema_path": "research/calibration-tests/continuous-action-pilot/schema/ca-sr-artifact-0.1.0.schema.json",
       "schema_sha256": "80abf62c385d9723090c66601ff6530a6bbec4585292d3c8f81f77c1081d43a5",
-      "sha256": "e88a6151b71b87b56c9b0a7f1bd653b230f4820bd0ea60ae7262ddcc351ff81c",
+      "sha256": "5d42b3ed745b8de0df55a6d606a935e54cc9fab4173d3d3624571fb8981ab3ef",
       "supersedes_artifact_id": null
     },
     {
@@ -214,7 +480,7 @@
       "release_stage": "view_generation",
       "schema_path": "research/calibration-tests/continuous-action-pilot/schema/ca-sr-artifact-0.1.0.schema.json",
       "schema_sha256": "80abf62c385d9723090c66601ff6530a6bbec4585292d3c8f81f77c1081d43a5",
-      "sha256": "86e484dbdbb0cc5a43bf8735614efcde777548a75537eb88a6131931a5c5be61",
+      "sha256": "30f97e93dde2cde68a81342ae204272aaccc3d54722a2d2d8a3a5c72783ac896",
       "supersedes_artifact_id": null
     }
   ],
@@ -228,5 +494,5 @@
   "stage_digests": [],
   "status": "preparing",
   "truth_commitment": null,
-  "updated_at": "2026-07-26T20:18:06Z"
+  "updated_at": "2026-07-26T20:25:51Z"
 }

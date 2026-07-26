@@ -1,0 +1,164 @@
+{
+  "$schema": "https://github.com/onovich/Game-Primitives/blob/main/research/calibration-tests/continuous-action-pilot/schema/build-feasibility-0.1.1.schema.json",
+  "artifact_type": "build_feasibility_probe",
+  "artifact_version": "0.1.1",
+  "cases": [
+    {
+      "blockers": [
+        "精确 Unity 2018.1.1f1 编辑器已安装，但中性批处理在读取工程前被合法许可激活阻断。"
+      ],
+      "case_id": "CA-R1",
+      "next_safe_action": "取得合法的 Unity 2018.1.1f1 激活后，使用冻结 runner 重试未修改工程的中性导入；不得用 Unity 6000 迁移工程，也不得执行正式输入。",
+      "status": "blocked_license_activation"
+    },
+    {
+      "blockers": [
+        "源码时代的 GCC 2.95 仍不可用；当前通过项只证明固定 MSVC 19.50 x64 兼容夹具可构建。",
+        "历史 x87 与当前 x64 最近偶数舍入尚未在全部浮点输入上证明逐位等价；若正式结论要求历史坐标零容差，必须先补证或停止。"
+      ],
+      "case_id": "CA-R2",
+      "next_safe_action": "保持官方源码、harness、MSVC 选项和停止条件不变，制作正式夹具锁与比较器；在人工门放行前仍不得运行 25 × 8 ms 正式轨迹。",
+      "status": "compatibility_probe_passed"
+    },
+    {
+      "blockers": [],
+      "case_id": "CA-R3",
+      "next_safe_action": "基于冻结恢复身份和 repo-local runner 制作最小观察补丁与夹具锁；在人工门放行前不得执行测试体、0/75 ms 正式输入或正式结果采集。",
+      "status": "neutral_probe_passed"
+    }
+  ],
+  "evidence_artifacts": [
+    {
+      "artifact_id": "evidence.r1.import-log",
+      "path": "research/calibration-tests/continuous-action-pilot/runs/continuous-001/fixtures/r1/footsies-neutral-import-v0.1.0.log",
+      "sha256": "fb9cee283cbb593c2cbd8852aa048226867da5ac8c92ce4ee18b54d1ee4fbf1b"
+    },
+    {
+      "artifact_id": "evidence.r1.report",
+      "path": "research/calibration-tests/continuous-action-pilot/runs/continuous-001/fixtures/r1/footsies-neutral-probe-v0.1.0.md",
+      "sha256": "558e06290524b52cabf6b0c9a3478426e474d6aba15718c610ac94f8f334ad94"
+    },
+    {
+      "artifact_id": "evidence.r1.runner",
+      "path": "research/calibration-tests/continuous-action-pilot/runs/continuous-001/fixtures/r1/run-footsies-neutral-probe-v0.1.0.ps1",
+      "sha256": "68bd3ca89ae8b71bdfaa420d4833726ac9a124b6bfd108d519faad8545b5bc64"
+    },
+    {
+      "artifact_id": "evidence.r2.build-log",
+      "path": "research/calibration-tests/continuous-action-pilot/runs/continuous-001/fixtures/r2/q3-neutral-build-v0.1.0.log",
+      "sha256": "98ab379d46c5324cb8761bebcc7edb9905e34903991c25f24fc30fcd7a777de4"
+    },
+    {
+      "artifact_id": "evidence.r2.harness",
+      "path": "research/calibration-tests/continuous-action-pilot/runs/continuous-001/fixtures/r2/q3-neutral-harness-v0.1.0.c",
+      "sha256": "28ba4e1f7b256533ea240d44e7faa8d614bd780efeeacca6dacdf9914e05315d"
+    },
+    {
+      "artifact_id": "evidence.r2.report",
+      "path": "research/calibration-tests/continuous-action-pilot/runs/continuous-001/fixtures/r2/q3-neutral-probe-v0.1.0.md",
+      "sha256": "3b0b8b1853a9b1e0a514bd37ae647a79bb0ea5a462b9c2e46b0735f7b5a29d03"
+    },
+    {
+      "artifact_id": "evidence.r2.runner",
+      "path": "research/calibration-tests/continuous-action-pilot/runs/continuous-001/fixtures/r2/run-q3-neutral-probe-v0.1.0.ps1",
+      "sha256": "50e307640bc47ab15581d7d6e505df59ef86a9afda87475d0b8f1f5dd458963c"
+    },
+    {
+      "artifact_id": "evidence.r2.smoke-log",
+      "path": "research/calibration-tests/continuous-action-pilot/runs/continuous-001/fixtures/r2/q3-neutral-smoke-v0.1.0.log",
+      "sha256": "fe647bed84fdcbbd92f6baad36ad89c32236f779ac1a5da014dc6099cc965518"
+    },
+    {
+      "artifact_id": "evidence.r3.build-log",
+      "path": "research/calibration-tests/continuous-action-pilot/runs/continuous-001/fixtures/r3/osu-neutral-build-v0.1.0.log",
+      "sha256": "9a2dd9dd7f5bccf62cff2f28da4a324cc1e63141f11a51376af377f91c29334b"
+    },
+    {
+      "artifact_id": "evidence.r3.list-tests-log",
+      "path": "research/calibration-tests/continuous-action-pilot/runs/continuous-001/fixtures/r3/osu-neutral-list-tests-v0.1.0.log",
+      "sha256": "3a01bfaceb19c4d5aaeeb7f9db15f58670cf5a4b3e8af93362128358ac979577"
+    },
+    {
+      "artifact_id": "evidence.r3.report",
+      "path": "research/calibration-tests/continuous-action-pilot/runs/continuous-001/fixtures/r3/osu-neutral-probe-v0.1.0.md",
+      "sha256": "8b281c5fe28efa7c83509b6c27f9c9e8cc8b8f14f590cfea32f81dd669f27e76"
+    },
+    {
+      "artifact_id": "evidence.r3.restore-log",
+      "path": "research/calibration-tests/continuous-action-pilot/runs/continuous-001/fixtures/r3/osu-neutral-restore-v0.1.0.log",
+      "sha256": "0078226d16a9fc2a54ebc20f45761b5aa9b8442d616a369fc637499c8df1f78d"
+    },
+    {
+      "artifact_id": "evidence.r3.runner",
+      "path": "research/calibration-tests/continuous-action-pilot/runs/continuous-001/fixtures/r3/run-osu-neutral-probe-v0.1.0.ps1",
+      "sha256": "50be1e84ddb0a513c523a7a9f90c60562e6d8d2ee97fd6d0e6c0a08a10c72cd8"
+    }
+  ],
+  "formal_input_executed": false,
+  "formal_result_produced": false,
+  "host": {
+    "architecture": "X64",
+    "operating_system": "Microsoft Windows 10.0.26200"
+  },
+  "probed_at": "2026-07-26T20:20:58Z",
+  "run_id": "continuous-001",
+  "tools": [
+    {
+      "detected_version": "8.0.100",
+      "evidence": "官方 SDK 压缩包 SHA-512 为 69ee73c56c78c94c186c0fd1b06ce1a7325979f7680857dc1a05d516feb9f0ffe990c2c0441caed1de98a0d0ae3923cc3e04525f91d96306d611e481a24f9fb4；隔离 dotnet.exe SHA-256 为 b9eace03c8471717e3f98873527005dbd9a92367b954f8c48484d2b7b78efbac，--version 返回 8.0.100。",
+      "executable_path": "D:\\GamePrimitivesToolchains\\dotnet-8.0.100\\dotnet.exe",
+      "expected_version": "8.0.100 with latestFeature roll-forward",
+      "required_by": [
+        "CA-R3"
+      ],
+      "status": "exact_available",
+      "tool_id": "tool.dotnet-sdk"
+    },
+    {
+      "detected_version": "2.53.0.windows.1",
+      "evidence": "git --version；三个官方远端均可按精确提交核验，探针结束时对应源码树为 clean。",
+      "executable_path": "C:\\Program Files\\Git\\cmd\\git.exe",
+      "expected_version": "version capable of fetching and verifying exact commits",
+      "required_by": [
+        "CA-R1",
+        "CA-R2",
+        "CA-R3"
+      ],
+      "status": "exact_available",
+      "tool_id": "tool.git"
+    },
+    {
+      "detected_version": null,
+      "evidence": "源码时代的 GCC 2.95 未安装；当前 CA-R2 证据明确限于固定 MSVC x64 兼容探针。",
+      "executable_path": null,
+      "expected_version": "source-era GCC 2.95",
+      "required_by": [
+        "CA-R2"
+      ],
+      "status": "missing",
+      "tool_id": "tool.gcc-source-era"
+    },
+    {
+      "detected_version": "Microsoft C/C++ 19.50.35723 x64",
+      "evidence": "未修改的 bg_pmove.c、bg_slidemove.c 与 q_math.c 以 /TC /Od /W4 /fp:precise /DWIN32 构建；中性 smoke 和 repo-local 外部重放均通过。",
+      "executable_path": "C:\\Program Files\\Microsoft Visual Studio\\18\\Community\\VC\\Tools\\MSVC\\14.50.35717\\bin\\Hostx64\\x64\\cl.exe",
+      "expected_version": "modern x64 compiler for a compatibility-only probe",
+      "required_by": [
+        "CA-R2"
+      ],
+      "status": "alternative_available",
+      "tool_id": "tool.msvc-probe"
+    },
+    {
+      "detected_version": "2018.1.1.12110773",
+      "evidence": "官方 2018.1.1f1 安装包 SHA-256 为 9da5ca964575a48c6f4c026f581a08a12f345f8af75066b1e908e8f1e6579fa3，Authenticode 有效；隔离 Unity.exe SHA-256 为 3972bacc7abfe37dadf4d09cf6ce095efa558649547d32adba81addbf101ffe0。精确版本可用，但尚未合法激活。",
+      "executable_path": "D:\\GamePrimitivesToolchains\\unity\\2018.1.1f1\\Editor\\Unity.exe",
+      "expected_version": "2018.1.1f1",
+      "required_by": [
+        "CA-R1"
+      ],
+      "status": "exact_available",
+      "tool_id": "tool.unity-editor"
+    }
+  ]
+}

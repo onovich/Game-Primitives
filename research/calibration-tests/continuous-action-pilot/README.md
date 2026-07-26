@@ -1,6 +1,6 @@
 # 连续行动先行组测试工作区
 
-- 状态：CA-07 已冻结；`continuous-001` 已进入来源包制作，正式包尚未冻结，正式轮次未运行
+- 状态：CA-07 已冻结；`continuous-001` 已完成来源编码与第一道独立审核，正在准备投影、夹具与第二道审核；正式包尚未冻结，正式轮次未运行
 - 受测表示：[连续行动结构表示 v0.1](../../../theory/CONTINUOUS-ACTION-REPRESENTATION-0.1.md)
 - 执行与结论规则：[CA-06](../../continuous-action-pilot-ca-06-execution-and-verdicts.md)
 - 制品与放行规则：[CA-07](../../continuous-action-pilot-ca-07-artifacts-and-release.md)
@@ -26,6 +26,8 @@
 - [`run-manifest-0.1.0.schema.json`](schema/run-manifest-0.1.0.schema.json)：正式轮次或彩排的状态、阶段、制品索引、冻结集合摘要和真值承诺。
 - [`run-manifest-0.1.1.schema.json`](schema/run-manifest-0.1.1.schema.json)：为正式包增加原始回答、机器信封、真实 actor 与原始执行制品种类；保留 0.1.0 供既有彩排复算。
 - [`ca-sr-artifact-0.1.0.schema.json`](schema/ca-sr-artifact-0.1.0.schema.json)：来源包、CA-SR 规范编码、机械生成视图和投影规则。
+- [`build-feasibility-0.1.0.schema.json`](schema/build-feasibility-0.1.0.schema.json)：记录人工门前的工具链可用性与案例级构建阻断，不允许把构建探针写成正式输入或正式结果。
+- [`build-feasibility-0.1.1.schema.json`](schema/build-feasibility-0.1.1.schema.json)：增加逐文件证据绑定，并区分许可阻断、兼容探针通过和中性探针通过。
 - [`task-packet-0.1.0.schema.json`](schema/task-packet-0.1.0.schema.json)：来源编码、来源审核、重构和预测的冻结派发信封。
 - [`task-packet-0.1.1.schema.json`](schema/task-packet-0.1.1.schema.json)：为盲测任务增加允许配置与装配后输出 Schema；保留 0.1.0 供既有轮次复算。
 - [`role-submission-0.1.0.schema.json`](schema/role-submission-0.1.0.schema.json)：来源审核、重构、预测和揭示后制品审核的首次提交。

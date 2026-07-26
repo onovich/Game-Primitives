@@ -1,0 +1,15 @@
+编译器扫描遍数:
+ C:\Program Files\Microsoft Visual Studio\18\Community\VC\Tools\MSVC\14.50.35717\bin\Hostx64\x64\cl.exe:        版本 19.50.35723.0
+ C:\Program Files\Microsoft Visual Studio\18\Community\VC\Tools\MSVC\14.50.35717\bin\Hostx64\x64\c1.dll:        版本 19.50.35723.0
+ C:\Program Files\Microsoft Visual Studio\18\Community\VC\Tools\MSVC\14.50.35717\bin\Hostx64\x64\c1xx.dll:      版本 19.50.35723.0
+ C:\Program Files\Microsoft Visual Studio\18\Community\VC\Tools\MSVC\14.50.35717\bin\Hostx64\x64\c2.dll:        版本 19.50.35723.0
+ C:\Program Files\Microsoft Visual Studio\18\Community\VC\Tools\MSVC\14.50.35717\bin\Hostx64\x64\c1xx.dll:      版本 19.50.35723.0
+ C:\Program Files\Microsoft Visual Studio\18\Community\VC\Tools\MSVC\14.50.35717\bin\Hostx64\x64\link.exe:      版本 14.50.35723.0
+ C:\Program Files\Microsoft Visual Studio\18\Community\VC\Tools\MSVC\14.50.35717\bin\Hostx64\x64\mspdb140.dll:  版本 14.50.35723.0
+ C:\Program Files\Microsoft Visual Studio\18\Community\VC\Tools\MSVC\14.50.35717\bin\Hostx64\x64\2052\clui.dll: 版本 19.50.35723.0
+System.Management.Automation.RemoteException
+neutral_harness.c
+bg_pmove.c
+bg_slidemove.c
+q_math.c
+正在生成代码...

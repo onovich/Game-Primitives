@@ -28,22 +28,22 @@ SCHEMA_ID = (
     "research/calibration-tests/continuous-action-pilot/schema/"
     "ca-sr-artifact-0.1.0.schema.json"
 )
-RICH_PREFIX = "projection-v01.gsha256-"
-ATOMIC_PREFIX = "projection-v02.gsha256-"
+V01_PREFIX = "projection-v01.gsha256-"
+V02_PREFIX = "projection-v02.gsha256-"
 CANONICAL_JSON_KWARGS = {
     "ensure_ascii": False,
     "indent": 2,
     "sort_keys": True,
 }
 
-RICH_RULE_SIGNATURES = (
+V01_RULE_SIGNATURES = (
     ("include_path", "/cases"),
     ("redact_text", "/cases/references/audit_identity"),
     ("remove_path", "/cases/provenance_refs"),
     ("remove_path", "/cases/source_issues"),
     ("rename_id", "/cases"),
 )
-ATOMIC_RULE_SIGNATURES = (
+V02_RULE_SIGNATURES = (
     ("include_path", "/cases/case_scope"),
     ("include_path", "/cases/references"),
     ("include_path", "/cases/state_channels"),
@@ -364,19 +364,19 @@ def validate_projection_spec(
             + ", ".join(missing_forbidden)
         )
 
-    rich = projection_by_prefix(spec, RICH_PREFIX)
-    atomic = projection_by_prefix(spec, ATOMIC_PREFIX)
-    expected_rich_id = RICH_PREFIX + generator_sha256
-    expected_atomic_id = ATOMIC_PREFIX + generator_sha256
-    if rich["projection_id"] != expected_rich_id:
-        raise ProjectionError("rich projection does not bind the exact generator hash")
-    if atomic["projection_id"] != expected_atomic_id:
-        raise ProjectionError("atomic projection does not bind the exact generator hash")
-    if rule_signatures(rich) != RICH_RULE_SIGNATURES:
-        raise ProjectionError("rich projection rule set or order is unknown")
-    if rule_signatures(atomic) != ATOMIC_RULE_SIGNATURES:
-        raise ProjectionError("atomic projection rule set or order is unknown")
-    return rich, atomic
+    view_one_spec = projection_by_prefix(spec, V01_PREFIX)
+    view_two_spec = projection_by_prefix(spec, V02_PREFIX)
+    expected_v01_id = V01_PREFIX + generator_sha256
+    expected_v02_id = V02_PREFIX + generator_sha256
+    if view_one_spec["projection_id"] != expected_v01_id:
+        raise ProjectionError("v01 projection does not bind the exact generator hash")
+    if view_two_spec["projection_id"] != expected_v02_id:
+        raise ProjectionError("v02 projection does not bind the exact generator hash")
+    if rule_signatures(view_one_spec) != V01_RULE_SIGNATURES:
+        raise ProjectionError("v01 projection rule set or order is unknown")
+    if rule_signatures(view_two_spec) != V02_RULE_SIGNATURES:
+        raise ProjectionError("v02 projection rule set or order is unknown")
+    return view_one_spec, view_two_spec
 
 
 def sanitize_text(value: str) -> str:
@@ -530,7 +530,7 @@ def rewrite_typed_value(
     return rewritten
 
 
-def rewrite_rich_node(
+def rewrite_v01_node(
     node: Any,
     id_map: dict[str, str],
     value_map: dict[str, str],
@@ -572,31 +572,31 @@ def rewrite_rich_node(
             elif key == "source_issues":
                 rewritten[key] = []
             else:
-                rewritten[key] = rewrite_rich_node(value, id_map, value_map, key)
+                rewritten[key] = rewrite_v01_node(value, id_map, value_map, key)
         return rewritten
     if isinstance(node, list):
         return [
-            rewrite_rich_node(value, id_map, value_map, parent_key) for value in node
+            rewrite_v01_node(value, id_map, value_map, parent_key) for value in node
         ]
     if isinstance(node, str) and parent_key not in STRUCTURAL_STRING_KEYS:
         return sanitize_text(node)
     return node
 
 
-def make_rich_cases(
+def make_v01_cases(
     canonical: dict[str, Any],
 ) -> tuple[list[dict[str, Any]], dict[str, dict[str, str]]]:
-    rich_cases: list[dict[str, Any]] = []
+    v01_cases: list[dict[str, Any]] = []
     maps: dict[str, dict[str, str]] = {}
     for ordinal, case in enumerate(canonical["cases"], start=1):
         case_id = case["case_scope"]["case_id"]
         id_map = build_opaque_map(case, ordinal)
         value_map = build_opaque_value_map(case, ordinal)
         maps[case_id] = id_map
-        rewritten = rewrite_rich_node(case, id_map, value_map)
+        rewritten = rewrite_v01_node(case, id_map, value_map)
         rewritten["source_issues"] = []
-        rich_cases.append(rewritten)
-    return rich_cases, maps
+        v01_cases.append(rewritten)
+    return v01_cases, maps
 
 
 def generic_fact(status: str, value: str | None) -> dict[str, Any]:
@@ -611,7 +611,7 @@ def generic_id_list_fact(status: str = "scope_excluded") -> dict[str, Any]:
     return {"provenance_refs": [], "status": status, "values": []}
 
 
-def atomic_endpoint_text(
+def v02_endpoint_text(
     original_case: dict[str, Any],
     endpoint: str,
 ) -> str:
@@ -633,7 +633,7 @@ def atomic_endpoint_text(
     return "观察终点：首个声明终止条件满足；读取已声明终止字段。"
 
 
-def normalize_atomic_reference(
+def normalize_v02_reference(
     record_id: str,
     ordinal: int,
     kind: str,
@@ -672,7 +672,7 @@ def encoded_value(value: dict[str, Any] | None, channel_label: str) -> dict[str,
     return rewritten
 
 
-def atomic_value_fact(
+def v02_value_fact(
     fact: dict[str, Any],
     channel_label: str,
 ) -> dict[str, Any]:
@@ -683,7 +683,7 @@ def atomic_value_fact(
     }
 
 
-def atomic_channel(
+def v02_channel(
     channel: dict[str, Any],
     ordinal: int,
 ) -> dict[str, Any]:
@@ -696,12 +696,12 @@ def atomic_channel(
         "channel_id": channel["channel_id"],
         "coordinate_system": generic_fact("encoded", label),
         "equivalence_tolerance": generic_fact("scope_excluded", None),
-        "initial_value": atomic_value_fact(channel["initial_value"], label),
+        "initial_value": v02_value_fact(channel["initial_value"], label),
         "precision": generic_fact("scope_excluded", None),
         "reader_refs": generic_id_list_fact(),
         "semantic_ref": generic_id_fact(),
         "snapshot_boundary": generic_fact("scope_excluded", None),
-        "stop_value": atomic_value_fact(channel["stop_value"], label),
+        "stop_value": v02_value_fact(channel["stop_value"], label),
         "unit": unit,
         "value_type": channel["value_type"],
         "writer_refs": generic_id_list_fact(),
@@ -737,59 +737,59 @@ def is_input_semantic(
     return reference is not None and reference["test_role"] == "input"
 
 
-def make_atomic_cases(
+def make_v02_cases(
     original_cases: list[dict[str, Any]],
-    rich_cases: list[dict[str, Any]],
+    v01_cases: list[dict[str, Any]],
 ) -> list[dict[str, Any]]:
     result: list[dict[str, Any]] = []
-    for original, rich in zip(original_cases, rich_cases, strict=True):
-        rich_references = reference_index(rich)
-        formal_action_id = rich["case_scope"]["formal_input_ref"]
-        formal_reference = rich_references.get(formal_action_id)
+    for original, v01_case in zip(original_cases, v01_cases, strict=True):
+        v01_references = reference_index(v01_case)
+        formal_action_id = v01_case["case_scope"]["formal_input_ref"]
+        formal_reference = v01_references.get(formal_action_id)
         action_status = (
             formal_reference["source_fact"]["status"]
             if formal_reference is not None
             else "encoded"
         )
         references = [
-            normalize_atomic_reference(formal_action_id, 1, "action", action_status)
+            normalize_v02_reference(formal_action_id, 1, "action", action_status)
         ]
-        for ordinal, effect_id in enumerate(effect_ids(rich), start=1):
-            source_reference = rich_references.get(effect_id)
+        for ordinal, effect_id in enumerate(effect_ids(v01_case), start=1):
+            source_reference = v01_references.get(effect_id)
             effect_status = (
                 source_reference["source_fact"]["status"]
                 if source_reference is not None
                 else "encoded"
             )
             references.append(
-                normalize_atomic_reference(effect_id, ordinal, "effect", effect_status)
+                normalize_v02_reference(effect_id, ordinal, "effect", effect_status)
             )
 
         output_channels = [
             channel
-            for channel in rich["state_channels"]
-            if not is_input_semantic(channel, rich_references)
+            for channel in v01_case["state_channels"]
+            if not is_input_semantic(channel, v01_references)
         ]
         channels = [
-            atomic_channel(channel, ordinal)
+            v02_channel(channel, ordinal)
             for ordinal, channel in enumerate(output_channels, start=1)
         ]
         allowed = [
             kind
-            for kind in rich["trace_contract"]["allowed_kinds"]
+            for kind in v01_case["trace_contract"]["allowed_kinds"]
             if kind in {"scope_started", "scope_ended", "state_committed"}
         ]
         if not allowed:
             raise ProjectionError(
-                f"{rich['case_scope']['case_id']} has no boundary-only trace kind"
+                f"{v01_case['case_scope']['case_id']} has no boundary-only trace kind"
             )
         scope = {
-            "case_id": rich["case_scope"]["case_id"],
-            "controlled_variable_id": rich["case_scope"]["controlled_variable_id"],
+            "case_id": v01_case["case_scope"]["case_id"],
+            "controlled_variable_id": v01_case["case_scope"]["controlled_variable_id"],
             "formal_input_ref": formal_action_id,
-            "observation_start": atomic_endpoint_text(original, "start"),
-            "observation_stop": atomic_endpoint_text(original, "stop"),
-            "role_id": rich["case_scope"]["role_id"],
+            "observation_start": v02_endpoint_text(original, "start"),
+            "observation_stop": v02_endpoint_text(original, "stop"),
+            "role_id": v01_case["case_scope"]["role_id"],
             "scope_exclusions": [],
         }
         result.append(
@@ -806,11 +806,11 @@ def make_atomic_cases(
                 "time_bases": [],
                 "trace_contract": {
                     "allowed_kinds": allowed,
-                    "derivation_algorithm_id": rich["trace_contract"][
+                    "derivation_algorithm_id": v01_case["trace_contract"][
                         "derivation_algorithm_id"
                     ],
                     "raw_trace_ref": formal_action_id,
-                    "stop_condition_refs": rich["trace_contract"][
+                    "stop_condition_refs": v01_case["trace_contract"][
                         "stop_condition_refs"
                     ],
                     "tolerance_rule_refs": [],
@@ -985,8 +985,8 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--canonical", type=Path, required=True)
     parser.add_argument("--spec", type=Path, required=True)
     parser.add_argument("--schema", type=Path, required=True)
-    parser.add_argument("--rich-output", type=Path, required=True)
-    parser.add_argument("--atomic-output", type=Path, required=True)
+    parser.add_argument("--view-v01-output", type=Path, required=True)
+    parser.add_argument("--view-v02-output", type=Path, required=True)
     return parser.parse_args()
 
 
@@ -1006,7 +1006,7 @@ def main() -> int:
     canonical_sha256 = sha256_bytes(canonical_raw)
     spec_sha256 = sha256_bytes(spec_raw)
     generator_sha256 = sha256_bytes(Path(__file__).resolve().read_bytes())
-    rich_projection, atomic_projection = validate_projection_spec(
+    v01_projection, v02_projection = validate_projection_spec(
         spec,
         canonical_sha256,
         generator_sha256,
@@ -1014,25 +1014,28 @@ def main() -> int:
     if canonical["run_id"] != spec["run_id"]:
         raise ProjectionError("canonical run_id does not match projection spec")
 
-    rich_cases, _ = make_rich_cases(canonical)
-    atomic_cases = make_atomic_cases(canonical["cases"], rich_cases)
-    rich_view = build_view(
+    v01_cases, _ = make_v01_cases(canonical)
+    v02_cases = make_v02_cases(canonical["cases"], v01_cases)
+    v01_view = build_view(
         canonical,
         canonical_sha256,
         spec_sha256,
-        rich_projection["projection_id"],
+        v01_projection["projection_id"],
         "condition-v01",
-        rich_cases,
+        v01_cases,
     )
-    atomic_view = build_view(
+    v02_view = build_view(
         canonical,
         canonical_sha256,
         spec_sha256,
-        atomic_projection["projection_id"],
+        v02_projection["projection_id"],
         "condition-v02",
-        atomic_cases,
+        v02_cases,
     )
-    for label, view in (("rich view", rich_view), ("atomic view", atomic_view)):
+    for label, view in (
+        ("condition-v01 view", v01_view),
+        ("condition-v02 view", v02_view),
+    ):
         validate_schema(view, schema, label)
         validate_blinding(view, spec["forbidden_tokens"])
         validate_closure(view)
@@ -1040,8 +1043,8 @@ def main() -> int:
             raise ProjectionError(f"{label} failed canonical round-trip")
 
     for path, view, label in (
-        (args.rich_output, rich_view, "rich output"),
-        (args.atomic_output, atomic_view, "atomic output"),
+        (args.view_v01_output, v01_view, "condition-v01 output"),
+        (args.view_v02_output, v02_view, "condition-v02 output"),
     ):
         expected = canonical_bytes(view)
         write_canonical_json(path, view)
@@ -1050,11 +1053,11 @@ def main() -> int:
     print(
         json.dumps(
             {
-                "atomic_output_sha256": sha256_bytes(canonical_bytes(atomic_view)),
                 "canonical_encoding_sha256": canonical_sha256,
                 "generator_sha256": generator_sha256,
                 "projection_spec_sha256": spec_sha256,
-                "rich_output_sha256": sha256_bytes(canonical_bytes(rich_view)),
+                "view_v01_output_sha256": sha256_bytes(canonical_bytes(v01_view)),
+                "view_v02_output_sha256": sha256_bytes(canonical_bytes(v02_view)),
             },
             sort_keys=True,
         )

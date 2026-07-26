@@ -430,7 +430,7 @@
   ],
   "condition_id": "condition-v02",
   "generated_at": "2026-07-27T00:00:00Z",
-  "projection_id": "projection-v02.gsha256-49f4039a9887d11624127681d38e00a56c9c9f9e28672d9b69d48b1135c9dd71",
-  "projection_spec_sha256": "7039674016a04416ccf945345bf9f9b89a9a7045b0dfcc745c74e5efbdcdfe0a",
+  "projection_id": "projection-v02.gsha256-6bf05513b5b82cafa1ac2dd3514c3f18f78130dbd5b0cad68bb040e696fbfb31",
+  "projection_spec_sha256": "e768e9b4e77edfd938e71ea680bd8cfdb1f8c9cf456e5d8a829c7a7ca58f8641",
   "run_id": "continuous-001"
 }
