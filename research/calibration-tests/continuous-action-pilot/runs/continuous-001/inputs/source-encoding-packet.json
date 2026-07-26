@@ -1,0 +1,71 @@
+{
+  "$schema": "https://github.com/onovich/Game-Primitives/blob/main/research/calibration-tests/continuous-action-pilot/schema/task-packet-0.1.1.schema.json",
+  "allowed_configurations": [],
+  "allowed_observations": [],
+  "artifact_type": "source_encoding_task_packet",
+  "artifact_version": "0.1.1",
+  "assembled_output_schema": null,
+  "behavior_scope": "structural_only",
+  "case_ids": [
+    "CA-R1",
+    "CA-R2",
+    "CA-R3"
+  ],
+  "condition_id": null,
+  "created_at": "2026-07-26T19:30:02Z",
+  "forbidden_actions": [
+    "access_other_submission",
+    "access_package_outside_dispatch",
+    "access_truth_or_result",
+    "create_child_task",
+    "external_search",
+    "read_shared_workspace"
+  ],
+  "input_artifacts": [
+    {
+      "artifact_id": "representation.ca-sr-0.1",
+      "path": "theory/CONTINUOUS-ACTION-REPRESENTATION-0.1.md",
+      "sha256": "7361c6d757bed33d5ef5a14055671c0dd720ed505900dcdb3e500564866046e9"
+    },
+    {
+      "artifact_id": "source-packet.continuous-001",
+      "path": "research/calibration-tests/continuous-action-pilot/runs/continuous-001/source/source-packet.json",
+      "sha256": "c7757f1ce74af15c25433bbf32cb94bbd4d1c497d5637470803ef1cf09328d12"
+    }
+  ],
+  "instructions": [
+    "只使用本任务派发的 CA-SR 0.1 文档、来源包及来源包列出的官方定位；可以直接打开列出的定位，但不得搜索或引入其他资料。",
+    "为 CA-R1、CA-R2、CA-R3 生成一个 artifact_type=canonical_encoding、artifact_version=0.1.0 的统一规范编码；run_id 必须为 continuous-001，source_packet_sha256 必须精确绑定来源包。",
+    "编码来源中的基线结构与冻结观察边界，不编码项目事前预测、变体运行结果、作品评价、玩家行为或体验判断。",
+    "每项来源事实必须引用来源包中的 locator_id；规则推导、项目夹具约定、仪器测量与来源事实必须保持不同证据身份。",
+    "不得用源码函数、作品专名或来源术语替代 CA-SR 的有类型结构；audit_identity 可以保留来源身份，blind_description 必须能够去身份阅读。",
+    "无法从冻结来源确定的必要事实必须记录为 source_underdetermined；当前表示无法无损表达时记录 representation_gap，不得猜测补全。",
+    "每案必须形成可检查的时间基准、输入到动作或过程或裁定的操作关系、状态通道、停止边界与轨迹契约；同时覆盖行动实现载体和正式结果到后续响应机会两项跨案义务。",
+    "输出只包含一个通过声明 Schema 的 JSON 对象，使用 UTF-8 无 BOM、LF、两空格缩进、递归键排序和单一末尾换行。"
+  ],
+  "output_schema": {
+    "path": "research/calibration-tests/continuous-action-pilot/schema/ca-sr-artifact-0.1.0.schema.json",
+    "sha256": "80abf62c385d9723090c66601ff6530a6bbec4585292d3c8f81f77c1081d43a5"
+  },
+  "representation_version": "CA-SR 0.1",
+  "required_audit_checks": [
+    "case_scope",
+    "cross_case_obligations",
+    "provenance_fidelity",
+    "reference_closure",
+    "source_representation_distinction",
+    "typed_representation"
+  ],
+  "run_id": "continuous-001",
+  "stage1_submission_required": false,
+  "stop_boundary_refs": [
+    "stop.r1.update-6",
+    "stop.r2.200-ms",
+    "stop.r3.result-committed"
+  ],
+  "target_encoding_sha256": null,
+  "target_view_sha256": null,
+  "task_id": "task.source-encoding.continuous-001",
+  "tolerance_rule_refs": [],
+  "variant_interventions": []
+}

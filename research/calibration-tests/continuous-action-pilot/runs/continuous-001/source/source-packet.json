@@ -1,0 +1,321 @@
+{
+  "$schema": "https://github.com/onovich/Game-Primitives/blob/main/research/calibration-tests/continuous-action-pilot/schema/ca-sr-artifact-0.1.0.schema.json",
+  "artifact_type": "source_packet",
+  "artifact_version": "0.1.0",
+  "cases": [
+    {
+      "case_scope": {
+        "case_id": "CA-R1",
+        "controlled_variable_id": "variable.r1.whiff-cancel-permission",
+        "formal_input_ref": "input.r1.fixed-update-trace",
+        "observation_start": "F00 处于 STAND，无硬直、无缓存动作、命中计数为零；对手位于全部真实攻击框之外。",
+        "observation_stop": "夹具更新 6 完成后，记录当前动作、动作帧、待执行动作、取消资格、接触与命中计数。",
+        "role_id": "CA-R1",
+        "scope_exclusions": [
+          "玩家技能、难度、平衡、手感与策略",
+          "发布二进制与源码快照的逐字节同一性",
+          "人工键盘时序与零售网络路径",
+          "伤害、美术、音频及不必要的原作资产"
+        ]
+      },
+      "locators": [
+        {
+          "locator_id": "r1.action-ids",
+          "locator_kind": "source_file_lines",
+          "locator_value": "https://github.com/hifight/Footsies/blob/7eaaad799bb7912625c15af9407c2c67e6305d75/Assets/Script/Fighter.cs#L42-L60",
+          "source_id": "source.footsies-1.5.0"
+        },
+        {
+          "locator_id": "r1.cancel-permission-data",
+          "locator_kind": "source_file_lines",
+          "locator_value": "https://github.com/hifight/Footsies/blob/7eaaad799bb7912625c15af9407c2c67e6305d75/Assets/Fighter/F00/F00.asset#L12-L19",
+          "source_id": "source.footsies-1.5.0"
+        },
+        {
+          "locator_id": "r1.cancel-permission-rule",
+          "locator_kind": "source_file_lines",
+          "locator_value": "https://github.com/hifight/Footsies/blob/7eaaad799bb7912625c15af9407c2c67e6305d75/Assets/Script/Fighter.cs#L467-L510",
+          "source_id": "source.footsies-1.5.0"
+        },
+        {
+          "locator_id": "r1.cancel-table",
+          "locator_kind": "source_file_lines",
+          "locator_value": "https://github.com/hifight/Footsies/blob/7eaaad799bb7912625c15af9407c2c67e6305d75/Assets/Fighter/F00/Actions/N_ATTACK.asset#L14-L97",
+          "source_id": "source.footsies-1.5.0"
+        },
+        {
+          "locator_id": "r1.commit",
+          "locator_kind": "commit",
+          "locator_value": "https://github.com/hifight/Footsies/tree/7eaaad799bb7912625c15af9407c2c67e6305d75",
+          "source_id": "source.footsies-1.5.0"
+        },
+        {
+          "locator_id": "r1.fixed-loop",
+          "locator_kind": "source_file_lines",
+          "locator_value": "https://github.com/hifight/Footsies/blob/7eaaad799bb7912625c15af9407c2c67e6305d75/Assets/Script/BattleCore.cs#L103-L140",
+          "source_id": "source.footsies-1.5.0"
+        },
+        {
+          "locator_id": "r1.input-history",
+          "locator_kind": "source_file_lines",
+          "locator_value": "https://github.com/hifight/Footsies/blob/7eaaad799bb7912625c15af9407c2c67e6305d75/Assets/Script/Fighter.cs#L168-L253",
+          "source_id": "source.footsies-1.5.0"
+        },
+        {
+          "locator_id": "r1.request-commit",
+          "locator_kind": "source_file_lines",
+          "locator_value": "https://github.com/hifight/Footsies/blob/7eaaad799bb7912625c15af9407c2c67e6305d75/Assets/Script/Fighter.cs#L531-L556",
+          "source_id": "source.footsies-1.5.0"
+        },
+        {
+          "locator_id": "r1.tag",
+          "locator_kind": "tag",
+          "locator_value": "https://github.com/hifight/Footsies/tree/1.5.0",
+          "source_id": "source.footsies-1.5.0"
+        },
+        {
+          "locator_id": "r1.time-base",
+          "locator_kind": "build_file",
+          "locator_value": "https://github.com/hifight/Footsies/blob/7eaaad799bb7912625c15af9407c2c67e6305d75/ProjectSettings/TimeManager.asset#L1-L8",
+          "source_id": "source.footsies-1.5.0"
+        },
+        {
+          "locator_id": "r1.toolchain",
+          "locator_kind": "build_file",
+          "locator_value": "https://github.com/hifight/Footsies/blob/7eaaad799bb7912625c15af9407c2c67e6305d75/ProjectSettings/ProjectVersion.txt",
+          "source_id": "source.footsies-1.5.0"
+        },
+        {
+          "locator_id": "r1.update-order",
+          "locator_kind": "source_file_lines",
+          "locator_value": "https://github.com/hifight/Footsies/blob/7eaaad799bb7912625c15af9407c2c67e6305d75/Assets/Script/BattleCore.cs#L261-L278",
+          "source_id": "source.footsies-1.5.0"
+        }
+      ],
+      "source_ids": [
+        "source.footsies-1.5.0"
+      ]
+    },
+    {
+      "case_scope": {
+        "case_id": "CA-R2",
+        "controlled_variable_id": "variable.r2.input-sampling-policy",
+        "formal_input_ref": "input.r2.usercmd-trace",
+        "observation_start": "PM_NORMAL 空中状态从 origin=(0,0,4096)、velocity=(0,0,0) 开始；固定子步为 8 ms。",
+        "observation_stop": "第 25 个子步完成，即规则时间 200 ms；保存 raw_cmd、used_cmd、分支、接触、速度与位置。",
+        "role_id": "CA-R2",
+        "scope_exclusions": [
+          "零售可执行文件与商业游戏数据",
+          "武器、跳跃、水体、伤害与碰撞事件",
+          "玩家控制感、技巧、策略与体验",
+          "渲染帧率、真实墙钟与人工输入设备"
+        ]
+      },
+      "locators": [
+        {
+          "locator_id": "r2.acceleration",
+          "locator_kind": "source_file_lines",
+          "locator_value": "https://github.com/id-Software/Quake-III-Arena/blob/dbe4ddb10315479fc00086f08e25d968b4b43c49/code/game/bg_pmove.c#L233-L258",
+          "source_id": "source.quake3-gpl"
+        },
+        {
+          "locator_id": "r2.air-move",
+          "locator_kind": "source_file_lines",
+          "locator_value": "https://github.com/id-Software/Quake-III-Arena/blob/dbe4ddb10315479fc00086f08e25d968b4b43c49/code/game/bg_pmove.c#L597-L637",
+          "source_id": "source.quake3-gpl"
+        },
+        {
+          "locator_id": "r2.commit",
+          "locator_kind": "commit",
+          "locator_value": "https://github.com/id-Software/Quake-III-Arena/tree/dbe4ddb10315479fc00086f08e25d968b4b43c49",
+          "source_id": "source.quake3-gpl"
+        },
+        {
+          "locator_id": "r2.interface",
+          "locator_kind": "source_file_lines",
+          "locator_value": "https://github.com/id-Software/Quake-III-Arena/blob/dbe4ddb10315479fc00086f08e25d968b4b43c49/code/game/bg_pmove.c#L23-L40",
+          "source_id": "source.quake3-gpl"
+        },
+        {
+          "locator_id": "r2.license",
+          "locator_kind": "documentation_section",
+          "locator_value": "https://github.com/id-Software/Quake-III-Arena/blob/dbe4ddb10315479fc00086f08e25d968b4b43c49/COPYING.txt",
+          "source_id": "source.quake3-gpl"
+        },
+        {
+          "locator_id": "r2.outer-step",
+          "locator_kind": "source_file_lines",
+          "locator_value": "https://github.com/id-Software/Quake-III-Arena/blob/dbe4ddb10315479fc00086f08e25d968b4b43c49/code/game/bg_pmove.c#L2019-L2064",
+          "source_id": "source.quake3-gpl"
+        },
+        {
+          "locator_id": "r2.public-structures",
+          "locator_kind": "source_file_lines",
+          "locator_value": "https://github.com/id-Software/Quake-III-Arena/blob/dbe4ddb10315479fc00086f08e25d968b4b43c49/code/game/bg_public.h#L119-L195",
+          "source_id": "source.quake3-gpl"
+        },
+        {
+          "locator_id": "r2.readme",
+          "locator_kind": "documentation_section",
+          "locator_value": "https://github.com/id-Software/Quake-III-Arena/blob/dbe4ddb10315479fc00086f08e25d968b4b43c49/README.txt",
+          "source_id": "source.quake3-gpl"
+        },
+        {
+          "locator_id": "r2.single-step",
+          "locator_kind": "source_file_lines",
+          "locator_value": "https://github.com/id-Software/Quake-III-Arena/blob/dbe4ddb10315479fc00086f08e25d968b4b43c49/code/game/bg_pmove.c#L1830-L2000",
+          "source_id": "source.quake3-gpl"
+        },
+        {
+          "locator_id": "r2.version",
+          "locator_kind": "source_file_lines",
+          "locator_value": "https://github.com/id-Software/Quake-III-Arena/blob/dbe4ddb10315479fc00086f08e25d968b4b43c49/code/game/q_shared.h#L29-L30",
+          "source_id": "source.quake3-gpl"
+        }
+      ],
+      "source_ids": [
+        "source.quake3-gpl"
+      ]
+    },
+    {
+      "case_scope": {
+        "case_id": "CA-R3",
+        "controlled_variable_id": "variable.r3.adjudication-schedule",
+        "formal_input_ref": "input.r3.single-candidate",
+        "observation_start": "OD5 的单个 HitCircle 在 StartTime=T 于圆心收到一次有效候选按下。",
+        "observation_stop": "正式结果提交、RawTime 与通知记录完成，并记录同一物件再次接受输入的许可关闭时点。",
+        "role_id": "CA-R3",
+        "scope_exclusions": [
+          "在线成绩、玩家数据、商业音乐与原作皮肤",
+          "普通渲染时钟与非确定性调度",
+          "玩家准确度、节奏能力、难度与感受",
+          "品牌、市场版本行为与未冻结规则集"
+        ]
+      },
+      "locators": [
+        {
+          "locator_id": "r3.apply-result",
+          "locator_kind": "source_file_lines",
+          "locator_value": "https://github.com/ppy/osu/blob/5da71008b082d1a77e4bb301dc98886f1f24b895/osu.Game/Rulesets/Objects/Drawables/DrawableHitObject.cs#L721-L765",
+          "source_id": "source.osu-lazer-2026.726.0"
+        },
+        {
+          "locator_id": "r3.candidate-path",
+          "locator_kind": "source_file_lines",
+          "locator_value": "https://github.com/ppy/osu/blob/5da71008b082d1a77e4bb301dc98886f1f24b895/osu.Game.Rulesets.Osu/Objects/Drawables/DrawableHitCircle.cs#L73-L77",
+          "source_id": "source.osu-lazer-2026.726.0"
+        },
+        {
+          "locator_id": "r3.commit",
+          "locator_kind": "commit",
+          "locator_value": "https://github.com/ppy/osu/tree/5da71008b082d1a77e4bb301dc98886f1f24b895",
+          "source_id": "source.osu-lazer-2026.726.0"
+        },
+        {
+          "locator_id": "r3.hit-animation",
+          "locator_kind": "source_file_lines",
+          "locator_value": "https://github.com/ppy/osu/blob/5da71008b082d1a77e4bb301dc98886f1f24b895/osu.Game.Rulesets.Osu/Objects/Drawables/DrawableHitCircle.cs#L55-L60",
+          "source_id": "source.osu-lazer-2026.726.0"
+        },
+        {
+          "locator_id": "r3.hit-animation-effect",
+          "locator_kind": "source_file_lines",
+          "locator_value": "https://github.com/ppy/osu/blob/5da71008b082d1a77e4bb301dc98886f1f24b895/osu.Game.Rulesets.Osu/Objects/Drawables/DrawableHitCircle.cs#L209-L235",
+          "source_id": "source.osu-lazer-2026.726.0"
+        },
+        {
+          "locator_id": "r3.hit-circle-result",
+          "locator_kind": "source_file_lines",
+          "locator_value": "https://github.com/ppy/osu/blob/5da71008b082d1a77e4bb301dc98886f1f24b895/osu.Game.Rulesets.Osu/Objects/Drawables/DrawableHitCircle.cs#L137-L172",
+          "source_id": "source.osu-lazer-2026.726.0"
+        },
+        {
+          "locator_id": "r3.hit-windows",
+          "locator_kind": "source_file_lines",
+          "locator_value": "https://github.com/ppy/osu/blob/5da71008b082d1a77e4bb301dc98886f1f24b895/osu.Game.Rulesets.Osu/Scoring/OsuHitWindows.cs#L10-L64",
+          "source_id": "source.osu-lazer-2026.726.0"
+        },
+        {
+          "locator_id": "r3.input-press",
+          "locator_kind": "source_file_lines",
+          "locator_value": "https://github.com/ppy/osu/blob/5da71008b082d1a77e4bb301dc98886f1f24b895/osu.Game.Rulesets.Osu/Objects/Drawables/DrawableHitCircle.cs#L277-L304",
+          "source_id": "source.osu-lazer-2026.726.0"
+        },
+        {
+          "locator_id": "r3.result-order",
+          "locator_kind": "source_file_lines",
+          "locator_value": "https://github.com/ppy/osu/blob/5da71008b082d1a77e4bb301dc98886f1f24b895/osu.Game/Rulesets/Scoring/HitWindows.cs#L37-L109",
+          "source_id": "source.osu-lazer-2026.726.0"
+        },
+        {
+          "locator_id": "r3.single-object-test",
+          "locator_kind": "source_file_lines",
+          "locator_value": "https://github.com/ppy/osu/blob/5da71008b082d1a77e4bb301dc98886f1f24b895/osu.Game.Rulesets.Osu.Tests/TestSceneMissHitWindowJudgements.cs#L20-L64",
+          "source_id": "source.osu-lazer-2026.726.0"
+        },
+        {
+          "locator_id": "r3.tag",
+          "locator_kind": "release",
+          "locator_value": "https://github.com/ppy/osu/releases/tag/2026.726.0-lazer",
+          "source_id": "source.osu-lazer-2026.726.0"
+        },
+        {
+          "locator_id": "r3.toolchain",
+          "locator_kind": "build_file",
+          "locator_value": "https://github.com/ppy/osu/blob/5da71008b082d1a77e4bb301dc98886f1f24b895/global.json",
+          "source_id": "source.osu-lazer-2026.726.0"
+        }
+      ],
+      "source_ids": [
+        "source.osu-lazer-2026.726.0"
+      ]
+    }
+  ],
+  "created_at": "2026-07-26T19:30:02Z",
+  "run_id": "continuous-001",
+  "source_packet_id": "source-packet.continuous-001",
+  "sources": [
+    {
+      "commit": "7eaaad799bb7912625c15af9407c2c67e6305d75",
+      "license": "GPL-3.0",
+      "repository_url": "https://github.com/hifight/Footsies",
+      "source_id": "source.footsies-1.5.0",
+      "tag": "1.5.0",
+      "toolchain": [
+        {
+          "name": "Unity Editor",
+          "version": "2018.1.1f1"
+        }
+      ],
+      "work_title": "FOOTSIES source tag 1.5.0"
+    },
+    {
+      "commit": "5da71008b082d1a77e4bb301dc98886f1f24b895",
+      "license": "MIT for code; branding and resources excluded",
+      "repository_url": "https://github.com/ppy/osu",
+      "source_id": "source.osu-lazer-2026.726.0",
+      "tag": "2026.726.0-lazer",
+      "toolchain": [
+        {
+          "name": ".NET SDK",
+          "version": "8.0.100 with latestFeature roll-forward"
+        }
+      ],
+      "work_title": "osu!lazer source tag 2026.726.0-lazer"
+    },
+    {
+      "commit": "dbe4ddb10315479fc00086f08e25d968b4b43c49",
+      "license": "GPL-2.0-or-later for bg_pmove.c; repository notices retained",
+      "repository_url": "https://github.com/id-Software/Quake-III-Arena",
+      "source_id": "source.quake3-gpl",
+      "tag": null,
+      "toolchain": [
+        {
+          "name": "Source-era GCC",
+          "version": "2.95"
+        }
+      ],
+      "work_title": "Quake III Arena GPL source snapshot"
+    }
+  ]
+}
