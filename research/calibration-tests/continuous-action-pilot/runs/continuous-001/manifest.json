@@ -1789,14 +1789,14 @@
     }
   ],
   "created_at": "2026-07-26T19:30:02Z",
-  "freeze_commit": null,
+  "freeze_commit": "bbea296b019ea1b5f5f3bb8cfe5937b0ff276f5b",
   "frozen_artifact_set_digest": "05ecfdb1e88db74e6839c1a443e6cb09a7a9e89754131b018e13ed04f7ff3c69",
   "protocol_version": "0.1.0",
   "run_id": "continuous-001",
   "schema_version": "0.1.1",
   "stage": "view_generation",
   "stage_digests": [],
-  "status": "preparing",
+  "status": "frozen",
   "truth_commitment": {
     "algorithm": "SHA-256",
     "combination": "secret_nonce_bytes || exact_truth_bundle_bytes",
@@ -1806,5 +1806,5 @@
     "truth_bundle_bytes": 32408,
     "truth_bundle_name": "sealed-truth.json"
   },
-  "updated_at": "2026-07-27T05:55:29Z"
+  "updated_at": "2026-07-27T05:56:36Z"
 }
