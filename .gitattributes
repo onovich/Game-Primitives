@@ -15,4 +15,5 @@
 *.patch text eol=lf
 *.targets text eol=lf
 *.tsv text eol=lf
+*.txt text eol=lf
 *.log text eol=lf
