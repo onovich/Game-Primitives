@@ -34,5 +34,6 @@
 - [连续行动组 CA-05](continuous-action-pilot-ca-05-variants.md)：三项单变量反事实、一个装饰负对照、重构与预测判定表；
 - [连续行动组 CA-06](continuous-action-pilot-ca-06-execution-and-verdicts.md)：丰富／压缩双条件、执行角色、熟悉度／污染与组级结论；
 - [连续行动组 CA-07](continuous-action-pilot-ca-07-artifacts-and-release.md)：七类制品、增量彩排、冻结纪律和一次性正式派发门；
+- [`continuous-002` 增量契约](continuous-action-pilot-continuous-002-delta-contract.md)：在不回写 `continuous-001` 的前提下，以协议 0.1.1 重建门前候选包、版本闭包与新人工门；
 - [CA-SR 0.1](../theory/CONTINUOUS-ACTION-REPRESENTATION-0.1.md)：连续行动组的测试伴随表示与轨迹格式；
 - [校准门 D](calibration-gates/gate-d-second-cycle-method-pilot.md)：两组完成后复核强检验方法，再决定扩展范围。

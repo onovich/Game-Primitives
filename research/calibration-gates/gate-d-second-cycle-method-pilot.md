@@ -3,7 +3,7 @@
 - 状态：逻辑解谜组与组间方法复核已完成；连续行动组 `continuous-001` 已失败关闭，协议 0.1.1 复测通过，正在制作 `continuous-002` 门前包；门 D 尚未召开
 - 日期：2026-07-27
 - 所属阶段：阶段一·开放研究，第二轮案例校准准备
-- 来源决定：D2-1–D2-6、CA-01–CA-07；[ADR 0101](../../docs/adr/0101-pilot-the-second-cycle-with-two-contrasting-groups.md)–[ADR 0116](../../docs/adr/0116-separate-blind-payloads-from-generated-submission-envelopes.md)
+- 来源决定：D2-1–D2-6、CA-01–CA-07；[ADR 0101](../../docs/adr/0101-pilot-the-second-cycle-with-two-contrasting-groups.md)–[ADR 0119](../../docs/adr/0119-separate-human-authorization-from-execution-permit.md)、[ADR 0120](../../docs/adr/0120-establish-continuous-002-on-protocol-0.1.1.md)
 - 方法依据：[第二轮案例校准协议](../calibration-cycle-2-protocol.md)
 
 ## 1. 门 D 的职责

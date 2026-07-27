@@ -3,7 +3,7 @@
 - 状态：逻辑解谜组 `logic-001` 已报告；连续行动组 `continuous-001` 已失败关闭，协议 0.1.1 与 `rehearsal-006` 复测通过，进入 `continuous-002` 门前候选包制作
 - 日期：2026-07-27
 - 项目阶段：阶段一·开放研究
-- 来源决定：D-C7、D2-1–D2-6、CA-01–CA-07；[ADR 0100](../docs/adr/0100-require-strong-tests-beyond-structural-expressibility.md)–[ADR 0116](../docs/adr/0116-separate-blind-payloads-from-generated-submission-envelopes.md)
+- 来源决定：D-C7、D2-1–D2-6、CA-01–CA-07；[ADR 0100](../docs/adr/0100-require-strong-tests-beyond-structural-expressibility.md)–[ADR 0119](../docs/adr/0119-separate-human-authorization-from-execution-permit.md)、[ADR 0120](../docs/adr/0120-establish-continuous-002-on-protocol-0.1.1.md)
 - 前序结果：[第一轮十二案跨案例总汇报](calibration-gates/gate-c-first-cycle-synthesis.md)
 - 当前复核：[从逻辑解谜组到连续行动组的组间方法复核](calibration-method-review-logic-to-continuous.md)
 

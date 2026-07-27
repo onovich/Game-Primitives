@@ -1,10 +1,11 @@
 # 连续行动先行组测试工作区
 
-- 状态：`continuous-001` 因参与者预测接口不可构造而在正式输入执行前失败关闭；协议 0.1.1 的阶段契约、类型化模板、隔离门前检查与四席两阶段首答已由 `rehearsal-006` 全部验收，下一步建立 `continuous-002` 的增量契约与门前候选包
+- 状态：`continuous-001` 因参与者预测接口不可构造而在正式输入执行前失败关闭；协议 0.1.1 与 `rehearsal-006` 已通过，`continuous-002` 增量契约已接受，当前只制作门前候选包
 - 受测表示：[连续行动结构表示 v0.1](../../../theory/CONTINUOUS-ACTION-REPRESENTATION-0.1.md)
 - 执行与结论规则：[CA-06](../../continuous-action-pilot-ca-06-execution-and-verdicts.md)
 - 制品与放行规则：[CA-07](../../continuous-action-pilot-ca-07-artifacts-and-release.md)
 - 正式包契约：[正式轮次包契约](../../continuous-action-pilot-formal-package-contract.md)
+- 新轮次增量：[`continuous-002` 增量契约](../../continuous-action-pilot-continuous-002-delta-contract.md)
 
 本工作区保存连续行动方法试验的结构化制品。当前授权仅覆盖 Schema、来源编码、来源审核、夹具准备、比较器准备和虚构材料的增量彩排，不授权正式盲测、三案冻结输入的精确执行或真值揭示。
 
@@ -115,6 +116,7 @@ python research/calibration-tests/continuous-action-pilot/tools/verify-formal-ra
 | 轮次 | 结果 | 停止边界 | 发现 |
 | --- | --- | --- | --- |
 | [`continuous-001`](runs/continuous-001/) | `run_invalid` | 第二阶段提交装配 | 四席都命中预测模板固定单位与 `indeterminate` Schema 的系统性冲突；预测集合、执行许可、正式结果和真值揭示均未产生 |
+| `continuous-002` | `preparing` | 门前候选包 | 只允许重建协议 0.1.1 的版本、Schema、工具、来源、夹具、任务、提示、承诺与冻结闭包；尚未创建正式 actor 或授权实例 |
 
 `continuous-001` 的门后结果与保全证据见[轮次报告](runs/continuous-001/reports/README.md)。后续修订不得覆盖该轮冻结材料；[协议 0.1.1 修复计划](protocol-0.1.1-repair-plan.md)与 `rehearsal-006` 已完成，新的正式尝试必须使用 `continuous-002`、新的冻结摘要、真值承诺和一次性人工授权。
 
