@@ -1,0 +1,129 @@
+{
+  "$schema": "https://github.com/onovich/Game-Primitives/blob/main/research/calibration-tests/continuous-action-pilot/schema/formal-human-gate-authorization-0.1.0.schema.json",
+  "artifact_type": "formal_human_gate_authorization",
+  "artifact_version": "0.1.0",
+  "authorization_basis": {
+    "decision": "authorized",
+    "message_sha256": "0b352c82d70d4fee0f74542af6966f32cfdc6cf4f2b37996b03af9e8a700ce6a",
+    "source_kind": "explicit_user_message",
+    "source_locator": "codex-thread://019f7bd7-d8bc-7ae2-ba7d-6d0d27ac62fa/user-message/authorization-phrase"
+  },
+  "authorization_context": "formal_run",
+  "authorization_id": "authorization.continuous-001.human-gate",
+  "authorization_phrase": "RUN_CONTINUOUS_001_FORMAL_AND_ACCEPT_R3_BYTE_INTEGRITY_EXCEPTION",
+  "authorization_scopes": {
+    "blind_dispatch_authorized": true,
+    "formal_execution_after_prediction_freeze_authorized": true,
+    "synthetic_receipt_materialization_authorized": false
+  },
+  "authorization_state": "authorized",
+  "authorized_at": "2026-07-27T13:22:48.703Z",
+  "authorized_by": {
+    "identifier": "github:onovich",
+    "role": "author"
+  },
+  "contract_artifacts": {
+    "authorization_schema": {
+      "path": "research/calibration-tests/continuous-action-pilot/schema/formal-human-gate-authorization-0.1.0.schema.json",
+      "sha256": "a19fb50a873a3a202737e1040ab8ed973fb3fe7fe36fa78534bbc3c0d50cd6d0"
+    },
+    "ca_r1_raw_trace_schema": {
+      "path": "research/calibration-tests/continuous-action-pilot/schema/ca-r1-raw-trace-0.1.0.schema.json",
+      "sha256": "0b0d44087869fb178f83a5faa6690ab190d0f3df3f75c43ec339490a29412961"
+    },
+    "ca_r2_raw_trace_schema": {
+      "path": "research/calibration-tests/continuous-action-pilot/schema/ca-r2-raw-trace-0.1.0.schema.json",
+      "sha256": "f719579e71bd1153ecd671302ab82df95f4630f9653c1d74bd90c4285b72e637"
+    },
+    "ca_r3_raw_trace_schema": {
+      "path": "research/calibration-tests/continuous-action-pilot/schema/ca-r3-raw-trace-0.1.0.schema.json",
+      "sha256": "a257fc0920536f76c977be8867a1e9302d872b7f8cea0480ade999e3281f07f1"
+    },
+    "dispatch_materializer": {
+      "path": "research/calibration-tests/continuous-action-pilot/tools/materialize-dispatch.py",
+      "sha256": "3ba6f0263d40753b1f5084903d34c727043fa648438746fae3138c89a84e2bfc"
+    },
+    "execution_permit_materializer": {
+      "path": "research/calibration-tests/continuous-action-pilot/tools/materialize-execution-permit.py",
+      "sha256": "cdfa62be90a1788895493db9728659408cded126482fb228aa932a1252ad5701"
+    },
+    "execution_permit_schema": {
+      "path": "research/calibration-tests/continuous-action-pilot/schema/formal-execution-permit-0.1.0.schema.json",
+      "sha256": "089397a3c6e65e7171375bdc7beb24d5d7f897078b364ef32a93b4d911886410"
+    },
+    "execution_permit_verifier": {
+      "path": "research/calibration-tests/continuous-action-pilot/tools/verify-formal-execution-permit.py",
+      "sha256": "b9c9b97319bd4a4e2814b5e463ca605783a6239b132dcb195fe2533c0b202b89"
+    },
+    "formal_comparator_output_schema": {
+      "path": "research/calibration-tests/continuous-action-pilot/schema/formal-comparator-output-0.1.0.schema.json",
+      "sha256": "602dc7edf80b36bbda52074d1a2a64c9ec85d57307a5fd85a48f25d54b4bc79d"
+    },
+    "protocol_incident_schema": {
+      "path": "research/calibration-tests/continuous-action-pilot/schema/protocol-incident-0.1.0.schema.json",
+      "sha256": "f7a412a6ca1b593c0cf2e1bdac661fab6e2f970a88583c609662a313ae5d8f1c"
+    },
+    "raw_trace_verifier": {
+      "path": "research/calibration-tests/continuous-action-pilot/tools/verify-formal-raw-trace.py",
+      "sha256": "2a30f9a0126d1a0feb8b595974025e4a91c4db6b9955ccefe7014ad58d02cca0"
+    },
+    "submission_builder": {
+      "path": "research/calibration-tests/continuous-action-pilot/tools/build-role-submission.py",
+      "sha256": "37029e58031a159937bfbd8008ab5a6041c86517836376dd63ab298676bfb4cb"
+    }
+  },
+  "final_build_readiness": {
+    "path": "research/calibration-tests/continuous-action-pilot/runs/continuous-001/fixtures/formal-build-readiness-v0.1.0.json",
+    "sha256": "581bf917f0b4d49f2f4dfec5c1eb5c8fb62ebb652533b263d593e7d0e0a6e082"
+  },
+  "fixture_lock": {
+    "path": "research/calibration-tests/continuous-action-pilot/runs/continuous-001/fixtures/fixture-lock.json",
+    "sha256": "7550e7477ed9213fbf605c6f30898e48151244db4b119e89ed0caf5fb3db4b5c"
+  },
+  "formal_readiness_verifier": {
+    "path": "research/calibration-tests/continuous-action-pilot/tools/verify-formal-readiness.py",
+    "sha256": "2f26a047fa2fd93f4d72c7325b1bba5a22143e7f1f8e3c6172eb8718e519a41a"
+  },
+  "freeze_commit": "bbea296b019ea1b5f5f3bb8cfe5937b0ff276f5b",
+  "frozen_artifact_set_digest": "05ecfdb1e88db74e6839c1a443e6cb09a7a9e89754131b018e13ed04f7ff3c69",
+  "frozen_manifest_path": "research/calibration-tests/continuous-action-pilot/runs/continuous-001/manifest.json",
+  "manifest_status_at_authorization": "frozen",
+  "projection_audit": {
+    "path": "research/calibration-tests/continuous-action-pilot/runs/continuous-001/source/projection-audit-v0.1.0.json",
+    "sha256": "723aa30ed34dcf39efbab606fa37f0002ea36986d8a337f8612fce06184935b2"
+  },
+  "protocol_incident_disposition": {
+    "acknowledged_facts": {
+      "byte_integrity_read_occurred": true,
+      "fact_basis_is_subtask_self_report": true,
+      "no_semantic_content_or_result_exposure_reported": true
+    },
+    "disposition": "accepted_nonsemantic_integrity_exception",
+    "incident_id": "incident.r3.formal-input-byte-integrity-read.v0.1.0",
+    "incident_record": {
+      "path": "research/calibration-tests/continuous-action-pilot/runs/continuous-001/source/protocol-incident-r3-byte-integrity-read-v0.1.0.json",
+      "sha256": "379c583a5c7bf1d839cb6bdc8bd4874df1cb2a91525d18fa8470912e0233295c"
+    },
+    "recorded_gate_status": "pending_explicit_human_acceptance"
+  },
+  "run_id": "continuous-001",
+  "state_at_authorization": {
+    "blind_dispatch_performed": false,
+    "formal_input_executed": false,
+    "formal_result_produced": false
+  },
+  "truth_commitment": {
+    "algorithm": "SHA-256",
+    "combination": "secret_nonce_bytes || exact_truth_bundle_bytes",
+    "commitment": "7bd02be636b74b84e956c7afcf8751fccb3a239aa32aebb6479ab5a6f993e3af",
+    "created_at": "2026-07-27T05:48:45Z",
+    "nonce_length_bytes": 32,
+    "truth_bundle_bytes": 32408,
+    "truth_bundle_name": "sealed-truth.json"
+  },
+  "verification": {
+    "require_frozen": true,
+    "status": "passed",
+    "verified_at": "2026-07-27T13:22:30Z"
+  }
+}

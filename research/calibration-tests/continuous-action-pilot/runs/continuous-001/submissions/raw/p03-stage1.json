@@ -1,0 +1,300 @@
+{
+  "$schema": "https://github.com/onovich/Game-Primitives/blob/main/research/calibration-tests/continuous-action-pilot/schema/blind-response-interface-0.1.0.schema.json",
+  "artifact_type": "reconstruction_response_payload",
+  "artifact_version": "0.1.0",
+  "pollution": {
+    "familiarity": {
+      "exact_result_knowledge": "none",
+      "exact_rule_knowledge": "none",
+      "exact_variant_knowledge": "none",
+      "project_exposure": "none",
+      "recognition_status": "none",
+      "recognized_family": null,
+      "recognized_work": null,
+      "related_genre_experience": "extensive"
+    },
+    "integrity_exposures": [],
+    "stage_update_note": null
+  },
+  "reconstruction_answers": [
+    {
+      "ambiguities": [
+        "输出通道 01 的终止布尔值未公开。",
+        "观察期间是否发生 state_committed、发生次数及提交值均未公开。",
+        "两个允许效果类型是否实际出现，以及它们与输出通道的关系均未公开。",
+        "输入动作、任何中间更新与终止条件之间的因果和时序关系未公开。"
+      ],
+      "assumptions": [],
+      "case_id": "CA-R1",
+      "compatible_branches": [
+        {
+          "branch_id": "r1.branch.constant",
+          "description": "输出通道从初始 false 保持不变，观察期间没有改变该通道的状态提交，随后在声明终止条件处读取边界输出。",
+          "supporting_record_ids": [
+            "o.a.0002",
+            "o.a.0041",
+            "o.a.0042",
+            "o.a.0045"
+          ]
+        },
+        {
+          "branch_id": "r1.branch.updated",
+          "description": "输出通道在观察期间经历一次或多次状态提交，终止时可为 false 或 true；派发视图未给出足以排除该结构的更新关系或终止值。",
+          "supporting_record_ids": [
+            "o.a.0002",
+            "o.a.0041",
+            "o.a.0042",
+            "o.a.0045"
+          ]
+        }
+      ],
+      "confidence_percent": 97,
+      "recovered_facts": [
+        {
+          "claim": "存在一个布尔型输出通道 01，其声明初始值为 false。",
+          "fact_id": "r1.fact.channel_initial",
+          "recovery_status": "recovered",
+          "supporting_record_ids": [
+            "o.a.0045"
+          ]
+        },
+        {
+          "claim": "规范输入动作 o.a.0002 同时是边界派生所使用的原始轨迹引用。",
+          "fact_id": "r1.fact.raw_trace",
+          "recovery_status": "recovered",
+          "supporting_record_ids": [
+            "o.a.0002",
+            "o.a.0041"
+          ]
+        },
+        {
+          "claim": "终止输出由过程 o.a.0041 在条件 o.a.0042 所标识的观察终点处派生。",
+          "fact_id": "r1.fact.boundary_derivation",
+          "recovery_status": "recovered",
+          "supporting_record_ids": [
+            "o.a.0041",
+            "o.a.0042"
+          ]
+        },
+        {
+          "claim": "效果类型 o.a.0015 与 o.a.0025 被允许出现在终止输出，但是否实际出现不可恢复。",
+          "fact_id": "r1.fact.allowed_effects",
+          "recovery_status": "recovered",
+          "supporting_record_ids": [
+            "o.a.0015",
+            "o.a.0025"
+          ]
+        },
+        {
+          "claim": "输出通道 01 的终止值不可恢复。",
+          "fact_id": "r1.fact.stop_value",
+          "recovery_status": "not_recoverable",
+          "supporting_record_ids": [
+            "o.a.0045"
+          ]
+        },
+        {
+          "claim": "输入动作、中间状态提交、允许效果类型和终止条件之间的具体更新关系不可恢复。",
+          "fact_id": "r1.fact.hidden_relations",
+          "recovery_status": "not_recoverable",
+          "supporting_record_ids": [
+            "o.a.0002",
+            "o.a.0015",
+            "o.a.0025",
+            "o.a.0041",
+            "o.a.0042",
+            "o.a.0045"
+          ]
+        }
+      ],
+      "uniqueness": "multiple_compatible_structures"
+    },
+    {
+      "ambiguities": [
+        "两个字符串通道的初始值、终止值和单位均未公开。",
+        "两个通道之间是否耦合、互斥、复制或独立更新未公开。",
+        "观察期间状态提交的数量、顺序、目标通道和值均未公开。",
+        "允许效果类型是否实际出现及其与任一通道的映射未公开。"
+      ],
+      "assumptions": [],
+      "case_id": "CA-R2",
+      "compatible_branches": [
+        {
+          "branch_id": "r2.branch.independent",
+          "description": "两个字符串输出通道相互独立；在 200 毫秒观察窗内，它们可以分别保持或更新，并在终止条件处读取各自边界值。",
+          "supporting_record_ids": [
+            "o.b.0002",
+            "o.b.0011",
+            "o.b.0013",
+            "o.b.0029",
+            "o.b.0030"
+          ]
+        },
+        {
+          "branch_id": "r2.branch.coupled",
+          "description": "两个字符串输出通道由同一隐藏更新共同写入，或一个通道派生自另一个通道；派发视图没有公开可区分这种耦合结构的关系。",
+          "supporting_record_ids": [
+            "o.b.0002",
+            "o.b.0011",
+            "o.b.0013",
+            "o.b.0029",
+            "o.b.0030"
+          ]
+        }
+      ],
+      "confidence_percent": 97,
+      "recovered_facts": [
+        {
+          "claim": "存在两个不同的字符串型输出通道：输出通道 01 和输出通道 02。",
+          "fact_id": "r2.fact.channels",
+          "recovery_status": "recovered",
+          "supporting_record_ids": [
+            "o.b.0011",
+            "o.b.0013"
+          ]
+        },
+        {
+          "claim": "观察片段从规则相对时间 0 延续至规则相对时间 200 毫秒，并由条件 o.b.0030 标识终点。",
+          "fact_id": "r2.fact.window",
+          "recovery_status": "recovered",
+          "supporting_record_ids": [
+            "o.b.0002",
+            "o.b.0030"
+          ]
+        },
+        {
+          "claim": "过程 o.b.0029 从输入动作 o.b.0002 所引用的边界记录派生终止输出。",
+          "fact_id": "r2.fact.boundary_derivation",
+          "recovery_status": "recovered",
+          "supporting_record_ids": [
+            "o.b.0002",
+            "o.b.0029",
+            "o.b.0030"
+          ]
+        },
+        {
+          "claim": "效果类型 o.b.0024 被允许出现在终止输出，但本轮实际结果值未公开。",
+          "fact_id": "r2.fact.allowed_effect",
+          "recovery_status": "recovered",
+          "supporting_record_ids": [
+            "o.b.0024"
+          ]
+        },
+        {
+          "claim": "两个输出通道各自的初始值和终止值不可恢复。",
+          "fact_id": "r2.fact.endpoint_values",
+          "recovery_status": "not_recoverable",
+          "supporting_record_ids": [
+            "o.b.0011",
+            "o.b.0013"
+          ]
+        },
+        {
+          "claim": "两个通道之间的结构关系以及输入、状态提交、允许效果和终止条件之间的具体更新关系不可恢复。",
+          "fact_id": "r2.fact.hidden_relations",
+          "recovery_status": "not_recoverable",
+          "supporting_record_ids": [
+            "o.b.0002",
+            "o.b.0011",
+            "o.b.0013",
+            "o.b.0024",
+            "o.b.0029",
+            "o.b.0030"
+          ]
+        }
+      ],
+      "uniqueness": "multiple_compatible_structures"
+    },
+    {
+      "ambiguities": [
+        "从 true 到 false 之间是否存在中间值回转或多次状态提交未公开。",
+        "输入事件是否直接导致通道改变，还是仅启动一个独立过程，未公开。",
+        "终止条件与通道变为 false 的先后或因果关系未公开。",
+        "允许效果类型是否实际出现，以及它是否就是已声明布尔通道的输出，未公开。"
+      ],
+      "assumptions": [],
+      "case_id": "CA-R3",
+      "compatible_branches": [
+        {
+          "branch_id": "r3.branch.single_commit",
+          "description": "首个输入事件被接受后，输出通道通过一次状态提交从 true 变为 false，随后首个终止条件满足并读取 false。",
+          "supporting_record_ids": [
+            "o.c.0002",
+            "o.c.0031",
+            "o.c.0032",
+            "o.c.0035"
+          ]
+        },
+        {
+          "branch_id": "r3.branch.multiple_commits",
+          "description": "首个输入事件被接受后，输出通道经历多次隐藏状态提交或回转，最终在首个终止条件满足时为 false。",
+          "supporting_record_ids": [
+            "o.c.0002",
+            "o.c.0031",
+            "o.c.0032",
+            "o.c.0035"
+          ]
+        }
+      ],
+      "confidence_percent": 98,
+      "recovered_facts": [
+        {
+          "claim": "存在一个布尔型输出通道 01，其声明初始值为 true，声明终止值为 false。",
+          "fact_id": "r3.fact.endpoint_values",
+          "recovery_status": "recovered",
+          "supporting_record_ids": [
+            "o.c.0035"
+          ]
+        },
+        {
+          "claim": "观察从首个声明输入事件被接受开始，到首个声明终止条件 o.c.0032 满足为止。",
+          "fact_id": "r3.fact.window",
+          "recovery_status": "recovered",
+          "supporting_record_ids": [
+            "o.c.0002",
+            "o.c.0032"
+          ]
+        },
+        {
+          "claim": "过程 o.c.0031 使用输入动作 o.c.0002 所引用的原始轨迹并在声明终点派生终止输出。",
+          "fact_id": "r3.fact.boundary_derivation",
+          "recovery_status": "recovered",
+          "supporting_record_ids": [
+            "o.c.0002",
+            "o.c.0031",
+            "o.c.0032"
+          ]
+        },
+        {
+          "claim": "效果类型 o.c.0009 被允许出现在终止输出，但是否实际出现不可恢复。",
+          "fact_id": "r3.fact.allowed_effect",
+          "recovery_status": "recovered",
+          "supporting_record_ids": [
+            "o.c.0009"
+          ]
+        },
+        {
+          "claim": "输出通道在观察边界之间具有从 true 到 false 的净变化，但实现该变化的提交次数、顺序和中间路径不可恢复。",
+          "fact_id": "r3.fact.hidden_path",
+          "recovery_status": "not_recoverable",
+          "supporting_record_ids": [
+            "o.c.0035"
+          ]
+        },
+        {
+          "claim": "输入事件、允许效果、通道变化和终止条件之间的具体因果关系不可恢复。",
+          "fact_id": "r3.fact.hidden_relations",
+          "recovery_status": "not_recoverable",
+          "supporting_record_ids": [
+            "o.c.0002",
+            "o.c.0009",
+            "o.c.0031",
+            "o.c.0032",
+            "o.c.0035"
+          ]
+        }
+      ],
+      "uniqueness": "multiple_compatible_structures"
+    }
+  ]
+}

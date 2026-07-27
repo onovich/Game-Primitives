@@ -1,0 +1,8 @@
+{
+  "identifier": "codex.blind-p04.continuous-001",
+  "model": "OpenAI Codex",
+  "model_version": "gpt-5.6-sol",
+  "reasoning_effort": "high",
+  "role": "blind_reconstructor_predictor",
+  "session_id": "session.continuous-001.p04.formal-20260727"
+}

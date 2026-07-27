@@ -1,0 +1,96 @@
+{
+  "$schema": "https://github.com/onovich/Game-Primitives/blob/main/research/calibration-tests/continuous-action-pilot/schema/prediction-template-contract-check-0.1.0.schema.json",
+  "artifact_type": "prediction_template_contract_check",
+  "artifact_version": "0.1.0",
+  "issue_count": 21,
+  "issues": [
+    {
+      "path": "task/instructions",
+      "problem": "Schema requires unit=null for indeterminate expectations, but the participant instructions do not state that rule"
+    },
+    {
+      "path": "template_payload/CA-R1/expectations/6/value/unit",
+      "problem": "fixed measurement unit makes the Schema-valid indeterminate branch unreachable; use a placeholder containing null and count"
+    },
+    {
+      "path": "template_payload/CA-R1/expectations/7/value/unit",
+      "problem": "fixed measurement unit makes the Schema-valid indeterminate branch unreachable; use a placeholder containing null and count"
+    },
+    {
+      "path": "template_payload/CA-R1/expectations/8/value/unit",
+      "problem": "fixed measurement unit makes the Schema-valid indeterminate branch unreachable; use a placeholder containing null and count"
+    },
+    {
+      "path": "template_payload/CA-R1/expectations/9/value/unit",
+      "problem": "fixed measurement unit makes the Schema-valid indeterminate branch unreachable; use a placeholder containing null and count"
+    },
+    {
+      "path": "template_payload/CA-R2/expectations/2/value/unit",
+      "problem": "fixed measurement unit makes the Schema-valid indeterminate branch unreachable; use a placeholder containing null and engine_unit_per_second"
+    },
+    {
+      "path": "template_payload/CA-R2/expectations/3/value/unit",
+      "problem": "fixed measurement unit makes the Schema-valid indeterminate branch unreachable; use a placeholder containing null and engine_unit_per_second"
+    },
+    {
+      "path": "template_payload/CA-R2/expectations/4/value/unit",
+      "problem": "fixed measurement unit makes the Schema-valid indeterminate branch unreachable; use a placeholder containing null and engine_unit"
+    },
+    {
+      "path": "template_payload/CA-R2/expectations/5/value/unit",
+      "problem": "fixed measurement unit makes the Schema-valid indeterminate branch unreachable; use a placeholder containing null and engine_unit"
+    },
+    {
+      "path": "template_payload/CA-R2/expectations/6/value/unit",
+      "problem": "fixed measurement unit makes the Schema-valid indeterminate branch unreachable; use a placeholder containing null and count"
+    },
+    {
+      "path": "template_payload/CA-R2/expectations/7/value/unit",
+      "problem": "fixed measurement unit makes the Schema-valid indeterminate branch unreachable; use a placeholder containing null and count"
+    },
+    {
+      "path": "template_payload/CA-R3/expectations/0/value/unit",
+      "problem": "fixed measurement unit makes the Schema-valid indeterminate branch unreachable; use a placeholder containing null and count"
+    },
+    {
+      "path": "template_payload/CA-R3/expectations/1/value/unit",
+      "problem": "fixed measurement unit makes the Schema-valid indeterminate branch unreachable; use a placeholder containing null and count"
+    },
+    {
+      "path": "template_payload/CA-R3/expectations/2/value/unit",
+      "problem": "fixed measurement unit makes the Schema-valid indeterminate branch unreachable; use a placeholder containing null and millisecond"
+    },
+    {
+      "path": "template_payload/CA-R3/expectations/3/value/unit",
+      "problem": "fixed measurement unit makes the Schema-valid indeterminate branch unreachable; use a placeholder containing null and millisecond"
+    },
+    {
+      "path": "template_payload/CA-R3/expectations/6/value/unit",
+      "problem": "fixed measurement unit makes the Schema-valid indeterminate branch unreachable; use a placeholder containing null and millisecond"
+    },
+    {
+      "path": "template_payload/CA-R3/expectations/7/value/unit",
+      "problem": "fixed measurement unit makes the Schema-valid indeterminate branch unreachable; use a placeholder containing null and millisecond"
+    },
+    {
+      "path": "template_payload/CA-R3/expectations/8/value/unit",
+      "problem": "fixed measurement unit makes the Schema-valid indeterminate branch unreachable; use a placeholder containing null and count"
+    },
+    {
+      "path": "template_payload/CA-R3/expectations/9/value/unit",
+      "problem": "fixed measurement unit makes the Schema-valid indeterminate branch unreachable; use a placeholder containing null and count"
+    },
+    {
+      "path": "template_payload/CA-R3/expectations/10/value/unit",
+      "problem": "fixed measurement unit makes the Schema-valid indeterminate branch unreachable; use a placeholder containing null and millisecond"
+    },
+    {
+      "path": "template_payload/CA-R3/expectations/11/value/unit",
+      "problem": "fixed measurement unit makes the Schema-valid indeterminate branch unreachable; use a placeholder containing null and millisecond"
+    }
+  ],
+  "response_schema_sha256": "a4ab92704a626b5f9a67850595dc0c6bf154dccbd18d5f81776cc30dfa3e58d1",
+  "status": "failed",
+  "task_sha256": "7a4e286c486b03fe3a24875e2db1e95b4024750e5c36af5a993adae54cda388c",
+  "template_sha256": "c992554cbfd115de4063163cce9d2d16816a645cd3c2647bc42b6a33b8eed5af"
+}

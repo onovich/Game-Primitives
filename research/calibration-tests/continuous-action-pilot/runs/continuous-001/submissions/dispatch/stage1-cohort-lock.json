@@ -1,0 +1,233 @@
+{
+  "$schema": "https://github.com/onovich/Game-Primitives/blob/main/research/calibration-tests/continuous-action-pilot/schema/stage1-cohort-lock-0.1.0.schema.json",
+  "all_stage1_frozen": true,
+  "artifact_type": "stage1_cohort_lock",
+  "artifact_version": "0.1.0",
+  "authorization_receipt": {
+    "path": "research/calibration-tests/continuous-action-pilot/runs/continuous-001/submissions/dispatch/human-gate-authorization.json",
+    "sha256": "263ba1a7116048189636177f1d58416ef6a0a5d177d9ed3fdb7f3c39ed2803e6"
+  },
+  "common_stage2_facility_files": [
+    {
+      "dispatch_role": "facility_schema",
+      "path": "research/calibration-tests/continuous-action-pilot/schema/blind-response-interface-0.1.0.schema.json",
+      "sha256": "a4ab92704a626b5f9a67850595dc0c6bf154dccbd18d5f81776cc30dfa3e58d1"
+    },
+    {
+      "dispatch_role": "facility_schema",
+      "path": "research/calibration-tests/continuous-action-pilot/schema/formal-human-gate-authorization-0.1.0.schema.json",
+      "sha256": "a19fb50a873a3a202737e1040ab8ed973fb3fe7fe36fa78534bbc3c0d50cd6d0"
+    },
+    {
+      "dispatch_role": "facility_schema",
+      "path": "research/calibration-tests/continuous-action-pilot/schema/response-template-0.1.0.schema.json",
+      "sha256": "5269053a4eb8c1e279d77aa3e9ab1b91b9f9c79cc9b97cd0c6b4842f53407b0d"
+    },
+    {
+      "dispatch_role": "facility_schema",
+      "path": "research/calibration-tests/continuous-action-pilot/schema/role-submission-0.1.1.schema.json",
+      "sha256": "45bb21217f462371e7d16d64560a5ce48a207c7370dd0644d96587568f908b1e"
+    },
+    {
+      "dispatch_role": "facility_schema",
+      "path": "research/calibration-tests/continuous-action-pilot/schema/role-submission-0.1.2.schema.json",
+      "sha256": "ce1bcbb603550ec42afa9023191666b0ef45096b4c0efd1a3b42150c83577f95"
+    },
+    {
+      "dispatch_role": "facility_schema",
+      "path": "research/calibration-tests/continuous-action-pilot/schema/task-packet-0.1.0.schema.json",
+      "sha256": "a8e79c02ec515debfe71eecc07a11b481b5312e27ff94d8da1d138714d131e9d"
+    },
+    {
+      "dispatch_role": "facility_schema",
+      "path": "research/calibration-tests/continuous-action-pilot/schema/task-packet-0.1.2.schema.json",
+      "sha256": "d32b78137d186a76921532fd3a861ab15e42eddc7def6395caa3e89caa27ca51"
+    },
+    {
+      "dispatch_role": "facility_schema",
+      "path": "research/calibration-tests/continuous-action-pilot/schema/variant-envelope-0.1.0.schema.json",
+      "sha256": "e91e5f373ffb7a9020130faaded11db8a42a71746d3c1ca243fa3405cfc0d084"
+    }
+  ],
+  "common_stage2_participant_files": [
+    {
+      "dispatch_role": "participant_cognitive_input",
+      "path": "research/calibration-tests/continuous-action-pilot/runs/continuous-001/inputs/prediction-response.template.json",
+      "sha256": "c992554cbfd115de4063163cce9d2d16816a645cd3c2647bc42b6a33b8eed5af"
+    },
+    {
+      "dispatch_role": "participant_cognitive_input",
+      "path": "research/calibration-tests/continuous-action-pilot/runs/continuous-001/inputs/stage2-prediction.task.json",
+      "sha256": "7a4e286c486b03fe3a24875e2db1e95b4024750e5c36af5a993adae54cda388c"
+    },
+    {
+      "dispatch_role": "participant_cognitive_input",
+      "path": "research/calibration-tests/continuous-action-pilot/runs/continuous-001/inputs/stage2-variant-envelope.json",
+      "sha256": "f4501e153cd103c0ec7a184c89e12aa57d4a9ef128e416654ad332a10c7702d1"
+    }
+  ],
+  "common_stage2_schema_dependency_closure": [
+    {
+      "document_path": "research/calibration-tests/continuous-action-pilot/runs/continuous-001/inputs/prediction-response.template.json",
+      "schema_path": "research/calibration-tests/continuous-action-pilot/schema/response-template-0.1.0.schema.json"
+    },
+    {
+      "document_path": "research/calibration-tests/continuous-action-pilot/runs/continuous-001/inputs/prediction-response.template.json#/target_response_schema",
+      "schema_path": "research/calibration-tests/continuous-action-pilot/schema/blind-response-interface-0.1.0.schema.json"
+    },
+    {
+      "document_path": "research/calibration-tests/continuous-action-pilot/runs/continuous-001/inputs/prediction-response.template.json#/template_payload",
+      "schema_path": "research/calibration-tests/continuous-action-pilot/schema/blind-response-interface-0.1.0.schema.json"
+    },
+    {
+      "document_path": "research/calibration-tests/continuous-action-pilot/runs/continuous-001/inputs/stage2-prediction.task.json",
+      "schema_path": "research/calibration-tests/continuous-action-pilot/schema/task-packet-0.1.2.schema.json"
+    },
+    {
+      "document_path": "research/calibration-tests/continuous-action-pilot/runs/continuous-001/inputs/stage2-prediction.task.json#/assembled_output_schema",
+      "schema_path": "research/calibration-tests/continuous-action-pilot/schema/role-submission-0.1.2.schema.json"
+    },
+    {
+      "document_path": "research/calibration-tests/continuous-action-pilot/runs/continuous-001/inputs/stage2-prediction.task.json#/output_schema",
+      "schema_path": "research/calibration-tests/continuous-action-pilot/schema/blind-response-interface-0.1.0.schema.json"
+    },
+    {
+      "document_path": "research/calibration-tests/continuous-action-pilot/runs/continuous-001/inputs/stage2-variant-envelope.json",
+      "schema_path": "research/calibration-tests/continuous-action-pilot/schema/variant-envelope-0.1.0.schema.json"
+    },
+    {
+      "document_path": "research/calibration-tests/continuous-action-pilot/schema/blind-response-interface-0.1.0.schema.json",
+      "schema_path": "research/calibration-tests/continuous-action-pilot/schema/role-submission-0.1.1.schema.json"
+    },
+    {
+      "document_path": "research/calibration-tests/continuous-action-pilot/schema/response-template-0.1.0.schema.json",
+      "schema_path": "research/calibration-tests/continuous-action-pilot/schema/task-packet-0.1.0.schema.json"
+    },
+    {
+      "document_path": "research/calibration-tests/continuous-action-pilot/schema/role-submission-0.1.2.schema.json",
+      "schema_path": "research/calibration-tests/continuous-action-pilot/schema/role-submission-0.1.1.schema.json"
+    },
+    {
+      "document_path": "research/calibration-tests/continuous-action-pilot/schema/task-packet-0.1.2.schema.json",
+      "schema_path": "research/calibration-tests/continuous-action-pilot/schema/task-packet-0.1.0.schema.json"
+    },
+    {
+      "document_path": "research/calibration-tests/continuous-action-pilot/schema/task-packet-0.1.2.schema.json",
+      "schema_path": "research/calibration-tests/continuous-action-pilot/schema/variant-envelope-0.1.0.schema.json"
+    }
+  ],
+  "condition_counts": {
+    "condition-v01": 2,
+    "condition-v02": 2
+  },
+  "independent_actor_sessions_verified": true,
+  "lock_id": "cohort-lock.continuous-001.stage1",
+  "lock_status": "locked",
+  "members": [
+    {
+      "actor_binding": {
+        "actor_identifier": "codex.blind-p01.continuous-001.attempt-08",
+        "actor_object_sha256": "9d666ef665f99199ea3caca459dcf128888bfa4f8cef95d183b592a27ced3e2a",
+        "session_id": "session.continuous-001.p01.formal-20260727.attempt-08"
+      },
+      "condition_id": "condition-v01",
+      "freeze_status": "frozen_by_exact_hash",
+      "machine_envelope": {
+        "path": "research/calibration-tests/continuous-action-pilot/runs/continuous-001/submissions/envelopes/p01-stage1.json",
+        "sha256": "f843b0a03bdd8cb52bc4a56b9b6f370fb7d3d3de8d04d5b7992f047e4f86a76d"
+      },
+      "raw_payload": {
+        "path": "research/calibration-tests/continuous-action-pilot/runs/continuous-001/submissions/raw/p01-stage1.json",
+        "sha256": "4f5a01170eed7c832e50ff3d9c52d44e37e4842c8c536672bd5a4b23067a45b7"
+      },
+      "reconstruction_submission": {
+        "path": "research/calibration-tests/continuous-action-pilot/runs/continuous-001/submissions/p01-stage1.json",
+        "sha256": "5804e39ec6ec39ef0cd2c458f91f8a69b156bbab782f8b0b73353e34f0daa77d"
+      },
+      "seat_id": "p01",
+      "stage1_dispatch_receipt": {
+        "path": "research/calibration-tests/continuous-action-pilot/runs/continuous-001/submissions/dispatch/stage1-p01.json",
+        "sha256": "0d967c3fee685e9d5bfc3c4b545451d00851c4815798b281b111cd59d08b7421"
+      }
+    },
+    {
+      "actor_binding": {
+        "actor_identifier": "codex.blind-p02.continuous-001",
+        "actor_object_sha256": "00e7ace0c8eedb73ececb46322bb943d97cb8ed19961d27eac8c006a2c34b2be",
+        "session_id": "session.continuous-001.p02.formal-20260727"
+      },
+      "condition_id": "condition-v01",
+      "freeze_status": "frozen_by_exact_hash",
+      "machine_envelope": {
+        "path": "research/calibration-tests/continuous-action-pilot/runs/continuous-001/submissions/envelopes/p02-stage1.json",
+        "sha256": "5561116e3b1eba9dd9c8556fcc5ac2c470f001c2aadef3762697323a87960db5"
+      },
+      "raw_payload": {
+        "path": "research/calibration-tests/continuous-action-pilot/runs/continuous-001/submissions/raw/p02-stage1.json",
+        "sha256": "4d561ba059fac36678b1ad67380c5143163506ec99cfee960159b36ace5393dd"
+      },
+      "reconstruction_submission": {
+        "path": "research/calibration-tests/continuous-action-pilot/runs/continuous-001/submissions/p02-stage1.json",
+        "sha256": "b80608acca6f66958d8f2adf4dd140440f16cae88af805ca26d95bfe5c9e2947"
+      },
+      "seat_id": "p02",
+      "stage1_dispatch_receipt": {
+        "path": "research/calibration-tests/continuous-action-pilot/runs/continuous-001/submissions/dispatch/stage1-p02.json",
+        "sha256": "296183fd9d555a1577396fa2219fd8184ae4e4f0be5d87e426ea2f56928b5687"
+      }
+    },
+    {
+      "actor_binding": {
+        "actor_identifier": "codex.blind-p03.continuous-001.attempt-04",
+        "actor_object_sha256": "f5d2970192e5c76b4906290b447c6ccd62b0c0ffbc130d4151550713881e858f",
+        "session_id": "session.continuous-001.p03.formal-20260727.attempt-04"
+      },
+      "condition_id": "condition-v02",
+      "freeze_status": "frozen_by_exact_hash",
+      "machine_envelope": {
+        "path": "research/calibration-tests/continuous-action-pilot/runs/continuous-001/submissions/envelopes/p03-stage1.json",
+        "sha256": "8e9ae895fe02f41299cea018c214ed0914e6ad71444e9b2b494a75b76f9f66da"
+      },
+      "raw_payload": {
+        "path": "research/calibration-tests/continuous-action-pilot/runs/continuous-001/submissions/raw/p03-stage1.json",
+        "sha256": "7a7186ba248286dd4ef3765e2a5a3053ef3ef34669533f5a78181057226f31d9"
+      },
+      "reconstruction_submission": {
+        "path": "research/calibration-tests/continuous-action-pilot/runs/continuous-001/submissions/p03-stage1.json",
+        "sha256": "f30ce7efc22cc253d157fdd1b9c0a573d6b47ed04f730ea057987777b0fb705a"
+      },
+      "seat_id": "p03",
+      "stage1_dispatch_receipt": {
+        "path": "research/calibration-tests/continuous-action-pilot/runs/continuous-001/submissions/dispatch/stage1-p03.json",
+        "sha256": "6f1ebcc21ee91def5f9d5a67c4d9d427178780f31473059ee09a282a2b5ba785"
+      }
+    },
+    {
+      "actor_binding": {
+        "actor_identifier": "codex.blind-p04.continuous-001",
+        "actor_object_sha256": "8ab5fefc28e45273eb1bb1d30e0aac6deb1cd9c4ba8cd294dadf7aa724e61359",
+        "session_id": "session.continuous-001.p04.formal-20260727"
+      },
+      "condition_id": "condition-v02",
+      "freeze_status": "frozen_by_exact_hash",
+      "machine_envelope": {
+        "path": "research/calibration-tests/continuous-action-pilot/runs/continuous-001/submissions/envelopes/p04-stage1.json",
+        "sha256": "fbc9adb3a35dee7560bd9dad2ee74d0d7ddb16316d0b8ce00d13fed368af2e20"
+      },
+      "raw_payload": {
+        "path": "research/calibration-tests/continuous-action-pilot/runs/continuous-001/submissions/raw/p04-stage1.json",
+        "sha256": "9958f388574a5640aab136bbec1af886e1f02e0724f7eecc110b3abbaa672203"
+      },
+      "reconstruction_submission": {
+        "path": "research/calibration-tests/continuous-action-pilot/runs/continuous-001/submissions/p04-stage1.json",
+        "sha256": "4a16da957c2bb913d310631cb4d88cfe6ba7f6925c2d38f712c30050a7582d9c"
+      },
+      "seat_id": "p04",
+      "stage1_dispatch_receipt": {
+        "path": "research/calibration-tests/continuous-action-pilot/runs/continuous-001/submissions/dispatch/stage1-p04.json",
+        "sha256": "1829c3180d692e3dc6db19e18949a6012cdc50f6061b1d99ad39644098fc0e70"
+      }
+    }
+  ],
+  "run_id": "continuous-001"
+}

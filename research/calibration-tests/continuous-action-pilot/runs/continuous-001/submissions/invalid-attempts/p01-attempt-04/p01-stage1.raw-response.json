@@ -1,0 +1,283 @@
+{
+  "$schema": "https://github.com/onovich/Game-Primitives/blob/main/research/calibration-tests/continuous-action-pilot/schema/blind-response-interface-0.1.0.schema.json",
+  "artifact_type": "reconstruction_response_payload",
+  "artifact_version": "0.1.0",
+  "pollution": {
+    "familiarity": {
+      "exact_result_knowledge": "none",
+      "exact_rule_knowledge": "suspected",
+      "exact_variant_knowledge": "none",
+      "project_exposure": "none",
+      "recognition_status": "suspected",
+      "recognized_family": "格斗游戏取消与缓冲、竞技动作游戏空中移动、节奏游戏时间窗裁定等规则家族",
+      "recognized_work": null,
+      "related_genre_experience": "extensive"
+    },
+    "integrity_exposures": [
+      "派发材料的结构使我联想到若干常见规则家族；未据此补齐具体作品、参数、变体或运行结果。"
+    ],
+    "stage_update_note": null
+  },
+  "reconstruction_answers": [
+    {
+      "ambiguities": [
+        "派发视图没有给出受控规则究竟保留、绕过还是替换取消资格门。",
+        "停止点的当前动作、动作帧和缓冲字段是运行输出，不能由结构视图唯一确定。"
+      ],
+      "assumptions": [],
+      "case_id": "CA-R1",
+      "compatible_branches": [
+        {
+          "branch_id": "r1-gate-enforced",
+          "description": "已缓冲的特殊攻击仍须满足失误取消或当前动作已命中的资格门；在失误取消为假且命中计数保持零时，请求不能越门进入特殊攻击实例。",
+          "supporting_record_ids": [
+            "o.a.0001",
+            "o.a.0017",
+            "o.a.0020",
+            "o.a.0040"
+          ]
+        },
+        {
+          "branch_id": "r1-gate-overridden",
+          "description": "独立受控规则允许已缓冲的特殊攻击越过原取消资格门并进入特殊攻击实例，同时保持输入识别、动作映射和缓冲窗口不变。",
+          "supporting_record_ids": [
+            "o.a.0001",
+            "o.a.0016",
+            "o.a.0015"
+          ]
+        }
+      ],
+      "confidence_percent": 97,
+      "recovered_facts": [
+        {
+          "fact_id": "r1-f1",
+          "claim": "每个固定更新先采样攻击按钮并更新输入历史，再推进动作帧和动作请求。",
+          "recovery_status": "recovered",
+          "supporting_record_ids": [
+            "o.a.0003",
+            "o.a.0026",
+            "o.a.0046"
+          ]
+        },
+        {
+          "fact_id": "r1-f2",
+          "claim": "普通攻击未结束时的新攻击按下映射为特殊攻击请求；普通攻击帧1至3只能缓冲该请求，帧4至5可以立即执行。",
+          "recovery_status": "recovered",
+          "supporting_record_ids": [
+            "o.a.0019",
+            "o.a.0018",
+            "o.a.0030",
+            "o.a.0032"
+          ]
+        },
+        {
+          "fact_id": "r1-f3",
+          "claim": "原始缓冲消费资格由失误取消许可或当前动作已有命中之一成立；受控实体的失误取消许可为假。",
+          "recovery_status": "recovered",
+          "supporting_record_ids": [
+            "o.a.0017",
+            "o.a.0040",
+            "o.a.0039"
+          ]
+        },
+        {
+          "fact_id": "r1-f4",
+          "claim": "受控变量只改变已缓冲请求能否越过取消资格门，不改变请求形成、动作映射、缓冲窗口或执行窗口。",
+          "recovery_status": "recovered",
+          "supporting_record_ids": [
+            "o.a.0001",
+            "o.a.0016"
+          ]
+        },
+        {
+          "fact_id": "r1-f5",
+          "claim": "受控规则的具体门控关系以及更新6后的确切动作、帧和缓冲状态不可由派发视图恢复。",
+          "recovery_status": "not_recoverable",
+          "supporting_record_ids": [
+            "o.a.0001",
+            "o.a.0042",
+            "o.a.0045"
+          ]
+        }
+      ],
+      "uniqueness": "multiple_compatible_structures"
+    },
+    {
+      "ambiguities": [
+        "未说明每个子步应从哪一个原始命令记录生成实际使用命令。",
+        "加速度系数、期望速度尺度、重力、滑移细节和跨工具链数值精度不足以确定精确轨迹。"
+      ],
+      "assumptions": [],
+      "case_id": "CA-R2",
+      "compatible_branches": [
+        {
+          "branch_id": "r2-step-aligned",
+          "description": "每个子步的实际命令选择同编号原始命令，因此前5步使用第一方向，后20步使用第二方向。",
+          "supporting_record_ids": [
+            "o.b.0002",
+            "o.b.0001",
+            "o.b.0007"
+          ]
+        },
+        {
+          "branch_id": "r2-command-held",
+          "description": "实际命令在多个子步间保持某一已选择原始命令的方向字段，仅更新子步命令时间；这与命令对象复用及未指定的选择关系相容。",
+          "supporting_record_ids": [
+            "o.b.0019",
+            "o.b.0004",
+            "o.b.0007"
+          ]
+        }
+      ],
+      "confidence_percent": 95,
+      "recovered_facts": [
+        {
+          "fact_id": "r2-f1",
+          "claim": "冻结输入包含25个8毫秒子步：子步0至4为一个方向分量127、另一分量0，子步5至24交换为0和127。",
+          "recovery_status": "recovered",
+          "supporting_record_ids": [
+            "o.b.0002",
+            "o.b.0030"
+          ]
+        },
+        {
+          "fact_id": "r2-f2",
+          "claim": "当前子步实际命令的方向分量构造期望方向和速度，并通过同一空中加速及带重力步进过程写回速度和位置。",
+          "recovery_status": "recovered",
+          "supporting_record_ids": [
+            "o.b.0003",
+            "o.b.0018",
+            "o.b.0016",
+            "o.b.0017"
+          ]
+        },
+        {
+          "fact_id": "r2-f3",
+          "claim": "受控变量仅改变原始命令到本步命令的选择关系，原始输入、子步时长、初始状态和后续移动公式保持冻结。",
+          "recovery_status": "recovered",
+          "supporting_record_ids": [
+            "o.b.0001",
+            "o.b.0007"
+          ]
+        },
+        {
+          "fact_id": "r2-f4",
+          "claim": "外层循环复用命令对象并逐子步更新时间字段，单步结束对速度进行整数化。",
+          "recovery_status": "recovered",
+          "supporting_record_ids": [
+            "o.b.0019",
+            "o.b.0022",
+            "o.b.0023"
+          ]
+        },
+        {
+          "fact_id": "r2-f5",
+          "claim": "实际命令选择函数以及200毫秒停止点的精确速度和位置不可由派发视图恢复。",
+          "recovery_status": "not_recoverable",
+          "supporting_record_ids": [
+            "o.b.0001",
+            "o.b.0011",
+            "o.b.0013",
+            "o.b.0030"
+          ]
+        }
+      ],
+      "uniqueness": "multiple_compatible_structures"
+    },
+    {
+      "ambiguities": [
+        "候选接受后调用裁定路径的具体时点未给出。",
+        "候选时点相对物件结束时间的数值、窗口阈值、允许结果集合及正式结果值均未给出。"
+      ],
+      "assumptions": [],
+      "case_id": "CA-R3",
+      "compatible_branches": [
+        {
+          "branch_id": "r3-immediate-call",
+          "description": "候选被接受后立即在同一规则时点调用窗口分类、复核和提交路径。",
+          "supporting_record_ids": [
+            "o.c.0001",
+            "o.c.0007",
+            "o.c.0036"
+          ]
+        },
+        {
+          "branch_id": "r3-deferred-call",
+          "description": "候选先被接受，裁定路径在较晚规则时点调用；分类读取调用时的当前规则时间，并在仍落入允许窗口且复核通过时提交结果。",
+          "supporting_record_ids": [
+            "o.c.0001",
+            "o.c.0007",
+            "o.c.0023",
+            "o.c.0022"
+          ]
+        }
+      ],
+      "confidence_percent": 97,
+      "recovered_facts": [
+        {
+          "fact_id": "r3-f1",
+          "claim": "对象未全部裁定、按键合法且指针位于接收区域时，候选输入被接受；被接受的候选尚不是正式裁定事件。",
+          "recovery_status": "recovered",
+          "supporting_record_ids": [
+            "o.c.0003",
+            "o.c.0020",
+            "o.c.0006"
+          ]
+        },
+        {
+          "fact_id": "r3-f2",
+          "claim": "裁定路径依次经历候选检测、按绝对时间偏移进行窗口分类、可命中复核以及正式结果提交。",
+          "recovery_status": "recovered",
+          "supporting_record_ids": [
+            "o.c.0017",
+            "o.c.0023",
+            "o.c.0018",
+            "o.c.0026"
+          ]
+        },
+        {
+          "fact_id": "r3-f3",
+          "claim": "窗口分类返回第一个允许且偏移不超过窗口的结果；只有非空分类结果通过可命中复核后才形成正式裁定事件。",
+          "recovery_status": "recovered",
+          "supporting_record_ids": [
+            "o.c.0012",
+            "o.c.0013",
+            "o.c.0030"
+          ]
+        },
+        {
+          "fact_id": "r3-f4",
+          "claim": "正式提交会写入时间记录、更新对象裁定状态并发送通知；对象随后不再接受新的候选输入。",
+          "recovery_status": "recovered",
+          "supporting_record_ids": [
+            "o.c.0015",
+            "o.c.0008",
+            "o.c.0037",
+            "o.c.0035"
+          ]
+        },
+        {
+          "fact_id": "r3-f5",
+          "claim": "受控变量只改变候选接受后调用同一裁定路径的调度关系，不改变候选事实、窗口分类、复核或提交路径。",
+          "recovery_status": "recovered",
+          "supporting_record_ids": [
+            "o.c.0001",
+            "o.c.0007"
+          ]
+        },
+        {
+          "fact_id": "r3-f6",
+          "claim": "具体调度时点、分类结果、原始时间记录值和通知中的正式结果不可由派发视图恢复。",
+          "recovery_status": "not_recoverable",
+          "supporting_record_ids": [
+            "o.c.0001",
+            "o.c.0002",
+            "o.c.0012",
+            "o.c.0032"
+          ]
+        }
+      ],
+      "uniqueness": "multiple_compatible_structures"
+    }
+  ]
+}

@@ -47,6 +47,8 @@
 - [`role-submission-0.1.1.schema.json`](schema/role-submission-0.1.1.schema.json)：保留 0.1.0 并给预测期望增加必填 `configuration_id`，修复 `rehearsal-001` 发现的基线／变体寻址缺口。
 - [`role-submission-0.1.2.schema.json`](schema/role-submission-0.1.2.schema.json)：把原始盲测 payload、机器信封与装配工具散列绑定到派生提交。
 - [`blind-response-interface-0.1.0.schema.json`](schema/blind-response-interface-0.1.0.schema.json)：阶段专用的盲测语义 payload 与机器信封。
+- [`prediction-template-contract-check-0.1.0.schema.json`](schema/prediction-template-contract-check-0.1.0.schema.json)：记录任务、预测模板与响应 Schema 的参与者可达分支检查。
+- [`blind-protocol-incident-0.1.0.schema.json`](schema/blind-protocol-incident-0.1.0.schema.json)：记录人工门后、正式执行前发现的阻断性盲测协议事故及失败关闭状态。
 - [`execution-artifact-0.1.0.schema.json`](schema/execution-artifact-0.1.0.schema.json)：执行计划、原始轨迹包和派生执行结果。
 - [`execution-artifact-0.1.1.schema.json`](schema/execution-artifact-0.1.1.schema.json)：要求执行轨迹直接绑定原始调用／输出，执行结果直接绑定比较器输出。
 - [`truth-reveal-0.1.0.schema.json`](schema/truth-reveal-0.1.0.schema.json)：密封真值与揭示后的承诺复算记录。
@@ -74,6 +76,12 @@ python research/calibration-tests/continuous-action-pilot/tools/self-test-blind-
 
 第二条命令覆盖四个独立 actor／会话、两种条件、两阶段提交、cohort lock，以及合成授权进入生产策略、缺回执、错席位、模板冒充回执和畸形授权的失败关闭；不会复制或运行正式输入、比较器或真实 fixture。
 
+预测模板还须通过分支闭合检查；该检查不运行 fixture 或正式输入：
+
+```text
+python research/calibration-tests/continuous-action-pilot/tools/verify-prediction-template-contract-v0.1.0.py self-test
+```
+
 四席预测完成后，执行许可由 [`materialize-execution-permit.py`](tools/materialize-execution-permit.py) 机械生成，再由 [`verify-formal-execution-permit.py`](tools/verify-formal-execution-permit.py) 供三案运行器和比较器统一只读复核。人工授权本身不预填未来预测摘要；`prediction-set-preimage.tsv` 的精确字节散列才成为 `prediction_set_digest`。执行许可自检只在系统临时目录的可弃副本中运行，不读取正式输入，也不调用正式运行器、比较器或 test body：
 
 ```text
@@ -94,6 +102,14 @@ python research/calibration-tests/continuous-action-pilot/tools/verify-formal-ra
 | `rehearsal-005` | `procedure_pass` | 两种条件的四份原始首答直接有效；机器装配逐字节可重复 |
 
 失败轮次、无效首答和已冻结 README 均原样保留。两次通过都是程序结论，不是理论证据；ADR 0116 的接口限制已经由 `rehearsal-005` 聚焦复测解除。
+
+## 正式轮次记录
+
+| 轮次 | 结果 | 停止边界 | 发现 |
+| --- | --- | --- | --- |
+| [`continuous-001`](runs/continuous-001/) | `run_invalid` | 第二阶段提交装配 | 四席都命中预测模板固定单位与 `indeterminate` Schema 的系统性冲突；预测集合、执行许可、正式结果和真值揭示均未产生 |
+
+`continuous-001` 的门后结果与保全证据见[轮次报告](runs/continuous-001/reports/README.md)。后续修订不得覆盖该轮冻结材料；先执行[协议 0.1.1 修复计划](protocol-0.1.1-repair-plan.md)，通过新的彩排后再使用新编号建立正式轮次。
 
 ## 计划中的轮次结构
 

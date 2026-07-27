@@ -1,0 +1,270 @@
+{
+  "$id": "https://github.com/onovich/Game-Primitives/blob/main/research/calibration-tests/continuous-action-pilot/schema/blind-protocol-incident-0.1.0.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$defs": {
+    "artifactRef": {
+      "additionalProperties": false,
+      "properties": {
+        "path": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "sha256": {
+          "$ref": "#/$defs/sha256"
+        }
+      },
+      "required": [
+        "path",
+        "sha256"
+      ],
+      "type": "object"
+    },
+    "gitOid40": {
+      "pattern": "^[0-9a-f]{40}$",
+      "type": "string"
+    },
+    "diagnostic": {
+      "additionalProperties": false,
+      "properties": {
+        "check_id": {
+          "$ref": "#/$defs/localId"
+        },
+        "method": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "result": {
+          "minLength": 1,
+          "type": "string"
+        }
+      },
+      "required": [
+        "check_id",
+        "method",
+        "result"
+      ],
+      "type": "object"
+    },
+    "localId": {
+      "pattern": "^[a-z0-9][a-z0-9._-]*$",
+      "type": "string"
+    },
+    "sha256": {
+      "pattern": "^[0-9a-f]{64}$",
+      "type": "string"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "$schema": {
+      "const": "https://github.com/onovich/Game-Primitives/blob/main/research/calibration-tests/continuous-action-pilot/schema/blind-protocol-incident-0.1.0.schema.json"
+    },
+    "artifact_type": {
+      "const": "blind_protocol_incident"
+    },
+    "artifact_version": {
+      "const": "0.1.0"
+    },
+    "authorization_scope_note": {
+      "minLength": 1,
+      "type": "string"
+    },
+    "contract_conflict": {
+      "additionalProperties": false,
+      "properties": {
+        "participant_obligation": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "schema_obligation": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "template_obligation": {
+          "minLength": 1,
+          "type": "string"
+        }
+      },
+      "required": [
+        "participant_obligation",
+        "schema_obligation",
+        "template_obligation"
+      ],
+      "type": "object"
+    },
+    "detected_at": {
+      "format": "date-time",
+      "type": "string"
+    },
+    "diagnostics": {
+      "items": {
+        "$ref": "#/$defs/diagnostic"
+      },
+      "minItems": 1,
+      "type": "array",
+      "uniqueItems": true
+    },
+    "disposition": {
+      "additionalProperties": false,
+      "properties": {
+        "formal_execution_authorized": {
+          "const": false
+        },
+        "next_action": {
+          "enum": [
+            "repair_contract_and_refreeze_new_run",
+            "require_new_human_exception",
+            "stop_without_repair"
+          ]
+        },
+        "preserve_raw_evidence": {
+          "const": true
+        },
+        "raw_response_normalization_allowed": {
+          "const": false
+        },
+        "run_status": {
+          "enum": [
+            "invalid_before_formal_execution",
+            "blocked_pending_human_exception"
+          ]
+        }
+      },
+      "required": [
+        "formal_execution_authorized",
+        "next_action",
+        "preserve_raw_evidence",
+        "raw_response_normalization_allowed",
+        "run_status"
+      ],
+      "type": "object"
+    },
+    "evidence": {
+      "items": {
+        "$ref": "#/$defs/artifactRef"
+      },
+      "minItems": 1,
+      "type": "array",
+      "uniqueItems": true
+    },
+    "formal_state": {
+      "additionalProperties": false,
+      "properties": {
+        "formal_execution_permit_materialized": {
+          "const": false
+        },
+        "formal_input_executed": {
+          "const": false
+        },
+        "formal_result_produced": {
+          "const": false
+        },
+        "human_gate_authorized": {
+          "type": "boolean"
+        },
+        "prediction_set_materialized": {
+          "const": false
+        },
+        "stage1_cohort_locked": {
+          "type": "boolean"
+        },
+        "stage2_dispatched": {
+          "type": "boolean"
+        },
+        "truth_revealed": {
+          "const": false
+        }
+      },
+      "required": [
+        "formal_execution_permit_materialized",
+        "formal_input_executed",
+        "formal_result_produced",
+        "human_gate_authorized",
+        "prediction_set_materialized",
+        "stage1_cohort_locked",
+        "stage2_dispatched",
+        "truth_revealed"
+      ],
+      "type": "object"
+    },
+    "freeze_commit": {
+      "$ref": "#/$defs/gitOid40"
+    },
+    "frozen_artifact_set_digest": {
+      "$ref": "#/$defs/sha256"
+    },
+    "incident_id": {
+      "$ref": "#/$defs/localId"
+    },
+    "phase": {
+      "enum": [
+        "stage1_assembly",
+        "stage2_assembly",
+        "execution_permit",
+        "formal_execution",
+        "truth_reveal"
+      ]
+    },
+    "run_id": {
+      "pattern": "^continuous-[0-9]{3}$",
+      "type": "string"
+    },
+    "severity": {
+      "enum": [
+        "blocking",
+        "non_blocking"
+      ]
+    },
+    "trigger": {
+      "additionalProperties": false,
+      "properties": {
+        "attempted_submissions": {
+          "minimum": 1,
+          "type": "integer"
+        },
+        "schema_valid_submissions": {
+          "minimum": 0,
+          "type": "integer"
+        },
+        "shared_schema_error_count_per_submission": {
+          "minimum": 1,
+          "type": "integer"
+        },
+        "stage": {
+          "enum": [
+            "reconstruction",
+            "prediction"
+          ]
+        }
+      },
+      "required": [
+        "attempted_submissions",
+        "schema_valid_submissions",
+        "shared_schema_error_count_per_submission",
+        "stage"
+      ],
+      "type": "object"
+    }
+  },
+  "required": [
+    "$schema",
+    "artifact_type",
+    "artifact_version",
+    "authorization_scope_note",
+    "contract_conflict",
+    "detected_at",
+    "diagnostics",
+    "disposition",
+    "evidence",
+    "formal_state",
+    "freeze_commit",
+    "frozen_artifact_set_digest",
+    "incident_id",
+    "phase",
+    "run_id",
+    "severity",
+    "trigger"
+  ],
+  "title": "Game Primitives Blind Protocol Incident 0.1.0",
+  "type": "object"
+}

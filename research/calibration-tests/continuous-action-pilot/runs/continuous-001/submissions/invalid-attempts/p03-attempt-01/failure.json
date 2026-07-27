@@ -1,0 +1,25 @@
+{
+  "actor_path": "research/calibration-tests/continuous-action-pilot/runs/continuous-001/submissions/actors/p03.json",
+  "artifact_type": "invalid_blind_submission_attempt",
+  "attempt_id": "continuous-001.p03.stage1.attempt-01",
+  "dispatch_receipt": {
+    "path": "research/calibration-tests/continuous-action-pilot/runs/continuous-001/submissions/invalid-attempts/p03-attempt-01/stage1-p03.dispatch-receipt.json",
+    "sha256": "1cdb3f1a551574fa7455a9d3c76db4a81387d1a8702903bcc81b59e1150a4771"
+  },
+  "envelope": {
+    "path": "research/calibration-tests/continuous-action-pilot/runs/continuous-001/submissions/invalid-attempts/p03-attempt-01/p03-stage1.envelope.json",
+    "sha256": "84565a7233434611a09dc32dc61dd6a644a8df3994b385706a37dec65a408cd8"
+  },
+  "failure_class": "response_schema_validation_failed",
+  "failure_detail": "branch_id and fact_id values contained uppercase characters; localId requires ^[a-z0-9][a-z0-9._-]*$",
+  "formal_input_executed": false,
+  "raw_response": {
+    "path": "research/calibration-tests/continuous-action-pilot/runs/continuous-001/submissions/invalid-attempts/p03-attempt-01/p03-stage1.raw-response.json",
+    "sha256": "fb4f14c0a9667976f8bb70f231873168b4ca4d29fc4f37e129b45fad2de67377"
+  },
+  "replacement_policy": "new_blank_actor_and_session_from_stage1",
+  "run_id": "continuous-001",
+  "seat_id": "p03",
+  "stage": "reconstruction",
+  "thread_id": "019fa3c2-be13-7862-afaa-bedf989f6926"
+}

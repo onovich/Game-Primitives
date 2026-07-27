@@ -1,0 +1,25 @@
+{
+  "actor_path": "research/calibration-tests/continuous-action-pilot/runs/continuous-001/submissions/actors/p01-attempt-04.json",
+  "artifact_type": "invalid_blind_submission_attempt",
+  "attempt_id": "continuous-001.p01.stage1.attempt-04",
+  "dispatch_receipt": {
+    "path": "research/calibration-tests/continuous-action-pilot/runs/continuous-001/submissions/invalid-attempts/p01-attempt-04/stage1-p01.dispatch-receipt.json",
+    "sha256": "7ebd7337eac33753f8d6bbb884aa7dcc298562445d687d132f843ee9e8e1db89"
+  },
+  "envelope": {
+    "path": "research/calibration-tests/continuous-action-pilot/runs/continuous-001/submissions/invalid-attempts/p01-attempt-04/p01-stage1.envelope.json",
+    "sha256": "2ace0417ba25e8fea36bec2d7c17ce291832fdabfc23df638baa1575672f3150"
+  },
+  "failure_class": "response_schema_validation_failed",
+  "failure_detail": "pollution.integrity_exposures[0] was a string; the interface requires an integrityExposure object",
+  "formal_input_executed": false,
+  "raw_response": {
+    "path": "research/calibration-tests/continuous-action-pilot/runs/continuous-001/submissions/invalid-attempts/p01-attempt-04/p01-stage1.raw-response.json",
+    "sha256": "ecdfe17b708733b67dcc7ef022020a47b20e6c64f18f01953b434feb0efcfb0d"
+  },
+  "replacement_policy": "new_blank_actor_and_session_from_stage1",
+  "run_id": "continuous-001",
+  "seat_id": "p01",
+  "stage": "reconstruction",
+  "thread_id": "019fa3db-440f-71c1-af47-26cc60a42f1b"
+}

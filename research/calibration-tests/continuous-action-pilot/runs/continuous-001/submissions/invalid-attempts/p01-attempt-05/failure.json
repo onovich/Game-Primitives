@@ -1,0 +1,25 @@
+{
+  "actor_path": "research/calibration-tests/continuous-action-pilot/runs/continuous-001/submissions/actors/p01-attempt-05.json",
+  "artifact_type": "invalid_blind_submission_attempt",
+  "attempt_id": "continuous-001.p01.stage1.attempt-05",
+  "dispatch_receipt": {
+    "path": "research/calibration-tests/continuous-action-pilot/runs/continuous-001/submissions/invalid-attempts/p01-attempt-05/stage1-p01.dispatch-receipt.json",
+    "sha256": "14ab8eb263bc282030d5f7fadb415486d3dfba56a31be4ca8b9a11dae52d92c4"
+  },
+  "envelope": {
+    "path": "research/calibration-tests/continuous-action-pilot/runs/continuous-001/submissions/invalid-attempts/p01-attempt-05/p01-stage1.envelope.json",
+    "sha256": "c3e8c6c0f973b536b6196bebe9d183419f905070fc9f1a9367095f322ca8d20d"
+  },
+  "failure_class": "response_schema_validation_failed",
+  "failure_detail": "branch_id and fact_id values contained uppercase characters; localId requires ^[a-z0-9][a-z0-9._-]*$",
+  "formal_input_executed": false,
+  "raw_response": {
+    "path": "research/calibration-tests/continuous-action-pilot/runs/continuous-001/submissions/invalid-attempts/p01-attempt-05/p01-stage1.raw-response.json",
+    "sha256": "e080bea8876de9ef5375e390ae8efb446f45eea597f74b54c126746a5de19104"
+  },
+  "replacement_policy": "new_blank_actor_and_session_from_stage1",
+  "run_id": "continuous-001",
+  "seat_id": "p01",
+  "stage": "reconstruction",
+  "thread_id": "019fa3dd-f16e-7a41-9e8d-e2b7724f0092"
+}

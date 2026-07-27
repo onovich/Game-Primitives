@@ -1,0 +1,53 @@
+{
+  "$schema": "https://github.com/onovich/Game-Primitives/blob/main/research/calibration-tests/continuous-action-pilot/schema/blind-response-interface-0.1.0.schema.json",
+  "actor": {
+    "identifier": "codex.blind-p01.continuous-001.attempt-07",
+    "model": "OpenAI Codex",
+    "model_version": "gpt-5.6-sol",
+    "reasoning_effort": "high",
+    "role": "blind_reconstructor_predictor",
+    "session_id": "session.continuous-001.p01.formal-20260727.attempt-07"
+  },
+  "artifact_type": "role_submission_envelope",
+  "artifact_version": "0.1.0",
+  "condition_id": "condition-v01",
+  "dispatch_artifacts": [
+    {
+      "artifact_id": "task.reconstruct.condition-v01",
+      "sha256": "1efbbb73b4671384fd45afd8dd773bddf6d9682ed159bfccf85360a975d67763"
+    },
+    {
+      "artifact_id": "view.stage1-condition-v01-v0.1.0",
+      "sha256": "3d819262f123c8f9396e343b33c7f43389d28bd7396039b6df507ad328b1032e"
+    },
+    {
+      "artifact_id": "template.reconstruction.continuous-001",
+      "sha256": "1e51c517bedcf79de9d129202aa60ddabaa5cb94703053f3ed80d10d2296c7aa"
+    },
+    {
+      "artifact_id": "dispatch-receipt.continuous-001.p01.stage1",
+      "sha256": "66c6cfc1775f118bdd90e9b438bde417f246220c6309fb49081d6d84a98e03d1"
+    }
+  ],
+  "first_submission": true,
+  "output_schema": {
+    "path": "research/calibration-tests/continuous-action-pilot/schema/role-submission-0.1.2.schema.json",
+    "sha256": "ce1bcbb603550ec42afa9023191666b0ef45096b4c0efd1a3b42150c83577f95"
+  },
+  "packager": {
+    "path": "research/calibration-tests/continuous-action-pilot/tools/build-role-submission.py",
+    "sha256": "37029e58031a159937bfbd8008ab5a6041c86517836376dd63ab298676bfb4cb"
+  },
+  "prior_stage_submission_sha256": null,
+  "received_at": "2026-07-27T14:08:22Z",
+  "response_schema": {
+    "path": "research/calibration-tests/continuous-action-pilot/schema/blind-response-interface-0.1.0.schema.json",
+    "sha256": "a4ab92704a626b5f9a67850595dc0c6bf154dccbd18d5f81776cc30dfa3e58d1"
+  },
+  "run_id": "continuous-001",
+  "stage": "reconstruction",
+  "submission_id": "submission.continuous-001.p01.stage1",
+  "target_artifact_type": "reconstruction_submission",
+  "target_artifact_version": "0.1.2",
+  "task_id": "task.reconstruct.condition-v01"
+}

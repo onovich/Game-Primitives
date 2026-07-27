@@ -1,0 +1,146 @@
+{
+  "$schema": "https://github.com/onovich/Game-Primitives/blob/main/research/calibration-tests/continuous-action-pilot/schema/blind-protocol-incident-0.1.0.schema.json",
+  "artifact_type": "blind_protocol_incident",
+  "artifact_version": "0.1.0",
+  "authorization_scope_note": "The accepted human phrase authorized the formal continuous-001 run and the already documented CA-R3 nonsemantic byte-integrity exception only. It did not authorize normalizing participant answers, waiving the stage-2 response Schema, or extending that exception to a template-Schema conflict.",
+  "contract_conflict": {
+    "participant_obligation": "The stage-2 task requires an indeterminate case to use status/indeterminate in every main expectation, while the participant must instantiate the frozen template rather than rewrite its fixed observation metadata.",
+    "schema_obligation": "blind-response-interface-0.1.0.schema.json requires every status/indeterminate main expectation value to have unit=null.",
+    "template_obligation": "prediction-response.template.json fixes the declared measurement unit on 20 main expectation entries across CA-R1, CA-R2, and CA-R3; only unitless observations use null."
+  },
+  "detected_at": "2026-07-27T14:28:41Z",
+  "diagnostics": [
+    {
+      "check_id": "stage2.raw-json",
+      "method": "Parsed each conserved stage-2 raw response without rewriting it.",
+      "result": "All four raw responses are valid JSON objects."
+    },
+    {
+      "check_id": "stage2.schema-validation",
+      "method": "Validated each raw response against blind-response-interface-0.1.0 with the frozen local Schema registry.",
+      "result": "All four responses fail with the same 20 unit-is-not-null errors: 4 in CA-R1, 6 in CA-R2, and 10 in CA-R3."
+    },
+    {
+      "check_id": "stage2.counterfactual-unit-null",
+      "method": "In memory only, set unit=null on main expectations for cases whose prediction_status is indeterminate; did not persist or assemble the modified objects.",
+      "result": "All four counterfactual objects pass the response Schema. p02, p03, and p04 also pass answer-scope validation; p01 then has one independent disallowed value_type for obs.b.0005."
+    },
+    {
+      "check_id": "stage2.replacement-suitability",
+      "method": "Compared the four independent responses and the actor-plan replacement rule.",
+      "result": "A fresh blank actor cannot repair a deterministic frozen contract conflict without being given a new template or an extra formatting instruction; either change would create a new protocol version rather than a valid continuous-001 replacement."
+    },
+    {
+      "check_id": "stage2.fail-closed-boundary",
+      "method": "Checked for the prediction-set preimage, formal execution permit, formal results, and truth reveal after the failures.",
+      "result": "None exists. No formal input was executed and no truth was revealed."
+    }
+  ],
+  "disposition": {
+    "formal_execution_authorized": false,
+    "next_action": "repair_contract_and_refreeze_new_run",
+    "preserve_raw_evidence": true,
+    "raw_response_normalization_allowed": false,
+    "run_status": "invalid_before_formal_execution"
+  },
+  "evidence": [
+    {
+      "path": "research/calibration-tests/continuous-action-pilot/schema/blind-response-interface-0.1.0.schema.json",
+      "sha256": "a4ab92704a626b5f9a67850595dc0c6bf154dccbd18d5f81776cc30dfa3e58d1"
+    },
+    {
+      "path": "research/calibration-tests/continuous-action-pilot/runs/continuous-001/inputs/prediction-response.template.json",
+      "sha256": "c992554cbfd115de4063163cce9d2d16816a645cd3c2647bc42b6a33b8eed5af"
+    },
+    {
+      "path": "research/calibration-tests/continuous-action-pilot/runs/continuous-001/inputs/stage2-prediction.task.json",
+      "sha256": "7a4e286c486b03fe3a24875e2db1e95b4024750e5c36af5a993adae54cda388c"
+    },
+    {
+      "path": "research/calibration-tests/continuous-action-pilot/runs/continuous-001/submissions/dispatch/stage1-cohort-lock.json",
+      "sha256": "dc4046efe4ebc3f428b2418a6ba4cd175f80a7fd8ec8fd9eb3ba3670b4cb5ddf"
+    },
+    {
+      "path": "research/calibration-tests/continuous-action-pilot/runs/continuous-001/submissions/dispatch/stage2-p01.json",
+      "sha256": "cddcf23d8fdec227079f26cf495b931ef99e776f53142ffec789fc1255eea9db"
+    },
+    {
+      "path": "research/calibration-tests/continuous-action-pilot/runs/continuous-001/submissions/dispatch/stage2-p02.json",
+      "sha256": "ebd5ec7619bb5ac14c80c084938f52719d133573bd8aea95e94fad820cd103e7"
+    },
+    {
+      "path": "research/calibration-tests/continuous-action-pilot/runs/continuous-001/submissions/dispatch/stage2-p03.json",
+      "sha256": "cbb905bdaf8e60abb988c24df682c55f83cc70ff826b558b91193f0686285353"
+    },
+    {
+      "path": "research/calibration-tests/continuous-action-pilot/runs/continuous-001/submissions/dispatch/stage2-p04.json",
+      "sha256": "0f9d47e5b5321f4d2605d4d2e198036958a4ea140022ea523ce1a878d989908c"
+    },
+    {
+      "path": "research/calibration-tests/continuous-action-pilot/runs/continuous-001/submissions/raw/p01-stage2.json",
+      "sha256": "918b5ca7526e42c6b9a7df2a80b66012482dc70377e8452be1e6f571089e57dd"
+    },
+    {
+      "path": "research/calibration-tests/continuous-action-pilot/runs/continuous-001/submissions/raw/p02-stage2.json",
+      "sha256": "81f28282c6c148b65feaa0a69b9ea926f789860a9be755df5d62e83a12402999"
+    },
+    {
+      "path": "research/calibration-tests/continuous-action-pilot/runs/continuous-001/submissions/raw/p03-stage2.json",
+      "sha256": "63e11c59d6ce2d374bb790d73f198d1ab66692788505f60d7c56967e57b6d219"
+    },
+    {
+      "path": "research/calibration-tests/continuous-action-pilot/runs/continuous-001/submissions/raw/p04-stage2.json",
+      "sha256": "f8b5b310041bce98c0681b8b7a8fbe74e2907aa512044b6f8657f322ca31a4a0"
+    },
+    {
+      "path": "research/calibration-tests/continuous-action-pilot/runs/continuous-001/submissions/envelopes/p01-stage2.json",
+      "sha256": "7c4c1e0a2aa14f6c6df91b2c63c4688cf77e49b767c22668b45e33210e75e253"
+    },
+    {
+      "path": "research/calibration-tests/continuous-action-pilot/runs/continuous-001/submissions/envelopes/p02-stage2.json",
+      "sha256": "73f3dda732d74645b4d498668e87fc7270d7ba43c6930ca3eaf66950c0c280ef"
+    },
+    {
+      "path": "research/calibration-tests/continuous-action-pilot/runs/continuous-001/submissions/envelopes/p03-stage2.json",
+      "sha256": "ab859a1cc3fff6c9debe7cc014358d9f21605010c935f3c6cbe66497bcc91061"
+    },
+    {
+      "path": "research/calibration-tests/continuous-action-pilot/runs/continuous-001/submissions/envelopes/p04-stage2.json",
+      "sha256": "5d4dfe44220d7ee7d54144afd8f937cbf1086948c562d07e1e6cb4a22082b758"
+    },
+    {
+      "path": "research/calibration-tests/continuous-action-pilot/runs/continuous-001/reports/prediction-template-contract-check-v0.1.0.json",
+      "sha256": "0a564a7380175c908bd762738570150f9b901e1f3d169fa5207bee481fff31a1"
+    },
+    {
+      "path": "research/calibration-tests/continuous-action-pilot/tools/verify-prediction-template-contract-v0.1.0.py",
+      "sha256": "b3215754dfb5b09c480b53468e1c81bde31ca331921748f42a8c6f5540bb42f9"
+    },
+    {
+      "path": "research/calibration-tests/continuous-action-pilot/schema/prediction-template-contract-check-0.1.0.schema.json",
+      "sha256": "2a0e8bc34affdb7fc16c20c08f864a8f07fd57989f4fdc7e271c6e5b18b3b850"
+    }
+  ],
+  "formal_state": {
+    "formal_execution_permit_materialized": false,
+    "formal_input_executed": false,
+    "formal_result_produced": false,
+    "human_gate_authorized": true,
+    "prediction_set_materialized": false,
+    "stage1_cohort_locked": true,
+    "stage2_dispatched": true,
+    "truth_revealed": false
+  },
+  "freeze_commit": "bbea296b019ea1b5f5f3bb8cfe5937b0ff276f5b",
+  "frozen_artifact_set_digest": "05ecfdb1e88db74e6839c1a443e6cb09a7a9e89754131b018e13ed04f7ff3c69",
+  "incident_id": "incident.continuous-001.stage2-template-schema-unit",
+  "phase": "stage2_assembly",
+  "run_id": "continuous-001",
+  "severity": "blocking",
+  "trigger": {
+    "attempted_submissions": 4,
+    "schema_valid_submissions": 0,
+    "shared_schema_error_count_per_submission": 20,
+    "stage": "prediction"
+  }
+}

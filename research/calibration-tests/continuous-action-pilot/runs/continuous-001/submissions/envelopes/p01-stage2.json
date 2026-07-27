@@ -1,0 +1,57 @@
+{
+  "$schema": "https://github.com/onovich/Game-Primitives/blob/main/research/calibration-tests/continuous-action-pilot/schema/blind-response-interface-0.1.0.schema.json",
+  "actor": {
+    "identifier": "codex.blind-p01.continuous-001.attempt-08",
+    "model": "OpenAI Codex",
+    "model_version": "gpt-5.6-sol",
+    "reasoning_effort": "high",
+    "role": "blind_reconstructor_predictor",
+    "session_id": "session.continuous-001.p01.formal-20260727.attempt-08"
+  },
+  "artifact_type": "role_submission_envelope",
+  "artifact_version": "0.1.0",
+  "condition_id": "condition-v01",
+  "dispatch_artifacts": [
+    {
+      "artifact_id": "task.predict.neutral",
+      "sha256": "7a4e286c486b03fe3a24875e2db1e95b4024750e5c36af5a993adae54cda388c"
+    },
+    {
+      "artifact_id": "envelope.continuous-001.stage2.v0.1.0",
+      "sha256": "f4501e153cd103c0ec7a184c89e12aa57d4a9ef128e416654ad332a10c7702d1"
+    },
+    {
+      "artifact_id": "template.prediction.continuous-001",
+      "sha256": "c992554cbfd115de4063163cce9d2d16816a645cd3c2647bc42b6a33b8eed5af"
+    },
+    {
+      "artifact_id": "dispatch-receipt.continuous-001.p01.stage2",
+      "sha256": "cddcf23d8fdec227079f26cf495b931ef99e776f53142ffec789fc1255eea9db"
+    },
+    {
+      "artifact_id": "submission.continuous-001.p01.stage1",
+      "sha256": "5804e39ec6ec39ef0cd2c458f91f8a69b156bbab782f8b0b73353e34f0daa77d"
+    }
+  ],
+  "first_submission": true,
+  "output_schema": {
+    "path": "research/calibration-tests/continuous-action-pilot/schema/role-submission-0.1.2.schema.json",
+    "sha256": "ce1bcbb603550ec42afa9023191666b0ef45096b4c0efd1a3b42150c83577f95"
+  },
+  "packager": {
+    "path": "research/calibration-tests/continuous-action-pilot/tools/build-role-submission.py",
+    "sha256": "37029e58031a159937bfbd8008ab5a6041c86517836376dd63ab298676bfb4cb"
+  },
+  "prior_stage_submission_sha256": "5804e39ec6ec39ef0cd2c458f91f8a69b156bbab782f8b0b73353e34f0daa77d",
+  "received_at": "2026-07-27T14:21:29Z",
+  "response_schema": {
+    "path": "research/calibration-tests/continuous-action-pilot/schema/blind-response-interface-0.1.0.schema.json",
+    "sha256": "a4ab92704a626b5f9a67850595dc0c6bf154dccbd18d5f81776cc30dfa3e58d1"
+  },
+  "run_id": "continuous-001",
+  "stage": "prediction",
+  "submission_id": "submission.continuous-001.p01.stage2",
+  "target_artifact_type": "prediction_submission",
+  "target_artifact_version": "0.1.2",
+  "task_id": "task.predict.neutral"
+}

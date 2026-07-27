@@ -1,0 +1,1216 @@
+{
+  "$schema": "https://github.com/onovich/Game-Primitives/blob/main/research/calibration-tests/continuous-action-pilot/schema/blind-response-interface-0.1.0.schema.json",
+  "artifact_type": "prediction_response_payload",
+  "artifact_version": "0.1.0",
+  "pollution": {
+    "familiarity": {
+      "exact_result_knowledge": "none",
+      "exact_rule_knowledge": "none",
+      "exact_variant_knowledge": "none",
+      "project_exposure": "none",
+      "recognition_status": "none",
+      "recognized_family": null,
+      "recognized_work": null,
+      "related_genre_experience": "limited"
+    },
+    "integrity_exposures": [],
+    "stage_update_note": null
+  },
+  "prediction_answers": [
+    {
+      "assumptions": [
+        "相容分支中的 action_A、action_B 和 no_action 是仅用于区分未公开结构的抽象标识，不主张其为真实标识。"
+      ],
+      "case_id": "CA-R1",
+      "compatible_alternatives": [
+        {
+          "alternative_id": "r1.alt.same_selection",
+          "description": "控制变量的两种取值在给定七次输入下不改变请求保存、资格判断或当前动作；两配置均保存并执行同一抽象动作。",
+          "expectations": [
+            {
+              "configuration_id": "config.baseline",
+              "expectation_kind": "exact",
+              "observation_id": "obs.a.0001",
+              "tolerance_rule_id": "tol.a.0001",
+              "value": {
+                "serialized_value": "action_A",
+                "unit": null,
+                "value_type": "id"
+              }
+            },
+            {
+              "configuration_id": "config.variant",
+              "expectation_kind": "exact",
+              "observation_id": "obs.a.0001",
+              "tolerance_rule_id": "tol.a.0001",
+              "value": {
+                "serialized_value": "action_A",
+                "unit": null,
+                "value_type": "id"
+              }
+            },
+            {
+              "configuration_id": "config.baseline",
+              "expectation_kind": "exact",
+              "observation_id": "obs.a.0002",
+              "tolerance_rule_id": "tol.a.0001",
+              "value": {
+                "serialized_value": "true",
+                "unit": null,
+                "value_type": "boolean"
+              }
+            },
+            {
+              "configuration_id": "config.variant",
+              "expectation_kind": "exact",
+              "observation_id": "obs.a.0002",
+              "tolerance_rule_id": "tol.a.0001",
+              "value": {
+                "serialized_value": "true",
+                "unit": null,
+                "value_type": "boolean"
+              }
+            },
+            {
+              "configuration_id": "config.baseline",
+              "expectation_kind": "exact",
+              "observation_id": "obs.a.0003",
+              "tolerance_rule_id": "tol.a.0001",
+              "value": {
+                "serialized_value": "action_A",
+                "unit": null,
+                "value_type": "id"
+              }
+            },
+            {
+              "configuration_id": "config.variant",
+              "expectation_kind": "exact",
+              "observation_id": "obs.a.0003",
+              "tolerance_rule_id": "tol.a.0001",
+              "value": {
+                "serialized_value": "action_A",
+                "unit": null,
+                "value_type": "id"
+              }
+            },
+            {
+              "configuration_id": "config.baseline",
+              "expectation_kind": "exact",
+              "observation_id": "obs.a.0004",
+              "tolerance_rule_id": "tol.a.0001",
+              "value": {
+                "serialized_value": "0",
+                "unit": "count",
+                "value_type": "integer"
+              }
+            },
+            {
+              "configuration_id": "config.variant",
+              "expectation_kind": "exact",
+              "observation_id": "obs.a.0004",
+              "tolerance_rule_id": "tol.a.0001",
+              "value": {
+                "serialized_value": "0",
+                "unit": "count",
+                "value_type": "integer"
+              }
+            },
+            {
+              "configuration_id": "config.baseline",
+              "expectation_kind": "exact",
+              "observation_id": "obs.a.0005",
+              "tolerance_rule_id": "tol.a.0001",
+              "value": {
+                "serialized_value": "0",
+                "unit": "count",
+                "value_type": "integer"
+              }
+            },
+            {
+              "configuration_id": "config.variant",
+              "expectation_kind": "exact",
+              "observation_id": "obs.a.0005",
+              "tolerance_rule_id": "tol.a.0001",
+              "value": {
+                "serialized_value": "0",
+                "unit": "count",
+                "value_type": "integer"
+              }
+            }
+          ]
+        },
+        {
+          "alternative_id": "r1.alt.different_selection",
+          "description": "控制变量改变请求选择或替换关系：基线保留抽象动作 A 且更新 3 前请求不具资格，变体保存并执行抽象动作 B。",
+          "expectations": [
+            {
+              "configuration_id": "config.baseline",
+              "expectation_kind": "exact",
+              "observation_id": "obs.a.0001",
+              "tolerance_rule_id": "tol.a.0001",
+              "value": {
+                "serialized_value": "action_A",
+                "unit": null,
+                "value_type": "id"
+              }
+            },
+            {
+              "configuration_id": "config.variant",
+              "expectation_kind": "exact",
+              "observation_id": "obs.a.0001",
+              "tolerance_rule_id": "tol.a.0001",
+              "value": {
+                "serialized_value": "action_B",
+                "unit": null,
+                "value_type": "id"
+              }
+            },
+            {
+              "configuration_id": "config.baseline",
+              "expectation_kind": "exact",
+              "observation_id": "obs.a.0002",
+              "tolerance_rule_id": "tol.a.0001",
+              "value": {
+                "serialized_value": "false",
+                "unit": null,
+                "value_type": "boolean"
+              }
+            },
+            {
+              "configuration_id": "config.variant",
+              "expectation_kind": "exact",
+              "observation_id": "obs.a.0002",
+              "tolerance_rule_id": "tol.a.0001",
+              "value": {
+                "serialized_value": "true",
+                "unit": null,
+                "value_type": "boolean"
+              }
+            },
+            {
+              "configuration_id": "config.baseline",
+              "expectation_kind": "exact",
+              "observation_id": "obs.a.0003",
+              "tolerance_rule_id": "tol.a.0001",
+              "value": {
+                "serialized_value": "action_A",
+                "unit": null,
+                "value_type": "id"
+              }
+            },
+            {
+              "configuration_id": "config.variant",
+              "expectation_kind": "exact",
+              "observation_id": "obs.a.0003",
+              "tolerance_rule_id": "tol.a.0001",
+              "value": {
+                "serialized_value": "action_B",
+                "unit": null,
+                "value_type": "id"
+              }
+            },
+            {
+              "configuration_id": "config.baseline",
+              "expectation_kind": "exact",
+              "observation_id": "obs.a.0004",
+              "tolerance_rule_id": "tol.a.0001",
+              "value": {
+                "serialized_value": "0",
+                "unit": "count",
+                "value_type": "integer"
+              }
+            },
+            {
+              "configuration_id": "config.variant",
+              "expectation_kind": "exact",
+              "observation_id": "obs.a.0004",
+              "tolerance_rule_id": "tol.a.0001",
+              "value": {
+                "serialized_value": "0",
+                "unit": "count",
+                "value_type": "integer"
+              }
+            },
+            {
+              "configuration_id": "config.baseline",
+              "expectation_kind": "exact",
+              "observation_id": "obs.a.0005",
+              "tolerance_rule_id": "tol.a.0001",
+              "value": {
+                "serialized_value": "0",
+                "unit": "count",
+                "value_type": "integer"
+              }
+            },
+            {
+              "configuration_id": "config.variant",
+              "expectation_kind": "exact",
+              "observation_id": "obs.a.0005",
+              "tolerance_rule_id": "tol.a.0001",
+              "value": {
+                "serialized_value": "0",
+                "unit": "count",
+                "value_type": "integer"
+              }
+            }
+          ]
+        }
+      ],
+      "confidence_percent": 99,
+      "expectations": [
+        {
+          "configuration_id": "config.baseline",
+          "expectation_kind": "status",
+          "observation_id": "obs.a.0001",
+          "tolerance_rule_id": "tol.a.0001",
+          "value": {
+            "serialized_value": "indeterminate",
+            "unit": null,
+            "value_type": "status"
+          }
+        },
+        {
+          "configuration_id": "config.variant",
+          "expectation_kind": "status",
+          "observation_id": "obs.a.0001",
+          "tolerance_rule_id": "tol.a.0001",
+          "value": {
+            "serialized_value": "indeterminate",
+            "unit": null,
+            "value_type": "status"
+          }
+        },
+        {
+          "configuration_id": "config.baseline",
+          "expectation_kind": "status",
+          "observation_id": "obs.a.0002",
+          "tolerance_rule_id": "tol.a.0001",
+          "value": {
+            "serialized_value": "indeterminate",
+            "unit": null,
+            "value_type": "status"
+          }
+        },
+        {
+          "configuration_id": "config.variant",
+          "expectation_kind": "status",
+          "observation_id": "obs.a.0002",
+          "tolerance_rule_id": "tol.a.0001",
+          "value": {
+            "serialized_value": "indeterminate",
+            "unit": null,
+            "value_type": "status"
+          }
+        },
+        {
+          "configuration_id": "config.baseline",
+          "expectation_kind": "status",
+          "observation_id": "obs.a.0003",
+          "tolerance_rule_id": "tol.a.0001",
+          "value": {
+            "serialized_value": "indeterminate",
+            "unit": null,
+            "value_type": "status"
+          }
+        },
+        {
+          "configuration_id": "config.variant",
+          "expectation_kind": "status",
+          "observation_id": "obs.a.0003",
+          "tolerance_rule_id": "tol.a.0001",
+          "value": {
+            "serialized_value": "indeterminate",
+            "unit": null,
+            "value_type": "status"
+          }
+        },
+        {
+          "configuration_id": "config.baseline",
+          "expectation_kind": "status",
+          "observation_id": "obs.a.0004",
+          "tolerance_rule_id": "tol.a.0001",
+          "value": {
+            "serialized_value": "indeterminate",
+            "unit": "count",
+            "value_type": "status"
+          }
+        },
+        {
+          "configuration_id": "config.variant",
+          "expectation_kind": "status",
+          "observation_id": "obs.a.0004",
+          "tolerance_rule_id": "tol.a.0001",
+          "value": {
+            "serialized_value": "indeterminate",
+            "unit": "count",
+            "value_type": "status"
+          }
+        },
+        {
+          "configuration_id": "config.baseline",
+          "expectation_kind": "status",
+          "observation_id": "obs.a.0005",
+          "tolerance_rule_id": "tol.a.0001",
+          "value": {
+            "serialized_value": "indeterminate",
+            "unit": "count",
+            "value_type": "status"
+          }
+        },
+        {
+          "configuration_id": "config.variant",
+          "expectation_kind": "status",
+          "observation_id": "obs.a.0005",
+          "tolerance_rule_id": "tol.a.0001",
+          "value": {
+            "serialized_value": "indeterminate",
+            "unit": "count",
+            "value_type": "status"
+          }
+        }
+      ],
+      "prediction_status": "indeterminate",
+      "reasoning": "不变量直接约束两配置的接触数和命中数为零，但第一阶段视图及中性信封均未公开控制变量如何影响请求保存、资格判断和动作切换。变量的 0 与 1 不能自行解释该关系，因此完整观察向量不唯一。",
+      "supporting_record_ids": [
+        "o.a.0001",
+        "o.a.0002",
+        "o.a.0022",
+        "o.a.0027",
+        "o.a.0042",
+        "inv.a.0002",
+        "inv.a.0003",
+        "inv.a.0004",
+        "inv.a.0005",
+        "inv.a.0006",
+        "obs.a.0001",
+        "obs.a.0002",
+        "obs.a.0003",
+        "obs.a.0004",
+        "obs.a.0005",
+        "tol.a.0001"
+      ]
+    },
+    {
+      "assumptions": [
+        "相容分支中的过程分支标识是抽象标识；有序方向串使用竖线分隔二十五个子步。",
+        "相容分支为展示不唯一性而采用一种与材料相容的正向第二轴响应；该响应并非主预测。"
+      ],
+      "case_id": "CA-R2",
+      "compatible_alternatives": [
+        {
+          "alternative_id": "r2.alt.baseline_current",
+          "description": "基线关系在每个子步读取当前输入，变体关系读取前一子步输入；相同运动公式使两者在停止边界均具有正向第二轴速度和位置。",
+          "expectations": [
+            {
+              "configuration_id": "config.baseline",
+              "expectation_kind": "exact",
+              "observation_id": "obs.b.0001",
+              "tolerance_rule_id": "tol.b.0001",
+              "value": {
+                "serialized_value": "axis1_127_axis2_0|axis1_127_axis2_0|axis1_127_axis2_0|axis1_127_axis2_0|axis1_127_axis2_0|axis1_0_axis2_127|axis1_0_axis2_127|axis1_0_axis2_127|axis1_0_axis2_127|axis1_0_axis2_127|axis1_0_axis2_127|axis1_0_axis2_127|axis1_0_axis2_127|axis1_0_axis2_127|axis1_0_axis2_127|axis1_0_axis2_127|axis1_0_axis2_127|axis1_0_axis2_127|axis1_0_axis2_127|axis1_0_axis2_127|axis1_0_axis2_127|axis1_0_axis2_127|axis1_0_axis2_127|axis1_0_axis2_127|axis1_0_axis2_127",
+                "unit": null,
+                "value_type": "string"
+              }
+            },
+            {
+              "configuration_id": "config.variant",
+              "expectation_kind": "exact",
+              "observation_id": "obs.b.0001",
+              "tolerance_rule_id": "tol.b.0001",
+              "value": {
+                "serialized_value": "axis1_0_axis2_0|axis1_127_axis2_0|axis1_127_axis2_0|axis1_127_axis2_0|axis1_127_axis2_0|axis1_127_axis2_0|axis1_0_axis2_127|axis1_0_axis2_127|axis1_0_axis2_127|axis1_0_axis2_127|axis1_0_axis2_127|axis1_0_axis2_127|axis1_0_axis2_127|axis1_0_axis2_127|axis1_0_axis2_127|axis1_0_axis2_127|axis1_0_axis2_127|axis1_0_axis2_127|axis1_0_axis2_127|axis1_0_axis2_127|axis1_0_axis2_127|axis1_0_axis2_127|axis1_0_axis2_127|axis1_0_axis2_127|axis1_0_axis2_127",
+                "unit": null,
+                "value_type": "string"
+              }
+            },
+            {
+              "configuration_id": "config.baseline",
+              "expectation_kind": "direction",
+              "observation_id": "obs.b.0002",
+              "tolerance_rule_id": "tol.b.0002",
+              "value": {
+                "serialized_value": "positive",
+                "unit": "engine_unit_per_second",
+                "value_type": "direction"
+              }
+            },
+            {
+              "configuration_id": "config.variant",
+              "expectation_kind": "direction",
+              "observation_id": "obs.b.0002",
+              "tolerance_rule_id": "tol.b.0002",
+              "value": {
+                "serialized_value": "positive",
+                "unit": "engine_unit_per_second",
+                "value_type": "direction"
+              }
+            },
+            {
+              "configuration_id": "config.baseline",
+              "expectation_kind": "direction",
+              "observation_id": "obs.b.0003",
+              "tolerance_rule_id": "tol.b.0002",
+              "value": {
+                "serialized_value": "positive",
+                "unit": "engine_unit",
+                "value_type": "direction"
+              }
+            },
+            {
+              "configuration_id": "config.variant",
+              "expectation_kind": "direction",
+              "observation_id": "obs.b.0003",
+              "tolerance_rule_id": "tol.b.0002",
+              "value": {
+                "serialized_value": "positive",
+                "unit": "engine_unit",
+                "value_type": "direction"
+              }
+            },
+            {
+              "configuration_id": "config.baseline",
+              "expectation_kind": "exact",
+              "observation_id": "obs.b.0004",
+              "tolerance_rule_id": "tol.b.0001",
+              "value": {
+                "serialized_value": "0",
+                "unit": "count",
+                "value_type": "integer"
+              }
+            },
+            {
+              "configuration_id": "config.variant",
+              "expectation_kind": "exact",
+              "observation_id": "obs.b.0004",
+              "tolerance_rule_id": "tol.b.0001",
+              "value": {
+                "serialized_value": "0",
+                "unit": "count",
+                "value_type": "integer"
+              }
+            },
+            {
+              "configuration_id": "config.baseline",
+              "expectation_kind": "exact",
+              "observation_id": "obs.b.0005",
+              "tolerance_rule_id": "tol.b.0001",
+              "value": {
+                "serialized_value": "branch_current_all_25",
+                "unit": null,
+                "value_type": "id"
+              }
+            },
+            {
+              "configuration_id": "config.variant",
+              "expectation_kind": "exact",
+              "observation_id": "obs.b.0005",
+              "tolerance_rule_id": "tol.b.0001",
+              "value": {
+                "serialized_value": "branch_previous_all_25",
+                "unit": null,
+                "value_type": "id"
+              }
+            }
+          ]
+        },
+        {
+          "alternative_id": "r2.alt.variant_current",
+          "description": "控制变量值与输入选取关系的映射相反：基线读取前一子步输入，变体读取当前输入；其余规则和正向第二轴响应保持相同。",
+          "expectations": [
+            {
+              "configuration_id": "config.baseline",
+              "expectation_kind": "exact",
+              "observation_id": "obs.b.0001",
+              "tolerance_rule_id": "tol.b.0001",
+              "value": {
+                "serialized_value": "axis1_0_axis2_0|axis1_127_axis2_0|axis1_127_axis2_0|axis1_127_axis2_0|axis1_127_axis2_0|axis1_127_axis2_0|axis1_0_axis2_127|axis1_0_axis2_127|axis1_0_axis2_127|axis1_0_axis2_127|axis1_0_axis2_127|axis1_0_axis2_127|axis1_0_axis2_127|axis1_0_axis2_127|axis1_0_axis2_127|axis1_0_axis2_127|axis1_0_axis2_127|axis1_0_axis2_127|axis1_0_axis2_127|axis1_0_axis2_127|axis1_0_axis2_127|axis1_0_axis2_127|axis1_0_axis2_127|axis1_0_axis2_127|axis1_0_axis2_127",
+                "unit": null,
+                "value_type": "string"
+              }
+            },
+            {
+              "configuration_id": "config.variant",
+              "expectation_kind": "exact",
+              "observation_id": "obs.b.0001",
+              "tolerance_rule_id": "tol.b.0001",
+              "value": {
+                "serialized_value": "axis1_127_axis2_0|axis1_127_axis2_0|axis1_127_axis2_0|axis1_127_axis2_0|axis1_127_axis2_0|axis1_0_axis2_127|axis1_0_axis2_127|axis1_0_axis2_127|axis1_0_axis2_127|axis1_0_axis2_127|axis1_0_axis2_127|axis1_0_axis2_127|axis1_0_axis2_127|axis1_0_axis2_127|axis1_0_axis2_127|axis1_0_axis2_127|axis1_0_axis2_127|axis1_0_axis2_127|axis1_0_axis2_127|axis1_0_axis2_127|axis1_0_axis2_127|axis1_0_axis2_127|axis1_0_axis2_127|axis1_0_axis2_127|axis1_0_axis2_127",
+                "unit": null,
+                "value_type": "string"
+              }
+            },
+            {
+              "configuration_id": "config.baseline",
+              "expectation_kind": "direction",
+              "observation_id": "obs.b.0002",
+              "tolerance_rule_id": "tol.b.0002",
+              "value": {
+                "serialized_value": "positive",
+                "unit": "engine_unit_per_second",
+                "value_type": "direction"
+              }
+            },
+            {
+              "configuration_id": "config.variant",
+              "expectation_kind": "direction",
+              "observation_id": "obs.b.0002",
+              "tolerance_rule_id": "tol.b.0002",
+              "value": {
+                "serialized_value": "positive",
+                "unit": "engine_unit_per_second",
+                "value_type": "direction"
+              }
+            },
+            {
+              "configuration_id": "config.baseline",
+              "expectation_kind": "direction",
+              "observation_id": "obs.b.0003",
+              "tolerance_rule_id": "tol.b.0002",
+              "value": {
+                "serialized_value": "positive",
+                "unit": "engine_unit",
+                "value_type": "direction"
+              }
+            },
+            {
+              "configuration_id": "config.variant",
+              "expectation_kind": "direction",
+              "observation_id": "obs.b.0003",
+              "tolerance_rule_id": "tol.b.0002",
+              "value": {
+                "serialized_value": "positive",
+                "unit": "engine_unit",
+                "value_type": "direction"
+              }
+            },
+            {
+              "configuration_id": "config.baseline",
+              "expectation_kind": "exact",
+              "observation_id": "obs.b.0004",
+              "tolerance_rule_id": "tol.b.0001",
+              "value": {
+                "serialized_value": "0",
+                "unit": "count",
+                "value_type": "integer"
+              }
+            },
+            {
+              "configuration_id": "config.variant",
+              "expectation_kind": "exact",
+              "observation_id": "obs.b.0004",
+              "tolerance_rule_id": "tol.b.0001",
+              "value": {
+                "serialized_value": "0",
+                "unit": "count",
+                "value_type": "integer"
+              }
+            },
+            {
+              "configuration_id": "config.baseline",
+              "expectation_kind": "exact",
+              "observation_id": "obs.b.0005",
+              "tolerance_rule_id": "tol.b.0001",
+              "value": {
+                "serialized_value": "branch_previous_all_25",
+                "unit": null,
+                "value_type": "id"
+              }
+            },
+            {
+              "configuration_id": "config.variant",
+              "expectation_kind": "exact",
+              "observation_id": "obs.b.0005",
+              "tolerance_rule_id": "tol.b.0001",
+              "value": {
+                "serialized_value": "branch_current_all_25",
+                "unit": null,
+                "value_type": "id"
+              }
+            }
+          ]
+        }
+      ],
+      "confidence_percent": 98,
+      "expectations": [
+        {
+          "configuration_id": "config.baseline",
+          "expectation_kind": "status",
+          "observation_id": "obs.b.0001",
+          "tolerance_rule_id": "tol.b.0001",
+          "value": {
+            "serialized_value": "indeterminate",
+            "unit": null,
+            "value_type": "status"
+          }
+        },
+        {
+          "configuration_id": "config.variant",
+          "expectation_kind": "status",
+          "observation_id": "obs.b.0001",
+          "tolerance_rule_id": "tol.b.0001",
+          "value": {
+            "serialized_value": "indeterminate",
+            "unit": null,
+            "value_type": "status"
+          }
+        },
+        {
+          "configuration_id": "config.baseline",
+          "expectation_kind": "status",
+          "observation_id": "obs.b.0002",
+          "tolerance_rule_id": "tol.b.0002",
+          "value": {
+            "serialized_value": "indeterminate",
+            "unit": "engine_unit_per_second",
+            "value_type": "status"
+          }
+        },
+        {
+          "configuration_id": "config.variant",
+          "expectation_kind": "status",
+          "observation_id": "obs.b.0002",
+          "tolerance_rule_id": "tol.b.0002",
+          "value": {
+            "serialized_value": "indeterminate",
+            "unit": "engine_unit_per_second",
+            "value_type": "status"
+          }
+        },
+        {
+          "configuration_id": "config.baseline",
+          "expectation_kind": "status",
+          "observation_id": "obs.b.0003",
+          "tolerance_rule_id": "tol.b.0002",
+          "value": {
+            "serialized_value": "indeterminate",
+            "unit": "engine_unit",
+            "value_type": "status"
+          }
+        },
+        {
+          "configuration_id": "config.variant",
+          "expectation_kind": "status",
+          "observation_id": "obs.b.0003",
+          "tolerance_rule_id": "tol.b.0002",
+          "value": {
+            "serialized_value": "indeterminate",
+            "unit": "engine_unit",
+            "value_type": "status"
+          }
+        },
+        {
+          "configuration_id": "config.baseline",
+          "expectation_kind": "status",
+          "observation_id": "obs.b.0004",
+          "tolerance_rule_id": "tol.b.0001",
+          "value": {
+            "serialized_value": "indeterminate",
+            "unit": "count",
+            "value_type": "status"
+          }
+        },
+        {
+          "configuration_id": "config.variant",
+          "expectation_kind": "status",
+          "observation_id": "obs.b.0004",
+          "tolerance_rule_id": "tol.b.0001",
+          "value": {
+            "serialized_value": "indeterminate",
+            "unit": "count",
+            "value_type": "status"
+          }
+        },
+        {
+          "configuration_id": "config.baseline",
+          "expectation_kind": "status",
+          "observation_id": "obs.b.0005",
+          "tolerance_rule_id": "tol.b.0001",
+          "value": {
+            "serialized_value": "indeterminate",
+            "unit": null,
+            "value_type": "status"
+          }
+        },
+        {
+          "configuration_id": "config.variant",
+          "expectation_kind": "status",
+          "observation_id": "obs.b.0005",
+          "tolerance_rule_id": "tol.b.0001",
+          "value": {
+            "serialized_value": "indeterminate",
+            "unit": null,
+            "value_type": "status"
+          }
+        }
+      ],
+      "prediction_status": "indeterminate",
+      "reasoning": "信封固定原始方向序列、初始状态、子步、运动公式和空碰撞世界，并说明仅输入选取关系随控制变量改变；但没有给出取值 0 与 1 分别对应哪种选取关系，也没有公开过程分支标识和数值公式参数。因此接触数可由不变量约束为零，而完整读取串、分支串及停止方向类别仍不唯一。",
+      "supporting_record_ids": [
+        "o.b.0001",
+        "o.b.0002",
+        "o.b.0011",
+        "o.b.0013",
+        "o.b.0015",
+        "o.b.0025",
+        "o.b.0030",
+        "inv.b.0002",
+        "inv.b.0003",
+        "inv.b.0004",
+        "inv.b.0005",
+        "inv.b.0006",
+        "inv.b.0007",
+        "obs.b.0001",
+        "obs.b.0002",
+        "obs.b.0003",
+        "obs.b.0004",
+        "obs.b.0005",
+        "tol.b.0001",
+        "tol.b.0002"
+      ]
+    },
+    {
+      "assumptions": [
+        "相容分支中的 result_center 和 result_middle 是用于区分未公开结果类别的抽象标识，不主张其为真实类别名。"
+      ],
+      "case_id": "CA-R3",
+      "compatible_alternatives": [
+        {
+          "alternative_id": "r3.alt.delay_changes_class",
+          "description": "调用偏移直接等于控制变量延迟，原始规则时间等于候选时刻加该延迟；零延迟和七十五毫秒延迟落入不同的抽象结果类别，许可在候选后的固定外半窗时刻关闭。",
+          "expectations": [
+            {
+              "configuration_id": "config.baseline",
+              "expectation_kind": "exact",
+              "observation_id": "obs.c.0001",
+              "tolerance_rule_id": "tol.c.0001",
+              "value": {
+                "serialized_value": "1",
+                "unit": "count",
+                "value_type": "integer"
+              }
+            },
+            {
+              "configuration_id": "config.variant",
+              "expectation_kind": "exact",
+              "observation_id": "obs.c.0001",
+              "tolerance_rule_id": "tol.c.0001",
+              "value": {
+                "serialized_value": "1",
+                "unit": "count",
+                "value_type": "integer"
+              }
+            },
+            {
+              "configuration_id": "config.baseline",
+              "expectation_kind": "exact",
+              "observation_id": "obs.c.0002",
+              "tolerance_rule_id": "tol.c.0002",
+              "value": {
+                "serialized_value": "0",
+                "unit": "millisecond",
+                "value_type": "integer"
+              }
+            },
+            {
+              "configuration_id": "config.variant",
+              "expectation_kind": "exact",
+              "observation_id": "obs.c.0002",
+              "tolerance_rule_id": "tol.c.0002",
+              "value": {
+                "serialized_value": "75",
+                "unit": "millisecond",
+                "value_type": "integer"
+              }
+            },
+            {
+              "configuration_id": "config.baseline",
+              "expectation_kind": "exact",
+              "observation_id": "obs.c.0003",
+              "tolerance_rule_id": "tol.c.0001",
+              "value": {
+                "serialized_value": "result_center",
+                "unit": null,
+                "value_type": "id"
+              }
+            },
+            {
+              "configuration_id": "config.variant",
+              "expectation_kind": "exact",
+              "observation_id": "obs.c.0003",
+              "tolerance_rule_id": "tol.c.0001",
+              "value": {
+                "serialized_value": "result_middle",
+                "unit": null,
+                "value_type": "id"
+              }
+            },
+            {
+              "configuration_id": "config.baseline",
+              "expectation_kind": "exact",
+              "observation_id": "obs.c.0004",
+              "tolerance_rule_id": "tol.c.0002",
+              "value": {
+                "serialized_value": "1000",
+                "unit": "millisecond",
+                "value_type": "decimal"
+              }
+            },
+            {
+              "configuration_id": "config.variant",
+              "expectation_kind": "exact",
+              "observation_id": "obs.c.0004",
+              "tolerance_rule_id": "tol.c.0002",
+              "value": {
+                "serialized_value": "1075",
+                "unit": "millisecond",
+                "value_type": "decimal"
+              }
+            },
+            {
+              "configuration_id": "config.baseline",
+              "expectation_kind": "exact",
+              "observation_id": "obs.c.0005",
+              "tolerance_rule_id": "tol.c.0001",
+              "value": {
+                "serialized_value": "1",
+                "unit": "count",
+                "value_type": "integer"
+              }
+            },
+            {
+              "configuration_id": "config.variant",
+              "expectation_kind": "exact",
+              "observation_id": "obs.c.0005",
+              "tolerance_rule_id": "tol.c.0001",
+              "value": {
+                "serialized_value": "1",
+                "unit": "count",
+                "value_type": "integer"
+              }
+            },
+            {
+              "configuration_id": "config.baseline",
+              "expectation_kind": "exact",
+              "observation_id": "obs.c.0006",
+              "tolerance_rule_id": "tol.c.0002",
+              "value": {
+                "serialized_value": "1099.5",
+                "unit": "millisecond",
+                "value_type": "decimal"
+              }
+            },
+            {
+              "configuration_id": "config.variant",
+              "expectation_kind": "exact",
+              "observation_id": "obs.c.0006",
+              "tolerance_rule_id": "tol.c.0002",
+              "value": {
+                "serialized_value": "1099.5",
+                "unit": "millisecond",
+                "value_type": "decimal"
+              }
+            }
+          ]
+        },
+        {
+          "alternative_id": "r3.alt.delay_preserves_class",
+          "description": "调用偏移和原始时间仍由控制变量延迟决定，但未公开分类关系把两个偏移映射到同一抽象结果类别；许可关闭时刻与正式裁定时刻重合。",
+          "expectations": [
+            {
+              "configuration_id": "config.baseline",
+              "expectation_kind": "exact",
+              "observation_id": "obs.c.0001",
+              "tolerance_rule_id": "tol.c.0001",
+              "value": {
+                "serialized_value": "1",
+                "unit": "count",
+                "value_type": "integer"
+              }
+            },
+            {
+              "configuration_id": "config.variant",
+              "expectation_kind": "exact",
+              "observation_id": "obs.c.0001",
+              "tolerance_rule_id": "tol.c.0001",
+              "value": {
+                "serialized_value": "1",
+                "unit": "count",
+                "value_type": "integer"
+              }
+            },
+            {
+              "configuration_id": "config.baseline",
+              "expectation_kind": "exact",
+              "observation_id": "obs.c.0002",
+              "tolerance_rule_id": "tol.c.0002",
+              "value": {
+                "serialized_value": "0",
+                "unit": "millisecond",
+                "value_type": "integer"
+              }
+            },
+            {
+              "configuration_id": "config.variant",
+              "expectation_kind": "exact",
+              "observation_id": "obs.c.0002",
+              "tolerance_rule_id": "tol.c.0002",
+              "value": {
+                "serialized_value": "75",
+                "unit": "millisecond",
+                "value_type": "integer"
+              }
+            },
+            {
+              "configuration_id": "config.baseline",
+              "expectation_kind": "exact",
+              "observation_id": "obs.c.0003",
+              "tolerance_rule_id": "tol.c.0001",
+              "value": {
+                "serialized_value": "result_center",
+                "unit": null,
+                "value_type": "id"
+              }
+            },
+            {
+              "configuration_id": "config.variant",
+              "expectation_kind": "exact",
+              "observation_id": "obs.c.0003",
+              "tolerance_rule_id": "tol.c.0001",
+              "value": {
+                "serialized_value": "result_center",
+                "unit": null,
+                "value_type": "id"
+              }
+            },
+            {
+              "configuration_id": "config.baseline",
+              "expectation_kind": "exact",
+              "observation_id": "obs.c.0004",
+              "tolerance_rule_id": "tol.c.0002",
+              "value": {
+                "serialized_value": "1000",
+                "unit": "millisecond",
+                "value_type": "decimal"
+              }
+            },
+            {
+              "configuration_id": "config.variant",
+              "expectation_kind": "exact",
+              "observation_id": "obs.c.0004",
+              "tolerance_rule_id": "tol.c.0002",
+              "value": {
+                "serialized_value": "1075",
+                "unit": "millisecond",
+                "value_type": "decimal"
+              }
+            },
+            {
+              "configuration_id": "config.baseline",
+              "expectation_kind": "exact",
+              "observation_id": "obs.c.0005",
+              "tolerance_rule_id": "tol.c.0001",
+              "value": {
+                "serialized_value": "1",
+                "unit": "count",
+                "value_type": "integer"
+              }
+            },
+            {
+              "configuration_id": "config.variant",
+              "expectation_kind": "exact",
+              "observation_id": "obs.c.0005",
+              "tolerance_rule_id": "tol.c.0001",
+              "value": {
+                "serialized_value": "1",
+                "unit": "count",
+                "value_type": "integer"
+              }
+            },
+            {
+              "configuration_id": "config.baseline",
+              "expectation_kind": "exact",
+              "observation_id": "obs.c.0006",
+              "tolerance_rule_id": "tol.c.0002",
+              "value": {
+                "serialized_value": "1000",
+                "unit": "millisecond",
+                "value_type": "decimal"
+              }
+            },
+            {
+              "configuration_id": "config.variant",
+              "expectation_kind": "exact",
+              "observation_id": "obs.c.0006",
+              "tolerance_rule_id": "tol.c.0002",
+              "value": {
+                "serialized_value": "1075",
+                "unit": "millisecond",
+                "value_type": "decimal"
+              }
+            }
+          ]
+        }
+      ],
+      "confidence_percent": 97,
+      "expectations": [
+        {
+          "configuration_id": "config.baseline",
+          "expectation_kind": "status",
+          "observation_id": "obs.c.0001",
+          "tolerance_rule_id": "tol.c.0001",
+          "value": {
+            "serialized_value": "indeterminate",
+            "unit": "count",
+            "value_type": "status"
+          }
+        },
+        {
+          "configuration_id": "config.variant",
+          "expectation_kind": "status",
+          "observation_id": "obs.c.0001",
+          "tolerance_rule_id": "tol.c.0001",
+          "value": {
+            "serialized_value": "indeterminate",
+            "unit": "count",
+            "value_type": "status"
+          }
+        },
+        {
+          "configuration_id": "config.baseline",
+          "expectation_kind": "status",
+          "observation_id": "obs.c.0002",
+          "tolerance_rule_id": "tol.c.0002",
+          "value": {
+            "serialized_value": "indeterminate",
+            "unit": "millisecond",
+            "value_type": "status"
+          }
+        },
+        {
+          "configuration_id": "config.variant",
+          "expectation_kind": "status",
+          "observation_id": "obs.c.0002",
+          "tolerance_rule_id": "tol.c.0002",
+          "value": {
+            "serialized_value": "indeterminate",
+            "unit": "millisecond",
+            "value_type": "status"
+          }
+        },
+        {
+          "configuration_id": "config.baseline",
+          "expectation_kind": "status",
+          "observation_id": "obs.c.0003",
+          "tolerance_rule_id": "tol.c.0001",
+          "value": {
+            "serialized_value": "indeterminate",
+            "unit": null,
+            "value_type": "status"
+          }
+        },
+        {
+          "configuration_id": "config.variant",
+          "expectation_kind": "status",
+          "observation_id": "obs.c.0003",
+          "tolerance_rule_id": "tol.c.0001",
+          "value": {
+            "serialized_value": "indeterminate",
+            "unit": null,
+            "value_type": "status"
+          }
+        },
+        {
+          "configuration_id": "config.baseline",
+          "expectation_kind": "status",
+          "observation_id": "obs.c.0004",
+          "tolerance_rule_id": "tol.c.0002",
+          "value": {
+            "serialized_value": "indeterminate",
+            "unit": "millisecond",
+            "value_type": "status"
+          }
+        },
+        {
+          "configuration_id": "config.variant",
+          "expectation_kind": "status",
+          "observation_id": "obs.c.0004",
+          "tolerance_rule_id": "tol.c.0002",
+          "value": {
+            "serialized_value": "indeterminate",
+            "unit": "millisecond",
+            "value_type": "status"
+          }
+        },
+        {
+          "configuration_id": "config.baseline",
+          "expectation_kind": "status",
+          "observation_id": "obs.c.0005",
+          "tolerance_rule_id": "tol.c.0001",
+          "value": {
+            "serialized_value": "indeterminate",
+            "unit": "count",
+            "value_type": "status"
+          }
+        },
+        {
+          "configuration_id": "config.variant",
+          "expectation_kind": "status",
+          "observation_id": "obs.c.0005",
+          "tolerance_rule_id": "tol.c.0001",
+          "value": {
+            "serialized_value": "indeterminate",
+            "unit": "count",
+            "value_type": "status"
+          }
+        },
+        {
+          "configuration_id": "config.baseline",
+          "expectation_kind": "status",
+          "observation_id": "obs.c.0006",
+          "tolerance_rule_id": "tol.c.0002",
+          "value": {
+            "serialized_value": "indeterminate",
+            "unit": "millisecond",
+            "value_type": "status"
+          }
+        },
+        {
+          "configuration_id": "config.variant",
+          "expectation_kind": "status",
+          "observation_id": "obs.c.0006",
+          "tolerance_rule_id": "tol.c.0002",
+          "value": {
+            "serialized_value": "indeterminate",
+            "unit": "millisecond",
+            "value_type": "status"
+          }
+        }
+      ],
+      "prediction_status": "indeterminate",
+      "reasoning": "信封固定候选时刻、对象、分类半窗和单次裁定路径，并将控制变量明确为调用延迟，因此偏移 0 与 75 毫秒及相应规则时刻存在直接结构依据。然而第一阶段未恢复分类关系、结果类别标识、通知生成关系或许可关闭时刻的计算关系；半窗数值本身不足以确定类别和关闭规则，所以完整观察向量仍有多个相容结构。",
+      "supporting_record_ids": [
+        "o.c.0001",
+        "o.c.0002",
+        "o.c.0004",
+        "o.c.0016",
+        "o.c.0022",
+        "o.c.0032",
+        "o.c.0035",
+        "inv.c.0002",
+        "inv.c.0003",
+        "inv.c.0004",
+        "inv.c.0005",
+        "inv.c.0006",
+        "inv.c.0007",
+        "obs.c.0001",
+        "obs.c.0002",
+        "obs.c.0003",
+        "obs.c.0004",
+        "obs.c.0005",
+        "obs.c.0006",
+        "tol.c.0001",
+        "tol.c.0002"
+      ]
+    }
+  ]
+}

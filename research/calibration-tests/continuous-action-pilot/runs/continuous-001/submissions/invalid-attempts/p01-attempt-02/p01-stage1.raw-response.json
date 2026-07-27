@@ -1,0 +1,313 @@
+{
+  "$schema": "https://github.com/onovich/Game-Primitives/blob/main/research/calibration-tests/continuous-action-pilot/schema/blind-response-interface-0.1.0.schema.json",
+  "artifact_type": "reconstruction_response_payload",
+  "artifact_version": "0.1.0",
+  "pollution": {
+    "familiarity": {
+      "exact_result_knowledge": "none",
+      "exact_rule_knowledge": "suspected",
+      "exact_variant_knowledge": "none",
+      "project_exposure": "none",
+      "recognition_status": "suspected",
+      "recognized_family": "格斗动作取消、Quake 家族空中移动及节奏游戏时间窗裁定等通用规则家族",
+      "recognized_work": null,
+      "related_genre_experience": "extensive"
+    },
+    "integrity_exposures": [
+      "CA-R2 的空中加速、命令子步和速度整数化结构使我怀疑其属于 Quake 家族运动规则，但未据此补齐任何材料外事实。",
+      "CA-R1 与 CA-R3 分别具有常见的格斗取消和节奏判定结构，但未识别出确定作品。"
+    ],
+    "stage_update_note": null
+  },
+  "reconstruction_answers": [
+    {
+      "ambiguities": [],
+      "assumptions": [],
+      "case_id": "CA-R1",
+      "compatible_branches": [],
+      "confidence_percent": 93,
+      "recovered_facts": [
+        {
+          "claim": "每次固定更新先采样按钮并用当前样本相对上一样本的新置位识别攻击新按下，随后才推进动作帧和动作请求。",
+          "fact_id": "r1.fact.001",
+          "recovery_status": "recovered",
+          "supporting_record_ids": [
+            "o.a.0003",
+            "o.a.0024",
+            "o.a.0039",
+            "o.a.0046"
+          ]
+        },
+        {
+          "claim": "非活动普通攻击期间的新按下请求普通攻击；普通攻击未结束期间的新按下请求特殊攻击。",
+          "fact_id": "r1.fact.002",
+          "recovery_status": "recovered",
+          "supporting_record_ids": [
+            "o.a.0007",
+            "o.a.0009",
+            "o.a.0039"
+          ]
+        },
+        {
+          "claim": "普通攻击帧 1 至 3 对特殊攻击仅提供缓冲，帧 4 至 5 允许新请求立即执行。",
+          "fact_id": "r1.fact.003",
+          "recovery_status": "recovered",
+          "supporting_record_ids": [
+            "o.a.0030",
+            "o.a.0032",
+            "o.a.0036",
+            "o.a.0014"
+          ]
+        },
+        {
+          "claim": "已缓存特殊攻击的消费资格为允许失误取消或当前动作命中计数大于零；本案失误取消为假且命中计数保持为零，因此缓存请求不能越过资格门。",
+          "fact_id": "r1.fact.004",
+          "recovery_status": "recovered",
+          "supporting_record_ids": [
+            "o.a.0039",
+            "o.a.0040",
+            "o.a.0045",
+            "o.a.0016"
+          ]
+        },
+        {
+          "claim": "给定更新序列中，更新 0 建立普通攻击帧零，更新 2 的第二次新按下在缓冲窗口形成特殊攻击缓存；至更新 6 完成，普通攻击仍为当前动作、特殊攻击仍被缓存，取消资格为假且接触与命中计数为零。",
+          "fact_id": "r1.fact.005",
+          "recovery_status": "recovered",
+          "supporting_record_ids": [
+            "o.a.0002",
+            "o.a.0029",
+            "o.a.0031",
+            "o.a.0039",
+            "o.a.0040",
+            "o.a.0042"
+          ]
+        }
+      ],
+      "uniqueness": "uniquely_recoverable"
+    },
+    {
+      "ambiguities": [
+        "视图没有给出每个子步由原始命令生成本步命令的具体选择函数。",
+        "加速度系数、期望速度尺度、重力、步进滑移碰撞细节、位置单位和跨工具链数值精度未完全冻结。",
+        "因此不能从结构视图唯一计算停止点的速度与位置数值。"
+      ],
+      "assumptions": [],
+      "case_id": "CA-R2",
+      "compatible_branches": [
+        {
+          "branch_id": "r2.branch.001",
+          "description": "逐子步选择：每个子步把该索引对应的原始方向字段写入复用的当前命令对象，因此子步 0 至 4 使用第一方向，子步 5 至 24 使用第二方向。",
+          "supporting_record_ids": [
+            "o.b.0002",
+            "o.b.0007",
+            "o.b.0009",
+            "o.b.0019"
+          ]
+        },
+        {
+          "branch_id": "r2.branch.002",
+          "description": "快照或保持选择：外层调用开始时选定一份方向字段，后续子步只更新命令时间并继续复用该方向；原始命令轨迹仍可按子步记录，但本步命令不必逐项跟随。",
+          "supporting_record_ids": [
+            "o.b.0001",
+            "o.b.0007",
+            "o.b.0019",
+            "o.b.0025"
+          ]
+        },
+        {
+          "branch_id": "r2.branch.003",
+          "description": "滞后一子步选择：本步命令采用上一子步已选方向，方向切换比原始序列晚一个子步；该映射同样不改变冻结的原始输入、步长和移动公式。",
+          "supporting_record_ids": [
+            "o.b.0001",
+            "o.b.0002",
+            "o.b.0007"
+          ]
+        }
+      ],
+      "confidence_percent": 94,
+      "recovered_facts": [
+        {
+          "claim": "过程执行 25 个连续的 8 毫秒子步，并在规则时间 200 毫秒停止。",
+          "fact_id": "r2.fact.001",
+          "recovery_status": "recovered",
+          "supporting_record_ids": [
+            "o.b.0002",
+            "o.b.0030"
+          ]
+        },
+        {
+          "claim": "原始方向输入在子步 0 至 4 使用一个分量为 127 的方向，在子步 5 至 24 切换到另一正交分量为 127 的方向。",
+          "fact_id": "r2.fact.002",
+          "recovery_status": "recovered",
+          "supporting_record_ids": [
+            "o.b.0002"
+          ]
+        },
+        {
+          "claim": "每个子步的实际命令被同一空中移动过程读取，用于构造期望方向和期望速度，修改速度并通过带重力的步进滑移推进位置，单步末尾再整数化速度。",
+          "fact_id": "r2.fact.003",
+          "recovery_status": "recovered",
+          "supporting_record_ids": [
+            "o.b.0003",
+            "o.b.0016",
+            "o.b.0017",
+            "o.b.0020",
+            "o.b.0023"
+          ]
+        },
+        {
+          "claim": "受控变量仅是原始命令到本步实际命令的选择关系；原始输入、初始状态、子步时长和后续移动公式保持冻结。",
+          "fact_id": "r2.fact.004",
+          "recovery_status": "recovered",
+          "supporting_record_ids": [
+            "o.b.0001",
+            "o.b.0007"
+          ]
+        },
+        {
+          "claim": "原始命令到本步命令的确切选择函数不可恢复。",
+          "fact_id": "r2.fact.005",
+          "recovery_status": "not_recoverable",
+          "supporting_record_ids": [
+            "o.b.0001",
+            "o.b.0007",
+            "o.b.0019",
+            "o.b.0009"
+          ]
+        },
+        {
+          "claim": "停止点的精确位置与速度不可恢复，因为命令选择关系和若干数值、碰撞细节均未给出。",
+          "fact_id": "r2.fact.006",
+          "recovery_status": "not_recoverable",
+          "supporting_record_ids": [
+            "o.b.0011",
+            "o.b.0013",
+            "o.b.0016",
+            "o.b.0030"
+          ]
+        }
+      ],
+      "uniqueness": "multiple_compatible_structures"
+    },
+    {
+      "ambiguities": [
+        "候选接受后调用裁定路径的具体时点、延迟长度和调度机制未给出。",
+        "候选规则时点、物件结束时点、允许结果集合及各结果窗口阈值均被隐藏。",
+        "因此实际相对偏移、窗口分类结果、正式结果类型和原始时间记录数值不能唯一恢复。"
+      ],
+      "assumptions": [],
+      "case_id": "CA-R3",
+      "compatible_branches": [
+        {
+          "branch_id": "r3.branch.001",
+          "description": "同步调度：候选通过接收检查后在同一调用栈和当前规则时间立即执行窗口分类、复核及结果提交。",
+          "supporting_record_ids": [
+            "o.c.0003",
+            "o.c.0007",
+            "o.c.0011",
+            "o.c.0036"
+          ]
+        },
+        {
+          "branch_id": "r3.branch.002",
+          "description": "同规则时点排队调度：候选先被记录，再由队列在规则时间坐标尚未变化时调用同一裁定路径；可产生相同可见裁定记录，但内部结构不同。",
+          "supporting_record_ids": [
+            "o.c.0001",
+            "o.c.0006",
+            "o.c.0007",
+            "o.c.0022"
+          ]
+        },
+        {
+          "branch_id": "r3.branch.003",
+          "description": "延迟调度：候选被保持到后续规则时点才调用同一裁定路径；分类使用调用时的当前规则时间，因此可能得到不同但仍满足冻结提交路径的窗内结果。",
+          "supporting_record_ids": [
+            "o.c.0001",
+            "o.c.0007",
+            "o.c.0012",
+            "o.c.0023"
+          ]
+        }
+      ],
+      "confidence_percent": 96,
+      "recovered_facts": [
+        {
+          "claim": "对象尚未全部裁定、按下为左右键且指针位于接收区域时，输入仅形成已接受候选，尚未成为正式裁定事件。",
+          "fact_id": "r3.fact.001",
+          "recovery_status": "recovered",
+          "supporting_record_ids": [
+            "o.c.0003",
+            "o.c.0004",
+            "o.c.0006",
+            "o.c.0017"
+          ]
+        },
+        {
+          "claim": "已接受候选在实际裁定调用时以当前规则时间相对物件结束时间的绝对偏移进行窗口分类，并返回第一个允许且位于窗口内的待复核结果。",
+          "fact_id": "r3.fact.002",
+          "recovery_status": "recovered",
+          "supporting_record_ids": [
+            "o.c.0011",
+            "o.c.0012",
+            "o.c.0024",
+            "o.c.0028"
+          ]
+        },
+        {
+          "claim": "待复核结果只有在非空结果且通过可命中复核后才形成正式裁定事件。",
+          "fact_id": "r3.fact.003",
+          "recovery_status": "recovered",
+          "supporting_record_ids": [
+            "o.c.0013",
+            "o.c.0014",
+            "o.c.0025",
+            "o.c.0030"
+          ]
+        },
+        {
+          "claim": "正式事件经结果类型验证后提交，写入原始时间记录和规则速率记录、更新对象状态并发送结果通知；随后同一对象的后续输入许可关闭。",
+          "fact_id": "r3.fact.004",
+          "recovery_status": "recovered",
+          "supporting_record_ids": [
+            "o.c.0015",
+            "o.c.0009",
+            "o.c.0027",
+            "o.c.0035",
+            "o.c.0037"
+          ]
+        },
+        {
+          "claim": "受控变量仅决定候选接受后何时调用同一裁定路径；候选事实、窗口分类、可命中检查和结果提交路径保持冻结。",
+          "fact_id": "r3.fact.005",
+          "recovery_status": "recovered",
+          "supporting_record_ids": [
+            "o.c.0001",
+            "o.c.0007"
+          ]
+        },
+        {
+          "claim": "候选到裁定调用之间的确切调度关系不可恢复。",
+          "fact_id": "r3.fact.006",
+          "recovery_status": "not_recoverable",
+          "supporting_record_ids": [
+            "o.c.0001",
+            "o.c.0007",
+            "o.c.0022"
+          ]
+        },
+        {
+          "claim": "实际窗口结果、正式结果类型及其时间记录数值不可恢复，因为裁定时点和窗口参数未给出。",
+          "fact_id": "r3.fact.007",
+          "recovery_status": "not_recoverable",
+          "supporting_record_ids": [
+            "o.c.0012",
+            "o.c.0023",
+            "o.c.0032"
+          ]
+        }
+      ],
+      "uniqueness": "multiple_compatible_structures"
+    }
+  ]
+}
