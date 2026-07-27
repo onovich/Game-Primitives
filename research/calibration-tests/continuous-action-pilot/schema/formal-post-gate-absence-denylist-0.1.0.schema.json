@@ -1,0 +1,202 @@
+{
+  "$id": "https://github.com/onovich/Game-Primitives/blob/main/research/calibration-tests/continuous-action-pilot/schema/formal-post-gate-absence-denylist-0.1.0.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "$schema": {
+      "const": "https://github.com/onovich/Game-Primitives/blob/main/research/calibration-tests/continuous-action-pilot/schema/formal-post-gate-absence-denylist-0.1.0.schema.json"
+    },
+    "artifact_type": {
+      "const": "formal_post_gate_absence_denylist"
+    },
+    "artifact_version": {
+      "const": "0.1.0"
+    },
+    "candidate_run_id": {
+      "const": "continuous-002"
+    },
+    "rules": {
+      "const": [
+        {
+          "absence_type": "artifact_audit",
+          "artifact_types": [
+            "artifact_audit_report",
+            "post_reveal_artifact_audit"
+          ],
+          "path_patterns": [
+            "reports/artifact-audit*.json"
+          ]
+        },
+        {
+          "absence_type": "dispatch_receipt",
+          "artifact_types": [
+            "dispatch_receipt",
+            "stage1_seat_dispatch_receipt",
+            "stage2_seat_dispatch_receipt"
+          ],
+          "path_patterns": [
+            "execution/dispatch-receipts/*.json"
+          ]
+        },
+        {
+          "absence_type": "execution_result",
+          "artifact_types": [
+            "execution_result"
+          ],
+          "path_patterns": [
+            "execution/results/*.json"
+          ]
+        },
+        {
+          "absence_type": "external_dispatch_attestation",
+          "artifact_types": [
+            "external_dispatch_attestation"
+          ],
+          "path_patterns": [
+            "gate/external-dispatch-attestations/*.json"
+          ]
+        },
+        {
+          "absence_type": "formal_actor_descriptor",
+          "artifact_types": [
+            "formal_actor_descriptor"
+          ],
+          "path_patterns": [
+            "execution/actors/*.json"
+          ]
+        },
+        {
+          "absence_type": "formal_comparator_output",
+          "artifact_types": [
+            "formal_comparator_output"
+          ],
+          "path_patterns": [
+            "execution/formal-comparator-output*.json"
+          ]
+        },
+        {
+          "absence_type": "formal_execution_permit_instance",
+          "artifact_types": [
+            "formal_execution_permit"
+          ],
+          "path_patterns": [
+            "execution/formal-execution-permit*.json"
+          ]
+        },
+        {
+          "absence_type": "formal_human_gate_authorization_instance",
+          "artifact_types": [
+            "formal_human_gate_authorization"
+          ],
+          "path_patterns": [
+            "gate/formal-human-gate-authorization*.json"
+          ]
+        },
+        {
+          "absence_type": "formal_raw_trace",
+          "artifact_types": [
+            "ca_r1_raw_trace",
+            "ca_r2_raw_trace",
+            "continuous_action_r3_trace",
+            "formal_raw_trace",
+            "trace_bundle"
+          ],
+          "path_patterns": [
+            "execution/raw-traces/*.json"
+          ]
+        },
+        {
+          "absence_type": "prediction_set_preimage",
+          "artifact_types": [
+            "prediction_set_preimage"
+          ],
+          "path_patterns": [
+            "submissions/prediction-set-preimage*"
+          ]
+        },
+        {
+          "absence_type": "response_payload",
+          "artifact_types": [
+            "prediction_response_payload",
+            "reconstruction_response_payload",
+            "response_payload"
+          ],
+          "path_patterns": [
+            "submissions/raw-responses/*.json"
+          ]
+        },
+        {
+          "absence_type": "role_submission",
+          "artifact_types": [
+            "prediction_submission",
+            "reconstruction_submission",
+            "role_submission"
+          ],
+          "path_patterns": [
+            "submissions/role-submissions/*.json"
+          ]
+        },
+        {
+          "absence_type": "run_report",
+          "artifact_types": [
+            "continuous_action_run_report",
+            "run_report"
+          ],
+          "path_patterns": [
+            "reports/run-report*.json"
+          ]
+        },
+        {
+          "absence_type": "stage1_cohort_lock",
+          "artifact_types": [
+            "stage1_cohort_lock"
+          ],
+          "path_patterns": [
+            "execution/stage1-cohort-lock*.json"
+          ]
+        },
+        {
+          "absence_type": "submission_envelope",
+          "artifact_types": [
+            "role_submission_envelope",
+            "submission_envelope"
+          ],
+          "path_patterns": [
+            "submissions/envelopes/*.json"
+          ]
+        },
+        {
+          "absence_type": "truth_plaintext",
+          "artifact_types": [
+            "truth_plaintext"
+          ],
+          "path_patterns": [
+            "reveal/truth-plaintext*.json"
+          ]
+        },
+        {
+          "absence_type": "truth_reveal",
+          "artifact_types": [
+            "truth_reveal"
+          ],
+          "path_patterns": [
+            "reveal/truth-reveal*.json"
+          ]
+        }
+      ]
+    },
+    "verification_scope": {
+      "const": "pre_commit_a_only"
+    }
+  },
+  "required": [
+    "$schema",
+    "artifact_type",
+    "artifact_version",
+    "candidate_run_id",
+    "rules",
+    "verification_scope"
+  ],
+  "title": "Game Primitives Formal Post-Gate Absence Denylist 0.1.0",
+  "type": "object"
+}

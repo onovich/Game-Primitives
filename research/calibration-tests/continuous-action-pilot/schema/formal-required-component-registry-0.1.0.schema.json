@@ -1,0 +1,866 @@
+{
+  "$defs": {
+    "component": {
+      "additionalProperties": false,
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "required_at_b": {
+                "const": true
+              }
+            },
+            "required": [
+              "required_at_b"
+            ]
+          },
+          "then": {
+            "properties": {
+              "expected_absent_at_b": {
+                "const": false
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "dependency_state": {
+                "const": "closed"
+              }
+            },
+            "required": [
+              "dependency_state"
+            ]
+          },
+          "then": {
+            "properties": {
+              "allowed_dependency_component_ids": {
+                "minItems": 1
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "hash_state": {
+                "const": "manifest_bound_at_b"
+              }
+            },
+            "required": [
+              "hash_state"
+            ]
+          },
+          "then": {
+            "properties": {
+              "binding_kind": {
+                "const": "candidate_manifest_bound"
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "expected_absent_at_b": {
+                "const": true
+              }
+            },
+            "required": [
+              "expected_absent_at_b"
+            ]
+          },
+          "then": {
+            "properties": {
+              "lifecycle": {
+                "enum": [
+                  "post_gate_append_only",
+                  "post_gate_runtime"
+                ]
+              },
+              "required_at_b": {
+                "const": false
+              }
+            }
+          }
+        },
+        {
+          "oneOf": [
+            {
+              "properties": {
+                "canonical_path": {
+                  "$ref": "#/$defs/repoFilePath"
+                },
+                "path_pattern": {
+                  "type": "null"
+                }
+              }
+            },
+            {
+              "properties": {
+                "canonical_path": {
+                  "type": "null"
+                },
+                "path_pattern": {
+                  "$ref": "#/$defs/repoPathPattern"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "oneOf": [
+            {
+              "properties": {
+                "schema_id": {
+                  "$ref": "#/$defs/schemaId"
+                },
+                "schema_path": {
+                  "$ref": "#/$defs/repoFilePath"
+                }
+              }
+            },
+            {
+              "properties": {
+                "schema_id": {
+                  "type": "null"
+                },
+                "schema_path": {
+                  "type": "null"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "if": {
+            "properties": {
+              "component_kind": {
+                "const": "execution_target"
+              }
+            },
+            "required": [
+              "component_kind"
+            ]
+          },
+          "then": {
+            "required": [
+              "execution_case",
+              "execution_target_slot"
+            ]
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "hash_state": {
+                "const": "pinned"
+              }
+            },
+            "required": [
+              "hash_state"
+            ]
+          },
+          "then": {
+            "properties": {
+              "expected_sha256": {
+                "$ref": "#/$defs/sha256"
+              }
+            }
+          },
+          "else": {
+            "properties": {
+              "expected_sha256": {
+                "type": "null"
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "change_kind": {
+                "const": "base_retired"
+              }
+            },
+            "required": [
+              "change_kind"
+            ]
+          },
+          "then": {
+            "properties": {
+              "retirement_policy": {
+                "const": "explicit_retirement_with_rationale"
+              },
+              "retirement_rationale": {
+                "minLength": 1,
+                "type": "string"
+              }
+            }
+          },
+          "else": {
+            "properties": {
+              "retirement_rationale": {
+                "type": "null"
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "binding_kind": {
+                "const": "candidate_manifest_bound"
+              }
+            },
+            "required": [
+              "binding_kind"
+            ]
+          },
+          "then": {
+            "properties": {
+              "manifest_artifact_id": {
+                "$ref": "#/$defs/localId"
+              }
+            }
+          },
+          "else": {
+            "properties": {
+              "manifest_artifact_id": {
+                "type": "null"
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "dependency_state": {
+                "const": "not_applicable"
+              }
+            },
+            "required": [
+              "dependency_state"
+            ]
+          },
+          "then": {
+            "properties": {
+              "allowed_dependency_component_ids": {
+                "maxItems": 0
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "binding_scope": {
+                "enum": [
+                  "execution_binding",
+                  "runtime_binding"
+                ]
+              }
+            },
+            "required": [
+              "binding_scope"
+            ]
+          },
+          "then": {
+            "properties": {
+              "dependency_state": {
+                "enum": [
+                  "closed",
+                  "unresolved_blocks_commit_a"
+                ]
+              }
+            }
+          }
+        }
+      ],
+      "properties": {
+        "allowed_dependency_component_ids": {
+          "items": {
+            "$ref": "#/$defs/localId"
+          },
+          "type": "array",
+          "uniqueItems": true
+        },
+        "artifact_role": {
+          "enum": [
+            "actor_descriptor",
+            "artifact_audit",
+            "audit_record",
+            "authorization",
+            "blind_response",
+            "build_record",
+            "cohort_lock",
+          "comparator_output",
+          "dispatch_body",
+          "dispatch_plan",
+            "dispatch_receipt",
+            "execution_permit",
+            "execution_result",
+            "external_attestation",
+            "fixture",
+            "generator",
+            "manifest_container",
+            "participant_contract",
+            "participant_interface",
+            "prediction_set",
+            "prompt",
+            "raw_trace",
+            "research_contract",
+            "reveal",
+            "run_report",
+            "schema",
+            "source_note",
+            "submission",
+            "submission_assembler",
+            "submission_envelope",
+            "task_packet",
+            "truth_commitment",
+            "truth_continuity_attestation",
+            "verification_tool"
+          ]
+        },
+        "artifact_type": {
+          "oneOf": [
+            {
+              "$ref": "#/$defs/localId"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "binding_scope": {
+          "enum": [
+            "container_excluded",
+            "execution_binding",
+            "none",
+            "post_gate_runtime",
+            "provenance_reference",
+            "runtime_binding"
+          ]
+        },
+        "binding_kind": {
+          "enum": [
+            "candidate_manifest_bound",
+            "container_excluded",
+            "global_git_bound",
+            "post_gate_deferred"
+          ]
+        },
+        "canonical_path": {
+          "oneOf": [
+            {
+              "$ref": "#/$defs/repoFilePath"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "change_kind": {
+          "enum": [
+            "base_retired",
+            "candidate_added",
+            "container_excluded",
+            "post_gate_deferred",
+            "reused_unchanged",
+            "run_rematerialized",
+            "versioned_replacement"
+          ]
+        },
+        "component_id": {
+          "$ref": "#/$defs/localId"
+        },
+        "component_kind": {
+          "enum": [
+            "audit_instance",
+            "contract_instance",
+            "execution_target",
+            "manifest_container",
+            "participant_artifact",
+            "post_gate_instance",
+            "protocol",
+            "schema",
+            "tool"
+          ]
+        },
+        "dependency_state": {
+          "enum": [
+            "closed",
+            "not_applicable",
+            "unresolved_blocks_commit_a"
+          ]
+        },
+        "execution_case": {
+          "enum": [
+            "CA-R1",
+            "CA-R2",
+            "CA-R3"
+          ]
+        },
+        "execution_target_slot": {
+          "enum": [
+            "comparator",
+            "formal_input",
+            "formal_runner",
+            "support_artifact",
+            "test_body"
+          ]
+        },
+        "expected_absent_at_b": {
+          "type": "boolean"
+        },
+        "expected_sha256": {
+          "oneOf": [
+            {
+              "$ref": "#/$defs/sha256"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "expected_instance_count_at_b": {
+          "minimum": 0,
+          "type": "integer"
+        },
+        "forbidden_reuse_family": {
+          "oneOf": [
+            {
+              "enum": [
+                "actors_sessions",
+                "authorization",
+                "blind_response_chain",
+                "dispatch_and_cohort",
+                "execution_evidence",
+                "execution_permit",
+                "prediction_set",
+                "reveal_and_closure",
+                "runtime_bound_artifact",
+                "truth_commitment"
+              ]
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "lifecycle": {
+          "enum": [
+            "audited_reissue",
+            "direct_fixed",
+            "new_pre_gate",
+            "post_gate_append_only",
+            "post_gate_runtime",
+            "rematerialized_pre_gate",
+            "round_independent_reuse"
+          ]
+        },
+        "hash_state": {
+          "enum": [
+            "manifest_bound_at_b",
+            "pinned",
+            "post_gate_not_materialized",
+            "unresolved_blocks_commit_a"
+          ]
+        },
+        "manifest_artifact_kind": {
+          "oneOf": [
+            {
+              "enum": [
+                "actor_descriptor",
+                "audit",
+                "build_record",
+                "documentation",
+                "execution_plan",
+                "execution_raw",
+                "execution_result",
+                "fixture",
+                "generator",
+                "report",
+                "response_payload",
+                "reveal",
+                "source",
+                "submission",
+                "submission_envelope",
+                "task_packet",
+                "trace",
+                "truth"
+              ]
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "manifest_artifact_id": {
+          "oneOf": [
+            {
+              "$ref": "#/$defs/localId"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "participant_visible": {
+          "type": "boolean"
+        },
+        "path_pattern": {
+          "oneOf": [
+            {
+              "$ref": "#/$defs/repoPathPattern"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "required_at_b": {
+          "type": "boolean"
+        },
+        "reference_scope": {
+          "enum": [
+            "none",
+            "provenance_reference",
+            "runtime_binding"
+          ]
+        },
+        "retirement_policy": {
+          "enum": [
+            "explicit_replacement_required",
+            "explicit_retirement_with_rationale",
+            "not_applicable"
+          ]
+        },
+        "retirement_rationale": {
+          "oneOf": [
+            {
+              "minLength": 1,
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "requirement_sources": {
+          "items": {
+            "enum": [
+              "contract_path",
+              "delta_trust_closure",
+              "execution_target",
+              "participant_surface",
+              "section_4_1",
+              "section_4_1_round_independent",
+              "section_4_2",
+              "section_4_3",
+              "section_6",
+              "section_7",
+              "section_8_absence"
+            ]
+          },
+          "minItems": 1,
+          "type": "array",
+          "uniqueItems": true
+        },
+        "schema_id": {
+          "oneOf": [
+            {
+              "$ref": "#/$defs/schemaId"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "schema_path": {
+          "oneOf": [
+            {
+              "$ref": "#/$defs/repoFilePath"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "semantic_policy": {
+          "enum": [
+            "byte_identical_reuse",
+            "external_post_b_append_only",
+            "new_control_plane",
+            "participant_interface_repair",
+            "post_gate_absence",
+            "protocol_transition",
+            "round_bound_reissue",
+            "same_version_rematerialization"
+          ]
+        },
+        "semantic_change": {
+          "type": "boolean"
+        },
+        "semantic_change_scope": {
+          "enum": [
+            "none",
+            "participant_interface",
+            "runtime_binding",
+            "verification_implementation"
+          ]
+        },
+        "version": {
+          "$ref": "#/$defs/semanticVersion"
+        }
+      },
+      "required": [
+        "allowed_dependency_component_ids",
+        "artifact_role",
+        "artifact_type",
+        "binding_scope",
+        "binding_kind",
+        "canonical_path",
+        "change_kind",
+        "component_id",
+        "component_kind",
+        "dependency_state",
+        "expected_absent_at_b",
+        "expected_instance_count_at_b",
+        "expected_sha256",
+        "forbidden_reuse_family",
+        "hash_state",
+        "lifecycle",
+        "manifest_artifact_kind",
+        "manifest_artifact_id",
+        "participant_visible",
+        "path_pattern",
+        "reference_scope",
+        "required_at_b",
+        "requirement_sources",
+        "retirement_policy",
+        "retirement_rationale",
+        "schema_id",
+        "schema_path",
+        "semantic_change",
+        "semantic_change_scope",
+        "semantic_policy",
+        "version"
+      ],
+      "type": "object"
+    },
+    "localId": {
+      "pattern": "^[a-z0-9][a-z0-9._-]*$",
+      "type": "string"
+    },
+    "repoFilePath": {
+      "pattern": "^(?!/)(?!.*\\\\)(?!.*(?:^|/)\\.\\.(?:/|$))[A-Za-z0-9._-]+(?:/[A-Za-z0-9._-]+)*$",
+      "type": "string"
+    },
+    "repoPathPattern": {
+      "pattern": "^(?!/)(?!.*\\\\)(?!.*(?:^|/)\\.\\.(?:/|$))[A-Za-z0-9._*?\\-]+(?:/[A-Za-z0-9._*?\\-]+)*$",
+      "type": "string"
+    },
+    "schemaId": {
+      "pattern": "^https://github\\.com/onovich/Game-Primitives/blob/main/research/calibration-tests/continuous-action-pilot/schema/[A-Za-z0-9._-]+\\.schema\\.json$",
+      "type": "string"
+    },
+    "semanticPolicyDefinition": {
+      "additionalProperties": false,
+      "properties": {
+        "allowed_change_scopes": {
+          "items": {
+            "enum": [
+              "actor_session_identity",
+              "binding_hash",
+              "external_query_evidence",
+              "none",
+              "participant_interface_shape",
+              "post_gate_runtime_data",
+              "protocol_version",
+              "round_identifier",
+              "round_path",
+              "schema_identifier",
+              "status_after_b",
+              "verification_implementation"
+            ]
+          },
+          "minItems": 1,
+          "type": "array",
+          "uniqueItems": true
+        },
+        "protected_scope": {
+          "enum": [
+            "all_research_design_domains",
+            "control_plane_only",
+            "participant_interface_only",
+            "post_gate_instance_only"
+          ]
+        },
+        "research_design_change": {
+          "const": false
+        },
+        "same_version_policy": {
+          "enum": [
+            "byte_identity_required",
+            "forbidden",
+            "not_applicable",
+            "projected_fields_only"
+          ]
+        }
+      },
+      "required": [
+        "allowed_change_scopes",
+        "protected_scope",
+        "research_design_change",
+        "same_version_policy"
+      ],
+      "type": "object"
+    },
+    "semanticVersion": {
+      "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$",
+      "type": "string"
+    },
+    "sha256": {
+      "pattern": "^[0-9a-f]{64}$",
+      "type": "string"
+    }
+  },
+  "$id": "https://github.com/onovich/Game-Primitives/blob/main/research/calibration-tests/continuous-action-pilot/schema/formal-required-component-registry-0.1.0.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "$schema": {
+      "const": "https://github.com/onovich/Game-Primitives/blob/main/research/calibration-tests/continuous-action-pilot/schema/formal-required-component-registry-0.1.0.schema.json"
+    },
+    "artifact_type": {
+      "const": "formal_required_component_registry"
+    },
+    "artifact_version": {
+      "const": "0.1.0"
+    },
+    "base_run_id": {
+      "const": "continuous-001"
+    },
+    "candidate_run_id": {
+      "const": "continuous-002"
+    },
+    "component_count": {
+      "const": 158
+    },
+    "component_order": {
+      "const": "component_id_ascending"
+    },
+    "components": {
+      "items": {
+        "$ref": "#/$defs/component"
+      },
+      "maxItems": 158,
+      "minItems": 158,
+      "type": "array",
+      "uniqueItems": true
+    },
+    "contract_path": {
+      "const": "research/continuous-action-pilot-continuous-002-delta-contract.md"
+    },
+    "external_trust_roots": {
+      "const": [
+        {
+          "canonical_path": "research/calibration-tests/continuous-action-pilot/tools/formal_run_delta_contract.py",
+          "component_id": "formal_run_delta_core",
+          "required_at_invocation": true,
+          "trust_model": "caller_pins_exact_bytes_out_of_band"
+        },
+        {
+          "canonical_path": "research/calibration-tests/continuous-action-pilot/tools/materialize-formal-run-delta-v0.1.0.py",
+          "component_id": "formal_run_delta_materializer",
+          "required_at_invocation": true,
+          "trust_model": "caller_pins_exact_bytes_out_of_band_and_invokes_python_isolated"
+        },
+        {
+          "canonical_path": "research/calibration-tests/continuous-action-pilot/tools/verify-formal-run-delta-v0.1.0.py",
+          "component_id": "formal_run_delta_verifier",
+          "required_at_invocation": true,
+          "trust_model": "caller_pins_exact_bytes_out_of_band_and_invokes_python_isolated"
+        }
+      ]
+    },
+    "path_pattern_language": {
+      "const": "gitwildmatch_repo_relative_subset_v0.1.0"
+    },
+    "protected_design_domains": {
+      "const": [
+        "analysis_boundary",
+        "case_identity_source_version_and_roles",
+        "conditions_and_dispatch_symmetry",
+        "controlled_variable_and_counterfactual",
+        "familiarity_pollution_policy",
+        "formal_input_and_initial_state",
+        "hard_checks_and_conclusion_rule",
+        "observation_contract",
+        "representation_contract",
+        "research_question_and_falsifiability",
+        "tolerance_and_stopping_boundary"
+      ]
+    },
+    "semantic_policies": {
+      "additionalProperties": false,
+      "properties": {
+        "byte_identical_reuse": {
+          "$ref": "#/$defs/semanticPolicyDefinition"
+        },
+        "external_post_b_append_only": {
+          "$ref": "#/$defs/semanticPolicyDefinition"
+        },
+        "new_control_plane": {
+          "$ref": "#/$defs/semanticPolicyDefinition"
+        },
+        "participant_interface_repair": {
+          "$ref": "#/$defs/semanticPolicyDefinition"
+        },
+        "post_gate_absence": {
+          "$ref": "#/$defs/semanticPolicyDefinition"
+        },
+        "protocol_transition": {
+          "$ref": "#/$defs/semanticPolicyDefinition"
+        },
+        "round_bound_reissue": {
+          "$ref": "#/$defs/semanticPolicyDefinition"
+        },
+        "same_version_rematerialization": {
+          "$ref": "#/$defs/semanticPolicyDefinition"
+        }
+      },
+      "required": [
+        "byte_identical_reuse",
+        "external_post_b_append_only",
+        "new_control_plane",
+        "participant_interface_repair",
+        "post_gate_absence",
+        "protocol_transition",
+        "round_bound_reissue",
+        "same_version_rematerialization"
+      ],
+      "type": "object"
+    }
+  },
+  "required": [
+    "$schema",
+    "artifact_type",
+    "artifact_version",
+    "base_run_id",
+    "candidate_run_id",
+    "component_count",
+    "component_order",
+    "components",
+    "contract_path",
+    "external_trust_roots",
+    "path_pattern_language",
+    "protected_design_domains",
+    "semantic_policies"
+  ],
+  "title": "Game Primitives Formal Required Component Registry 0.1.0",
+  "type": "object"
+}

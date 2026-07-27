@@ -1,0 +1,193 @@
+{
+  "$defs": {
+    "claim": {
+      "additionalProperties": false,
+      "properties": {
+        "claim_id": {
+          "$ref": "#/$defs/localId"
+        },
+        "decision": {
+          "enum": [
+            "failed",
+            "passed"
+          ]
+        },
+        "domain": {
+          "$ref": "#/$defs/protectedDomain"
+        },
+        "notes": {
+          "minLength": 1,
+          "type": "string"
+        }
+      },
+      "required": [
+        "claim_id",
+        "decision",
+        "domain",
+        "notes"
+      ],
+      "type": "object"
+    },
+    "localId": {
+      "pattern": "^[a-z0-9][a-z0-9._-]*$",
+      "type": "string"
+    },
+    "gitOid": {
+      "pattern": "^[0-9a-f]{40}$",
+      "type": "string"
+    },
+    "protectedDomain": {
+      "enum": [
+        "analysis_boundary",
+        "case_identity_source_version_and_roles",
+        "conditions_and_dispatch_symmetry",
+        "controlled_variable_and_counterfactual",
+        "familiarity_pollution_policy",
+        "formal_input_and_initial_state",
+        "hard_checks_and_conclusion_rule",
+        "observation_contract",
+        "representation_contract",
+        "research_question_and_falsifiability",
+        "tolerance_and_stopping_boundary"
+      ]
+    },
+    "sha256": {
+      "pattern": "^[0-9a-f]{64}$",
+      "type": "string"
+    },
+    "reviewer": {
+      "additionalProperties": false,
+      "properties": {
+        "identifier": {
+          "$ref": "#/$defs/localId"
+        },
+        "role": {
+          "const": "independent_semantic_reviewer"
+        },
+        "session_id": {
+          "$ref": "#/$defs/localId"
+        }
+      },
+      "required": [
+        "identifier",
+        "role",
+        "session_id"
+      ],
+      "type": "object"
+    }
+  },
+  "$id": "https://github.com/onovich/Game-Primitives/blob/main/research/calibration-tests/continuous-action-pilot/schema/formal-run-delta-semantic-review-0.1.0.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "oneOf": [
+    {
+      "properties": {
+        "review_id": {
+          "const": "projection"
+        },
+        "review_kind": {
+          "const": "projection_audit"
+        }
+      },
+      "required": [
+        "review_id",
+        "review_kind"
+      ]
+    },
+    {
+      "properties": {
+        "review_id": {
+          "const": "source"
+        },
+        "review_kind": {
+          "const": "source_audit"
+        }
+      },
+      "required": [
+        "review_id",
+        "review_kind"
+      ]
+    }
+  ],
+  "properties": {
+    "$schema": {
+      "const": "https://github.com/onovich/Game-Primitives/blob/main/research/calibration-tests/continuous-action-pilot/schema/formal-run-delta-semantic-review-0.1.0.schema.json"
+    },
+    "artifact_type": {
+      "const": "formal_run_delta_semantic_review"
+    },
+    "artifact_version": {
+      "const": "0.1.0"
+    },
+    "base_run_id": {
+      "const": "continuous-001"
+    },
+    "base_finalize_commit": {
+      "$ref": "#/$defs/gitOid"
+    },
+    "base_freeze_commit": {
+      "$ref": "#/$defs/gitOid"
+    },
+    "candidate_observed_head": {
+      "$ref": "#/$defs/gitOid"
+    },
+    "candidate_run_id": {
+      "const": "continuous-002"
+    },
+    "claims": {
+      "items": {
+        "$ref": "#/$defs/claim"
+      },
+      "maxItems": 11,
+      "minItems": 11,
+      "type": "array"
+    },
+    "decision": {
+      "enum": [
+        "failed",
+        "passed"
+      ]
+    },
+    "input_set_sha256": {
+      "$ref": "#/$defs/sha256"
+    },
+    "review_id": {
+      "enum": [
+        "projection",
+        "source"
+      ]
+    },
+    "review_kind": {
+      "enum": [
+        "projection_audit",
+        "source_audit"
+      ]
+    },
+    "reviewed_at": {
+      "format": "date-time",
+      "type": "string"
+    },
+    "reviewer": {
+      "$ref": "#/$defs/reviewer"
+    }
+  },
+  "required": [
+    "$schema",
+    "artifact_type",
+    "artifact_version",
+    "base_finalize_commit",
+    "base_freeze_commit",
+    "base_run_id",
+    "candidate_observed_head",
+    "candidate_run_id",
+    "claims",
+    "decision",
+    "input_set_sha256",
+    "review_id",
+    "review_kind",
+    "reviewed_at",
+    "reviewer"
+  ],
+  "title": "Game Primitives Formal Run Delta Semantic Review 0.1.0",
+  "type": "object"
+}

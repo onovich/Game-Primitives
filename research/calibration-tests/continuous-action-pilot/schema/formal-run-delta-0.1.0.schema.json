@@ -1,0 +1,979 @@
+{
+  "$defs": {
+    "artifactChange": {
+      "additionalProperties": false,
+      "properties": {
+        "artifact_id": {
+          "$ref": "#/$defs/localId"
+        },
+        "artifact_role": {
+          "enum": [
+            "adr",
+            "audit_record",
+            "build_record",
+            "dispatch_body",
+            "dispatch_plan",
+            "fixture",
+            "generator",
+            "other",
+            "participant_contract",
+            "participant_interface",
+            "prompt",
+            "research_contract",
+            "schema",
+            "source_note",
+            "submission_assembler",
+            "task_packet",
+            "truth_commitment",
+            "truth_continuity_attestation",
+            "verification_tool"
+          ]
+        },
+        "base_artifact": {
+          "oneOf": [
+            {
+              "$ref": "#/$defs/artifactReference"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "candidate_artifact": {
+          "oneOf": [
+            {
+              "$ref": "#/$defs/artifactReference"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "change_kind": {
+          "enum": [
+            "base_retired",
+            "candidate_added",
+            "reused_unchanged",
+            "run_rematerialized",
+            "versioned_replacement"
+          ]
+        },
+        "participant_visible": {
+          "type": "boolean"
+        },
+        "rationale": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "reference_scope": {
+          "enum": [
+            "none",
+            "provenance_reference",
+            "runtime_binding"
+          ]
+        },
+        "research_design_impact": {
+          "const": "none"
+        },
+        "semantic_change": {
+          "type": "boolean"
+        },
+        "semantic_change_scope": {
+          "enum": [
+            "none",
+            "participant_interface",
+            "runtime_binding",
+            "verification_implementation"
+          ]
+        }
+      },
+      "required": [
+        "artifact_id",
+        "artifact_role",
+        "base_artifact",
+        "candidate_artifact",
+        "change_kind",
+        "participant_visible",
+        "rationale",
+        "reference_scope",
+        "research_design_impact",
+        "semantic_change",
+        "semantic_change_scope"
+      ],
+      "type": "object"
+    },
+    "artifactReference": {
+      "additionalProperties": false,
+      "properties": {
+        "artifact_version": {
+          "$ref": "#/$defs/semanticVersion"
+        },
+        "manifest_artifact_id": {
+          "$ref": "#/$defs/localId"
+        },
+        "path": {
+          "$ref": "#/$defs/repoFilePath"
+        },
+        "sha256": {
+          "$ref": "#/$defs/sha256"
+        }
+      },
+      "required": [
+        "artifact_version",
+        "manifest_artifact_id",
+        "path",
+        "sha256"
+      ],
+      "type": "object"
+    },
+    "repositoryArtifactReference": {
+      "additionalProperties": false,
+      "properties": {
+        "artifact_version": {
+          "$ref": "#/$defs/semanticVersion"
+        },
+        "path": {
+          "$ref": "#/$defs/repoFilePath"
+        },
+        "sha256": {
+          "$ref": "#/$defs/sha256"
+        }
+      },
+      "required": [
+        "artifact_version",
+        "path",
+        "sha256"
+      ],
+      "type": "object"
+    },
+    "gitOid": {
+      "pattern": "^[0-9a-f]{40}$",
+      "type": "string"
+    },
+    "localId": {
+      "pattern": "^[a-z0-9][a-z0-9._-]*$",
+      "type": "string"
+    },
+    "occurrence": {
+      "additionalProperties": false,
+      "properties": {
+        "artifact_id": {
+          "$ref": "#/$defs/localId"
+        },
+        "count": {
+          "minimum": 1,
+          "type": "integer"
+        },
+        "location": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "location_kind": {
+          "enum": [
+            "binding_metadata",
+            "json_key",
+            "json_value",
+            "static_expression",
+            "text"
+          ]
+        },
+        "token": {
+          "minLength": 1,
+          "type": "string"
+        }
+      },
+      "required": [
+        "artifact_id",
+        "count",
+        "location",
+        "location_kind",
+        "token"
+      ],
+      "type": "object"
+    },
+    "protectedAssertion": {
+      "additionalProperties": false,
+      "properties": {
+        "base_source": {
+          "$ref": "#/$defs/sourceLocator"
+        },
+        "candidate_source": {
+          "$ref": "#/$defs/sourceLocator"
+        },
+        "domain": {
+          "$ref": "#/$defs/protectedDomain"
+        },
+        "review_claims": {
+          "items": {
+            "$ref": "#/$defs/reviewClaimReference"
+          },
+          "maxItems": 2,
+          "minItems": 2,
+          "type": "array"
+        },
+        "unchanged": {
+          "const": true
+        }
+      },
+      "required": [
+        "base_source",
+        "candidate_source",
+        "domain",
+        "review_claims",
+        "unchanged"
+      ],
+      "type": "object"
+    },
+    "protectedDomain": {
+      "enum": [
+        "analysis_boundary",
+        "case_identity_source_version_and_roles",
+        "conditions_and_dispatch_symmetry",
+        "controlled_variable_and_counterfactual",
+        "familiarity_pollution_policy",
+        "formal_input_and_initial_state",
+        "hard_checks_and_conclusion_rule",
+        "observation_contract",
+        "representation_contract",
+        "research_question_and_falsifiability",
+        "tolerance_and_stopping_boundary"
+      ]
+    },
+    "prohibitedReuseEvidence": {
+      "additionalProperties": false,
+      "properties": {
+        "artifact_id": {
+          "oneOf": [
+            {
+              "$ref": "#/$defs/localId"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "base_commit": {
+          "$ref": "#/$defs/gitOid"
+        },
+        "family": {
+          "enum": [
+            "actor_or_session",
+            "actors_sessions",
+            "authorization",
+            "blind_response",
+            "blind_response_chain",
+            "dispatch_and_cohort",
+            "dispatch_receipt",
+            "execution_evidence",
+            "execution_permit",
+            "prediction_set",
+            "prediction_preimage",
+            "reveal_and_closure",
+            "runtime_bound_artifact",
+            "truth_commitment"
+          ]
+        },
+        "canonical_payload_sha256": {
+          "oneOf": [
+            {
+              "$ref": "#/$defs/sha256"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "git_blob_oid": {
+          "oneOf": [
+            {
+              "$ref": "#/$defs/gitOid"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "path": {
+          "oneOf": [
+            {
+              "$ref": "#/$defs/repoFilePath"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "sha256": {
+          "$ref": "#/$defs/sha256"
+        },
+        "protected_payload_fingerprint": {
+          "oneOf": [
+            {
+              "$ref": "#/$defs/sha256"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "source_kind": {
+          "enum": [
+            "completion_inventory_artifact",
+            "manifest_artifact",
+            "manifest_truth_commitment"
+          ]
+        }
+      },
+      "required": [
+        "artifact_id",
+        "base_commit",
+        "canonical_payload_sha256",
+        "family",
+        "git_blob_oid",
+        "path",
+        "protected_payload_fingerprint",
+        "sha256",
+        "source_kind"
+      ],
+      "type": "object"
+    },
+    "reuseFamilySummary": {
+      "additionalProperties": false,
+      "properties": {
+        "artifact_count": {
+          "minimum": 0,
+          "type": "integer"
+        },
+        "family_id": {
+          "enum": [
+            "actors_sessions",
+            "authorization",
+            "blind_response_chain",
+            "dispatch_and_cohort",
+            "execution_evidence",
+            "execution_permit",
+            "prediction_set",
+            "reveal_and_closure"
+          ]
+        },
+        "state": {
+          "enum": [
+            "absent",
+            "present"
+          ]
+        }
+      },
+      "required": [
+        "artifact_count",
+        "family_id",
+        "state"
+      ],
+      "type": "object"
+    },
+    "repoFilePath": {
+      "pattern": "^(?!/)(?!.*\\\\)(?!.*(?:^|/)\\.\\.(?:/|$))[A-Za-z0-9._-]+(?:/[A-Za-z0-9._-]+)*$",
+      "type": "string"
+    },
+    "reviewClaimReference": {
+      "additionalProperties": false,
+      "properties": {
+        "claim_id": {
+          "$ref": "#/$defs/localId"
+        },
+        "review_id": {
+          "enum": [
+            "projection",
+            "source"
+          ]
+        }
+      },
+      "required": [
+        "claim_id",
+        "review_id"
+      ],
+      "type": "object"
+    },
+    "semanticReviewReference": {
+      "additionalProperties": false,
+      "properties": {
+        "artifact": {
+          "$ref": "#/$defs/artifactReference"
+        },
+        "decision_pointer": {
+          "const": "/decision"
+        },
+        "input_set_sha256": {
+          "$ref": "#/$defs/sha256"
+        },
+        "required_decision": {
+          "const": "passed"
+        },
+        "review_id": {
+          "enum": [
+            "projection",
+            "source"
+          ]
+        }
+      },
+      "required": [
+        "artifact",
+        "decision_pointer",
+        "input_set_sha256",
+        "required_decision",
+        "review_id"
+      ],
+      "type": "object"
+    },
+    "semanticVersion": {
+      "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$",
+      "type": "string"
+    },
+    "sha256": {
+      "pattern": "^[0-9a-f]{64}$",
+      "type": "string"
+    },
+    "sourceLocator": {
+      "additionalProperties": false,
+      "properties": {
+        "extraction": {
+          "enum": [
+            "canonical_json_pointer",
+            "whole_file"
+          ]
+        },
+        "path": {
+          "$ref": "#/$defs/repoFilePath"
+        },
+        "selector": {
+          "oneOf": [
+            {
+              "pattern": "^/(?:[^~/]|~0|~1)*(?:/(?:[^~/]|~0|~1)*)*$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "value_sha256": {
+          "$ref": "#/$defs/sha256"
+        }
+      },
+      "required": [
+        "extraction",
+        "path",
+        "selector",
+        "value_sha256"
+      ],
+      "type": "object"
+    },
+    "versionMatrixRow": {
+      "additionalProperties": false,
+      "properties": {
+        "artifact_change_id": {
+          "oneOf": [
+            {
+              "$ref": "#/$defs/localId"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "base_path": {
+          "oneOf": [
+            {
+              "$ref": "#/$defs/repoFilePath"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "base_sha256": {
+          "oneOf": [
+            {
+              "$ref": "#/$defs/sha256"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "base_version": {
+          "oneOf": [
+            {
+              "$ref": "#/$defs/semanticVersion"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "binding_kind": {
+          "enum": [
+            "artifact_change",
+            "candidate_absent_at_b",
+            "container_excluded",
+            "protocol",
+            "registry_file"
+          ]
+        },
+        "candidate_path": {
+          "oneOf": [
+            {
+              "$ref": "#/$defs/repoFilePath"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "candidate_sha256": {
+          "oneOf": [
+            {
+              "$ref": "#/$defs/sha256"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "candidate_version": {
+          "$ref": "#/$defs/semanticVersion"
+        },
+        "component_id": {
+          "$ref": "#/$defs/localId"
+        }
+      },
+      "required": [
+        "artifact_change_id",
+        "base_path",
+        "base_sha256",
+        "base_version",
+        "binding_kind",
+        "candidate_path",
+        "candidate_sha256",
+        "candidate_version",
+        "component_id"
+      ],
+      "type": "object"
+    }
+  },
+  "$id": "https://github.com/onovich/Game-Primitives/blob/main/research/calibration-tests/continuous-action-pilot/schema/formal-run-delta-0.1.0.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "$schema": {
+      "const": "https://github.com/onovich/Game-Primitives/blob/main/research/calibration-tests/continuous-action-pilot/schema/formal-run-delta-0.1.0.schema.json"
+    },
+    "artifact_changes": {
+      "items": {
+        "$ref": "#/$defs/artifactChange"
+      },
+      "minItems": 1,
+      "type": "array"
+    },
+    "artifact_type": {
+      "const": "formal_run_delta"
+    },
+    "artifact_version": {
+      "const": "0.1.0"
+    },
+    "audit": {
+      "additionalProperties": false,
+      "properties": {
+        "forbidden_reuse": {
+          "const": "passed"
+        },
+        "independent_semantic_review": {
+          "const": "passed"
+        },
+        "machine_diff_closure": {
+          "const": "passed"
+        },
+        "reference_scope": {
+          "const": "passed"
+        },
+        "repository_absence": {
+          "const": "passed"
+        },
+        "reviewed_at": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "status": {
+          "const": "passed"
+        }
+      },
+      "required": [
+        "forbidden_reuse",
+        "independent_semantic_review",
+        "machine_diff_closure",
+        "reference_scope",
+        "repository_absence",
+        "reviewed_at",
+        "status"
+      ],
+      "type": "object"
+    },
+    "audit_phase": {
+      "const": "pre_commit_a"
+    },
+    "audited_at": {
+      "format": "date-time",
+      "type": "string"
+    },
+    "base_run": {
+      "additionalProperties": false,
+      "properties": {
+        "finalize_commit": {
+          "$ref": "#/$defs/gitOid"
+        },
+        "completion_commit": {
+          "$ref": "#/$defs/gitOid"
+        },
+        "freeze_commit": {
+          "$ref": "#/$defs/gitOid"
+        },
+        "frozen_artifact_set_digest": {
+          "$ref": "#/$defs/sha256"
+        },
+        "manifest_path": {
+          "const": "research/calibration-tests/continuous-action-pilot/runs/continuous-001/manifest.json"
+        },
+        "run_id": {
+          "const": "continuous-001"
+        }
+      },
+      "required": [
+        "completion_commit",
+        "finalize_commit",
+        "freeze_commit",
+        "frozen_artifact_set_digest",
+        "manifest_path",
+        "run_id"
+      ],
+      "type": "object"
+    },
+    "candidate_run": {
+      "additionalProperties": false,
+      "properties": {
+        "commit_b_allowed_manifest_json_pointers": {
+          "const": [
+            "/freeze_commit",
+            "/status",
+            "/updated_at"
+          ]
+        },
+        "expected_post_b_status": {
+          "const": "frozen"
+        },
+        "freeze_commit_at_audit": {
+          "type": "null"
+        },
+        "frozen_set_preimage_path": {
+          "const": "research/calibration-tests/continuous-action-pilot/runs/continuous-002/inputs/frozen-set-preimage.tsv"
+        },
+        "manifest_path": {
+          "const": "research/calibration-tests/continuous-action-pilot/runs/continuous-002/manifest.json"
+        },
+        "manifest_schema_version": {
+          "const": "0.1.1"
+        },
+        "other_commit_b_changes_allowed": {
+          "const": false
+        },
+        "post_b_frozen_artifact_changes_allowed": {
+          "const": false
+        },
+        "run_id": {
+          "const": "continuous-002"
+        },
+        "status_at_audit": {
+          "const": "preparing"
+        }
+      },
+      "required": [
+        "commit_b_allowed_manifest_json_pointers",
+        "expected_post_b_status",
+        "freeze_commit_at_audit",
+        "frozen_set_preimage_path",
+        "manifest_path",
+        "manifest_schema_version",
+        "other_commit_b_changes_allowed",
+        "post_b_frozen_artifact_changes_allowed",
+        "run_id",
+        "status_at_audit"
+      ],
+      "type": "object"
+    },
+    "base_completion_inventory": {
+      "$ref": "#/$defs/artifactReference"
+    },
+    "base_completion_inventory_digest": {
+      "$ref": "#/$defs/sha256"
+    },
+    "delta_instance_path": {
+      "const": "research/calibration-tests/continuous-action-pilot/runs/continuous-002/inputs/formal-run-delta-v0.1.0.json"
+    },
+    "delta_scope": {
+      "additionalProperties": false,
+      "properties": {
+        "manifest_in_artifact_changes": {
+          "const": false
+        },
+        "preimage_in_artifact_changes": {
+          "const": false
+        },
+        "preimage_must_not_be_frozen_member": {
+          "const": true
+        },
+        "self_in_artifact_changes": {
+          "const": false
+        },
+        "self_must_be_frozen_member": {
+          "const": true
+        },
+        "self_must_be_in_preimage": {
+          "const": true
+        }
+      },
+      "required": [
+        "manifest_in_artifact_changes",
+        "preimage_in_artifact_changes",
+        "preimage_must_not_be_frozen_member",
+        "self_in_artifact_changes",
+        "self_must_be_frozen_member",
+        "self_must_be_in_preimage"
+      ],
+      "type": "object"
+    },
+    "forbidden_reuse_evidence": {
+      "items": {
+        "$ref": "#/$defs/prohibitedReuseEvidence"
+      },
+      "minItems": 1,
+      "type": "array"
+    },
+    "forbidden_reuse_family_summary": {
+      "items": {
+        "$ref": "#/$defs/reuseFamilySummary"
+      },
+      "maxItems": 8,
+      "minItems": 8,
+      "type": "array"
+    },
+    "gate_policy": {
+      "additionalProperties": false,
+      "properties": {
+        "external_dispatch_attestation_contract": {
+          "$ref": "#/$defs/artifactReference"
+        },
+        "external_dispatch_attestation_instances_allowed": {
+          "const": false
+        },
+        "external_dispatch_attestation_required_after_b": {
+          "const": true
+        }
+      },
+      "required": [
+        "external_dispatch_attestation_contract",
+        "external_dispatch_attestation_instances_allowed",
+        "external_dispatch_attestation_required_after_b"
+      ],
+      "type": "object"
+    },
+    "materialization_status": {
+      "const": "materialized_unbound"
+    },
+    "protected_design_assertions": {
+      "items": {
+        "$ref": "#/$defs/protectedAssertion"
+      },
+      "maxItems": 11,
+      "minItems": 11,
+      "type": "array"
+    },
+    "protocol_transition": {
+      "additionalProperties": false,
+      "properties": {
+        "from": {
+          "const": "0.1.0"
+        },
+        "to": {
+          "const": "0.1.1"
+        }
+      },
+      "required": [
+        "from",
+        "to"
+      ],
+      "type": "object"
+    },
+    "reference_policy": {
+      "additionalProperties": false,
+      "properties": {
+        "provenance_occurrence_allowlist": {
+          "items": {
+            "$ref": "#/$defs/occurrence"
+          },
+          "type": "array"
+        },
+        "provenance_reference_roles": {
+          "const": [
+            "adr",
+            "audit_record",
+            "research_contract",
+            "source_note",
+            "truth_continuity_attestation",
+            "verification_tool"
+          ]
+        },
+        "runtime_binding_roles": {
+          "const": [
+            "dispatch_body",
+            "dispatch_plan",
+            "generator",
+            "participant_contract",
+            "participant_interface",
+            "prompt",
+            "submission_assembler",
+            "task_packet",
+            "truth_commitment"
+          ]
+        }
+      },
+      "required": [
+        "provenance_occurrence_allowlist",
+        "provenance_reference_roles",
+        "runtime_binding_roles"
+      ],
+      "type": "object"
+    },
+    "reference_scan": {
+      "additionalProperties": false,
+      "properties": {
+        "observed_occurrences": {
+          "items": {
+            "$ref": "#/$defs/occurrence"
+          },
+          "type": "array"
+        },
+        "status": {
+          "const": "passed"
+        },
+        "violations": {
+          "maxItems": 0,
+          "type": "array"
+        }
+      },
+      "required": [
+        "observed_occurrences",
+        "status",
+        "violations"
+      ],
+      "type": "object"
+    },
+    "required_component_registry": {
+      "$ref": "#/$defs/repositoryArtifactReference"
+    },
+    "required_component_registry_digest": {
+      "$ref": "#/$defs/sha256"
+    },
+    "repository_absence": {
+      "additionalProperties": false,
+      "properties": {
+        "denylist_contract": {
+          "$ref": "#/$defs/artifactReference"
+        },
+        "matches": {
+          "maxItems": 0,
+          "type": "array"
+        },
+        "observed_head": {
+          "$ref": "#/$defs/gitOid"
+        },
+        "repository_scope": {
+          "const": "candidate_namespace_plus_repository_path_and_binding_scan"
+        },
+        "scan_snapshot_sha256": {
+          "$ref": "#/$defs/sha256"
+        },
+        "status": {
+          "const": "passed"
+        }
+      },
+      "required": [
+        "denylist_contract",
+        "matches",
+        "observed_head",
+        "repository_scope",
+        "scan_snapshot_sha256",
+        "status"
+      ],
+      "type": "object"
+    },
+    "research_design_change": {
+      "const": false
+    },
+    "semantic_reviews": {
+      "additionalProperties": false,
+      "properties": {
+        "projection": {
+          "$ref": "#/$defs/semanticReviewReference"
+        },
+        "source": {
+          "$ref": "#/$defs/semanticReviewReference"
+        }
+      },
+      "required": [
+        "projection",
+        "source"
+      ],
+      "type": "object"
+    },
+    "verification_scope": {
+      "const": "pre_commit_a_only"
+    },
+    "version_matrix": {
+      "items": {
+        "$ref": "#/$defs/versionMatrixRow"
+      },
+      "minItems": 1,
+      "type": "array"
+    }
+  },
+  "required": [
+    "$schema",
+    "artifact_changes",
+    "artifact_type",
+    "artifact_version",
+    "audit",
+    "audit_phase",
+    "audited_at",
+    "base_completion_inventory",
+    "base_completion_inventory_digest",
+    "base_run",
+    "candidate_run",
+    "delta_instance_path",
+    "delta_scope",
+    "forbidden_reuse_evidence",
+    "forbidden_reuse_family_summary",
+    "gate_policy",
+    "materialization_status",
+    "protected_design_assertions",
+    "protocol_transition",
+    "reference_policy",
+    "reference_scan",
+    "repository_absence",
+    "required_component_registry",
+    "required_component_registry_digest",
+    "research_design_change",
+    "semantic_reviews",
+    "verification_scope",
+    "version_matrix"
+  ],
+  "title": "Game Primitives Formal Run Delta 0.1.0",
+  "type": "object"
+}

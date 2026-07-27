@@ -1,0 +1,621 @@
+{
+  "$defs": {
+    "artifactReference": {
+      "additionalProperties": false,
+      "properties": {
+        "byte_length": {
+          "minimum": 1,
+          "type": "integer"
+        },
+        "path": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "sha256": {
+          "$ref": "#/$defs/sha256"
+        }
+      },
+      "required": [
+        "byte_length",
+        "path",
+        "sha256"
+      ],
+      "type": "object"
+    },
+    "promptReference": {
+      "additionalProperties": false,
+      "properties": {
+        "byte_length": {
+          "minimum": 1,
+          "type": "integer"
+        },
+        "encoding": {
+          "const": "utf-8"
+        },
+        "path": {
+          "pattern": "^research/calibration-tests/continuous-action-pilot/runs/continuous-002/inputs/dispatch/prompts/stage[12]-p0[1-4]\\.prompt\\.txt$",
+          "type": "string"
+        },
+        "sha256": {
+          "$ref": "#/$defs/sha256"
+        }
+      },
+      "required": [
+        "byte_length",
+        "encoding",
+        "path",
+        "sha256"
+      ],
+      "type": "object"
+    },
+    "runtimeBindingTemplate": {
+      "additionalProperties": false,
+      "properties": {
+        "actor_descriptor": {
+          "type": "null"
+        },
+        "session_id": {
+          "type": "null"
+        },
+        "stage1_dispatch_receipt": {
+          "type": "null"
+        },
+        "stage2_dispatch_receipt": {
+          "type": "null"
+        },
+        "thread_id": {
+          "type": "null"
+        }
+      },
+      "required": [
+        "actor_descriptor",
+        "session_id",
+        "stage1_dispatch_receipt",
+        "stage2_dispatch_receipt",
+        "thread_id"
+      ],
+      "type": "object"
+    },
+    "seatCommon": {
+      "additionalProperties": false,
+      "properties": {
+        "actor_role": {
+          "const": "blind_reconstructor_predictor"
+        },
+        "condition": {
+          "enum": [
+            "rich",
+            "atomic"
+          ]
+        },
+        "runtime_binding": {
+          "$ref": "#/$defs/runtimeBindingTemplate"
+        },
+        "seat_id": {
+          "pattern": "^p0[1-4]$",
+          "type": "string"
+        },
+        "stage1_prompt": {
+          "$ref": "#/$defs/promptReference"
+        },
+        "stage2_prompt": {
+          "$ref": "#/$defs/promptReference"
+        }
+      },
+      "required": [
+        "actor_role",
+        "condition",
+        "runtime_binding",
+        "seat_id",
+        "stage1_prompt",
+        "stage2_prompt"
+      ],
+      "type": "object"
+    },
+    "sha256": {
+      "pattern": "^[0-9a-f]{64}$",
+      "type": "string"
+    }
+  },
+  "$id": "https://github.com/onovich/Game-Primitives/blob/main/research/calibration-tests/continuous-action-pilot/schema/formal-actor-dispatch-plan-0.1.0.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "$schema": {
+      "const": "https://github.com/onovich/Game-Primitives/blob/main/research/calibration-tests/continuous-action-pilot/schema/formal-actor-dispatch-plan-0.1.0.schema.json"
+    },
+    "actor_configuration": {
+      "additionalProperties": false,
+      "properties": {
+        "observed_model_build": {
+          "type": "null"
+        },
+        "observed_model_build_status": {
+          "const": "unknown"
+        },
+        "requested_model_alias": {
+          "const": "gpt-5.6-sol"
+        },
+        "requested_reasoning_effort": {
+          "const": "high"
+        }
+      },
+      "required": [
+        "observed_model_build",
+        "observed_model_build_status",
+        "requested_model_alias",
+        "requested_reasoning_effort"
+      ],
+      "type": "object"
+    },
+    "artifact_type": {
+      "const": "formal_actor_dispatch_plan"
+    },
+    "artifact_version": {
+      "const": "0.1.0"
+    },
+    "capability_boundary": {
+      "additionalProperties": false,
+      "properties": {
+        "actual_identifiers_or_receipts_present": {
+          "const": false
+        },
+        "actual_runtime_compliance_verified": {
+          "const": false
+        },
+        "pre_gate_assertions_are_static_plan_only": {
+          "const": true
+        },
+        "release_state": {
+          "const": "blocked_pending_post_b_human_authorization_and_runtime_attestation"
+        },
+        "stage1_validity_enforcement_available_at_gate": {
+          "const": false
+        },
+        "unavailable_authentication_disposition": {
+          "const": "fail_closed"
+        }
+      },
+      "required": [
+        "actual_identifiers_or_receipts_present",
+        "actual_runtime_compliance_verified",
+        "pre_gate_assertions_are_static_plan_only",
+        "release_state",
+        "stage1_validity_enforcement_available_at_gate",
+        "unavailable_authentication_disposition"
+      ],
+      "type": "object"
+    },
+    "contract_artifacts": {
+      "additionalProperties": false,
+      "properties": {
+        "contract_core": {
+          "$ref": "#/$defs/artifactReference"
+        },
+        "materializer": {
+          "$ref": "#/$defs/artifactReference"
+        },
+        "schema": {
+          "$ref": "#/$defs/artifactReference"
+        },
+        "verifier": {
+          "$ref": "#/$defs/artifactReference"
+        }
+      },
+      "required": [
+        "contract_core",
+        "materializer",
+        "schema",
+        "verifier"
+      ],
+      "type": "object"
+    },
+    "created_at": {
+      "format": "date-time",
+      "type": "string"
+    },
+    "isolation_policy": {
+      "additionalProperties": false,
+      "properties": {
+        "blank_context_required": {
+          "const": true
+        },
+        "fork_existing_thread": {
+          "const": false
+        },
+        "network_access_allowed": {
+          "const": false
+        },
+        "other_conditions_or_submissions_visible": {
+          "const": false
+        },
+        "shared_workspace_allowed": {
+          "const": false
+        },
+        "target_type": {
+          "const": "projectless"
+        },
+        "tool_calls_allowed": {
+          "const": false
+        }
+      },
+      "required": [
+        "blank_context_required",
+        "fork_existing_thread",
+        "network_access_allowed",
+        "other_conditions_or_submissions_visible",
+        "shared_workspace_allowed",
+        "target_type",
+        "tool_calls_allowed"
+      ],
+      "type": "object"
+    },
+    "plan_state": {
+      "const": "pre_gate_template_only"
+    },
+    "post_gate_attestation_requirements": {
+      "additionalProperties": false,
+      "properties": {
+        "actual_actor_descriptor_required": {
+          "const": true
+        },
+        "actual_dispatch_receipt_required": {
+          "const": true
+        },
+        "actual_thread_and_session_ids_required": {
+          "const": true
+        },
+        "observed_model_build_required": {
+          "const": true
+        },
+        "platform_capability_failure_blocks_progression": {
+          "const": true
+        },
+        "readback_sha256_required": {
+          "const": true
+        },
+        "source_sha256_required": {
+          "const": true
+        },
+        "stage1_response_schema_validation_required": {
+          "const": true
+        },
+        "stage1_transcript_event_validation_required": {
+          "const": true
+        },
+        "transcript_audit_required": {
+          "const": true
+        }
+      },
+      "required": [
+        "actual_actor_descriptor_required",
+        "actual_dispatch_receipt_required",
+        "actual_thread_and_session_ids_required",
+        "observed_model_build_required",
+        "platform_capability_failure_blocks_progression",
+        "readback_sha256_required",
+        "source_sha256_required",
+        "stage1_response_schema_validation_required",
+        "stage1_transcript_event_validation_required",
+        "transcript_audit_required"
+      ],
+      "type": "object"
+    },
+    "prompt_body_sources": {
+      "additionalProperties": false,
+      "properties": {
+        "stage1_atomic": {
+          "allOf": [
+            {
+              "$ref": "#/$defs/artifactReference"
+            },
+            {
+              "properties": {
+                "path": {
+                  "const": "research/calibration-tests/continuous-action-pilot/runs/continuous-002/source/dispatch-bodies/stage1-atomic.body.txt"
+                }
+              }
+            }
+          ]
+        },
+        "stage1_rich": {
+          "allOf": [
+            {
+              "$ref": "#/$defs/artifactReference"
+            },
+            {
+              "properties": {
+                "path": {
+                  "const": "research/calibration-tests/continuous-action-pilot/runs/continuous-002/source/dispatch-bodies/stage1-rich.body.txt"
+                }
+              }
+            }
+          ]
+        },
+        "stage2": {
+          "allOf": [
+            {
+              "$ref": "#/$defs/artifactReference"
+            },
+            {
+              "properties": {
+                "path": {
+                  "const": "research/calibration-tests/continuous-action-pilot/runs/continuous-002/source/dispatch-bodies/stage2.body.txt"
+                }
+              }
+            }
+          ]
+        }
+      },
+      "required": [
+        "stage1_atomic",
+        "stage1_rich",
+        "stage2"
+      ],
+      "type": "object"
+    },
+    "response_capture_policy": {
+      "additionalProperties": false,
+      "properties": {
+        "attachments_allowed": {
+          "const": false
+        },
+        "commentary_allowed": {
+          "const": false
+        },
+        "corrective_followup_allowed": {
+          "const": false
+        },
+        "first_and_only_assistant_event_must_be_final_json": {
+          "const": true
+        },
+        "invalid_stage1_blocks_stage2": {
+          "const": true
+        },
+        "second_final_allowed": {
+          "const": false
+        },
+        "stage1_assistant_event_count_between_user_messages": {
+          "const": 1
+        },
+        "stage2_assistant_event_count_after_user_message": {
+          "const": 1
+        },
+        "tool_events_allowed": {
+          "const": false
+        },
+        "valid_stage2_cannot_retroactively_invalidate_stage1": {
+          "const": true
+        },
+        "visible_analysis_allowed": {
+          "const": false
+        }
+      },
+      "required": [
+        "attachments_allowed",
+        "commentary_allowed",
+        "corrective_followup_allowed",
+        "first_and_only_assistant_event_must_be_final_json",
+        "invalid_stage1_blocks_stage2",
+        "second_final_allowed",
+        "stage1_assistant_event_count_between_user_messages",
+        "stage2_assistant_event_count_after_user_message",
+        "tool_events_allowed",
+        "valid_stage2_cannot_retroactively_invalidate_stage1",
+        "visible_analysis_allowed"
+      ],
+      "type": "object"
+    },
+    "run_id": {
+      "const": "continuous-002"
+    },
+    "seats": {
+      "items": false,
+      "maxItems": 4,
+      "minItems": 4,
+      "prefixItems": [
+        {
+          "allOf": [
+            {
+              "$ref": "#/$defs/seatCommon"
+            },
+            {
+              "properties": {
+                "condition": {
+                  "const": "rich"
+                },
+                "seat_id": {
+                  "const": "p01"
+                },
+                "stage1_prompt": {
+                  "properties": {
+                    "path": {
+                      "const": "research/calibration-tests/continuous-action-pilot/runs/continuous-002/inputs/dispatch/prompts/stage1-p01.prompt.txt"
+                    }
+                  }
+                },
+                "stage2_prompt": {
+                  "properties": {
+                    "path": {
+                      "const": "research/calibration-tests/continuous-action-pilot/runs/continuous-002/inputs/dispatch/prompts/stage2-p01.prompt.txt"
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        },
+        {
+          "allOf": [
+            {
+              "$ref": "#/$defs/seatCommon"
+            },
+            {
+              "properties": {
+                "condition": {
+                  "const": "rich"
+                },
+                "seat_id": {
+                  "const": "p02"
+                },
+                "stage1_prompt": {
+                  "properties": {
+                    "path": {
+                      "const": "research/calibration-tests/continuous-action-pilot/runs/continuous-002/inputs/dispatch/prompts/stage1-p02.prompt.txt"
+                    }
+                  }
+                },
+                "stage2_prompt": {
+                  "properties": {
+                    "path": {
+                      "const": "research/calibration-tests/continuous-action-pilot/runs/continuous-002/inputs/dispatch/prompts/stage2-p02.prompt.txt"
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        },
+        {
+          "allOf": [
+            {
+              "$ref": "#/$defs/seatCommon"
+            },
+            {
+              "properties": {
+                "condition": {
+                  "const": "atomic"
+                },
+                "seat_id": {
+                  "const": "p03"
+                },
+                "stage1_prompt": {
+                  "properties": {
+                    "path": {
+                      "const": "research/calibration-tests/continuous-action-pilot/runs/continuous-002/inputs/dispatch/prompts/stage1-p03.prompt.txt"
+                    }
+                  }
+                },
+                "stage2_prompt": {
+                  "properties": {
+                    "path": {
+                      "const": "research/calibration-tests/continuous-action-pilot/runs/continuous-002/inputs/dispatch/prompts/stage2-p03.prompt.txt"
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        },
+        {
+          "allOf": [
+            {
+              "$ref": "#/$defs/seatCommon"
+            },
+            {
+              "properties": {
+                "condition": {
+                  "const": "atomic"
+                },
+                "seat_id": {
+                  "const": "p04"
+                },
+                "stage1_prompt": {
+                  "properties": {
+                    "path": {
+                      "const": "research/calibration-tests/continuous-action-pilot/runs/continuous-002/inputs/dispatch/prompts/stage1-p04.prompt.txt"
+                    }
+                  }
+                },
+                "stage2_prompt": {
+                  "properties": {
+                    "path": {
+                      "const": "research/calibration-tests/continuous-action-pilot/runs/continuous-002/inputs/dispatch/prompts/stage2-p04.prompt.txt"
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        }
+      ],
+      "type": "array"
+    },
+    "session_policy": {
+      "additionalProperties": false,
+      "properties": {
+        "cross_seat_session_reuse_allowed": {
+          "const": false
+        },
+        "new_session_per_seat_required": {
+          "const": true
+        },
+        "same_session_for_stage1_and_stage2_required": {
+          "const": true
+        },
+        "stage2_dispatch_requires_valid_stage1": {
+          "const": true
+        },
+        "stage2_enforcement_status": {
+          "const": "blocked_until_post_gate_stage1_validator_is_authenticated"
+        }
+      },
+      "required": [
+        "cross_seat_session_reuse_allowed",
+        "new_session_per_seat_required",
+        "same_session_for_stage1_and_stage2_required",
+        "stage2_dispatch_requires_valid_stage1",
+        "stage2_enforcement_status"
+      ],
+      "type": "object"
+    },
+    "transport_policy": {
+      "additionalProperties": false,
+      "properties": {
+        "frozen_file_encoding": {
+          "const": "utf-8"
+        },
+        "post_dispatch_user_message_readback_required": {
+          "const": true
+        },
+        "readback_capability_status_at_gate": {
+          "const": "unknown"
+        },
+        "source_to_api_unicode_equality_required": {
+          "const": true
+        },
+        "wire_byte_identity_claimed": {
+          "const": false
+        }
+      },
+      "required": [
+        "frozen_file_encoding",
+        "post_dispatch_user_message_readback_required",
+        "readback_capability_status_at_gate",
+        "source_to_api_unicode_equality_required",
+        "wire_byte_identity_claimed"
+      ],
+      "type": "object"
+    }
+  },
+  "required": [
+    "$schema",
+    "actor_configuration",
+    "artifact_type",
+    "artifact_version",
+    "capability_boundary",
+    "contract_artifacts",
+    "created_at",
+    "isolation_policy",
+    "plan_state",
+    "prompt_body_sources",
+    "post_gate_attestation_requirements",
+    "response_capture_policy",
+    "run_id",
+    "seats",
+    "session_policy",
+    "transport_policy"
+  ],
+  "title": "continuous-002 Formal Actor Dispatch Plan 0.1.0",
+  "type": "object"
+}

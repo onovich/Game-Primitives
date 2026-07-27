@@ -65,12 +65,32 @@
 - [`markdown-document-0.1.0.schema.json`](schema/markdown-document-0.1.0.schema.json)：把说明性 Markdown 作为完整字符串进行最小格式校验。
 - [`text-artifact-0.1.0.schema.json`](schema/text-artifact-0.1.0.schema.json)：把脚本、补丁、日志和其他 UTF-8 文本作为完整字符串进行最小校验。
 - [`frozen-set-preimage-0.1.0.schema.json`](schema/frozen-set-preimage-0.1.0.schema.json)：约束冻结集合根摘要所使用的逐行 TSV 前像，便于独立复算。
+- [`formal-run-delta-0.1.0.schema.json`](schema/formal-run-delta-0.1.0.schema.json)：约束 `continuous-001 → continuous-002` 在候选提交 A 之前的逐制品差异、固定版本矩阵、受保护研究设计、运行绑定／来源引用分流、禁止复用证据、门后制品缺席与 A/B 状态边界。
+- [`formal-run-delta-semantic-review-0.1.0.schema.json`](schema/formal-run-delta-semantic-review-0.1.0.schema.json)：约束来源审核与投影审核的输入集合摘要、十一项受保护设计 claim 和实际审核结论。
+- [`formal-post-gate-absence-denylist-0.1.0.schema.json`](schema/formal-post-gate-absence-denylist-0.1.0.schema.json)：固定候选提交 A 前必须缺席的路径族与 `artifact_type` 映射，禁止由增量实例自行改写为空 glob。
+- [`base-post-run-completion-inventory-0.1.0.schema.json`](schema/base-post-run-completion-inventory-0.1.0.schema.json)：把基础轮次在“完成后”实际出现的正式制品按路径、角色、类型和精确散列建立只读清单，作为新轮次依赖审计的事实起点。
+- [`formal-required-component-registry-0.1.0.schema.json`](schema/formal-required-component-registry-0.1.0.schema.json)：封闭 `continuous-002` 的门前、门后及容器组件全集，区分固定散列、候选 manifest 绑定、门后缺席和未解决阻断，并显式记录允许依赖。
+- [`formal-actor-dispatch-plan-0.1.0.schema.json`](schema/formal-actor-dispatch-plan-0.1.0.schema.json)：约束四席、两阶段、同会话的静态派发计划；八份提示必须从三份固定正文来源逐字节确定性生成，且计划不得含真实 task、thread 或 session。
 
 根摘要应同时通过 [`verify-frozen-manifest.py`](tools/verify-frozen-manifest.py) 复算。校验器只读清单、制品与 Schema；不会修正已经冻结的值。
 
 既有轮次仍由 [`build-role-submission.py`](tools/build-role-submission.py) 复算；协议 0.1.1 使用 [`build-role-submission-v0.1.1.py`](tools/build-role-submission-v0.1.1.py) 校验参与者原始回答、生成机器信封并确定性装配提交。修订理由与边界见[盲测回答接口修订](../../continuous-action-pilot-blind-response-interface.md)和[协议 0.1.1 修复计划](protocol-0.1.1-repair-plan.md)。
 
 正式包使用 [`verify-run-package.py`](tools/verify-run-package.py) 统一检查 Schema、自声明版本、规范字节、清单与嵌套散列引用、任务输入／输出、冻结集合摘要及冻结锚点提交。`preparing` 包可以通过结构检查；人工门前还必须以 `--require-frozen` 通过。
+
+`continuous-002` 的增量记录由 [`materialize-formal-run-delta-v0.1.0.py`](tools/materialize-formal-run-delta-v0.1.0.py) 物化，并由 [`verify-formal-run-delta-v0.1.0.py`](tools/verify-formal-run-delta-v0.1.0.py) 只读复算。该工具只服务于候选提交 A 之前：候选 manifest 必须保持 `preparing`、`freeze_commit=null`，外部派发证明实例必须仍不存在；提交 B 的三字段冻结转换继续由冻结集工具验证。物化器只产生 `materialized_unbound`，待 manifest 登记增量记录 SHA、规范前像登记该行且根摘要闭合后，只读验证器才会报告 `verified`。共享语义核还会从 Git 对象验证基准 A/B、用固定哈希校验 Schema 与冻结管理器、执行 manifest 双向闭包、解析实际语义审核结论、扫描解码后的旧轮次引用，并依据版本化 denylist 复算仓库缺席。增量实例固定登记在 `inputs/formal-run-delta-v0.1.0.json`，以兼容 `run-manifest 0.1.1`。合成自测只在系统临时目录生成假的双轮次仓库，不读取本仓库的正式轮次目录：
+
+真实候选上的 materializer／verifier 会为散列、Schema、冻结前像与仓库缺席检查遍历并读取 `.git` 之外的仓库文件，其中可能包括既有轮次文件和尚未执行的正式输入；它们不会再把“未执行”误报成“未读取”。发布信任包必须在带外同时固定 materializer、verifier 与共享语义核三份精确字节；两个入口只接受 `python -I` 隔离模式，阻止脚本目录中的同名模块抢先执行。公开 CLI 还必须取得调用方提供的共享语义核 SHA-256，并显式传入 `--allow-repository-wide-byte-reads`，否则在导入共享语义核、读取候选 draft 或扫描仓库前失败关闭。该标志只确认仓库级静态字节访问，不授权正式派发或执行。
+
+```text
+python research/calibration-tests/continuous-action-pilot/tools/self-test-formal-run-delta-v0.1.0.py
+```
+
+当前自测覆盖 14 项正控与 59 项具名负控，包括规范字节、可信 Schema／工具散列、真实 Git A/B、路径逃逸与大小写碰撞、固定版本矩阵、可闭合的全局组件 base endpoint、解码后的旧轮次引用、结构化且身份隔离的语义审核、禁止复用、required-component 注册表的类型／散列／依赖闭包、manifest 双向闭包、增量记录—冻结前像—根摘要绑定、事务短写回滚、Python 隔离模式、仓库级字节读取确认、wrapper 跨根拒绝、core 导入前散列校验，以及候选命名空间外与嵌套路径中的门后制品伪装；`P10` 式 B 后宽泛例外已被删除，pre-A 验证器对任何外部派发证明实例一律失败关闭。路径 glob 只接受版本化的仓库相对 `gitwildmatch` 子集（`*`、`**`、`?`），其余语法失败关闭。自测不会调用 runner 或 comparator。
+
+基础清单由 [`base_post_run_inventory_contract.py`](tools/base_post_run_inventory_contract.py) 在只读基础轮次快照上复算；隔离自测把完成提交 `c42013d5cad89811e8838696c4072f6f71a859fb` 与树 `f8aae165fcf9620b8ba9cee64766e39f642d8d4c` 固定为 87 项制品，清单 SHA-256 为 `12f769ecbe378543a2f9ad153680266701a9d4d9d96f2eb3f56b42332aa5e673`，并通过 6 项正控与 10 项负控。required-component 注册表当前封闭 158 个组件，并诚实列出 materializer、verifier、共享语义核三项必须由调用方带外固定精确字节的外部信任根；两个入口再以必填 SHA-256 参数固定语义核。当前仍有 38 项散列阻断与 110 项依赖阻断，合计涉及 122 个不重复组件，所以注册表是“工作完整性地图”，不是提交 A 已就绪的证明。
+
+actor 派发计划由 [`materialize-formal-actor-dispatch-plan-v0.1.0.py`](tools/materialize-formal-actor-dispatch-plan-v0.1.0.py) 从三份固定正文来源确定性物化，再由 [`verify-formal-actor-dispatch-plan-v0.1.0.py`](tools/verify-formal-actor-dispatch-plan-v0.1.0.py) 只读复算；隔离自测覆盖 10 项正控与 49 项负控，包括来源伪造、真实短写／部分异常回滚、跨仓库工具错绑、跨行／注释／尾随运行标识和嵌套转义。开发范围事件及修订证据见[actor 派发计划开发范围事件](development-scope-incident-2026-07-28-actor-dispatch-plan.md)。这些工具只建立门前静态计划，不创建真实 Codex task、thread、session 或 dispatch。
 
 [`verify-formal-readiness.py`](tools/verify-formal-readiness.py) 在包校验之上检查人工门所需的完整制品集合、夹具补丁分离、最终构建全通过、中性初态／正式输入／不变量／容差定义、受控变量与输入字段结构引用闭包、中性信封盲化、回答模板覆盖、第二道审核和正式输入未执行标志。它能识别并检查诚实的 `execution_plan_preparation`，但会以 `execution_plan_not_final` 明确拒绝人工门，直到该文件被绑定最终夹具锁的 `execution_plan` 原位替换。第二阶段任务只允许直接派发中性信封与回答模板，不得加入来源专用夹具 JSON。第二道任务必须直接绑定机械生成器、投影规范、两份生成视图、最终夹具锁、执行计划和最终构建准备记录，审核结果再绑定任务及全部任务输入；审核 actor 必须使用 `source_auditor` 角色，并以新的 `identifier` 和 `session_id` 与第一道来源审核隔离。校验器不会调用夹具、比较器或正式输入。rich 视图里的受控变量、正式输入 ID、时间基准及匿名初态／输入字段必须进入结构关系，atomic 视图才可以按规范删去这些职责边。冻结前可以用普通模式查看缺件，冻结后必须再加 `--require-frozen`。
 

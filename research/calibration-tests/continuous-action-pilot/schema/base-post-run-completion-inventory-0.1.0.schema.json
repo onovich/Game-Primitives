@@ -1,0 +1,238 @@
+{
+  "$defs": {
+    "artifactRecord": {
+      "additionalProperties": false,
+      "properties": {
+        "artifact_type": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "artifact_version": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "byte_length": {
+          "minimum": 0,
+          "type": "integer"
+        },
+        "byte_sha256": {
+          "$ref": "#/$defs/sha256"
+        },
+        "canonical_payload_sha256": {
+          "$ref": "#/$defs/sha256"
+        },
+        "git_blob_oid": {
+          "$ref": "#/$defs/gitOid"
+        },
+        "media_type": {
+          "enum": [
+            "application/json",
+            "application/octet-stream",
+            "text/plain"
+          ]
+        },
+        "path": {
+          "$ref": "#/$defs/repoFilePath"
+        },
+        "protected_payload_fingerprint": {
+          "$ref": "#/$defs/sha256"
+        }
+      },
+      "required": [
+        "artifact_type",
+        "artifact_version",
+        "byte_length",
+        "byte_sha256",
+        "canonical_payload_sha256",
+        "git_blob_oid",
+        "media_type",
+        "path",
+        "protected_payload_fingerprint"
+      ],
+      "type": "object"
+    },
+    "family": {
+      "additionalProperties": false,
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "state": {
+                "const": "absent"
+              }
+            },
+            "required": [
+              "state"
+            ]
+          },
+          "then": {
+            "properties": {
+              "artifact_count": {
+                "const": 0
+              },
+              "artifacts": {
+                "maxItems": 0
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "state": {
+                "const": "present"
+              }
+            },
+            "required": [
+              "state"
+            ]
+          },
+          "then": {
+            "properties": {
+              "artifact_count": {
+                "minimum": 1
+              },
+              "artifacts": {
+                "minItems": 1
+              }
+            }
+          }
+        }
+      ],
+      "properties": {
+        "artifact_count": {
+          "minimum": 0,
+          "type": "integer"
+        },
+        "artifacts": {
+          "items": {
+            "$ref": "#/$defs/artifactRecord"
+          },
+          "type": "array",
+          "uniqueItems": true
+        },
+        "family_id": {
+          "enum": [
+            "actors_sessions",
+            "authorization",
+            "blind_response_chain",
+            "dispatch_and_cohort",
+            "execution_evidence",
+            "execution_permit",
+            "prediction_set",
+            "reveal_and_closure"
+          ]
+        },
+        "state": {
+          "enum": [
+            "absent",
+            "present"
+          ]
+        }
+      },
+      "required": [
+        "artifact_count",
+        "artifacts",
+        "family_id",
+        "state"
+      ],
+      "type": "object"
+    },
+    "gitOid": {
+      "pattern": "^[0-9a-f]{40}$",
+      "type": "string"
+    },
+    "repoFilePath": {
+      "pattern": "^(?!/)(?!.*\\\\)(?!.*(?:^|/)\\.\\.(?:/|$))[A-Za-z0-9._-]+(?:/[A-Za-z0-9._-]+)*$",
+      "type": "string"
+    },
+    "sha256": {
+      "pattern": "^[0-9a-f]{64}$",
+      "type": "string"
+    }
+  },
+  "$id": "https://github.com/onovich/Game-Primitives/blob/main/research/calibration-tests/continuous-action-pilot/schema/base-post-run-completion-inventory-0.1.0.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "$schema": {
+      "const": "https://github.com/onovich/Game-Primitives/blob/main/research/calibration-tests/continuous-action-pilot/schema/base-post-run-completion-inventory-0.1.0.schema.json"
+    },
+    "artifact_type": {
+      "const": "base_post_run_completion_inventory"
+    },
+    "artifact_version": {
+      "const": "0.1.0"
+    },
+    "base_completion_commit": {
+      "$ref": "#/$defs/gitOid"
+    },
+    "base_finalize_commit": {
+      "$ref": "#/$defs/gitOid"
+    },
+    "base_freeze_commit": {
+      "$ref": "#/$defs/gitOid"
+    },
+    "base_frozen_artifact_set_digest": {
+      "$ref": "#/$defs/sha256"
+    },
+    "base_run_id": {
+      "const": "continuous-001"
+    },
+    "base_tree_oid": {
+      "$ref": "#/$defs/gitOid"
+    },
+    "classifier_profile": {
+      "const": "continuous-action-post-run-v1"
+    },
+    "families": {
+      "items": {
+        "$ref": "#/$defs/family"
+      },
+      "maxItems": 8,
+      "minItems": 8,
+      "type": "array",
+      "uniqueItems": true
+    },
+    "formal_input_executed": {
+      "const": false
+    },
+    "formal_result_created": {
+      "const": false
+    },
+    "run_outcome": {
+      "const": "invalid_before_prediction_set"
+    },
+    "status": {
+      "const": "passed"
+    },
+    "unclassified_post_gate_paths": {
+      "maxItems": 0,
+      "type": "array"
+    }
+  },
+  "required": [
+    "$schema",
+    "artifact_type",
+    "artifact_version",
+    "base_completion_commit",
+    "base_finalize_commit",
+    "base_freeze_commit",
+    "base_frozen_artifact_set_digest",
+    "base_run_id",
+    "base_tree_oid",
+    "classifier_profile",
+    "families",
+    "formal_input_executed",
+    "formal_result_created",
+    "run_outcome",
+    "status",
+    "unclassified_post_gate_paths"
+  ],
+  "title": "Game Primitives Base Post-Run Completion Inventory 0.1.0",
+  "type": "object"
+}

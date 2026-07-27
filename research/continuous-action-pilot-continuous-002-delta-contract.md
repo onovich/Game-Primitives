@@ -94,6 +94,8 @@
 
 以下家族必须在提交 A 前以 Schema、模板／实例、校验器和负控闭合：
 
+- `base-post-run-completion-inventory 0.1.0`；
+- `formal-required-component-registry 0.1.0`；
 - `formal-run-delta 0.1.0`；
 - `formal-actor-dispatch-plan 0.1.0`；
 - `formal-post-gate-absence-denylist 0.1.0`；
@@ -128,6 +130,8 @@
 - 声称设计不变却改变案例、变量、条件、观察、容差或结论规则；
 - B 前仓库中已经出现任何门后制品实例。
 
+物化器和校验器为了复算候选 manifest 散列、Schema、冻结前像与仓库缺席，会遍历并读取 `.git` 之外的仓库文件；这可能包含既有轮次文件和尚未执行的正式输入。它们不得把“未执行”误报为“未读取”。调用方必须通过带外信任包固定 materializer、verifier 与共享语义核三份精确字节，并以 `python -I` 调用两个入口；非隔离解释器必须在导入任何非内建模块前失败关闭。公开 CLI 还必须要求调用方提供当前共享语义核的 SHA-256，并显式传入 `--allow-repository-wide-byte-reads`；缺少字节读取确认时，必须在导入共享语义核、读取候选 draft 或扫描仓库前失败关闭。共享语义核本身必须先按规范仓库路径绑定并核对该 SHA-256，再从已核对的同一份源码字节编译执行。该确认只授权仓库级静态字节校验，不授权正式派发、runner、comparator 或真值揭示。
+
 `continuous-001` 可以出现在增量记录、ADR、来源说明和审核记录的来源引用中；这种 `provenance_reference_scope` 不得流入 `runtime_binding_scope`。校验器必须分别检查两种作用域，而不是禁止所有旧轮次字符串。
 
 `research_design_change=false` 不是由一个布尔值自证。机器校验负责证明受保护字段、登记散列和差分闭包没有未声明变化；独立来源／投影审核负责判断这些受保护内容仍忠实表达同一研究设计。两类证据缺一不可。
@@ -136,7 +140,7 @@
 
 ## 6. 门前 actor 与派发
 
-候选包必须新增并冻结 `formal-actor-dispatch-plan 0.1.0` Schema、物化器、只读校验器、一份正式 actor 派发计划和八份惰性提示模板：
+候选包必须新增并冻结 `formal-actor-dispatch-plan 0.1.0` Schema、共享契约核、物化器、只读校验器、自检、一份正式 actor 派发计划、三份只读正文来源和八份惰性提示模板。提示模板必须由正文来源确定性生成，不能作为独立真值手工维护：
 
 - 四个席位与条件分配；
 - `requested_model_alias`、`requested_reasoning_effort`，以及固定为 `null`／`unknown` 的 `observed_model_build`；实际 build 只在门后 actor 描述或派发回执中追加；
@@ -227,8 +231,8 @@ B 完成时必须用版本化的路径／artifact-type denylist 证明以下仓�
 
 ## 10. 立即下一步
 
-1. 建立 `formal-run-delta 0.1.0` 与 `formal-actor-dispatch-plan 0.1.0` 的 Schema、工具和自检。
+1. 以基础轮次完成后清单和 required-component 注册表继续闭合版本矩阵与依赖图；任何 `unresolved_blocks_commit_a` 都阻断提交 A。
 2. 生成旧硬编码扫描报告，逐项决定 0.1.1 专用版或 0.2.0 参数化版。
 3. 冻结版本化的门后制品 denylist、外部派发证明契约与非明文真值连续性证明。
-4. 只在版本矩阵闭合后创建 `runs/continuous-002/` 的 `preparing` 候选包。
+4. 只在版本矩阵与 required-component 依赖闭包都闭合后创建 `runs/continuous-002/` 的 `preparing` 候选包。
 5. 不创建正式会话，不运行正式输入、runner 或 comparator。
