@@ -1,0 +1,168 @@
+{
+  "$schema": "https://github.com/onovich/Game-Primitives/blob/main/research/calibration-tests/continuous-action-pilot/schema/role-submission-0.1.2.schema.json",
+  "actor": {
+    "identifier": "actor.r006.v02.a",
+    "model": "OpenAI Codex",
+    "model_version": "gpt-5.6-sol",
+    "reasoning_effort": "high",
+    "role": "blind_reconstructor_predictor",
+    "session_id": "019fa4b0-3933-7c71-950f-614b749399cc"
+  },
+  "artifact_type": "prediction_submission",
+  "artifact_version": "0.1.2",
+  "audit_checks": [],
+  "audit_decision": null,
+  "condition_id": "condition-v02",
+  "findings": [],
+  "first_submission": true,
+  "input_artifacts": [
+    {
+      "artifact_id": "task.predict.neutral",
+      "sha256": "53f46034304fd6659550e553a4aedc5af46556818c5c2dd4d20375a7b708cc0b"
+    },
+    {
+      "artifact_id": "envelope.rehearsal-006.stage2",
+      "sha256": "a3a951fdb95cf2a6cb1c473b5ef741e8bba8cd653b121b54476a772936449f49"
+    },
+    {
+      "artifact_id": "template.prediction.rehearsal-006",
+      "sha256": "1f60b5e5d6e0da72998c45eba6e88597747cf24252b9d0b7b6094f120a32838b"
+    },
+    {
+      "artifact_id": "submission.r006.reconstruction.v02.a",
+      "sha256": "d88b43e7ce6152ccf3abdd14a915361aeac29b044d6c088ecd37b4e25475a6a4"
+    }
+  ],
+  "packaging": {
+    "copied_fields": [
+      "pollution",
+      "prediction_answers"
+    ],
+    "envelope_path": "research/calibration-tests/continuous-action-pilot/rehearsals/rehearsal-006/envelopes/prediction-v02-a.envelope.json",
+    "envelope_sha256": "a5ccfc85c189e6292ff782988a4b0964b77c4bd9bdc4b32866d9109a73d6c2cd",
+    "mode": "deterministic_field_copy",
+    "semantic_copy_verified": true,
+    "tool_path": "research/calibration-tests/continuous-action-pilot/tools/build-role-submission-v0.1.1.py",
+    "tool_sha256": "d43a3248a645eaeac8d495409ac5fbfe95b66a8d0c7260fa4639ed19472890e7"
+  },
+  "pollution": {
+    "familiarity": {
+      "exact_result_knowledge": "none",
+      "exact_rule_knowledge": "none",
+      "exact_variant_knowledge": "none",
+      "project_exposure": "none",
+      "recognition_status": "none",
+      "recognized_family": null,
+      "recognized_work": null,
+      "related_genre_experience": "none"
+    },
+    "integrity_exposures": [],
+    "stage_update_note": null
+  },
+  "prediction_answers": [
+    {
+      "assumptions": [],
+      "case_id": "CA-R2",
+      "compatible_alternatives": [
+        {
+          "alternative_id": "alternative.direct-sum",
+          "description": "v-q 不影响更新；每一步将 raw_value 直接加到 state.total，因此两种配置均得到 7。",
+          "expectations": [
+            {
+              "configuration_id": "config.baseline",
+              "expectation_kind": "exact",
+              "observation_id": "obs.total-at-stop",
+              "tolerance_rule_id": "tol.synthetic.exact",
+              "value": {
+                "serialized_value": "7",
+                "unit": "count",
+                "value_type": "integer"
+              }
+            },
+            {
+              "configuration_id": "config.variant",
+              "expectation_kind": "exact",
+              "observation_id": "obs.total-at-stop",
+              "tolerance_rule_id": "tol.synthetic.exact",
+              "value": {
+                "serialized_value": "7",
+                "unit": "count",
+                "value_type": "integer"
+              }
+            }
+          ]
+        },
+        {
+          "alternative_id": "alternative.variant-double",
+          "description": "基线配置直接累加 raw_value，而变体配置将每一步的更新量加倍，因此基线得到 7、变体得到 14。",
+          "expectations": [
+            {
+              "configuration_id": "config.baseline",
+              "expectation_kind": "exact",
+              "observation_id": "obs.total-at-stop",
+              "tolerance_rule_id": "tol.synthetic.exact",
+              "value": {
+                "serialized_value": "7",
+                "unit": "count",
+                "value_type": "integer"
+              }
+            },
+            {
+              "configuration_id": "config.variant",
+              "expectation_kind": "exact",
+              "observation_id": "obs.total-at-stop",
+              "tolerance_rule_id": "tol.synthetic.exact",
+              "value": {
+                "serialized_value": "14",
+                "unit": "count",
+                "value_type": "integer"
+              }
+            }
+          ]
+        }
+      ],
+      "confidence_percent": 100,
+      "expectations": [
+        {
+          "configuration_id": "config.baseline",
+          "expectation_kind": "status",
+          "observation_id": "obs.total-at-stop",
+          "tolerance_rule_id": "tol.synthetic.exact",
+          "value": {
+            "serialized_value": "indeterminate",
+            "unit": null,
+            "value_type": "status"
+          }
+        },
+        {
+          "configuration_id": "config.variant",
+          "expectation_kind": "status",
+          "observation_id": "obs.total-at-stop",
+          "tolerance_rule_id": "tol.synthetic.exact",
+          "value": {
+            "serialized_value": "indeterminate",
+            "unit": null,
+            "value_type": "status"
+          }
+        }
+      ],
+      "prediction_status": "indeterminate",
+      "reasoning": "第一阶段只能恢复操作次数、写入字段、原始输入和输出读取位置，无法恢复 v-q、输入读取与状态更新之间的关系。保持信封所列不变量时，配置无效和配置改变更新量等结构都与现有材料相容，并产生不同的精确计数，因此两种配置的主预测均不确定。",
+      "supporting_record_ids": []
+    }
+  ],
+  "prior_stage_submission_sha256": "d88b43e7ce6152ccf3abdd14a915361aeac29b044d6c088ecd37b4e25475a6a4",
+  "raw_payload": {
+    "artifact_id": "payload.submission.r006.prediction.v02.a",
+    "path": "research/calibration-tests/continuous-action-pilot/rehearsals/rehearsal-006/raw/prediction-v02-a.payload.json",
+    "schema_path": "research/calibration-tests/continuous-action-pilot/schema/blind-response-interface-0.1.1.schema.json",
+    "schema_sha256": "aaa06ec2e530dd4ae8e3d769c7cc6263702290466d2c695f9ce9da14e2069f42",
+    "sha256": "c9058a5551484c280c136bcf189e73773d0035fe33066ece4aec43dc2eeba691"
+  },
+  "reconstruction_answers": [],
+  "run_id": "rehearsal-006",
+  "stage": "prediction",
+  "submission_id": "submission.r006.prediction.v02.a",
+  "submitted_at": "2026-07-27T17:49:53Z",
+  "task_id": "task.predict.neutral"
+}

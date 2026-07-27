@@ -1,0 +1,75 @@
+{
+  "$schema": "https://github.com/onovich/Game-Primitives/blob/main/research/calibration-tests/continuous-action-pilot/schema/blind-response-interface-0.1.1.schema.json",
+  "artifact_type": "reconstruction_response_payload",
+  "artifact_version": "0.1.1",
+  "pollution": {
+    "familiarity": {
+      "exact_result_knowledge": "none",
+      "exact_rule_knowledge": "none",
+      "exact_variant_knowledge": "none",
+      "project_exposure": "none",
+      "recognition_status": "none",
+      "recognized_family": null,
+      "recognized_work": null,
+      "related_genre_experience": "unknown"
+    },
+    "integrity_exposures": [],
+    "stage_update_note": null
+  },
+  "reconstruction_answers": [
+    {
+      "ambiguities": [],
+      "assumptions": [],
+      "case_id": "CA-R2",
+      "compatible_branches": [
+        {
+          "branch_id": "branch.active-zero",
+          "description": "配置 v-q 的活动值为 0，因此每个离散步骤开始时读取该步骤的当前原始输入，随后按步骤顺序将采样值累加到 state.total；在第二步完成后的停止边界读取 state.total。",
+          "supporting_record_ids": [
+            "rec.sampling-policy",
+            "rec.accumulator-process",
+            "rec.step-order"
+          ]
+        }
+      ],
+      "confidence_percent": 100,
+      "recovered_facts": [
+        {
+          "claim": "活动配置值 0 选择逐步骤重新采样语义：每次更新开始时读取当前步骤的原始输入并写入 value.sampled。",
+          "fact_id": "fact.sampling",
+          "recovery_status": "recovered",
+          "supporting_record_ids": [
+            "rec.sampling-policy"
+          ]
+        },
+        {
+          "claim": "每个步骤使用 state.total := state.total + value.sampled 更新累加状态。",
+          "fact_id": "fact.accumulation",
+          "recovery_status": "recovered",
+          "supporting_record_ids": [
+            "rec.accumulator-process"
+          ]
+        },
+        {
+          "claim": "每个步骤内先读取 value.sampled，再执行 state.total 更新。",
+          "fact_id": "fact.step-order",
+          "recovery_status": "recovered",
+          "supporting_record_ids": [
+            "rec.step-order"
+          ]
+        },
+        {
+          "claim": "同一累加操作依次在步骤 1 和步骤 2 执行，且两次都引用采样策略、累加过程和步骤内顺序记录。",
+          "fact_id": "fact.operation-sequence",
+          "recovery_status": "recovered",
+          "supporting_record_ids": [
+            "rec.sampling-policy",
+            "rec.accumulator-process",
+            "rec.step-order"
+          ]
+        }
+      ],
+      "uniqueness": "uniquely_recoverable"
+    }
+  ]
+}

@@ -1,0 +1,115 @@
+{
+  "$schema": "https://github.com/onovich/Game-Primitives/blob/main/research/calibration-tests/continuous-action-pilot/schema/role-submission-0.1.2.schema.json",
+  "actor": {
+    "identifier": "actor.r006.v01.a",
+    "model": "OpenAI Codex",
+    "model_version": "gpt-5.6-sol",
+    "reasoning_effort": "high",
+    "role": "blind_reconstructor_predictor",
+    "session_id": "019fa4b0-25e1-72c1-a955-0b89e5f8c78a"
+  },
+  "artifact_type": "prediction_submission",
+  "artifact_version": "0.1.2",
+  "audit_checks": [],
+  "audit_decision": null,
+  "condition_id": "condition-v01",
+  "findings": [],
+  "first_submission": true,
+  "input_artifacts": [
+    {
+      "artifact_id": "task.predict.neutral",
+      "sha256": "53f46034304fd6659550e553a4aedc5af46556818c5c2dd4d20375a7b708cc0b"
+    },
+    {
+      "artifact_id": "envelope.rehearsal-006.stage2",
+      "sha256": "a3a951fdb95cf2a6cb1c473b5ef741e8bba8cd653b121b54476a772936449f49"
+    },
+    {
+      "artifact_id": "template.prediction.rehearsal-006",
+      "sha256": "1f60b5e5d6e0da72998c45eba6e88597747cf24252b9d0b7b6094f120a32838b"
+    },
+    {
+      "artifact_id": "submission.r006.reconstruction.v01.a",
+      "sha256": "fafb1a791252b87a6e51e3ffa82b71c7b9e93c729fdd9b475687724b76217d70"
+    }
+  ],
+  "packaging": {
+    "copied_fields": [
+      "pollution",
+      "prediction_answers"
+    ],
+    "envelope_path": "research/calibration-tests/continuous-action-pilot/rehearsals/rehearsal-006/envelopes/prediction-v01-a.envelope.json",
+    "envelope_sha256": "1578fca78ef4798c33d06a993713449095134d1b459734e38db85e7580565803",
+    "mode": "deterministic_field_copy",
+    "semantic_copy_verified": true,
+    "tool_path": "research/calibration-tests/continuous-action-pilot/tools/build-role-submission-v0.1.1.py",
+    "tool_sha256": "d43a3248a645eaeac8d495409ac5fbfe95b66a8d0c7260fa4639ed19472890e7"
+  },
+  "pollution": {
+    "familiarity": {
+      "exact_result_knowledge": "none",
+      "exact_rule_knowledge": "none",
+      "exact_variant_knowledge": "none",
+      "project_exposure": "none",
+      "recognition_status": "none",
+      "recognized_family": null,
+      "recognized_work": null,
+      "related_genre_experience": "unknown"
+    },
+    "integrity_exposures": [],
+    "stage_update_note": null
+  },
+  "prediction_answers": [
+    {
+      "assumptions": [],
+      "case_id": "CA-R2",
+      "compatible_alternatives": [],
+      "confidence_percent": 100,
+      "expectations": [
+        {
+          "configuration_id": "config.baseline",
+          "expectation_kind": "exact",
+          "observation_id": "obs.total-at-stop",
+          "tolerance_rule_id": "tol.synthetic.exact",
+          "value": {
+            "serialized_value": "7",
+            "unit": "count",
+            "value_type": "integer"
+          }
+        },
+        {
+          "configuration_id": "config.variant",
+          "expectation_kind": "exact",
+          "observation_id": "obs.total-at-stop",
+          "tolerance_rule_id": "tol.synthetic.exact",
+          "value": {
+            "serialized_value": "4",
+            "unit": "count",
+            "value_type": "integer"
+          }
+        }
+      ],
+      "prediction_status": "determinate",
+      "reasoning": "基线配置0在两次更新开始时分别读取当前步骤的原始输入2和5，因此从0累加得到7。变体配置1在片段入口读取第一步原始输入2，并在后续更新复用该值，因此两次累加后得到4。",
+      "supporting_record_ids": [
+        "rec.sampling-policy",
+        "rec.accumulator-process",
+        "rec.step-order"
+      ]
+    }
+  ],
+  "prior_stage_submission_sha256": "fafb1a791252b87a6e51e3ffa82b71c7b9e93c729fdd9b475687724b76217d70",
+  "raw_payload": {
+    "artifact_id": "payload.submission.r006.prediction.v01.a",
+    "path": "research/calibration-tests/continuous-action-pilot/rehearsals/rehearsal-006/raw/prediction-v01-a.payload.json",
+    "schema_path": "research/calibration-tests/continuous-action-pilot/schema/blind-response-interface-0.1.1.schema.json",
+    "schema_sha256": "aaa06ec2e530dd4ae8e3d769c7cc6263702290466d2c695f9ce9da14e2069f42",
+    "sha256": "43402bcb568f1e531c751270f27d4a77cb7b565f5e1c4e0159a5566131d98ca5"
+  },
+  "reconstruction_answers": [],
+  "run_id": "rehearsal-006",
+  "stage": "prediction",
+  "submission_id": "submission.r006.prediction.v01.a",
+  "submitted_at": "2026-07-27T17:49:42Z",
+  "task_id": "task.predict.neutral"
+}

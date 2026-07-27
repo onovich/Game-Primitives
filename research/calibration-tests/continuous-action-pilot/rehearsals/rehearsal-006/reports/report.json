@@ -1,0 +1,40 @@
+{
+  "$schema": "https://github.com/onovich/Game-Primitives/blob/main/research/calibration-tests/continuous-action-pilot/schema/run-report-0.1.0.schema.json",
+  "artifact_type": "rehearsal_report",
+  "artifact_version": "0.1.0",
+  "checks": [
+    {
+      "check_id": "check.frozen-dispatch",
+      "evidence": "四席派发使用冻结提交 50cb53c97a0bd66f476c764d750836f47c267087，并由提交 f24332f3f74479d83f901ec591cc2a1b446913fc 完成清单定稿。stage1-v01、stage1-v02 与 stage2-neutral 提示 SHA-256 分别为 ff0a4e76e6264dc01f96f1e547a6bd3bb68fe04a8e1a16b92d8c668374ac4fc6、9eee0f03a9e1890cdcdad742c2efe11b6990c332c973df9d013fc997ebb8bd01 与 2161ecd8f8c0b7acfeaeb354e95e9282337330c0e59d8ffa8703f0597df386ea；A/B 同条件收到同一字符串。",
+      "status": "passed"
+    },
+    {
+      "check_id": "check.stage1-first-answer",
+      "evidence": "四个不同 projectless 任务 019fa4b0-25e1-72c1-a955-0b89e5f8c78a、019fa4b0-3004-7663-8e29-a7b51ec09613、019fa4b0-3933-7c71-950f-614b749399cc、019fa4b0-4263-73a0-8640-6e1132c70684 在各自唯一首轮中只产生一个 assistant final，没有 commentary、工具或命令项。实际 actor 描述保存为 actors/v01-a.json、actors/v01-b.json、actors/v02-a.json、actors/v02-b.json，分别绑定上述 session、gpt-5.6-sol 与 high。四份重构 payload 等于首次 final 精确文本加项目统一末尾 LF，首次即通过，SHA-256 为 30950cd5af5c4c66d7df42a7d72c925a81b42f7779bb5b6a5209a03cde12fc50、365e21029a4c0f4a8fb19272903000c0912b7cb727eac5df581f596b1d1fed89、f94d7d1f0a70bff6770a85988d5b5ec4617a7f0f2bf397dde1aaf3f0304f4439 与 07f982b891bf89e7d906c383ad55923e79d3703b39c5fc87a515652b69a9d797。",
+      "status": "passed"
+    },
+    {
+      "check_id": "check.stage2-continuity",
+      "evidence": "中性第二阶段提示只作为每个原任务的第二条用户消息投递；四个任务各有且仅有两轮、两个 final，第二轮同样没有 commentary、工具或命令项。四份预测 payload 等于第二阶段首次 final 精确文本加项目统一末尾 LF，首次即通过并绑定各自前阶段提交，SHA-256 为 43402bcb568f1e531c751270f27d4a77cb7b565f5e1c4e0159a5566131d98ca5、d4facf172a6c25b512392bb7ca00b3e11a85b71afc20ca1c21713805dddab2a7、c9058a5551484c280c136bcf189e73773d0035fe33066ece4aec43dc2eeba691 与 6cd6ea695fa685093f20f305f003efdbef299ad40f3ec3453f5cbd192a35fca4。",
+      "status": "passed"
+    },
+    {
+      "check_id": "check.semantic-separation",
+      "evidence": "condition-v01 的两名独立参与者都把结构判为 uniquely_recoverable，并独立得到 baseline=7、variant=4 的 determinate 预测。condition-v02 的两名独立参与者分别选择 multiple_compatible_structures 与 insufficient_information，随后都给出 indeterminate 主预测，并各列出两套产生不同精确结果的完整兼容替代。A/B 在语义判断上一致，文字与局部 ID 并不相同。",
+      "status": "passed"
+    },
+    {
+      "check_id": "check.deterministic-assembly",
+      "evidence": "保管工具从四份重构与四份预测原始 payload 生成信封和 role-submission，并逐份以 verify 子命令重建通过。envelopes/ 下 reconstruction-v01-a、reconstruction-v01-b、reconstruction-v02-a、reconstruction-v02-b、prediction-v01-a、prediction-v01-b、prediction-v02-a、prediction-v02-b 的信封 SHA-256 依次为 01e2a3cfea2db7cca44915e17e2397904718b89c65011dca91161f608d7c5f48、5d69e709763cd4f6532b7129682a8f26ed7b4b85c151ba39414bec5007d11335、f30fb0d97ecdd422ca3c847f3a507373447294663c0b8c5bd8d59dacc9add0c1、5a2b9be9c23835ce96fc0949cd2228be24a517c246d53a328167b0283bdb512e、1578fca78ef4798c33d06a993713449095134d1b459734e38db85e7580565803、0ca3f5127feac5fd70dea1a4d8e738cdd280f8d2d66c0e683909b3284f33d219、a5ccfc85c189e6292ff782988a4b0964b77c4bd9bdc4b32866d9109a73d6c2cd 与 0d0ad3ec164394f8ba824c9cfaf774c01690f76c4bb14c2855df5e17889763dc。八份对应提交 SHA-256 依次为 fafb1a791252b87a6e51e3ffa82b71c7b9e93c729fdd9b475687724b76217d70、baeecb7f536612690256a629e9bc34581857693465bc033c08919f9ace547d71、d88b43e7ce6152ccf3abdd14a915361aeac29b044d6c088ecd37b4e25475a6a4、0042612361d4abf3e312e4b4f068e3370fee52b7fe2e269eff90dbeae8ff343a、f1595b4563a5ab0d37a99226d1fb5bfc71c589b1ffeef8e1b1eb0a9f78b64c1e、422f82b58ad77bdd8a52d1e7ecd739e8bc09c789ca94877d41afde346b985577、c4ee4765316d2eccba7bf5903eb9b3d7eeadbbfa5ca734362794a7d5a3e0a580 与 960c22cb52986af05a36052c87581a4108d6a652ed9cbc44d739e64db6b85f09。",
+      "status": "passed"
+    },
+    {
+      "check_id": "check.scope-boundary",
+      "evidence": "本轮只检验协议 0.1.1 的参与者可构造性、两阶段连续性和确定／不确定分支闭合；未读取、复制或运行 runs/ 正式输入，未运行正式 runner 或 comparator，未生成真值、正式结果或《游戏原语》理论结论，也没有向参与者发送纠错提示。",
+      "status": "passed"
+    }
+  ],
+  "finished_at": "2026-07-27T17:53:13Z",
+  "procedure_result": "procedure_pass",
+  "run_id": "rehearsal-006"
+}

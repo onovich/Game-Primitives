@@ -1,0 +1,8 @@
+{
+  "identifier": "actor.r006.v02.b",
+  "model": "OpenAI Codex",
+  "model_version": "gpt-5.6-sol",
+  "reasoning_effort": "high",
+  "role": "blind_reconstructor_predictor",
+  "session_id": "019fa4b0-4263-73a0-8640-6e1132c70684"
+}

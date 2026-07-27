@@ -1,0 +1,53 @@
+{
+  "$schema": "https://github.com/onovich/Game-Primitives/blob/main/research/calibration-tests/continuous-action-pilot/schema/blind-response-interface-0.1.1.schema.json",
+  "actor": {
+    "identifier": "actor.r006.v01.a",
+    "model": "OpenAI Codex",
+    "model_version": "gpt-5.6-sol",
+    "reasoning_effort": "high",
+    "role": "blind_reconstructor_predictor",
+    "session_id": "019fa4b0-25e1-72c1-a955-0b89e5f8c78a"
+  },
+  "artifact_type": "role_submission_envelope",
+  "artifact_version": "0.1.1",
+  "condition_id": "condition-v01",
+  "dispatch_artifacts": [
+    {
+      "artifact_id": "task.predict.neutral",
+      "sha256": "53f46034304fd6659550e553a4aedc5af46556818c5c2dd4d20375a7b708cc0b"
+    },
+    {
+      "artifact_id": "envelope.rehearsal-006.stage2",
+      "sha256": "a3a951fdb95cf2a6cb1c473b5ef741e8bba8cd653b121b54476a772936449f49"
+    },
+    {
+      "artifact_id": "template.prediction.rehearsal-006",
+      "sha256": "1f60b5e5d6e0da72998c45eba6e88597747cf24252b9d0b7b6094f120a32838b"
+    },
+    {
+      "artifact_id": "submission.r006.reconstruction.v01.a",
+      "sha256": "fafb1a791252b87a6e51e3ffa82b71c7b9e93c729fdd9b475687724b76217d70"
+    }
+  ],
+  "first_submission": true,
+  "output_schema": {
+    "path": "research/calibration-tests/continuous-action-pilot/schema/role-submission-0.1.2.schema.json",
+    "sha256": "ce1bcbb603550ec42afa9023191666b0ef45096b4c0efd1a3b42150c83577f95"
+  },
+  "packager": {
+    "path": "research/calibration-tests/continuous-action-pilot/tools/build-role-submission-v0.1.1.py",
+    "sha256": "d43a3248a645eaeac8d495409ac5fbfe95b66a8d0c7260fa4639ed19472890e7"
+  },
+  "prior_stage_submission_sha256": "fafb1a791252b87a6e51e3ffa82b71c7b9e93c729fdd9b475687724b76217d70",
+  "received_at": "2026-07-27T17:49:42Z",
+  "response_schema": {
+    "path": "research/calibration-tests/continuous-action-pilot/schema/blind-response-interface-0.1.1.schema.json",
+    "sha256": "aaa06ec2e530dd4ae8e3d769c7cc6263702290466d2c695f9ce9da14e2069f42"
+  },
+  "run_id": "rehearsal-006",
+  "stage": "prediction",
+  "submission_id": "submission.r006.prediction.v01.a",
+  "target_artifact_type": "prediction_submission",
+  "target_artifact_version": "0.1.2",
+  "task_id": "task.predict.neutral"
+}

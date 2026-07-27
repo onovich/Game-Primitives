@@ -1,0 +1,54 @@
+{
+  "$schema": "https://github.com/onovich/Game-Primitives/blob/main/research/calibration-tests/continuous-action-pilot/schema/blind-response-interface-0.1.1.schema.json",
+  "artifact_type": "prediction_response_payload",
+  "artifact_version": "0.1.1",
+  "pollution": {
+    "familiarity": {
+      "exact_result_knowledge": "none",
+      "exact_rule_knowledge": "none",
+      "exact_variant_knowledge": "none",
+      "project_exposure": "none",
+      "recognition_status": "none",
+      "recognized_family": null,
+      "recognized_work": null,
+      "related_genre_experience": "unknown"
+    },
+    "integrity_exposures": [],
+    "stage_update_note": null
+  },
+  "prediction_answers": [
+    {
+      "assumptions": [],
+      "case_id": "CA-R2",
+      "compatible_alternatives": [],
+      "confidence_percent": 100,
+      "expectations": [
+        {
+          "configuration_id": "config.baseline",
+          "expectation_kind": "exact",
+          "observation_id": "obs.total-at-stop",
+          "tolerance_rule_id": "tol.synthetic.exact",
+          "value": {
+            "serialized_value": "7",
+            "unit": "count",
+            "value_type": "integer"
+          }
+        },
+        {
+          "configuration_id": "config.variant",
+          "expectation_kind": "exact",
+          "observation_id": "obs.total-at-stop",
+          "tolerance_rule_id": "tol.synthetic.exact",
+          "value": {
+            "serialized_value": "4",
+            "unit": "count",
+            "value_type": "integer"
+          }
+        }
+      ],
+      "prediction_status": "determinate",
+      "reasoning": "基线配置值 0 在两个步骤分别采样当前原始输入 2 和 5，因此从初始值 0 累加得到 7。变体配置值 1 在片段入口采样第一步原始输入 2，并在后续更新中复用该值，因此两个步骤均累加 2，停止边界处得到 4。",
+      "supporting_record_ids": []
+    }
+  ]
+}

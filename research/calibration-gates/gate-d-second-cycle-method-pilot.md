@@ -1,6 +1,6 @@
 # 校准门 D：第二轮强检验方法试验
 
-- 状态：逻辑解谜组与组间方法复核已完成；连续行动组方法与接口彩排已通过，正在制作正式包；门 D 尚未召开
+- 状态：逻辑解谜组与组间方法复核已完成；连续行动组 `continuous-001` 已失败关闭，协议 0.1.1 复测通过，正在制作 `continuous-002` 门前包；门 D 尚未召开
 - 日期：2026-07-27
 - 所属阶段：阶段一·开放研究，第二轮案例校准准备
 - 来源决定：D2-1–D2-6、CA-01–CA-07；[ADR 0101](../../docs/adr/0101-pilot-the-second-cycle-with-two-contrasting-groups.md)–[ADR 0116](../../docs/adr/0116-separate-blind-payloads-from-generated-submission-envelopes.md)
@@ -24,7 +24,7 @@
 | 顺序 | 试验组 | 主要压力 | 必做强检验 | 条件检验 | 尚待决定 |
 | --- | --- | --- | --- | --- | --- |
 | 1 | **逻辑解谜与状态空间组** | **动作合法性**、**局部一致性**、**全局可完成性**、不可逆状态与**规则变换边界** | **重构测试＋近邻辨别测试＋独立标注测试** | 本轮禁止行为主张；若新增则转证据积压 | `logic-001` 与组间方法复核均已完成 |
-| 2 | **连续行动与具身控制组** | 动作／事件／过程，连续时间与空间，输入反馈，行动实现载体 | **重构测试＋设计变体测试** | 涉及原语边界时独立标注；涉及技能、难度或体验时行为取证 | [`CA-01`–`CA-07`](../continuous-action-pilot-ca-07-artifacts-and-release.md)已冻结；阶段链与回答接口彩排通过，制作正式包 |
+| 2 | **连续行动与具身控制组** | 动作／事件／过程，连续时间与空间，输入反馈，行动实现载体 | **重构测试＋设计变体测试** | 涉及原语边界时独立标注；涉及技能、难度或体验时行为取证 | [`CA-01`–`CA-07`](../continuous-action-pilot-ca-07-artifacts-and-release.md)已冻结；协议 0.1.1 四席两阶段彩排通过，制作 `continuous-002` 门前包 |
 
 两个组都必须记录为什么预期当前模型会失败。仅因作品经典、流行或属于目标类型，不能取得样本席位。
 
@@ -61,7 +61,7 @@ D2-6 已冻结并执行 `1＋1＋2＋2` 角色、空白会话**独立执行**、
 
 [`CA-02` 案例职责架构](../continuous-action-pilot-ca-02-case-roles.md)已冻结为三个核心角色和一个条件角色。角色按因果接口而非游戏类型定义，每个核心角色必须独立通过四项硬条件。[CA-03](../continuous-action-pilot-ca-03-case-selection.md)选择三个官方源码制品，[CA-SR 0.1](../../theory/CONTINUOUS-ACTION-REPRESENTATION-0.1.md)建立伴随表示，[CA-05](../continuous-action-pilot-ca-05-variants.md)冻结反事实，[CA-06](../continuous-action-pilot-ca-06-execution-and-verdicts.md)冻结双条件和判定，[CA-07](../continuous-action-pilot-ca-07-artifacts-and-release.md)冻结制品、彩排与一次性人工门。完成正式取证前，门 D 仍不能召开。
 
-连续行动组用虚构系统保留了五次彩排。`rehearsal-001`–`003` 依次发现配置寻址、根摘要和任务引用缺口；`rehearsal-004` 通过完整阶段链，并暴露自由手写提交信封的接口失败；[ADR 0116](../../docs/adr/0116-separate-blind-payloads-from-generated-submission-envelopes.md)据此分离原始语义 payload 与机器信封；`rehearsal-005` 再以两个全新空白会话通过可确定与不确定预测接口。上述结果只支持方法准备，不支持 CA-01 理论命题。
+连续行动组用虚构系统保留了六次彩排。`rehearsal-001`–`003` 依次发现配置寻址、根摘要和任务引用缺口；`rehearsal-004` 通过完整阶段链，并暴露自由手写提交信封的接口失败；[ADR 0116](../../docs/adr/0116-separate-blind-payloads-from-generated-submission-envelopes.md)据此分离原始语义 payload 与机器信封；`rehearsal-005` 以两个全新空白会话通过装配接口。随后 `continuous-001` 在正式输入执行前暴露参与者仍无法构造部分合法分支并失败关闭；协议 0.1.1 修复后，`rehearsal-006` 以四个独立 projectless 空白会话完成 A/B 两条件、两阶段首答复测。上述结果只支持方法准备，不支持 CA-01 理论命题。
 
 ## 4. 门审输入
 

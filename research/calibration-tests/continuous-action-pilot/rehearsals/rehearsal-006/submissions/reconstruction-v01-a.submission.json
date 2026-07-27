@@ -1,0 +1,118 @@
+{
+  "$schema": "https://github.com/onovich/Game-Primitives/blob/main/research/calibration-tests/continuous-action-pilot/schema/role-submission-0.1.2.schema.json",
+  "actor": {
+    "identifier": "actor.r006.v01.a",
+    "model": "OpenAI Codex",
+    "model_version": "gpt-5.6-sol",
+    "reasoning_effort": "high",
+    "role": "blind_reconstructor_predictor",
+    "session_id": "019fa4b0-25e1-72c1-a955-0b89e5f8c78a"
+  },
+  "artifact_type": "reconstruction_submission",
+  "artifact_version": "0.1.2",
+  "audit_checks": [],
+  "audit_decision": null,
+  "condition_id": "condition-v01",
+  "findings": [],
+  "first_submission": true,
+  "input_artifacts": [
+    {
+      "artifact_id": "task.reconstruct.v01",
+      "sha256": "97a1381162144db189e9d49431322ff93049a9b45b1a4f22f158da1836e4fc2f"
+    },
+    {
+      "artifact_id": "view.v01",
+      "sha256": "59f0f7ce382e0b3bbe56b79a63623a5faa0e4af110cfb23230c61e8b4dfb7bb6"
+    },
+    {
+      "artifact_id": "template.reconstruction.condition-v01.rehearsal-006",
+      "sha256": "0e9b9d41e620390b9bfa77e60ebbbe33c32ecf06468cba9eddf23efa5db5d4e4"
+    }
+  ],
+  "packaging": {
+    "copied_fields": [
+      "pollution",
+      "reconstruction_answers"
+    ],
+    "envelope_path": "research/calibration-tests/continuous-action-pilot/rehearsals/rehearsal-006/envelopes/reconstruction-v01-a.envelope.json",
+    "envelope_sha256": "01e2a3cfea2db7cca44915e17e2397904718b89c65011dca91161f608d7c5f48",
+    "mode": "deterministic_field_copy",
+    "semantic_copy_verified": true,
+    "tool_path": "research/calibration-tests/continuous-action-pilot/tools/build-role-submission-v0.1.1.py",
+    "tool_sha256": "d43a3248a645eaeac8d495409ac5fbfe95b66a8d0c7260fa4639ed19472890e7"
+  },
+  "pollution": {
+    "familiarity": {
+      "exact_result_knowledge": "none",
+      "exact_rule_knowledge": "none",
+      "exact_variant_knowledge": "none",
+      "project_exposure": "none",
+      "recognition_status": "none",
+      "recognized_family": null,
+      "recognized_work": null,
+      "related_genre_experience": "unknown"
+    },
+    "integrity_exposures": [],
+    "stage_update_note": null
+  },
+  "prediction_answers": [],
+  "prior_stage_submission_sha256": null,
+  "raw_payload": {
+    "artifact_id": "payload.submission.r006.reconstruction.v01.a",
+    "path": "research/calibration-tests/continuous-action-pilot/rehearsals/rehearsal-006/raw/reconstruction-v01-a.payload.json",
+    "schema_path": "research/calibration-tests/continuous-action-pilot/schema/blind-response-interface-0.1.1.schema.json",
+    "schema_sha256": "aaa06ec2e530dd4ae8e3d769c7cc6263702290466d2c695f9ce9da14e2069f42",
+    "sha256": "30950cd5af5c4c66d7df42a7d72c925a81b42f7779bb5b6a5209a03cde12fc50"
+  },
+  "reconstruction_answers": [
+    {
+      "ambiguities": [],
+      "assumptions": [],
+      "case_id": "CA-R2",
+      "compatible_branches": [
+        {
+          "branch_id": "branch.config-zero",
+          "description": "配置值为0时，每个离散步骤开始均读取该步骤的当前原始输入，随后把读取值累加到state.total；在第二步完成后的停止边界读取state.total。",
+          "supporting_record_ids": [
+            "rec.sampling-policy",
+            "rec.accumulator-process",
+            "rec.step-order"
+          ]
+        }
+      ],
+      "confidence_percent": 100,
+      "recovered_facts": [
+        {
+          "claim": "活动配置值0规定在每次更新开始时读取当前步骤的原始输入作为value.sampled。",
+          "fact_id": "fact.per-step-sampling",
+          "recovery_status": "recovered",
+          "supporting_record_ids": [
+            "rec.sampling-policy"
+          ]
+        },
+        {
+          "claim": "每一步按照先读取value.sampled、再执行state.total更新的顺序运行。",
+          "fact_id": "fact.within-step-order",
+          "recovery_status": "recovered",
+          "supporting_record_ids": [
+            "rec.step-order"
+          ]
+        },
+        {
+          "claim": "状态更新规则为state.total加上value.sampled，并将结果写回state.total。",
+          "fact_id": "fact.accumulator-update",
+          "recovery_status": "recovered",
+          "supporting_record_ids": [
+            "rec.accumulator-process"
+          ]
+        }
+      ],
+      "uniqueness": "uniquely_recoverable"
+    }
+  ],
+  "run_id": "rehearsal-006",
+  "stage": "reconstruction",
+  "submission_id": "submission.r006.reconstruction.v01.a",
+  "submitted_at": "2026-07-27T17:47:32Z",
+  "task_id": "task.reconstruct.v01"
+}

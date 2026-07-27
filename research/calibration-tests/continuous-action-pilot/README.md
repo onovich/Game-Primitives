@@ -1,6 +1,6 @@
 # 连续行动先行组测试工作区
 
-- 状态：`continuous-001` 已冻结，但因参与者预测接口不可构造而在正式输入执行前失败关闭；协议 0.1.1 的阶段契约、类型化模板与门前验证已经通过合成隔离检查，`rehearsal-006` 正在冻结并等待四个空白 actor 的首答彩排
+- 状态：`continuous-001` 因参与者预测接口不可构造而在正式输入执行前失败关闭；协议 0.1.1 的阶段契约、类型化模板、隔离门前检查与四席两阶段首答已由 `rehearsal-006` 全部验收，下一步建立 `continuous-002` 的增量契约与门前候选包
 - 受测表示：[连续行动结构表示 v0.1](../../../theory/CONTINUOUS-ACTION-REPRESENTATION-0.1.md)
 - 执行与结论规则：[CA-06](../../continuous-action-pilot-ca-06-execution-and-verdicts.md)
 - 制品与放行规则：[CA-07](../../continuous-action-pilot-ca-07-artifacts-and-release.md)
@@ -106,9 +106,9 @@ python research/calibration-tests/continuous-action-pilot/tools/verify-formal-ra
 | `rehearsal-003` | `procedure_fail` | 任务包保留了旧输入散列 |
 | `rehearsal-004` | `procedure_pass` | 六项阶段链闭合；完整提交接口仍过于脆弱 |
 | `rehearsal-005` | `procedure_pass` | 两种条件的四份原始首答直接有效；机器装配逐字节可重复 |
-| `rehearsal-006` | `in_progress` | 验收 1—7、9、10 已在不含 `runs/` 的白名单镜像中通过；等待四个 projectless 空白 actor 验收首答可构造性 |
+| `rehearsal-006` | `procedure_pass` | 四个 projectless 空白 actor 的两阶段首答直接有效；V01 A/B 均唯一恢复并预测 7/4，V02 A/B 均保留不确定性；零纠错、零工具调用 |
 
-失败轮次、无效首答和已冻结 README 均原样保留。两次通过都是程序结论，不是理论证据；ADR 0116 的接口限制已经由 `rehearsal-005` 聚焦复测解除。
+失败轮次、无效首答和已冻结 README 均原样保留。三次通过都是程序结论，不是理论证据；ADR 0116 的信封分离由 `rehearsal-005` 验证，协议 0.1.1 的参与者可构造性由 `rehearsal-006` 验证。
 
 ## 正式轮次记录
 
@@ -116,7 +116,7 @@ python research/calibration-tests/continuous-action-pilot/tools/verify-formal-ra
 | --- | --- | --- | --- |
 | [`continuous-001`](runs/continuous-001/) | `run_invalid` | 第二阶段提交装配 | 四席都命中预测模板固定单位与 `indeterminate` Schema 的系统性冲突；预测集合、执行许可、正式结果和真值揭示均未产生 |
 
-`continuous-001` 的门后结果与保全证据见[轮次报告](runs/continuous-001/reports/README.md)。后续修订不得覆盖该轮冻结材料；先执行[协议 0.1.1 修复计划](protocol-0.1.1-repair-plan.md)，通过新的彩排后再使用新编号建立正式轮次。
+`continuous-001` 的门后结果与保全证据见[轮次报告](runs/continuous-001/reports/README.md)。后续修订不得覆盖该轮冻结材料；[协议 0.1.1 修复计划](protocol-0.1.1-repair-plan.md)与 `rehearsal-006` 已完成，新的正式尝试必须使用 `continuous-002`、新的冻结摘要、真值承诺和一次性人工授权。
 
 ## 计划中的轮次结构
 

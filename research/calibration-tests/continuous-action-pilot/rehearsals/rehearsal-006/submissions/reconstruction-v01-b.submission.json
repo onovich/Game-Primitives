@@ -1,0 +1,128 @@
+{
+  "$schema": "https://github.com/onovich/Game-Primitives/blob/main/research/calibration-tests/continuous-action-pilot/schema/role-submission-0.1.2.schema.json",
+  "actor": {
+    "identifier": "actor.r006.v01.b",
+    "model": "OpenAI Codex",
+    "model_version": "gpt-5.6-sol",
+    "reasoning_effort": "high",
+    "role": "blind_reconstructor_predictor",
+    "session_id": "019fa4b0-3004-7663-8e29-a7b51ec09613"
+  },
+  "artifact_type": "reconstruction_submission",
+  "artifact_version": "0.1.2",
+  "audit_checks": [],
+  "audit_decision": null,
+  "condition_id": "condition-v01",
+  "findings": [],
+  "first_submission": true,
+  "input_artifacts": [
+    {
+      "artifact_id": "task.reconstruct.v01",
+      "sha256": "97a1381162144db189e9d49431322ff93049a9b45b1a4f22f158da1836e4fc2f"
+    },
+    {
+      "artifact_id": "view.v01",
+      "sha256": "59f0f7ce382e0b3bbe56b79a63623a5faa0e4af110cfb23230c61e8b4dfb7bb6"
+    },
+    {
+      "artifact_id": "template.reconstruction.condition-v01.rehearsal-006",
+      "sha256": "0e9b9d41e620390b9bfa77e60ebbbe33c32ecf06468cba9eddf23efa5db5d4e4"
+    }
+  ],
+  "packaging": {
+    "copied_fields": [
+      "pollution",
+      "reconstruction_answers"
+    ],
+    "envelope_path": "research/calibration-tests/continuous-action-pilot/rehearsals/rehearsal-006/envelopes/reconstruction-v01-b.envelope.json",
+    "envelope_sha256": "5d69e709763cd4f6532b7129682a8f26ed7b4b85c151ba39414bec5007d11335",
+    "mode": "deterministic_field_copy",
+    "semantic_copy_verified": true,
+    "tool_path": "research/calibration-tests/continuous-action-pilot/tools/build-role-submission-v0.1.1.py",
+    "tool_sha256": "d43a3248a645eaeac8d495409ac5fbfe95b66a8d0c7260fa4639ed19472890e7"
+  },
+  "pollution": {
+    "familiarity": {
+      "exact_result_knowledge": "none",
+      "exact_rule_knowledge": "none",
+      "exact_variant_knowledge": "none",
+      "project_exposure": "none",
+      "recognition_status": "none",
+      "recognized_family": null,
+      "recognized_work": null,
+      "related_genre_experience": "unknown"
+    },
+    "integrity_exposures": [],
+    "stage_update_note": null
+  },
+  "prediction_answers": [],
+  "prior_stage_submission_sha256": null,
+  "raw_payload": {
+    "artifact_id": "payload.submission.r006.reconstruction.v01.b",
+    "path": "research/calibration-tests/continuous-action-pilot/rehearsals/rehearsal-006/raw/reconstruction-v01-b.payload.json",
+    "schema_path": "research/calibration-tests/continuous-action-pilot/schema/blind-response-interface-0.1.1.schema.json",
+    "schema_sha256": "aaa06ec2e530dd4ae8e3d769c7cc6263702290466d2c695f9ce9da14e2069f42",
+    "sha256": "365e21029a4c0f4a8fb19272903000c0912b7cb727eac5df581f596b1d1fed89"
+  },
+  "reconstruction_answers": [
+    {
+      "ambiguities": [],
+      "assumptions": [],
+      "case_id": "CA-R2",
+      "compatible_branches": [
+        {
+          "branch_id": "branch.active-zero",
+          "description": "配置 v-q 的活动值为 0，因此每个离散步骤开始时读取该步骤的当前原始输入，随后按步骤顺序将采样值累加到 state.total；在第二步完成后的停止边界读取 state.total。",
+          "supporting_record_ids": [
+            "rec.sampling-policy",
+            "rec.accumulator-process",
+            "rec.step-order"
+          ]
+        }
+      ],
+      "confidence_percent": 100,
+      "recovered_facts": [
+        {
+          "claim": "活动配置值 0 选择逐步骤重新采样语义：每次更新开始时读取当前步骤的原始输入并写入 value.sampled。",
+          "fact_id": "fact.sampling",
+          "recovery_status": "recovered",
+          "supporting_record_ids": [
+            "rec.sampling-policy"
+          ]
+        },
+        {
+          "claim": "每个步骤使用 state.total := state.total + value.sampled 更新累加状态。",
+          "fact_id": "fact.accumulation",
+          "recovery_status": "recovered",
+          "supporting_record_ids": [
+            "rec.accumulator-process"
+          ]
+        },
+        {
+          "claim": "每个步骤内先读取 value.sampled，再执行 state.total 更新。",
+          "fact_id": "fact.step-order",
+          "recovery_status": "recovered",
+          "supporting_record_ids": [
+            "rec.step-order"
+          ]
+        },
+        {
+          "claim": "同一累加操作依次在步骤 1 和步骤 2 执行，且两次都引用采样策略、累加过程和步骤内顺序记录。",
+          "fact_id": "fact.operation-sequence",
+          "recovery_status": "recovered",
+          "supporting_record_ids": [
+            "rec.sampling-policy",
+            "rec.accumulator-process",
+            "rec.step-order"
+          ]
+        }
+      ],
+      "uniqueness": "uniquely_recoverable"
+    }
+  ],
+  "run_id": "rehearsal-006",
+  "stage": "reconstruction",
+  "submission_id": "submission.r006.reconstruction.v01.b",
+  "submitted_at": "2026-07-27T17:47:45Z",
+  "task_id": "task.reconstruct.v01"
+}

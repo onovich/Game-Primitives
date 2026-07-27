@@ -1,6 +1,6 @@
 # 连续行动盲测协议 0.1.1 修复计划
 
-> 状态：实施中；门前合成验收已通过，等待 `rehearsal-006` 空白 actor 验收
+> 状态：已完成；门前合成验收与 `rehearsal-006` 四席空白 actor 两阶段首答均通过
 > 来源：`continuous-001` 门后阻断事故  
 > 目标：先修复参与者接口，再建立新的彩排与正式轮次
 
@@ -119,11 +119,12 @@ python research/calibration-tests/continuous-action-pilot/tools/verify-predictio
 - [`materialize-rehearsal-006-prompts.py`](tools/materialize-rehearsal-006-prompts.py) 生成并复核四席 projectless 会话使用的逐字节两阶段操作提示与派发计划；
 - [`verify-rehearsal-006.py`](tools/verify-rehearsal-006.py) 在不含 `runs/` 的临时白名单仓库镜像中重放全部正例、负控和契约检查。
 
-截至门前冻结准备，验收条件 1—7、9、10 已通过并记录于
+验收条件 1—7、9、10 已在冻结前通过并记录于
 [`participant-interface-readiness.json`](rehearsals/rehearsal-006/inputs/audits/participant-interface-readiness.json)。
-条件 8 仍明确延期到冻结后：必须由四个全新 projectless 会话在无追加格式提示的情况下完成两阶段首答，不能以合成夹具代替。
+条件 8 已在冻结后由四个全新 projectless 会话完成：四席都在无追加格式提示、无工具调用的情况下连续完成两阶段首答，结果与逐字节绑定见
+[`rehearsal-006` 验收报告](rehearsals/rehearsal-006/reports/findings.md)。
 
-## 下一次彩排的验收条件
+## `rehearsal-006` 的验收条件
 
 在新的正式包冻结前，先建立 `rehearsal-006`，且同时满足：
 
@@ -138,7 +139,7 @@ python research/calibration-tests/continuous-action-pilot/tools/verify-predictio
 9. 彩排不读取或运行任何正式输入。
 10. 新的 readiness 检查把参与者契约、分支闭合检查及其 Schema 纳入冻结集合。
 
-只有上述条件全部通过，才建立 `continuous-002`。
+上述十项现已全部通过。可以建立 `continuous-002` 的增量契约与门前候选包；这不授权创建正式 actor、派发盲测、运行冻结输入、生成预测集合／执行许可或揭示真值。
 
 ## 方法上的一般化
 

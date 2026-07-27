@@ -1,0 +1,65 @@
+{
+  "$schema": "https://github.com/onovich/Game-Primitives/blob/main/research/calibration-tests/continuous-action-pilot/schema/blind-response-interface-0.1.1.schema.json",
+  "artifact_type": "reconstruction_response_payload",
+  "artifact_version": "0.1.1",
+  "pollution": {
+    "familiarity": {
+      "exact_result_knowledge": "none",
+      "exact_rule_knowledge": "none",
+      "exact_variant_knowledge": "none",
+      "project_exposure": "none",
+      "recognition_status": "none",
+      "recognized_family": null,
+      "recognized_work": null,
+      "related_genre_experience": "unknown"
+    },
+    "integrity_exposures": [],
+    "stage_update_note": null
+  },
+  "reconstruction_answers": [
+    {
+      "ambiguities": [],
+      "assumptions": [],
+      "case_id": "CA-R2",
+      "compatible_branches": [
+        {
+          "branch_id": "branch.config-zero",
+          "description": "配置值为0时，每个离散步骤开始均读取该步骤的当前原始输入，随后把读取值累加到state.total；在第二步完成后的停止边界读取state.total。",
+          "supporting_record_ids": [
+            "rec.sampling-policy",
+            "rec.accumulator-process",
+            "rec.step-order"
+          ]
+        }
+      ],
+      "confidence_percent": 100,
+      "recovered_facts": [
+        {
+          "claim": "活动配置值0规定在每次更新开始时读取当前步骤的原始输入作为value.sampled。",
+          "fact_id": "fact.per-step-sampling",
+          "recovery_status": "recovered",
+          "supporting_record_ids": [
+            "rec.sampling-policy"
+          ]
+        },
+        {
+          "claim": "每一步按照先读取value.sampled、再执行state.total更新的顺序运行。",
+          "fact_id": "fact.within-step-order",
+          "recovery_status": "recovered",
+          "supporting_record_ids": [
+            "rec.step-order"
+          ]
+        },
+        {
+          "claim": "状态更新规则为state.total加上value.sampled，并将结果写回state.total。",
+          "fact_id": "fact.accumulator-update",
+          "recovery_status": "recovered",
+          "supporting_record_ids": [
+            "rec.accumulator-process"
+          ]
+        }
+      ],
+      "uniqueness": "uniquely_recoverable"
+    }
+  ]
+}

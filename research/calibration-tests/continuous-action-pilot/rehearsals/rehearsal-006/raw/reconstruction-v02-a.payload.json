@@ -1,0 +1,81 @@
+{
+  "$schema": "https://github.com/onovich/Game-Primitives/blob/main/research/calibration-tests/continuous-action-pilot/schema/blind-response-interface-0.1.1.schema.json",
+  "artifact_type": "reconstruction_response_payload",
+  "artifact_version": "0.1.1",
+  "pollution": {
+    "familiarity": {
+      "exact_result_knowledge": "none",
+      "exact_rule_knowledge": "none",
+      "exact_variant_knowledge": "none",
+      "project_exposure": "none",
+      "recognition_status": "none",
+      "recognized_family": null,
+      "recognized_work": null,
+      "related_genre_experience": "none"
+    },
+    "integrity_exposures": [],
+    "stage_update_note": null
+  },
+  "reconstruction_answers": [
+    {
+      "ambiguities": [
+        "未给出配置变量 v-q 如何影响输入读取或状态更新。",
+        "未给出 obs.total-at-stop 的观测值。",
+        "operation_id 为 op.accumulate 不足以唯一确定累积规则。"
+      ],
+      "assumptions": [],
+      "case_id": "CA-R2",
+      "compatible_branches": [
+        {
+          "branch_id": "branch.direct-sum",
+          "description": "每一步把对应 raw_value 直接加到 state.total。",
+          "supporting_record_ids": []
+        },
+        {
+          "branch_id": "branch.config-transform",
+          "description": "每一步先依据 v-q 对 raw_value 进行未声明的变换，再把结果写入或累积到 state.total。",
+          "supporting_record_ids": []
+        },
+        {
+          "branch_id": "branch.input-independent",
+          "description": "op.accumulate 写入 state.total，但更新量不依赖 raw_value，或仅部分步骤读取 raw_value。",
+          "supporting_record_ids": []
+        }
+      ],
+      "confidence_percent": 100,
+      "recovered_facts": [
+        {
+          "claim": "初始 state.total 为 0。",
+          "fact_id": "fact.initial-total",
+          "recovery_status": "recovered",
+          "supporting_record_ids": []
+        },
+        {
+          "claim": "步骤 1 和步骤 2 均执行 op.accumulate，并写入 state.total。",
+          "fact_id": "fact.operation-writes",
+          "recovery_status": "recovered",
+          "supporting_record_ids": []
+        },
+        {
+          "claim": "两个步骤的 raw_value 依次为 2 和 5。",
+          "fact_id": "fact.raw-inputs",
+          "recovery_status": "recovered",
+          "supporting_record_ids": []
+        },
+        {
+          "claim": "配置变量 v-q 的活动值为 0，允许值为 0 和 1。",
+          "fact_id": "fact.opaque-config",
+          "recovery_status": "recovered",
+          "supporting_record_ids": []
+        },
+        {
+          "claim": "停止边界 stop.after-step-2 处的 obs.total-at-stop 读取 state.total。",
+          "fact_id": "fact.output-contract",
+          "recovery_status": "recovered",
+          "supporting_record_ids": []
+        }
+      ],
+      "uniqueness": "multiple_compatible_structures"
+    }
+  ]
+}

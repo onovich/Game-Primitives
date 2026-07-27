@@ -1,0 +1,111 @@
+{
+  "$schema": "https://github.com/onovich/Game-Primitives/blob/main/research/calibration-tests/continuous-action-pilot/schema/blind-response-interface-0.1.1.schema.json",
+  "artifact_type": "prediction_response_payload",
+  "artifact_version": "0.1.1",
+  "pollution": {
+    "familiarity": {
+      "exact_result_knowledge": "none",
+      "exact_rule_knowledge": "none",
+      "exact_variant_knowledge": "none",
+      "project_exposure": "none",
+      "recognition_status": "none",
+      "recognized_family": null,
+      "recognized_work": null,
+      "related_genre_experience": "none"
+    },
+    "integrity_exposures": [],
+    "stage_update_note": null
+  },
+  "prediction_answers": [
+    {
+      "assumptions": [],
+      "case_id": "CA-R2",
+      "compatible_alternatives": [
+        {
+          "alternative_id": "alternative.direct-sum",
+          "description": "v-q 不影响更新；每一步将 raw_value 直接加到 state.total，因此两种配置均得到 7。",
+          "expectations": [
+            {
+              "configuration_id": "config.baseline",
+              "expectation_kind": "exact",
+              "observation_id": "obs.total-at-stop",
+              "tolerance_rule_id": "tol.synthetic.exact",
+              "value": {
+                "serialized_value": "7",
+                "unit": "count",
+                "value_type": "integer"
+              }
+            },
+            {
+              "configuration_id": "config.variant",
+              "expectation_kind": "exact",
+              "observation_id": "obs.total-at-stop",
+              "tolerance_rule_id": "tol.synthetic.exact",
+              "value": {
+                "serialized_value": "7",
+                "unit": "count",
+                "value_type": "integer"
+              }
+            }
+          ]
+        },
+        {
+          "alternative_id": "alternative.variant-double",
+          "description": "基线配置直接累加 raw_value，而变体配置将每一步的更新量加倍，因此基线得到 7、变体得到 14。",
+          "expectations": [
+            {
+              "configuration_id": "config.baseline",
+              "expectation_kind": "exact",
+              "observation_id": "obs.total-at-stop",
+              "tolerance_rule_id": "tol.synthetic.exact",
+              "value": {
+                "serialized_value": "7",
+                "unit": "count",
+                "value_type": "integer"
+              }
+            },
+            {
+              "configuration_id": "config.variant",
+              "expectation_kind": "exact",
+              "observation_id": "obs.total-at-stop",
+              "tolerance_rule_id": "tol.synthetic.exact",
+              "value": {
+                "serialized_value": "14",
+                "unit": "count",
+                "value_type": "integer"
+              }
+            }
+          ]
+        }
+      ],
+      "confidence_percent": 100,
+      "expectations": [
+        {
+          "configuration_id": "config.baseline",
+          "expectation_kind": "status",
+          "observation_id": "obs.total-at-stop",
+          "tolerance_rule_id": "tol.synthetic.exact",
+          "value": {
+            "serialized_value": "indeterminate",
+            "unit": null,
+            "value_type": "status"
+          }
+        },
+        {
+          "configuration_id": "config.variant",
+          "expectation_kind": "status",
+          "observation_id": "obs.total-at-stop",
+          "tolerance_rule_id": "tol.synthetic.exact",
+          "value": {
+            "serialized_value": "indeterminate",
+            "unit": null,
+            "value_type": "status"
+          }
+        }
+      ],
+      "prediction_status": "indeterminate",
+      "reasoning": "第一阶段只能恢复操作次数、写入字段、原始输入和输出读取位置，无法恢复 v-q、输入读取与状态更新之间的关系。保持信封所列不变量时，配置无效和配置改变更新量等结构都与现有材料相容，并产生不同的精确计数，因此两种配置的主预测均不确定。",
+      "supporting_record_ids": []
+    }
+  ]
+}

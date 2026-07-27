@@ -1,0 +1,49 @@
+{
+  "$schema": "https://github.com/onovich/Game-Primitives/blob/main/research/calibration-tests/continuous-action-pilot/schema/blind-response-interface-0.1.1.schema.json",
+  "actor": {
+    "identifier": "actor.r006.v02.a",
+    "model": "OpenAI Codex",
+    "model_version": "gpt-5.6-sol",
+    "reasoning_effort": "high",
+    "role": "blind_reconstructor_predictor",
+    "session_id": "019fa4b0-3933-7c71-950f-614b749399cc"
+  },
+  "artifact_type": "role_submission_envelope",
+  "artifact_version": "0.1.1",
+  "condition_id": "condition-v02",
+  "dispatch_artifacts": [
+    {
+      "artifact_id": "task.reconstruct.v02",
+      "sha256": "951497b70287751ef1055220fd18c31a507e1dd29caa448a35e1cd6395d63d5d"
+    },
+    {
+      "artifact_id": "view.v02",
+      "sha256": "ab6596ee6498401a3994237671785d5b175fdfdd8cc77d2e87ea979fa84f4c7d"
+    },
+    {
+      "artifact_id": "template.reconstruction.condition-v02.rehearsal-006",
+      "sha256": "e4adf6b61cc60a65e8074139ae36c7b5b960e13a470351b3ba30af0bddd530d8"
+    }
+  ],
+  "first_submission": true,
+  "output_schema": {
+    "path": "research/calibration-tests/continuous-action-pilot/schema/role-submission-0.1.2.schema.json",
+    "sha256": "ce1bcbb603550ec42afa9023191666b0ef45096b4c0efd1a3b42150c83577f95"
+  },
+  "packager": {
+    "path": "research/calibration-tests/continuous-action-pilot/tools/build-role-submission-v0.1.1.py",
+    "sha256": "d43a3248a645eaeac8d495409ac5fbfe95b66a8d0c7260fa4639ed19472890e7"
+  },
+  "prior_stage_submission_sha256": null,
+  "received_at": "2026-07-27T17:47:48Z",
+  "response_schema": {
+    "path": "research/calibration-tests/continuous-action-pilot/schema/blind-response-interface-0.1.1.schema.json",
+    "sha256": "aaa06ec2e530dd4ae8e3d769c7cc6263702290466d2c695f9ce9da14e2069f42"
+  },
+  "run_id": "rehearsal-006",
+  "stage": "reconstruction",
+  "submission_id": "submission.r006.reconstruction.v02.a",
+  "target_artifact_type": "reconstruction_submission",
+  "target_artifact_version": "0.1.2",
+  "task_id": "task.reconstruct.v02"
+}

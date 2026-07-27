@@ -1,0 +1,134 @@
+{
+  "$schema": "https://github.com/onovich/Game-Primitives/blob/main/research/calibration-tests/continuous-action-pilot/schema/role-submission-0.1.2.schema.json",
+  "actor": {
+    "identifier": "actor.r006.v02.a",
+    "model": "OpenAI Codex",
+    "model_version": "gpt-5.6-sol",
+    "reasoning_effort": "high",
+    "role": "blind_reconstructor_predictor",
+    "session_id": "019fa4b0-3933-7c71-950f-614b749399cc"
+  },
+  "artifact_type": "reconstruction_submission",
+  "artifact_version": "0.1.2",
+  "audit_checks": [],
+  "audit_decision": null,
+  "condition_id": "condition-v02",
+  "findings": [],
+  "first_submission": true,
+  "input_artifacts": [
+    {
+      "artifact_id": "task.reconstruct.v02",
+      "sha256": "951497b70287751ef1055220fd18c31a507e1dd29caa448a35e1cd6395d63d5d"
+    },
+    {
+      "artifact_id": "view.v02",
+      "sha256": "ab6596ee6498401a3994237671785d5b175fdfdd8cc77d2e87ea979fa84f4c7d"
+    },
+    {
+      "artifact_id": "template.reconstruction.condition-v02.rehearsal-006",
+      "sha256": "e4adf6b61cc60a65e8074139ae36c7b5b960e13a470351b3ba30af0bddd530d8"
+    }
+  ],
+  "packaging": {
+    "copied_fields": [
+      "pollution",
+      "reconstruction_answers"
+    ],
+    "envelope_path": "research/calibration-tests/continuous-action-pilot/rehearsals/rehearsal-006/envelopes/reconstruction-v02-a.envelope.json",
+    "envelope_sha256": "f30fb0d97ecdd422ca3c847f3a507373447294663c0b8c5bd8d59dacc9add0c1",
+    "mode": "deterministic_field_copy",
+    "semantic_copy_verified": true,
+    "tool_path": "research/calibration-tests/continuous-action-pilot/tools/build-role-submission-v0.1.1.py",
+    "tool_sha256": "d43a3248a645eaeac8d495409ac5fbfe95b66a8d0c7260fa4639ed19472890e7"
+  },
+  "pollution": {
+    "familiarity": {
+      "exact_result_knowledge": "none",
+      "exact_rule_knowledge": "none",
+      "exact_variant_knowledge": "none",
+      "project_exposure": "none",
+      "recognition_status": "none",
+      "recognized_family": null,
+      "recognized_work": null,
+      "related_genre_experience": "none"
+    },
+    "integrity_exposures": [],
+    "stage_update_note": null
+  },
+  "prediction_answers": [],
+  "prior_stage_submission_sha256": null,
+  "raw_payload": {
+    "artifact_id": "payload.submission.r006.reconstruction.v02.a",
+    "path": "research/calibration-tests/continuous-action-pilot/rehearsals/rehearsal-006/raw/reconstruction-v02-a.payload.json",
+    "schema_path": "research/calibration-tests/continuous-action-pilot/schema/blind-response-interface-0.1.1.schema.json",
+    "schema_sha256": "aaa06ec2e530dd4ae8e3d769c7cc6263702290466d2c695f9ce9da14e2069f42",
+    "sha256": "f94d7d1f0a70bff6770a85988d5b5ec4617a7f0f2bf397dde1aaf3f0304f4439"
+  },
+  "reconstruction_answers": [
+    {
+      "ambiguities": [
+        "未给出配置变量 v-q 如何影响输入读取或状态更新。",
+        "未给出 obs.total-at-stop 的观测值。",
+        "operation_id 为 op.accumulate 不足以唯一确定累积规则。"
+      ],
+      "assumptions": [],
+      "case_id": "CA-R2",
+      "compatible_branches": [
+        {
+          "branch_id": "branch.direct-sum",
+          "description": "每一步把对应 raw_value 直接加到 state.total。",
+          "supporting_record_ids": []
+        },
+        {
+          "branch_id": "branch.config-transform",
+          "description": "每一步先依据 v-q 对 raw_value 进行未声明的变换，再把结果写入或累积到 state.total。",
+          "supporting_record_ids": []
+        },
+        {
+          "branch_id": "branch.input-independent",
+          "description": "op.accumulate 写入 state.total，但更新量不依赖 raw_value，或仅部分步骤读取 raw_value。",
+          "supporting_record_ids": []
+        }
+      ],
+      "confidence_percent": 100,
+      "recovered_facts": [
+        {
+          "claim": "初始 state.total 为 0。",
+          "fact_id": "fact.initial-total",
+          "recovery_status": "recovered",
+          "supporting_record_ids": []
+        },
+        {
+          "claim": "步骤 1 和步骤 2 均执行 op.accumulate，并写入 state.total。",
+          "fact_id": "fact.operation-writes",
+          "recovery_status": "recovered",
+          "supporting_record_ids": []
+        },
+        {
+          "claim": "两个步骤的 raw_value 依次为 2 和 5。",
+          "fact_id": "fact.raw-inputs",
+          "recovery_status": "recovered",
+          "supporting_record_ids": []
+        },
+        {
+          "claim": "配置变量 v-q 的活动值为 0，允许值为 0 和 1。",
+          "fact_id": "fact.opaque-config",
+          "recovery_status": "recovered",
+          "supporting_record_ids": []
+        },
+        {
+          "claim": "停止边界 stop.after-step-2 处的 obs.total-at-stop 读取 state.total。",
+          "fact_id": "fact.output-contract",
+          "recovery_status": "recovered",
+          "supporting_record_ids": []
+        }
+      ],
+      "uniqueness": "multiple_compatible_structures"
+    }
+  ],
+  "run_id": "rehearsal-006",
+  "stage": "reconstruction",
+  "submission_id": "submission.r006.reconstruction.v02.a",
+  "submitted_at": "2026-07-27T17:47:48Z",
+  "task_id": "task.reconstruct.v02"
+}

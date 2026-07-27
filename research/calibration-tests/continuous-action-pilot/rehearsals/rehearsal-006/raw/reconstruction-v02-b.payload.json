@@ -1,0 +1,33 @@
+{
+  "$schema": "https://github.com/onovich/Game-Primitives/blob/main/research/calibration-tests/continuous-action-pilot/schema/blind-response-interface-0.1.1.schema.json",
+  "artifact_type": "reconstruction_response_payload",
+  "artifact_version": "0.1.1",
+  "pollution": {
+    "familiarity": {
+      "exact_result_knowledge": "none",
+      "exact_rule_knowledge": "none",
+      "exact_variant_knowledge": "none",
+      "project_exposure": "none",
+      "recognition_status": "none",
+      "recognized_family": null,
+      "recognized_work": null,
+      "related_genre_experience": "unknown"
+    },
+    "integrity_exposures": [],
+    "stage_update_note": null
+  },
+  "reconstruction_answers": [
+    {
+      "ambiguities": [
+        "条件视图未声明配置变量 v-q、原始输入与 state.total 更新之间的关系，因此无法确定 op.accumulate 的状态转移结构。",
+        "操作写入记录只能确定 state.total 在两个步骤中被写入，不能区分加法、替换、条件更新或其他兼容结构。"
+      ],
+      "assumptions": [],
+      "case_id": "CA-R2",
+      "compatible_branches": [],
+      "confidence_percent": 100,
+      "recovered_facts": [],
+      "uniqueness": "insufficient_information"
+    }
+  ]
+}
