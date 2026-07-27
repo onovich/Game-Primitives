@@ -1780,6 +1780,14 @@
   "stage": "view_generation",
   "stage_digests": [],
   "status": "preparing",
-  "truth_commitment": null,
-  "updated_at": "2026-07-27T05:45:28Z"
+  "truth_commitment": {
+    "algorithm": "SHA-256",
+    "combination": "secret_nonce_bytes || exact_truth_bundle_bytes",
+    "commitment": "7bd02be636b74b84e956c7afcf8751fccb3a239aa32aebb6479ab5a6f993e3af",
+    "created_at": "2026-07-27T05:48:45Z",
+    "nonce_length_bytes": 32,
+    "truth_bundle_bytes": 32408,
+    "truth_bundle_name": "sealed-truth.json"
+  },
+  "updated_at": "2026-07-27T05:48:45Z"
 }
