@@ -1751,6 +1751,24 @@
       "schema_sha256": "277edbeae2c76e58fc6ba25975f78338d6df435b4fcf68b1caf06f22481a66c3",
       "sha256": "53b714b3224057e6dc2f5b01d8c13529ea8a0b1b75cc0c25eb0d1083c76aa6be",
       "supersedes_artifact_id": null
+    },
+    {
+      "artifact_id": "audit.projection.continuous-001",
+      "artifact_kind": "audit",
+      "artifact_version": "0.1.2",
+      "audience": [
+        "custodian",
+        "public_after_reveal",
+        "source_auditor"
+      ],
+      "decision_relevant": true,
+      "included_in_frozen_set": false,
+      "path": "source/projection-audit-v0.1.0.json",
+      "release_stage": "source_audit",
+      "schema_path": "research/calibration-tests/continuous-action-pilot/schema/role-submission-0.1.2.schema.json",
+      "schema_sha256": "ce1bcbb603550ec42afa9023191666b0ef45096b4c0efd1a3b42150c83577f95",
+      "sha256": "723aa30ed34dcf39efbab606fa37f0002ea36986d8a337f8612fce06184935b2",
+      "supersedes_artifact_id": null
     }
   ],
   "created_at": "2026-07-26T19:30:02Z",
@@ -1763,5 +1781,5 @@
   "stage_digests": [],
   "status": "preparing",
   "truth_commitment": null,
-  "updated_at": "2026-07-27T05:19:01Z"
+  "updated_at": "2026-07-27T05:45:28Z"
 }
