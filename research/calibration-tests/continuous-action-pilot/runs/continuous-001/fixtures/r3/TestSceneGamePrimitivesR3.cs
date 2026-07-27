@@ -122,8 +122,8 @@ namespace osu.Game.Rulesets.Osu.Tests
             {
                 "config.baseline" => adjudicationDelayMs == 0 && hitAnimations,
                 "config.variant" => adjudicationDelayMs == 75 && hitAnimations,
-                "negative_control_a" => adjudicationDelayMs == 0 && hitAnimations,
-                "negative_control_b" => adjudicationDelayMs == 0 && !hitAnimations,
+                "config.negative-a" => adjudicationDelayMs == 0 && hitAnimations,
+                "config.negative-b" => adjudicationDelayMs == 0 && !hitAnimations,
                 _ => false
             };
 

@@ -86,12 +86,12 @@
         "configurations": [
           {
             "adjudication_delay_ms": 0,
-            "configuration_id": "negative_control_a",
+            "configuration_id": "config.negative-a",
             "hit_animations": true
           },
           {
             "adjudication_delay_ms": 0,
-            "configuration_id": "negative_control_b",
+            "configuration_id": "config.negative-b",
             "hit_animations": false
           }
         ],
@@ -166,6 +166,9 @@
         ]
       }
     },
+    "repetition_count": {
+      "const": 2
+    },
     "run_id": {
       "const": "continuous-001"
     },
@@ -203,6 +206,7 @@
     "negative_control",
     "observations",
     "pre_gate_policy",
+    "repetition_count",
     "run_id",
     "stop_boundary_id",
     "target",

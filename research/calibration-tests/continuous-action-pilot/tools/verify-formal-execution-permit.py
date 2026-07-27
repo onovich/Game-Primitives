@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Stable verify-only entry point for the continuous-001 execution permit."""
+"""Verify a permit without opening its frozen-manifest-bound formal input."""
 
 from __future__ import annotations
 

@@ -1,9 +1,9 @@
 /*
  * GAME PRIMITIVES CA-R2 -- GUARDED FORMAL HARNESS
  *
- * The frozen 25 x 8 ms input is embedded by the build runner, but this
- * executable is inert unless the post-prediction formal runner supplies all
- * execution-permit guards. --self-test never calls Pmove or reads a formal step.
+ * The executable is input-independent and inert unless the post-prediction
+ * formal runner supplies all execution-permit guards plus a permit-derived
+ * command file. --self-test never calls Pmove or reads a formal step.
  *
  * Baseline and variant source copies differ at exactly one line: the active
  * input policy constant below. Both policies first copy the complete raw
@@ -18,7 +18,6 @@
 #include <string.h>
 
 #include "q3-formal-fixture-v0.1.0.h"
-#include "q3-formal-input.generated.h"
 
 #define Q3GP_SOURCE_COMMIT \
 	"dbe4ddb10315479fc00086f08e25d968b4b43c49"
@@ -27,6 +26,19 @@
 #define Q3GP_POLICY_RESAMPLE 0
 #define Q3GP_POLICY_ENTRY_LATCH 1
 #define Q3GP_ACTIVE_INPUT_POLICY Q3GP_POLICY_RESAMPLE
+#define Q3GP_FORMAL_STEP_COUNT 25
+
+typedef struct q3gp_frozen_command_s {
+	int server_time;
+	int angles[3];
+	int buttons;
+	int weapon;
+	int forwardmove;
+	int rightmove;
+	int upmove;
+} q3gp_frozen_command_t;
+
+static q3gp_frozen_command_t q3gp_frozen_commands[Q3GP_FORMAL_STEP_COUNT];
 
 typedef struct q3gp_policy_state_s {
 	int initialized;
@@ -185,7 +197,6 @@ static int Q3GP_RunSelfTest(void) {
 	trap_SnapVector(second);
 
 	return Q3GP_FORMAL_STEP_COUNT == 25
-		&& strlen(Q3GP_FORMAL_INPUT_SHA256) == 64
 		&& Q3GP_GetStepObservation()->snap_calls == 2
 		&& first[0] == 0.0f
 		&& first[1] == 2.0f
@@ -224,17 +235,20 @@ static int Q3GP_FormalEnvironmentAbsent(void) {
 
 static int Q3GP_LoadExecutionContext(
 	char **executionPermitDigest,
-	char **predictionSetDigest
+	char **predictionSetDigest,
+	char **formalInputDigest
 ) {
 	char *runId = NULL;
 	char *caseId = NULL;
 	char *permit = NULL;
 	char *prediction = NULL;
+	char *formalInput = NULL;
 	size_t length;
 	int result;
 
 	*executionPermitDigest = NULL;
 	*predictionSetDigest = NULL;
+	*formalInputDigest = NULL;
 	if (_dupenv_s(&runId, &length, "GAME_PRIMITIVES_RUN_ID") != 0
 		|| _dupenv_s(&caseId, &length, "GAME_PRIMITIVES_CASE_ID") != 0
 		|| _dupenv_s(
@@ -246,29 +260,91 @@ static int Q3GP_LoadExecutionContext(
 			&prediction,
 			&length,
 			"GAME_PRIMITIVES_PREDICTION_SET_DIGEST"
+		) != 0
+		|| _dupenv_s(
+			&formalInput,
+			&length,
+			"GAME_PRIMITIVES_FORMAL_INPUT_SHA256"
 		) != 0) {
 		free(runId);
 		free(caseId);
 		free(permit);
 		free(prediction);
+		free(formalInput);
 		return 0;
 	}
 
 	result = runId != NULL && strcmp(runId, Q3GP_RUN_ID) == 0
 		&& caseId != NULL && strcmp(caseId, Q3GP_CASE_ID) == 0
 		&& Q3GP_IsLowerNonZeroSha256(permit)
-		&& Q3GP_IsLowerNonZeroSha256(prediction);
+		&& Q3GP_IsLowerNonZeroSha256(prediction)
+		&& Q3GP_IsLowerNonZeroSha256(formalInput);
 	if (result) {
 		*executionPermitDigest = permit;
 		*predictionSetDigest = prediction;
+		*formalInputDigest = formalInput;
 		permit = NULL;
 		prediction = NULL;
+		formalInput = NULL;
 	}
 	free(runId);
 	free(caseId);
 	free(permit);
 	free(prediction);
+	free(formalInput);
 	return result;
+}
+
+static int Q3GP_LoadCommandFile(const char *inputPath) {
+	FILE *stream;
+	char line[256];
+	int index;
+
+	if (!Q3GP_IsAbsoluteWindowsPath(inputPath)
+		|| fopen_s(&stream, inputPath, "rb") != 0
+		|| stream == NULL) {
+		return 0;
+	}
+	for (index = 0; index < Q3GP_FORMAL_STEP_COUNT; index++) {
+		q3gp_frozen_command_t *command;
+		size_t length;
+		char extra;
+		int parsed;
+
+		if (fgets(line, sizeof(line), stream) == NULL) {
+			fclose(stream);
+			return 0;
+		}
+		length = strlen(line);
+		while (length > 0
+			&& (line[length - 1] == '\n' || line[length - 1] == '\r')) {
+			line[--length] = '\0';
+		}
+		command = &q3gp_frozen_commands[index];
+		parsed = sscanf_s(
+			line,
+			"%d\t%d\t%d\t%d\t%d\t%d\t%d\t%d\t%d%c",
+			&command->server_time,
+			&command->angles[0],
+			&command->angles[1],
+			&command->angles[2],
+			&command->buttons,
+			&command->weapon,
+			&command->forwardmove,
+			&command->rightmove,
+			&command->upmove,
+			&extra,
+			(unsigned int)sizeof(extra)
+		);
+		if (parsed != 9) {
+			fclose(stream);
+			return 0;
+		}
+	}
+	if (fgets(line, sizeof(line), stream) != NULL || fclose(stream) != 0) {
+		return 0;
+	}
+	return 1;
 }
 
 static int Q3GP_WriteCommand(
@@ -358,11 +434,13 @@ static int Q3GP_WriteStep(
 }
 
 static int Q3GP_RunFormal(
+	const char *inputPath,
 	const char *outputPath
 ) {
 	FILE *stream;
 	char *executionPermitDigest = NULL;
 	char *predictionSetDigest = NULL;
+	char *formalInputDigest = NULL;
 	playerState_t state;
 	pmove_t movement;
 	q3gp_policy_state_t policy;
@@ -370,22 +448,27 @@ static int Q3GP_RunFormal(
 
 	if (!Q3GP_LoadExecutionContext(
 			&executionPermitDigest,
-			&predictionSetDigest
+			&predictionSetDigest,
+			&formalInputDigest
 		)
+		|| !Q3GP_LoadCommandFile(inputPath)
 		|| !Q3GP_IsAbsoluteWindowsPath(outputPath)
 		|| _access(outputPath, 0) == 0) {
 		free(executionPermitDigest);
 		free(predictionSetDigest);
+		free(formalInputDigest);
 		return 0;
 	}
 	if (!Q3GP_ConfigureNearestEven() || !Q3GP_CheckAbi()) {
 		free(executionPermitDigest);
 		free(predictionSetDigest);
+		free(formalInputDigest);
 		return 0;
 	}
 	if (fopen_s(&stream, outputPath, "wb") != 0 || stream == NULL) {
 		free(executionPermitDigest);
 		free(predictionSetDigest);
+		free(formalInputDigest);
 		return 0;
 	}
 
@@ -429,7 +512,7 @@ static int Q3GP_RunFormal(
 		Q3GP_CASE_ID,
 		Q3GP_ConfigurationId(),
 		Q3GP_SOURCE_COMMIT,
-		Q3GP_FORMAL_INPUT_SHA256,
+		formalInputDigest,
 		executionPermitDigest,
 		predictionSetDigest,
 		Q3GP_FORMAL_STEP_COUNT
@@ -437,6 +520,7 @@ static int Q3GP_RunFormal(
 		fclose(stream);
 		free(executionPermitDigest);
 		free(predictionSetDigest);
+		free(formalInputDigest);
 		return 0;
 	}
 
@@ -451,6 +535,7 @@ static int Q3GP_RunFormal(
 			fclose(stream);
 			free(executionPermitDigest);
 			free(predictionSetDigest);
+			free(formalInputDigest);
 			return 0;
 		}
 		movement.cmd = used;
@@ -475,6 +560,7 @@ static int Q3GP_RunFormal(
 			fclose(stream);
 			free(executionPermitDigest);
 			free(predictionSetDigest);
+			free(formalInputDigest);
 			return 0;
 		}
 		if (!Q3GP_WriteStep(
@@ -489,6 +575,7 @@ static int Q3GP_RunFormal(
 			fclose(stream);
 			free(executionPermitDigest);
 			free(predictionSetDigest);
+			free(formalInputDigest);
 			return 0;
 		}
 	}
@@ -502,10 +589,12 @@ static int Q3GP_RunFormal(
 		|| fclose(stream) != 0) {
 		free(executionPermitDigest);
 		free(predictionSetDigest);
+		free(formalInputDigest);
 		return 0;
 	}
 	free(executionPermitDigest);
 	free(predictionSetDigest);
+	free(formalInputDigest);
 	return 1;
 }
 
@@ -519,10 +608,11 @@ int main(int argc, char **argv) {
 		return 0;
 	}
 
-	if (argc == 4
+	if (argc == 6
 		&& strcmp(argv[1], "--formal") == 0
-		&& strcmp(argv[2], "--output") == 0
-		&& Q3GP_RunFormal(argv[3])) {
+		&& strcmp(argv[2], "--input") == 0
+		&& strcmp(argv[4], "--output") == 0
+		&& Q3GP_RunFormal(argv[3], argv[5])) {
 		puts("FORMAL_EXECUTION_COMPLETE");
 		return 0;
 	}

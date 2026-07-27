@@ -26,6 +26,29 @@
 
 人工门前的中性构建探针另行保存：`CA-R1` 已取得精确 Unity 版本，但被合法许可激活阻断；`CA-R2` 的 Windows x64 兼容性探针已经通过；`CA-R3` 的隔离恢复、构建与测试发现已经通过。三者都没有运行正式输入，也没有产生正式结果。
 
+`execution/execution-plan.json` 当前是 `execution_plan_preparation`，不是最终执行计划。它只绑定三案候选 runner、比较器、原始轨迹 Schema 与门前准备证据，明确记录 `CA-R1` 的合法 Unity 许可阻断、全部正式执行状态为 `false`，以及“一次人工门 → 四席预测冻结 → 机械生成并校验执行许可 → 正式执行”的后续顺序。它不嵌入正式输入、不授权盲测或执行，也不能进入冻结集合；只有 `CA-R1` 完成合法激活后的只构建复验、三案最终构建准备记录与 `fixture-lock.json` 全部完成后，才可由 `execution-artifact 0.1.1` 的最终执行计划原位替换。
+
+## 第二道投影审核任务
+
+`inputs/projection-audit.task.json` 目前有意保持不存在。正式包契约要求它在最终构建准备记录、夹具锁和最终执行计划之后生成，并直接绑定这些制品的散列；当前 `CA-R1` 仍被合法 Unity 许可激活阻断，因而不能诚实地产生 `overall_status=passed` 的最终构建准备记录，后续夹具锁和最终执行计划也不能完成。用占位散列或删减输入提前生成任务，都会破坏第二道独立审核的证据闭包。
+
+门前工具 `tools/materialize-projection-audit-task.py` 把上述顺序做成失败即关闭的机械约束：
+
+```text
+python research/calibration-tests/continuous-action-pilot/tools/materialize-projection-audit-task.py self-test --repo-root .
+
+python research/calibration-tests/continuous-action-pilot/tools/materialize-projection-audit-task.py materialize \
+  --repo-root . \
+  --run-dir research/calibration-tests/continuous-action-pilot/runs/continuous-001 \
+  --created-at <UTC-秒级时间>
+
+python research/calibration-tests/continuous-action-pilot/tools/materialize-projection-audit-task.py verify \
+  --repo-root . \
+  --run-dir research/calibration-tests/continuous-action-pilot/runs/continuous-001
+```
+
+`materialize` 只有在 readiness 校验器要求的全部输入及输出 Schema 都存在时才写入任务；任一前置缺失、路径越界、输入集合漂移或散列不闭合都会拒绝生成。它只散列声明性制品，不调用夹具、构建器、正式 runner、轨迹校验器、比较器或正式输入。任务生成并通过 `verify` 后，才可派发给与来源编码者及第一道审核者隔离的独立审核者；正式审核的 actor 角色必须是 `source_auditor`，其 `identifier` 与 `session_id` 都不得复用第一道审核记录。工具和任务都不构成审核结论、授权或正式执行许可。
+
 ## 追加纪律
 
 - `manifest.json` 在门前冻结前保持 `preparing`；

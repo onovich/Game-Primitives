@@ -1,4 +1,165 @@
 {
+  "$defs": {
+    "external_file": {
+      "additionalProperties": false,
+      "properties": {
+        "bytes": {
+          "minimum": 0,
+          "type": "integer"
+        },
+        "external_path": {
+          "pattern": "^D:/GamePrimitivesToolchains/(?:replays|sources)/",
+          "type": "string"
+        },
+        "sha256": {
+          "pattern": "^[0-9a-f]{64}$",
+          "type": "string"
+        }
+      },
+      "required": [
+        "bytes",
+        "external_path",
+        "sha256"
+      ],
+      "type": "object"
+    },
+    "process_record": {
+      "additionalProperties": false,
+      "properties": {
+        "alive_after": {
+          "const": 0
+        },
+        "exit_code": {
+          "type": "integer"
+        },
+        "job_active_after_cleanup": {
+          "const": 0
+        },
+        "job_active_before_cleanup": {
+          "minimum": 0,
+          "type": "integer"
+        },
+        "job_kill_on_close": {
+          "const": true
+        },
+        "pid": {
+          "minimum": 1,
+          "type": "integer"
+        },
+        "step": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "timed_out": {
+          "const": false
+        }
+      },
+      "required": [
+        "alive_after",
+        "exit_code",
+        "pid",
+        "step"
+      ],
+      "type": "object"
+    },
+    "replay": {
+      "additionalProperties": false,
+      "properties": {
+        "assembly": {
+          "additionalProperties": false,
+          "properties": {
+            "bytes": {
+              "const": 2976256
+            },
+            "external_path": {
+              "pattern": "^D:/GamePrimitivesToolchains/replays/.+/osu\\.Game\\.Rulesets\\.Osu\\.Tests\\.dll$",
+              "type": "string"
+            },
+            "sha256": {
+              "const": "b984ea92ed9f2750982a8747981005e739322e55c7b448813237906ef4ce043c"
+            }
+          },
+          "required": [
+            "bytes",
+            "external_path",
+            "sha256"
+          ],
+          "type": "object"
+        },
+        "cache_root": {
+          "pattern": "^D:/GamePrimitivesToolchains/replays/r3-two-cache-readiness-20260727-12(?:-reproducibility)?$",
+          "type": "string"
+        },
+        "execution_tree": {
+          "additionalProperties": false,
+          "properties": {
+            "assembly_relative_path": {
+              "const": "osu.Game.Rulesets.Osu.Tests.dll"
+            },
+            "execution_root": {
+              "pattern": "^D:/GamePrimitivesToolchains/replays/.+/artifacts/bin/osu\\.Game\\.Rulesets\\.Osu\\.Tests/debug$",
+              "type": "string"
+            },
+            "file_count": {
+              "const": 479
+            },
+            "manifest": {
+              "additionalProperties": false,
+              "properties": {
+                "bytes": {
+                  "const": 125934
+                },
+                "external_path": {
+                  "pattern": "^D:/GamePrimitivesToolchains/replays/.+/formal-execution-tree-manifest\\.json$",
+                  "type": "string"
+                },
+                "sha256": {
+                  "const": "5e771da6f92cdc14d5fb0576e4baf27b6ade35a94c6c95757d3fcc414d8da078"
+                }
+              },
+              "required": [
+                "bytes",
+                "external_path",
+                "sha256"
+              ],
+              "type": "object"
+            },
+            "total_bytes": {
+              "const": 693048802
+            }
+          },
+          "required": [
+            "assembly_relative_path",
+            "execution_root",
+            "file_count",
+            "manifest",
+            "total_bytes"
+          ],
+          "type": "object"
+        },
+        "removed_discovery_ephemera": {
+          "const": [
+            ".msCoverageSourceRootsMapping_osu.Game.Rulesets.Osu.Tests",
+            "nunit_random_seed.tmp"
+          ]
+        },
+        "replay_id": {
+          "enum": [
+            "replay-a",
+            "replay-b"
+          ]
+        }
+      },
+      "required": [
+        "assembly",
+        "cache_root",
+        "execution_tree",
+        "removed_discovery_ephemera",
+        "replay_id"
+      ],
+      "type": "object"
+    }
+  },
   "$id": "https://github.com/onovich/Game-Primitives/blob/main/research/calibration-tests/continuous-action-pilot/schema/r3-build-list-evidence-0.1.0.schema.json",
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "additionalProperties": false,
@@ -45,163 +206,94 @@
       ]
     },
     "evidence_files": {
-      "const": [
-        {
-          "bytes": 3306,
-          "external_path": "D:/GamePrimitivesToolchains/cache/osu-r3-formal-prep-replay-v0.1.0-r9/probe-summary.json",
-          "sha256": "d4e8456f575eecd83cbdacb1db9cb84fcb0d900d1003afe39b9da21c8cf989b1"
-        },
-        {
-          "bytes": 165591,
-          "external_path": "D:/GamePrimitivesToolchains/cache/osu-r3-formal-prep-replay-v0.1.0-r9/logs/restore-msbuild.log",
-          "sha256": "f296d81bc18ca3d4af448810d8a4f15a9b8444e19cd33390608935f8a4d9ff49"
-        },
-        {
-          "bytes": 487830,
-          "external_path": "D:/GamePrimitivesToolchains/cache/osu-r3-formal-prep-replay-v0.1.0-r9/logs/build-msbuild.log",
-          "sha256": "da1558bd753761be9c539057a54c090dbf8237c5717751f37840553952fd8bfc"
-        },
-        {
-          "bytes": 490,
-          "external_path": "D:/GamePrimitivesToolchains/cache/osu-r3-formal-prep-replay-v0.1.0-r9/logs/list-tests.stdout",
-          "sha256": "efd03376380a9757a6d6137655a0c9b8841d9ee749c2ceaa75447079f662e404"
-        },
-        {
-          "bytes": 0,
-          "external_path": "D:/GamePrimitivesToolchains/cache/osu-r3-formal-prep-replay-v0.1.0-r9/logs/list-tests.stderr",
-          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
-        },
-        {
-          "bytes": 160,
-          "external_path": "D:/GamePrimitivesToolchains/cache/osu-r3-formal-prep-replay-v0.1.0-r9/logs/shutdown.stdout",
-          "sha256": "b8028200bc3b12a3210641024da80eb85dffe587d8192df519108d0a20cfe822"
-        },
-        {
-          "bytes": 0,
-          "external_path": "D:/GamePrimitivesToolchains/cache/osu-r3-formal-prep-replay-v0.1.0-r9/logs/shutdown.stderr",
-          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
-        },
-        {
-          "bytes": 0,
-          "external_path": "D:/GamePrimitivesToolchains/replays/r3-runner-guard-r2.stdout.txt",
-          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
-        },
-        {
-          "bytes": 703,
-          "external_path": "D:/GamePrimitivesToolchains/replays/r3-runner-guard-r2.stderr.txt",
-          "sha256": "cd9912bca85f4cc8e06a70cbd4e8e43f56dc6c56eb2286bb13b4283c8703daf9"
-        },
-        {
-          "bytes": 0,
-          "external_path": "D:/GamePrimitivesToolchains/replays/r3-comparator-guard-r2.stdout.txt",
-          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
-        },
-        {
-          "bytes": 708,
-          "external_path": "D:/GamePrimitivesToolchains/replays/r3-comparator-guard-r2.stderr.txt",
-          "sha256": "b9fc5058e689f51c099822a08d5089689dbfa46fdb9f9f2a623cffa098f978d2"
-        }
-      ]
+      "items": {
+        "$ref": "#/$defs/external_file"
+      },
+      "maxItems": 14,
+      "minItems": 14,
+      "type": "array",
+      "uniqueItems": true
     },
     "fixture_artifacts": {
-      "additionalProperties": false,
-      "properties": {
-        "build_list_runner_sha256": {
-          "const": "a1a16ee178349938360d0589595e48151269be182759febad5cc3b9613c1895f"
-        },
-        "comparator_sha256": {
-          "const": "a4a35b0513f00f2cc848a626ca4834210982154a7552fa06d89585f3e7a86da8"
-        },
-        "fixture_spec_sha256": {
-          "const": "6bff1307be4cd595bb41e10606207c0343a66cd661ea01324e01a1c6b3ccb07b"
-        },
-        "formal_runner_sha256": {
-          "const": "29926ac65c2c92605a2d756f0fdc76d41031e2180521750f746cbc680d5c564c"
-        },
-        "observation_patch_sha256": {
-          "const": "f383e4604f6ab65ff66be6619fe6558da9083e6a57aecaadb24b292f234ef006"
-        }
-      },
-      "required": [
-        "build_list_runner_sha256",
-        "comparator_sha256",
-        "fixture_spec_sha256",
-        "formal_runner_sha256",
-        "observation_patch_sha256"
-      ],
-      "type": "object"
+      "const": {
+        "build_list_runner_sha256": "c49b9078cce55406d04017cc2e1ae50c6592cbe11c6cdbee521ba3d325ed3892",
+        "comparator_sha256": "37b5decda965a45d052ef278dbf573cfe2d7db3012dfdae777a7ae63bfb1d2c2",
+        "deterministic_build_targets_sha256": "ab74e926c558134b1a92bf034bab6c7770fb75eebcb5b1c5b0158683e7d431cb",
+        "fixture_spec_sha256": "072065e8a5002be7080b814c53b4a165b0893a01670c4da4c9769a1000bab06a",
+        "formal_runner_sha256": "be1e6c3d3d4e863611baf9f77f344af9500f205a44903ee0c0cba92e24e287fd",
+        "observation_patch_sha256": "5907f3ea17699981cb48f298ed6addf83eea705388411c69293c26142d2e0535",
+        "safety_guards_sha256": "53b714b3224057e6dc2f5b01d8c13529ea8a0b1b75cc0c25eb0d1083c76aa6be"
+      }
     },
     "formal_execution": {
       "const": {
         "comparator_executed": false,
         "comparator_rejected_without_gate": true,
+        "evidence_scope": "recorded_build_list_and_guard_probe_processes_only",
         "formal_input_executed": false,
+        "formal_input_read_during_evidence_capture": false,
         "formal_result_created": false,
         "formal_runner_rejected_without_gate": true,
         "guard_rejection_created_cache": false,
+        "guard_rejection_created_output": false,
         "test_body_execution_count": 0
       }
     },
     "process_records": {
-      "const": [
-        {
-          "alive_after": 0,
-          "exit_code": 0,
-          "pid": 50980,
-          "step": "clone-frozen-source"
-        },
-        {
-          "alive_after": 0,
-          "exit_code": 0,
-          "pid": 74188,
-          "step": "checkout-frozen-commit"
-        },
-        {
-          "alive_after": 0,
-          "exit_code": 0,
-          "pid": 73224,
-          "step": "resolve-dotnet-version"
-        },
-        {
-          "alive_after": 0,
-          "exit_code": 0,
-          "pid": 72112,
-          "step": "locked-restore"
-        },
-        {
-          "alive_after": 0,
-          "exit_code": 0,
-          "pid": 67588,
-          "step": "build-observation-fixture"
-        },
-        {
-          "alive_after": 0,
-          "exit_code": 0,
-          "pid": 74580,
-          "step": "list-formal-test-without-execution"
-        },
-        {
-          "alive_after": 0,
-          "exit_code": 0,
-          "pid": 57732,
-          "step": "shutdown-dotnet-build-servers"
-        },
-        {
-          "alive_after": 0,
-          "exit_code": 1,
-          "pid": 63332,
-          "step": "formal-runner-refusal-without-permit"
-        },
-        {
-          "alive_after": 0,
-          "exit_code": 1,
-          "pid": 75140,
-          "step": "formal-comparator-refusal-without-permit"
-        }
-      ]
+      "items": {
+        "$ref": "#/$defs/process_record"
+      },
+      "maxItems": 21,
+      "minItems": 21,
+      "type": "array"
     },
     "project": {
       "const": "osu.Game.Rulesets.Osu.Tests/osu.Game.Rulesets.Osu.Tests.csproj"
+    },
+    "reproducibility": {
+      "additionalProperties": false,
+      "properties": {
+        "byte_identical": {
+          "const": true
+        },
+        "execution_replay_id": {
+          "const": "replay-a"
+        },
+        "execution_tree_manifest_sha256": {
+          "const": "5e771da6f92cdc14d5fb0576e4baf27b6ade35a94c6c95757d3fcc414d8da078"
+        },
+        "formal_assembly_bytes": {
+          "const": 2976256
+        },
+        "formal_assembly_sha256": {
+          "const": "b984ea92ed9f2750982a8747981005e739322e55c7b448813237906ef4ce043c"
+        },
+        "independent_cache_roots": {
+          "const": true
+        },
+        "replay_count": {
+          "const": 2
+        },
+        "replays": {
+          "items": {
+            "$ref": "#/$defs/replay"
+          },
+          "maxItems": 2,
+          "minItems": 2,
+          "type": "array"
+        }
+      },
+      "required": [
+        "byte_identical",
+        "execution_replay_id",
+        "execution_tree_manifest_sha256",
+        "formal_assembly_bytes",
+        "formal_assembly_sha256",
+        "independent_cache_roots",
+        "replay_count",
+        "replays"
+      ],
+      "type": "object"
     },
     "results": {
       "const": {
@@ -234,6 +326,7 @@
     "formal_execution",
     "process_records",
     "project",
+    "reproducibility",
     "results",
     "run_id",
     "source_commit"

@@ -1,32 +1,48 @@
 [CmdletBinding()]
 param(
     [Parameter(Mandatory = $true)]
-    [string]$BaselineTrace,
+    [string]$FormalOutputRoot,
 
     [Parameter(Mandatory = $true)]
-    [string]$VariantTrace,
+    [string]$SourceRoot,
 
     [Parameter(Mandatory = $true)]
-    [string]$OutputPath,
+    [string]$DotnetPath,
 
     [Parameter(Mandatory = $true)]
-    [string]$ExecutionPermitPath
+    [string]$ExecutionPermitPath,
+
+    [Parameter(Mandatory = $true)]
+    [ValidateNotNullOrEmpty()]
+    [string]$PythonPath
 )
 
 $ErrorActionPreference = 'Stop'
 Set-StrictMode -Version Latest
 $runId = 'continuous-001'
 $caseId = 'CA-R1'
+$expectedPythonPath = 'C:\Python314\python.exe'
+$expectedPythonSha256 = 'cce21c0e8710e304273e98ac4b2b0f5aceb639acbcd2343cbaa5c4e81619c45b'
+$expectedPythonBytes = 106328
 $scriptRoot = Split-Path -Parent $MyInvocation.MyCommand.Path
 $repoRoot = [System.IO.Path]::GetFullPath(
     (Join-Path $scriptRoot '..\..\..\..\..\..\..')
 )
-$runnerRelativePath = 'research/calibration-tests/continuous-action-pilot/runs/continuous-001/fixtures/r1/run-footsies-r1-formal-v0.1.0.ps1'
+$runnerRelativePath = 'research/calibration-tests/continuous-action-pilot/runs/continuous-001/fixtures/r1/run-footsies-r1-standalone-formal-v0.1.0.ps1'
 $comparatorRelativePath = 'research/calibration-tests/continuous-action-pilot/runs/continuous-001/fixtures/r1/compare-footsies-r1-v0.1.0.ps1'
 $formalInputRelativePath = 'research/calibration-tests/continuous-action-pilot/runs/continuous-001/fixtures/r1/footsies-r1-formal-input-v0.1.0.json'
-$testBodyRelativePath = 'research/calibration-tests/continuous-action-pilot/runs/continuous-001/fixtures/r1/footsies-r1-observation-v0.1.0.cs'
-$testBodyMetadataRelativePath = 'research/calibration-tests/continuous-action-pilot/runs/continuous-001/fixtures/r1/footsies-r1-observation-v0.1.0.cs.meta'
+$testBodyRelativePath = 'research/calibration-tests/continuous-action-pilot/runs/continuous-001/fixtures/r1/standalone/FormalProgram.cs'
+$formalProjectRelativePath = 'research/calibration-tests/continuous-action-pilot/runs/continuous-001/fixtures/r1/standalone/FootsiesR1Formal.csproj'
+$nugetConfigRelativePath = 'research/calibration-tests/continuous-action-pilot/runs/continuous-001/fixtures/r1/standalone/NuGet.config'
+$unityCompatibilityRelativePath = 'research/calibration-tests/continuous-action-pilot/runs/continuous-001/fixtures/r1/standalone/UnityCompatibility.cs'
+$sourceContractRelativePath = 'research/calibration-tests/continuous-action-pilot/runs/continuous-001/fixtures/r1/standalone/FrozenSourceContract.cs'
+$assetLoaderRelativePath = 'research/calibration-tests/continuous-action-pilot/runs/continuous-001/fixtures/r1/standalone/UnityYamlAssetLoader.cs'
 $variantPatchRelativePath = 'research/calibration-tests/continuous-action-pilot/runs/continuous-001/fixtures/r1/footsies-r1-whiff-cancel-v0.1.0.patch'
+$buildRunnerRelativePath = 'research/calibration-tests/continuous-action-pilot/runs/continuous-001/fixtures/r1/run-footsies-r1-standalone-build-smoke-v0.1.0.ps1'
+$buildEvidenceRelativePath = 'research/calibration-tests/continuous-action-pilot/runs/continuous-001/fixtures/r1/r1-standalone-build-evidence-v0.1.0.json'
+$buildReadinessVerifierRelativePath = 'research/calibration-tests/continuous-action-pilot/runs/continuous-001/fixtures/r1/verify-r1-build-readiness-v0.1.0.py'
+$outputBoundaryRelativePath = 'research/calibration-tests/continuous-action-pilot/runs/continuous-001/fixtures/r1/r1-formal-output-boundary-v0.1.0.ps1'
+$processBoundaryRelativePath = 'research/calibration-tests/continuous-action-pilot/runs/continuous-001/fixtures/r1/r1-process-boundary-v0.1.0.ps1'
 $rawTraceSchemaRelativePath = 'research/calibration-tests/continuous-action-pilot/schema/ca-r1-raw-trace-0.1.0.schema.json'
 $executionPermitVerifier = Join-Path `
     $repoRoot `
@@ -48,6 +64,32 @@ function Assert-Condition {
 function Get-Sha256 {
     param([string]$LiteralPath)
     return (Get-FileHash -LiteralPath $LiteralPath -Algorithm SHA256).Hash.ToLowerInvariant()
+}
+
+function Resolve-FixedPythonRuntime {
+    param([Parameter(Mandatory = $true)][string]$RequestedPath)
+
+    Assert-Condition `
+        ([System.IO.Path]::IsPathRooted($RequestedPath)) `
+        'PythonPath must be absolute.'
+    $resolved = [System.IO.Path]::GetFullPath($RequestedPath)
+    Assert-Condition `
+        ([string]::Equals(
+            $resolved,
+            $expectedPythonPath,
+            [System.StringComparison]::OrdinalIgnoreCase
+        )) `
+        'PythonPath must resolve to the frozen Python 3.14.3 runtime.'
+    Assert-Condition `
+        (Test-Path -LiteralPath $resolved -PathType Leaf) `
+        'The frozen Python runtime is missing.'
+    Assert-Condition `
+        ((Get-Item -LiteralPath $resolved).Length -eq $expectedPythonBytes) `
+        'The frozen Python runtime byte count differs.'
+    Assert-Condition `
+        ((Get-Sha256 $resolved) -ceq $expectedPythonSha256) `
+        'The frozen Python runtime SHA-256 differs.'
+    return (Resolve-Path -LiteralPath $resolved -ErrorAction Stop).ProviderPath
 }
 
 function Resolve-BoundArtifact {
@@ -79,14 +121,15 @@ function Invoke-ExecutionPermitVerifier {
         [string]$RepositoryRoot,
         [string]$PermitPath,
         [string]$ExpectedRunId,
-        [string]$ExpectedCaseId
+        [string]$ExpectedCaseId,
+        [string]$PythonExecutablePath
     )
 
     Assert-Condition `
         (Test-Path -LiteralPath $VerifierPath -PathType Leaf) `
         "Execution-permit verifier is missing: $VerifierPath"
     $verificationOutput = @(
-        & python -B $VerifierPath verify `
+        & $PythonExecutablePath -B $VerifierPath verify `
             --repo-root $RepositoryRoot `
             --permit-path $PermitPath `
             --case-id $ExpectedCaseId 2>&1
@@ -121,6 +164,14 @@ function Invoke-ExecutionPermitVerifier {
     Assert-Condition `
         ($verification.prediction_set_digest -cmatch '^(?!0{64}$)[0-9a-f]{64}$') `
         'Prediction-set digest is invalid.'
+    Assert-Condition `
+        ([string]$verification.python_runtime.runtime.executable_path -ceq
+            'C:/Python314/python.exe' -and
+         [long]$verification.python_runtime.runtime.bytes -eq
+            $expectedPythonBytes -and
+         [string]$verification.python_runtime.runtime.sha256 -ceq
+            $expectedPythonSha256) `
+        'Execution permit selected the wrong Python runtime.'
     return $verification
 }
 
@@ -130,14 +181,15 @@ function Invoke-RawTraceVerifier {
         [string]$RepositoryRoot,
         [string]$PermitPath,
         [string]$TracePath,
-        [string]$ConfigurationId
+        [string]$ConfigurationId,
+        [string]$PythonExecutablePath
     )
 
     Assert-Condition `
         (Test-Path -LiteralPath $VerifierPath -PathType Leaf) `
         "Raw-trace verifier is missing: $VerifierPath"
     $verificationOutput = @(
-        & python -B $VerifierPath verify `
+        & $PythonExecutablePath -B $VerifierPath verify `
             --repo-root $RepositoryRoot `
             --permit-path $PermitPath `
             --case-id 'CA-R1' `
@@ -315,6 +367,7 @@ function New-ObservationRecords {
 # The repository verifier is intentionally the first operation that can open a
 # formal-run artifact. It must succeed before either raw trace or the comparator
 # output path is inspected.
+$resolvedPythonPath = Resolve-FixedPythonRuntime -RequestedPath $PythonPath
 Assert-Condition `
     ([System.IO.Path]::IsPathRooted($ExecutionPermitPath)) `
     'ExecutionPermitPath must be absolute.'
@@ -324,7 +377,8 @@ $executionPermit = Invoke-ExecutionPermitVerifier `
     -RepositoryRoot $repoRoot `
     -PermitPath $executionPermitFull `
     -ExpectedRunId $runId `
-    -ExpectedCaseId $caseId
+    -ExpectedCaseId $caseId `
+    -PythonExecutablePath $resolvedPythonPath
 
 $executionTarget = $executionPermit.execution_target
 $boundComparator = Resolve-BoundArtifact `
@@ -353,71 +407,166 @@ $null = Resolve-BoundArtifact `
     -ExpectedRelativePath $testBodyRelativePath
 $null = Resolve-BoundArtifact `
     -RepositoryRoot $repoRoot `
-    -Reference $executionTarget.support_artifacts.test_body_metadata `
-    -ExpectedRelativePath $testBodyMetadataRelativePath
+    -Reference $executionTarget.support_artifacts.formal_project `
+    -ExpectedRelativePath $formalProjectRelativePath
+$null = Resolve-BoundArtifact `
+    -RepositoryRoot $repoRoot `
+    -Reference $executionTarget.support_artifacts.nuget_config `
+    -ExpectedRelativePath $nugetConfigRelativePath
+$null = Resolve-BoundArtifact `
+    -RepositoryRoot $repoRoot `
+    -Reference $executionTarget.support_artifacts.unity_compatibility `
+    -ExpectedRelativePath $unityCompatibilityRelativePath
+$null = Resolve-BoundArtifact `
+    -RepositoryRoot $repoRoot `
+    -Reference $executionTarget.support_artifacts.source_contract `
+    -ExpectedRelativePath $sourceContractRelativePath
+$null = Resolve-BoundArtifact `
+    -RepositoryRoot $repoRoot `
+    -Reference $executionTarget.support_artifacts.asset_loader `
+    -ExpectedRelativePath $assetLoaderRelativePath
 $null = Resolve-BoundArtifact `
     -RepositoryRoot $repoRoot `
     -Reference $executionTarget.support_artifacts.variant_patch `
     -ExpectedRelativePath $variantPatchRelativePath
 $null = Resolve-BoundArtifact `
     -RepositoryRoot $repoRoot `
+    -Reference $executionTarget.support_artifacts.build_runner `
+    -ExpectedRelativePath $buildRunnerRelativePath
+$null = Resolve-BoundArtifact `
+    -RepositoryRoot $repoRoot `
+    -Reference $executionTarget.support_artifacts.build_evidence `
+    -ExpectedRelativePath $buildEvidenceRelativePath
+$null = Resolve-BoundArtifact `
+    -RepositoryRoot $repoRoot `
+    -Reference $executionTarget.support_artifacts.build_readiness_verifier `
+    -ExpectedRelativePath $buildReadinessVerifierRelativePath
+$boundOutputBoundary = Resolve-BoundArtifact `
+    -RepositoryRoot $repoRoot `
+    -Reference $executionTarget.support_artifacts.output_boundary `
+    -ExpectedRelativePath $outputBoundaryRelativePath
+$null = Resolve-BoundArtifact `
+    -RepositoryRoot $repoRoot `
+    -Reference $executionTarget.support_artifacts.process_boundary `
+    -ExpectedRelativePath $processBoundaryRelativePath
+$null = Resolve-BoundArtifact `
+    -RepositoryRoot $repoRoot `
     -Reference $executionTarget.raw_trace_schema `
     -ExpectedRelativePath $rawTraceSchemaRelativePath
 
-$baselineTraceFull = [System.IO.Path]::GetFullPath($BaselineTrace)
-$variantTraceFull = [System.IO.Path]::GetFullPath($VariantTrace)
-$baselineVerification = Invoke-RawTraceVerifier `
-    -VerifierPath $rawTraceVerifier `
+$resolvedSourceRoot = (Resolve-Path -LiteralPath $SourceRoot -ErrorAction Stop).ProviderPath
+$resolvedDotnetPath = (Resolve-Path -LiteralPath $DotnetPath -ErrorAction Stop).ProviderPath
+$null = . $boundOutputBoundary
+$outputLayout = Resolve-R1FormalOutputLayout `
+    -Mode comparator `
+    -FormalOutputRoot $FormalOutputRoot `
     -RepositoryRoot $repoRoot `
-    -PermitPath $executionPermitFull `
-    -TracePath $baselineTraceFull `
-    -ConfigurationId 'config.baseline'
-$variantVerification = Invoke-RawTraceVerifier `
-    -VerifierPath $rawTraceVerifier `
-    -RepositoryRoot $repoRoot `
-    -PermitPath $executionPermitFull `
-    -TracePath $variantTraceFull `
-    -ConfigurationId 'config.variant'
+    -SourceRoot $resolvedSourceRoot `
+    -DotnetPath $resolvedDotnetPath
+$resolvedOutputPath = [string]$outputLayout.comparator_output_path
+$traceSpecifications = @(
+    [pscustomobject]@{
+        label = 'baseline rep-01'
+        configuration_id = 'config.baseline'
+        repetition_index = 1
+        path = [string]$outputLayout.baseline_rep01_path
+    }
+    [pscustomobject]@{
+        label = 'baseline rep-02'
+        configuration_id = 'config.baseline'
+        repetition_index = 2
+        path = [string]$outputLayout.baseline_rep02_path
+    }
+    [pscustomobject]@{
+        label = 'variant rep-01'
+        configuration_id = 'config.variant'
+        repetition_index = 1
+        path = [string]$outputLayout.variant_rep01_path
+    }
+    [pscustomobject]@{
+        label = 'variant rep-02'
+        configuration_id = 'config.variant'
+        repetition_index = 2
+        path = [string]$outputLayout.variant_rep02_path
+    }
+)
+$verifiedTraces = @(
+    foreach ($specification in $traceSpecifications) {
+        $verification = Invoke-RawTraceVerifier `
+            -VerifierPath $rawTraceVerifier `
+            -RepositoryRoot $repoRoot `
+            -PermitPath $executionPermitFull `
+            -TracePath $specification.path `
+            -ConfigurationId $specification.configuration_id `
+            -PythonExecutablePath $resolvedPythonPath
+        Assert-Condition `
+            ([string]$verification.formal_input.sha256 -ceq $formalInputSha256) `
+            "$($specification.label) verifier returned the wrong formal-input binding."
+        $trace = Load-Trace $specification.path
+        Assert-Condition `
+            ($trace.sha256 -ceq [string]$verification.formal_trace_sha256) `
+            "$($specification.label) trace changed after strict verification."
+        Assert-Condition `
+            ($trace.value.configuration_id -ceq $specification.configuration_id) `
+            "$($specification.label) trace has the wrong configuration_id."
+        Assert-Condition `
+            ($trace.value.formal_input_sha256 -ceq $formalInputSha256) `
+            "$($specification.label) trace formal-input SHA-256 mismatch."
+        Assert-Condition `
+            ($trace.value.formal_input_id -ceq 'o.a.0002') `
+            "$($specification.label) trace has an unexpected formal input ID."
+        Assert-Condition `
+            ($trace.value.stop_boundary_id -ceq 'o.a.0042') `
+            "$($specification.label) trace has an unexpected stop boundary."
+        Assert-Condition `
+            ($trace.value.execution_permit_sha256 -ceq $executionPermit.execution_permit_sha256) `
+            "$($specification.label) execution-permit SHA-256 mismatch."
+        Assert-Condition `
+            ($trace.value.prediction_set_digest -ceq $executionPermit.prediction_set_digest) `
+            "$($specification.label) prediction-set digest mismatch."
+        [pscustomobject]@{
+            configuration_id = $specification.configuration_id
+            repetition_index = $specification.repetition_index
+            trace = $trace
+        }
+    }
+)
+$baselineRep01 = @(
+    $verifiedTraces |
+        Where-Object {
+            $_.configuration_id -ceq 'config.baseline' -and
+            $_.repetition_index -eq 1
+        }
+)[0].trace
+$baselineRep02 = @(
+    $verifiedTraces |
+        Where-Object {
+            $_.configuration_id -ceq 'config.baseline' -and
+            $_.repetition_index -eq 2
+        }
+)[0].trace
+$variantRep01 = @(
+    $verifiedTraces |
+        Where-Object {
+            $_.configuration_id -ceq 'config.variant' -and
+            $_.repetition_index -eq 1
+        }
+)[0].trace
+$variantRep02 = @(
+    $verifiedTraces |
+        Where-Object {
+            $_.configuration_id -ceq 'config.variant' -and
+            $_.repetition_index -eq 2
+        }
+)[0].trace
 Assert-Condition `
-    ([string]$baselineVerification.formal_input.sha256 -ceq $formalInputSha256) `
-    'Baseline verifier returned the wrong formal-input binding.'
+    ($baselineRep01.sha256 -ceq $baselineRep02.sha256) `
+    'Baseline repetitions are not byte-identical.'
 Assert-Condition `
-    ([string]$variantVerification.formal_input.sha256 -ceq $formalInputSha256) `
-    'Variant verifier returned the wrong formal-input binding.'
-
-$baseline = Load-Trace $baselineTraceFull
-$variant = Load-Trace $variantTraceFull
-Assert-Condition `
-    ($baseline.sha256 -ceq [string]$baselineVerification.formal_trace_sha256) `
-    'Baseline trace changed after strict verification.'
-Assert-Condition `
-    ($variant.sha256 -ceq [string]$variantVerification.formal_trace_sha256) `
-    'Variant trace changed after strict verification.'
-Assert-Condition ($baseline.value.configuration_id -eq 'config.baseline') 'Baseline trace has the wrong configuration_id.'
-Assert-Condition ($variant.value.configuration_id -eq 'config.variant') 'Variant trace has the wrong configuration_id.'
-Assert-Condition ($baseline.value.formal_input_sha256 -eq $variant.value.formal_input_sha256) 'Formal input hashes differ.'
-Assert-Condition `
-    ($baseline.value.formal_input_sha256 -ceq $formalInputSha256) `
-    'Baseline trace formal-input SHA-256 mismatch.'
-Assert-Condition `
-    ($variant.value.formal_input_sha256 -ceq $formalInputSha256) `
-    'Variant trace formal-input SHA-256 mismatch.'
-Assert-Condition ($baseline.value.formal_input_id -eq $variant.value.formal_input_id) 'Formal input IDs differ.'
-Assert-Condition ($baseline.value.formal_input_id -eq 'o.a.0002') 'Unexpected formal input ID.'
-Assert-Condition ($baseline.value.stop_boundary_id -eq $variant.value.stop_boundary_id) 'Stop boundaries differ.'
-Assert-Condition ($baseline.value.stop_boundary_id -eq 'o.a.0042') 'Unexpected stop boundary.'
-Assert-Condition `
-    ($baseline.value.execution_permit_sha256 -eq $executionPermit.execution_permit_sha256) `
-    'Baseline trace execution-permit SHA-256 mismatch.'
-Assert-Condition `
-    ($variant.value.execution_permit_sha256 -eq $executionPermit.execution_permit_sha256) `
-    'Variant trace execution-permit SHA-256 mismatch.'
-Assert-Condition `
-    ($baseline.value.prediction_set_digest -eq $executionPermit.prediction_set_digest) `
-    'Baseline trace prediction-set digest mismatch.'
-Assert-Condition `
-    ($variant.value.prediction_set_digest -eq $executionPermit.prediction_set_digest) `
-    'Variant trace prediction-set digest mismatch.'
+    ($variantRep01.sha256 -ceq $variantRep02.sha256) `
+    'Variant repetitions are not byte-identical.'
+$baseline = $baselineRep01
+$variant = $variantRep01
 
 $sameInputTrace = (Get-InputSignature $baseline.value) -eq (Get-InputSignature $variant.value)
 $sameBufferedRequest = [int]$baseline.value.trace_entries[2].after_buffer_action_id -eq [int]$variant.value.trace_entries[2].after_buffer_action_id
@@ -451,8 +600,12 @@ $result = [ordered]@{
             configuration_id = 'config.baseline'
             artifacts = @(
                 [ordered]@{
-                    artifact_id = 'config.baseline.raw-trace'
-                    sha256 = $baseline.sha256
+                    artifact_id = 'config.baseline.repetition-0001.raw-trace'
+                    sha256 = $baselineRep01.sha256
+                }
+                [ordered]@{
+                    artifact_id = 'config.baseline.repetition-0002.raw-trace'
+                    sha256 = $baselineRep02.sha256
                 }
             )
         },
@@ -460,8 +613,12 @@ $result = [ordered]@{
             configuration_id = 'config.variant'
             artifacts = @(
                 [ordered]@{
-                    artifact_id = 'config.variant.raw-trace'
-                    sha256 = $variant.sha256
+                    artifact_id = 'config.variant.repetition-0001.raw-trace'
+                    sha256 = $variantRep01.sha256
+                }
+                [ordered]@{
+                    artifact_id = 'config.variant.repetition-0002.raw-trace'
+                    sha256 = $variantRep02.sha256
                 }
             )
         }
@@ -478,8 +635,6 @@ $result = [ordered]@{
     negative_controls = @()
 }
 
-$resolvedOutputPath = [System.IO.Path]::GetFullPath($OutputPath)
-Assert-Condition (-not (Test-Path -LiteralPath $resolvedOutputPath)) 'Comparator output already exists.'
 $outputDirectory = Split-Path -Parent $resolvedOutputPath
 if ($outputDirectory) {
     New-Item -ItemType Directory -Path $outputDirectory -Force | Out-Null

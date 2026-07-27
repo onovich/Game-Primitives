@@ -1,0 +1,91 @@
+{
+  "$defs": {
+    "artifactReference": {
+      "$ref": "https://github.com/onovich/Game-Primitives/blob/main/research/calibration-tests/continuous-action-pilot/schema/task-packet-0.1.0.schema.json#/$defs/artifactReference"
+    }
+  },
+  "$id": "https://github.com/onovich/Game-Primitives/blob/main/research/calibration-tests/continuous-action-pilot/schema/r1-process-boundary-negative-0.1.0.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "$schema": {
+      "const": "https://github.com/onovich/Game-Primitives/blob/main/research/calibration-tests/continuous-action-pilot/schema/r1-process-boundary-negative-0.1.0.schema.json"
+    },
+    "artifact_type": {
+      "const": "continuous_action_r1_process_boundary_negative"
+    },
+    "artifact_version": {
+      "const": "0.1.0"
+    },
+    "case_id": {
+      "const": "CA-R1"
+    },
+    "fixture_artifacts": {
+      "items": {
+        "$ref": "#/$defs/artifactReference"
+      },
+      "maxItems": 2,
+      "minItems": 2,
+      "type": "array",
+      "uniqueItems": true
+    },
+    "formal_execution": {
+      "additionalProperties": false,
+      "properties": {
+        "comparator_executed": {
+          "const": false
+        },
+        "formal_input_executed": {
+          "const": false
+        },
+        "formal_input_read": {
+          "const": false
+        },
+        "formal_runner_executed": {
+          "const": false
+        }
+      },
+      "required": [
+        "comparator_executed",
+        "formal_input_executed",
+        "formal_input_read",
+        "formal_runner_executed"
+      ],
+      "type": "object"
+    },
+    "run_id": {
+      "const": "continuous-001"
+    },
+    "status": {
+      "const": "passed"
+    },
+    "synthetic_failure_exit_code": {
+      "const": 7
+    },
+    "synthetic_failure_reaped": {
+      "const": true
+    },
+    "synthetic_failure_tree_reaped": {
+      "const": true
+    },
+    "synthetic_timeout_tree_reaped": {
+      "const": true
+    }
+  },
+  "required": [
+    "$schema",
+    "artifact_type",
+    "artifact_version",
+    "run_id",
+    "case_id",
+    "status",
+    "fixture_artifacts",
+    "synthetic_failure_exit_code",
+    "synthetic_failure_reaped",
+    "synthetic_failure_tree_reaped",
+    "synthetic_timeout_tree_reaped",
+    "formal_execution"
+  ],
+  "title": "Game Primitives CA-R1 Process Boundary Negative Controls 0.1.0",
+  "type": "object"
+}

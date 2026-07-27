@@ -104,6 +104,34 @@
             }
           ]
         },
+        "execution_target_contract": {
+          "allOf": [
+            {
+              "$ref": "#/$defs/artifactReference"
+            },
+            {
+              "properties": {
+                "path": {
+                  "const": "research/calibration-tests/continuous-action-pilot/tools/formal_execution_target_contract.py"
+                }
+              }
+            }
+          ]
+        },
+        "final_execution_plan_materializer": {
+          "allOf": [
+            {
+              "$ref": "#/$defs/artifactReference"
+            },
+            {
+              "properties": {
+                "path": {
+                  "const": "research/calibration-tests/continuous-action-pilot/tools/materialize-final-execution-plan.py"
+                }
+              }
+            }
+          ]
+        },
         "formal_comparator_output_schema": {
           "allOf": [
             {
@@ -132,6 +160,76 @@
             }
           ]
         },
+        "r1_build_readiness_schema": {
+          "allOf": [
+            {
+              "$ref": "#/$defs/artifactReference"
+            },
+            {
+              "properties": {
+                "path": {
+                  "const": "research/calibration-tests/continuous-action-pilot/schema/r1-standalone-build-evidence-0.1.0.schema.json"
+                }
+              }
+            }
+          ]
+        },
+        "r2_build_readiness_schema": {
+          "allOf": [
+            {
+              "$ref": "#/$defs/artifactReference"
+            },
+            {
+              "properties": {
+                "path": {
+                  "const": "research/calibration-tests/continuous-action-pilot/schema/r2-build-readiness-evidence-0.1.0.schema.json"
+                }
+              }
+            }
+          ]
+        },
+        "python_runtime_evidence_materializer": {
+          "allOf": [
+            {
+              "$ref": "#/$defs/artifactReference"
+            },
+            {
+              "properties": {
+                "path": {
+                  "const": "research/calibration-tests/continuous-action-pilot/tools/materialize-python-runtime-evidence.py"
+                }
+              }
+            }
+          ]
+        },
+        "python_runtime_evidence_schema": {
+          "allOf": [
+            {
+              "$ref": "#/$defs/artifactReference"
+            },
+            {
+              "properties": {
+                "path": {
+                  "const": "research/calibration-tests/continuous-action-pilot/schema/python-runtime-evidence-0.1.0.schema.json"
+                }
+              }
+            }
+          ]
+        },
+        "protocol_incident_schema": {
+          "allOf": [
+            {
+              "$ref": "#/$defs/artifactReference"
+            },
+            {
+              "properties": {
+                "path": {
+                  "const": "research/calibration-tests/continuous-action-pilot/schema/protocol-incident-0.1.0.schema.json"
+                }
+              }
+            }
+          ]
+        },
         "submission_builder": {
           "allOf": [
             {
@@ -154,9 +252,72 @@
         "execution_permit_materializer",
         "execution_permit_schema",
         "execution_permit_verifier",
+        "execution_target_contract",
+        "final_execution_plan_materializer",
         "formal_comparator_output_schema",
         "raw_trace_verifier",
+        "r1_build_readiness_schema",
+        "r2_build_readiness_schema",
+        "python_runtime_evidence_materializer",
+        "python_runtime_evidence_schema",
+        "protocol_incident_schema",
         "submission_builder"
+      ],
+      "type": "object"
+    },
+    "pythonRuntime": {
+      "additionalProperties": false,
+      "properties": {
+        "evidence": {
+          "allOf": [
+            {
+              "$ref": "#/$defs/artifactReference"
+            },
+            {
+              "properties": {
+                "path": {
+                  "const": "research/calibration-tests/continuous-action-pilot/runs/continuous-001/fixtures/python-runtime-evidence-v0.1.0.json"
+                }
+              }
+            }
+          ]
+        },
+        "runtime": {
+          "additionalProperties": false,
+          "properties": {
+            "bytes": {
+              "const": 106328
+            },
+            "executable_path": {
+              "const": "C:/Python314/python.exe"
+            },
+            "platform": {
+              "const": "windows-x64"
+            },
+            "runtime_id": {
+              "const": "python-3.14.3-windows-x64"
+            },
+            "sha256": {
+              "const": "cce21c0e8710e304273e98ac4b2b0f5aceb639acbcd2343cbaa5c4e81619c45b"
+            },
+            "version_stdout": {
+              "const": "Python 3.14.3"
+            }
+          },
+          "required": [
+            "bytes",
+            "executable_path",
+            "platform",
+            "runtime_id",
+            "sha256",
+            "version_stdout"
+          ],
+          "type": "object"
+        }
+      },
+      "required": [
+        "evidence",
+        "runtime"
       ],
       "type": "object"
     },
@@ -202,7 +363,7 @@
             {
               "properties": {
                 "path": {
-                  "const": "research/calibration-tests/continuous-action-pilot/runs/continuous-001/fixtures/r1/run-footsies-r1-formal-v0.1.0.ps1"
+                  "const": "research/calibration-tests/continuous-action-pilot/runs/continuous-001/fixtures/r1/run-footsies-r1-standalone-formal-v0.1.0.ps1"
                 }
               }
             }
@@ -233,7 +394,7 @@
             {
               "properties": {
                 "path": {
-                  "const": "research/calibration-tests/continuous-action-pilot/runs/continuous-001/fixtures/r1/footsies-r1-observation-v0.1.0.cs"
+                  "const": "research/calibration-tests/continuous-action-pilot/runs/continuous-001/fixtures/r1/standalone/FormalProgram.cs"
                 }
               }
             }
@@ -254,7 +415,7 @@
     "r1SupportArtifacts": {
       "additionalProperties": false,
       "properties": {
-        "test_body_metadata": {
+        "asset_loader": {
           "allOf": [
             {
               "$ref": "#/$defs/artifactReference"
@@ -262,7 +423,133 @@
             {
               "properties": {
                 "path": {
-                  "const": "research/calibration-tests/continuous-action-pilot/runs/continuous-001/fixtures/r1/footsies-r1-observation-v0.1.0.cs.meta"
+                  "const": "research/calibration-tests/continuous-action-pilot/runs/continuous-001/fixtures/r1/standalone/UnityYamlAssetLoader.cs"
+                }
+              }
+            }
+          ]
+        },
+        "build_evidence": {
+          "allOf": [
+            {
+              "$ref": "#/$defs/artifactReference"
+            },
+            {
+              "properties": {
+                "path": {
+                  "const": "research/calibration-tests/continuous-action-pilot/runs/continuous-001/fixtures/r1/r1-standalone-build-evidence-v0.1.0.json"
+                }
+              }
+            }
+          ]
+        },
+        "build_readiness_verifier": {
+          "allOf": [
+            {
+              "$ref": "#/$defs/artifactReference"
+            },
+            {
+              "properties": {
+                "path": {
+                  "const": "research/calibration-tests/continuous-action-pilot/runs/continuous-001/fixtures/r1/verify-r1-build-readiness-v0.1.0.py"
+                }
+              }
+            }
+          ]
+        },
+        "build_runner": {
+          "allOf": [
+            {
+              "$ref": "#/$defs/artifactReference"
+            },
+            {
+              "properties": {
+                "path": {
+                  "const": "research/calibration-tests/continuous-action-pilot/runs/continuous-001/fixtures/r1/run-footsies-r1-standalone-build-smoke-v0.1.0.ps1"
+                }
+              }
+            }
+          ]
+        },
+        "formal_project": {
+          "allOf": [
+            {
+              "$ref": "#/$defs/artifactReference"
+            },
+            {
+              "properties": {
+                "path": {
+                  "const": "research/calibration-tests/continuous-action-pilot/runs/continuous-001/fixtures/r1/standalone/FootsiesR1Formal.csproj"
+                }
+              }
+            }
+          ]
+        },
+        "nuget_config": {
+          "allOf": [
+            {
+              "$ref": "#/$defs/artifactReference"
+            },
+            {
+              "properties": {
+                "path": {
+                  "const": "research/calibration-tests/continuous-action-pilot/runs/continuous-001/fixtures/r1/standalone/NuGet.config"
+                }
+              }
+            }
+          ]
+        },
+        "output_boundary": {
+          "allOf": [
+            {
+              "$ref": "#/$defs/artifactReference"
+            },
+            {
+              "properties": {
+                "path": {
+                  "const": "research/calibration-tests/continuous-action-pilot/runs/continuous-001/fixtures/r1/r1-formal-output-boundary-v0.1.0.ps1"
+                }
+              }
+            }
+          ]
+        },
+        "process_boundary": {
+          "allOf": [
+            {
+              "$ref": "#/$defs/artifactReference"
+            },
+            {
+              "properties": {
+                "path": {
+                  "const": "research/calibration-tests/continuous-action-pilot/runs/continuous-001/fixtures/r1/r1-process-boundary-v0.1.0.ps1"
+                }
+              }
+            }
+          ]
+        },
+        "source_contract": {
+          "allOf": [
+            {
+              "$ref": "#/$defs/artifactReference"
+            },
+            {
+              "properties": {
+                "path": {
+                  "const": "research/calibration-tests/continuous-action-pilot/runs/continuous-001/fixtures/r1/standalone/FrozenSourceContract.cs"
+                }
+              }
+            }
+          ]
+        },
+        "unity_compatibility": {
+          "allOf": [
+            {
+              "$ref": "#/$defs/artifactReference"
+            },
+            {
+              "properties": {
+                "path": {
+                  "const": "research/calibration-tests/continuous-action-pilot/runs/continuous-001/fixtures/r1/standalone/UnityCompatibility.cs"
                 }
               }
             }
@@ -284,7 +571,16 @@
         }
       },
       "required": [
-        "test_body_metadata",
+        "asset_loader",
+        "build_evidence",
+        "build_readiness_verifier",
+        "build_runner",
+        "formal_project",
+        "nuget_config",
+        "output_boundary",
+        "process_boundary",
+        "source_contract",
+        "unity_compatibility",
         "variant_patch"
       ],
       "type": "object"
@@ -383,6 +679,34 @@
     "r2SupportArtifacts": {
       "additionalProperties": false,
       "properties": {
+        "build_readiness_evidence": {
+          "allOf": [
+            {
+              "$ref": "#/$defs/artifactReference"
+            },
+            {
+              "properties": {
+                "path": {
+                  "const": "research/calibration-tests/continuous-action-pilot/runs/continuous-001/fixtures/r2/r2-build-readiness-evidence-v0.1.0.json"
+                }
+              }
+            }
+          ]
+        },
+        "build_readiness_verifier": {
+          "allOf": [
+            {
+              "$ref": "#/$defs/artifactReference"
+            },
+            {
+              "properties": {
+                "path": {
+                  "const": "research/calibration-tests/continuous-action-pilot/runs/continuous-001/fixtures/r2/verify-r2-build-readiness-v0.1.0.py"
+                }
+              }
+            }
+          ]
+        },
         "build_runner": {
           "allOf": [
             {
@@ -469,6 +793,8 @@
         }
       },
       "required": [
+        "build_readiness_evidence",
+        "build_readiness_verifier",
         "build_runner",
         "compatibility_patch",
         "compatibility_source",
@@ -614,6 +940,20 @@
             }
           ]
         },
+        "deterministic_build_targets": {
+          "allOf": [
+            {
+              "$ref": "#/$defs/artifactReference"
+            },
+            {
+              "properties": {
+                "path": {
+                  "const": "research/calibration-tests/continuous-action-pilot/runs/continuous-001/fixtures/r3/r3-deterministic-build-v0.1.0.targets"
+                }
+              }
+            }
+          ]
+        },
         "fixture_spec": {
           "allOf": [
             {
@@ -627,13 +967,29 @@
               }
             }
           ]
+        },
+        "safety_guards": {
+          "allOf": [
+            {
+              "$ref": "#/$defs/artifactReference"
+            },
+            {
+              "properties": {
+                "path": {
+                  "const": "research/calibration-tests/continuous-action-pilot/runs/continuous-001/fixtures/r3/r3-safety-guards-v0.1.0.ps1"
+                }
+              }
+            }
+          ]
         }
       },
       "required": [
         "build_list_evidence",
         "build_runner",
         "dependency_lock_set",
-        "fixture_spec"
+        "deterministic_build_targets",
+        "fixture_spec",
+        "safety_guards"
       ],
       "type": "object"
     },
@@ -723,6 +1079,20 @@
         }
       ],
       "type": "array"
+    },
+    "execution_plan": {
+      "allOf": [
+        {
+          "$ref": "#/$defs/artifactReference"
+        },
+        {
+          "properties": {
+            "path": {
+              "const": "research/calibration-tests/continuous-action-pilot/runs/continuous-001/execution/execution-plan.json"
+            }
+          }
+        }
+      ]
     },
     "human_gate_authorization": {
       "allOf": [
@@ -876,6 +1246,9 @@
       ],
       "type": "object"
     },
+    "python_runtime": {
+      "$ref": "#/$defs/pythonRuntime"
+    },
     "run_id": {
       "const": "continuous-001"
     },
@@ -926,6 +1299,9 @@
         "formal_input_executed": {
           "const": false
         },
+        "formal_input_read": {
+          "const": false
+        },
         "formal_result_produced": {
           "const": false
         },
@@ -935,6 +1311,7 @@
       },
       "required": [
         "formal_input_executed",
+        "formal_input_read",
         "formal_result_produced",
         "predictions_frozen"
       ],
@@ -947,11 +1324,13 @@
     "artifact_version",
     "authorization_lineage",
     "contract_artifacts",
+    "execution_plan",
     "execution_targets",
     "human_gate_authorization",
     "permit_id",
     "permit_state",
     "prediction_set",
+    "python_runtime",
     "run_id",
     "scope",
     "state_at_materialization"

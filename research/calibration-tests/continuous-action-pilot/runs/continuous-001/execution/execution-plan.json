@@ -1,0 +1,1427 @@
+{
+  "$schema": "https://github.com/onovich/Game-Primitives/blob/main/research/calibration-tests/continuous-action-pilot/schema/execution-artifact-0.1.1.schema.json",
+  "artifact_type": "execution_plan",
+  "artifact_version": "0.1.1",
+  "case_results": [],
+  "cases": [
+    {
+      "case_id": "CA-R1",
+      "comparators": [
+        {
+          "allowed_observation_ids": [
+            "obs.a.0001",
+            "obs.a.0002",
+            "obs.a.0003",
+            "obs.a.0004",
+            "obs.a.0005"
+          ],
+          "comparator_id": "comparator.ca-r1.formal",
+          "implementation": {
+            "artifact_id": "comparator.ca-r1.formal",
+            "path": "research/calibration-tests/continuous-action-pilot/runs/continuous-001/fixtures/r1/compare-footsies-r1-v0.1.0.ps1",
+            "sha256": "c0c7336ed53856f2597a90782125e9075b5d43e1b47dbebfdc6977e4b4f3367c"
+          },
+          "tolerance_rules": [
+            {
+              "comparison": "exact",
+              "observation_id": "obs.a.0001",
+              "tolerance_rule_id": "tol.a.0001",
+              "value": {
+                "serialized_value": "exact",
+                "unit": null,
+                "value_type": "status"
+              }
+            },
+            {
+              "comparison": "exact",
+              "observation_id": "obs.a.0002",
+              "tolerance_rule_id": "tol.a.0001",
+              "value": {
+                "serialized_value": "exact",
+                "unit": null,
+                "value_type": "status"
+              }
+            },
+            {
+              "comparison": "exact",
+              "observation_id": "obs.a.0003",
+              "tolerance_rule_id": "tol.a.0001",
+              "value": {
+                "serialized_value": "exact",
+                "unit": null,
+                "value_type": "status"
+              }
+            },
+            {
+              "comparison": "exact",
+              "observation_id": "obs.a.0004",
+              "tolerance_rule_id": "tol.a.0001",
+              "value": {
+                "serialized_value": "exact",
+                "unit": null,
+                "value_type": "status"
+              }
+            },
+            {
+              "comparison": "exact",
+              "observation_id": "obs.a.0005",
+              "tolerance_rule_id": "tol.a.0001",
+              "value": {
+                "serialized_value": "exact",
+                "unit": null,
+                "value_type": "status"
+              }
+            }
+          ]
+        }
+      ],
+      "configurations": [
+        {
+          "build_command": [
+            "powershell.exe",
+            "-NoProfile",
+            "-File",
+            "research/calibration-tests/continuous-action-pilot/runs/continuous-001/fixtures/r1/run-footsies-r1-standalone-build-smoke-v0.1.0.ps1",
+            "-SourcePath",
+            "${FOOTSIES_SOURCE}",
+            "-DotnetPath",
+            "${DOTNET_8_0_100}",
+            "-CacheRoot",
+            "${CA_R1_BUILD_ROOT}"
+          ],
+          "configuration_id": "config.baseline",
+          "expected_binary_path": "external-builds/output.ca-r1.baseline-formal-assembly",
+          "fixture_artifacts": [
+            {
+              "artifact_id": "fixture.ca-r1.formal-runner",
+              "path": "research/calibration-tests/continuous-action-pilot/runs/continuous-001/fixtures/r1/run-footsies-r1-standalone-formal-v0.1.0.ps1",
+              "sha256": "46f621993a1f8ee703dacbb0544081157e543dcfc6f819d45570c931ea0eb5ef"
+            },
+            {
+              "artifact_id": "fixture.ca-r1.formal-test-body",
+              "path": "research/calibration-tests/continuous-action-pilot/runs/continuous-001/fixtures/r1/standalone/FormalProgram.cs",
+              "sha256": "49c86348f4edbc8b3b9e241dfc80c5f37c69055b0c9698c711b7a1edf4d3f5b1"
+            },
+            {
+              "artifact_id": "fixture.ca-r1.unity-yaml-asset-loader",
+              "path": "research/calibration-tests/continuous-action-pilot/runs/continuous-001/fixtures/r1/standalone/UnityYamlAssetLoader.cs",
+              "sha256": "fe8f55c7ea3e2e5d58eb228e4d8a83a095298c7d7cd2c7e8fd9386a56acb30e4"
+            },
+            {
+              "artifact_id": "fixture.ca-r1.build-smoke-runner",
+              "path": "research/calibration-tests/continuous-action-pilot/runs/continuous-001/fixtures/r1/run-footsies-r1-standalone-build-smoke-v0.1.0.ps1",
+              "sha256": "aa3904e3d8cd75017031ed376afa37e2fef12df74db94fc527bda5218b73b196"
+            },
+            {
+              "artifact_id": "fixture.ca-r1.formal-project",
+              "path": "research/calibration-tests/continuous-action-pilot/runs/continuous-001/fixtures/r1/standalone/FootsiesR1Formal.csproj",
+              "sha256": "ba39e4d8a7c8c676fd23b66b4cd0d197863bb48b83d2907b57e5647cc8cf4060"
+            },
+            {
+              "artifact_id": "fixture.ca-r1.nuget-config",
+              "path": "research/calibration-tests/continuous-action-pilot/runs/continuous-001/fixtures/r1/standalone/NuGet.config",
+              "sha256": "5256a7e3e07d2c5c94f7a1e6c45f39aab011c659c5e2d53e452dea525ce04575"
+            },
+            {
+              "artifact_id": "fixture.ca-r1.formal-output-boundary",
+              "path": "research/calibration-tests/continuous-action-pilot/runs/continuous-001/fixtures/r1/r1-formal-output-boundary-v0.1.0.ps1",
+              "sha256": "42133fabdb7633b658a59f22d9735287db610af1e79eaa2be7052c000f1b4f80"
+            },
+            {
+              "artifact_id": "fixture.ca-r1.process-boundary",
+              "path": "research/calibration-tests/continuous-action-pilot/runs/continuous-001/fixtures/r1/r1-process-boundary-v0.1.0.ps1",
+              "sha256": "0774c9882e400b327c981c541f7d96ff56646021cea1cc0a4fd070ce81a81592"
+            },
+            {
+              "artifact_id": "fixture.ca-r1.frozen-source-contract",
+              "path": "research/calibration-tests/continuous-action-pilot/runs/continuous-001/fixtures/r1/standalone/FrozenSourceContract.cs",
+              "sha256": "57c0c7ed48de388da0b2fef3e2de6160839a73ecc53b03de9b6270dc37f0d11f"
+            },
+            {
+              "artifact_id": "fixture.ca-r1.unity-compatibility",
+              "path": "research/calibration-tests/continuous-action-pilot/runs/continuous-001/fixtures/r1/standalone/UnityCompatibility.cs",
+              "sha256": "041c5f88f372dab9956dbad5a03cfee1dff5085aaaaabf4b1137585642536b28"
+            }
+          ],
+          "run_command": [
+            "powershell.exe",
+            "-NoProfile",
+            "-File",
+            "research/calibration-tests/continuous-action-pilot/runs/continuous-001/fixtures/r1/run-footsies-r1-standalone-formal-v0.1.0.ps1",
+            "-ConfigurationId",
+            "config.baseline",
+            "-RepetitionIndex",
+            "${REPETITION_INDEX}",
+            "-SourceRoot",
+            "${FOOTSIES_SOURCE}",
+            "-DotnetPath",
+            "${DOTNET_8_0_100}",
+            "-FormalOutputRoot",
+            "D:\\GamePrimitivesFormalOutputs",
+            "-ExecutionPermitPath",
+            "${FORMAL_EXECUTION_PERMIT}",
+            "-PythonPath",
+            "${PYTHON_3_14_3}"
+          ],
+          "semantic_role": "baseline"
+        },
+        {
+          "build_command": [
+            "powershell.exe",
+            "-NoProfile",
+            "-File",
+            "research/calibration-tests/continuous-action-pilot/runs/continuous-001/fixtures/r1/run-footsies-r1-standalone-build-smoke-v0.1.0.ps1",
+            "-SourcePath",
+            "${FOOTSIES_SOURCE}",
+            "-DotnetPath",
+            "${DOTNET_8_0_100}",
+            "-CacheRoot",
+            "${CA_R1_BUILD_ROOT}"
+          ],
+          "configuration_id": "config.variant",
+          "expected_binary_path": "external-builds/output.ca-r1.variant-formal-assembly",
+          "fixture_artifacts": [
+            {
+              "artifact_id": "fixture.ca-r1.formal-runner",
+              "path": "research/calibration-tests/continuous-action-pilot/runs/continuous-001/fixtures/r1/run-footsies-r1-standalone-formal-v0.1.0.ps1",
+              "sha256": "46f621993a1f8ee703dacbb0544081157e543dcfc6f819d45570c931ea0eb5ef"
+            },
+            {
+              "artifact_id": "fixture.ca-r1.formal-test-body",
+              "path": "research/calibration-tests/continuous-action-pilot/runs/continuous-001/fixtures/r1/standalone/FormalProgram.cs",
+              "sha256": "49c86348f4edbc8b3b9e241dfc80c5f37c69055b0c9698c711b7a1edf4d3f5b1"
+            },
+            {
+              "artifact_id": "fixture.ca-r1.unity-yaml-asset-loader",
+              "path": "research/calibration-tests/continuous-action-pilot/runs/continuous-001/fixtures/r1/standalone/UnityYamlAssetLoader.cs",
+              "sha256": "fe8f55c7ea3e2e5d58eb228e4d8a83a095298c7d7cd2c7e8fd9386a56acb30e4"
+            },
+            {
+              "artifact_id": "fixture.ca-r1.build-smoke-runner",
+              "path": "research/calibration-tests/continuous-action-pilot/runs/continuous-001/fixtures/r1/run-footsies-r1-standalone-build-smoke-v0.1.0.ps1",
+              "sha256": "aa3904e3d8cd75017031ed376afa37e2fef12df74db94fc527bda5218b73b196"
+            },
+            {
+              "artifact_id": "fixture.ca-r1.formal-project",
+              "path": "research/calibration-tests/continuous-action-pilot/runs/continuous-001/fixtures/r1/standalone/FootsiesR1Formal.csproj",
+              "sha256": "ba39e4d8a7c8c676fd23b66b4cd0d197863bb48b83d2907b57e5647cc8cf4060"
+            },
+            {
+              "artifact_id": "fixture.ca-r1.nuget-config",
+              "path": "research/calibration-tests/continuous-action-pilot/runs/continuous-001/fixtures/r1/standalone/NuGet.config",
+              "sha256": "5256a7e3e07d2c5c94f7a1e6c45f39aab011c659c5e2d53e452dea525ce04575"
+            },
+            {
+              "artifact_id": "fixture.ca-r1.formal-output-boundary",
+              "path": "research/calibration-tests/continuous-action-pilot/runs/continuous-001/fixtures/r1/r1-formal-output-boundary-v0.1.0.ps1",
+              "sha256": "42133fabdb7633b658a59f22d9735287db610af1e79eaa2be7052c000f1b4f80"
+            },
+            {
+              "artifact_id": "fixture.ca-r1.process-boundary",
+              "path": "research/calibration-tests/continuous-action-pilot/runs/continuous-001/fixtures/r1/r1-process-boundary-v0.1.0.ps1",
+              "sha256": "0774c9882e400b327c981c541f7d96ff56646021cea1cc0a4fd070ce81a81592"
+            },
+            {
+              "artifact_id": "fixture.ca-r1.frozen-source-contract",
+              "path": "research/calibration-tests/continuous-action-pilot/runs/continuous-001/fixtures/r1/standalone/FrozenSourceContract.cs",
+              "sha256": "57c0c7ed48de388da0b2fef3e2de6160839a73ecc53b03de9b6270dc37f0d11f"
+            },
+            {
+              "artifact_id": "fixture.ca-r1.unity-compatibility",
+              "path": "research/calibration-tests/continuous-action-pilot/runs/continuous-001/fixtures/r1/standalone/UnityCompatibility.cs",
+              "sha256": "041c5f88f372dab9956dbad5a03cfee1dff5085aaaaabf4b1137585642536b28"
+            },
+            {
+              "artifact_id": "patch.ca-r1.whiff-cancel-variant",
+              "path": "research/calibration-tests/continuous-action-pilot/runs/continuous-001/fixtures/r1/footsies-r1-whiff-cancel-v0.1.0.patch",
+              "sha256": "8ad1a91f40579f38e3867ba8905b53c0d94749716821a7bf3edf670c998fc9bb"
+            }
+          ],
+          "run_command": [
+            "powershell.exe",
+            "-NoProfile",
+            "-File",
+            "research/calibration-tests/continuous-action-pilot/runs/continuous-001/fixtures/r1/run-footsies-r1-standalone-formal-v0.1.0.ps1",
+            "-ConfigurationId",
+            "config.variant",
+            "-RepetitionIndex",
+            "${REPETITION_INDEX}",
+            "-SourceRoot",
+            "${FOOTSIES_SOURCE}",
+            "-DotnetPath",
+            "${DOTNET_8_0_100}",
+            "-FormalOutputRoot",
+            "D:\\GamePrimitivesFormalOutputs",
+            "-ExecutionPermitPath",
+            "${FORMAL_EXECUTION_PERMIT}",
+            "-PythonPath",
+            "${PYTHON_3_14_3}"
+          ],
+          "semantic_role": "variant"
+        }
+      ],
+      "environment_refs": [
+        "environment.windows-dotnet-8.0.100",
+        "environment.windows-python-3.14.3"
+      ],
+      "formal_input": {
+        "artifact_id": "input.ca-r1.seven-event",
+        "path": "research/calibration-tests/continuous-action-pilot/runs/continuous-001/fixtures/r1/footsies-r1-formal-input-v0.1.0.json",
+        "sha256": "6d3e8863ed7fa7d855e90c1784027692cb486c45055c86fee33509479479a424"
+      },
+      "invariants": [
+        {
+          "comparator_id": "comparator.ca-r1.formal",
+          "description": "两配置使用同一冻结构建、初始状态与观察仪器。",
+          "invariant_id": "inv.a.0001",
+          "observation_ids": [
+            "obs.a.0001",
+            "obs.a.0002",
+            "obs.a.0003",
+            "obs.a.0004",
+            "obs.a.0005"
+          ]
+        },
+        {
+          "comparator_id": "comparator.ca-r1.formal",
+          "description": "两配置的两个动作定义、动作帧与映射关系完全相同。",
+          "invariant_id": "inv.a.0002",
+          "observation_ids": [
+            "obs.a.0001",
+            "obs.a.0002",
+            "obs.a.0003",
+            "obs.a.0004",
+            "obs.a.0005"
+          ]
+        },
+        {
+          "comparator_id": "comparator.ca-r1.formal",
+          "description": "两配置的请求缓存窗口、执行窗口与更新顺序完全相同。",
+          "invariant_id": "inv.a.0003",
+          "observation_ids": [
+            "obs.a.0001",
+            "obs.a.0002",
+            "obs.a.0003",
+            "obs.a.0004",
+            "obs.a.0005"
+          ]
+        },
+        {
+          "comparator_id": "comparator.ca-r1.formal",
+          "description": "两配置接收逐字节相同的七次输入更新。",
+          "invariant_id": "inv.a.0004",
+          "observation_ids": [
+            "obs.a.0001",
+            "obs.a.0002",
+            "obs.a.0003",
+            "obs.a.0004",
+            "obs.a.0005"
+          ]
+        },
+        {
+          "comparator_id": "comparator.ca-r1.formal",
+          "description": "整个片段无接触、无命中，另一实体与人工控制均不参与。",
+          "invariant_id": "inv.a.0005",
+          "observation_ids": [
+            "obs.a.0001",
+            "obs.a.0002",
+            "obs.a.0003",
+            "obs.a.0004",
+            "obs.a.0005"
+          ]
+        },
+        {
+          "comparator_id": "comparator.ca-r1.formal",
+          "description": "两配置使用同一停止点、观察字段与记录粒度。",
+          "invariant_id": "inv.a.0006",
+          "observation_ids": [
+            "obs.a.0001",
+            "obs.a.0002",
+            "obs.a.0003",
+            "obs.a.0004",
+            "obs.a.0005"
+          ]
+        }
+      ],
+      "negative_control": false,
+      "repetition_count": 2,
+      "source_commit": "7eaaad799bb7912625c15af9407c2c67e6305d75",
+      "stop_boundary_id": "o.a.0042",
+      "time_base_ids": [
+        "o.a.0027"
+      ]
+    },
+    {
+      "case_id": "CA-R2",
+      "comparators": [
+        {
+          "allowed_observation_ids": [
+            "obs.b.0001",
+            "obs.b.0002",
+            "obs.b.0003",
+            "obs.b.0004",
+            "obs.b.0005"
+          ],
+          "comparator_id": "comparator.ca-r2.formal",
+          "implementation": {
+            "artifact_id": "r2.comparator.q3-formal-traces.v0.1.0",
+            "path": "research/calibration-tests/continuous-action-pilot/runs/continuous-001/fixtures/r2/compare-q3-formal-traces-v0.1.0.ps1",
+            "sha256": "cbb27f7f5503a24ef17c06a746dcc2503f3cd5ad7dbb724c80508204274662ed"
+          },
+          "tolerance_rules": [
+            {
+              "comparison": "exact",
+              "observation_id": "obs.b.0001",
+              "tolerance_rule_id": "tol.b.0001",
+              "value": {
+                "serialized_value": "exact",
+                "unit": null,
+                "value_type": "status"
+              }
+            },
+            {
+              "comparison": "set_equality",
+              "observation_id": "obs.b.0002",
+              "tolerance_rule_id": "tol.b.0002",
+              "value": {
+                "serialized_value": "negative|zero|positive",
+                "unit": null,
+                "value_type": "id_set"
+              }
+            },
+            {
+              "comparison": "set_equality",
+              "observation_id": "obs.b.0003",
+              "tolerance_rule_id": "tol.b.0002",
+              "value": {
+                "serialized_value": "negative|zero|positive",
+                "unit": null,
+                "value_type": "id_set"
+              }
+            },
+            {
+              "comparison": "exact",
+              "observation_id": "obs.b.0004",
+              "tolerance_rule_id": "tol.b.0001",
+              "value": {
+                "serialized_value": "exact",
+                "unit": null,
+                "value_type": "status"
+              }
+            },
+            {
+              "comparison": "exact",
+              "observation_id": "obs.b.0005",
+              "tolerance_rule_id": "tol.b.0001",
+              "value": {
+                "serialized_value": "exact",
+                "unit": null,
+                "value_type": "status"
+              }
+            }
+          ]
+        }
+      ],
+      "configurations": [
+        {
+          "build_command": [
+            "powershell.exe",
+            "-NoProfile",
+            "-File",
+            "research/calibration-tests/continuous-action-pilot/runs/continuous-001/fixtures/r2/build-q3-formal-fixture-v0.1.0.ps1",
+            "-SourcePath",
+            "${QUAKE3_SOURCE}",
+            "-OutputPath",
+            "${CA_R2_BUILD_ROOT}",
+            "-VcVarsPath",
+            "${MSVC_VCVARS64}"
+          ],
+          "configuration_id": "config.baseline",
+          "expected_binary_path": "external-builds/output.ca-r2.baseline-executable",
+          "fixture_artifacts": [
+            {
+              "artifact_id": "r2.fixture.q3-formal-header.v0.1.0",
+              "path": "research/calibration-tests/continuous-action-pilot/runs/continuous-001/fixtures/r2/q3-formal-fixture-v0.1.0.h",
+              "sha256": "2ada739f42ccb24758d7aca22908ba74583a976f1ac180662929d131c24c5acd"
+            },
+            {
+              "artifact_id": "r2.fixture.q3-formal-compatibility.v0.1.0",
+              "path": "research/calibration-tests/continuous-action-pilot/runs/continuous-001/fixtures/r2/q3-formal-compatibility-v0.1.0.c",
+              "sha256": "c1211b6eca0dd9807ba8c5d633ff454dc7882d9a2d74d720b3ed2ee662d1b485"
+            },
+            {
+              "artifact_id": "r2.fixture.q3-formal-harness.v0.1.0",
+              "path": "research/calibration-tests/continuous-action-pilot/runs/continuous-001/fixtures/r2/q3-formal-harness-v0.1.0.c",
+              "sha256": "c84f178dee5630ce82702a13ad5cfa13176359ead2cf47d5e522d6574c1f640d"
+            },
+            {
+              "artifact_id": "r2.runner.q3-formal-build.v0.1.0",
+              "path": "research/calibration-tests/continuous-action-pilot/runs/continuous-001/fixtures/r2/build-q3-formal-fixture-v0.1.0.ps1",
+              "sha256": "67765f2f2b2bfda2bcdc94b223a13303401c66c7756e6a563619d2d99afae580"
+            },
+            {
+              "artifact_id": "r2.runner.q3-formal-guarded.v0.1.0",
+              "path": "research/calibration-tests/continuous-action-pilot/runs/continuous-001/fixtures/r2/run-q3-formal-guarded-v0.1.0.ps1",
+              "sha256": "f5d054169631af1680ee56703afcc57c7e6c14d100643bf0eef9c98a02f0f029"
+            },
+            {
+              "artifact_id": "r2.patch.q3-msvc-x64-compatibility.v0.1.0",
+              "path": "research/calibration-tests/continuous-action-pilot/runs/continuous-001/fixtures/r2/q3-msvc-x64-compatibility-v0.1.0.patch",
+              "sha256": "f435cf87bd2b222da5da09b02306c00a61a3b96a958d049e1638ae7b75e82b79"
+            },
+            {
+              "artifact_id": "r2.patch.q3-observation.v0.1.0",
+              "path": "research/calibration-tests/continuous-action-pilot/runs/continuous-001/fixtures/r2/q3-observation-v0.1.0.patch",
+              "sha256": "c24e2ca8d6ad3893002060e6829a521b6f5f2dcb48933a19d663325b42cdf5bb"
+            }
+          ],
+          "run_command": [
+            "powershell.exe",
+            "-NoProfile",
+            "-File",
+            "research/calibration-tests/continuous-action-pilot/runs/continuous-001/fixtures/r2/run-q3-formal-guarded-v0.1.0.ps1",
+            "-BuildEvidencePath",
+            "research/calibration-tests/continuous-action-pilot/runs/continuous-001/fixtures/r2/r2-build-readiness-evidence-v0.1.0.json",
+            "-ConfigurationId",
+            "config.baseline",
+            "-RepetitionIndex",
+            "${REPETITION_INDEX}",
+            "-ExecutionPermitPath",
+            "${FORMAL_EXECUTION_PERMIT}",
+            "-FormalOutputRoot",
+            "D:\\GamePrimitivesFormalOutputs",
+            "-SourceRoot",
+            "${QUAKE3_SOURCE}",
+            "-ToolchainRoot",
+            "${MSVC_TOOLCHAIN_ROOT}",
+            "-PythonPath",
+            "${PYTHON_3_14_3}"
+          ],
+          "semantic_role": "baseline"
+        },
+        {
+          "build_command": [
+            "powershell.exe",
+            "-NoProfile",
+            "-File",
+            "research/calibration-tests/continuous-action-pilot/runs/continuous-001/fixtures/r2/build-q3-formal-fixture-v0.1.0.ps1",
+            "-SourcePath",
+            "${QUAKE3_SOURCE}",
+            "-OutputPath",
+            "${CA_R2_BUILD_ROOT}",
+            "-VcVarsPath",
+            "${MSVC_VCVARS64}"
+          ],
+          "configuration_id": "config.variant",
+          "expected_binary_path": "external-builds/output.ca-r2.variant-executable",
+          "fixture_artifacts": [
+            {
+              "artifact_id": "r2.fixture.q3-formal-header.v0.1.0",
+              "path": "research/calibration-tests/continuous-action-pilot/runs/continuous-001/fixtures/r2/q3-formal-fixture-v0.1.0.h",
+              "sha256": "2ada739f42ccb24758d7aca22908ba74583a976f1ac180662929d131c24c5acd"
+            },
+            {
+              "artifact_id": "r2.fixture.q3-formal-compatibility.v0.1.0",
+              "path": "research/calibration-tests/continuous-action-pilot/runs/continuous-001/fixtures/r2/q3-formal-compatibility-v0.1.0.c",
+              "sha256": "c1211b6eca0dd9807ba8c5d633ff454dc7882d9a2d74d720b3ed2ee662d1b485"
+            },
+            {
+              "artifact_id": "r2.fixture.q3-formal-harness.v0.1.0",
+              "path": "research/calibration-tests/continuous-action-pilot/runs/continuous-001/fixtures/r2/q3-formal-harness-v0.1.0.c",
+              "sha256": "c84f178dee5630ce82702a13ad5cfa13176359ead2cf47d5e522d6574c1f640d"
+            },
+            {
+              "artifact_id": "r2.runner.q3-formal-build.v0.1.0",
+              "path": "research/calibration-tests/continuous-action-pilot/runs/continuous-001/fixtures/r2/build-q3-formal-fixture-v0.1.0.ps1",
+              "sha256": "67765f2f2b2bfda2bcdc94b223a13303401c66c7756e6a563619d2d99afae580"
+            },
+            {
+              "artifact_id": "r2.runner.q3-formal-guarded.v0.1.0",
+              "path": "research/calibration-tests/continuous-action-pilot/runs/continuous-001/fixtures/r2/run-q3-formal-guarded-v0.1.0.ps1",
+              "sha256": "f5d054169631af1680ee56703afcc57c7e6c14d100643bf0eef9c98a02f0f029"
+            },
+            {
+              "artifact_id": "r2.patch.q3-msvc-x64-compatibility.v0.1.0",
+              "path": "research/calibration-tests/continuous-action-pilot/runs/continuous-001/fixtures/r2/q3-msvc-x64-compatibility-v0.1.0.patch",
+              "sha256": "f435cf87bd2b222da5da09b02306c00a61a3b96a958d049e1638ae7b75e82b79"
+            },
+            {
+              "artifact_id": "r2.patch.q3-observation.v0.1.0",
+              "path": "research/calibration-tests/continuous-action-pilot/runs/continuous-001/fixtures/r2/q3-observation-v0.1.0.patch",
+              "sha256": "c24e2ca8d6ad3893002060e6829a521b6f5f2dcb48933a19d663325b42cdf5bb"
+            },
+            {
+              "artifact_id": "r2.patch.q3-entry-latch-variant.v0.1.0",
+              "path": "research/calibration-tests/continuous-action-pilot/runs/continuous-001/fixtures/r2/q3-entry-latch-variant-v0.1.0.patch",
+              "sha256": "b6089cff7287f846e8f484339d762af3e0731ae48cc78eb43a7eb1b6e4bdfb08"
+            }
+          ],
+          "run_command": [
+            "powershell.exe",
+            "-NoProfile",
+            "-File",
+            "research/calibration-tests/continuous-action-pilot/runs/continuous-001/fixtures/r2/run-q3-formal-guarded-v0.1.0.ps1",
+            "-BuildEvidencePath",
+            "research/calibration-tests/continuous-action-pilot/runs/continuous-001/fixtures/r2/r2-build-readiness-evidence-v0.1.0.json",
+            "-ConfigurationId",
+            "config.variant",
+            "-RepetitionIndex",
+            "${REPETITION_INDEX}",
+            "-ExecutionPermitPath",
+            "${FORMAL_EXECUTION_PERMIT}",
+            "-FormalOutputRoot",
+            "D:\\GamePrimitivesFormalOutputs",
+            "-SourceRoot",
+            "${QUAKE3_SOURCE}",
+            "-ToolchainRoot",
+            "${MSVC_TOOLCHAIN_ROOT}",
+            "-PythonPath",
+            "${PYTHON_3_14_3}"
+          ],
+          "semantic_role": "variant"
+        }
+      ],
+      "environment_refs": [
+        "environment.windows-msvc-19.50.35723",
+        "environment.windows-python-3.14.3"
+      ],
+      "formal_input": {
+        "artifact_id": "r2.input.usercmd-trace.v0.1.0",
+        "path": "research/calibration-tests/continuous-action-pilot/runs/continuous-001/fixtures/r2/r2-formal-input-v0.1.0.json",
+        "sha256": "5ce6cb8eb8b9ef9669059b1e504154c643f644abce7988b1896e45c56b600b7e"
+      },
+      "invariants": [
+        {
+          "comparator_id": "comparator.ca-r2.formal",
+          "description": "两配置使用同一冻结构建、兼容层与观察仪器。",
+          "invariant_id": "inv.b.0001",
+          "observation_ids": [
+            "obs.b.0001",
+            "obs.b.0002",
+            "obs.b.0003",
+            "obs.b.0004",
+            "obs.b.0005"
+          ]
+        },
+        {
+          "comparator_id": "comparator.ca-r2.formal",
+          "description": "两配置接收逐字节相同的二十五步原始方向序列。",
+          "invariant_id": "inv.b.0002",
+          "observation_ids": [
+            "obs.b.0001",
+            "obs.b.0002",
+            "obs.b.0003",
+            "obs.b.0004",
+            "obs.b.0005"
+          ]
+        },
+        {
+          "comparator_id": "comparator.ca-r2.formal",
+          "description": "两配置的初始位置、速度、朝向与过程模式完全相同。",
+          "invariant_id": "inv.b.0003",
+          "observation_ids": [
+            "obs.b.0001",
+            "obs.b.0002",
+            "obs.b.0003",
+            "obs.b.0004",
+            "obs.b.0005"
+          ]
+        },
+        {
+          "comparator_id": "comparator.ca-r2.formal",
+          "description": "两配置使用相同的八毫秒固定子步与二百毫秒停止点。",
+          "invariant_id": "inv.b.0004",
+          "observation_ids": [
+            "obs.b.0001",
+            "obs.b.0002",
+            "obs.b.0003",
+            "obs.b.0004",
+            "obs.b.0005"
+          ]
+        },
+        {
+          "comparator_id": "comparator.ca-r2.formal",
+          "description": "两配置的加速、摩擦、重力、量化与写回公式完全相同。",
+          "invariant_id": "inv.b.0005",
+          "observation_ids": [
+            "obs.b.0001",
+            "obs.b.0002",
+            "obs.b.0003",
+            "obs.b.0004",
+            "obs.b.0005"
+          ]
+        },
+        {
+          "comparator_id": "comparator.ca-r2.formal",
+          "description": "整个片段保持在声明过程内，碰撞世界为空且接触数为零。",
+          "invariant_id": "inv.b.0006",
+          "observation_ids": [
+            "obs.b.0001",
+            "obs.b.0002",
+            "obs.b.0003",
+            "obs.b.0004",
+            "obs.b.0005"
+          ]
+        },
+        {
+          "comparator_id": "comparator.ca-r2.formal",
+          "description": "除控制变量指定的输入选取关系外，不改变任何规则关系。",
+          "invariant_id": "inv.b.0007",
+          "observation_ids": [
+            "obs.b.0001",
+            "obs.b.0002",
+            "obs.b.0003",
+            "obs.b.0004",
+            "obs.b.0005"
+          ]
+        }
+      ],
+      "negative_control": false,
+      "repetition_count": 2,
+      "source_commit": "dbe4ddb10315479fc00086f08e25d968b4b43c49",
+      "stop_boundary_id": "o.b.0030",
+      "time_base_ids": [
+        "o.b.0015"
+      ]
+    },
+    {
+      "case_id": "CA-R3",
+      "comparators": [
+        {
+          "allowed_observation_ids": [
+            "obs.c.0001",
+            "obs.c.0002",
+            "obs.c.0003",
+            "obs.c.0004",
+            "obs.c.0005",
+            "obs.c.0006"
+          ],
+          "comparator_id": "comparator.ca-r3.formal",
+          "implementation": {
+            "artifact_id": "comparator.ca-r3.formal-v0.1.0",
+            "path": "research/calibration-tests/continuous-action-pilot/runs/continuous-001/fixtures/r3/compare-osu-r3-formal-v0.1.0.ps1",
+            "sha256": "37b5decda965a45d052ef278dbf573cfe2d7db3012dfdae777a7ae63bfb1d2c2"
+          },
+          "tolerance_rules": [
+            {
+              "comparison": "exact",
+              "observation_id": "obs.c.0001",
+              "tolerance_rule_id": "tol.c.0001",
+              "value": {
+                "serialized_value": "exact",
+                "unit": null,
+                "value_type": "status"
+              }
+            },
+            {
+              "comparison": "absolute",
+              "observation_id": "obs.c.0002",
+              "tolerance_rule_id": "tol.c.0002",
+              "value": {
+                "serialized_value": "0",
+                "unit": "millisecond",
+                "value_type": "integer"
+              }
+            },
+            {
+              "comparison": "exact",
+              "observation_id": "obs.c.0003",
+              "tolerance_rule_id": "tol.c.0001",
+              "value": {
+                "serialized_value": "exact",
+                "unit": null,
+                "value_type": "status"
+              }
+            },
+            {
+              "comparison": "absolute",
+              "observation_id": "obs.c.0004",
+              "tolerance_rule_id": "tol.c.0002",
+              "value": {
+                "serialized_value": "0",
+                "unit": "millisecond",
+                "value_type": "integer"
+              }
+            },
+            {
+              "comparison": "exact",
+              "observation_id": "obs.c.0005",
+              "tolerance_rule_id": "tol.c.0001",
+              "value": {
+                "serialized_value": "exact",
+                "unit": null,
+                "value_type": "status"
+              }
+            },
+            {
+              "comparison": "absolute",
+              "observation_id": "obs.c.0006",
+              "tolerance_rule_id": "tol.c.0002",
+              "value": {
+                "serialized_value": "0",
+                "unit": "millisecond",
+                "value_type": "integer"
+              }
+            }
+          ]
+        }
+      ],
+      "configurations": [
+        {
+          "build_command": [
+            "powershell.exe",
+            "-NoProfile",
+            "-File",
+            "research/calibration-tests/continuous-action-pilot/runs/continuous-001/fixtures/r3/run-osu-r3-build-list-v0.1.0.ps1",
+            "-SourcePath",
+            "${OSU_SOURCE}",
+            "-DotnetPath",
+            "${DOTNET_8_0_100}",
+            "-CacheRoot",
+            "${CA_R3_BUILD_ROOT}"
+          ],
+          "configuration_id": "config.baseline",
+          "expected_binary_path": "external-builds/output.ca-r3.osu-tests-assembly",
+          "fixture_artifacts": [
+            {
+              "artifact_id": "fixture.ca-r3.formal-runner",
+              "path": "research/calibration-tests/continuous-action-pilot/runs/continuous-001/fixtures/r3/run-osu-r3-formal-v0.1.0.ps1",
+              "sha256": "be1e6c3d3d4e863611baf9f77f344af9500f205a44903ee0c0cba92e24e287fd"
+            },
+            {
+              "artifact_id": "fixture.ca-r3.observation-source",
+              "path": "research/calibration-tests/continuous-action-pilot/runs/continuous-001/fixtures/r3/TestSceneGamePrimitivesR3.cs",
+              "sha256": "5907f3ea17699981cb48f298ed6addf83eea705388411c69293c26142d2e0535"
+            },
+            {
+              "artifact_id": "fixture.ca-r3.build-list-runner",
+              "path": "research/calibration-tests/continuous-action-pilot/runs/continuous-001/fixtures/r3/run-osu-r3-build-list-v0.1.0.ps1",
+              "sha256": "c49b9078cce55406d04017cc2e1ae50c6592cbe11c6cdbee521ba3d325ed3892"
+            },
+            {
+              "artifact_id": "fixture.ca-r3.dependency-lock-set",
+              "path": "research/calibration-tests/continuous-action-pilot/runs/continuous-001/fixtures/r3/dependency-lock-set-v0.1.0.json",
+              "sha256": "9f9f8f4fe02dbdc3f676657d092414068f0403bbf19439623c09fef180fec275"
+            },
+            {
+              "artifact_id": "fixture.ca-r3.deterministic-build-targets",
+              "path": "research/calibration-tests/continuous-action-pilot/runs/continuous-001/fixtures/r3/r3-deterministic-build-v0.1.0.targets",
+              "sha256": "ab74e926c558134b1a92bf034bab6c7770fb75eebcb5b1c5b0158683e7d431cb"
+            },
+            {
+              "artifact_id": "fixture.ca-r3.spec",
+              "path": "research/calibration-tests/continuous-action-pilot/runs/continuous-001/fixtures/r3/r3-fixture-spec-v0.1.0.json",
+              "sha256": "072065e8a5002be7080b814c53b4a165b0893a01670c4da4c9769a1000bab06a"
+            },
+            {
+              "artifact_id": "fixture.ca-r3.safety-guards",
+              "path": "research/calibration-tests/continuous-action-pilot/runs/continuous-001/fixtures/r3/r3-safety-guards-v0.1.0.ps1",
+              "sha256": "53b714b3224057e6dc2f5b01d8c13529ea8a0b1b75cc0c25eb0d1083c76aa6be"
+            },
+            {
+              "artifact_id": "patch.ca-r3.observation-source",
+              "path": "research/calibration-tests/continuous-action-pilot/runs/continuous-001/fixtures/r3/TestSceneGamePrimitivesR3.cs",
+              "sha256": "5907f3ea17699981cb48f298ed6addf83eea705388411c69293c26142d2e0535"
+            }
+          ],
+          "run_command": [
+            "powershell.exe",
+            "-NoProfile",
+            "-File",
+            "research/calibration-tests/continuous-action-pilot/runs/continuous-001/fixtures/r3/run-osu-r3-formal-v0.1.0.ps1",
+            "-ConfigurationId",
+            "config.baseline",
+            "-RepetitionIndex",
+            "${REPETITION_INDEX}",
+            "-SourcePath",
+            "${OSU_SOURCE}",
+            "-DotnetPath",
+            "${DOTNET_8_0_100}",
+            "-FormalOutputRoot",
+            "D:\\GamePrimitivesFormalOutputs",
+            "-ExecutionPermitPath",
+            "${FORMAL_EXECUTION_PERMIT}",
+            "-PythonPath",
+            "${PYTHON_3_14_3}"
+          ],
+          "semantic_role": "baseline"
+        },
+        {
+          "build_command": [
+            "powershell.exe",
+            "-NoProfile",
+            "-File",
+            "research/calibration-tests/continuous-action-pilot/runs/continuous-001/fixtures/r3/run-osu-r3-build-list-v0.1.0.ps1",
+            "-SourcePath",
+            "${OSU_SOURCE}",
+            "-DotnetPath",
+            "${DOTNET_8_0_100}",
+            "-CacheRoot",
+            "${CA_R3_BUILD_ROOT}"
+          ],
+          "configuration_id": "config.variant",
+          "expected_binary_path": "external-builds/output.ca-r3.osu-tests-assembly",
+          "fixture_artifacts": [
+            {
+              "artifact_id": "fixture.ca-r3.formal-runner",
+              "path": "research/calibration-tests/continuous-action-pilot/runs/continuous-001/fixtures/r3/run-osu-r3-formal-v0.1.0.ps1",
+              "sha256": "be1e6c3d3d4e863611baf9f77f344af9500f205a44903ee0c0cba92e24e287fd"
+            },
+            {
+              "artifact_id": "fixture.ca-r3.observation-source",
+              "path": "research/calibration-tests/continuous-action-pilot/runs/continuous-001/fixtures/r3/TestSceneGamePrimitivesR3.cs",
+              "sha256": "5907f3ea17699981cb48f298ed6addf83eea705388411c69293c26142d2e0535"
+            },
+            {
+              "artifact_id": "fixture.ca-r3.build-list-runner",
+              "path": "research/calibration-tests/continuous-action-pilot/runs/continuous-001/fixtures/r3/run-osu-r3-build-list-v0.1.0.ps1",
+              "sha256": "c49b9078cce55406d04017cc2e1ae50c6592cbe11c6cdbee521ba3d325ed3892"
+            },
+            {
+              "artifact_id": "fixture.ca-r3.dependency-lock-set",
+              "path": "research/calibration-tests/continuous-action-pilot/runs/continuous-001/fixtures/r3/dependency-lock-set-v0.1.0.json",
+              "sha256": "9f9f8f4fe02dbdc3f676657d092414068f0403bbf19439623c09fef180fec275"
+            },
+            {
+              "artifact_id": "fixture.ca-r3.deterministic-build-targets",
+              "path": "research/calibration-tests/continuous-action-pilot/runs/continuous-001/fixtures/r3/r3-deterministic-build-v0.1.0.targets",
+              "sha256": "ab74e926c558134b1a92bf034bab6c7770fb75eebcb5b1c5b0158683e7d431cb"
+            },
+            {
+              "artifact_id": "fixture.ca-r3.spec",
+              "path": "research/calibration-tests/continuous-action-pilot/runs/continuous-001/fixtures/r3/r3-fixture-spec-v0.1.0.json",
+              "sha256": "072065e8a5002be7080b814c53b4a165b0893a01670c4da4c9769a1000bab06a"
+            },
+            {
+              "artifact_id": "fixture.ca-r3.safety-guards",
+              "path": "research/calibration-tests/continuous-action-pilot/runs/continuous-001/fixtures/r3/r3-safety-guards-v0.1.0.ps1",
+              "sha256": "53b714b3224057e6dc2f5b01d8c13529ea8a0b1b75cc0c25eb0d1083c76aa6be"
+            },
+            {
+              "artifact_id": "patch.ca-r3.observation-source",
+              "path": "research/calibration-tests/continuous-action-pilot/runs/continuous-001/fixtures/r3/TestSceneGamePrimitivesR3.cs",
+              "sha256": "5907f3ea17699981cb48f298ed6addf83eea705388411c69293c26142d2e0535"
+            }
+          ],
+          "run_command": [
+            "powershell.exe",
+            "-NoProfile",
+            "-File",
+            "research/calibration-tests/continuous-action-pilot/runs/continuous-001/fixtures/r3/run-osu-r3-formal-v0.1.0.ps1",
+            "-ConfigurationId",
+            "config.variant",
+            "-RepetitionIndex",
+            "${REPETITION_INDEX}",
+            "-SourcePath",
+            "${OSU_SOURCE}",
+            "-DotnetPath",
+            "${DOTNET_8_0_100}",
+            "-FormalOutputRoot",
+            "D:\\GamePrimitivesFormalOutputs",
+            "-ExecutionPermitPath",
+            "${FORMAL_EXECUTION_PERMIT}",
+            "-PythonPath",
+            "${PYTHON_3_14_3}"
+          ],
+          "semantic_role": "variant"
+        }
+      ],
+      "environment_refs": [
+        "environment.windows-dotnet-8.0.100",
+        "environment.windows-python-3.14.3"
+      ],
+      "formal_input": {
+        "artifact_id": "input.ca-r3.single-candidate",
+        "path": "research/calibration-tests/continuous-action-pilot/runs/continuous-001/fixtures/r3/formal-input-r3-v0.1.0.json",
+        "sha256": "d3b08090411312da03979f067793d15f25f33d6015e1448b761dc1db460eeb21"
+      },
+      "invariants": [
+        {
+          "comparator_id": "comparator.ca-r3.formal",
+          "description": "两配置使用同一冻结构建与同一观察仪器。",
+          "invariant_id": "inv.c.0001",
+          "observation_ids": [
+            "obs.c.0001",
+            "obs.c.0002",
+            "obs.c.0003",
+            "obs.c.0004",
+            "obs.c.0005",
+            "obs.c.0006"
+          ]
+        },
+        {
+          "comparator_id": "comparator.ca-r3.formal",
+          "description": "两配置都只有一个对象，其难度值为五，起始时刻为一千毫秒。",
+          "invariant_id": "inv.c.0002",
+          "observation_ids": [
+            "obs.c.0001",
+            "obs.c.0002",
+            "obs.c.0003",
+            "obs.c.0004",
+            "obs.c.0005",
+            "obs.c.0006"
+          ]
+        },
+        {
+          "comparator_id": "comparator.ca-r3.formal",
+          "description": "两配置都在对象中心于起始时刻接受一次相同候选。",
+          "invariant_id": "inv.c.0003",
+          "observation_ids": [
+            "obs.c.0001",
+            "obs.c.0002",
+            "obs.c.0003",
+            "obs.c.0004",
+            "obs.c.0005",
+            "obs.c.0006"
+          ]
+        },
+        {
+          "comparator_id": "comparator.ca-r3.formal",
+          "description": "两配置都恰好一次调用同一裁定路径。",
+          "invariant_id": "inv.c.0004",
+          "observation_ids": [
+            "obs.c.0001",
+            "obs.c.0002",
+            "obs.c.0003",
+            "obs.c.0004",
+            "obs.c.0005",
+            "obs.c.0006"
+          ]
+        },
+        {
+          "comparator_id": "comparator.ca-r3.formal",
+          "description": "两配置使用同一手动规则时钟，只允许控制变量改变调用延迟。",
+          "invariant_id": "inv.c.0005",
+          "observation_ids": [
+            "obs.c.0001",
+            "obs.c.0002",
+            "obs.c.0003",
+            "obs.c.0004",
+            "obs.c.0005",
+            "obs.c.0006"
+          ]
+        },
+        {
+          "comparator_id": "comparator.ca-r3.formal",
+          "description": "分类半窗固定为四十九点五毫秒与九十九点五毫秒。",
+          "invariant_id": "inv.c.0006",
+          "observation_ids": [
+            "obs.c.0001",
+            "obs.c.0002",
+            "obs.c.0003",
+            "obs.c.0004",
+            "obs.c.0005",
+            "obs.c.0006"
+          ]
+        },
+        {
+          "comparator_id": "comparator.ca-r3.formal",
+          "description": "主试验的呈现开关保持开启；呈现负对照与主试验分离。",
+          "invariant_id": "inv.c.0007",
+          "observation_ids": [
+            "obs.c.0001",
+            "obs.c.0002",
+            "obs.c.0003",
+            "obs.c.0004",
+            "obs.c.0005",
+            "obs.c.0006"
+          ]
+        }
+      ],
+      "negative_control": false,
+      "repetition_count": 2,
+      "source_commit": "5da71008b082d1a77e4bb301dc98886f1f24b895",
+      "stop_boundary_id": "o.c.0032",
+      "time_base_ids": [
+        "o.c.0022"
+      ]
+    },
+    {
+      "case_id": "NEG-01",
+      "comparators": [
+        {
+          "allowed_observation_ids": [
+            "obs.c.0001",
+            "obs.c.0002",
+            "obs.c.0003",
+            "obs.c.0004",
+            "obs.c.0005",
+            "obs.c.0006"
+          ],
+          "comparator_id": "comparator.ca-r3.formal",
+          "implementation": {
+            "artifact_id": "comparator.ca-r3.formal-v0.1.0",
+            "path": "research/calibration-tests/continuous-action-pilot/runs/continuous-001/fixtures/r3/compare-osu-r3-formal-v0.1.0.ps1",
+            "sha256": "37b5decda965a45d052ef278dbf573cfe2d7db3012dfdae777a7ae63bfb1d2c2"
+          },
+          "tolerance_rules": [
+            {
+              "comparison": "exact",
+              "observation_id": "obs.c.0001",
+              "tolerance_rule_id": "tol.c.0001",
+              "value": {
+                "serialized_value": "exact",
+                "unit": null,
+                "value_type": "status"
+              }
+            },
+            {
+              "comparison": "absolute",
+              "observation_id": "obs.c.0002",
+              "tolerance_rule_id": "tol.c.0002",
+              "value": {
+                "serialized_value": "0",
+                "unit": "millisecond",
+                "value_type": "integer"
+              }
+            },
+            {
+              "comparison": "exact",
+              "observation_id": "obs.c.0003",
+              "tolerance_rule_id": "tol.c.0001",
+              "value": {
+                "serialized_value": "exact",
+                "unit": null,
+                "value_type": "status"
+              }
+            },
+            {
+              "comparison": "absolute",
+              "observation_id": "obs.c.0004",
+              "tolerance_rule_id": "tol.c.0002",
+              "value": {
+                "serialized_value": "0",
+                "unit": "millisecond",
+                "value_type": "integer"
+              }
+            },
+            {
+              "comparison": "exact",
+              "observation_id": "obs.c.0005",
+              "tolerance_rule_id": "tol.c.0001",
+              "value": {
+                "serialized_value": "exact",
+                "unit": null,
+                "value_type": "status"
+              }
+            },
+            {
+              "comparison": "absolute",
+              "observation_id": "obs.c.0006",
+              "tolerance_rule_id": "tol.c.0002",
+              "value": {
+                "serialized_value": "0",
+                "unit": "millisecond",
+                "value_type": "integer"
+              }
+            }
+          ]
+        }
+      ],
+      "configurations": [
+        {
+          "build_command": [
+            "powershell.exe",
+            "-NoProfile",
+            "-File",
+            "research/calibration-tests/continuous-action-pilot/runs/continuous-001/fixtures/r3/run-osu-r3-build-list-v0.1.0.ps1",
+            "-SourcePath",
+            "${OSU_SOURCE}",
+            "-DotnetPath",
+            "${DOTNET_8_0_100}",
+            "-CacheRoot",
+            "${CA_R3_BUILD_ROOT}"
+          ],
+          "configuration_id": "config.negative-a",
+          "expected_binary_path": "external-builds/output.ca-r3.osu-tests-assembly",
+          "fixture_artifacts": [
+            {
+              "artifact_id": "fixture.ca-r3.formal-runner",
+              "path": "research/calibration-tests/continuous-action-pilot/runs/continuous-001/fixtures/r3/run-osu-r3-formal-v0.1.0.ps1",
+              "sha256": "be1e6c3d3d4e863611baf9f77f344af9500f205a44903ee0c0cba92e24e287fd"
+            },
+            {
+              "artifact_id": "fixture.ca-r3.observation-source",
+              "path": "research/calibration-tests/continuous-action-pilot/runs/continuous-001/fixtures/r3/TestSceneGamePrimitivesR3.cs",
+              "sha256": "5907f3ea17699981cb48f298ed6addf83eea705388411c69293c26142d2e0535"
+            },
+            {
+              "artifact_id": "fixture.ca-r3.build-list-runner",
+              "path": "research/calibration-tests/continuous-action-pilot/runs/continuous-001/fixtures/r3/run-osu-r3-build-list-v0.1.0.ps1",
+              "sha256": "c49b9078cce55406d04017cc2e1ae50c6592cbe11c6cdbee521ba3d325ed3892"
+            },
+            {
+              "artifact_id": "fixture.ca-r3.dependency-lock-set",
+              "path": "research/calibration-tests/continuous-action-pilot/runs/continuous-001/fixtures/r3/dependency-lock-set-v0.1.0.json",
+              "sha256": "9f9f8f4fe02dbdc3f676657d092414068f0403bbf19439623c09fef180fec275"
+            },
+            {
+              "artifact_id": "fixture.ca-r3.deterministic-build-targets",
+              "path": "research/calibration-tests/continuous-action-pilot/runs/continuous-001/fixtures/r3/r3-deterministic-build-v0.1.0.targets",
+              "sha256": "ab74e926c558134b1a92bf034bab6c7770fb75eebcb5b1c5b0158683e7d431cb"
+            },
+            {
+              "artifact_id": "fixture.ca-r3.spec",
+              "path": "research/calibration-tests/continuous-action-pilot/runs/continuous-001/fixtures/r3/r3-fixture-spec-v0.1.0.json",
+              "sha256": "072065e8a5002be7080b814c53b4a165b0893a01670c4da4c9769a1000bab06a"
+            },
+            {
+              "artifact_id": "fixture.ca-r3.safety-guards",
+              "path": "research/calibration-tests/continuous-action-pilot/runs/continuous-001/fixtures/r3/r3-safety-guards-v0.1.0.ps1",
+              "sha256": "53b714b3224057e6dc2f5b01d8c13529ea8a0b1b75cc0c25eb0d1083c76aa6be"
+            },
+            {
+              "artifact_id": "patch.ca-r3.observation-source",
+              "path": "research/calibration-tests/continuous-action-pilot/runs/continuous-001/fixtures/r3/TestSceneGamePrimitivesR3.cs",
+              "sha256": "5907f3ea17699981cb48f298ed6addf83eea705388411c69293c26142d2e0535"
+            }
+          ],
+          "run_command": [
+            "powershell.exe",
+            "-NoProfile",
+            "-File",
+            "research/calibration-tests/continuous-action-pilot/runs/continuous-001/fixtures/r3/run-osu-r3-formal-v0.1.0.ps1",
+            "-ConfigurationId",
+            "config.negative-a",
+            "-RepetitionIndex",
+            "${REPETITION_INDEX}",
+            "-SourcePath",
+            "${OSU_SOURCE}",
+            "-DotnetPath",
+            "${DOTNET_8_0_100}",
+            "-FormalOutputRoot",
+            "D:\\GamePrimitivesFormalOutputs",
+            "-ExecutionPermitPath",
+            "${FORMAL_EXECUTION_PERMIT}",
+            "-PythonPath",
+            "${PYTHON_3_14_3}"
+          ],
+          "semantic_role": "negative_control_a"
+        },
+        {
+          "build_command": [
+            "powershell.exe",
+            "-NoProfile",
+            "-File",
+            "research/calibration-tests/continuous-action-pilot/runs/continuous-001/fixtures/r3/run-osu-r3-build-list-v0.1.0.ps1",
+            "-SourcePath",
+            "${OSU_SOURCE}",
+            "-DotnetPath",
+            "${DOTNET_8_0_100}",
+            "-CacheRoot",
+            "${CA_R3_BUILD_ROOT}"
+          ],
+          "configuration_id": "config.negative-b",
+          "expected_binary_path": "external-builds/output.ca-r3.osu-tests-assembly",
+          "fixture_artifacts": [
+            {
+              "artifact_id": "fixture.ca-r3.formal-runner",
+              "path": "research/calibration-tests/continuous-action-pilot/runs/continuous-001/fixtures/r3/run-osu-r3-formal-v0.1.0.ps1",
+              "sha256": "be1e6c3d3d4e863611baf9f77f344af9500f205a44903ee0c0cba92e24e287fd"
+            },
+            {
+              "artifact_id": "fixture.ca-r3.observation-source",
+              "path": "research/calibration-tests/continuous-action-pilot/runs/continuous-001/fixtures/r3/TestSceneGamePrimitivesR3.cs",
+              "sha256": "5907f3ea17699981cb48f298ed6addf83eea705388411c69293c26142d2e0535"
+            },
+            {
+              "artifact_id": "fixture.ca-r3.build-list-runner",
+              "path": "research/calibration-tests/continuous-action-pilot/runs/continuous-001/fixtures/r3/run-osu-r3-build-list-v0.1.0.ps1",
+              "sha256": "c49b9078cce55406d04017cc2e1ae50c6592cbe11c6cdbee521ba3d325ed3892"
+            },
+            {
+              "artifact_id": "fixture.ca-r3.dependency-lock-set",
+              "path": "research/calibration-tests/continuous-action-pilot/runs/continuous-001/fixtures/r3/dependency-lock-set-v0.1.0.json",
+              "sha256": "9f9f8f4fe02dbdc3f676657d092414068f0403bbf19439623c09fef180fec275"
+            },
+            {
+              "artifact_id": "fixture.ca-r3.deterministic-build-targets",
+              "path": "research/calibration-tests/continuous-action-pilot/runs/continuous-001/fixtures/r3/r3-deterministic-build-v0.1.0.targets",
+              "sha256": "ab74e926c558134b1a92bf034bab6c7770fb75eebcb5b1c5b0158683e7d431cb"
+            },
+            {
+              "artifact_id": "fixture.ca-r3.spec",
+              "path": "research/calibration-tests/continuous-action-pilot/runs/continuous-001/fixtures/r3/r3-fixture-spec-v0.1.0.json",
+              "sha256": "072065e8a5002be7080b814c53b4a165b0893a01670c4da4c9769a1000bab06a"
+            },
+            {
+              "artifact_id": "fixture.ca-r3.safety-guards",
+              "path": "research/calibration-tests/continuous-action-pilot/runs/continuous-001/fixtures/r3/r3-safety-guards-v0.1.0.ps1",
+              "sha256": "53b714b3224057e6dc2f5b01d8c13529ea8a0b1b75cc0c25eb0d1083c76aa6be"
+            },
+            {
+              "artifact_id": "patch.ca-r3.observation-source",
+              "path": "research/calibration-tests/continuous-action-pilot/runs/continuous-001/fixtures/r3/TestSceneGamePrimitivesR3.cs",
+              "sha256": "5907f3ea17699981cb48f298ed6addf83eea705388411c69293c26142d2e0535"
+            }
+          ],
+          "run_command": [
+            "powershell.exe",
+            "-NoProfile",
+            "-File",
+            "research/calibration-tests/continuous-action-pilot/runs/continuous-001/fixtures/r3/run-osu-r3-formal-v0.1.0.ps1",
+            "-ConfigurationId",
+            "config.negative-b",
+            "-RepetitionIndex",
+            "${REPETITION_INDEX}",
+            "-SourcePath",
+            "${OSU_SOURCE}",
+            "-DotnetPath",
+            "${DOTNET_8_0_100}",
+            "-FormalOutputRoot",
+            "D:\\GamePrimitivesFormalOutputs",
+            "-ExecutionPermitPath",
+            "${FORMAL_EXECUTION_PERMIT}",
+            "-PythonPath",
+            "${PYTHON_3_14_3}"
+          ],
+          "semantic_role": "negative_control_b"
+        }
+      ],
+      "environment_refs": [
+        "environment.windows-dotnet-8.0.100",
+        "environment.windows-python-3.14.3"
+      ],
+      "formal_input": {
+        "artifact_id": "input.ca-r3.single-candidate",
+        "path": "research/calibration-tests/continuous-action-pilot/runs/continuous-001/fixtures/r3/formal-input-r3-v0.1.0.json",
+        "sha256": "d3b08090411312da03979f067793d15f25f33d6015e1448b761dc1db460eeb21"
+      },
+      "invariants": [
+        {
+          "comparator_id": "comparator.ca-r3.formal",
+          "description": "两配置使用同一冻结构建与同一观察仪器。",
+          "invariant_id": "inv.c.0001",
+          "observation_ids": [
+            "obs.c.0001",
+            "obs.c.0002",
+            "obs.c.0003",
+            "obs.c.0004",
+            "obs.c.0005",
+            "obs.c.0006"
+          ]
+        },
+        {
+          "comparator_id": "comparator.ca-r3.formal",
+          "description": "两配置都只有一个对象，其难度值为五，起始时刻为一千毫秒。",
+          "invariant_id": "inv.c.0002",
+          "observation_ids": [
+            "obs.c.0001",
+            "obs.c.0002",
+            "obs.c.0003",
+            "obs.c.0004",
+            "obs.c.0005",
+            "obs.c.0006"
+          ]
+        },
+        {
+          "comparator_id": "comparator.ca-r3.formal",
+          "description": "两配置都在对象中心于起始时刻接受一次相同候选。",
+          "invariant_id": "inv.c.0003",
+          "observation_ids": [
+            "obs.c.0001",
+            "obs.c.0002",
+            "obs.c.0003",
+            "obs.c.0004",
+            "obs.c.0005",
+            "obs.c.0006"
+          ]
+        },
+        {
+          "comparator_id": "comparator.ca-r3.formal",
+          "description": "两配置都恰好一次调用同一裁定路径。",
+          "invariant_id": "inv.c.0004",
+          "observation_ids": [
+            "obs.c.0001",
+            "obs.c.0002",
+            "obs.c.0003",
+            "obs.c.0004",
+            "obs.c.0005",
+            "obs.c.0006"
+          ]
+        },
+        {
+          "comparator_id": "comparator.ca-r3.formal",
+          "description": "两配置使用同一手动规则时钟，只允许控制变量改变调用延迟。",
+          "invariant_id": "inv.c.0005",
+          "observation_ids": [
+            "obs.c.0001",
+            "obs.c.0002",
+            "obs.c.0003",
+            "obs.c.0004",
+            "obs.c.0005",
+            "obs.c.0006"
+          ]
+        },
+        {
+          "comparator_id": "comparator.ca-r3.formal",
+          "description": "分类半窗固定为四十九点五毫秒与九十九点五毫秒。",
+          "invariant_id": "inv.c.0006",
+          "observation_ids": [
+            "obs.c.0001",
+            "obs.c.0002",
+            "obs.c.0003",
+            "obs.c.0004",
+            "obs.c.0005",
+            "obs.c.0006"
+          ]
+        },
+        {
+          "comparator_id": "comparator.ca-r3.formal",
+          "description": "主试验的呈现开关保持开启；呈现负对照与主试验分离。",
+          "invariant_id": "inv.c.0007",
+          "observation_ids": [
+            "obs.c.0001",
+            "obs.c.0002",
+            "obs.c.0003",
+            "obs.c.0004",
+            "obs.c.0005",
+            "obs.c.0006"
+          ]
+        }
+      ],
+      "negative_control": true,
+      "repetition_count": 2,
+      "source_commit": "5da71008b082d1a77e4bb301dc98886f1f24b895",
+      "stop_boundary_id": "o.c.0032",
+      "time_base_ids": [
+        "o.c.0022"
+      ]
+    }
+  ],
+  "created_at": "2026-07-27T04:35:00Z",
+  "derivation_artifacts": [],
+  "environments": [
+    {
+      "environment_id": "environment.windows-dotnet-8.0.100",
+      "name": "Windows isolated portable .NET execution",
+      "platform": "Windows x64",
+      "version": ".NET SDK 8.0.100"
+    },
+    {
+      "environment_id": "environment.windows-msvc-19.50.35723",
+      "name": "Windows isolated MSVC x64 execution",
+      "platform": "Windows x64",
+      "version": "MSVC 19.50.35723"
+    },
+    {
+      "environment_id": "environment.windows-python-3.14.3",
+      "name": "Hash-pinned Python verifier runtime",
+      "platform": "Windows x64",
+      "version": "Python 3.14.3"
+    }
+  ],
+  "execution_plan_sha256": null,
+  "executions": [],
+  "finished_at": null,
+  "fixture_lock": {
+    "artifact_id": "fixture.lock-v0.1.0",
+    "path": "research/calibration-tests/continuous-action-pilot/runs/continuous-001/fixtures/fixture-lock.json",
+    "sha256": "7550e7477ed9213fbf605c6f30898e48151244db4b119e89ed0caf5fb3db4b5c"
+  },
+  "prediction_set_digest": null,
+  "protocol_version": "0.1.1",
+  "run_id": "continuous-001",
+  "started_at": null,
+  "trace_bundle_sha256": null
+}

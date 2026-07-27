@@ -5,7 +5,7 @@
     {
       "artifact_id": "r2.comparator.q3-formal-traces.v0.1.0",
       "path": "research/calibration-tests/continuous-action-pilot/runs/continuous-001/fixtures/r2/compare-q3-formal-traces-v0.1.0.ps1",
-      "sha256": "655e1ed263eee4cbedf668b7a0dfec9bc8e58caafb3416e0f62749114d2386c9"
+      "sha256": "cbb27f7f5503a24ef17c06a746dcc2503f3cd5ad7dbb724c80508204274662ed"
     }
   ],
   "compatibility_patch_set": {
@@ -34,17 +34,17 @@
     {
       "artifact_id": "r2.fixture.q3-formal-harness.v0.1.0",
       "path": "research/calibration-tests/continuous-action-pilot/runs/continuous-001/fixtures/r2/q3-formal-harness-v0.1.0.c",
-      "sha256": "cffcbcfd63e5b99a4d73047756d318abeb2743c6f1f5b156e5b708e2096d7bbb"
+      "sha256": "c84f178dee5630ce82702a13ad5cfa13176359ead2cf47d5e522d6574c1f640d"
     },
     {
       "artifact_id": "r2.runner.q3-formal-build.v0.1.0",
       "path": "research/calibration-tests/continuous-action-pilot/runs/continuous-001/fixtures/r2/build-q3-formal-fixture-v0.1.0.ps1",
-      "sha256": "f8fae44f5c75deac2818558a82940f5127bc6252cea6c2eaa2bc065fb967e431"
+      "sha256": "67765f2f2b2bfda2bcdc94b223a13303401c66c7756e6a563619d2d99afae580"
     },
     {
       "artifact_id": "r2.runner.q3-formal-guarded.v0.1.0",
       "path": "research/calibration-tests/continuous-action-pilot/runs/continuous-001/fixtures/r2/run-q3-formal-guarded-v0.1.0.ps1",
-      "sha256": "1eb7eea4675cb00cf9fb2d0d0a66c634814f716ee8ac30dea3e2ab0bb3284332"
+      "sha256": "f5d054169631af1680ee56703afcc57c7e6c14d100643bf0eef9c98a02f0f029"
     }
   ],
   "fixture_id": "fixture.continuous-001.ca-r2.q3-msvc-x64",
@@ -87,6 +87,16 @@
       "artifact_id": "r2.probe.q3-formal-fixture-preparation.v0.1.0",
       "path": "research/calibration-tests/continuous-action-pilot/runs/continuous-001/fixtures/r2/q3-formal-fixture-preparation-v0.1.0.md",
       "sha256": "9e4ef297e63b1b63c37ce2c678bff06212fc7388027d40af2edf5f7aeb8ffb19"
+    },
+    {
+      "artifact_id": "evidence.ca-r2.structured-build-readiness-v0.1.0",
+      "path": "research/calibration-tests/continuous-action-pilot/runs/continuous-001/fixtures/r2/r2-build-readiness-evidence-v0.1.0.json",
+      "sha256": "adcdaf9974285fbf772864def12fb62a134af70f9f5607902bd056f274262e98"
+    },
+    {
+      "artifact_id": "r2.validator.build-readiness.v0.1.0",
+      "path": "research/calibration-tests/continuous-action-pilot/runs/continuous-001/fixtures/r2/verify-r2-build-readiness-v0.1.0.py",
+      "sha256": "d038a18bd34ce08910f0387062e97dfbcfaf5d4d8b5c5944f319c66557fbf9c7"
     }
   ],
   "source_identity": {
@@ -111,7 +121,7 @@
       {
         "artifact_id": "r2.patch.q3-entry-latch-variant.v0.1.0",
         "path": "research/calibration-tests/continuous-action-pilot/runs/continuous-001/fixtures/r2/q3-entry-latch-variant-v0.1.0.patch",
-        "sha256": "1a276587cd763eeb593cb4af78f11acc3bd21bcb191a85ae014f4729ff5b23f2"
+        "sha256": "b6089cff7287f846e8f484339d762af3e0731ae48cc78eb43a7eb1b6e4bdfb08"
       }
     ],
     "configuration_artifacts": [],

@@ -4,7 +4,7 @@
   "artifact_version": "0.1.0",
   "build_gate_status": "passed",
   "case_id": "CA-R3",
-  "created_at": "2026-07-26T22:54:24Z",
+  "created_at": "2026-07-27T04:35:00Z",
   "dependency_lock_set": {
     "path": "research/calibration-tests/continuous-action-pilot/runs/continuous-001/fixtures/r3/dependency-lock-set-v0.1.0.json",
     "sha256": "9f9f8f4fe02dbdc3f676657d092414068f0403bbf19439623c09fef180fec275"
@@ -25,134 +25,361 @@
   ],
   "evidence_files": [
     {
-      "bytes": 3306,
-      "external_path": "D:/GamePrimitivesToolchains/cache/osu-r3-formal-prep-replay-v0.1.0-r9/probe-summary.json",
-      "sha256": "d4e8456f575eecd83cbdacb1db9cb84fcb0d900d1003afe39b9da21c8cf989b1"
+      "bytes": 35645,
+      "external_path": "D:/GamePrimitivesToolchains/replays/r3-two-cache-readiness-20260727-12/probe-summary.json",
+      "sha256": "ae0e49bad1848c75791aff47303f5bf72363f586701dc939575ed5ff53169e32"
     },
     {
-      "bytes": 165591,
-      "external_path": "D:/GamePrimitivesToolchains/cache/osu-r3-formal-prep-replay-v0.1.0-r9/logs/restore-msbuild.log",
-      "sha256": "f296d81bc18ca3d4af448810d8a4f15a9b8444e19cd33390608935f8a4d9ff49"
+      "bytes": 492,
+      "external_path": "D:/GamePrimitivesToolchains/replays/r3-two-cache-readiness-20260727-12/logs/restore-msbuild.log",
+      "sha256": "f54fc43a05a5933c21c379b06a3820f81b100c6f46ffef301b9a80a89af0b26b"
     },
     {
-      "bytes": 487830,
-      "external_path": "D:/GamePrimitivesToolchains/cache/osu-r3-formal-prep-replay-v0.1.0-r9/logs/build-msbuild.log",
-      "sha256": "da1558bd753761be9c539057a54c090dbf8237c5717751f37840553952fd8bfc"
+      "bytes": 484957,
+      "external_path": "D:/GamePrimitivesToolchains/replays/r3-two-cache-readiness-20260727-12/logs/build-msbuild.log",
+      "sha256": "73ed3aafb1eaac9f915a2c2f0e76064003f9353ad714bbe52a090c6cfb276b89"
     },
     {
-      "bytes": 490,
-      "external_path": "D:/GamePrimitivesToolchains/cache/osu-r3-formal-prep-replay-v0.1.0-r9/logs/list-tests.stdout",
-      "sha256": "efd03376380a9757a6d6137655a0c9b8841d9ee749c2ceaa75447079f662e404"
-    },
-    {
-      "bytes": 0,
-      "external_path": "D:/GamePrimitivesToolchains/cache/osu-r3-formal-prep-replay-v0.1.0-r9/logs/list-tests.stderr",
-      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
-    },
-    {
-      "bytes": 160,
-      "external_path": "D:/GamePrimitivesToolchains/cache/osu-r3-formal-prep-replay-v0.1.0-r9/logs/shutdown.stdout",
-      "sha256": "b8028200bc3b12a3210641024da80eb85dffe587d8192df519108d0a20cfe822"
+      "bytes": 54174,
+      "external_path": "D:/GamePrimitivesToolchains/replays/r3-two-cache-readiness-20260727-12/logs/list-tests.stdout",
+      "sha256": "60cce0e37f91938bb6a508faa463e86f8bb0ed4536252aaa61c1e0803bc6a0d9"
     },
     {
       "bytes": 0,
-      "external_path": "D:/GamePrimitivesToolchains/cache/osu-r3-formal-prep-replay-v0.1.0-r9/logs/shutdown.stderr",
+      "external_path": "D:/GamePrimitivesToolchains/replays/r3-two-cache-readiness-20260727-12/logs/list-tests.stderr",
       "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "bytes": 125934,
+      "external_path": "D:/GamePrimitivesToolchains/replays/r3-two-cache-readiness-20260727-12/formal-execution-tree-manifest.json",
+      "sha256": "5e771da6f92cdc14d5fb0576e4baf27b6ade35a94c6c95757d3fcc414d8da078"
+    },
+    {
+      "bytes": 2976256,
+      "external_path": "D:/GamePrimitivesToolchains/replays/r3-two-cache-readiness-20260727-12/artifacts/bin/osu.Game.Rulesets.Osu.Tests/debug/osu.Game.Rulesets.Osu.Tests.dll",
+      "sha256": "b984ea92ed9f2750982a8747981005e739322e55c7b448813237906ef4ce043c"
+    },
+    {
+      "bytes": 125934,
+      "external_path": "D:/GamePrimitivesToolchains/replays/r3-two-cache-readiness-20260727-12-reproducibility/formal-execution-tree-manifest.json",
+      "sha256": "5e771da6f92cdc14d5fb0576e4baf27b6ade35a94c6c95757d3fcc414d8da078"
+    },
+    {
+      "bytes": 2976256,
+      "external_path": "D:/GamePrimitivesToolchains/replays/r3-two-cache-readiness-20260727-12-reproducibility/artifacts/bin/osu.Game.Rulesets.Osu.Tests/debug/osu.Game.Rulesets.Osu.Tests.dll",
+      "sha256": "b984ea92ed9f2750982a8747981005e739322e55c7b448813237906ef4ce043c"
+    },
+    {
+      "bytes": 972,
+      "external_path": "D:/GamePrimitivesToolchains/replays/r3-formal-guards-20260727-05/guard-result.json",
+      "sha256": "99f8c76cdffc04872eec855a36dded748dcde59e4425e6c788ac4285ec4c9227"
     },
     {
       "bytes": 0,
-      "external_path": "D:/GamePrimitivesToolchains/replays/r3-runner-guard-r2.stdout.txt",
+      "external_path": "D:/GamePrimitivesToolchains/replays/r3-formal-guards-20260727-05/runner.stdout",
       "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
     },
     {
-      "bytes": 703,
-      "external_path": "D:/GamePrimitivesToolchains/replays/r3-runner-guard-r2.stderr.txt",
-      "sha256": "cd9912bca85f4cc8e06a70cbd4e8e43f56dc6c56eb2286bb13b4283c8703daf9"
+      "bytes": 755,
+      "external_path": "D:/GamePrimitivesToolchains/replays/r3-formal-guards-20260727-05/runner.stderr",
+      "sha256": "fcafa065a2772df822eea29720e02ddcf8445a98339e16c14ce4df5e726e194c"
     },
     {
       "bytes": 0,
-      "external_path": "D:/GamePrimitivesToolchains/replays/r3-comparator-guard-r2.stdout.txt",
+      "external_path": "D:/GamePrimitivesToolchains/replays/r3-formal-guards-20260727-05/comparator.stdout",
       "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
     },
     {
-      "bytes": 708,
-      "external_path": "D:/GamePrimitivesToolchains/replays/r3-comparator-guard-r2.stderr.txt",
-      "sha256": "b9fc5058e689f51c099822a08d5089689dbfa46fdb9f9f2a623cffa098f978d2"
+      "bytes": 759,
+      "external_path": "D:/GamePrimitivesToolchains/replays/r3-formal-guards-20260727-05/comparator.stderr",
+      "sha256": "33364e8f4333416f59c254e162e3e83136ffa819356902ad95f266769c17aba6"
     }
   ],
   "fixture_artifacts": {
-    "build_list_runner_sha256": "a1a16ee178349938360d0589595e48151269be182759febad5cc3b9613c1895f",
-    "comparator_sha256": "a4a35b0513f00f2cc848a626ca4834210982154a7552fa06d89585f3e7a86da8",
-    "fixture_spec_sha256": "6bff1307be4cd595bb41e10606207c0343a66cd661ea01324e01a1c6b3ccb07b",
-    "formal_runner_sha256": "29926ac65c2c92605a2d756f0fdc76d41031e2180521750f746cbc680d5c564c",
-    "observation_patch_sha256": "f383e4604f6ab65ff66be6619fe6558da9083e6a57aecaadb24b292f234ef006"
+    "build_list_runner_sha256": "c49b9078cce55406d04017cc2e1ae50c6592cbe11c6cdbee521ba3d325ed3892",
+    "comparator_sha256": "37b5decda965a45d052ef278dbf573cfe2d7db3012dfdae777a7ae63bfb1d2c2",
+    "deterministic_build_targets_sha256": "ab74e926c558134b1a92bf034bab6c7770fb75eebcb5b1c5b0158683e7d431cb",
+    "fixture_spec_sha256": "072065e8a5002be7080b814c53b4a165b0893a01670c4da4c9769a1000bab06a",
+    "formal_runner_sha256": "be1e6c3d3d4e863611baf9f77f344af9500f205a44903ee0c0cba92e24e287fd",
+    "observation_patch_sha256": "5907f3ea17699981cb48f298ed6addf83eea705388411c69293c26142d2e0535",
+    "safety_guards_sha256": "53b714b3224057e6dc2f5b01d8c13529ea8a0b1b75cc0c25eb0d1083c76aa6be"
   },
   "formal_execution": {
     "comparator_executed": false,
     "comparator_rejected_without_gate": true,
+    "evidence_scope": "recorded_build_list_and_guard_probe_processes_only",
     "formal_input_executed": false,
+    "formal_input_read_during_evidence_capture": false,
     "formal_result_created": false,
     "formal_runner_rejected_without_gate": true,
     "guard_rejection_created_cache": false,
+    "guard_rejection_created_output": false,
     "test_body_execution_count": 0
   },
   "process_records": [
     {
       "alive_after": 0,
       "exit_code": 0,
-      "pid": 50980,
-      "step": "clone-frozen-source"
+      "job_active_after_cleanup": 0,
+      "job_active_before_cleanup": 0,
+      "job_kill_on_close": true,
+      "pid": 77776,
+      "step": "verify-source-commit",
+      "timed_out": false
     },
     {
       "alive_after": 0,
       "exit_code": 0,
-      "pid": 74188,
-      "step": "checkout-frozen-commit"
+      "job_active_after_cleanup": 0,
+      "job_active_before_cleanup": 1,
+      "job_kill_on_close": true,
+      "pid": 46672,
+      "step": "verify-source-origin",
+      "timed_out": false
     },
     {
       "alive_after": 0,
       "exit_code": 0,
-      "pid": 73224,
-      "step": "resolve-dotnet-version"
+      "job_active_after_cleanup": 0,
+      "job_active_before_cleanup": 1,
+      "job_kill_on_close": true,
+      "pid": 66052,
+      "step": "verify-source-clean",
+      "timed_out": false
     },
     {
       "alive_after": 0,
       "exit_code": 0,
-      "pid": 72112,
-      "step": "locked-restore"
+      "job_active_after_cleanup": 0,
+      "job_active_before_cleanup": 1,
+      "job_kill_on_close": true,
+      "pid": 68084,
+      "step": "clone-frozen-source",
+      "timed_out": false
     },
     {
       "alive_after": 0,
       "exit_code": 0,
-      "pid": 67588,
-      "step": "build-observation-fixture"
+      "job_active_after_cleanup": 0,
+      "job_active_before_cleanup": 1,
+      "job_kill_on_close": true,
+      "pid": 74896,
+      "step": "checkout-frozen-commit",
+      "timed_out": false
     },
     {
       "alive_after": 0,
       "exit_code": 0,
-      "pid": 74580,
-      "step": "list-formal-test-without-execution"
+      "job_active_after_cleanup": 0,
+      "job_active_before_cleanup": 1,
+      "job_kill_on_close": true,
+      "pid": 73292,
+      "step": "verify-prepared-status",
+      "timed_out": false
     },
     {
       "alive_after": 0,
       "exit_code": 0,
-      "pid": 57732,
-      "step": "shutdown-dotnet-build-servers"
+      "job_active_after_cleanup": 0,
+      "job_active_before_cleanup": 0,
+      "job_kill_on_close": true,
+      "pid": 77160,
+      "step": "resolve-dotnet-version",
+      "timed_out": false
+    },
+    {
+      "alive_after": 0,
+      "exit_code": 0,
+      "job_active_after_cleanup": 0,
+      "job_active_before_cleanup": 0,
+      "job_kill_on_close": true,
+      "pid": 68560,
+      "step": "locked-restore",
+      "timed_out": false
+    },
+    {
+      "alive_after": 0,
+      "exit_code": 0,
+      "job_active_after_cleanup": 0,
+      "job_active_before_cleanup": 0,
+      "job_kill_on_close": true,
+      "pid": 29508,
+      "step": "build-observation-fixture",
+      "timed_out": false
+    },
+    {
+      "alive_after": 0,
+      "exit_code": 0,
+      "job_active_after_cleanup": 0,
+      "job_active_before_cleanup": 0,
+      "job_kill_on_close": true,
+      "pid": 78396,
+      "step": "list-formal-test-without-execution",
+      "timed_out": false
+    },
+    {
+      "alive_after": 0,
+      "exit_code": 0,
+      "job_active_after_cleanup": 0,
+      "job_active_before_cleanup": 0,
+      "job_kill_on_close": true,
+      "pid": 75316,
+      "step": "shutdown-dotnet-build-servers",
+      "timed_out": false
+    },
+    {
+      "alive_after": 0,
+      "exit_code": 0,
+      "job_active_after_cleanup": 0,
+      "job_active_before_cleanup": 1,
+      "job_kill_on_close": true,
+      "pid": 66052,
+      "step": "clone-frozen-source-replay-b",
+      "timed_out": false
+    },
+    {
+      "alive_after": 0,
+      "exit_code": 0,
+      "job_active_after_cleanup": 0,
+      "job_active_before_cleanup": 1,
+      "job_kill_on_close": true,
+      "pid": 69444,
+      "step": "checkout-frozen-commit-replay-b",
+      "timed_out": false
+    },
+    {
+      "alive_after": 0,
+      "exit_code": 0,
+      "job_active_after_cleanup": 0,
+      "job_active_before_cleanup": 1,
+      "job_kill_on_close": true,
+      "pid": 73696,
+      "step": "verify-prepared-status-replay-b",
+      "timed_out": false
+    },
+    {
+      "alive_after": 0,
+      "exit_code": 0,
+      "job_active_after_cleanup": 0,
+      "job_active_before_cleanup": 0,
+      "job_kill_on_close": true,
+      "pid": 78508,
+      "step": "resolve-dotnet-version-replay-b",
+      "timed_out": false
+    },
+    {
+      "alive_after": 0,
+      "exit_code": 0,
+      "job_active_after_cleanup": 0,
+      "job_active_before_cleanup": 0,
+      "job_kill_on_close": true,
+      "pid": 77544,
+      "step": "locked-restore-replay-b",
+      "timed_out": false
+    },
+    {
+      "alive_after": 0,
+      "exit_code": 0,
+      "job_active_after_cleanup": 0,
+      "job_active_before_cleanup": 0,
+      "job_kill_on_close": true,
+      "pid": 74968,
+      "step": "build-observation-fixture-replay-b",
+      "timed_out": false
+    },
+    {
+      "alive_after": 0,
+      "exit_code": 0,
+      "job_active_after_cleanup": 0,
+      "job_active_before_cleanup": 0,
+      "job_kill_on_close": true,
+      "pid": 71184,
+      "step": "list-formal-test-without-execution-replay-b",
+      "timed_out": false
+    },
+    {
+      "alive_after": 0,
+      "exit_code": 0,
+      "job_active_after_cleanup": 0,
+      "job_active_before_cleanup": 0,
+      "job_kill_on_close": true,
+      "pid": 60516,
+      "step": "shutdown-dotnet-build-servers-replay-b",
+      "timed_out": false
     },
     {
       "alive_after": 0,
       "exit_code": 1,
-      "pid": 63332,
+      "pid": 70968,
       "step": "formal-runner-refusal-without-permit"
     },
     {
       "alive_after": 0,
       "exit_code": 1,
-      "pid": 75140,
+      "pid": 59016,
       "step": "formal-comparator-refusal-without-permit"
     }
   ],
   "project": "osu.Game.Rulesets.Osu.Tests/osu.Game.Rulesets.Osu.Tests.csproj",
+  "reproducibility": {
+    "byte_identical": true,
+    "execution_replay_id": "replay-a",
+    "execution_tree_manifest_sha256": "5e771da6f92cdc14d5fb0576e4baf27b6ade35a94c6c95757d3fcc414d8da078",
+    "formal_assembly_bytes": 2976256,
+    "formal_assembly_sha256": "b984ea92ed9f2750982a8747981005e739322e55c7b448813237906ef4ce043c",
+    "independent_cache_roots": true,
+    "replay_count": 2,
+    "replays": [
+      {
+        "assembly": {
+          "bytes": 2976256,
+          "external_path": "D:/GamePrimitivesToolchains/replays/r3-two-cache-readiness-20260727-12/artifacts/bin/osu.Game.Rulesets.Osu.Tests/debug/osu.Game.Rulesets.Osu.Tests.dll",
+          "sha256": "b984ea92ed9f2750982a8747981005e739322e55c7b448813237906ef4ce043c"
+        },
+        "cache_root": "D:/GamePrimitivesToolchains/replays/r3-two-cache-readiness-20260727-12",
+        "execution_tree": {
+          "assembly_relative_path": "osu.Game.Rulesets.Osu.Tests.dll",
+          "execution_root": "D:/GamePrimitivesToolchains/replays/r3-two-cache-readiness-20260727-12/artifacts/bin/osu.Game.Rulesets.Osu.Tests/debug",
+          "file_count": 479,
+          "manifest": {
+            "bytes": 125934,
+            "external_path": "D:/GamePrimitivesToolchains/replays/r3-two-cache-readiness-20260727-12/formal-execution-tree-manifest.json",
+            "sha256": "5e771da6f92cdc14d5fb0576e4baf27b6ade35a94c6c95757d3fcc414d8da078"
+          },
+          "total_bytes": 693048802
+        },
+        "removed_discovery_ephemera": [
+          ".msCoverageSourceRootsMapping_osu.Game.Rulesets.Osu.Tests",
+          "nunit_random_seed.tmp"
+        ],
+        "replay_id": "replay-a"
+      },
+      {
+        "assembly": {
+          "bytes": 2976256,
+          "external_path": "D:/GamePrimitivesToolchains/replays/r3-two-cache-readiness-20260727-12-reproducibility/artifacts/bin/osu.Game.Rulesets.Osu.Tests/debug/osu.Game.Rulesets.Osu.Tests.dll",
+          "sha256": "b984ea92ed9f2750982a8747981005e739322e55c7b448813237906ef4ce043c"
+        },
+        "cache_root": "D:/GamePrimitivesToolchains/replays/r3-two-cache-readiness-20260727-12-reproducibility",
+        "execution_tree": {
+          "assembly_relative_path": "osu.Game.Rulesets.Osu.Tests.dll",
+          "execution_root": "D:/GamePrimitivesToolchains/replays/r3-two-cache-readiness-20260727-12-reproducibility/artifacts/bin/osu.Game.Rulesets.Osu.Tests/debug",
+          "file_count": 479,
+          "manifest": {
+            "bytes": 125934,
+            "external_path": "D:/GamePrimitivesToolchains/replays/r3-two-cache-readiness-20260727-12-reproducibility/formal-execution-tree-manifest.json",
+            "sha256": "5e771da6f92cdc14d5fb0576e4baf27b6ade35a94c6c95757d3fcc414d8da078"
+          },
+          "total_bytes": 693048802
+        },
+        "removed_discovery_ephemera": [
+          ".msCoverageSourceRootsMapping_osu.Game.Rulesets.Osu.Tests",
+          "nunit_random_seed.tmp"
+        ],
+        "replay_id": "replay-b"
+      }
+    ]
+  },
   "results": {
     "build_error_count": 0,
     "build_warning_count": 0,

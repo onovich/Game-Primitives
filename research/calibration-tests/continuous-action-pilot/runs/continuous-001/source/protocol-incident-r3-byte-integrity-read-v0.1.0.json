@@ -1,0 +1,51 @@
+{
+  "$schema": "https://github.com/onovich/Game-Primitives/blob/main/research/calibration-tests/continuous-action-pilot/schema/protocol-incident-0.1.0.schema.json",
+  "aggregate_state": {
+    "formal_input_byte_read": true,
+    "formal_input_executed": false,
+    "formal_result_produced": false
+  },
+  "artifact_type": "protocol_incident_record",
+  "artifact_version": "0.1.0",
+  "case_id": "CA-R3",
+  "evidence_scope_note": "Any formal_input_read=false assertion in R3 build evidence is scoped only to the recorded build, list, and guard-probe processes; it is not an aggregate run-level assertion.",
+  "exposure": {
+    "content_exposed_to_main_thread": false,
+    "content_exposed_to_prediction_flow": false,
+    "digest_exposed_to_main_thread": false,
+    "formal_result_observed": false
+  },
+  "fact_basis": {
+    "independent_process_log_available": false,
+    "kind": "subtask_self_report",
+    "limitation": "Negative exposure and non-operation statements are based on the subtask report and available task output, not an independent byte-level process transcript."
+  },
+  "gate_disposition": {
+    "recommended": "retain_with_documented_nonsemantic_integrity_exception",
+    "required": true,
+    "status": "pending_explicit_human_acceptance"
+  },
+  "incident_id": "incident.r3.formal-input-byte-integrity-read.v0.1.0",
+  "non_operations": {
+    "content_persisted": false,
+    "content_printed_or_returned": false,
+    "digest_persisted": false,
+    "digest_printed_or_returned": false,
+    "formal_execution": false,
+    "json_parse": false,
+    "semantic_interpretation": false
+  },
+  "observed_operations": {
+    "byte_read_api": "Path.read_bytes",
+    "byte_read_count": 1,
+    "compared_with_existing_case_lock_digest": true,
+    "digest_algorithm": "SHA-256"
+  },
+  "phase": "pre_gate_evidence_hardening",
+  "run_id": "continuous-001",
+  "sequence_position": "after_r3_evidence_generation_before_pre_audit_freeze",
+  "target_artifact": {
+    "artifact_id": "fixture.r3.formal-input-v0.1.0",
+    "path": "fixtures/r3/formal-input-r3-v0.1.0.json"
+  }
+}

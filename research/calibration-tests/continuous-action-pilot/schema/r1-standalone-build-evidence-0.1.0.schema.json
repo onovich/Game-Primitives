@@ -1,0 +1,580 @@
+{
+  "$defs": {
+    "artifactReference": {
+      "$ref": "https://github.com/onovich/Game-Primitives/blob/main/research/calibration-tests/continuous-action-pilot/schema/task-packet-0.1.0.schema.json#/$defs/artifactReference"
+    },
+    "buildOutput": {
+      "additionalProperties": false,
+      "properties": {
+        "bytes": {
+          "minimum": 1,
+          "type": "integer"
+        },
+        "external_path": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "output_id": {
+          "$ref": "https://github.com/onovich/Game-Primitives/blob/main/research/calibration-tests/continuous-action-pilot/schema/task-packet-0.1.0.schema.json#/$defs/localId"
+        },
+        "output_kind": {
+          "enum": [
+            "formal_execution",
+            "synthetic_smoke"
+          ]
+        },
+        "repository_storage": {
+          "const": false
+        },
+        "sha256": {
+          "$ref": "https://github.com/onovich/Game-Primitives/blob/main/research/calibration-tests/continuous-action-pilot/schema/task-packet-0.1.0.schema.json#/$defs/sha256"
+        }
+      },
+      "required": [
+        "bytes",
+        "external_path",
+        "output_id",
+        "output_kind",
+        "repository_storage",
+        "sha256"
+      ],
+      "type": "object"
+    },
+    "configurationBuild": {
+      "additionalProperties": false,
+      "properties": {
+        "build_attempt_id": {
+          "$ref": "https://github.com/onovich/Game-Primitives/blob/main/research/calibration-tests/continuous-action-pilot/schema/task-packet-0.1.0.schema.json#/$defs/localId"
+        },
+        "build_exit_code": {
+          "const": 0
+        },
+        "configuration_id": {
+          "enum": [
+            "config.baseline",
+            "config.variant"
+          ]
+        },
+        "formal_build_exit_code": {
+          "const": 0
+        },
+        "formal_restore_exit_code": {
+          "const": 0
+        },
+        "outputs": {
+          "allOf": [
+            {
+              "contains": {
+                "properties": {
+                  "output_kind": {
+                    "const": "formal_execution"
+                  }
+                },
+                "required": [
+                  "output_kind"
+                ]
+              },
+              "maxContains": 1,
+              "minContains": 1
+            },
+            {
+              "contains": {
+                "properties": {
+                  "output_kind": {
+                    "const": "synthetic_smoke"
+                  }
+                },
+                "required": [
+                  "output_kind"
+                ]
+              },
+              "maxContains": 1,
+              "minContains": 1
+            }
+          ],
+          "items": {
+            "$ref": "#/$defs/buildOutput"
+          },
+          "maxItems": 2,
+          "minItems": 2,
+          "type": "array",
+          "uniqueItems": true
+        },
+        "restore_exit_code": {
+          "const": 0
+        },
+        "warning_count": {
+          "const": 0
+        }
+      },
+      "required": [
+        "build_attempt_id",
+        "build_exit_code",
+        "configuration_id",
+        "formal_build_exit_code",
+        "formal_restore_exit_code",
+        "outputs",
+        "restore_exit_code",
+        "warning_count"
+      ],
+      "type": "object"
+    },
+    "externalFile": {
+      "additionalProperties": false,
+      "properties": {
+        "bytes": {
+          "minimum": 0,
+          "type": "integer"
+        },
+        "external_path": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "sha256": {
+          "$ref": "https://github.com/onovich/Game-Primitives/blob/main/research/calibration-tests/continuous-action-pilot/schema/task-packet-0.1.0.schema.json#/$defs/sha256"
+        }
+      },
+      "required": [
+        "bytes",
+        "external_path",
+        "sha256"
+      ],
+      "type": "object"
+    },
+    "processRecord": {
+      "additionalProperties": false,
+      "properties": {
+        "alive_after": {
+          "const": 0
+        },
+        "exit_code": {
+          "const": 0
+        },
+        "pid": {
+          "minimum": 1,
+          "type": "integer"
+        },
+        "step": {
+          "minLength": 1,
+          "type": "string"
+        }
+      },
+      "required": [
+        "alive_after",
+        "exit_code",
+        "pid",
+        "step"
+      ],
+      "type": "object"
+    }
+  },
+  "$id": "https://github.com/onovich/Game-Primitives/blob/main/research/calibration-tests/continuous-action-pilot/schema/r1-standalone-build-evidence-0.1.0.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "$schema": {
+      "const": "https://github.com/onovich/Game-Primitives/blob/main/research/calibration-tests/continuous-action-pilot/schema/r1-standalone-build-evidence-0.1.0.schema.json"
+    },
+    "artifact_type": {
+      "const": "continuous_action_r1_standalone_build_evidence"
+    },
+    "artifact_version": {
+      "const": "0.1.0"
+    },
+    "build_gate_status": {
+      "const": "passed"
+    },
+    "case_id": {
+      "const": "CA-R1"
+    },
+    "claims": {
+      "additionalProperties": false,
+      "properties": {
+        "baseline_variant_compiled_source_hashes_identical": {
+          "const": true
+        },
+        "compatibility_layer_contains_rule_logic": {
+          "const": false
+        },
+        "exact_frozen_fighter_bytes_compiled": {
+          "const": true
+        },
+        "formal_test_body_compiled": {
+          "const": true
+        },
+        "formal_test_body_executed": {
+          "const": false
+        }
+      },
+      "required": [
+        "baseline_variant_compiled_source_hashes_identical",
+        "compatibility_layer_contains_rule_logic",
+        "exact_frozen_fighter_bytes_compiled",
+        "formal_test_body_compiled",
+        "formal_test_body_executed"
+      ],
+      "type": "object"
+    },
+    "configurations": {
+      "allOf": [
+        {
+          "contains": {
+            "properties": {
+              "configuration_id": {
+                "const": "config.baseline"
+              }
+            },
+            "required": [
+              "configuration_id"
+            ]
+          },
+          "maxContains": 1,
+          "minContains": 1
+        },
+        {
+          "contains": {
+            "properties": {
+              "configuration_id": {
+                "const": "config.variant"
+              }
+            },
+            "required": [
+              "configuration_id"
+            ]
+          },
+          "maxContains": 1,
+          "minContains": 1
+        }
+      ],
+      "items": {
+        "$ref": "#/$defs/configurationBuild"
+      },
+      "maxItems": 2,
+      "minItems": 2,
+      "type": "array",
+      "uniqueItems": true
+    },
+    "controlled_variant": {
+      "additionalProperties": false,
+      "properties": {
+        "asset_path": {
+          "const": "Assets/Fighter/F00/F00.asset"
+        },
+        "baseline_asset_sha256": {
+          "$ref": "https://github.com/onovich/Game-Primitives/blob/main/research/calibration-tests/continuous-action-pilot/schema/task-packet-0.1.0.schema.json#/$defs/sha256"
+        },
+        "baseline_value": {
+          "const": false
+        },
+        "changed_paths": {
+          "const": [
+            "Assets/Fighter/F00/F00.asset"
+          ]
+        },
+        "field": {
+          "const": "canCancelOnWhiff"
+        },
+        "patch_sha256": {
+          "$ref": "https://github.com/onovich/Game-Primitives/blob/main/research/calibration-tests/continuous-action-pilot/schema/task-packet-0.1.0.schema.json#/$defs/sha256"
+        },
+        "variant_asset_sha256": {
+          "$ref": "https://github.com/onovich/Game-Primitives/blob/main/research/calibration-tests/continuous-action-pilot/schema/task-packet-0.1.0.schema.json#/$defs/sha256"
+        },
+        "variant_value": {
+          "const": true
+        }
+      },
+      "required": [
+        "asset_path",
+        "baseline_asset_sha256",
+        "baseline_value",
+        "changed_paths",
+        "field",
+        "patch_sha256",
+        "variant_asset_sha256",
+        "variant_value"
+      ],
+      "type": "object"
+    },
+    "created_at": {
+      "format": "date-time",
+      "type": "string"
+    },
+    "external_evidence": {
+      "$ref": "#/$defs/externalFile"
+    },
+    "fixture_surfaces": {
+      "additionalProperties": false,
+      "properties": {
+        "formal_execution": {
+          "items": {
+            "$ref": "#/$defs/artifactReference"
+          },
+          "maxItems": 15,
+          "minItems": 15,
+          "type": "array",
+          "uniqueItems": true
+        },
+        "synthetic_smoke_only": {
+          "items": {
+            "$ref": "#/$defs/artifactReference"
+          },
+          "maxItems": 2,
+          "minItems": 2,
+          "type": "array",
+          "uniqueItems": true
+        }
+      },
+      "required": [
+        "formal_execution",
+        "synthetic_smoke_only"
+      ],
+      "type": "object"
+    },
+    "formal_execution": {
+      "additionalProperties": false,
+      "properties": {
+        "authorization_created": {
+          "const": false
+        },
+        "comparator_executed": {
+          "const": false
+        },
+        "formal_environment_present": {
+          "const": false
+        },
+        "formal_input_executed": {
+          "const": false
+        },
+        "formal_input_path_accepted": {
+          "const": false
+        },
+        "formal_input_read": {
+          "const": false
+        },
+        "formal_result_created": {
+          "const": false
+        },
+        "formal_runner_executed": {
+          "const": false
+        },
+        "permit_created": {
+          "const": false
+        },
+        "predictions_created": {
+          "const": false
+        }
+      },
+      "required": [
+        "authorization_created",
+        "comparator_executed",
+        "formal_environment_present",
+        "formal_input_executed",
+        "formal_input_path_accepted",
+        "formal_input_read",
+        "formal_result_created",
+        "formal_runner_executed",
+        "permit_created",
+        "predictions_created"
+      ],
+      "type": "object"
+    },
+    "process_tracking": {
+      "additionalProperties": false,
+      "properties": {
+        "portable_dotnet_remaining": {
+          "maxItems": 0,
+          "type": "array"
+        },
+        "process_count": {
+          "const": 24
+        },
+        "records": {
+          "items": {
+            "$ref": "#/$defs/processRecord"
+          },
+          "maxItems": 24,
+          "minItems": 24,
+          "type": "array",
+          "uniqueItems": true
+        }
+      },
+      "required": [
+        "portable_dotnet_remaining",
+        "process_count",
+        "records"
+      ],
+      "type": "object"
+    },
+    "reproducibility": {
+      "additionalProperties": false,
+      "properties": {
+        "cache_roots": {
+          "items": {
+            "pattern": "^[A-Za-z]:[\\\\/]",
+            "type": "string"
+          },
+          "maxItems": 2,
+          "minItems": 2,
+          "type": "array",
+          "uniqueItems": true
+        },
+        "evidence_files": {
+          "items": {
+            "$ref": "#/$defs/externalFile"
+          },
+          "maxItems": 2,
+          "minItems": 2,
+          "type": "array",
+          "uniqueItems": true
+        },
+        "formal_outputs": {
+          "additionalProperties": false,
+          "properties": {
+            "baseline_sha256": {
+              "$ref": "https://github.com/onovich/Game-Primitives/blob/main/research/calibration-tests/continuous-action-pilot/schema/task-packet-0.1.0.schema.json#/$defs/sha256"
+            },
+            "variant_sha256": {
+              "$ref": "https://github.com/onovich/Game-Primitives/blob/main/research/calibration-tests/continuous-action-pilot/schema/task-packet-0.1.0.schema.json#/$defs/sha256"
+            }
+          },
+          "required": [
+            "baseline_sha256",
+            "variant_sha256"
+          ],
+          "type": "object"
+        },
+        "formal_pdb_files_found": {
+          "const": 0
+        },
+        "verified": {
+          "const": true
+        }
+      },
+      "required": [
+        "cache_roots",
+        "evidence_files",
+        "formal_outputs",
+        "formal_pdb_files_found",
+        "verified"
+      ],
+      "type": "object"
+    },
+    "run_id": {
+      "const": "continuous-001"
+    },
+    "source_identity": {
+      "additionalProperties": false,
+      "properties": {
+        "clean_tree_required": {
+          "const": true
+        },
+        "commit_sha": {
+          "const": "7eaaad799bb7912625c15af9407c2c67e6305d75"
+        },
+        "frozen_source_contract": {
+          "$ref": "#/$defs/artifactReference"
+        },
+        "repository_url": {
+          "const": "https://github.com/hifight/Footsies"
+        },
+        "verified_clean": {
+          "const": true
+        }
+      },
+      "required": [
+        "clean_tree_required",
+        "commit_sha",
+        "frozen_source_contract",
+        "repository_url",
+        "verified_clean"
+      ],
+      "type": "object"
+    },
+    "synthetic_smoke": {
+      "additionalProperties": false,
+      "properties": {
+        "baseline_branch_assertion_passed": {
+          "const": true
+        },
+        "baseline_exit_code": {
+          "const": 0
+        },
+        "differs_from_seven_event_formal_input": {
+          "const": true
+        },
+        "event_count": {
+          "const": 6
+        },
+        "formal_event_count": {
+          "const": 7
+        },
+        "inputs": {
+          "const": [
+            4,
+            0,
+            0,
+            4,
+            0,
+            0
+          ]
+        },
+        "variant_branch_assertion_passed": {
+          "const": true
+        },
+        "variant_exit_code": {
+          "const": 0
+        }
+      },
+      "required": [
+        "baseline_branch_assertion_passed",
+        "baseline_exit_code",
+        "differs_from_seven_event_formal_input",
+        "event_count",
+        "formal_event_count",
+        "inputs",
+        "variant_branch_assertion_passed",
+        "variant_exit_code"
+      ],
+      "type": "object"
+    },
+    "toolchain": {
+      "additionalProperties": false,
+      "properties": {
+        "dotnet_executable": {
+          "$ref": "#/$defs/externalFile"
+        },
+        "sdk_version": {
+          "const": "8.0.100"
+        }
+      },
+      "required": [
+        "dotnet_executable",
+        "sdk_version"
+      ],
+      "type": "object"
+    }
+  },
+  "required": [
+    "$schema",
+    "artifact_type",
+    "artifact_version",
+    "build_gate_status",
+    "case_id",
+    "claims",
+    "configurations",
+    "controlled_variant",
+    "created_at",
+    "external_evidence",
+    "fixture_surfaces",
+    "formal_execution",
+    "process_tracking",
+    "reproducibility",
+    "run_id",
+    "source_identity",
+    "synthetic_smoke",
+    "toolchain"
+  ],
+  "title": "Game Primitives CA-R1 Standalone Build Evidence 0.1.0",
+  "type": "object"
+}

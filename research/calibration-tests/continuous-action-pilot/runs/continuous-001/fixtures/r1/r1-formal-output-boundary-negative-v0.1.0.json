@@ -1,0 +1,52 @@
+{
+  "$schema": "https://github.com/onovich/Game-Primitives/blob/main/research/calibration-tests/continuous-action-pilot/schema/r1-formal-output-boundary-negative-0.1.0.schema.json",
+  "artifact_type": "continuous_action_r1_formal_output_boundary_negative",
+  "artifact_version": "0.1.0",
+  "case_id": "CA-R1",
+  "fixture_artifacts": [
+    {
+      "artifact_id": "fixture.ca-r1.formal-output-boundary",
+      "path": "research/calibration-tests/continuous-action-pilot/runs/continuous-001/fixtures/r1/r1-formal-output-boundary-v0.1.0.ps1",
+      "sha256": "42133fabdb7633b658a59f22d9735287db610af1e79eaa2be7052c000f1b4f80"
+    },
+    {
+      "artifact_id": "probe.ca-r1.formal-output-boundary-self-test",
+      "path": "research/calibration-tests/continuous-action-pilot/runs/continuous-001/fixtures/r1/self-test-r1-formal-output-boundary-v0.1.0.ps1",
+      "sha256": "42705d67fe2826274eb50c6a70f33995ff0b59bb5eb568a447bc8df0118b03a5"
+    }
+  ],
+  "formal_execution": {
+    "comparator_executed": false,
+    "formal_input_executed": false,
+    "formal_input_read": false,
+    "formal_runner_executed": false
+  },
+  "negative_controls": [
+    {
+      "control_id": "repository_overlap",
+      "status": "held"
+    },
+    {
+      "control_id": "source_overlap",
+      "status": "held"
+    },
+    {
+      "control_id": "toolchain_overlap",
+      "status": "held"
+    },
+    {
+      "control_id": "reparse_escape",
+      "status": "held"
+    },
+    {
+      "control_id": "overwrite",
+      "status": "held"
+    },
+    {
+      "control_id": "unexpected_root",
+      "status": "held"
+    }
+  ],
+  "run_id": "continuous-001",
+  "status": "passed"
+}

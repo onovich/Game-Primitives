@@ -608,13 +608,20 @@
               {
                 "properties": {
                   "artifacts": {
-                    "maxItems": 1,
-                    "minItems": 1,
+                    "maxItems": 2,
+                    "minItems": 2,
                     "prefixItems": [
                       {
                         "properties": {
                           "artifact_id": {
-                            "const": "config.baseline.raw-trace"
+                            "const": "config.baseline.repetition-0001.raw-trace"
+                          }
+                        }
+                      },
+                      {
+                        "properties": {
+                          "artifact_id": {
+                            "const": "config.baseline.repetition-0002.raw-trace"
                           }
                         }
                       }
@@ -628,13 +635,20 @@
               {
                 "properties": {
                   "artifacts": {
-                    "maxItems": 1,
-                    "minItems": 1,
+                    "maxItems": 2,
+                    "minItems": 2,
                     "prefixItems": [
                       {
                         "properties": {
                           "artifact_id": {
-                            "const": "config.variant.raw-trace"
+                            "const": "config.variant.repetition-0001.raw-trace"
+                          }
+                        }
+                      },
+                      {
+                        "properties": {
+                          "artifact_id": {
+                            "const": "config.variant.repetition-0002.raw-trace"
                           }
                         }
                       }
@@ -1127,13 +1141,20 @@
               {
                 "properties": {
                   "artifacts": {
-                    "maxItems": 1,
-                    "minItems": 1,
+                    "maxItems": 2,
+                    "minItems": 2,
                     "prefixItems": [
                       {
                         "properties": {
                           "artifact_id": {
-                            "const": "config.baseline.raw-trace"
+                            "const": "config.baseline.repetition-0001.raw-trace"
+                          }
+                        }
+                      },
+                      {
+                        "properties": {
+                          "artifact_id": {
+                            "const": "config.baseline.repetition-0002.raw-trace"
                           }
                         }
                       }
@@ -1147,13 +1168,20 @@
               {
                 "properties": {
                   "artifacts": {
-                    "maxItems": 1,
-                    "minItems": 1,
+                    "maxItems": 2,
+                    "minItems": 2,
                     "prefixItems": [
                       {
                         "properties": {
                           "artifact_id": {
-                            "const": "config.variant.raw-trace"
+                            "const": "config.variant.repetition-0001.raw-trace"
+                          }
+                        }
+                      },
+                      {
+                        "properties": {
+                          "artifact_id": {
+                            "const": "config.variant.repetition-0002.raw-trace"
                           }
                         }
                       }
@@ -1234,40 +1262,54 @@
                       {
                         "properties": {
                           "artifacts": {
-                            "maxItems": 1,
-                            "minItems": 1,
+                            "maxItems": 2,
+                            "minItems": 2,
                             "prefixItems": [
                               {
                                 "properties": {
                                   "artifact_id": {
-                                    "const": "negative_control_a.raw-trace"
+                                    "const": "config.negative-a.repetition-0001.raw-trace"
+                                  }
+                                }
+                              },
+                              {
+                                "properties": {
+                                  "artifact_id": {
+                                    "const": "config.negative-a.repetition-0002.raw-trace"
                                   }
                                 }
                               }
                             ]
                           },
                           "configuration_id": {
-                            "const": "negative_control_a"
+                            "const": "config.negative-a"
                           }
                         }
                       },
                       {
                         "properties": {
                           "artifacts": {
-                            "maxItems": 1,
-                            "minItems": 1,
+                            "maxItems": 2,
+                            "minItems": 2,
                             "prefixItems": [
                               {
                                 "properties": {
                                   "artifact_id": {
-                                    "const": "negative_control_b.raw-trace"
+                                    "const": "config.negative-b.repetition-0001.raw-trace"
+                                  }
+                                }
+                              },
+                              {
+                                "properties": {
+                                  "artifact_id": {
+                                    "const": "config.negative-b.repetition-0002.raw-trace"
                                   }
                                 }
                               }
                             ]
                           },
                           "configuration_id": {
-                            "const": "negative_control_b"
+                            "const": "config.negative-b"
                           }
                         }
                       }

@@ -1,0 +1,50 @@
+{
+  "$schema": "https://github.com/onovich/Game-Primitives/blob/main/research/calibration-tests/continuous-action-pilot/schema/python-runtime-evidence-0.1.0.schema.json",
+  "artifact_type": "formal_python_runtime_evidence",
+  "artifact_version": "0.1.0",
+  "controls": {
+    "explicit_python_path_required": true,
+    "path_lookup_forbidden": true,
+    "path_shim_bypasses": 6,
+    "target_count": 6,
+    "wrong_runtime_rejections": 6
+  },
+  "formal_input_executed": false,
+  "formal_input_read": false,
+  "formal_result_created": false,
+  "run_id": "continuous-001",
+  "runtime": {
+    "bytes": 106328,
+    "executable_path": "C:/Python314/python.exe",
+    "platform": "windows-x64",
+    "runtime_id": "python-3.14.3-windows-x64",
+    "sha256": "cce21c0e8710e304273e98ac4b2b0f5aceb639acbcd2343cbaa5c4e81619c45b",
+    "version_stdout": "Python 3.14.3"
+  },
+  "target_bindings": [
+    {
+      "path": "research/calibration-tests/continuous-action-pilot/runs/continuous-001/fixtures/r1/run-footsies-r1-standalone-formal-v0.1.0.ps1",
+      "sha256": "46f621993a1f8ee703dacbb0544081157e543dcfc6f819d45570c931ea0eb5ef"
+    },
+    {
+      "path": "research/calibration-tests/continuous-action-pilot/runs/continuous-001/fixtures/r1/compare-footsies-r1-v0.1.0.ps1",
+      "sha256": "c0c7336ed53856f2597a90782125e9075b5d43e1b47dbebfdc6977e4b4f3367c"
+    },
+    {
+      "path": "research/calibration-tests/continuous-action-pilot/runs/continuous-001/fixtures/r2/run-q3-formal-guarded-v0.1.0.ps1",
+      "sha256": "f5d054169631af1680ee56703afcc57c7e6c14d100643bf0eef9c98a02f0f029"
+    },
+    {
+      "path": "research/calibration-tests/continuous-action-pilot/runs/continuous-001/fixtures/r2/compare-q3-formal-traces-v0.1.0.ps1",
+      "sha256": "cbb27f7f5503a24ef17c06a746dcc2503f3cd5ad7dbb724c80508204274662ed"
+    },
+    {
+      "path": "research/calibration-tests/continuous-action-pilot/runs/continuous-001/fixtures/r3/run-osu-r3-formal-v0.1.0.ps1",
+      "sha256": "be1e6c3d3d4e863611baf9f77f344af9500f205a44903ee0c0cba92e24e287fd"
+    },
+    {
+      "path": "research/calibration-tests/continuous-action-pilot/runs/continuous-001/fixtures/r3/compare-osu-r3-formal-v0.1.0.ps1",
+      "sha256": "37b5decda965a45d052ef278dbf573cfe2d7db3012dfdae777a7ae63bfb1d2c2"
+    }
+  ]
+}

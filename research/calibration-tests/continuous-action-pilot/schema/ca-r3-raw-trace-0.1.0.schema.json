@@ -37,7 +37,7 @@
           "configuration_id": {
             "enum": [
               "config.baseline",
-              "negative_control_a"
+              "config.negative-a"
             ]
           }
         },
@@ -90,7 +90,7 @@
       "if": {
         "properties": {
           "configuration_id": {
-            "const": "negative_control_b"
+            "const": "config.negative-b"
           }
         },
         "required": [
@@ -127,8 +127,8 @@
       "enum": [
         "config.baseline",
         "config.variant",
-        "negative_control_a",
-        "negative_control_b"
+        "config.negative-a",
+        "config.negative-b"
       ]
     },
     "execution_permit_sha256": {

@@ -100,6 +100,7 @@ research/calibration-tests/continuous-action-pilot/runs/continuous-001/
 | 冻结正式输入轨迹 | `formal-input-trace 0.1.0` |
 | 原始回答与机器信封 | `blind-response-interface 0.1.0` |
 | 派生角色提交 | `role-submission 0.1.2` |
+| 被阻断时的执行计划准备记录 | `execution-plan-preparation 0.1.0`（仅准备态，不可冻结） |
 | 执行计划、轨迹与结果 | `execution-artifact 0.1.1` |
 | 真值与揭示 | `truth-reveal 0.1.0` |
 | 审核与最终报告 | `run-report 0.1.0` |
@@ -125,6 +126,8 @@ research/calibration-tests/continuous-action-pilot/runs/continuous-001/
 `fixture-lock.json` 必须把每案的兼容、观察与规则变体实现分别列出；每类实现如实标明 `patch`、`not_applicable` 或 `configuration_only`，不得用空白或伪造补丁填位。三类实际补丁文件不得重叠。只有规则变体可使用 `configuration_only`，且必须绑定同案已锁定的正式输入或通用夹具制品；这种绑定不把通用制品重新归类成变体补丁。每个冻结正式输入使用通用的类型化静态字段和有序输入事件表达，并在门前声明 `authorization_state=withheld`、`execution_status=not_executed`、`formal_input_executed=false` 与 `formal_result_created=false`。
 
 `formal-build-readiness-v0.1.0.json` 必须逐案、逐配置记录通过的构建证据、仓库外构建输出的散列和所用夹具，并明确 `formal_input_executed=false` 与 `formal_result_produced=false`。它通过 `supersedes_probe` 绑定历史探针，但只有自身三案全通过的 `overall_status=passed` 才满足人工门；旧探针中的许可阻断或中性探针通过都不能被解释成最终通过。
+
+若最终构建准备或夹具锁仍被外部合法条件阻断，`execution/execution-plan.json` 可以暂时保存 `execution_plan_preparation`。该准备记录必须逐案绑定候选 runner、比较器、原始轨迹 Schema 和门前证据，显式列出未关闭阻断，并把人工授权、预测集合、执行许可、正式 fixture、正式比较器、正式输入执行与正式结果全部声明为未创建或未启动；它不得嵌入正式输入内容。准备记录不是冻结集合中的“执行计划”，不得被第二道投影审核、两提交冻结或人工门当作最终制品。阻断关闭且最终构建记录、夹具锁完成后，必须在同一路径以 `execution-artifact 0.1.1` 的 `execution_plan` 原位替换，再继续单向依赖链。
 
 `stage2-variant-envelope.json` 是盲测者可见制品，不得包含来源路径、来源身份、作品名、条件映射、rich／atomic 标签或预期结果。每案公开中性变量与两种配置，并以匿名字段自包含初态、时间基准、完整有序正式输入、中性不变量、观测、停止边界和结构化容差；这些字段提供执行语义，不提供来源身份或预期结果。
 
@@ -173,7 +176,7 @@ research/calibration-tests/continuous-action-pilot/runs/continuous-001/
 
 ## 7. 执行证据链
 
-正式执行的最短结构链为：
+正式执行的最短结构链为；其中 `execution plan` 专指已经替换准备记录、绑定最终夹具锁的 `execution-artifact 0.1.1` 制品：
 
 ```text
 execution plan

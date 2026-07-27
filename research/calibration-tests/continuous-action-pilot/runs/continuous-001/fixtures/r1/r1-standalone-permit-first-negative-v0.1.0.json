@@ -1,0 +1,35 @@
+{
+  "$schema": "https://github.com/onovich/Game-Primitives/blob/main/research/calibration-tests/continuous-action-pilot/schema/r1-standalone-permit-first-negative-0.1.0.schema.json",
+  "artifact_type": "continuous_action_r1_standalone_permit_first_negative",
+  "artifact_version": "0.1.0",
+  "case_id": "CA-R1",
+  "formal_execution": {
+    "dotnet_started": false,
+    "formal_input_executed": false,
+    "formal_input_inspected_by_runner": false,
+    "formal_result_produced": false,
+    "source_inspected_by_runner": false,
+    "test_body_executed": false
+  },
+  "invocation": {
+    "configuration_id": "config.baseline",
+    "deliberately_missing_dotnet_path": "D:/GamePrimitivesToolchains/missing-r1-dotnet-permit-first.exe",
+    "deliberately_missing_source_root": "D:/GamePrimitivesToolchains/missing-r1-source-permit-first",
+    "execution_permit_path": "D:/Articles/Game Primitives/research/calibration-tests/continuous-action-pilot/runs/continuous-001/execution/formal-execution-permit.json",
+    "formal_output_root": "D:/GamePrimitivesToolchains/replays/r1-formal-guards-20260727-01/formal-output-must-not-exist",
+    "repetition_index": 1
+  },
+  "observed_at": "2026-07-27T04:34:43.8791680Z",
+  "outcome": {
+    "error_contains": "execution permit error: required file does not exist",
+    "exit_code": 1,
+    "formal_output_root_created": false,
+    "rejection_point": "execution_permit_verifier"
+  },
+  "run_id": "continuous-001",
+  "runner": {
+    "artifact_id": "fixture.ca-r1.formal-runner",
+    "path": "research/calibration-tests/continuous-action-pilot/runs/continuous-001/fixtures/r1/run-footsies-r1-standalone-formal-v0.1.0.ps1",
+    "sha256": "46f621993a1f8ee703dacbb0544081157e543dcfc6f819d45570c931ea0eb5ef"
+  }
+}

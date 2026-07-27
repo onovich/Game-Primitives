@@ -1,0 +1,30 @@
+{
+  "$schema": "https://github.com/onovich/Game-Primitives/blob/main/research/calibration-tests/continuous-action-pilot/schema/r1-process-boundary-negative-0.1.0.schema.json",
+  "artifact_type": "continuous_action_r1_process_boundary_negative",
+  "artifact_version": "0.1.0",
+  "case_id": "CA-R1",
+  "fixture_artifacts": [
+    {
+      "artifact_id": "fixture.ca-r1.process-boundary",
+      "path": "research/calibration-tests/continuous-action-pilot/runs/continuous-001/fixtures/r1/r1-process-boundary-v0.1.0.ps1",
+      "sha256": "0774c9882e400b327c981c541f7d96ff56646021cea1cc0a4fd070ce81a81592"
+    },
+    {
+      "artifact_id": "probe.ca-r1.process-boundary-self-test",
+      "path": "research/calibration-tests/continuous-action-pilot/runs/continuous-001/fixtures/r1/self-test-r1-process-boundary-v0.1.0.ps1",
+      "sha256": "eedf0538cec95c18c09e36d76723402b51ac650d92c3df5fb5e855fe2563e878"
+    }
+  ],
+  "formal_execution": {
+    "comparator_executed": false,
+    "formal_input_executed": false,
+    "formal_input_read": false,
+    "formal_runner_executed": false
+  },
+  "run_id": "continuous-001",
+  "status": "passed",
+  "synthetic_failure_exit_code": 7,
+  "synthetic_failure_reaped": true,
+  "synthetic_failure_tree_reaped": true,
+  "synthetic_timeout_tree_reaped": true
+}

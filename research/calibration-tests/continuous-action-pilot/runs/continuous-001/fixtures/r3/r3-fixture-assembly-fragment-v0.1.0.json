@@ -1,0 +1,122 @@
+{
+  "$schema": "https://github.com/onovich/Game-Primitives/blob/main/research/calibration-tests/continuous-action-pilot/schema/fixture-assembly-fragment-0.1.0.schema.json",
+  "artifact_type": "fixture_assembly_fragment",
+  "artifact_version": "0.1.0",
+  "build_readiness": {
+    "blockers": [],
+    "case_id": "CA-R3",
+    "configurations": [
+      {
+        "build_attempt_ids": [
+          "build.ca-r3.formal-prep-replay-a",
+          "build.ca-r3.formal-prep-replay-b"
+        ],
+        "build_evidence_artifacts": [
+          {
+            "artifact_id": "evidence.ca-r3.build-list-v0.1.0",
+            "path": "research/calibration-tests/continuous-action-pilot/runs/continuous-001/fixtures/r3/r3-build-list-evidence-v0.1.0.json",
+            "sha256": "926977a9c8daacbfe16b0d48fa85533f8d008b34875a0968ec9513ee76bac99a"
+          }
+        ],
+        "built_outputs": [
+          {
+            "output_id": "output.ca-r3.osu-tests-assembly",
+            "repository_storage": false,
+            "sha256": "b984ea92ed9f2750982a8747981005e739322e55c7b448813237906ef4ce043c"
+          }
+        ],
+        "configuration_id": "config.baseline",
+        "fixture_artifacts": [
+          {
+            "artifact_id": "fixture.ca-r3.observation-source",
+            "path": "research/calibration-tests/continuous-action-pilot/runs/continuous-001/fixtures/r3/TestSceneGamePrimitivesR3.cs",
+            "sha256": "5907f3ea17699981cb48f298ed6addf83eea705388411c69293c26142d2e0535"
+          },
+          {
+            "artifact_id": "fixture.ca-r3.spec",
+            "path": "research/calibration-tests/continuous-action-pilot/runs/continuous-001/fixtures/r3/r3-fixture-spec-v0.1.0.json",
+            "sha256": "072065e8a5002be7080b814c53b4a165b0893a01670c4da4c9769a1000bab06a"
+          }
+        ],
+        "formal_input_executed": false,
+        "formal_result_produced": false,
+        "realization": "shared_binary_configuration",
+        "status": "passed"
+      },
+      {
+        "build_attempt_ids": [
+          "build.ca-r3.formal-prep-replay-a",
+          "build.ca-r3.formal-prep-replay-b"
+        ],
+        "build_evidence_artifacts": [
+          {
+            "artifact_id": "evidence.ca-r3.build-list-v0.1.0",
+            "path": "research/calibration-tests/continuous-action-pilot/runs/continuous-001/fixtures/r3/r3-build-list-evidence-v0.1.0.json",
+            "sha256": "926977a9c8daacbfe16b0d48fa85533f8d008b34875a0968ec9513ee76bac99a"
+          }
+        ],
+        "built_outputs": [
+          {
+            "output_id": "output.ca-r3.osu-tests-assembly",
+            "repository_storage": false,
+            "sha256": "b984ea92ed9f2750982a8747981005e739322e55c7b448813237906ef4ce043c"
+          }
+        ],
+        "configuration_id": "config.variant",
+        "fixture_artifacts": [
+          {
+            "artifact_id": "fixture.ca-r3.observation-source",
+            "path": "research/calibration-tests/continuous-action-pilot/runs/continuous-001/fixtures/r3/TestSceneGamePrimitivesR3.cs",
+            "sha256": "5907f3ea17699981cb48f298ed6addf83eea705388411c69293c26142d2e0535"
+          },
+          {
+            "artifact_id": "fixture.ca-r3.spec",
+            "path": "research/calibration-tests/continuous-action-pilot/runs/continuous-001/fixtures/r3/r3-fixture-spec-v0.1.0.json",
+            "sha256": "072065e8a5002be7080b814c53b4a165b0893a01670c4da4c9769a1000bab06a"
+          }
+        ],
+        "formal_input_executed": false,
+        "formal_result_produced": false,
+        "realization": "shared_binary_configuration",
+        "status": "passed"
+      }
+    ],
+    "source_commit": "5da71008b082d1a77e4bb301dc98886f1f24b895",
+    "status": "passed"
+  },
+  "build_readiness_evidence_artifacts": [
+    {
+      "artifact_id": "evidence.ca-r3.build-list-v0.1.0",
+      "path": "research/calibration-tests/continuous-action-pilot/runs/continuous-001/fixtures/r3/r3-build-list-evidence-v0.1.0.json",
+      "sha256": "926977a9c8daacbfe16b0d48fa85533f8d008b34875a0968ec9513ee76bac99a"
+    }
+  ],
+  "case_id": "CA-R3",
+  "fixture_lock_case_json_pointer": "/case_lock",
+  "fixture_lock_case_source": {
+    "artifact_id": "fragment.ca-r3.case-lock-draft.v0.1.0",
+    "path": "research/calibration-tests/continuous-action-pilot/runs/continuous-001/fixtures/r3/r3-case-lock-draft-v0.1.0.json",
+    "sha256": "69653cfa7be1b5c2e4683d548591f34501918ce9f9fbe96856200b0f30629cc1"
+  },
+  "formal_input_executed": false,
+  "formal_result_produced": false,
+  "negative_control_artifacts": [
+    {
+      "artifact_id": "negative.ca-r3.guard-refusals",
+      "path": "research/calibration-tests/continuous-action-pilot/runs/continuous-001/fixtures/r3/r3-build-list-evidence-v0.1.0.json",
+      "sha256": "926977a9c8daacbfe16b0d48fa85533f8d008b34875a0968ec9513ee76bac99a"
+    }
+  ],
+  "prepared_at": "2026-07-27T04:35:00Z",
+  "run_id": "continuous-001",
+  "structured_build_evidence": {
+    "artifact_id": "evidence.ca-r3.build-list-v0.1.0",
+    "path": "research/calibration-tests/continuous-action-pilot/runs/continuous-001/fixtures/r3/r3-build-list-evidence-v0.1.0.json",
+    "sha256": "926977a9c8daacbfe16b0d48fa85533f8d008b34875a0968ec9513ee76bac99a"
+  },
+  "supersedes_probe": {
+    "artifact_id": "probe.toolchain.v0.1.2",
+    "path": "research/calibration-tests/continuous-action-pilot/runs/continuous-001/fixtures/toolchain-probe-v0.1.2.json",
+    "sha256": "3112980d80ba05f58177fae103a97a4a34841ff672bef374f0c99d703637b723"
+  }
+}

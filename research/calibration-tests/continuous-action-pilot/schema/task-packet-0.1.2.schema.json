@@ -147,6 +147,7 @@
               "identity_leak_scan",
               "invariant_integrity",
               "projection_fidelity",
+              "protocol_incident_disposition",
               "provenance_fidelity",
               "reference_closure",
               "single_variable_isolation",
@@ -458,6 +459,12 @@
             {
               "contains": {
                 "const": "projection_fidelity"
+              },
+              "minContains": 1
+            },
+            {
+              "contains": {
+                "const": "protocol_incident_disposition"
               },
               "minContains": 1
             },

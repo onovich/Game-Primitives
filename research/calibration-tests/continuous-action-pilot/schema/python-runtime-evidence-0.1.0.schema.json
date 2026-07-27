@@ -1,0 +1,131 @@
+{
+  "$defs": {
+    "artifactReference": {
+      "additionalProperties": false,
+      "properties": {
+        "path": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "sha256": {
+          "pattern": "^(?!0{64}$)[0-9a-f]{64}$",
+          "type": "string"
+        }
+      },
+      "required": [
+        "path",
+        "sha256"
+      ],
+      "type": "object"
+    }
+  },
+  "$id": "https://github.com/onovich/Game-Primitives/blob/main/research/calibration-tests/continuous-action-pilot/schema/python-runtime-evidence-0.1.0.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "$schema": {
+      "const": "https://github.com/onovich/Game-Primitives/blob/main/research/calibration-tests/continuous-action-pilot/schema/python-runtime-evidence-0.1.0.schema.json"
+    },
+    "artifact_type": {
+      "const": "formal_python_runtime_evidence"
+    },
+    "artifact_version": {
+      "const": "0.1.0"
+    },
+    "controls": {
+      "additionalProperties": false,
+      "properties": {
+        "explicit_python_path_required": {
+          "const": true
+        },
+        "path_lookup_forbidden": {
+          "const": true
+        },
+        "path_shim_bypasses": {
+          "const": 6
+        },
+        "target_count": {
+          "const": 6
+        },
+        "wrong_runtime_rejections": {
+          "const": 6
+        }
+      },
+      "required": [
+        "explicit_python_path_required",
+        "path_lookup_forbidden",
+        "path_shim_bypasses",
+        "target_count",
+        "wrong_runtime_rejections"
+      ],
+      "type": "object"
+    },
+    "formal_input_executed": {
+      "const": false
+    },
+    "formal_input_read": {
+      "const": false
+    },
+    "formal_result_created": {
+      "const": false
+    },
+    "run_id": {
+      "const": "continuous-001"
+    },
+    "runtime": {
+      "additionalProperties": false,
+      "properties": {
+        "bytes": {
+          "const": 106328
+        },
+        "executable_path": {
+          "const": "C:/Python314/python.exe"
+        },
+        "platform": {
+          "const": "windows-x64"
+        },
+        "runtime_id": {
+          "const": "python-3.14.3-windows-x64"
+        },
+        "sha256": {
+          "const": "cce21c0e8710e304273e98ac4b2b0f5aceb639acbcd2343cbaa5c4e81619c45b"
+        },
+        "version_stdout": {
+          "const": "Python 3.14.3"
+        }
+      },
+      "required": [
+        "bytes",
+        "executable_path",
+        "platform",
+        "runtime_id",
+        "sha256",
+        "version_stdout"
+      ],
+      "type": "object"
+    },
+    "target_bindings": {
+      "items": {
+        "$ref": "#/$defs/artifactReference"
+      },
+      "maxItems": 6,
+      "minItems": 6,
+      "type": "array",
+      "uniqueItems": true
+    }
+  },
+  "required": [
+    "$schema",
+    "artifact_type",
+    "artifact_version",
+    "controls",
+    "formal_input_executed",
+    "formal_input_read",
+    "formal_result_created",
+    "run_id",
+    "runtime",
+    "target_bindings"
+  ],
+  "title": "continuous-001 Python Runtime Evidence 0.1.0",
+  "type": "object"
+}

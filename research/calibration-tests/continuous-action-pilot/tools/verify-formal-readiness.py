@@ -20,26 +20,48 @@ REQUIRED_AUDIT_CHECKS = {
     "identity_leak_scan",
     "invariant_integrity",
     "projection_fidelity",
+    "protocol_incident_disposition",
     "reference_closure",
     "single_variable_isolation",
     "stage2_input_closure",
 }
 
 REQUIRED_AUDIT_INPUTS = {
+    "research/calibration-tests/continuous-action-pilot/schema/execution-artifact-0.1.0.schema.json",
+    "research/calibration-tests/continuous-action-pilot/schema/execution-artifact-0.1.1.schema.json",
+    "research/calibration-tests/continuous-action-pilot/schema/fixture-assembly-fragment-0.1.0.schema.json",
+    "research/calibration-tests/continuous-action-pilot/schema/fixture-lock-0.1.0.schema.json",
+    "research/calibration-tests/continuous-action-pilot/schema/formal-build-readiness-0.1.0.schema.json",
+    "research/calibration-tests/continuous-action-pilot/schema/task-packet-0.1.2.schema.json",
     "research/calibration-tests/continuous-action-pilot/schema/ca-r1-raw-trace-0.1.0.schema.json",
     "research/calibration-tests/continuous-action-pilot/schema/ca-r2-raw-trace-0.1.0.schema.json",
     "research/calibration-tests/continuous-action-pilot/schema/ca-r3-raw-trace-0.1.0.schema.json",
     "research/calibration-tests/continuous-action-pilot/schema/formal-comparator-output-0.1.0.schema.json",
     "research/calibration-tests/continuous-action-pilot/schema/formal-execution-permit-0.1.0.schema.json",
     "research/calibration-tests/continuous-action-pilot/schema/formal-human-gate-authorization-0.1.0.schema.json",
+    "research/calibration-tests/continuous-action-pilot/schema/r1-standalone-build-evidence-0.1.0.schema.json",
+    "research/calibration-tests/continuous-action-pilot/schema/r2-build-readiness-evidence-0.1.0.schema.json",
+    "research/calibration-tests/continuous-action-pilot/schema/python-runtime-evidence-0.1.0.schema.json",
+    "research/calibration-tests/continuous-action-pilot/schema/protocol-incident-0.1.0.schema.json",
     "research/calibration-tests/continuous-action-pilot/tools/build-role-submission.py",
     "research/calibration-tests/continuous-action-pilot/tools/materialize-execution-permit.py",
     "research/calibration-tests/continuous-action-pilot/tools/materialize-dispatch.py",
     "research/calibration-tests/continuous-action-pilot/tools/verify-formal-execution-permit.py",
     "research/calibration-tests/continuous-action-pilot/tools/verify-formal-raw-trace.py",
+    "research/calibration-tests/continuous-action-pilot/tools/formal_execution_target_contract.py",
+    "research/calibration-tests/continuous-action-pilot/tools/materialize-fixture-assembly.py",
+    "research/calibration-tests/continuous-action-pilot/tools/materialize-final-execution-plan.py",
+    "research/calibration-tests/continuous-action-pilot/tools/materialize-python-runtime-evidence.py",
+    "research/calibration-tests/continuous-action-pilot/tools/materialize-projection-audit-task.py",
+    "research/calibration-tests/continuous-action-pilot/tools/verify-formal-readiness.py",
+    "research/calibration-tests/continuous-action-pilot/tools/verify-run-package.py",
     "execution/execution-plan.json",
+    "fixtures/python-runtime-evidence-v0.1.0.json",
     "fixtures/fixture-lock.json",
     "fixtures/formal-build-readiness-v0.1.0.json",
+    "fixtures/r1/r1-fixture-assembly-fragment-v0.1.0.json",
+    "fixtures/r2/r2-fixture-assembly-fragment-v0.1.0.json",
+    "fixtures/r3/r3-fixture-assembly-fragment-v0.1.0.json",
     "inputs/actor-plan.md",
     "inputs/generate-continuous-views-v0.1.0.py",
     "inputs/generate-stage2-envelope-v0.1.0.py",
@@ -62,6 +84,7 @@ REQUIRED_AUDIT_INPUTS = {
     "inputs/stage2-prediction.task.json",
     "inputs/stage2-variant-envelope.json",
     "source/canonical-encoding-v0.1.0.json",
+    "source/protocol-incident-r3-byte-integrity-read-v0.1.0.json",
 }
 
 REQUIRED_PATHS = {
@@ -97,6 +120,7 @@ REQUIRED_PATHS = {
     "inputs/stage2-variant-envelope.json": True,
     "source/canonical-encoding-v0.1.0.json": True,
     "source/encoding-audit-v0.1.0.json": True,
+    "source/protocol-incident-r3-byte-integrity-read-v0.1.0.json": True,
     "source/projection-audit-v0.1.0.json": True,
     "source/source-packet.json": True,
 }
@@ -133,7 +157,19 @@ SCHEMA_PATHS = {
     "inputs/stage2-dispatch-p04.template.json": "research/calibration-tests/continuous-action-pilot/schema/stage2-seat-dispatch-envelope-0.1.0.schema.json",
     "inputs/stage2-prediction.task.json": "research/calibration-tests/continuous-action-pilot/schema/task-packet-0.1.2.schema.json",
     "inputs/stage2-variant-envelope.json": "research/calibration-tests/continuous-action-pilot/schema/variant-envelope-0.1.0.schema.json",
+    "source/encoding-audit-v0.1.0.json": "research/calibration-tests/continuous-action-pilot/schema/role-submission-0.1.2.schema.json",
+    "source/protocol-incident-r3-byte-integrity-read-v0.1.0.json": "research/calibration-tests/continuous-action-pilot/schema/protocol-incident-0.1.0.schema.json",
+    "source/projection-audit-v0.1.0.json": "research/calibration-tests/continuous-action-pilot/schema/role-submission-0.1.2.schema.json",
 }
+
+EXECUTION_PLAN_PREPARATION_SCHEMA = (
+    "research/calibration-tests/continuous-action-pilot/schema/"
+    "execution-plan-preparation-0.1.0.schema.json"
+)
+FINAL_EXECUTION_PLAN_SCHEMA = (
+    "research/calibration-tests/continuous-action-pilot/schema/"
+    "execution-artifact-0.1.1.schema.json"
+)
 
 
 def sha256(data: bytes) -> str:
@@ -184,6 +220,115 @@ def to_run_relative(
     if not candidate.is_relative_to(run_dir):
         return None
     return candidate.relative_to(run_dir).as_posix()
+
+
+def check_protocol_incident(
+    *,
+    incident: dict[str, Any],
+    entries_by_path: dict[str, dict[str, Any]],
+    failures: list[dict[str, Any]],
+) -> None:
+    incident_path = (
+        "source/protocol-incident-r3-byte-integrity-read-v0.1.0.json"
+    )
+    expected_sections = {
+        "aggregate_state": {
+            "formal_input_byte_read": True,
+            "formal_input_executed": False,
+            "formal_result_produced": False,
+        },
+        "exposure": {
+            "content_exposed_to_main_thread": False,
+            "content_exposed_to_prediction_flow": False,
+            "digest_exposed_to_main_thread": False,
+            "formal_result_observed": False,
+        },
+        "gate_disposition": {
+            "recommended": (
+                "retain_with_documented_nonsemantic_integrity_exception"
+            ),
+            "required": True,
+            "status": "pending_explicit_human_acceptance",
+        },
+        "non_operations": {
+            "content_persisted": False,
+            "content_printed_or_returned": False,
+            "digest_persisted": False,
+            "digest_printed_or_returned": False,
+            "formal_execution": False,
+            "json_parse": False,
+            "semantic_interpretation": False,
+        },
+        "observed_operations": {
+            "byte_read_api": "Path.read_bytes",
+            "byte_read_count": 1,
+            "compared_with_existing_case_lock_digest": True,
+            "digest_algorithm": "SHA-256",
+        },
+        "target_artifact": {
+            "artifact_id": "fixture.r3.formal-input-v0.1.0",
+            "path": "fixtures/r3/formal-input-r3-v0.1.0.json",
+        },
+    }
+    expected_scalars = {
+        "artifact_type": "protocol_incident_record",
+        "artifact_version": "0.1.0",
+        "case_id": "CA-R3",
+        "incident_id": "incident.r3.formal-input-byte-integrity-read.v0.1.0",
+        "phase": "pre_gate_evidence_hardening",
+        "run_id": "continuous-001",
+        "sequence_position": (
+            "after_r3_evidence_generation_before_pre_audit_freeze"
+        ),
+    }
+    for field_name, expected in expected_scalars.items():
+        if incident.get(field_name) != expected:
+            add_failure(
+                failures,
+                "protocol_incident_semantics",
+                f"{incident_path}#{field_name}",
+                expected,
+                incident.get(field_name),
+            )
+    for field_name, expected in expected_sections.items():
+        if incident.get(field_name) != expected:
+            add_failure(
+                failures,
+                "protocol_incident_semantics",
+                f"{incident_path}#{field_name}",
+                expected,
+                incident.get(field_name),
+            )
+    aggregate = incident.get("aggregate_state")
+    if isinstance(aggregate, dict) and "formal_input_read" in aggregate:
+        add_failure(
+            failures,
+            "protocol_incident_ambiguous_read_claim",
+            f"{incident_path}#aggregate_state",
+            "no aggregate formal_input_read=false assertion",
+            aggregate.get("formal_input_read"),
+        )
+    target = incident.get("target_artifact")
+    if isinstance(target, dict):
+        target_entry = entries_by_path.get(target.get("path"))
+        if (
+            target_entry is None
+            or target_entry.get("artifact_id") != target.get("artifact_id")
+        ):
+            add_failure(
+                failures,
+                "protocol_incident_target_binding",
+                f"{incident_path}#target_artifact",
+                target,
+                (
+                    None
+                    if target_entry is None
+                    else {
+                        "artifact_id": target_entry.get("artifact_id"),
+                        "path": target_entry.get("path"),
+                    }
+                ),
+            )
 
 
 def check_fixture_lock(
@@ -1647,14 +1792,460 @@ def check_execution_plan(
                 )
 
 
+def check_execution_plan_preparation(
+    *,
+    entry: dict[str, Any] | None,
+    plan: dict[str, Any],
+    failures: list[dict[str, Any]],
+) -> None:
+    """Recognize an honest blocked draft without accepting it at the human gate."""
+
+    if entry is None:
+        return
+    if entry.get("schema_path") != EXECUTION_PLAN_PREPARATION_SCHEMA:
+        add_failure(
+            failures,
+            "execution_plan_preparation_schema",
+            "execution/execution-plan.json",
+            EXECUTION_PLAN_PREPARATION_SCHEMA,
+            entry.get("schema_path"),
+        )
+
+    expected_execution_state = {
+        "formal_comparator_started": False,
+        "formal_execution_permit_created": False,
+        "formal_fixture_started": False,
+        "formal_input_content_embedded_in_plan": False,
+        "formal_input_executed": False,
+        "formal_result_created": False,
+        "human_gate_authorization_created": False,
+        "prediction_set_created": False,
+        "truth_commitment_created": False,
+    }
+    if plan.get("execution_state") != expected_execution_state:
+        add_failure(
+            failures,
+            "execution_plan_preparation_state",
+            "execution/execution-plan.json",
+            expected_execution_state,
+            plan.get("execution_state"),
+        )
+
+    cases = plan.get("case_preparations", [])
+    actual_case_ids = [
+        case.get("case_id")
+        for case in cases
+        if isinstance(case, dict)
+    ]
+    expected_case_ids = ["CA-R1", "CA-R2", "CA-R3"]
+    if actual_case_ids != expected_case_ids:
+        add_failure(
+            failures,
+            "execution_plan_preparation_case_coverage",
+            "execution/execution-plan.json",
+            expected_case_ids,
+            actual_case_ids,
+        )
+
+    case_by_id = {
+        case.get("case_id"): case
+        for case in cases
+        if isinstance(case, dict)
+    }
+    r1 = case_by_id.get("CA-R1", {})
+    r1_blocker_ids = [
+        blocker.get("blocker_id")
+        for blocker in r1.get("blockers", [])
+        if isinstance(blocker, dict)
+    ]
+    if (
+        r1.get("preparation_status") != "blocked"
+        or r1_blocker_ids != ["r1.legal-unity-license-activation"]
+    ):
+        add_failure(
+            failures,
+            "execution_plan_preparation_r1_blocker",
+            "execution/execution-plan.json#CA-R1",
+            {
+                "blocker_ids": ["r1.legal-unity-license-activation"],
+                "preparation_status": "blocked",
+            },
+            {
+                "blocker_ids": r1_blocker_ids,
+                "preparation_status": r1.get("preparation_status"),
+            },
+        )
+
+    successor = plan.get("successor_plan_schema")
+    successor_path = (
+        successor.get("path")
+        if isinstance(successor, dict)
+        else None
+    )
+    if successor_path != FINAL_EXECUTION_PLAN_SCHEMA:
+        add_failure(
+            failures,
+            "execution_plan_preparation_successor",
+            "execution/execution-plan.json",
+            FINAL_EXECUTION_PLAN_SCHEMA,
+            successor_path,
+        )
+
+    add_failure(
+        failures,
+        "execution_plan_not_final",
+        "execution/execution-plan.json",
+        (
+            "final execution_plan bound to passed formal build readiness "
+            "and fixtures/fixture-lock.json"
+        ),
+        {
+            "artifact_type": plan.get("artifact_type"),
+            "global_blocker_ids": plan.get("global_blocker_ids"),
+            "plan_status": plan.get("plan_status"),
+        },
+    )
+
+
+def check_projection_audit_semantics(
+    *,
+    projection_audit: dict[str, Any],
+    encoding_audit: dict[str, Any] | None,
+    failures: list[dict[str, Any]],
+) -> None:
+    projection_actor = projection_audit.get("actor")
+    if (
+        not isinstance(projection_actor, dict)
+        or projection_actor.get("role") != "source_auditor"
+        or not isinstance(projection_actor.get("identifier"), str)
+        or not projection_actor.get("identifier")
+        or not isinstance(projection_actor.get("session_id"), str)
+        or not projection_actor.get("session_id")
+    ):
+        add_failure(
+            failures,
+            "projection_audit_actor_identity",
+            "source/projection-audit-v0.1.0.json",
+            {
+                "identifier": "non-empty string",
+                "role": "source_auditor",
+                "session_id": "non-empty string",
+            },
+            (
+                projection_actor
+                if isinstance(projection_actor, dict)
+                else {"actor": None}
+            ),
+        )
+    encoding_actor = (
+        encoding_audit.get("actor")
+        if isinstance(encoding_audit, dict)
+        else None
+    )
+    if not isinstance(encoding_actor, dict):
+        add_failure(
+            failures,
+            "projection_audit_independence_basis",
+            "source/encoding-audit-v0.1.0.json",
+            "actor object with identifier and session_id",
+            encoding_actor,
+        )
+    elif isinstance(projection_actor, dict):
+        reused_identity_fields = [
+            field_name
+            for field_name in ("identifier", "session_id")
+            if projection_actor.get(field_name)
+            == encoding_actor.get(field_name)
+        ]
+        if reused_identity_fields:
+            add_failure(
+                failures,
+                "projection_audit_independence",
+                "source/projection-audit-v0.1.0.json",
+                {
+                    "different_from": (
+                        "source/encoding-audit-v0.1.0.json#actor"
+                    ),
+                    "identity_fields": [
+                        "identifier",
+                        "session_id",
+                    ],
+                },
+                {
+                    "reused_fields": reused_identity_fields,
+                    "source_auditor": projection_actor,
+                },
+            )
+    if projection_audit.get("audit_decision") != "approved":
+        add_failure(
+            failures,
+            "projection_audit_decision",
+            "source/projection-audit-v0.1.0.json",
+            "approved",
+            projection_audit.get("audit_decision"),
+        )
+    audit_checks = projection_audit.get("audit_checks", [])
+    check_ids = [
+        check.get("check_id")
+        for check in audit_checks
+        if isinstance(check, dict)
+    ]
+    all_checks_passed = (
+        len(audit_checks) == len(REQUIRED_AUDIT_CHECKS)
+        and len(check_ids) == len(REQUIRED_AUDIT_CHECKS)
+        and set(check_ids) == REQUIRED_AUDIT_CHECKS
+        and len(check_ids) == len(set(check_ids))
+        and all(
+            check.get("status") == "passed"
+            for check in audit_checks
+            if isinstance(check, dict)
+        )
+    )
+    if not all_checks_passed:
+        add_failure(
+            failures,
+            "projection_audit_passes",
+            "source/projection-audit-v0.1.0.json",
+            {
+                "check_ids": sorted(REQUIRED_AUDIT_CHECKS),
+                "count": len(REQUIRED_AUDIT_CHECKS),
+                "status": "passed for every exact-one record",
+            },
+            audit_checks,
+        )
+    incident_check = next(
+        (
+            check
+            for check in audit_checks
+            if isinstance(check, dict)
+            and check.get("check_id") == "protocol_incident_disposition"
+        ),
+        None,
+    )
+    incident_artifact_id = (
+        "audit.protocol-incident.r3-byte-integrity-read-v0.1.0"
+    )
+    if (
+        not isinstance(incident_check, dict)
+        or incident_artifact_id
+        not in incident_check.get("target_artifact_ids", [])
+    ):
+        add_failure(
+            failures,
+            "projection_audit_protocol_incident_target",
+            "source/projection-audit-v0.1.0.json"
+            "#protocol_incident_disposition",
+            incident_artifact_id,
+            (
+                None
+                if not isinstance(incident_check, dict)
+                else incident_check.get("target_artifact_ids")
+            ),
+        )
+    expected_source_audit_fields = {
+        "condition_id": None,
+        "findings": [],
+        "packaging": None,
+        "pollution": None,
+        "prediction_answers": [],
+        "prior_stage_submission_sha256": None,
+        "raw_payload": None,
+        "reconstruction_answers": [],
+    }
+    actual_source_audit_fields = {
+        field_name: projection_audit.get(field_name)
+        for field_name in expected_source_audit_fields
+    }
+    if actual_source_audit_fields != expected_source_audit_fields:
+        add_failure(
+            failures,
+            "projection_audit_approved_shape",
+            "source/projection-audit-v0.1.0.json",
+            expected_source_audit_fields,
+            actual_source_audit_fields,
+        )
+
+
+def self_test_projection_audit_semantics(
+    repo_root: Path,
+) -> dict[str, Any]:
+    encoding_actor = {
+        "actor": {
+            "identifier": "actor.encoding",
+            "session_id": "session.encoding",
+        }
+    }
+    base = {
+        "actor": {
+            "identifier": "actor.projection",
+            "role": "source_auditor",
+            "session_id": "session.projection",
+        },
+        "audit_checks": [
+            {
+                "check_id": check_id,
+                "evidence": "synthetic evidence",
+                "status": "passed",
+                "target_artifact_ids": (
+                    [
+                        "audit.protocol-incident."
+                        "r3-byte-integrity-read-v0.1.0"
+                    ]
+                    if check_id == "protocol_incident_disposition"
+                    else ["synthetic.input"]
+                ),
+            }
+            for check_id in sorted(REQUIRED_AUDIT_CHECKS)
+        ],
+        "audit_decision": "approved",
+        "condition_id": None,
+        "findings": [],
+        "packaging": None,
+        "pollution": None,
+        "prediction_answers": [],
+        "prior_stage_submission_sha256": None,
+        "raw_payload": None,
+        "reconstruction_answers": [],
+    }
+    controls: dict[str, bool] = {}
+
+    def rejected(label: str, mutation: Any) -> None:
+        candidate = json.loads(json.dumps(base))
+        mutation(candidate)
+        local_failures: list[dict[str, Any]] = []
+        check_projection_audit_semantics(
+            projection_audit=candidate,
+            encoding_audit=encoding_actor,
+            failures=local_failures,
+        )
+        controls[label] = bool(local_failures)
+
+    accepted_failures: list[dict[str, Any]] = []
+    check_projection_audit_semantics(
+        projection_audit=base,
+        encoding_audit=encoding_actor,
+        failures=accepted_failures,
+    )
+    if accepted_failures:
+        raise RuntimeError(
+            f"valid projection audit failed semantic self-test: "
+            f"{accepted_failures}"
+        )
+    rejected(
+        "same_identifier",
+        lambda value: value["actor"].update(
+            {"identifier": "actor.encoding"}
+        ),
+    )
+    rejected(
+        "same_session",
+        lambda value: value["actor"].update(
+            {"session_id": "session.encoding"}
+        ),
+    )
+    rejected(
+        "missing_identifier",
+        lambda value: value["actor"].pop("identifier"),
+    )
+    rejected(
+        "duplicate_check",
+        lambda value: value["audit_checks"].__setitem__(
+            1, dict(value["audit_checks"][0])
+        ),
+    )
+    rejected(
+        "failed_duplicate_of_passed",
+        lambda value: value["audit_checks"].append(
+            {
+                **dict(value["audit_checks"][0]),
+                "status": "failed",
+            }
+        ),
+    )
+    rejected(
+        "incident_check_without_incident_target",
+        lambda value: next(
+            check
+            for check in value["audit_checks"]
+            if check["check_id"] == "protocol_incident_disposition"
+        ).update({"target_artifact_ids": ["synthetic.input"]}),
+    )
+    rejected(
+        "approved_with_findings",
+        lambda value: value.update({"findings": ["synthetic contradiction"]}),
+    )
+    if not all(controls.values()):
+        raise RuntimeError(
+            f"projection-audit semantic negative control failed: {controls}"
+        )
+    incident_path = (
+        repo_root
+        / "research/calibration-tests/continuous-action-pilot/"
+        "runs/continuous-001/source/"
+        "protocol-incident-r3-byte-integrity-read-v0.1.0.json"
+    )
+    incident = load_json(incident_path)
+    incident_entries = {
+        "fixtures/r3/formal-input-r3-v0.1.0.json": {
+            "artifact_id": "fixture.r3.formal-input-v0.1.0",
+            "path": "fixtures/r3/formal-input-r3-v0.1.0.json",
+        }
+    }
+    incident_failures: list[dict[str, Any]] = []
+    check_protocol_incident(
+        incident=incident,
+        entries_by_path=incident_entries,
+        failures=incident_failures,
+    )
+    if incident_failures:
+        raise RuntimeError(
+            "valid protocol incident failed semantic self-test: "
+            f"{incident_failures}"
+        )
+    denied_read = json.loads(json.dumps(incident))
+    denied_read["aggregate_state"]["formal_input_byte_read"] = False
+    denied_read_failures: list[dict[str, Any]] = []
+    check_protocol_incident(
+        incident=denied_read,
+        entries_by_path=incident_entries,
+        failures=denied_read_failures,
+    )
+    controls["incident_denied_byte_read"] = bool(denied_read_failures)
+    if not controls["incident_denied_byte_read"]:
+        raise RuntimeError(
+            "protocol-incident semantic negative control failed"
+        )
+    return {
+        "negative_controls": sorted(controls),
+        "negative_controls_passed": len(controls),
+        "positive_controls_passed": 1,
+        "status": "passed",
+    }
+
+
 def main() -> int:
     parser = argparse.ArgumentParser()
-    parser.add_argument("manifest", type=Path)
+    parser.add_argument("manifest", nargs="?", type=Path)
     parser.add_argument("--repo-root", required=True, type=Path)
     parser.add_argument("--require-frozen", action="store_true")
+    parser.add_argument(
+        "--self-test-projection-audit-semantics",
+        action="store_true",
+    )
     args = parser.parse_args()
 
     repo_root = args.repo_root.resolve()
+    if args.self_test_projection_audit_semantics:
+        print(
+            json.dumps(
+                self_test_projection_audit_semantics(repo_root),
+                ensure_ascii=False,
+                sort_keys=True,
+            )
+        )
+        return 0
+    if args.manifest is None:
+        parser.error("manifest is required outside semantic self-test mode")
     manifest_path = args.manifest.resolve()
     run_dir = manifest_path.parent
     failures: list[dict[str, Any]] = []
@@ -1762,6 +2353,17 @@ def main() -> int:
                 "manifested",
             )
 
+    incident_path = (
+        run_dir
+        / "source/protocol-incident-r3-byte-integrity-read-v0.1.0.json"
+    )
+    if incident_path.is_file():
+        check_protocol_incident(
+            incident=load_json(incident_path),
+            entries_by_path=entries_by_path,
+            failures=failures,
+        )
+
     fixture_path = run_dir / "fixtures/fixture-lock.json"
     fixture_lock = None
     if fixture_path.is_file():
@@ -1833,16 +2435,50 @@ def main() -> int:
         )
 
     execution_plan_path = run_dir / "execution/execution-plan.json"
-    if fixture_lock is not None and envelope is not None and execution_plan_path.is_file():
-        check_execution_plan(
-            entries_by_path=entries_by_path,
-            envelope=envelope,
-            fixture_lock=fixture_lock,
-            plan=load_json(execution_plan_path),
-            repo_root=repo_root,
-            run_dir=run_dir,
-            failures=failures,
-        )
+    if execution_plan_path.is_file():
+        execution_plan = load_json(execution_plan_path)
+        execution_plan_entry = entries_by_path.get("execution/execution-plan.json")
+        artifact_type = execution_plan.get("artifact_type")
+        if artifact_type == "execution_plan_preparation":
+            check_execution_plan_preparation(
+                entry=execution_plan_entry,
+                plan=execution_plan,
+                failures=failures,
+            )
+        elif artifact_type == "execution_plan":
+            if (
+                execution_plan_entry is not None
+                and execution_plan_entry.get("schema_path")
+                != FINAL_EXECUTION_PLAN_SCHEMA
+            ):
+                add_failure(
+                    failures,
+                    "execution_plan_schema",
+                    "execution/execution-plan.json",
+                    FINAL_EXECUTION_PLAN_SCHEMA,
+                    execution_plan_entry.get("schema_path"),
+                )
+            if fixture_lock is not None and envelope is not None:
+                check_execution_plan(
+                    entries_by_path=entries_by_path,
+                    envelope=envelope,
+                    fixture_lock=fixture_lock,
+                    plan=execution_plan,
+                    repo_root=repo_root,
+                    run_dir=run_dir,
+                    failures=failures,
+                )
+        else:
+            add_failure(
+                failures,
+                "execution_plan_type",
+                "execution/execution-plan.json",
+                [
+                    "execution_plan_preparation",
+                    "execution_plan",
+                ],
+                artifact_type,
+            )
 
     projection_task_path = run_dir / "inputs/projection-audit.task.json"
     projection_task = None
@@ -1856,32 +2492,80 @@ def main() -> int:
                 "projection_audit_task_packet",
                 projection_task.get("artifact_type"),
             )
-        actual_checks = set(projection_task.get("required_audit_checks", []))
-        missing_checks = sorted(REQUIRED_AUDIT_CHECKS - actual_checks)
-        if missing_checks:
+        actual_check_list = projection_task.get("required_audit_checks", [])
+        actual_checks = set(actual_check_list)
+        if (
+            actual_checks != REQUIRED_AUDIT_CHECKS
+            or len(actual_check_list) != len(REQUIRED_AUDIT_CHECKS)
+        ):
             add_failure(
                 failures,
                 "projection_audit_checks",
                 "inputs/projection-audit.task.json",
                 sorted(REQUIRED_AUDIT_CHECKS),
-                sorted(actual_checks),
+                actual_check_list,
             )
-        input_paths = set()
+        input_paths: list[str] = []
+        input_artifact_ids: list[str] = []
         for reference in projection_task.get("input_artifacts", []):
             run_relative = to_run_relative(
                 reference["path"],
                 repo_root=repo_root,
                 run_dir=run_dir,
             )
-            input_paths.add(run_relative or reference["path"])
-        missing_inputs = sorted(REQUIRED_AUDIT_INPUTS - input_paths)
-        if missing_inputs:
+            input_paths.append(run_relative or reference["path"])
+            input_artifact_ids.append(reference["artifact_id"])
+        if (
+            set(input_paths) != REQUIRED_AUDIT_INPUTS
+            or len(input_paths) != len(REQUIRED_AUDIT_INPUTS)
+            or len(input_artifact_ids) != len(set(input_artifact_ids))
+        ):
             add_failure(
                 failures,
                 "projection_audit_inputs",
                 "inputs/projection-audit.task.json",
                 sorted(REQUIRED_AUDIT_INPUTS),
-                sorted(input_paths),
+                {
+                    "artifact_ids": input_artifact_ids,
+                    "paths": input_paths,
+                },
+            )
+        projection_materializer = (
+            repo_root
+            / "research/calibration-tests/continuous-action-pilot/tools/"
+            "materialize-projection-audit-task.py"
+        )
+        deterministic_result = subprocess.run(
+            [
+                sys.executable,
+                "-B",
+                str(projection_materializer),
+                "verify",
+                "--repo-root",
+                str(repo_root),
+                "--run-dir",
+                str(run_dir),
+            ],
+            check=False,
+            capture_output=True,
+            text=True,
+        )
+        try:
+            deterministic_report = json.loads(
+                deterministic_result.stdout
+            )
+        except json.JSONDecodeError:
+            deterministic_report = {
+                "stderr": deterministic_result.stderr,
+                "stdout": deterministic_result.stdout,
+            }
+        if deterministic_result.returncode != 0:
+            add_failure(
+                failures,
+                "projection_audit_task_deterministic_verification",
+                "inputs/projection-audit.task.json",
+                "exact deterministic materialization",
+                deterministic_report,
             )
 
     projection_audit_path = run_dir / "source/projection-audit-v0.1.0.json"
@@ -1903,28 +2587,17 @@ def main() -> int:
                 "source_audit",
                 projection_audit.get("stage"),
             )
-        if projection_audit.get("audit_decision") != "approved":
-            add_failure(
-                failures,
-                "projection_audit_decision",
-                "source/projection-audit-v0.1.0.json",
-                "approved",
-                projection_audit.get("audit_decision"),
-            )
-        passed_checks = {
-            check.get("check_id")
-            for check in projection_audit.get("audit_checks", [])
-            if check.get("status") == "passed"
-        }
-        missing_passes = sorted(REQUIRED_AUDIT_CHECKS - passed_checks)
-        if missing_passes:
-            add_failure(
-                failures,
-                "projection_audit_passes",
-                "source/projection-audit-v0.1.0.json",
-                sorted(REQUIRED_AUDIT_CHECKS),
-                sorted(passed_checks),
-            )
+        encoding_audit_path = run_dir / "source/encoding-audit-v0.1.0.json"
+        encoding_audit = (
+            load_json(encoding_audit_path)
+            if encoding_audit_path.is_file()
+            else None
+        )
+        check_projection_audit_semantics(
+            projection_audit=projection_audit,
+            encoding_audit=encoding_audit,
+            failures=failures,
+        )
         if projection_task is not None:
             if projection_audit.get("task_id") != projection_task.get("task_id"):
                 add_failure(
@@ -1953,7 +2626,11 @@ def main() -> int:
                 (reference["artifact_id"], reference["sha256"])
                 for reference in projection_audit.get("input_artifacts", [])
             }
-            if audit_inputs != expected_audit_inputs:
+            audit_input_list = projection_audit.get("input_artifacts", [])
+            if (
+                audit_inputs != expected_audit_inputs
+                or len(audit_input_list) != len(expected_audit_inputs)
+            ):
                 add_failure(
                     failures,
                     "projection_audit_input_binding",

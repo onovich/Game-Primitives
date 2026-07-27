@@ -1,0 +1,140 @@
+{
+  "$defs": {
+    "artifactReference": {
+      "$ref": "https://github.com/onovich/Game-Primitives/blob/main/research/calibration-tests/continuous-action-pilot/schema/task-packet-0.1.0.schema.json#/$defs/artifactReference"
+    }
+  },
+  "$id": "https://github.com/onovich/Game-Primitives/blob/main/research/calibration-tests/continuous-action-pilot/schema/r1-standalone-permit-first-negative-0.1.0.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "$schema": {
+      "const": "https://github.com/onovich/Game-Primitives/blob/main/research/calibration-tests/continuous-action-pilot/schema/r1-standalone-permit-first-negative-0.1.0.schema.json"
+    },
+    "artifact_type": {
+      "const": "continuous_action_r1_standalone_permit_first_negative"
+    },
+    "artifact_version": {
+      "const": "0.1.0"
+    },
+    "case_id": {
+      "const": "CA-R1"
+    },
+    "formal_execution": {
+      "additionalProperties": false,
+      "properties": {
+        "dotnet_started": {
+          "const": false
+        },
+        "formal_input_executed": {
+          "const": false
+        },
+        "formal_input_inspected_by_runner": {
+          "const": false
+        },
+        "formal_result_produced": {
+          "const": false
+        },
+        "source_inspected_by_runner": {
+          "const": false
+        },
+        "test_body_executed": {
+          "const": false
+        }
+      },
+      "required": [
+        "dotnet_started",
+        "formal_input_executed",
+        "formal_input_inspected_by_runner",
+        "formal_result_produced",
+        "source_inspected_by_runner",
+        "test_body_executed"
+      ],
+      "type": "object"
+    },
+    "invocation": {
+      "additionalProperties": false,
+      "properties": {
+        "configuration_id": {
+          "const": "config.baseline"
+        },
+        "deliberately_missing_dotnet_path": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "deliberately_missing_source_root": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "execution_permit_path": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "formal_output_root": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "repetition_index": {
+          "const": 1
+        }
+      },
+      "required": [
+        "configuration_id",
+        "deliberately_missing_dotnet_path",
+        "deliberately_missing_source_root",
+        "execution_permit_path",
+        "formal_output_root",
+        "repetition_index"
+      ],
+      "type": "object"
+    },
+    "observed_at": {
+      "format": "date-time",
+      "type": "string"
+    },
+    "outcome": {
+      "additionalProperties": false,
+      "properties": {
+        "error_contains": {
+          "const": "execution permit error: required file does not exist"
+        },
+        "exit_code": {
+          "const": 1
+        },
+        "formal_output_root_created": {
+          "const": false
+        },
+        "rejection_point": {
+          "const": "execution_permit_verifier"
+        }
+      },
+      "required": [
+        "error_contains",
+        "exit_code",
+        "formal_output_root_created",
+        "rejection_point"
+      ],
+      "type": "object"
+    },
+    "run_id": {
+      "const": "continuous-001"
+    },
+    "runner": {
+      "$ref": "#/$defs/artifactReference"
+    }
+  },
+  "required": [
+    "$schema",
+    "artifact_type",
+    "artifact_version",
+    "case_id",
+    "formal_execution",
+    "invocation",
+    "observed_at",
+    "outcome",
+    "run_id",
+    "runner"
+  ],
+  "title": "Game Primitives CA-R1 Standalone Permit-First Negative Control 0.1.0",
+  "type": "object"
+}

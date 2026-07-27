@@ -1,0 +1,36 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>disable</ImplicitUsings>
+    <Nullable>disable</Nullable>
+    <Deterministic>true</Deterministic>
+    <ContinuousIntegrationBuild>true</ContinuousIntegrationBuild>
+    <UseSharedCompilation>false</UseSharedCompilation>
+    <PathMap>$(FootsiesSourceRoot)=/frozen/footsies</PathMap>
+    <!-- Unity populates these private serialized fields; the standalone loader
+         does the same through reflection, so CS0649 is expected and scoped. -->
+    <NoWarn>$(NoWarn);0649</NoWarn>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="FormalProgram.cs" />
+    <Compile Include="$(FootsiesSourceRoot)\Assets\Script\Fighter.cs" Link="FrozenSource\Fighter.cs" />
+    <Compile Include="$(FootsiesSourceRoot)\Assets\Script\FighterData.cs" Link="FrozenSource\FighterData.cs" />
+    <Compile Include="$(FootsiesSourceRoot)\Assets\Script\ActionData.cs" Link="FrozenSource\ActionData.cs" />
+    <Compile Include="$(FootsiesSourceRoot)\Assets\Script\InputData.cs" Link="FrozenSource\InputData.cs" />
+    <Compile Include="$(FootsiesSourceRoot)\Assets\Script\AttackData.cs" Link="FrozenSource\AttackData.cs" />
+    <Compile Include="$(FootsiesSourceRoot)\Assets\Script\ActionDataContainer.cs" Link="FrozenSource\ActionDataContainer.cs" />
+    <Compile Include="$(FootsiesSourceRoot)\Assets\Script\AttackDataContainer.cs" Link="FrozenSource\AttackDataContainer.cs" />
+    <Compile Include="$(FootsiesSourceRoot)\Assets\Script\MotionDataContainer.cs" Link="FrozenSource\MotionDataContainer.cs" />
+  </ItemGroup>
+
+  <Target Name="RequireFrozenFootsiesSourceRoot" BeforeTargets="CoreCompile">
+    <Error
+      Condition="'$(FootsiesSourceRoot)' == ''"
+      Text="FootsiesSourceRoot must name the verified frozen checkout." />
+    <Error
+      Condition="!Exists('$(FootsiesSourceRoot)\Assets\Script\Fighter.cs')"
+      Text="FootsiesSourceRoot does not contain Assets\Script\Fighter.cs." />
+  </Target>
+</Project>

@@ -1,0 +1,214 @@
+{
+  "$id": "https://github.com/onovich/Game-Primitives/blob/main/research/calibration-tests/continuous-action-pilot/schema/protocol-incident-0.1.0.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "$schema": {
+      "const": "https://github.com/onovich/Game-Primitives/blob/main/research/calibration-tests/continuous-action-pilot/schema/protocol-incident-0.1.0.schema.json"
+    },
+    "aggregate_state": {
+      "additionalProperties": false,
+      "properties": {
+        "formal_input_byte_read": {
+          "const": true
+        },
+        "formal_input_executed": {
+          "const": false
+        },
+        "formal_result_produced": {
+          "const": false
+        }
+      },
+      "required": [
+        "formal_input_byte_read",
+        "formal_input_executed",
+        "formal_result_produced"
+      ],
+      "type": "object"
+    },
+    "artifact_type": {
+      "const": "protocol_incident_record"
+    },
+    "artifact_version": {
+      "const": "0.1.0"
+    },
+    "case_id": {
+      "const": "CA-R3"
+    },
+    "evidence_scope_note": {
+      "const": "Any formal_input_read=false assertion in R3 build evidence is scoped only to the recorded build, list, and guard-probe processes; it is not an aggregate run-level assertion."
+    },
+    "exposure": {
+      "additionalProperties": false,
+      "properties": {
+        "content_exposed_to_main_thread": {
+          "const": false
+        },
+        "content_exposed_to_prediction_flow": {
+          "const": false
+        },
+        "digest_exposed_to_main_thread": {
+          "const": false
+        },
+        "formal_result_observed": {
+          "const": false
+        }
+      },
+      "required": [
+        "content_exposed_to_main_thread",
+        "content_exposed_to_prediction_flow",
+        "digest_exposed_to_main_thread",
+        "formal_result_observed"
+      ],
+      "type": "object"
+    },
+    "fact_basis": {
+      "additionalProperties": false,
+      "properties": {
+        "independent_process_log_available": {
+          "const": false
+        },
+        "kind": {
+          "const": "subtask_self_report"
+        },
+        "limitation": {
+          "const": "Negative exposure and non-operation statements are based on the subtask report and available task output, not an independent byte-level process transcript."
+        }
+      },
+      "required": [
+        "independent_process_log_available",
+        "kind",
+        "limitation"
+      ],
+      "type": "object"
+    },
+    "gate_disposition": {
+      "additionalProperties": false,
+      "properties": {
+        "recommended": {
+          "const": "retain_with_documented_nonsemantic_integrity_exception"
+        },
+        "required": {
+          "const": true
+        },
+        "status": {
+          "const": "pending_explicit_human_acceptance"
+        }
+      },
+      "required": [
+        "recommended",
+        "required",
+        "status"
+      ],
+      "type": "object"
+    },
+    "incident_id": {
+      "const": "incident.r3.formal-input-byte-integrity-read.v0.1.0"
+    },
+    "non_operations": {
+      "additionalProperties": false,
+      "properties": {
+        "content_persisted": {
+          "const": false
+        },
+        "content_printed_or_returned": {
+          "const": false
+        },
+        "digest_persisted": {
+          "const": false
+        },
+        "digest_printed_or_returned": {
+          "const": false
+        },
+        "formal_execution": {
+          "const": false
+        },
+        "json_parse": {
+          "const": false
+        },
+        "semantic_interpretation": {
+          "const": false
+        }
+      },
+      "required": [
+        "content_persisted",
+        "content_printed_or_returned",
+        "digest_persisted",
+        "digest_printed_or_returned",
+        "formal_execution",
+        "json_parse",
+        "semantic_interpretation"
+      ],
+      "type": "object"
+    },
+    "observed_operations": {
+      "additionalProperties": false,
+      "properties": {
+        "byte_read_api": {
+          "const": "Path.read_bytes"
+        },
+        "byte_read_count": {
+          "const": 1
+        },
+        "compared_with_existing_case_lock_digest": {
+          "const": true
+        },
+        "digest_algorithm": {
+          "const": "SHA-256"
+        }
+      },
+      "required": [
+        "byte_read_api",
+        "byte_read_count",
+        "compared_with_existing_case_lock_digest",
+        "digest_algorithm"
+      ],
+      "type": "object"
+    },
+    "phase": {
+      "const": "pre_gate_evidence_hardening"
+    },
+    "run_id": {
+      "const": "continuous-001"
+    },
+    "sequence_position": {
+      "const": "after_r3_evidence_generation_before_pre_audit_freeze"
+    },
+    "target_artifact": {
+      "additionalProperties": false,
+      "properties": {
+        "artifact_id": {
+          "const": "fixture.r3.formal-input-v0.1.0"
+        },
+        "path": {
+          "const": "fixtures/r3/formal-input-r3-v0.1.0.json"
+        }
+      },
+      "required": [
+        "artifact_id",
+        "path"
+      ],
+      "type": "object"
+    }
+  },
+  "required": [
+    "$schema",
+    "aggregate_state",
+    "artifact_type",
+    "artifact_version",
+    "case_id",
+    "evidence_scope_note",
+    "exposure",
+    "fact_basis",
+    "gate_disposition",
+    "incident_id",
+    "non_operations",
+    "observed_operations",
+    "phase",
+    "run_id",
+    "sequence_position",
+    "target_artifact"
+  ],
+  "title": "Game Primitives Protocol Incident Record 0.1.0",
+  "type": "object"
+}

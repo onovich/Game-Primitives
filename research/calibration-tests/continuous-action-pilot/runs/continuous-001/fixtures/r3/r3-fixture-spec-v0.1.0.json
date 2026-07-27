@@ -63,12 +63,12 @@
     "configurations": [
       {
         "adjudication_delay_ms": 0,
-        "configuration_id": "negative_control_a",
+        "configuration_id": "config.negative-a",
         "hit_animations": true
       },
       {
         "adjudication_delay_ms": 0,
-        "configuration_id": "negative_control_b",
+        "configuration_id": "config.negative-b",
         "hit_animations": false
       }
     ],
@@ -138,6 +138,7 @@
       "invoke the formal comparator"
     ]
   },
+  "repetition_count": 2,
   "run_id": "continuous-001",
   "stop_boundary_id": "o.c.0032",
   "target": {

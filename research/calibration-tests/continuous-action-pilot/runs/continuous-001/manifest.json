@@ -17,7 +17,7 @@
       "release_stage": "preparation",
       "schema_path": "research/calibration-tests/continuous-action-pilot/schema/markdown-document-0.1.0.schema.json",
       "schema_sha256": "89827f39031c7d26f430584bb2f3e64c3600213a8e45e994da2c4120cb3f09a3",
-      "sha256": "2600e1da90a537ce3c5c70dd12ef2497973c3cf37b54a162b156c70be9cd7c3e",
+      "sha256": "bc3541d745291fcf1699defdd45c0395068e55519fb1b8ad72673499638713fa",
       "supersedes_artifact_id": null
     },
     {
@@ -335,7 +335,7 @@
       "path": "inputs/source-encoding-packet.json",
       "release_stage": "source_encoding",
       "schema_path": "research/calibration-tests/continuous-action-pilot/schema/task-packet-0.1.2.schema.json",
-      "schema_sha256": "268d31b48fecd57d944d3fd8ee1ec23f5f7e690fab551c7888ca3ae12147ce96",
+      "schema_sha256": "d32b78137d186a76921532fd3a861ab15e42eddc7def6395caa3e89caa27ca51",
       "sha256": "bafa2689ffd7c80e34a1aeeb998cafdb76ccf79f9691e2c1e5aed5d85fe201c9",
       "supersedes_artifact_id": null
     },
@@ -352,7 +352,7 @@
       "path": "inputs/source-audit-packet.json",
       "release_stage": "source_audit",
       "schema_path": "research/calibration-tests/continuous-action-pilot/schema/task-packet-0.1.2.schema.json",
-      "schema_sha256": "268d31b48fecd57d944d3fd8ee1ec23f5f7e690fab551c7888ca3ae12147ce96",
+      "schema_sha256": "d32b78137d186a76921532fd3a861ab15e42eddc7def6395caa3e89caa27ca51",
       "sha256": "b8a2b4e454666bc0da8ee19b22652fb98325240ee145a1df9958c19852c15298",
       "supersedes_artifact_id": null
     },
@@ -586,7 +586,7 @@
       "path": "inputs/stage1-condition-v01.task.json",
       "release_stage": "reconstruction",
       "schema_path": "research/calibration-tests/continuous-action-pilot/schema/task-packet-0.1.2.schema.json",
-      "schema_sha256": "268d31b48fecd57d944d3fd8ee1ec23f5f7e690fab551c7888ca3ae12147ce96",
+      "schema_sha256": "d32b78137d186a76921532fd3a861ab15e42eddc7def6395caa3e89caa27ca51",
       "sha256": "94fe34a01cd693b3fb08775f111409dbb4b172ea223e1df9756bbedf905d19ce",
       "supersedes_artifact_id": null
     },
@@ -604,7 +604,7 @@
       "path": "inputs/stage1-condition-v02.task.json",
       "release_stage": "reconstruction",
       "schema_path": "research/calibration-tests/continuous-action-pilot/schema/task-packet-0.1.2.schema.json",
-      "schema_sha256": "268d31b48fecd57d944d3fd8ee1ec23f5f7e690fab551c7888ca3ae12147ce96",
+      "schema_sha256": "d32b78137d186a76921532fd3a861ab15e42eddc7def6395caa3e89caa27ca51",
       "sha256": "a74a854df07806706074b608380999a7eb51b0500f72422ae111cddfe98c3ed0",
       "supersedes_artifact_id": null
     },
@@ -622,7 +622,7 @@
       "path": "inputs/stage2-prediction.task.json",
       "release_stage": "prediction",
       "schema_path": "research/calibration-tests/continuous-action-pilot/schema/task-packet-0.1.2.schema.json",
-      "schema_sha256": "268d31b48fecd57d944d3fd8ee1ec23f5f7e690fab551c7888ca3ae12147ce96",
+      "schema_sha256": "d32b78137d186a76921532fd3a861ab15e42eddc7def6395caa3e89caa27ca51",
       "sha256": "7a4e286c486b03fe3a24875e2db1e95b4024750e5c36af5a993adae54cda388c",
       "supersedes_artifact_id": null
     },
@@ -903,7 +903,7 @@
       "release_stage": "preparation",
       "schema_path": "research/calibration-tests/continuous-action-pilot/schema/text-artifact-0.1.0.schema.json",
       "schema_sha256": "277edbeae2c76e58fc6ba25975f78338d6df435b4fcf68b1caf06f22481a66c3",
-      "sha256": "add38413f27a074eb15b1a8da781c99b0b8921b041168c98311e1ce3739e98c3",
+      "sha256": "c0c7336ed53856f2597a90782125e9075b5d43e1b47dbebfdc6977e4b4f3367c",
       "supersedes_artifact_id": null
     },
     {
@@ -975,7 +975,7 @@
       "release_stage": "preparation",
       "schema_path": "research/calibration-tests/continuous-action-pilot/schema/text-artifact-0.1.0.schema.json",
       "schema_sha256": "277edbeae2c76e58fc6ba25975f78338d6df435b4fcf68b1caf06f22481a66c3",
-      "sha256": "cffcbcfd63e5b99a4d73047756d318abeb2743c6f1f5b156e5b708e2096d7bbb",
+      "sha256": "c84f178dee5630ce82702a13ad5cfa13176359ead2cf47d5e522d6574c1f640d",
       "supersedes_artifact_id": null
     },
     {
@@ -1029,7 +1029,7 @@
       "release_stage": "preparation",
       "schema_path": "research/calibration-tests/continuous-action-pilot/schema/text-artifact-0.1.0.schema.json",
       "schema_sha256": "277edbeae2c76e58fc6ba25975f78338d6df435b4fcf68b1caf06f22481a66c3",
-      "sha256": "1a276587cd763eeb593cb4af78f11acc3bd21bcb191a85ae014f4729ff5b23f2",
+      "sha256": "b6089cff7287f846e8f484339d762af3e0731ae48cc78eb43a7eb1b6e4bdfb08",
       "supersedes_artifact_id": null
     },
     {
@@ -1065,7 +1065,7 @@
       "release_stage": "preparation",
       "schema_path": "research/calibration-tests/continuous-action-pilot/schema/text-artifact-0.1.0.schema.json",
       "schema_sha256": "277edbeae2c76e58fc6ba25975f78338d6df435b4fcf68b1caf06f22481a66c3",
-      "sha256": "f8fae44f5c75deac2818558a82940f5127bc6252cea6c2eaa2bc065fb967e431",
+      "sha256": "67765f2f2b2bfda2bcdc94b223a13303401c66c7756e6a563619d2d99afae580",
       "supersedes_artifact_id": null
     },
     {
@@ -1083,7 +1083,7 @@
       "release_stage": "preparation",
       "schema_path": "research/calibration-tests/continuous-action-pilot/schema/text-artifact-0.1.0.schema.json",
       "schema_sha256": "277edbeae2c76e58fc6ba25975f78338d6df435b4fcf68b1caf06f22481a66c3",
-      "sha256": "1eb7eea4675cb00cf9fb2d0d0a66c634814f716ee8ac30dea3e2ab0bb3284332",
+      "sha256": "f5d054169631af1680ee56703afcc57c7e6c14d100643bf0eef9c98a02f0f029",
       "supersedes_artifact_id": null
     },
     {
@@ -1101,7 +1101,7 @@
       "release_stage": "preparation",
       "schema_path": "research/calibration-tests/continuous-action-pilot/schema/text-artifact-0.1.0.schema.json",
       "schema_sha256": "277edbeae2c76e58fc6ba25975f78338d6df435b4fcf68b1caf06f22481a66c3",
-      "sha256": "655e1ed263eee4cbedf668b7a0dfec9bc8e58caafb3416e0f62749114d2386c9",
+      "sha256": "cbb27f7f5503a24ef17c06a746dcc2503f3cd5ad7dbb724c80508204274662ed",
       "supersedes_artifact_id": null
     },
     {
@@ -1118,8 +1118,8 @@
       "path": "fixtures/r3/r3-fixture-spec-v0.1.0.json",
       "release_stage": "preparation",
       "schema_path": "research/calibration-tests/continuous-action-pilot/schema/r3-fixture-spec-0.1.0.schema.json",
-      "schema_sha256": "73ec8258eafdf5d1a28e9726c7df65ce145f05e416156052fded860935e1d131",
-      "sha256": "6bff1307be4cd595bb41e10606207c0343a66cd661ea01324e01a1c6b3ccb07b",
+      "schema_sha256": "ffe0d4c8d86ba9e158273fe60363e3dce9e474d3525034d479c5ffb04935cb1e",
+      "sha256": "072065e8a5002be7080b814c53b4a165b0893a01670c4da4c9769a1000bab06a",
       "supersedes_artifact_id": null
     },
     {
@@ -1136,8 +1136,8 @@
       "path": "fixtures/r3/r3-build-list-evidence-v0.1.0.json",
       "release_stage": "preparation",
       "schema_path": "research/calibration-tests/continuous-action-pilot/schema/r3-build-list-evidence-0.1.0.schema.json",
-      "schema_sha256": "7f946ee4abb62f4c997ddb15297cd62f6a1a082a67fdd35c27502d3c94c1d9fd",
-      "sha256": "d19a2aff05068fb13304c325e19cc6e09cbb921053fdfa6c1b8818024563e49b",
+      "schema_sha256": "f8735cff748818ebe7919f1173c4900c4dbfe26b1b58bb47dbd7c7a1eaf55c2b",
+      "sha256": "926977a9c8daacbfe16b0d48fa85533f8d008b34875a0968ec9513ee76bac99a",
       "supersedes_artifact_id": null
     },
     {
@@ -1173,7 +1173,7 @@
       "release_stage": "preparation",
       "schema_path": "research/calibration-tests/continuous-action-pilot/schema/text-artifact-0.1.0.schema.json",
       "schema_sha256": "277edbeae2c76e58fc6ba25975f78338d6df435b4fcf68b1caf06f22481a66c3",
-      "sha256": "f383e4604f6ab65ff66be6619fe6558da9083e6a57aecaadb24b292f234ef006",
+      "sha256": "5907f3ea17699981cb48f298ed6addf83eea705388411c69293c26142d2e0535",
       "supersedes_artifact_id": null
     },
     {
@@ -1209,7 +1209,7 @@
       "release_stage": "preparation",
       "schema_path": "research/calibration-tests/continuous-action-pilot/schema/text-artifact-0.1.0.schema.json",
       "schema_sha256": "277edbeae2c76e58fc6ba25975f78338d6df435b4fcf68b1caf06f22481a66c3",
-      "sha256": "a1a16ee178349938360d0589595e48151269be182759febad5cc3b9613c1895f",
+      "sha256": "c49b9078cce55406d04017cc2e1ae50c6592cbe11c6cdbee521ba3d325ed3892",
       "supersedes_artifact_id": null
     },
     {
@@ -1227,7 +1227,7 @@
       "release_stage": "preparation",
       "schema_path": "research/calibration-tests/continuous-action-pilot/schema/text-artifact-0.1.0.schema.json",
       "schema_sha256": "277edbeae2c76e58fc6ba25975f78338d6df435b4fcf68b1caf06f22481a66c3",
-      "sha256": "29926ac65c2c92605a2d756f0fdc76d41031e2180521750f746cbc680d5c564c",
+      "sha256": "be1e6c3d3d4e863611baf9f77f344af9500f205a44903ee0c0cba92e24e287fd",
       "supersedes_artifact_id": null
     },
     {
@@ -1245,7 +1245,511 @@
       "release_stage": "preparation",
       "schema_path": "research/calibration-tests/continuous-action-pilot/schema/text-artifact-0.1.0.schema.json",
       "schema_sha256": "277edbeae2c76e58fc6ba25975f78338d6df435b4fcf68b1caf06f22481a66c3",
-      "sha256": "a4a35b0513f00f2cc848a626ca4834210982154a7552fa06d89585f3e7a86da8",
+      "sha256": "37b5decda965a45d052ef278dbf573cfe2d7db3012dfdae777a7ae63bfb1d2c2",
+      "supersedes_artifact_id": null
+    },
+    {
+      "artifact_id": "execution-plan.continuous-001",
+      "artifact_kind": "execution_plan",
+      "artifact_version": "0.1.1",
+      "audience": [
+        "custodian",
+        "public_after_reveal",
+        "source_auditor"
+      ],
+      "decision_relevant": true,
+      "included_in_frozen_set": false,
+      "path": "execution/execution-plan.json",
+      "release_stage": "preparation",
+      "schema_path": "research/calibration-tests/continuous-action-pilot/schema/execution-artifact-0.1.1.schema.json",
+      "schema_sha256": "4d09bf48a1d1f6afaeaf9b56130333f13c1af2ecc2d5ef61784fa20bf8f3137a",
+      "sha256": "e218609691bfc76f23f4440bd67d76438f6c9053f61ae2be7e2934619724f9af",
+      "supersedes_artifact_id": null
+    },
+    {
+      "artifact_id": "fixture-lock.continuous-001",
+      "artifact_kind": "fixture",
+      "artifact_version": "0.1.0",
+      "audience": [
+        "custodian",
+        "public_after_reveal",
+        "source_auditor"
+      ],
+      "decision_relevant": true,
+      "included_in_frozen_set": false,
+      "path": "fixtures/fixture-lock.json",
+      "release_stage": "preparation",
+      "schema_path": "research/calibration-tests/continuous-action-pilot/schema/fixture-lock-0.1.0.schema.json",
+      "schema_sha256": "9221d543b33a1a418b1d12ca471d4ab371e4f7ace00e78656c6cb13697480f9e",
+      "sha256": "7550e7477ed9213fbf605c6f30898e48151244db4b119e89ed0caf5fb3db4b5c",
+      "supersedes_artifact_id": null
+    },
+    {
+      "artifact_id": "formal-build-readiness.continuous-001",
+      "artifact_kind": "build_record",
+      "artifact_version": "0.1.0",
+      "audience": [
+        "custodian",
+        "public_after_reveal",
+        "source_auditor"
+      ],
+      "decision_relevant": true,
+      "included_in_frozen_set": false,
+      "path": "fixtures/formal-build-readiness-v0.1.0.json",
+      "release_stage": "preparation",
+      "schema_path": "research/calibration-tests/continuous-action-pilot/schema/formal-build-readiness-0.1.0.schema.json",
+      "schema_sha256": "250368897679b7f0c9eaa835f5db144bee1afc1d230910f1ea7d84668bbe5c0a",
+      "sha256": "581bf917f0b4d49f2f4dfec5c1eb5c8fb62ebb652533b263d593e7d0e0a6e082",
+      "supersedes_artifact_id": null
+    },
+    {
+      "artifact_id": "evidence.python-runtime.continuous-001",
+      "artifact_kind": "build_record",
+      "artifact_version": "0.1.0",
+      "audience": [
+        "custodian",
+        "public_after_reveal",
+        "source_auditor"
+      ],
+      "decision_relevant": true,
+      "included_in_frozen_set": false,
+      "path": "fixtures/python-runtime-evidence-v0.1.0.json",
+      "release_stage": "preparation",
+      "schema_path": "research/calibration-tests/continuous-action-pilot/schema/python-runtime-evidence-0.1.0.schema.json",
+      "schema_sha256": "d755f0ea0e2da88a657333604d945ae34cc0fde19c163d0881f06b8e89692033",
+      "sha256": "546eb1b6ea3ca795e7e669345c89d8ee7192012c580566d71019ff103c9c245d",
+      "supersedes_artifact_id": null
+    },
+    {
+      "artifact_id": "audit.protocol-incident.r3-byte-integrity-read-v0.1.0",
+      "artifact_kind": "audit",
+      "artifact_version": "0.1.0",
+      "audience": [
+        "custodian",
+        "public_after_reveal",
+        "source_auditor"
+      ],
+      "decision_relevant": true,
+      "included_in_frozen_set": false,
+      "path": "source/protocol-incident-r3-byte-integrity-read-v0.1.0.json",
+      "release_stage": "source_audit",
+      "schema_path": "research/calibration-tests/continuous-action-pilot/schema/protocol-incident-0.1.0.schema.json",
+      "schema_sha256": "f7a412a6ca1b593c0cf2e1bdac661fab6e2f970a88583c609662a313ae5d8f1c",
+      "sha256": "379c583a5c7bf1d839cb6bdc8bd4874df1cb2a91525d18fa8470912e0233295c",
+      "supersedes_artifact_id": null
+    },
+    {
+      "artifact_id": "task.projection-audit.continuous-001",
+      "artifact_kind": "task_packet",
+      "artifact_version": "0.1.2",
+      "audience": [
+        "custodian",
+        "public_after_reveal",
+        "source_auditor"
+      ],
+      "decision_relevant": true,
+      "included_in_frozen_set": false,
+      "path": "inputs/projection-audit.task.json",
+      "release_stage": "source_audit",
+      "schema_path": "research/calibration-tests/continuous-action-pilot/schema/task-packet-0.1.2.schema.json",
+      "schema_sha256": "d32b78137d186a76921532fd3a861ab15e42eddc7def6395caa3e89caa27ca51",
+      "sha256": "7b7bf4df89c8f7b6dd5bd19c75f7e5bdb7d4eece76b86b567baf621dc39c4713",
+      "supersedes_artifact_id": null
+    },
+    {
+      "artifact_id": "build.r1.standalone-evidence-v0.1.0",
+      "artifact_kind": "build_record",
+      "artifact_version": "0.1.0",
+      "audience": [
+        "custodian",
+        "public_after_reveal",
+        "source_auditor"
+      ],
+      "decision_relevant": true,
+      "included_in_frozen_set": false,
+      "path": "fixtures/r1/r1-standalone-build-evidence-v0.1.0.json",
+      "release_stage": "preparation",
+      "schema_path": "research/calibration-tests/continuous-action-pilot/schema/r1-standalone-build-evidence-0.1.0.schema.json",
+      "schema_sha256": "351f4b623b333b5c26437a58f3b9fdec9d91ebc6f5a45cf1fa7f4fdb823d457b",
+      "sha256": "bec59758609dd56722822340a31ca56511af1c10fafeeb5e69e0956558ea6a11",
+      "supersedes_artifact_id": null
+    },
+    {
+      "artifact_id": "generator.r1.standalone-build-runner-v0.1.0",
+      "artifact_kind": "generator",
+      "artifact_version": "0.1.0",
+      "audience": [
+        "custodian",
+        "public_after_reveal",
+        "source_auditor"
+      ],
+      "decision_relevant": true,
+      "included_in_frozen_set": false,
+      "path": "fixtures/r1/run-footsies-r1-standalone-build-smoke-v0.1.0.ps1",
+      "release_stage": "preparation",
+      "schema_path": "research/calibration-tests/continuous-action-pilot/schema/text-artifact-0.1.0.schema.json",
+      "schema_sha256": "277edbeae2c76e58fc6ba25975f78338d6df435b4fcf68b1caf06f22481a66c3",
+      "sha256": "aa3904e3d8cd75017031ed376afa37e2fef12df74db94fc527bda5218b73b196",
+      "supersedes_artifact_id": null
+    },
+    {
+      "artifact_id": "validator.r1.build-readiness-v0.1.0",
+      "artifact_kind": "generator",
+      "artifact_version": "0.1.0",
+      "audience": [
+        "custodian",
+        "public_after_reveal",
+        "source_auditor"
+      ],
+      "decision_relevant": true,
+      "included_in_frozen_set": false,
+      "path": "fixtures/r1/verify-r1-build-readiness-v0.1.0.py",
+      "release_stage": "preparation",
+      "schema_path": "research/calibration-tests/continuous-action-pilot/schema/text-artifact-0.1.0.schema.json",
+      "schema_sha256": "277edbeae2c76e58fc6ba25975f78338d6df435b4fcf68b1caf06f22481a66c3",
+      "sha256": "8ec9a1c50abf730ac2adb461e5f97dba049d8aba3c1b4949fae9023f94c9f027",
+      "supersedes_artifact_id": null
+    },
+    {
+      "artifact_id": "generator.r1.formal-output-boundary-v0.1.0",
+      "artifact_kind": "generator",
+      "artifact_version": "0.1.0",
+      "audience": [
+        "custodian",
+        "public_after_reveal",
+        "source_auditor"
+      ],
+      "decision_relevant": true,
+      "included_in_frozen_set": false,
+      "path": "fixtures/r1/r1-formal-output-boundary-v0.1.0.ps1",
+      "release_stage": "preparation",
+      "schema_path": "research/calibration-tests/continuous-action-pilot/schema/text-artifact-0.1.0.schema.json",
+      "schema_sha256": "277edbeae2c76e58fc6ba25975f78338d6df435b4fcf68b1caf06f22481a66c3",
+      "sha256": "42133fabdb7633b658a59f22d9735287db610af1e79eaa2be7052c000f1b4f80",
+      "supersedes_artifact_id": null
+    },
+    {
+      "artifact_id": "generator.r1.process-boundary-v0.1.0",
+      "artifact_kind": "generator",
+      "artifact_version": "0.1.0",
+      "audience": [
+        "custodian",
+        "public_after_reveal",
+        "source_auditor"
+      ],
+      "decision_relevant": true,
+      "included_in_frozen_set": false,
+      "path": "fixtures/r1/r1-process-boundary-v0.1.0.ps1",
+      "release_stage": "preparation",
+      "schema_path": "research/calibration-tests/continuous-action-pilot/schema/text-artifact-0.1.0.schema.json",
+      "schema_sha256": "277edbeae2c76e58fc6ba25975f78338d6df435b4fcf68b1caf06f22481a66c3",
+      "sha256": "0774c9882e400b327c981c541f7d96ff56646021cea1cc0a4fd070ce81a81592",
+      "supersedes_artifact_id": null
+    },
+    {
+      "artifact_id": "probe.r1.formal-output-boundary-self-test-v0.1.0",
+      "artifact_kind": "generator",
+      "artifact_version": "0.1.0",
+      "audience": [
+        "custodian",
+        "public_after_reveal",
+        "source_auditor"
+      ],
+      "decision_relevant": true,
+      "included_in_frozen_set": false,
+      "path": "fixtures/r1/self-test-r1-formal-output-boundary-v0.1.0.ps1",
+      "release_stage": "preparation",
+      "schema_path": "research/calibration-tests/continuous-action-pilot/schema/text-artifact-0.1.0.schema.json",
+      "schema_sha256": "277edbeae2c76e58fc6ba25975f78338d6df435b4fcf68b1caf06f22481a66c3",
+      "sha256": "42705d67fe2826274eb50c6a70f33995ff0b59bb5eb568a447bc8df0118b03a5",
+      "supersedes_artifact_id": null
+    },
+    {
+      "artifact_id": "probe.r1.process-boundary-self-test-v0.1.0",
+      "artifact_kind": "generator",
+      "artifact_version": "0.1.0",
+      "audience": [
+        "custodian",
+        "public_after_reveal",
+        "source_auditor"
+      ],
+      "decision_relevant": true,
+      "included_in_frozen_set": false,
+      "path": "fixtures/r1/self-test-r1-process-boundary-v0.1.0.ps1",
+      "release_stage": "preparation",
+      "schema_path": "research/calibration-tests/continuous-action-pilot/schema/text-artifact-0.1.0.schema.json",
+      "schema_sha256": "277edbeae2c76e58fc6ba25975f78338d6df435b4fcf68b1caf06f22481a66c3",
+      "sha256": "eedf0538cec95c18c09e36d76723402b51ac650d92c3df5fb5e855fe2563e878",
+      "supersedes_artifact_id": null
+    },
+    {
+      "artifact_id": "negative.r1.standalone-permit-first-v0.1.0",
+      "artifact_kind": "build_record",
+      "artifact_version": "0.1.0",
+      "audience": [
+        "custodian",
+        "public_after_reveal",
+        "source_auditor"
+      ],
+      "decision_relevant": true,
+      "included_in_frozen_set": false,
+      "path": "fixtures/r1/r1-standalone-permit-first-negative-v0.1.0.json",
+      "release_stage": "preparation",
+      "schema_path": "research/calibration-tests/continuous-action-pilot/schema/r1-standalone-permit-first-negative-0.1.0.schema.json",
+      "schema_sha256": "1248e720998c4f48cf13b7ce70d0c525a7284f4def27f78ada226bb9027c9f49",
+      "sha256": "e5d7800804937ef01a74009a84c7a0b008e2ded2e64ea5f0081f7e77ed33d923",
+      "supersedes_artifact_id": null
+    },
+    {
+      "artifact_id": "negative.r1.formal-output-boundary-v0.1.0",
+      "artifact_kind": "build_record",
+      "artifact_version": "0.1.0",
+      "audience": [
+        "custodian",
+        "public_after_reveal",
+        "source_auditor"
+      ],
+      "decision_relevant": true,
+      "included_in_frozen_set": false,
+      "path": "fixtures/r1/r1-formal-output-boundary-negative-v0.1.0.json",
+      "release_stage": "preparation",
+      "schema_path": "research/calibration-tests/continuous-action-pilot/schema/r1-formal-output-boundary-negative-0.1.0.schema.json",
+      "schema_sha256": "fa8a94b43c592d6d377c2d08c47ed40a4c8a69c9f5827baccf2c77d9325b86b8",
+      "sha256": "b180a3f349bb30f46d454a8c8042846434f6eafc61cc90f8d473074e7222815b",
+      "supersedes_artifact_id": null
+    },
+    {
+      "artifact_id": "negative.r1.process-boundary-v0.1.0",
+      "artifact_kind": "build_record",
+      "artifact_version": "0.1.0",
+      "audience": [
+        "custodian",
+        "public_after_reveal",
+        "source_auditor"
+      ],
+      "decision_relevant": true,
+      "included_in_frozen_set": false,
+      "path": "fixtures/r1/r1-process-boundary-negative-v0.1.0.json",
+      "release_stage": "preparation",
+      "schema_path": "research/calibration-tests/continuous-action-pilot/schema/r1-process-boundary-negative-0.1.0.schema.json",
+      "schema_sha256": "28c835075469b67d8312cd1402a6aa2994eda8419566d325367d268fb64707b3",
+      "sha256": "dc0df97367a6c820d5003fd6d66aaacb1c036714ec0d2a44ab871915a895d26f",
+      "supersedes_artifact_id": null
+    },
+    {
+      "artifact_id": "method.r1.standalone-v0.1.0",
+      "artifact_kind": "build_record",
+      "artifact_version": "0.1.0",
+      "audience": [
+        "custodian",
+        "public_after_reveal",
+        "source_auditor"
+      ],
+      "decision_relevant": true,
+      "included_in_frozen_set": false,
+      "path": "fixtures/r1/footsies-r1-standalone-method-v0.1.0.md",
+      "release_stage": "preparation",
+      "schema_path": "research/calibration-tests/continuous-action-pilot/schema/markdown-document-0.1.0.schema.json",
+      "schema_sha256": "89827f39031c7d26f430584bb2f3e64c3600213a8e45e994da2c4120cb3f09a3",
+      "sha256": "3ba045e80baa14f0132163af8b82979de4a42e3645d67ea9dc620b4aa7691662",
+      "supersedes_artifact_id": null
+    },
+    {
+      "artifact_id": "generator.r1.standalone-formal-runner-v0.1.0",
+      "artifact_kind": "generator",
+      "artifact_version": "0.1.0",
+      "audience": [
+        "custodian",
+        "public_after_reveal",
+        "source_auditor"
+      ],
+      "decision_relevant": true,
+      "included_in_frozen_set": false,
+      "path": "fixtures/r1/run-footsies-r1-standalone-formal-v0.1.0.ps1",
+      "release_stage": "preparation",
+      "schema_path": "research/calibration-tests/continuous-action-pilot/schema/text-artifact-0.1.0.schema.json",
+      "schema_sha256": "277edbeae2c76e58fc6ba25975f78338d6df435b4fcf68b1caf06f22481a66c3",
+      "sha256": "46f621993a1f8ee703dacbb0544081157e543dcfc6f819d45570c931ea0eb5ef",
+      "supersedes_artifact_id": null
+    },
+    {
+      "artifact_id": "fixture.r1.standalone-formal-project-v0.1.0",
+      "artifact_kind": "fixture",
+      "artifact_version": "0.1.0",
+      "audience": [
+        "custodian",
+        "public_after_reveal",
+        "source_auditor"
+      ],
+      "decision_relevant": true,
+      "included_in_frozen_set": false,
+      "path": "fixtures/r1/standalone/FootsiesR1Formal.csproj",
+      "release_stage": "preparation",
+      "schema_path": "research/calibration-tests/continuous-action-pilot/schema/text-artifact-0.1.0.schema.json",
+      "schema_sha256": "277edbeae2c76e58fc6ba25975f78338d6df435b4fcf68b1caf06f22481a66c3",
+      "sha256": "ba39e4d8a7c8c676fd23b66b4cd0d197863bb48b83d2907b57e5647cc8cf4060",
+      "supersedes_artifact_id": null
+    },
+    {
+      "artifact_id": "fixture.r1.standalone-formal-body-v0.1.0",
+      "artifact_kind": "fixture",
+      "artifact_version": "0.1.0",
+      "audience": [
+        "custodian",
+        "public_after_reveal",
+        "source_auditor"
+      ],
+      "decision_relevant": true,
+      "included_in_frozen_set": false,
+      "path": "fixtures/r1/standalone/FormalProgram.cs",
+      "release_stage": "preparation",
+      "schema_path": "research/calibration-tests/continuous-action-pilot/schema/text-artifact-0.1.0.schema.json",
+      "schema_sha256": "277edbeae2c76e58fc6ba25975f78338d6df435b4fcf68b1caf06f22481a66c3",
+      "sha256": "49c86348f4edbc8b3b9e241dfc80c5f37c69055b0c9698c711b7a1edf4d3f5b1",
+      "supersedes_artifact_id": null
+    },
+    {
+      "artifact_id": "fixture.r1.standalone-source-contract-v0.1.0",
+      "artifact_kind": "fixture",
+      "artifact_version": "0.1.0",
+      "audience": [
+        "custodian",
+        "public_after_reveal",
+        "source_auditor"
+      ],
+      "decision_relevant": true,
+      "included_in_frozen_set": false,
+      "path": "fixtures/r1/standalone/FrozenSourceContract.cs",
+      "release_stage": "preparation",
+      "schema_path": "research/calibration-tests/continuous-action-pilot/schema/text-artifact-0.1.0.schema.json",
+      "schema_sha256": "277edbeae2c76e58fc6ba25975f78338d6df435b4fcf68b1caf06f22481a66c3",
+      "sha256": "57c0c7ed48de388da0b2fef3e2de6160839a73ecc53b03de9b6270dc37f0d11f",
+      "supersedes_artifact_id": null
+    },
+    {
+      "artifact_id": "fixture.r1.standalone-nuget-config-v0.1.0",
+      "artifact_kind": "fixture",
+      "artifact_version": "0.1.0",
+      "audience": [
+        "custodian",
+        "public_after_reveal",
+        "source_auditor"
+      ],
+      "decision_relevant": true,
+      "included_in_frozen_set": false,
+      "path": "fixtures/r1/standalone/NuGet.config",
+      "release_stage": "preparation",
+      "schema_path": "research/calibration-tests/continuous-action-pilot/schema/text-artifact-0.1.0.schema.json",
+      "schema_sha256": "277edbeae2c76e58fc6ba25975f78338d6df435b4fcf68b1caf06f22481a66c3",
+      "sha256": "5256a7e3e07d2c5c94f7a1e6c45f39aab011c659c5e2d53e452dea525ce04575",
+      "supersedes_artifact_id": null
+    },
+    {
+      "artifact_id": "fixture.r1.standalone-unity-compatibility-v0.1.0",
+      "artifact_kind": "fixture",
+      "artifact_version": "0.1.0",
+      "audience": [
+        "custodian",
+        "public_after_reveal",
+        "source_auditor"
+      ],
+      "decision_relevant": true,
+      "included_in_frozen_set": false,
+      "path": "fixtures/r1/standalone/UnityCompatibility.cs",
+      "release_stage": "preparation",
+      "schema_path": "research/calibration-tests/continuous-action-pilot/schema/text-artifact-0.1.0.schema.json",
+      "schema_sha256": "277edbeae2c76e58fc6ba25975f78338d6df435b4fcf68b1caf06f22481a66c3",
+      "sha256": "041c5f88f372dab9956dbad5a03cfee1dff5085aaaaabf4b1137585642536b28",
+      "supersedes_artifact_id": null
+    },
+    {
+      "artifact_id": "fixture.r1.standalone-yaml-loader-v0.1.0",
+      "artifact_kind": "fixture",
+      "artifact_version": "0.1.0",
+      "audience": [
+        "custodian",
+        "public_after_reveal",
+        "source_auditor"
+      ],
+      "decision_relevant": true,
+      "included_in_frozen_set": false,
+      "path": "fixtures/r1/standalone/UnityYamlAssetLoader.cs",
+      "release_stage": "preparation",
+      "schema_path": "research/calibration-tests/continuous-action-pilot/schema/text-artifact-0.1.0.schema.json",
+      "schema_sha256": "277edbeae2c76e58fc6ba25975f78338d6df435b4fcf68b1caf06f22481a66c3",
+      "sha256": "fe8f55c7ea3e2e5d58eb228e4d8a83a095298c7d7cd2c7e8fd9386a56acb30e4",
+      "supersedes_artifact_id": null
+    },
+    {
+      "artifact_id": "build.r2.structured-readiness-v0.1.0",
+      "artifact_kind": "build_record",
+      "artifact_version": "0.1.0",
+      "audience": [
+        "custodian",
+        "public_after_reveal",
+        "source_auditor"
+      ],
+      "decision_relevant": true,
+      "included_in_frozen_set": false,
+      "path": "fixtures/r2/r2-build-readiness-evidence-v0.1.0.json",
+      "release_stage": "preparation",
+      "schema_path": "research/calibration-tests/continuous-action-pilot/schema/r2-build-readiness-evidence-0.1.0.schema.json",
+      "schema_sha256": "43457e02c83b9f387319d2eb9213d39f8b4dfcf6ab103ff472367a93e6e792d6",
+      "sha256": "adcdaf9974285fbf772864def12fb62a134af70f9f5607902bd056f274262e98",
+      "supersedes_artifact_id": null
+    },
+    {
+      "artifact_id": "validator.r2.build-readiness-v0.1.0",
+      "artifact_kind": "generator",
+      "artifact_version": "0.1.0",
+      "audience": [
+        "custodian",
+        "public_after_reveal",
+        "source_auditor"
+      ],
+      "decision_relevant": true,
+      "included_in_frozen_set": false,
+      "path": "fixtures/r2/verify-r2-build-readiness-v0.1.0.py",
+      "release_stage": "preparation",
+      "schema_path": "research/calibration-tests/continuous-action-pilot/schema/text-artifact-0.1.0.schema.json",
+      "schema_sha256": "277edbeae2c76e58fc6ba25975f78338d6df435b4fcf68b1caf06f22481a66c3",
+      "sha256": "d038a18bd34ce08910f0387062e97dfbcfaf5d4d8b5c5944f319c66557fbf9c7",
+      "supersedes_artifact_id": null
+    },
+    {
+      "artifact_id": "fixture.r3.deterministic-build-targets-v0.1.0",
+      "artifact_kind": "fixture",
+      "artifact_version": "0.1.0",
+      "audience": [
+        "custodian",
+        "public_after_reveal",
+        "source_auditor"
+      ],
+      "decision_relevant": true,
+      "included_in_frozen_set": false,
+      "path": "fixtures/r3/r3-deterministic-build-v0.1.0.targets",
+      "release_stage": "preparation",
+      "schema_path": "research/calibration-tests/continuous-action-pilot/schema/text-artifact-0.1.0.schema.json",
+      "schema_sha256": "277edbeae2c76e58fc6ba25975f78338d6df435b4fcf68b1caf06f22481a66c3",
+      "sha256": "ab74e926c558134b1a92bf034bab6c7770fb75eebcb5b1c5b0158683e7d431cb",
+      "supersedes_artifact_id": null
+    },
+    {
+      "artifact_id": "generator.r3.safety-guards-v0.1.0",
+      "artifact_kind": "generator",
+      "artifact_version": "0.1.0",
+      "audience": [
+        "custodian",
+        "public_after_reveal",
+        "source_auditor"
+      ],
+      "decision_relevant": true,
+      "included_in_frozen_set": false,
+      "path": "fixtures/r3/r3-safety-guards-v0.1.0.ps1",
+      "release_stage": "preparation",
+      "schema_path": "research/calibration-tests/continuous-action-pilot/schema/text-artifact-0.1.0.schema.json",
+      "schema_sha256": "277edbeae2c76e58fc6ba25975f78338d6df435b4fcf68b1caf06f22481a66c3",
+      "sha256": "53b714b3224057e6dc2f5b01d8c13529ea8a0b1b75cc0c25eb0d1083c76aa6be",
       "supersedes_artifact_id": null
     }
   ],
@@ -1259,5 +1763,5 @@
   "stage_digests": [],
   "status": "preparing",
   "truth_commitment": null,
-  "updated_at": "2026-07-26T23:04:17Z"
+  "updated_at": "2026-07-27T04:35:58Z"
 }

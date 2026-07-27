@@ -1,12 +1,10 @@
 diff --git a/q3-formal-harness-v0.1.0.c b/q3-formal-harness-v0.1.0.c
 --- a/q3-formal-harness-v0.1.0.c
 +++ b/q3-formal-harness-v0.1.0.c
-@@ -25,7 +25,7 @@
+@@ -25,5 +25,5 @@
  #define Q3GP_CASE_ID "CA-R2"
  #define Q3GP_POLICY_RESAMPLE 0
  #define Q3GP_POLICY_ENTRY_LATCH 1
 -#define Q3GP_ACTIVE_INPUT_POLICY Q3GP_POLICY_RESAMPLE
 +#define Q3GP_ACTIVE_INPUT_POLICY Q3GP_POLICY_ENTRY_LATCH
- 
- typedef struct q3gp_policy_state_s {
- 	int initialized;
+ #define Q3GP_FORMAL_STEP_COUNT 25

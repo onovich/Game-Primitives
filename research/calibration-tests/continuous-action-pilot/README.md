@@ -42,6 +42,7 @@
 - [`formal-input-trace-0.1.0.schema.json`](schema/formal-input-trace-0.1.0.schema.json)：以通用类型化字段和有序事件冻结三案正式输入，并把人工门前状态固定为未授权、未执行且未产生结果。
 - [`formal-comparator-output-0.1.0.schema.json`](schema/formal-comparator-output-0.1.0.schema.json)：约束三案比较器的结构化观测、不变量与负对照结果，并要求结果直接绑定执行许可、正式输入和预测集合摘要；通过状态只允许完整观测、成立不变量和成立负对照。
 - [`ca-r1-raw-trace-0.1.0.schema.json`](schema/ca-r1-raw-trace-0.1.0.schema.json)、[`ca-r2-raw-trace-0.1.0.schema.json`](schema/ca-r2-raw-trace-0.1.0.schema.json) 与 [`ca-r3-raw-trace-0.1.0.schema.json`](schema/ca-r3-raw-trace-0.1.0.schema.json)：分别封闭三案原始轨迹字段、配置、顺序与许可／正式输入／预测集合散列；R2 的 JSONL 在内存中归一化后再做 Schema 校验。
+- [`execution-plan-preparation-0.1.0.schema.json`](schema/execution-plan-preparation-0.1.0.schema.json)：只表达尚被门前阻断的执行计划准备状态；它要求明确列出 `CA-R1` 合法许可阻断、三案候选 runner／比较器／轨迹 Schema、尚未创建的人工授权／预测集／执行许可和全部未执行标志，并指向将来原位替换它的最终计划 Schema。该制品不能满足人工门。
 - [`role-submission-0.1.0.schema.json`](schema/role-submission-0.1.0.schema.json)：来源审核、重构、预测和揭示后制品审核的首次提交。
 - [`role-submission-0.1.1.schema.json`](schema/role-submission-0.1.1.schema.json)：保留 0.1.0 并给预测期望增加必填 `configuration_id`，修复 `rehearsal-001` 发现的基线／变体寻址缺口。
 - [`role-submission-0.1.2.schema.json`](schema/role-submission-0.1.2.schema.json)：把原始盲测 payload、机器信封与装配工具散列绑定到派生提交。
@@ -62,7 +63,7 @@
 
 正式包使用 [`verify-run-package.py`](tools/verify-run-package.py) 统一检查 Schema、自声明版本、规范字节、清单与嵌套散列引用、任务输入／输出、冻结集合摘要及冻结锚点提交。`preparing` 包可以通过结构检查；人工门前还必须以 `--require-frozen` 通过。
 
-[`verify-formal-readiness.py`](tools/verify-formal-readiness.py) 在包校验之上检查人工门所需的完整制品集合、夹具补丁分离、最终构建全通过、中性初态／正式输入／不变量／容差定义、受控变量与输入字段结构引用闭包、中性信封盲化、回答模板覆盖、第二道审核和正式输入未执行标志。第二阶段任务只允许直接派发中性信封与回答模板，不得加入来源专用夹具 JSON。第二道任务必须直接绑定机械生成器、投影规范、两份生成视图、最终夹具锁、执行计划和最终构建准备记录，审核结果再绑定任务及全部任务输入；校验器不会调用夹具、比较器或正式输入。rich 视图里的受控变量、正式输入 ID、时间基准及匿名初态／输入字段必须进入结构关系，atomic 视图才可以按规范删去这些职责边。冻结前可以用普通模式查看缺件，冻结后必须再加 `--require-frozen`。
+[`verify-formal-readiness.py`](tools/verify-formal-readiness.py) 在包校验之上检查人工门所需的完整制品集合、夹具补丁分离、最终构建全通过、中性初态／正式输入／不变量／容差定义、受控变量与输入字段结构引用闭包、中性信封盲化、回答模板覆盖、第二道审核和正式输入未执行标志。它能识别并检查诚实的 `execution_plan_preparation`，但会以 `execution_plan_not_final` 明确拒绝人工门，直到该文件被绑定最终夹具锁的 `execution_plan` 原位替换。第二阶段任务只允许直接派发中性信封与回答模板，不得加入来源专用夹具 JSON。第二道任务必须直接绑定机械生成器、投影规范、两份生成视图、最终夹具锁、执行计划和最终构建准备记录，审核结果再绑定任务及全部任务输入；审核 actor 必须使用 `source_auditor` 角色，并以新的 `identifier` 和 `session_id` 与第一道来源审核隔离。校验器不会调用夹具、比较器或正式输入。rich 视图里的受控变量、正式输入 ID、时间基准及匿名初态／输入字段必须进入结构关系，atomic 视图才可以按规范删去这些职责边。冻结前可以用普通模式查看缺件，冻结后必须再加 `--require-frozen`。
 
 逐席派发由 [`materialize-dispatch.py`](tools/materialize-dispatch.py) 物化和复核。它不发送消息，也不执行正式输入；只有固定路径的、通过 [`formal-human-gate-authorization-0.1.0`](schema/formal-human-gate-authorization-0.1.0.schema.json) 校验且能复算全部冻结依据的授权凭据才可将模板变成回执。两层合成自检均只使用系统临时目录中的虚构冻结链：
 

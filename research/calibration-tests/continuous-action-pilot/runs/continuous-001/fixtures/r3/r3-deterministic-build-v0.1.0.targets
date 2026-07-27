@@ -1,0 +1,13 @@
+<Project>
+  <!--
+    Sentry's transitive target embeds the physical ProjectDir as assembly
+    metadata. The formal fixture does not use that diagnostic metadata.
+    Its source generator can also consume the path-bearing analyzer config.
+    Disable both inputs so independent cache roots produce identical
+    assemblies without changing the tested adjudication mechanism.
+  -->
+  <PropertyGroup>
+    <SentryDisableSourceGenerator>true</SentryDisableSourceGenerator>
+  </PropertyGroup>
+  <Target Name="WriteSentryAttributes" />
+</Project>

@@ -4,8 +4,8 @@ param(
     [ValidateNotNullOrEmpty()]
     [string]$SourcePath,
 
-    [Parameter(Mandatory = $true)]
-    [ValidateNotNullOrEmpty()]
+    # Compatibility-only. The pre-gate build must never resolve, test, hash,
+    # or open this path. Formal input derivation belongs to the guarded runner.
     [string]$InputPath,
 
     [Parameter(Mandatory = $true)]
@@ -35,17 +35,6 @@ $expectedSourceHashes = [ordered]@{
     'code\game\bg_public.h' = '29679E04BA6F0F730C5CA200410330E057609DA59E563E36D101F329FAFD09E7'
     'code\game\bg_local.h' = '1F8953894410D670367A0BC68A687C4F27958F825E4987B6FCD2F77CA0D40FB1'
 }
-$requiredCommandFields = @(
-    'cmd.server-time',
-    'cmd.angle-0',
-    'cmd.angle-1',
-    'cmd.angle-2',
-    'cmd.buttons',
-    'cmd.weapon',
-    'cmd.forwardmove',
-    'cmd.rightmove',
-    'cmd.upmove'
-)
 $utf8NoBom = [System.Text.UTF8Encoding]::new($false)
 $scriptDirectory = Split-Path -Parent $PSCommandPath
 $repositoryRoot = [System.IO.Path]::GetFullPath(
@@ -60,6 +49,117 @@ $variantPatchPath = Join-Path $scriptDirectory 'q3-entry-latch-variant-v0.1.0.pa
 $comparatorPath = Join-Path $scriptDirectory 'compare-q3-formal-traces-v0.1.0.ps1'
 $formalRunnerPath = Join-Path $scriptDirectory 'run-q3-formal-guarded-v0.1.0.ps1'
 $processRecords = @()
+
+if ($null -eq ('R2ScopedJobV010' -as [type])) {
+    Add-Type -TypeDefinition @'
+using System;
+using System.ComponentModel;
+using System.Runtime.InteropServices;
+
+public sealed class R2ScopedJobV010 : IDisposable
+{
+    private const UInt32 JOB_OBJECT_LIMIT_KILL_ON_JOB_CLOSE = 0x00002000;
+    private IntPtr handle;
+
+    [StructLayout(LayoutKind.Sequential)]
+    private struct JOBOBJECT_BASIC_LIMIT_INFORMATION
+    {
+        public Int64 PerProcessUserTimeLimit;
+        public Int64 PerJobUserTimeLimit;
+        public UInt32 LimitFlags;
+        public UIntPtr MinimumWorkingSetSize;
+        public UIntPtr MaximumWorkingSetSize;
+        public UInt32 ActiveProcessLimit;
+        public IntPtr Affinity;
+        public UInt32 PriorityClass;
+        public UInt32 SchedulingClass;
+    }
+
+    [StructLayout(LayoutKind.Sequential)]
+    private struct IO_COUNTERS
+    {
+        public UInt64 ReadOperationCount;
+        public UInt64 WriteOperationCount;
+        public UInt64 OtherOperationCount;
+        public UInt64 ReadTransferCount;
+        public UInt64 WriteTransferCount;
+        public UInt64 OtherTransferCount;
+    }
+
+    [StructLayout(LayoutKind.Sequential)]
+    private struct JOBOBJECT_EXTENDED_LIMIT_INFORMATION
+    {
+        public JOBOBJECT_BASIC_LIMIT_INFORMATION BasicLimitInformation;
+        public IO_COUNTERS IoInfo;
+        public UIntPtr ProcessMemoryLimit;
+        public UIntPtr JobMemoryLimit;
+        public UIntPtr PeakProcessMemoryUsed;
+        public UIntPtr PeakJobMemoryUsed;
+    }
+
+    [DllImport("kernel32.dll", CharSet = CharSet.Unicode)]
+    private static extern IntPtr CreateJobObject(
+        IntPtr jobAttributes,
+        string name
+    );
+
+    [DllImport("kernel32.dll", SetLastError = true)]
+    private static extern bool SetInformationJobObject(
+        IntPtr job,
+        Int32 informationClass,
+        ref JOBOBJECT_EXTENDED_LIMIT_INFORMATION information,
+        UInt32 informationLength
+    );
+
+    [DllImport("kernel32.dll", SetLastError = true)]
+    private static extern bool AssignProcessToJobObject(
+        IntPtr job,
+        IntPtr process
+    );
+
+    [DllImport("kernel32.dll")]
+    private static extern bool CloseHandle(IntPtr handle);
+
+    public R2ScopedJobV010()
+    {
+        handle = CreateJobObject(IntPtr.Zero, null);
+        if (handle == IntPtr.Zero)
+            throw new Win32Exception(Marshal.GetLastWin32Error());
+
+        var information = new JOBOBJECT_EXTENDED_LIMIT_INFORMATION();
+        information.BasicLimitInformation.LimitFlags =
+            JOB_OBJECT_LIMIT_KILL_ON_JOB_CLOSE;
+        if (!SetInformationJobObject(
+            handle,
+            9,
+            ref information,
+            (UInt32)Marshal.SizeOf(information)
+        ))
+        {
+            var error = Marshal.GetLastWin32Error();
+            CloseHandle(handle);
+            handle = IntPtr.Zero;
+            throw new Win32Exception(error);
+        }
+    }
+
+    public void AddProcess(IntPtr processHandle)
+    {
+        if (!AssignProcessToJobObject(handle, processHandle))
+            throw new Win32Exception(Marshal.GetLastWin32Error());
+    }
+
+    public void Dispose()
+    {
+        if (handle != IntPtr.Zero)
+        {
+            CloseHandle(handle);
+            handle = IntPtr.Zero;
+        }
+    }
+}
+'@
+}
 
 function Get-FullExplicitPath {
     param([string]$Value, [string]$Label)
@@ -109,7 +209,8 @@ function Invoke-RecordedProcess {
         [string[]]$Arguments,
         [string]$WorkingDirectory,
         [string]$LogPath,
-        [string]$Label
+        [string]$Label,
+        [int]$TimeoutMilliseconds = 120000
     )
 
     $argumentLine = ($Arguments | ForEach-Object {
@@ -125,17 +226,35 @@ function Invoke-RecordedProcess {
     $startInfo.RedirectStandardError = $true
     $process = New-Object System.Diagnostics.Process
     $process.StartInfo = $startInfo
-    if (-not $process.Start()) {
-        throw "Could not start $Label."
+    $started = $false
+    $job = [R2ScopedJobV010]::new()
+    try {
+        if (-not $process.Start()) {
+            throw "Could not start $Label."
+        }
+        $started = $true
+        $startedPid = $process.Id
+        $job.AddProcess($process.Handle)
+        $stdoutTask = $process.StandardOutput.ReadToEndAsync()
+        $stderrTask = $process.StandardError.ReadToEndAsync()
+        if (-not $process.WaitForExit($TimeoutMilliseconds)) {
+            $job.Dispose()
+            $process.WaitForExit()
+            throw "$Label timed out; its process tree was terminated."
+        }
+        $exitCode = $process.ExitCode
+        $job.Dispose()
+        $stdoutText = $stdoutTask.Result
+        $stderrText = $stderrTask.Result
     }
-    $startedPid = $process.Id
-    $stdoutTask = $process.StandardOutput.ReadToEndAsync()
-    $stderrTask = $process.StandardError.ReadToEndAsync()
-    $process.WaitForExit()
-    $stdoutText = $stdoutTask.Result
-    $stderrText = $stderrTask.Result
-    $exitCode = $process.ExitCode
-    $process.Dispose()
+    finally {
+        $job.Dispose()
+        if ($started -and -not $process.HasExited) {
+            & taskkill.exe /PID $startedPid /T /F 2>$null | Out-Null
+            $process.WaitForExit()
+        }
+        $process.Dispose()
+    }
     $stdoutLines = @(
         $stdoutText -split '\r?\n' |
         Where-Object { $_ -ne '' }
@@ -165,55 +284,11 @@ function Assert-ProcessExit {
     }
 }
 
-function Get-IntegerFieldMap {
-    param([object]$Event)
-    $map = @{}
-    foreach ($field in $Event.fields) {
-        if ($map.ContainsKey($field.field_id)) {
-            throw "Duplicate command field: $($field.field_id)"
-        }
-        if ($field.value.value_type -ne 'integer') {
-            throw "Command field is not integer: $($field.field_id)"
-        }
-        $parsed = 0
-        if (-not [int]::TryParse(
-            $field.value.serialized_value,
-            [System.Globalization.NumberStyles]::Integer,
-            [System.Globalization.CultureInfo]::InvariantCulture,
-            [ref]$parsed
-        )) {
-            throw "Command field is not a canonical integer: $($field.field_id)"
-        }
-        $map[$field.field_id] = $parsed
-    }
-    if ($map.Count -ne $requiredCommandFields.Count) {
-        throw 'Formal input command field count mismatch.'
-    }
-    foreach ($fieldId in $requiredCommandFields) {
-        if (-not $map.ContainsKey($fieldId)) {
-            throw "Formal input command field missing: $fieldId"
-        }
-    }
-    return $map
-}
-
-function Test-ZeroCommandFields {
-    param([hashtable]$Map)
-    return $Map['cmd.angle-0'] -eq 0 `
-        -and $Map['cmd.angle-1'] -eq 0 `
-        -and $Map['cmd.angle-2'] -eq 0 `
-        -and $Map['cmd.buttons'] -eq 0 `
-        -and $Map['cmd.weapon'] -eq 0 `
-        -and $Map['cmd.upmove'] -eq 0
-}
-
 $sourceFull = Get-FullExplicitPath -Value $SourcePath -Label 'SourcePath'
-$inputFull = Get-FullExplicitPath -Value $InputPath -Label 'InputPath'
 $outputFull = Get-FullExplicitPath -Value $OutputPath -Label 'OutputPath'
 $vcvarsFull = Get-FullExplicitPath -Value $VcVarsPath -Label 'VcVarsPath'
 
 foreach ($requiredFile in @(
-    $inputFull,
     $vcvarsFull,
     $harnessPath,
     $compatibilityPath,
@@ -241,62 +316,12 @@ if (Test-PathWithin -Candidate $outputFull -Parent $sourceFull) {
     throw 'OutputPath must not be inside the frozen source checkout.'
 }
 
-$formalInput = Get-Content -Raw -Encoding utf8 -LiteralPath $inputFull |
-    ConvertFrom-Json
-if ($formalInput.artifact_type -ne 'formal_input_trace' `
-    -or $formalInput.artifact_version -ne '0.1.0' `
-    -or $formalInput.run_id -ne 'continuous-001' `
-    -or $formalInput.case_id -ne 'CA-R2' `
-    -or $formalInput.formal_input_id -ne 'o.b.0002' `
-    -or $formalInput.stop_boundary_id -ne 'o.b.0030' `
-    -or $formalInput.time_base.time_base_id -ne 'o.b.0015' `
-    -or $formalInput.pre_gate_guard.authorization_state -ne 'withheld' `
-    -or $formalInput.pre_gate_guard.execution_status -ne 'not_executed' `
-    -or $formalInput.pre_gate_guard.formal_input_executed -ne $false `
-    -or $formalInput.pre_gate_guard.formal_result_created -ne $false `
-    -or $formalInput.pre_gate_guard.expected_result_included -ne $false) {
-    throw 'Formal input pre-gate identity or guard mismatch.'
-}
-if ($formalInput.input_events.Count -ne 25) {
-    throw 'Formal input must contain exactly 25 usercmd events.'
-}
-
-$frozenCommands = @()
-for ($index = 0; $index -lt 25; $index++) {
-    $event = $formalInput.input_events[$index]
-    $fields = Get-IntegerFieldMap -Event $event
-    $expectedTime = ($index + 1) * 8
-    if ($event.sequence_index -ne $index `
-        -or $event.event_id -ne ('input.r2.step-{0:D2}' -f $index) `
-        -or $event.at.serialized_value -ne $expectedTime.ToString() `
-        -or $fields['cmd.server-time'] -ne $expectedTime `
-        -or -not (Test-ZeroCommandFields -Map $fields)) {
-        throw "Formal input identity/time/zero-field mismatch at step $index."
-    }
-    $expectedForward = if ($index -lt 5) { 127 } else { 0 }
-    $expectedRight = if ($index -lt 5) { 0 } else { 127 }
-    if ($fields['cmd.forwardmove'] -ne $expectedForward `
-        -or $fields['cmd.rightmove'] -ne $expectedRight) {
-        throw "Formal input direction mismatch at step $index."
-    }
-    $frozenCommands += [ordered]@{
-        server_time = $fields['cmd.server-time']
-        angle_0 = $fields['cmd.angle-0']
-        angle_1 = $fields['cmd.angle-1']
-        angle_2 = $fields['cmd.angle-2']
-        buttons = $fields['cmd.buttons']
-        weapon = $fields['cmd.weapon']
-        forwardmove = $fields['cmd.forwardmove']
-        rightmove = $fields['cmd.rightmove']
-        upmove = $fields['cmd.upmove']
-    }
-}
-
 New-Item -ItemType Directory -Path $outputFull | Out-Null
 $runLog = Join-Path $outputFull 'build-run.log'
 Write-LfText -Path $runLog -Text (
     "CA-R2 formal fixture preparation build`n" +
     "UTC_START=$([DateTime]::UtcNow.ToString('o'))`n" +
+    "FORMAL_INPUT_READ=FALSE`n" +
     "FORMAL_INPUT_EXECUTED=FALSE`n" +
     "FORMAL_RESULT_CREATED=FALSE`n"
 )
@@ -349,7 +374,6 @@ try {
         }
     }
 
-    $generatedDirectory = Join-Path $outputFull 'generated'
     $compatibilitySourceDirectory = Join-Path $outputFull 'compatibility-source'
     $patchedSourceRoot = Join-Path $outputFull 'patched-source'
     $patchedGameDirectory = Join-Path $patchedSourceRoot 'code\game'
@@ -358,7 +382,6 @@ try {
     $baselineBuildDirectory = Join-Path $outputFull 'build\baseline'
     $variantBuildDirectory = Join-Path $outputFull 'build\variant'
     foreach ($directory in @(
-        $generatedDirectory,
         $compatibilitySourceDirectory,
         $patchedGameDirectory,
         $baselineSourceDirectory,
@@ -369,43 +392,6 @@ try {
         New-Item -ItemType Directory -Path $directory -Force | Out-Null
     }
 
-    $inputHash = (Get-FileHash -Algorithm SHA256 -LiteralPath $inputFull).Hash.ToLowerInvariant()
-    $generatedHeaderPath = Join-Path $generatedDirectory 'q3-formal-input.generated.h'
-    $headerLines = @(
-        '#ifndef GAME_PRIMITIVES_Q3_FORMAL_INPUT_GENERATED_H',
-        '#define GAME_PRIMITIVES_Q3_FORMAL_INPUT_GENERATED_H',
-        '',
-        "#define Q3GP_FORMAL_INPUT_SHA256 `"$inputHash`"",
-        '#define Q3GP_FORMAL_STEP_COUNT 25',
-        '',
-        'typedef struct q3gp_frozen_command_s {',
-        '    int server_time;',
-        '    int angles[3];',
-        '    int buttons;',
-        '    int weapon;',
-        '    int forwardmove;',
-        '    int rightmove;',
-        '    int upmove;',
-        '} q3gp_frozen_command_t;',
-        '',
-        'static const q3gp_frozen_command_t q3gp_frozen_commands[25] = {'
-    )
-    foreach ($command in $frozenCommands) {
-        $headerLines += (
-            '    {{ {0}, {{ {1}, {2}, {3} }}, {4}, {5}, {6}, {7}, {8} }},' -f
-            $command.server_time,
-            $command.angle_0,
-            $command.angle_1,
-            $command.angle_2,
-            $command.buttons,
-            $command.weapon,
-            $command.forwardmove,
-            $command.rightmove,
-            $command.upmove
-        )
-    }
-    $headerLines += @('};', '', '#endif')
-    Write-LfLines -Path $generatedHeaderPath -Lines $headerLines
     $compatibilityModePath = Join-Path (
         $compatibilitySourceDirectory
     ) 'q3-compatibility-mode-v0.1.0.h'
@@ -545,15 +531,16 @@ try {
         '/TC',
         '/Od',
         '/W4',
+        '/Brepro',
         '/fp:precise',
         '/DWIN32',
         '/DGAME_PRIMITIVES_OBSERVATION',
         "/I`"$gamePath`"",
         "/I`"$scriptDirectory`"",
-        "/I`"$compatibilitySourceDirectory`"",
-        "/I`"$generatedDirectory`""
+        "/I`"$compatibilitySourceDirectory`""
     )
 
+    $reproducibility = [ordered]@{}
     foreach ($build in @(
         [ordered]@{
             Label = 'baseline'
@@ -597,6 +584,52 @@ try {
             throw "$($build.Label) executable was not produced."
         }
 
+        $replicaDirectory = Join-Path $outputFull "repro\$($build.Label)"
+        New-Item -ItemType Directory -Path $replicaDirectory -Force | Out-Null
+        $replicaExecutable = Join-Path (
+            $replicaDirectory
+        ) "q3-r2-$($build.Label).exe"
+        $replicaResponsePath = Join-Path $replicaDirectory 'compile.rsp'
+        $replicaArguments = @($commonArguments) + @(
+            "`"$($build.Source)`"",
+            "`"$compatibilityPath`"",
+            "`"$patchedPmovePath`"",
+            "`"$(Join-Path $gamePath 'bg_slidemove.c')`"",
+            "`"$(Join-Path $gamePath 'q_math.c')`"",
+            "/Fe`"$replicaExecutable`"",
+            '/link',
+            '/INCREMENTAL:NO'
+        )
+        Write-LfLines -Path $replicaResponsePath -Lines $replicaArguments
+        $replicaCompile = Invoke-RecordedProcess `
+            -FilePath $compilerPath `
+            -Arguments @("@$replicaResponsePath") `
+            -WorkingDirectory $replicaDirectory `
+            -LogPath (
+                Join-Path $outputFull "$($build.Label)-repro-build.log"
+            ) `
+            -Label "$($build.Label)-repro-compile"
+        Assert-ProcessExit $replicaCompile 0 "$($build.Label) reproducibility build"
+        if (-not (Test-Path -LiteralPath $replicaExecutable -PathType Leaf)) {
+            throw "$($build.Label) reproducibility executable was not produced."
+        }
+        $primaryHash = (
+            Get-FileHash -Algorithm SHA256 -LiteralPath $build.Executable
+        ).Hash.ToLowerInvariant()
+        $replicaHash = (
+            Get-FileHash -Algorithm SHA256 -LiteralPath $replicaExecutable
+        ).Hash.ToLowerInvariant()
+        if ($primaryHash -cne $replicaHash) {
+            throw "$($build.Label) independent builds are not byte-identical."
+        }
+        $reproducibility[$build.Label] = [ordered]@{
+            algorithm = 'sha256'
+            byte_identical = $true
+            primary_path = $build.Executable
+            replica_path = $replicaExecutable
+            sha256 = $primaryHash
+        }
+
         $selfTest = Invoke-RecordedProcess `
             -FilePath $build.Executable `
             -Arguments @('--self-test') `
@@ -636,8 +669,19 @@ try {
         -LogPath (Join-Path $outputFull 'comparator-self-test.log') `
         -Label 'comparator-self-test'
     Assert-ProcessExit $comparatorSelfTest 0 'Comparator self-test'
-    if ($comparatorSelfTest.Lines.Count -ne 1 `
-        -or $comparatorSelfTest.Lines[0].Trim() -ne 'COMPARATOR_SELF_TEST_PASS') {
+    $expectedComparatorMarkers = @(
+        'FORMAL_OUTPUT_CHILD_ROOT_REJECTED_PASS',
+        'PROCESS_TREE_FAILURE_DESCENDANT_PASS',
+        'PROCESS_TREE_TIMEOUT_DESCENDANT_PASS',
+        'COMPARATOR_SELF_TEST_PASS'
+    )
+    if (
+        $comparatorSelfTest.Lines.Count -ne $expectedComparatorMarkers.Count -or
+        (Compare-Object `
+            -ReferenceObject $expectedComparatorMarkers `
+            -DifferenceObject @($comparatorSelfTest.Lines.Trim()) `
+            -SyncWindow 0)
+    ) {
         throw 'Comparator self-test marker mismatch.'
     }
 
@@ -659,7 +703,6 @@ try {
     }
 
     $artifactPaths = [ordered]@{
-        formal_input = $inputFull
         fixture_header = $headerPath
         compatibility_layer = $compatibilityPath
         compatibility_patch = $compatibilityPatchPath
@@ -669,7 +712,6 @@ try {
         comparator = $comparatorPath
         build_runner = $PSCommandPath
         guarded_formal_runner = $formalRunnerPath
-        generated_input_header = $generatedHeaderPath
         generated_compatibility_mode = $compatibilityModePath
         patched_pmove = $patchedPmovePath
         baseline_executable = $baselineExecutable
@@ -700,16 +742,21 @@ try {
         compiler = [ordered]@{
             toolset = $expectedToolset
             compiler_version = $expectedCompiler
-            options = @('/TC', '/Od', '/W4', '/fp:precise', '/DWIN32')
+            options = @('/TC', '/Od', '/W4', '/Brepro', '/fp:precise', '/DWIN32')
             historical_x87_bit_equivalence_claimed = $false
         }
+        formal_input_read = $false
         formal_input_executed = $false
         formal_result_created = $false
+        reproducibility = $reproducibility
         self_tests = [ordered]@{
             baseline = 'passed'
             variant = 'passed'
             comparator_fictional = 'passed'
+            failure_descendant_cleanup = 'passed'
             guarded_formal_refusal = 'passed'
+            output_child_root_rejected = 'passed'
+            timeout_descendant_cleanup = 'passed'
         }
         variant_difference = [ordered]@{
             differing_source_lines = 1
@@ -730,6 +777,7 @@ try {
             "BUILD=PASS`n" +
             "SELF_TESTS=PASS`n" +
             "FORMAL_GUARDS=REFUSAL_PASS`n" +
+            "FORMAL_INPUT_READ=FALSE`n" +
             "FORMAL_INPUT_EXECUTED=FALSE`n" +
             "FORMAL_RESULT_CREATED=FALSE`n" +
             "UTC_END=$([DateTime]::UtcNow.ToString('o'))`n"

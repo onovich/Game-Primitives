@@ -1,0 +1,190 @@
+{
+  "$defs": {
+    "buildAttempt": {
+      "additionalProperties": false,
+      "properties": {
+        "build_attempt_id": {
+          "$ref": "#/$defs/localId"
+        },
+        "configuration_ids": {
+          "items": {
+            "enum": [
+              "config.baseline",
+              "config.variant"
+            ]
+          },
+          "minItems": 1,
+          "type": "array",
+          "uniqueItems": true
+        },
+        "outputs": {
+          "items": {
+            "$ref": "#/$defs/buildOutput"
+          },
+          "minItems": 1,
+          "type": "array",
+          "uniqueItems": true
+        },
+        "status": {
+          "const": "passed"
+        }
+      },
+      "required": [
+        "build_attempt_id",
+        "configuration_ids",
+        "outputs",
+        "status"
+      ],
+      "type": "object"
+    },
+    "buildOutput": {
+      "additionalProperties": false,
+      "properties": {
+        "bytes": {
+          "minimum": 1,
+          "type": "integer"
+        },
+        "external_path": {
+          "minLength": 3,
+          "pattern": "^[A-Za-z]:/",
+          "type": "string"
+        },
+        "output_id": {
+          "$ref": "#/$defs/localId"
+        },
+        "repository_storage": {
+          "const": false
+        },
+        "sha256": {
+          "$ref": "#/$defs/sha256"
+        }
+      },
+      "required": [
+        "bytes",
+        "external_path",
+        "output_id",
+        "repository_storage",
+        "sha256"
+      ],
+      "type": "object"
+    },
+    "externalFile": {
+      "additionalProperties": false,
+      "properties": {
+        "bytes": {
+          "minimum": 1,
+          "type": "integer"
+        },
+        "external_path": {
+          "minLength": 3,
+          "pattern": "^[A-Za-z]:/",
+          "type": "string"
+        },
+        "sha256": {
+          "$ref": "#/$defs/sha256"
+        }
+      },
+      "required": [
+        "bytes",
+        "external_path",
+        "sha256"
+      ],
+      "type": "object"
+    },
+    "localId": {
+      "$ref": "https://github.com/onovich/Game-Primitives/blob/main/research/calibration-tests/continuous-action-pilot/schema/task-packet-0.1.0.schema.json#/$defs/localId"
+    },
+    "sha256": {
+      "$ref": "https://github.com/onovich/Game-Primitives/blob/main/research/calibration-tests/continuous-action-pilot/schema/task-packet-0.1.0.schema.json#/$defs/sha256"
+    }
+  },
+  "$id": "https://github.com/onovich/Game-Primitives/blob/main/research/calibration-tests/continuous-action-pilot/schema/fixture-build-evidence-0.1.0.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "$schema": {
+      "const": "https://github.com/onovich/Game-Primitives/blob/main/research/calibration-tests/continuous-action-pilot/schema/fixture-build-evidence-0.1.0.schema.json"
+    },
+    "artifact_type": {
+      "const": "fixture_build_evidence"
+    },
+    "artifact_version": {
+      "const": "0.1.0"
+    },
+    "build_attempts": {
+      "items": {
+        "$ref": "#/$defs/buildAttempt"
+      },
+      "minItems": 1,
+      "type": "array",
+      "uniqueItems": true
+    },
+    "build_gate_status": {
+      "const": "passed"
+    },
+    "case_id": {
+      "pattern": "^CA-R[1-3]$",
+      "type": "string"
+    },
+    "created_at": {
+      "format": "date-time",
+      "type": "string"
+    },
+    "formal_execution": {
+      "const": {
+        "formal_comparator_executed": false,
+        "formal_fixture_executed": false,
+        "formal_input_executed": false,
+        "formal_result_produced": false
+      }
+    },
+    "run_id": {
+      "const": "continuous-001"
+    },
+    "source": {
+      "additionalProperties": false,
+      "properties": {
+        "clean_before_and_after": {
+          "const": true
+        },
+        "commit_sha": {
+          "pattern": "^[0-9a-f]{40}$",
+          "type": "string"
+        },
+        "repository_url": {
+          "format": "uri",
+          "type": "string"
+        }
+      },
+      "required": [
+        "clean_before_and_after",
+        "commit_sha",
+        "repository_url"
+      ],
+      "type": "object"
+    },
+    "upstream_evidence_files": {
+      "items": {
+        "$ref": "#/$defs/externalFile"
+      },
+      "minItems": 1,
+      "type": "array",
+      "uniqueItems": true
+    }
+  },
+  "required": [
+    "$schema",
+    "artifact_type",
+    "artifact_version",
+    "build_attempts",
+    "build_gate_status",
+    "case_id",
+    "created_at",
+    "formal_execution",
+    "run_id",
+    "source",
+    "upstream_evidence_files"
+  ],
+  "title": "Game Primitives Fixture Build Evidence 0.1.0",
+  "type": "object"
+}

@@ -1,0 +1,360 @@
+{
+  "$schema": "https://github.com/onovich/Game-Primitives/blob/main/research/calibration-tests/continuous-action-pilot/schema/task-packet-0.1.2.schema.json",
+  "allowed_configurations": [],
+  "allowed_observations": [],
+  "artifact_type": "projection_audit_task_packet",
+  "artifact_version": "0.1.2",
+  "assembled_output_schema": null,
+  "behavior_scope": "structural_only",
+  "case_ids": [
+    "CA-R1",
+    "CA-R2",
+    "CA-R3"
+  ],
+  "condition_id": null,
+  "created_at": "2026-07-27T04:35:47Z",
+  "forbidden_actions": [
+    "access_other_submission",
+    "access_package_outside_dispatch",
+    "access_truth_or_result",
+    "create_child_task",
+    "external_search",
+    "read_shared_workspace"
+  ],
+  "input_artifacts": [
+    {
+      "artifact_id": "schema.execution-artifact-v0.1.0",
+      "path": "research/calibration-tests/continuous-action-pilot/schema/execution-artifact-0.1.0.schema.json",
+      "sha256": "ade31163179e4d100264d6b57c33561d3232b20f2fd0057cc74e174ace318906"
+    },
+    {
+      "artifact_id": "schema.execution-artifact-v0.1.1",
+      "path": "research/calibration-tests/continuous-action-pilot/schema/execution-artifact-0.1.1.schema.json",
+      "sha256": "4d09bf48a1d1f6afaeaf9b56130333f13c1af2ecc2d5ef61784fa20bf8f3137a"
+    },
+    {
+      "artifact_id": "schema.fixture-assembly-fragment-v0.1.0",
+      "path": "research/calibration-tests/continuous-action-pilot/schema/fixture-assembly-fragment-0.1.0.schema.json",
+      "sha256": "964827e83a407b7aeceeaad32d64ed7d76120ad9db3b400cf159bbab831845de"
+    },
+    {
+      "artifact_id": "schema.fixture-lock-v0.1.0",
+      "path": "research/calibration-tests/continuous-action-pilot/schema/fixture-lock-0.1.0.schema.json",
+      "sha256": "9221d543b33a1a418b1d12ca471d4ab371e4f7ace00e78656c6cb13697480f9e"
+    },
+    {
+      "artifact_id": "schema.formal-build-readiness-v0.1.0",
+      "path": "research/calibration-tests/continuous-action-pilot/schema/formal-build-readiness-0.1.0.schema.json",
+      "sha256": "250368897679b7f0c9eaa835f5db144bee1afc1d230910f1ea7d84668bbe5c0a"
+    },
+    {
+      "artifact_id": "schema.task-packet-v0.1.2",
+      "path": "research/calibration-tests/continuous-action-pilot/schema/task-packet-0.1.2.schema.json",
+      "sha256": "d32b78137d186a76921532fd3a861ab15e42eddc7def6395caa3e89caa27ca51"
+    },
+    {
+      "artifact_id": "schema.raw-trace.ca-r1-v0.1.0",
+      "path": "research/calibration-tests/continuous-action-pilot/schema/ca-r1-raw-trace-0.1.0.schema.json",
+      "sha256": "0b0d44087869fb178f83a5faa6690ab190d0f3df3f75c43ec339490a29412961"
+    },
+    {
+      "artifact_id": "schema.raw-trace.ca-r2-v0.1.0",
+      "path": "research/calibration-tests/continuous-action-pilot/schema/ca-r2-raw-trace-0.1.0.schema.json",
+      "sha256": "f719579e71bd1153ecd671302ab82df95f4630f9653c1d74bd90c4285b72e637"
+    },
+    {
+      "artifact_id": "schema.raw-trace.ca-r3-v0.1.0",
+      "path": "research/calibration-tests/continuous-action-pilot/schema/ca-r3-raw-trace-0.1.0.schema.json",
+      "sha256": "a257fc0920536f76c977be8867a1e9302d872b7f8cea0480ade999e3281f07f1"
+    },
+    {
+      "artifact_id": "schema.formal-comparator-output-v0.1.0",
+      "path": "research/calibration-tests/continuous-action-pilot/schema/formal-comparator-output-0.1.0.schema.json",
+      "sha256": "602dc7edf80b36bbda52074d1a2a64c9ec85d57307a5fd85a48f25d54b4bc79d"
+    },
+    {
+      "artifact_id": "schema.formal-execution-permit-v0.1.0",
+      "path": "research/calibration-tests/continuous-action-pilot/schema/formal-execution-permit-0.1.0.schema.json",
+      "sha256": "089397a3c6e65e7171375bdc7beb24d5d7f897078b364ef32a93b4d911886410"
+    },
+    {
+      "artifact_id": "schema.formal-human-gate-authorization-v0.1.0",
+      "path": "research/calibration-tests/continuous-action-pilot/schema/formal-human-gate-authorization-0.1.0.schema.json",
+      "sha256": "a19fb50a873a3a202737e1040ab8ed973fb3fe7fe36fa78534bbc3c0d50cd6d0"
+    },
+    {
+      "artifact_id": "schema.r1-standalone-build-evidence-v0.1.0",
+      "path": "research/calibration-tests/continuous-action-pilot/schema/r1-standalone-build-evidence-0.1.0.schema.json",
+      "sha256": "351f4b623b333b5c26437a58f3b9fdec9d91ebc6f5a45cf1fa7f4fdb823d457b"
+    },
+    {
+      "artifact_id": "schema.r2-build-readiness-evidence-v0.1.0",
+      "path": "research/calibration-tests/continuous-action-pilot/schema/r2-build-readiness-evidence-0.1.0.schema.json",
+      "sha256": "43457e02c83b9f387319d2eb9213d39f8b4dfcf6ab103ff472367a93e6e792d6"
+    },
+    {
+      "artifact_id": "schema.python-runtime-evidence-v0.1.0",
+      "path": "research/calibration-tests/continuous-action-pilot/schema/python-runtime-evidence-0.1.0.schema.json",
+      "sha256": "d755f0ea0e2da88a657333604d945ae34cc0fde19c163d0881f06b8e89692033"
+    },
+    {
+      "artifact_id": "schema.protocol-incident-v0.1.0",
+      "path": "research/calibration-tests/continuous-action-pilot/schema/protocol-incident-0.1.0.schema.json",
+      "sha256": "f7a412a6ca1b593c0cf2e1bdac661fab6e2f970a88583c609662a313ae5d8f1c"
+    },
+    {
+      "artifact_id": "tool.build-role-submission-v0.1.0",
+      "path": "research/calibration-tests/continuous-action-pilot/tools/build-role-submission.py",
+      "sha256": "37029e58031a159937bfbd8008ab5a6041c86517836376dd63ab298676bfb4cb"
+    },
+    {
+      "artifact_id": "tool.materialize-execution-permit-v0.1.0",
+      "path": "research/calibration-tests/continuous-action-pilot/tools/materialize-execution-permit.py",
+      "sha256": "cdfa62be90a1788895493db9728659408cded126482fb228aa932a1252ad5701"
+    },
+    {
+      "artifact_id": "tool.materialize-dispatch-v0.1.0",
+      "path": "research/calibration-tests/continuous-action-pilot/tools/materialize-dispatch.py",
+      "sha256": "3ba6f0263d40753b1f5084903d34c727043fa648438746fae3138c89a84e2bfc"
+    },
+    {
+      "artifact_id": "tool.verify-formal-execution-permit-v0.1.0",
+      "path": "research/calibration-tests/continuous-action-pilot/tools/verify-formal-execution-permit.py",
+      "sha256": "b9c9b97319bd4a4e2814b5e463ca605783a6239b132dcb195fe2533c0b202b89"
+    },
+    {
+      "artifact_id": "tool.verify-formal-raw-trace-v0.1.0",
+      "path": "research/calibration-tests/continuous-action-pilot/tools/verify-formal-raw-trace.py",
+      "sha256": "2a30f9a0126d1a0feb8b595974025e4a91c4db6b9955ccefe7014ad58d02cca0"
+    },
+    {
+      "artifact_id": "tool.formal-execution-target-contract-v0.1.0",
+      "path": "research/calibration-tests/continuous-action-pilot/tools/formal_execution_target_contract.py",
+      "sha256": "a8b1a95c158d2b0ce6aee5fa4845bc06ddce7f16b5c39eb3fa70180195c7882e"
+    },
+    {
+      "artifact_id": "tool.materialize-fixture-assembly-v0.1.0",
+      "path": "research/calibration-tests/continuous-action-pilot/tools/materialize-fixture-assembly.py",
+      "sha256": "2bda970a0bdf05576fbafdac603bbacc986db9ac4ead301849f2b53033eff32e"
+    },
+    {
+      "artifact_id": "tool.materialize-final-execution-plan-v0.1.0",
+      "path": "research/calibration-tests/continuous-action-pilot/tools/materialize-final-execution-plan.py",
+      "sha256": "b92f102c556703246a61844a8533f3aa11677057dc53b565c1d684ebdf8f9aaa"
+    },
+    {
+      "artifact_id": "tool.materialize-python-runtime-evidence-v0.1.0",
+      "path": "research/calibration-tests/continuous-action-pilot/tools/materialize-python-runtime-evidence.py",
+      "sha256": "2e57818f968cbda0ed44396d24f54d646b28aca63ad5a7d9f3a8cbec66cbf087"
+    },
+    {
+      "artifact_id": "tool.materialize-projection-audit-task-v0.1.0",
+      "path": "research/calibration-tests/continuous-action-pilot/tools/materialize-projection-audit-task.py",
+      "sha256": "f07e76aea7d61df7047f8b210a26b7e22de7625a5cf4d205facd14b26aa23c56"
+    },
+    {
+      "artifact_id": "tool.verify-formal-readiness-v0.1.0",
+      "path": "research/calibration-tests/continuous-action-pilot/tools/verify-formal-readiness.py",
+      "sha256": "1ce71c917bb55410513207a82631d946be3963badcebe89e757208f36b5964ff"
+    },
+    {
+      "artifact_id": "tool.verify-run-package-v0.1.0",
+      "path": "research/calibration-tests/continuous-action-pilot/tools/verify-run-package.py",
+      "sha256": "cae98a257e4a4160924b8739a9626a2a08dc78bd1ec98e74dcb4b9dd769e01f0"
+    },
+    {
+      "artifact_id": "execution.plan.continuous-001",
+      "path": "research/calibration-tests/continuous-action-pilot/runs/continuous-001/execution/execution-plan.json",
+      "sha256": "e218609691bfc76f23f4440bd67d76438f6c9053f61ae2be7e2934619724f9af"
+    },
+    {
+      "artifact_id": "evidence.python-runtime.continuous-001",
+      "path": "research/calibration-tests/continuous-action-pilot/runs/continuous-001/fixtures/python-runtime-evidence-v0.1.0.json",
+      "sha256": "546eb1b6ea3ca795e7e669345c89d8ee7192012c580566d71019ff103c9c245d"
+    },
+    {
+      "artifact_id": "fixture.lock-v0.1.0",
+      "path": "research/calibration-tests/continuous-action-pilot/runs/continuous-001/fixtures/fixture-lock.json",
+      "sha256": "7550e7477ed9213fbf605c6f30898e48151244db4b119e89ed0caf5fb3db4b5c"
+    },
+    {
+      "artifact_id": "build.formal-readiness-v0.1.0",
+      "path": "research/calibration-tests/continuous-action-pilot/runs/continuous-001/fixtures/formal-build-readiness-v0.1.0.json",
+      "sha256": "581bf917f0b4d49f2f4dfec5c1eb5c8fb62ebb652533b263d593e7d0e0a6e082"
+    },
+    {
+      "artifact_id": "fixture.assembly-fragment.ca-r1-v0.1.0",
+      "path": "research/calibration-tests/continuous-action-pilot/runs/continuous-001/fixtures/r1/r1-fixture-assembly-fragment-v0.1.0.json",
+      "sha256": "df13564e6736a1c889e6960600906c3cf56fb1430eea0c450823e5f44ff3e6fd"
+    },
+    {
+      "artifact_id": "fixture.assembly-fragment.ca-r2-v0.1.0",
+      "path": "research/calibration-tests/continuous-action-pilot/runs/continuous-001/fixtures/r2/r2-fixture-assembly-fragment-v0.1.0.json",
+      "sha256": "0b2f21cb39e6f3ae2d284356fa0b037a47292199cad6073c69c30ebf99baaa72"
+    },
+    {
+      "artifact_id": "fixture.assembly-fragment.ca-r3-v0.1.0",
+      "path": "research/calibration-tests/continuous-action-pilot/runs/continuous-001/fixtures/r3/r3-fixture-assembly-fragment-v0.1.0.json",
+      "sha256": "e0661c4fc3fd7e4cf3afecfaf92e7b47237c0040f3d80f0f6af3b3ff12f501dd"
+    },
+    {
+      "artifact_id": "actor-plan.continuous-001",
+      "path": "research/calibration-tests/continuous-action-pilot/runs/continuous-001/inputs/actor-plan.md",
+      "sha256": "4a14c8429382be88e9ee76a9c7851a7f9aa7f360a96172a8b2ccff8d6456779d"
+    },
+    {
+      "artifact_id": "projection.generator-v0.1.0",
+      "path": "research/calibration-tests/continuous-action-pilot/runs/continuous-001/inputs/generate-continuous-views-v0.1.0.py",
+      "sha256": "9b2681df8f2b09255001da6c167216484fc75ada1e5ca95f0699a00a3bad1d85"
+    },
+    {
+      "artifact_id": "generator.stage2-envelope-v0.1.0",
+      "path": "research/calibration-tests/continuous-action-pilot/runs/continuous-001/inputs/generate-stage2-envelope-v0.1.0.py",
+      "sha256": "2d68201d8f6e2391fb0d74be64050163f550a6d2cbbfb6bcb78d6c522b6d849d"
+    },
+    {
+      "artifact_id": "generator.stage2-task-v0.1.0",
+      "path": "research/calibration-tests/continuous-action-pilot/runs/continuous-001/inputs/generate-stage2-prediction-task-v0.1.0.py",
+      "sha256": "6a90950104ab7a5bb95095dd427149e44beccdfcddbc4b8a07b0a74149472cba"
+    },
+    {
+      "artifact_id": "template.prediction-response-v0.1.0",
+      "path": "research/calibration-tests/continuous-action-pilot/runs/continuous-001/inputs/prediction-response.template.json",
+      "sha256": "c992554cbfd115de4063163cce9d2d16816a645cd3c2647bc42b6a33b8eed5af"
+    },
+    {
+      "artifact_id": "projection.spec-v0.1.0",
+      "path": "research/calibration-tests/continuous-action-pilot/runs/continuous-001/inputs/projection-spec.json",
+      "sha256": "7ac0fe8a33c2d75a38bde2df3b804f89012a9acc712f83cd090139141ae60ec0"
+    },
+    {
+      "artifact_id": "template.reconstruction-response-v0.1.0",
+      "path": "research/calibration-tests/continuous-action-pilot/runs/continuous-001/inputs/reconstruction-response.template.json",
+      "sha256": "1e51c517bedcf79de9d129202aa60ddabaa5cb94703053f3ed80d10d2296c7aa"
+    },
+    {
+      "artifact_id": "dispatch-template.stage1.p01",
+      "path": "research/calibration-tests/continuous-action-pilot/runs/continuous-001/inputs/stage1-dispatch-p01.template.json",
+      "sha256": "c8dd8f2bdd00f06a6a292ec116dd9ed53bfcfd19af4209659d3219b3ddec1d79"
+    },
+    {
+      "artifact_id": "dispatch-template.stage1.p02",
+      "path": "research/calibration-tests/continuous-action-pilot/runs/continuous-001/inputs/stage1-dispatch-p02.template.json",
+      "sha256": "774ec953f79da36cea1edf0c22c8894133f99551cbaba9553d317424bf3fa495"
+    },
+    {
+      "artifact_id": "dispatch-template.stage1.p03",
+      "path": "research/calibration-tests/continuous-action-pilot/runs/continuous-001/inputs/stage1-dispatch-p03.template.json",
+      "sha256": "6fdcedd87a29364d2e92a641c8a2ff1cb5aab6987bbbac142345fcb1e87477cc"
+    },
+    {
+      "artifact_id": "dispatch-template.stage1.p04",
+      "path": "research/calibration-tests/continuous-action-pilot/runs/continuous-001/inputs/stage1-dispatch-p04.template.json",
+      "sha256": "5ca49a18c15d8e1cd4e4a6c2322cfe070d5bd35e86462936d5a2117ee4b707bc"
+    },
+    {
+      "artifact_id": "task.reconstruction.condition-v01",
+      "path": "research/calibration-tests/continuous-action-pilot/runs/continuous-001/inputs/stage1-condition-v01.task.json",
+      "sha256": "94fe34a01cd693b3fb08775f111409dbb4b172ea223e1df9756bbedf905d19ce"
+    },
+    {
+      "artifact_id": "task.reconstruction.condition-v02",
+      "path": "research/calibration-tests/continuous-action-pilot/runs/continuous-001/inputs/stage1-condition-v02.task.json",
+      "sha256": "a74a854df07806706074b608380999a7eb51b0500f72422ae111cddfe98c3ed0"
+    },
+    {
+      "artifact_id": "view.stage1-condition-v01-v0.1.0",
+      "path": "research/calibration-tests/continuous-action-pilot/runs/continuous-001/inputs/stage1-view-v01.json",
+      "sha256": "a9ccd9500f92dc3f9619e10b01a8ba8a554f364393286c1af81ee1770956a850"
+    },
+    {
+      "artifact_id": "view.stage1-condition-v02-v0.1.0",
+      "path": "research/calibration-tests/continuous-action-pilot/runs/continuous-001/inputs/stage1-view-v02.json",
+      "sha256": "1d472560c46a11a3502b6cc0798bd01d52c48a210a9d3a8cc6c65b416e51a95b"
+    },
+    {
+      "artifact_id": "dispatch-template.stage2.p01",
+      "path": "research/calibration-tests/continuous-action-pilot/runs/continuous-001/inputs/stage2-dispatch-p01.template.json",
+      "sha256": "a434faa306591aaa1631ba34baf01deb85c19da8fb89b255001fb132202398b7"
+    },
+    {
+      "artifact_id": "dispatch-template.stage2.p02",
+      "path": "research/calibration-tests/continuous-action-pilot/runs/continuous-001/inputs/stage2-dispatch-p02.template.json",
+      "sha256": "8686756a89b7a3541d930b1e10d652654979df9317a0add42c87cd93dc76044a"
+    },
+    {
+      "artifact_id": "dispatch-template.stage2.p03",
+      "path": "research/calibration-tests/continuous-action-pilot/runs/continuous-001/inputs/stage2-dispatch-p03.template.json",
+      "sha256": "2272293aa02b9202f8f90e4f740eee120c9b203449e1b5dcc00c7e7221b37355"
+    },
+    {
+      "artifact_id": "dispatch-template.stage2.p04",
+      "path": "research/calibration-tests/continuous-action-pilot/runs/continuous-001/inputs/stage2-dispatch-p04.template.json",
+      "sha256": "5f4844905fd31818c878e744be6c5da2c4418f6aa4daad9517f7a417e0734a3e"
+    },
+    {
+      "artifact_id": "task.prediction.continuous-001",
+      "path": "research/calibration-tests/continuous-action-pilot/runs/continuous-001/inputs/stage2-prediction.task.json",
+      "sha256": "7a4e286c486b03fe3a24875e2db1e95b4024750e5c36af5a993adae54cda388c"
+    },
+    {
+      "artifact_id": "envelope.variant.stage2-v0.1.0",
+      "path": "research/calibration-tests/continuous-action-pilot/runs/continuous-001/inputs/stage2-variant-envelope.json",
+      "sha256": "f4501e153cd103c0ec7a184c89e12aa57d4a9ef128e416654ad332a10c7702d1"
+    },
+    {
+      "artifact_id": "source.canonical-encoding-v0.1.0",
+      "path": "research/calibration-tests/continuous-action-pilot/runs/continuous-001/source/canonical-encoding-v0.1.0.json",
+      "sha256": "5682e1bb395a2c7e02df914b3a464005d195a736bc0dc0d88594f7ee3611e5c3"
+    },
+    {
+      "artifact_id": "audit.protocol-incident.r3-byte-integrity-read-v0.1.0",
+      "path": "research/calibration-tests/continuous-action-pilot/runs/continuous-001/source/protocol-incident-r3-byte-integrity-read-v0.1.0.json",
+      "sha256": "379c583a5c7bf1d839cb6bdc8bd4874df1cb2a91525d18fa8470912e0233295c"
+    }
+  ],
+  "instructions": [
+    "只使用本任务 input_artifacts 明列并绑定散列的制品；不得搜索外部资料、读取共享工作区的其他文件、访问其他提交或提交结果、真值、预测与正式结果。",
+    "开始实质审核前，逐项复算 input_artifacts 的 SHA-256；任一路径缺失、越界、散列不符或引用不闭合，都必须停止审核并将 audit_decision 记为 blocked。",
+    "独立核对规范编码、机械投影生成器、投影规范与两份中性视图，确认 rich 与 atomic 投影忠实表达同一编码，且 atomic 的删边仅来自明列投影规则。",
+    "逐案核对 controlled_variable_id 的唯一职责、基线／变体隔离、不变量、正式输入接口、停止边界、时间基准、初态字段及观察量引用闭包；不得运行正式输入。",
+    "核对第二阶段中性信封、预测任务、两类回答模板以及八份派发模板的输入闭包与派发对称性；不得把来源专用夹具或作品身份加入盲测派发。",
+    "formal_build_readiness_integrity 只审核最终构建准备记录、夹具锁与执行计划的声明、散列和引用；不得启动夹具、构建器、正式 runner、轨迹校验器或比较器。",
+    "protocol_incident_disposition 必须审核绑定的 CA-R3 字节完整性读取事件：区分字节读取与语义解释，拒绝任何轮次级 formal_input_read=false 声明，并确认该例外仍须在人工门获得显式接受。",
+    "identity_leak_scan 与 answer_hint_scan 必须覆盖任务、视图、信封、模板及派发边界；作品名、来源函数名、rich／atomic 身份或控制条件答案均不得泄漏给参与者。",
+    "每个 required_audit_checks 项必须生成一个同名 check_id 的 audit_checks 记录；记录精确目标 artifact_id、定位、发现、严重性与所需修改，不能以总评替代逐项审核。",
+    "任一检查未通过、材料不足或无法独立复核时，audit_decision 必须为 revision_required 或 blocked；只有十一项检查全部 passed 才可记为 approved。",
+    "输出 artifact_type=source_fidelity_audit、artifact_version=0.1.2、stage=source_audit 的 role submission；actor.role 必须为 source_auditor，packaging、pollution、prior_stage_submission_sha256 与 raw_payload 为 null，prediction_answers 与 reconstruction_answers 为空数组。",
+    "输出只包含一个通过声明 Schema 的 JSON 对象，使用 UTF-8 无 BOM、LF、两空格缩进、递归键排序和单一末尾换行；本任务本身不构成审核结论或放行。"
+  ],
+  "output_schema": {
+    "path": "research/calibration-tests/continuous-action-pilot/schema/role-submission-0.1.2.schema.json",
+    "sha256": "ce1bcbb603550ec42afa9023191666b0ef45096b4c0efd1a3b42150c83577f95"
+  },
+  "representation_version": "CA-SR 0.1",
+  "required_audit_checks": [
+    "answer_hint_scan",
+    "atomic_projection_equivalence",
+    "dispatch_symmetry",
+    "formal_build_readiness_integrity",
+    "identity_leak_scan",
+    "invariant_integrity",
+    "projection_fidelity",
+    "protocol_incident_disposition",
+    "reference_closure",
+    "single_variable_isolation",
+    "stage2_input_closure"
+  ],
+  "run_id": "continuous-001",
+  "stage1_submission_required": false,
+  "stop_boundary_refs": [
+    "stop.r1.update-6",
+    "stop.r2.200-ms",
+    "stop.r3.result-committed"
+  ],
+  "target_encoding_sha256": "5682e1bb395a2c7e02df914b3a464005d195a736bc0dc0d88594f7ee3611e5c3",
+  "target_view_sha256": null,
+  "task_id": "task.projection-audit.continuous-001",
+  "tolerance_rule_refs": [],
+  "variant_interventions": []
+}

@@ -1,0 +1,194 @@
+{
+  "$defs": {
+    "artifactReference": {
+      "$ref": "https://github.com/onovich/Game-Primitives/blob/main/research/calibration-tests/continuous-action-pilot/schema/task-packet-0.1.0.schema.json#/$defs/artifactReference"
+    },
+    "negativeControl": {
+      "additionalProperties": false,
+      "properties": {
+        "control_id": {
+          "enum": [
+            "overwrite",
+            "reparse_escape",
+            "repository_overlap",
+            "source_overlap",
+            "toolchain_overlap",
+            "unexpected_root"
+          ]
+        },
+        "status": {
+          "const": "held"
+        }
+      },
+      "required": [
+        "control_id",
+        "status"
+      ],
+      "type": "object"
+    }
+  },
+  "$id": "https://github.com/onovich/Game-Primitives/blob/main/research/calibration-tests/continuous-action-pilot/schema/r1-formal-output-boundary-negative-0.1.0.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "$schema": {
+      "const": "https://github.com/onovich/Game-Primitives/blob/main/research/calibration-tests/continuous-action-pilot/schema/r1-formal-output-boundary-negative-0.1.0.schema.json"
+    },
+    "artifact_type": {
+      "const": "continuous_action_r1_formal_output_boundary_negative"
+    },
+    "artifact_version": {
+      "const": "0.1.0"
+    },
+    "case_id": {
+      "const": "CA-R1"
+    },
+    "fixture_artifacts": {
+      "items": {
+        "$ref": "#/$defs/artifactReference"
+      },
+      "maxItems": 2,
+      "minItems": 2,
+      "type": "array",
+      "uniqueItems": true
+    },
+    "formal_execution": {
+      "additionalProperties": false,
+      "properties": {
+        "comparator_executed": {
+          "const": false
+        },
+        "formal_input_executed": {
+          "const": false
+        },
+        "formal_input_read": {
+          "const": false
+        },
+        "formal_runner_executed": {
+          "const": false
+        }
+      },
+      "required": [
+        "comparator_executed",
+        "formal_input_executed",
+        "formal_input_read",
+        "formal_runner_executed"
+      ],
+      "type": "object"
+    },
+    "negative_controls": {
+      "allOf": [
+        {
+          "contains": {
+            "properties": {
+              "control_id": {
+                "const": "repository_overlap"
+              }
+            },
+            "required": [
+              "control_id"
+            ]
+          },
+          "maxContains": 1,
+          "minContains": 1
+        },
+        {
+          "contains": {
+            "properties": {
+              "control_id": {
+                "const": "source_overlap"
+              }
+            },
+            "required": [
+              "control_id"
+            ]
+          },
+          "maxContains": 1,
+          "minContains": 1
+        },
+        {
+          "contains": {
+            "properties": {
+              "control_id": {
+                "const": "toolchain_overlap"
+              }
+            },
+            "required": [
+              "control_id"
+            ]
+          },
+          "maxContains": 1,
+          "minContains": 1
+        },
+        {
+          "contains": {
+            "properties": {
+              "control_id": {
+                "const": "reparse_escape"
+              }
+            },
+            "required": [
+              "control_id"
+            ]
+          },
+          "maxContains": 1,
+          "minContains": 1
+        },
+        {
+          "contains": {
+            "properties": {
+              "control_id": {
+                "const": "overwrite"
+              }
+            },
+            "required": [
+              "control_id"
+            ]
+          },
+          "maxContains": 1,
+          "minContains": 1
+        },
+        {
+          "contains": {
+            "properties": {
+              "control_id": {
+                "const": "unexpected_root"
+              }
+            },
+            "required": [
+              "control_id"
+            ]
+          },
+          "maxContains": 1,
+          "minContains": 1
+        }
+      ],
+      "items": {
+        "$ref": "#/$defs/negativeControl"
+      },
+      "maxItems": 6,
+      "minItems": 6,
+      "type": "array",
+      "uniqueItems": true
+    },
+    "run_id": {
+      "const": "continuous-001"
+    },
+    "status": {
+      "const": "passed"
+    }
+  },
+  "required": [
+    "$schema",
+    "artifact_type",
+    "artifact_version",
+    "run_id",
+    "case_id",
+    "status",
+    "fixture_artifacts",
+    "negative_controls",
+    "formal_execution"
+  ],
+  "title": "Game Primitives CA-R1 Formal Output Boundary Negative Controls 0.1.0",
+  "type": "object"
+}

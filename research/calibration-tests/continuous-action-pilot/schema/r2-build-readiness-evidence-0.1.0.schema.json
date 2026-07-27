@@ -1,0 +1,284 @@
+{
+  "$defs": {
+    "buildAttempt": {
+      "additionalProperties": false,
+      "properties": {
+        "build_attempt_id": {
+          "$ref": "#/$defs/localId"
+        },
+        "configuration_ids": {
+          "items": {
+            "enum": [
+              "config.baseline",
+              "config.variant"
+            ]
+          },
+          "maxItems": 1,
+          "minItems": 1,
+          "type": "array",
+          "uniqueItems": true
+        },
+        "outputs": {
+          "items": {
+            "$ref": "#/$defs/buildOutput"
+          },
+          "maxItems": 1,
+          "minItems": 1,
+          "type": "array"
+        },
+        "status": {
+          "const": "passed"
+        }
+      },
+      "required": [
+        "build_attempt_id",
+        "configuration_ids",
+        "outputs",
+        "status"
+      ],
+      "type": "object"
+    },
+    "buildOutput": {
+      "additionalProperties": false,
+      "properties": {
+        "bytes": {
+          "minimum": 1,
+          "type": "integer"
+        },
+        "external_path": {
+          "pattern": "^[A-Za-z]:/",
+          "type": "string"
+        },
+        "output_id": {
+          "enum": [
+            "output.ca-r2.baseline-executable",
+            "output.ca-r2.variant-executable"
+          ]
+        },
+        "repository_storage": {
+          "const": false
+        },
+        "sha256": {
+          "$ref": "#/$defs/sha256"
+        }
+      },
+      "required": [
+        "bytes",
+        "external_path",
+        "output_id",
+        "repository_storage",
+        "sha256"
+      ],
+      "type": "object"
+    },
+    "externalFile": {
+      "additionalProperties": false,
+      "properties": {
+        "bytes": {
+          "minimum": 1,
+          "type": "integer"
+        },
+        "external_path": {
+          "pattern": "^[A-Za-z]:/",
+          "type": "string"
+        },
+        "sha256": {
+          "$ref": "#/$defs/sha256"
+        }
+      },
+      "required": [
+        "bytes",
+        "external_path",
+        "sha256"
+      ],
+      "type": "object"
+    },
+    "localId": {
+      "pattern": "^[a-z0-9]+(?:[._-][a-z0-9]+)*$",
+      "type": "string"
+    },
+    "sha256": {
+      "pattern": "^(?!0{64}$)[0-9a-f]{64}$",
+      "type": "string"
+    }
+  },
+  "$id": "https://github.com/onovich/Game-Primitives/blob/main/research/calibration-tests/continuous-action-pilot/schema/r2-build-readiness-evidence-0.1.0.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "$schema": {
+      "const": "https://github.com/onovich/Game-Primitives/blob/main/research/calibration-tests/continuous-action-pilot/schema/r2-build-readiness-evidence-0.1.0.schema.json"
+    },
+    "artifact_type": {
+      "const": "fixture_build_evidence"
+    },
+    "artifact_version": {
+      "const": "0.1.0"
+    },
+    "build_attempts": {
+      "items": false,
+      "maxItems": 2,
+      "minItems": 2,
+      "prefixItems": [
+        {
+          "$ref": "#/$defs/buildAttempt"
+        },
+        {
+          "$ref": "#/$defs/buildAttempt"
+        }
+      ],
+      "type": "array"
+    },
+    "build_gate_status": {
+      "const": "passed"
+    },
+    "case_id": {
+      "const": "CA-R2"
+    },
+    "created_at": {
+      "format": "date-time",
+      "type": "string"
+    },
+    "formal_execution": {
+      "additionalProperties": false,
+      "properties": {
+        "formal_comparator_executed": {
+          "const": false
+        },
+        "formal_fixture_executed": {
+          "const": false
+        },
+        "formal_input_executed": {
+          "const": false
+        },
+        "formal_input_read": {
+          "const": false
+        },
+        "formal_result_produced": {
+          "const": false
+        }
+      },
+      "required": [
+        "formal_comparator_executed",
+        "formal_fixture_executed",
+        "formal_input_executed",
+        "formal_input_read",
+        "formal_result_produced"
+      ],
+      "type": "object"
+    },
+    "output_boundary": {
+      "additionalProperties": false,
+      "properties": {
+        "child_root_rejected": {
+          "const": true
+        },
+        "fixed_root": {
+          "const": "D:/GamePrimitivesFormalOutputs"
+        }
+      },
+      "required": [
+        "child_root_rejected",
+        "fixed_root"
+      ],
+      "type": "object"
+    },
+    "process_tree_cleanup": {
+      "additionalProperties": false,
+      "properties": {
+        "failure_descendant_zero": {
+          "const": true
+        },
+        "supervision": {
+          "const": "windows-job-object-kill-on-close"
+        },
+        "timeout_descendant_zero": {
+          "const": true
+        }
+      },
+      "required": [
+        "failure_descendant_zero",
+        "supervision",
+        "timeout_descendant_zero"
+      ],
+      "type": "object"
+    },
+    "reproducibility": {
+      "additionalProperties": false,
+      "properties": {
+        "byte_identical": {
+          "const": true
+        },
+        "independent_build_roots": {
+          "items": {
+            "pattern": "^[A-Za-z]:/",
+            "type": "string"
+          },
+          "maxItems": 2,
+          "minItems": 2,
+          "type": "array",
+          "uniqueItems": true
+        },
+        "method": {
+          "const": "msvc-brepro-sha256"
+        }
+      },
+      "required": [
+        "byte_identical",
+        "independent_build_roots",
+        "method"
+      ],
+      "type": "object"
+    },
+    "run_id": {
+      "const": "continuous-001"
+    },
+    "source": {
+      "additionalProperties": false,
+      "properties": {
+        "clean_before_and_after": {
+          "const": true
+        },
+        "commit_sha": {
+          "const": "dbe4ddb10315479fc00086f08e25d968b4b43c49"
+        },
+        "repository_url": {
+          "const": "https://github.com/id-Software/Quake-III-Arena.git"
+        }
+      },
+      "required": [
+        "clean_before_and_after",
+        "commit_sha",
+        "repository_url"
+      ],
+      "type": "object"
+    },
+    "upstream_evidence_files": {
+      "items": {
+        "$ref": "#/$defs/externalFile"
+      },
+      "maxItems": 2,
+      "minItems": 2,
+      "type": "array",
+      "uniqueItems": true
+    }
+  },
+  "required": [
+    "$schema",
+    "artifact_type",
+    "artifact_version",
+    "build_attempts",
+    "build_gate_status",
+    "case_id",
+    "created_at",
+    "formal_execution",
+    "output_boundary",
+    "process_tree_cleanup",
+    "reproducibility",
+    "run_id",
+    "source",
+    "upstream_evidence_files"
+  ],
+  "title": "Game Primitives CA-R2 Build Readiness Evidence 0.1.0",
+  "type": "object"
+}

@@ -48,6 +48,15 @@ FORMAL_BUILD_READINESS_PATH = (
 )
 FIXTURE_LOCK_PATH = f"{RUN}/fixtures/fixture-lock.json"
 PROJECTION_AUDIT_PATH = f"{RUN}/source/projection-audit-v0.1.0.json"
+PROTOCOL_INCIDENT_SCHEMA_PATH = (
+    f"{SCHEMA}/protocol-incident-0.1.0.schema.json"
+)
+PROTOCOL_INCIDENT_PATH = (
+    f"{RUN}/source/protocol-incident-r3-byte-integrity-read-v0.1.0.json"
+)
+PROTOCOL_INCIDENT_ID = (
+    "incident.r3.formal-input-byte-integrity-read.v0.1.0"
+)
 FORMAL_READINESS_VERIFIER_PATH = f"{BASE}/tools/verify-formal-readiness.py"
 DISPATCH_MATERIALIZER_PATH = f"{BASE}/tools/materialize-dispatch.py"
 SUBMISSION_BUILDER_PATH = f"{BASE}/tools/build-role-submission.py"
@@ -238,6 +247,102 @@ def synthetic_authorization_enabled(repo_root: Path) -> bool:
     )
 
 
+def verify_protocol_incident_disposition(
+    repo_root: Path,
+    authorization: dict[str, Any],
+    manifest: dict[str, Any],
+    context: str,
+) -> None:
+    disposition = authorization.get("protocol_incident_disposition")
+    if not isinstance(disposition, dict):
+        raise DispatchError(
+            "authorization lacks the required protocol-incident disposition"
+        )
+    expected_disposition = (
+        "accepted_nonsemantic_integrity_exception"
+        if context == "formal_run"
+        else "synthetic_only"
+    )
+    if (
+        disposition.get("incident_id") != PROTOCOL_INCIDENT_ID
+        or disposition.get("disposition") != expected_disposition
+        or disposition.get("recorded_gate_status")
+        != "pending_explicit_human_acceptance"
+        or disposition.get("acknowledged_facts")
+        != {
+            "byte_integrity_read_occurred": True,
+            "fact_basis_is_subtask_self_report": True,
+            "no_semantic_content_or_result_exposure_reported": True,
+        }
+    ):
+        raise DispatchError(
+            "authorization does not explicitly acknowledge and dispose of "
+            "the R3 byte-integrity-read incident"
+        )
+
+    reference = disposition.get("incident_record")
+    if not isinstance(reference, dict):
+        raise DispatchError("protocol-incident record reference is absent")
+    record_path = verify_reference(repo_root, reference)
+    manifest_entry_for_reference(manifest, reference)
+    record, raw = read_json(record_path)
+    if raw != canonical_bytes(record):
+        raise DispatchError("protocol-incident record is not canonical JSON")
+    validate_against_repo_schema(
+        repo_root,
+        record,
+        PROTOCOL_INCIDENT_SCHEMA_PATH,
+    )
+    if (
+        record.get("incident_id") != PROTOCOL_INCIDENT_ID
+        or record.get("run_id") != RUN_ID
+        or record.get("case_id") != "CA-R3"
+        or record.get("aggregate_state")
+        != {
+            "formal_input_byte_read": True,
+            "formal_input_executed": False,
+            "formal_result_produced": False,
+        }
+        or record.get("observed_operations")
+        != {
+            "byte_read_api": "Path.read_bytes",
+            "byte_read_count": 1,
+            "compared_with_existing_case_lock_digest": True,
+            "digest_algorithm": "SHA-256",
+        }
+        or record.get("non_operations")
+        != {
+            "content_persisted": False,
+            "content_printed_or_returned": False,
+            "digest_persisted": False,
+            "digest_printed_or_returned": False,
+            "formal_execution": False,
+            "json_parse": False,
+            "semantic_interpretation": False,
+        }
+        or record.get("exposure")
+        != {
+            "content_exposed_to_main_thread": False,
+            "content_exposed_to_prediction_flow": False,
+            "digest_exposed_to_main_thread": False,
+            "formal_result_observed": False,
+        }
+        or record.get("fact_basis", {}).get("kind") != "subtask_self_report"
+        or record.get("gate_disposition")
+        != {
+            "recommended": (
+                "retain_with_documented_nonsemantic_integrity_exception"
+            ),
+            "required": True,
+            "status": "pending_explicit_human_acceptance",
+        }
+    ):
+        raise DispatchError(
+            "protocol-incident record does not match the acknowledged "
+            "nonsemantic integrity exception"
+        )
+
+
 def verify_authorization_receipt(
     repo_root: Path,
     reference: dict[str, str],
@@ -307,6 +412,10 @@ def verify_authorization_receipt(
     projection_audit_path = verify_reference(
         repo_root, authorization["projection_audit"]
     )
+    incident_record_path = verify_reference(
+        repo_root,
+        authorization["protocol_incident_disposition"]["incident_record"],
+    )
     verify_reference(repo_root, authorization["formal_readiness_verifier"])
     for contract_reference in authorization["contract_artifacts"].values():
         verify_reference(repo_root, contract_reference)
@@ -314,8 +423,15 @@ def verify_authorization_receipt(
         authorization["final_build_readiness"],
         authorization["fixture_lock"],
         authorization["projection_audit"],
+        authorization["protocol_incident_disposition"]["incident_record"],
     ):
         manifest_entry_for_reference(manifest, basis_reference)
+    verify_protocol_incident_disposition(
+        repo_root,
+        authorization,
+        manifest,
+        context,
+    )
 
     readiness, _ = read_json(readiness_path)
     if (
@@ -371,6 +487,12 @@ def verify_authorization_receipt(
             repo_root,
             projection_audit,
             ROLE_012_PATH,
+        )
+        incident_record, _ = read_json(incident_record_path)
+        validate_against_repo_schema_registry(
+            repo_root,
+            incident_record,
+            PROTOCOL_INCIDENT_SCHEMA_PATH,
         )
     return authorization
 
@@ -1407,6 +1529,69 @@ def write_synthetic_authorization_chain(repo_root: Path) -> None:
             "stage": "source_audit",
             "synthetic_self_test_only": True,
         },
+        PROTOCOL_INCIDENT_PATH: {
+            "$schema": URL_PREFIX + PROTOCOL_INCIDENT_SCHEMA_PATH,
+            "aggregate_state": {
+                "formal_input_byte_read": True,
+                "formal_input_executed": False,
+                "formal_result_produced": False,
+            },
+            "artifact_type": "protocol_incident_record",
+            "artifact_version": "0.1.0",
+            "case_id": "CA-R3",
+            "evidence_scope_note": (
+                "Any formal_input_read=false assertion in R3 build evidence "
+                "is scoped only to the recorded build, list, and guard-probe "
+                "processes; it is not an aggregate run-level assertion."
+            ),
+            "exposure": {
+                "content_exposed_to_main_thread": False,
+                "content_exposed_to_prediction_flow": False,
+                "digest_exposed_to_main_thread": False,
+                "formal_result_observed": False,
+            },
+            "fact_basis": {
+                "independent_process_log_available": False,
+                "kind": "subtask_self_report",
+                "limitation": (
+                    "Negative exposure and non-operation statements are based "
+                    "on the subtask report and available task output, not an "
+                    "independent byte-level process transcript."
+                ),
+            },
+            "gate_disposition": {
+                "recommended": (
+                    "retain_with_documented_nonsemantic_integrity_exception"
+                ),
+                "required": True,
+                "status": "pending_explicit_human_acceptance",
+            },
+            "incident_id": PROTOCOL_INCIDENT_ID,
+            "non_operations": {
+                "content_persisted": False,
+                "content_printed_or_returned": False,
+                "digest_persisted": False,
+                "digest_printed_or_returned": False,
+                "formal_execution": False,
+                "json_parse": False,
+                "semantic_interpretation": False,
+            },
+            "observed_operations": {
+                "byte_read_api": "Path.read_bytes",
+                "byte_read_count": 1,
+                "compared_with_existing_case_lock_digest": True,
+                "digest_algorithm": "SHA-256",
+            },
+            "phase": "pre_gate_evidence_hardening",
+            "run_id": RUN_ID,
+            "sequence_position": (
+                "after_r3_evidence_generation_before_pre_audit_freeze"
+            ),
+            "target_artifact": {
+                "artifact_id": "fixture.r3.formal-input-v0.1.0",
+                "path": "fixtures/r3/formal-input-r3-v0.1.0.json",
+            },
+        },
     }
     for relative, document in supporting_documents.items():
         path = repo_root / relative
@@ -1431,6 +1616,7 @@ def write_synthetic_authorization_chain(repo_root: Path) -> None:
                 FORMAL_BUILD_READINESS_PATH,
                 FIXTURE_LOCK_PATH,
                 PROJECTION_AUDIT_PATH,
+                PROTOCOL_INCIDENT_PATH,
             )
         ],
         "freeze_commit": freeze_commit,
@@ -1495,6 +1681,9 @@ def write_synthetic_authorization_chain(repo_root: Path) -> None:
             "formal_comparator_output_schema": artifact_reference(
                 repo_root, FORMAL_COMPARATOR_OUTPUT_SCHEMA_PATH
             ),
+            "protocol_incident_schema": artifact_reference(
+                repo_root, PROTOCOL_INCIDENT_SCHEMA_PATH
+            ),
             "raw_trace_verifier": artifact_reference(
                 repo_root, RAW_TRACE_VERIFIER_PATH
             ),
@@ -1514,6 +1703,20 @@ def write_synthetic_authorization_chain(repo_root: Path) -> None:
         "freeze_commit": freeze_commit,
         "manifest_status_at_authorization": "frozen",
         "projection_audit": artifact_reference(repo_root, PROJECTION_AUDIT_PATH),
+        "protocol_incident_disposition": {
+            "acknowledged_facts": {
+                "byte_integrity_read_occurred": True,
+                "fact_basis_is_subtask_self_report": True,
+                "no_semantic_content_or_result_exposure_reported": True,
+            },
+            "disposition": "synthetic_only",
+            "incident_id": PROTOCOL_INCIDENT_ID,
+            "incident_record": artifact_reference(
+                repo_root,
+                PROTOCOL_INCIDENT_PATH,
+            ),
+            "recorded_gate_status": "pending_explicit_human_acceptance",
+        },
         "run_id": RUN_ID,
         "state_at_authorization": {
             "blind_dispatch_performed": False,
@@ -1642,6 +1845,7 @@ def self_test(args: argparse.Namespace) -> dict[str, Any]:
                 EXECUTION_PERMIT_SCHEMA_PATH,
                 EXECUTION_PERMIT_VERIFIER_PATH,
                 FORMAL_COMPARATOR_OUTPUT_SCHEMA_PATH,
+                PROTOCOL_INCIDENT_SCHEMA_PATH,
                 *RAW_TRACE_SCHEMA_PATHS.values(),
                 RAW_TRACE_VERIFIER_PATH,
                 ROLE_011_PATH,
@@ -1676,6 +1880,24 @@ def self_test(args: argparse.Namespace) -> dict[str, Any]:
         else:
             raise DispatchError(
                 "malformed authorization negative control did not fail"
+            )
+        finally:
+            authorization_path.write_bytes(authorization_before)
+        tampered_authorization, _ = read_json(authorization_path)
+        tampered_authorization["protocol_incident_disposition"][
+            "disposition"
+        ] = "accepted_nonsemantic_integrity_exception"
+        authorization_path.write_bytes(canonical_bytes(tampered_authorization))
+        try:
+            verify_authorization_receipt(
+                synthetic_root,
+                artifact_reference(synthetic_root, AUTHORIZATION_PATH),
+            )
+        except DispatchError:
+            pass
+        else:
+            raise DispatchError(
+                "protocol-incident disposition negative control did not fail"
             )
         finally:
             authorization_path.write_bytes(authorization_before)
@@ -1729,7 +1951,7 @@ def self_test(args: argparse.Namespace) -> dict[str, Any]:
     return {
         "formal_dispatch_performed": False,
         "formal_input_executed": False,
-        "authorization_negative_controls_checked": 1,
+        "authorization_negative_controls_checked": 2,
         "schemas_checked": 4,
         "synthetic_stage1_receipts_checked": 1,
         "status": "synthetic_self_test_passed",

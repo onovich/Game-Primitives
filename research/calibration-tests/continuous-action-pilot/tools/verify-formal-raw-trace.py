@@ -52,8 +52,8 @@ CONFIGURATIONS = {
     "CA-R3": (
         "config.baseline",
         "config.variant",
-        "negative_control_a",
-        "negative_control_b",
+        "config.negative-a",
+        "config.negative-b",
     ),
 }
 NONZERO_SHA256 = "1" * 64
@@ -693,7 +693,7 @@ def synthetic_r3(configuration_id: str) -> dict[str, Any]:
     if configuration_id == "config.variant":
         delay = 75
         hit_animations = True
-    elif configuration_id == "negative_control_b":
+    elif configuration_id == "config.negative-b":
         delay = 0
         hit_animations = False
     else:

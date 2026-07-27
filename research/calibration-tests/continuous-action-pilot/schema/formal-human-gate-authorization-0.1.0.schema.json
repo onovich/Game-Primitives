@@ -255,6 +255,20 @@
             }
           ]
         },
+        "protocol_incident_schema": {
+          "allOf": [
+            {
+              "$ref": "#/$defs/artifactReference"
+            },
+            {
+              "properties": {
+                "path": {
+                  "const": "research/calibration-tests/continuous-action-pilot/schema/protocol-incident-0.1.0.schema.json"
+                }
+              }
+            }
+          ]
+        },
         "raw_trace_verifier": {
           "allOf": [
             {
@@ -294,8 +308,68 @@
         "execution_permit_schema",
         "execution_permit_verifier",
         "formal_comparator_output_schema",
+        "protocol_incident_schema",
         "raw_trace_verifier",
         "submission_builder"
+      ],
+      "type": "object"
+    },
+    "protocolIncidentDisposition": {
+      "additionalProperties": false,
+      "properties": {
+        "acknowledged_facts": {
+          "additionalProperties": false,
+          "properties": {
+            "byte_integrity_read_occurred": {
+              "const": true
+            },
+            "fact_basis_is_subtask_self_report": {
+              "const": true
+            },
+            "no_semantic_content_or_result_exposure_reported": {
+              "const": true
+            }
+          },
+          "required": [
+            "byte_integrity_read_occurred",
+            "fact_basis_is_subtask_self_report",
+            "no_semantic_content_or_result_exposure_reported"
+          ],
+          "type": "object"
+        },
+        "disposition": {
+          "enum": [
+            "accepted_nonsemantic_integrity_exception",
+            "synthetic_only"
+          ]
+        },
+        "incident_id": {
+          "const": "incident.r3.formal-input-byte-integrity-read.v0.1.0"
+        },
+        "incident_record": {
+          "allOf": [
+            {
+              "$ref": "#/$defs/artifactReference"
+            },
+            {
+              "properties": {
+                "path": {
+                  "const": "research/calibration-tests/continuous-action-pilot/runs/continuous-001/source/protocol-incident-r3-byte-integrity-read-v0.1.0.json"
+                }
+              }
+            }
+          ]
+        },
+        "recorded_gate_status": {
+          "const": "pending_explicit_human_acceptance"
+        }
+      },
+      "required": [
+        "acknowledged_facts",
+        "disposition",
+        "incident_id",
+        "incident_record",
+        "recorded_gate_status"
       ],
       "type": "object"
     },
@@ -355,7 +429,7 @@
             "const": "authorization.continuous-001.human-gate"
           },
           "authorization_phrase": {
-            "const": "RUN_CONTINUOUS_001_FORMAL_AFTER_HUMAN_GATE"
+            "const": "RUN_CONTINUOUS_001_FORMAL_AND_ACCEPT_R3_BYTE_INTEGRITY_EXCEPTION"
           },
           "authorization_scopes": {
             "properties": {
@@ -372,6 +446,13 @@
           },
           "authorization_state": {
             "const": "authorized"
+          },
+          "protocol_incident_disposition": {
+            "properties": {
+              "disposition": {
+                "const": "accepted_nonsemantic_integrity_exception"
+              }
+            }
           },
           "authorized_by": {
             "properties": {
@@ -427,6 +508,13 @@
           },
           "authorization_state": {
             "const": "synthetic_only"
+          },
+          "protocol_incident_disposition": {
+            "properties": {
+              "disposition": {
+                "const": "synthetic_only"
+              }
+            }
           },
           "authorized_by": {
             "properties": {
@@ -552,6 +640,9 @@
         }
       ]
     },
+    "protocol_incident_disposition": {
+      "$ref": "#/$defs/protocolIncidentDisposition"
+    },
     "run_id": {
       "const": "continuous-001"
     },
@@ -604,6 +695,7 @@
     "freeze_commit",
     "manifest_status_at_authorization",
     "projection_audit",
+    "protocol_incident_disposition",
     "run_id",
     "state_at_authorization",
     "truth_commitment",

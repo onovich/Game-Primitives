@@ -1,0 +1,41 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <AssemblyName>FootsiesR1Formal</AssemblyName>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>disable</ImplicitUsings>
+    <Nullable>disable</Nullable>
+    <Deterministic>true</Deterministic>
+    <ContinuousIntegrationBuild>true</ContinuousIntegrationBuild>
+    <DebugSymbols>false</DebugSymbols>
+    <DebugType>none</DebugType>
+    <UseSharedCompilation>false</UseSharedCompilation>
+    <PathMap>$(MSBuildProjectDirectory)=/fixture,$(FootsiesSourceRoot)=/frozen/footsies</PathMap>
+    <NoWarn>$(NoWarn);0649</NoWarn>
+    <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Include="UnityCompatibility.cs" />
+    <Compile Include="FrozenSourceContract.cs" />
+    <Compile Include="UnityYamlAssetLoader.cs" />
+    <Compile Include="FormalProgram.cs" />
+    <Compile Include="$(FootsiesSourceRoot)\Assets\Script\Fighter.cs" Link="FrozenSource\Fighter.cs" />
+    <Compile Include="$(FootsiesSourceRoot)\Assets\Script\FighterData.cs" Link="FrozenSource\FighterData.cs" />
+    <Compile Include="$(FootsiesSourceRoot)\Assets\Script\ActionData.cs" Link="FrozenSource\ActionData.cs" />
+    <Compile Include="$(FootsiesSourceRoot)\Assets\Script\InputData.cs" Link="FrozenSource\InputData.cs" />
+    <Compile Include="$(FootsiesSourceRoot)\Assets\Script\AttackData.cs" Link="FrozenSource\AttackData.cs" />
+    <Compile Include="$(FootsiesSourceRoot)\Assets\Script\ActionDataContainer.cs" Link="FrozenSource\ActionDataContainer.cs" />
+    <Compile Include="$(FootsiesSourceRoot)\Assets\Script\AttackDataContainer.cs" Link="FrozenSource\AttackDataContainer.cs" />
+    <Compile Include="$(FootsiesSourceRoot)\Assets\Script\MotionDataContainer.cs" Link="FrozenSource\MotionDataContainer.cs" />
+  </ItemGroup>
+
+  <Target Name="RequireFrozenFootsiesSourceRoot" BeforeTargets="CoreCompile">
+    <Error
+      Condition="'$(FootsiesSourceRoot)' == ''"
+      Text="FootsiesSourceRoot must name the verified frozen checkout." />
+    <Error
+      Condition="!Exists('$(FootsiesSourceRoot)\Assets\Script\Fighter.cs')"
+      Text="FootsiesSourceRoot does not contain Assets\Script\Fighter.cs." />
+  </Target>
+</Project>
