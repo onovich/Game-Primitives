@@ -1,0 +1,452 @@
+{
+  "$schema": "https://github.com/onovich/Game-Primitives/blob/main/research/calibration-tests/continuous-action-pilot/schema/role-submission-0.1.2.schema.json",
+  "actor": {
+    "identifier": "codex.projection-auditor.continuous-001.attempt-02",
+    "model": "OpenAI Codex",
+    "model_version": "gpt-5.6-sol",
+    "reasoning_effort": "high",
+    "role": "source_auditor",
+    "session_id": "session.projection-audit.continuous-001.attempt-02"
+  },
+  "artifact_type": "source_fidelity_audit",
+  "artifact_version": "0.1.2",
+  "audit_checks": [
+    {
+      "check_id": "answer_hint_scan",
+      "evidence": "定位：两份重构任务、两份视图、中性信封、预测任务、两类回答模板及八份派发模板（共 16 项）的全部键和值，以及各派发模板 #/participant_files。证据：62 个禁止身份词均无有效命中；未出现 answer_key、ground_truth、expected_result、正式结果路径或具体配置结果；重构模板三案 confidence_percent=-1 且答案字段为尖括号占位符，预测模板三案主矩阵为 10/10/12 个占位项，compatible_alternatives 亦仅为占位项。信封 #/blinding_assertions/expected_results_included=false；其中不变量是公开的试验输入约束，不是运行结果或答案键。发现：无答案提示。严重性：none。所需修改：none。",
+      "status": "passed",
+      "target_artifact_ids": [
+        "task.reconstruction.condition-v01",
+        "task.reconstruction.condition-v02",
+        "view.stage1-condition-v01-v0.1.0",
+        "view.stage1-condition-v02-v0.1.0",
+        "envelope.variant.stage2-v0.1.0",
+        "task.prediction.continuous-001",
+        "template.reconstruction-response-v0.1.0",
+        "template.prediction-response-v0.1.0",
+        "dispatch-template.stage1.p01",
+        "dispatch-template.stage1.p02",
+        "dispatch-template.stage1.p03",
+        "dispatch-template.stage1.p04",
+        "dispatch-template.stage2.p01",
+        "dispatch-template.stage2.p02",
+        "dispatch-template.stage2.p03",
+        "dispatch-template.stage2.p04"
+      ]
+    },
+    {
+      "check_id": "atomic_projection_equivalence",
+      "evidence": "定位：规范编码 #/cases、投影规范 #/projections/1/rules、生成器 v02_endpoint_text/make_v02_cases 与 atomic 视图 #/cases。证据：未调用绑定生成器；独立内联重建所得 atomic 规范字节与冻结文件逐字节一致，SHA-256=eab8d371da493b66697bb3f6ca02bb6d24013bc6683d43048e2325377728cc44。端点逐案保持：CA-R1“规则更新序号 0”→“规则更新序号 6 完成”；CA-R2“规则相对时间 0”→“规则相对时间 200 毫秒”；CA-R3“首个声明输入事件被接受”→“首个声明终止条件满足”。v02 仅依规则保留边界 scope/references/state_channels/trace_contract，并删除 composition/operational/temporal edges、operational_records、rules、source_issues、time_bases。发现：atomic 与 rich 同源等价，且未把 R1 更新序号改写为连续时间。严重性：none。所需修改：none。",
+      "status": "passed",
+      "target_artifact_ids": [
+        "source.canonical-encoding-v0.1.0",
+        "projection.generator-v0.1.0",
+        "projection.spec-v0.1.0",
+        "view.stage1-condition-v01-v0.1.0",
+        "view.stage1-condition-v02-v0.1.0"
+      ]
+    },
+    {
+      "check_id": "dispatch_symmetry",
+      "evidence": "定位：八份派发模板的 #/seat_id、#/condition_binding、#/participant_files、#/facility_files、#/schema_dependency_closure 与 materialize-dispatch.py 的 condition_for_seat、expected_participant_paths、verify_file_lists、common_stage2_template_contract。证据：p01/p02 固定 condition-v01，p03/p04 固定 condition-v02；第一阶段每席恰为 3 份参与者文件和 9 份设施文件，同条件两席完全一致；第二阶段四席的 3 份参与者文件、8 份设施文件与 12 条 Schema 边逐字节结构一致。八份模板均 dispatch_status=template_only、release_authorized=false，所有文件散列和 actor/授权/前序绑定保持 null。发现：席位、条件与两阶段派发对称。严重性：none。所需修改：none。",
+      "status": "passed",
+      "target_artifact_ids": [
+        "actor-plan.continuous-001",
+        "tool.materialize-dispatch-v0.1.0",
+        "dispatch-template.stage1.p01",
+        "dispatch-template.stage1.p02",
+        "dispatch-template.stage1.p03",
+        "dispatch-template.stage1.p04",
+        "dispatch-template.stage2.p01",
+        "dispatch-template.stage2.p02",
+        "dispatch-template.stage2.p03",
+        "dispatch-template.stage2.p04"
+      ]
+    },
+    {
+      "check_id": "formal_build_readiness_integrity",
+      "evidence": "定位：formal-build-readiness #/overall_status、#/cases；fixture-lock #/fixture_state、#/cases；execution-plan #/fixture_lock、#/cases、#/executions、#/case_results。证据：最终准备记录为 build_only/passed，3 案共 6 个 baseline/variant 配置均 passed、blockers=[]、formal_input_executed=false、formal_result_produced=false；夹具锁为 locked、formal_execution_authorized=false、formal_input_executed=false；计划绑定夹具锁 SHA-256=7550e7477ed9213fbf605c6f30898e48151244db4b119e89ed0caf5fb3db4b5c，含 CA-R1/2/3 与独立 NEG-01，但 executions=[]、case_results=[] 且所有运行后摘要为 null。三份装配片段的 build_readiness 与最终记录逐案相同。发现：门前构建声明、散列和引用一致。严重性：none。所需修改：none。",
+      "status": "passed",
+      "target_artifact_ids": [
+        "build.formal-readiness-v0.1.0",
+        "fixture.lock-v0.1.0",
+        "execution.plan.continuous-001",
+        "fixture.assembly-fragment.ca-r1-v0.1.0",
+        "fixture.assembly-fragment.ca-r2-v0.1.0",
+        "fixture.assembly-fragment.ca-r3-v0.1.0"
+      ]
+    },
+    {
+      "check_id": "identity_leak_scan",
+      "evidence": "定位：与 answer_hint_scan 相同的 16 项材料，另核对两份视图所有 #/cases/*/references/*/audit_identity、provenance_refs、source_issues 及八份派发模板 #/participant_files。证据：对投影规范 62 个 forbidden_tokens 及 hifight/id-Software/ppy/source identity/rich/atomic 扩展词扫描，0 个有效身份泄漏；唯一 lexical 命中是信封键 source_identity_included，值为 false。两视图 audit_identity 全为 null、provenance_refs 全空、source_issues=[]；参与者路径不含 source/fixtures/execution/reports/reveal/submissions。发现：作品名、来源函数名、rich/atomic 身份与来源路径均未进入认知边界。严重性：none。所需修改：none。",
+      "status": "passed",
+      "target_artifact_ids": [
+        "task.reconstruction.condition-v01",
+        "task.reconstruction.condition-v02",
+        "view.stage1-condition-v01-v0.1.0",
+        "view.stage1-condition-v02-v0.1.0",
+        "envelope.variant.stage2-v0.1.0",
+        "task.prediction.continuous-001",
+        "template.reconstruction-response-v0.1.0",
+        "template.prediction-response-v0.1.0",
+        "dispatch-template.stage1.p01",
+        "dispatch-template.stage1.p02",
+        "dispatch-template.stage1.p03",
+        "dispatch-template.stage1.p04",
+        "dispatch-template.stage2.p01",
+        "dispatch-template.stage2.p02",
+        "dispatch-template.stage2.p03",
+        "dispatch-template.stage2.p04"
+      ]
+    },
+    {
+      "check_id": "invariant_integrity",
+      "evidence": "定位：中性信封 #/case_interventions/*/invariant_ids 与 invariant_specs；预测任务 #/variant_interventions；夹具锁 #/cases/*/invariant_ids；执行计划 #/cases/*/invariants。证据：CA-R1/2/3 分别为 6/7/7 个不变量，共 20 个；ID 顺序与描述在信封→预测任务→执行计划间精确一致，夹具锁逐案 ID 集一致。每案 invariants 的 comparator_id 与其 observation_ids 闭包存在，停止边界和容差集合亦与信封、锁和计划一致。发现：无不变量漂移、遗漏或跨案引用。严重性：none。所需修改：none。",
+      "status": "passed",
+      "target_artifact_ids": [
+        "envelope.variant.stage2-v0.1.0",
+        "task.prediction.continuous-001",
+        "fixture.lock-v0.1.0",
+        "execution.plan.continuous-001"
+      ]
+    },
+    {
+      "check_id": "projection_fidelity",
+      "evidence": "定位：规范编码 #/cases、投影规范两组规则、生成器 validate_projection_spec/rewrite_v01_node/make_v02_cases 与两份视图全文。证据：投影规范绑定 canonical SHA-256=5682e1bb395a2c7e02df914b3a464005d195a736bc0dc0d88594f7ee3611e5c3 和 generator SHA-256=bda0537d62533a6ef195a648ca68a0137ea1e5064066488d4b776dca54757e48；独立重建的 rich/atomic 文件分别逐字节匹配 SHA-256=3d819262f123c8f9396e343b33c7f43389d28bd7396039b6df507ad328b1032e 与 eab8d371da493b66697bb3f6ca02bb6d24013bc6683d43048e2325377728cc44。rich 对三案建立 46/33/37 个一一不透明映射并保留完整类型结构，仅执行规则列明的身份、来源定位、source_issues 与文本净化；atomic 只做 14 条明列删边/保留规则。发现：两投影忠实来自同一规范编码。严重性：none。所需修改：none。",
+      "status": "passed",
+      "target_artifact_ids": [
+        "source.canonical-encoding-v0.1.0",
+        "projection.generator-v0.1.0",
+        "projection.spec-v0.1.0",
+        "view.stage1-condition-v01-v0.1.0",
+        "view.stage1-condition-v02-v0.1.0"
+      ]
+    },
+    {
+      "check_id": "protocol_incident_disposition",
+      "evidence": "定位：事件 #/aggregate_state、#/observed_operations、#/non_operations、#/exposure、#/evidence_scope_note、#/gate_disposition；运行时证据 #/formal_input_read。证据：事件明确记录 formal_input_byte_read=true；唯一操作为 Path.read_bytes 一次并以 SHA-256 对既有 case-lock digest 做字节完整性比较。json_parse=false、semantic_interpretation=false、formal_execution=false，内容/摘要未打印、返回或持久化，formal_result_observed=false。运行时证据的 formal_input_read=false 仅是该构建/列表/guard-probe 过程范围，依事件 evidence_scope_note 不得覆盖聚合事实 true。例外 gate_disposition.required=true、status=pending_explicit_human_acceptance，后续人工门仍须显式接受。发现：可保留为已记录的非语义完整性例外，但本审核不代替人工接受。严重性：none。所需修改：none（人工门条件保持未满足）。",
+      "status": "passed",
+      "target_artifact_ids": [
+        "audit.protocol-incident.r3-byte-integrity-read-v0.1.0",
+        "evidence.python-runtime.continuous-001"
+      ]
+    },
+    {
+      "check_id": "reference_closure",
+      "evidence": "定位：控制包 #/input_artifacts、#/output_schema；全部已绑定 Schema 的 $ref；规范编码/两视图内部 ID；信封、任务、模板、派发与构建链 artifact reference。证据：61 项 input_artifacts 与输出 Schema、控制包自身逐项 SHA-256 复算均匹配；61 个 artifact_id 唯一，路径越界=0。20 份已绑定 Schema（含输出 0.1.2）共 437 条 $ref，未绑定基址=0、缺失片段=0、Schema 元校验错误=0；12 个可由该绑定集合验证的实例错误=0。230 个 artifact reference 出现中 artifact_id 绑定冲突=0、path/hash 冲突=0、指向已绑定路径的散列不符=0。规范/rich/atomic 三案内部 dangling ID 均为 0。输出闭包明确为 role-submission 0.1.2→已绑定 0.1.1。发现：引用闭包完整。严重性：none。所需修改：none。",
+      "status": "passed",
+      "target_artifact_ids": [
+        "task.projection-audit.continuous-001",
+        "schema.role-submission-v0.1.1",
+        "schema.task-packet-v0.1.0",
+        "schema.task-packet-v0.1.2",
+        "schema.variant-envelope-v0.1.0",
+        "schema.execution-artifact-v0.1.0",
+        "schema.execution-artifact-v0.1.1",
+        "source.canonical-encoding-v0.1.0",
+        "view.stage1-condition-v01-v0.1.0",
+        "view.stage1-condition-v02-v0.1.0",
+        "envelope.variant.stage2-v0.1.0",
+        "task.prediction.continuous-001",
+        "fixture.lock-v0.1.0",
+        "build.formal-readiness-v0.1.0",
+        "execution.plan.continuous-001"
+      ]
+    },
+    {
+      "check_id": "single_variable_isolation",
+      "evidence": "定位：规范编码三案 #/case_scope/controlled_variable_id；rich 视图对应 opaque ID；信封 #/case_interventions；夹具锁 patch_set；执行计划 baseline/variant configurations。证据：职责映射为 CA-R1 variable.r1.whiff-cancel-permission→o.a.0001、CA-R2 variable.r2.input-sampling-policy→o.b.0001、CA-R3 variable.r3.adjudication-schedule→o.c.0001。信封干预分别为 0→1、0→1、0 ms→75 ms；同案 formal_input、初态、停止点、不变量与容差在两配置共享。计划深比较仅出现配置/semantic_role、相应输出路径、R1/R2 各自唯一声明的 variant patch，以及运行命令的 ConfigurationId；R3 仅配置选择而共用同一二进制和 fixture surface。发现：未声明第二控制变量或跨案干预。严重性：none。所需修改：none。",
+      "status": "passed",
+      "target_artifact_ids": [
+        "source.canonical-encoding-v0.1.0",
+        "view.stage1-condition-v01-v0.1.0",
+        "envelope.variant.stage2-v0.1.0",
+        "task.prediction.continuous-001",
+        "fixture.lock-v0.1.0",
+        "execution.plan.continuous-001"
+      ]
+    },
+    {
+      "check_id": "stage2_input_closure",
+      "evidence": "定位：信封 #/case_interventions；预测任务 #/input_artifacts、#/allowed_observations、#/variant_interventions；预测模板 #/template_payload/prediction_answers；四份第二阶段派发模板 #/participant_files、#/facility_files、#/schema_dependency_closure；两生成器的 intervention_for_task/build_envelope。证据：任务仅绑定信封 SHA-256=f4501e153cd103c0ec7a184c89e12aa57d4a9ef128e416654ad332a10c7702d1 与预测模板 SHA-256=c992554cbfd115de4063163cce9d2d16816a645cd3c2647bc42b6a33b8eed5af；三案干预是信封允许字段的精确镜像。观察量闭包为 5/5/6 共 16 个，容差为 1/2/2 共 5 个；模板主矩阵及两个兼容替代均完整覆盖 baseline/variant×观察量（10/10/12）。四席第二阶段共同输入恰为预测任务、信封、回答模板，设施闭包 8 份 Schema/12 条边，stage1_submission_required=true，前阶段身份与提交只经 cohort/receipt 绑定。发现：第二阶段输入闭包完整且四席相同。严重性：none。所需修改：none。",
+      "status": "passed",
+      "target_artifact_ids": [
+        "generator.stage2-envelope-v0.1.0",
+        "generator.stage2-task-v0.1.0",
+        "tool.materialize-dispatch-v0.1.0",
+        "envelope.variant.stage2-v0.1.0",
+        "task.prediction.continuous-001",
+        "template.prediction-response-v0.1.0",
+        "dispatch-template.stage2.p01",
+        "dispatch-template.stage2.p02",
+        "dispatch-template.stage2.p03",
+        "dispatch-template.stage2.p04"
+      ]
+    }
+  ],
+  "audit_decision": "approved",
+  "condition_id": null,
+  "findings": [],
+  "first_submission": true,
+  "input_artifacts": [
+    {
+      "artifact_id": "schema.execution-artifact-v0.1.0",
+      "sha256": "ade31163179e4d100264d6b57c33561d3232b20f2fd0057cc74e174ace318906"
+    },
+    {
+      "artifact_id": "schema.execution-artifact-v0.1.1",
+      "sha256": "4d09bf48a1d1f6afaeaf9b56130333f13c1af2ecc2d5ef61784fa20bf8f3137a"
+    },
+    {
+      "artifact_id": "schema.fixture-assembly-fragment-v0.1.0",
+      "sha256": "964827e83a407b7aeceeaad32d64ed7d76120ad9db3b400cf159bbab831845de"
+    },
+    {
+      "artifact_id": "schema.fixture-lock-v0.1.0",
+      "sha256": "9221d543b33a1a418b1d12ca471d4ab371e4f7ace00e78656c6cb13697480f9e"
+    },
+    {
+      "artifact_id": "schema.formal-build-readiness-v0.1.0",
+      "sha256": "250368897679b7f0c9eaa835f5db144bee1afc1d230910f1ea7d84668bbe5c0a"
+    },
+    {
+      "artifact_id": "schema.role-submission-v0.1.1",
+      "sha256": "45bb21217f462371e7d16d64560a5ce48a207c7370dd0644d96587568f908b1e"
+    },
+    {
+      "artifact_id": "schema.task-packet-v0.1.0",
+      "sha256": "a8e79c02ec515debfe71eecc07a11b481b5312e27ff94d8da1d138714d131e9d"
+    },
+    {
+      "artifact_id": "schema.task-packet-v0.1.2",
+      "sha256": "d32b78137d186a76921532fd3a861ab15e42eddc7def6395caa3e89caa27ca51"
+    },
+    {
+      "artifact_id": "schema.variant-envelope-v0.1.0",
+      "sha256": "e91e5f373ffb7a9020130faaded11db8a42a71746d3c1ca243fa3405cfc0d084"
+    },
+    {
+      "artifact_id": "schema.raw-trace.ca-r1-v0.1.0",
+      "sha256": "0b0d44087869fb178f83a5faa6690ab190d0f3df3f75c43ec339490a29412961"
+    },
+    {
+      "artifact_id": "schema.raw-trace.ca-r2-v0.1.0",
+      "sha256": "f719579e71bd1153ecd671302ab82df95f4630f9653c1d74bd90c4285b72e637"
+    },
+    {
+      "artifact_id": "schema.raw-trace.ca-r3-v0.1.0",
+      "sha256": "a257fc0920536f76c977be8867a1e9302d872b7f8cea0480ade999e3281f07f1"
+    },
+    {
+      "artifact_id": "schema.formal-comparator-output-v0.1.0",
+      "sha256": "602dc7edf80b36bbda52074d1a2a64c9ec85d57307a5fd85a48f25d54b4bc79d"
+    },
+    {
+      "artifact_id": "schema.formal-execution-permit-v0.1.0",
+      "sha256": "089397a3c6e65e7171375bdc7beb24d5d7f897078b364ef32a93b4d911886410"
+    },
+    {
+      "artifact_id": "schema.formal-human-gate-authorization-v0.1.0",
+      "sha256": "a19fb50a873a3a202737e1040ab8ed973fb3fe7fe36fa78534bbc3c0d50cd6d0"
+    },
+    {
+      "artifact_id": "schema.r1-standalone-build-evidence-v0.1.0",
+      "sha256": "351f4b623b333b5c26437a58f3b9fdec9d91ebc6f5a45cf1fa7f4fdb823d457b"
+    },
+    {
+      "artifact_id": "schema.r2-build-readiness-evidence-v0.1.0",
+      "sha256": "43457e02c83b9f387319d2eb9213d39f8b4dfcf6ab103ff472367a93e6e792d6"
+    },
+    {
+      "artifact_id": "schema.python-runtime-evidence-v0.1.0",
+      "sha256": "d755f0ea0e2da88a657333604d945ae34cc0fde19c163d0881f06b8e89692033"
+    },
+    {
+      "artifact_id": "schema.protocol-incident-v0.1.0",
+      "sha256": "f7a412a6ca1b593c0cf2e1bdac661fab6e2f970a88583c609662a313ae5d8f1c"
+    },
+    {
+      "artifact_id": "tool.build-role-submission-v0.1.0",
+      "sha256": "37029e58031a159937bfbd8008ab5a6041c86517836376dd63ab298676bfb4cb"
+    },
+    {
+      "artifact_id": "tool.materialize-execution-permit-v0.1.0",
+      "sha256": "cdfa62be90a1788895493db9728659408cded126482fb228aa932a1252ad5701"
+    },
+    {
+      "artifact_id": "tool.materialize-dispatch-v0.1.0",
+      "sha256": "3ba6f0263d40753b1f5084903d34c727043fa648438746fae3138c89a84e2bfc"
+    },
+    {
+      "artifact_id": "tool.verify-formal-execution-permit-v0.1.0",
+      "sha256": "b9c9b97319bd4a4e2814b5e463ca605783a6239b132dcb195fe2533c0b202b89"
+    },
+    {
+      "artifact_id": "tool.verify-formal-raw-trace-v0.1.0",
+      "sha256": "2a30f9a0126d1a0feb8b595974025e4a91c4db6b9955ccefe7014ad58d02cca0"
+    },
+    {
+      "artifact_id": "tool.formal-execution-target-contract-v0.1.0",
+      "sha256": "a8b1a95c158d2b0ce6aee5fa4845bc06ddce7f16b5c39eb3fa70180195c7882e"
+    },
+    {
+      "artifact_id": "tool.materialize-fixture-assembly-v0.1.0",
+      "sha256": "2bda970a0bdf05576fbafdac603bbacc986db9ac4ead301849f2b53033eff32e"
+    },
+    {
+      "artifact_id": "tool.materialize-final-execution-plan-v0.1.0",
+      "sha256": "b92f102c556703246a61844a8533f3aa11677057dc53b565c1d684ebdf8f9aaa"
+    },
+    {
+      "artifact_id": "tool.materialize-python-runtime-evidence-v0.1.0",
+      "sha256": "2e57818f968cbda0ed44396d24f54d646b28aca63ad5a7d9f3a8cbec66cbf087"
+    },
+    {
+      "artifact_id": "tool.materialize-projection-audit-task-v0.1.0",
+      "sha256": "22b3aacc6789e548875eef5011585481d0721a009728eaca3c7f0e6dd2490e1e"
+    },
+    {
+      "artifact_id": "tool.verify-formal-readiness-v0.1.0",
+      "sha256": "2f26a047fa2fd93f4d72c7325b1bba5a22143e7f1f8e3c6172eb8718e519a41a"
+    },
+    {
+      "artifact_id": "tool.verify-run-package-v0.1.0",
+      "sha256": "cae98a257e4a4160924b8739a9626a2a08dc78bd1ec98e74dcb4b9dd769e01f0"
+    },
+    {
+      "artifact_id": "execution.plan.continuous-001",
+      "sha256": "e218609691bfc76f23f4440bd67d76438f6c9053f61ae2be7e2934619724f9af"
+    },
+    {
+      "artifact_id": "evidence.python-runtime.continuous-001",
+      "sha256": "546eb1b6ea3ca795e7e669345c89d8ee7192012c580566d71019ff103c9c245d"
+    },
+    {
+      "artifact_id": "fixture.lock-v0.1.0",
+      "sha256": "7550e7477ed9213fbf605c6f30898e48151244db4b119e89ed0caf5fb3db4b5c"
+    },
+    {
+      "artifact_id": "build.formal-readiness-v0.1.0",
+      "sha256": "581bf917f0b4d49f2f4dfec5c1eb5c8fb62ebb652533b263d593e7d0e0a6e082"
+    },
+    {
+      "artifact_id": "fixture.assembly-fragment.ca-r1-v0.1.0",
+      "sha256": "df13564e6736a1c889e6960600906c3cf56fb1430eea0c450823e5f44ff3e6fd"
+    },
+    {
+      "artifact_id": "fixture.assembly-fragment.ca-r2-v0.1.0",
+      "sha256": "0b2f21cb39e6f3ae2d284356fa0b037a47292199cad6073c69c30ebf99baaa72"
+    },
+    {
+      "artifact_id": "fixture.assembly-fragment.ca-r3-v0.1.0",
+      "sha256": "e0661c4fc3fd7e4cf3afecfaf92e7b47237c0040f3d80f0f6af3b3ff12f501dd"
+    },
+    {
+      "artifact_id": "actor-plan.continuous-001",
+      "sha256": "4a14c8429382be88e9ee76a9c7851a7f9aa7f360a96172a8b2ccff8d6456779d"
+    },
+    {
+      "artifact_id": "projection.generator-v0.1.0",
+      "sha256": "bda0537d62533a6ef195a648ca68a0137ea1e5064066488d4b776dca54757e48"
+    },
+    {
+      "artifact_id": "generator.stage2-envelope-v0.1.0",
+      "sha256": "2d68201d8f6e2391fb0d74be64050163f550a6d2cbbfb6bcb78d6c522b6d849d"
+    },
+    {
+      "artifact_id": "generator.stage2-task-v0.1.0",
+      "sha256": "6a90950104ab7a5bb95095dd427149e44beccdfcddbc4b8a07b0a74149472cba"
+    },
+    {
+      "artifact_id": "template.prediction-response-v0.1.0",
+      "sha256": "c992554cbfd115de4063163cce9d2d16816a645cd3c2647bc42b6a33b8eed5af"
+    },
+    {
+      "artifact_id": "projection.spec-v0.1.0",
+      "sha256": "b924e3cc21cbb7f8a993bd8b388213b5b1decf3bc8f53acda0cb1a7fc1456f7f"
+    },
+    {
+      "artifact_id": "template.reconstruction-response-v0.1.0",
+      "sha256": "1e51c517bedcf79de9d129202aa60ddabaa5cb94703053f3ed80d10d2296c7aa"
+    },
+    {
+      "artifact_id": "dispatch-template.stage1.p01",
+      "sha256": "c8dd8f2bdd00f06a6a292ec116dd9ed53bfcfd19af4209659d3219b3ddec1d79"
+    },
+    {
+      "artifact_id": "dispatch-template.stage1.p02",
+      "sha256": "774ec953f79da36cea1edf0c22c8894133f99551cbaba9553d317424bf3fa495"
+    },
+    {
+      "artifact_id": "dispatch-template.stage1.p03",
+      "sha256": "6fdcedd87a29364d2e92a641c8a2ff1cb5aab6987bbbac142345fcb1e87477cc"
+    },
+    {
+      "artifact_id": "dispatch-template.stage1.p04",
+      "sha256": "5ca49a18c15d8e1cd4e4a6c2322cfe070d5bd35e86462936d5a2117ee4b707bc"
+    },
+    {
+      "artifact_id": "task.reconstruction.condition-v01",
+      "sha256": "1efbbb73b4671384fd45afd8dd773bddf6d9682ed159bfccf85360a975d67763"
+    },
+    {
+      "artifact_id": "task.reconstruction.condition-v02",
+      "sha256": "6b32831ac781594faf995a16814cf150634cbbe313971674874d17727369ba08"
+    },
+    {
+      "artifact_id": "view.stage1-condition-v01-v0.1.0",
+      "sha256": "3d819262f123c8f9396e343b33c7f43389d28bd7396039b6df507ad328b1032e"
+    },
+    {
+      "artifact_id": "view.stage1-condition-v02-v0.1.0",
+      "sha256": "eab8d371da493b66697bb3f6ca02bb6d24013bc6683d43048e2325377728cc44"
+    },
+    {
+      "artifact_id": "dispatch-template.stage2.p01",
+      "sha256": "a434faa306591aaa1631ba34baf01deb85c19da8fb89b255001fb132202398b7"
+    },
+    {
+      "artifact_id": "dispatch-template.stage2.p02",
+      "sha256": "8686756a89b7a3541d930b1e10d652654979df9317a0add42c87cd93dc76044a"
+    },
+    {
+      "artifact_id": "dispatch-template.stage2.p03",
+      "sha256": "2272293aa02b9202f8f90e4f740eee120c9b203449e1b5dcc00c7e7221b37355"
+    },
+    {
+      "artifact_id": "dispatch-template.stage2.p04",
+      "sha256": "5f4844905fd31818c878e744be6c5da2c4418f6aa4daad9517f7a417e0734a3e"
+    },
+    {
+      "artifact_id": "task.prediction.continuous-001",
+      "sha256": "7a4e286c486b03fe3a24875e2db1e95b4024750e5c36af5a993adae54cda388c"
+    },
+    {
+      "artifact_id": "envelope.variant.stage2-v0.1.0",
+      "sha256": "f4501e153cd103c0ec7a184c89e12aa57d4a9ef128e416654ad332a10c7702d1"
+    },
+    {
+      "artifact_id": "source.canonical-encoding-v0.1.0",
+      "sha256": "5682e1bb395a2c7e02df914b3a464005d195a736bc0dc0d88594f7ee3611e5c3"
+    },
+    {
+      "artifact_id": "audit.protocol-incident.r3-byte-integrity-read-v0.1.0",
+      "sha256": "379c583a5c7bf1d839cb6bdc8bd4874df1cb2a91525d18fa8470912e0233295c"
+    },
+    {
+      "artifact_id": "task.projection-audit.continuous-001",
+      "sha256": "0a9523429d1203d47d8818184ccf01e9d909da6a41fab865fe3ea500ab2579f0"
+    }
+  ],
+  "packaging": null,
+  "pollution": null,
+  "prediction_answers": [],
+  "prior_stage_submission_sha256": null,
+  "raw_payload": null,
+  "reconstruction_answers": [],
+  "run_id": "continuous-001",
+  "stage": "source_audit",
+  "submission_id": "submission.projection-audit.continuous-001.attempt-02",
+  "submitted_at": "2026-07-27T05:40:05Z",
+  "task_id": "task.projection-audit.continuous-001"
+}
