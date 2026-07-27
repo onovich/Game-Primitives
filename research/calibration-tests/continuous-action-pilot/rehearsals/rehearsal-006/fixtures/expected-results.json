@@ -1,0 +1,39 @@
+{
+  "artifact_type": "rehearsal_fixture_expectations",
+  "artifact_version": "0.1.0",
+  "checks": [
+    {
+      "expected": "pass",
+      "fixture": "positive/reconstruction-minimal.payload.json"
+    },
+    {
+      "expected": "pass",
+      "fixture": "positive/reconstruction-with-exposure.payload.json"
+    },
+    {
+      "expected": "pass",
+      "fixture": "positive/prediction-determinate.payload.json"
+    },
+    {
+      "expected": "pass",
+      "fixture": "positive/prediction-indeterminate-two-alternatives.payload.json"
+    },
+    {
+      "expected": "fail",
+      "failure_contains": "does not match",
+      "fixture": "negative/reconstruction-uppercase-local-id.payload.json"
+    },
+    {
+      "expected": "fail",
+      "failure_contains": "must cover each configuration/observation pair",
+      "fixture": "negative/prediction-incomplete-alternative.payload.json"
+    },
+    {
+      "expected": "fail",
+      "failure_contains": "value/unit",
+      "fixture": "negative/prediction-fixed-unit.template.json"
+    }
+  ],
+  "formal_input_access": "forbidden",
+  "run_id": "rehearsal-006"
+}

@@ -1,0 +1,110 @@
+{
+  "$schema": "https://github.com/onovich/Game-Primitives/blob/main/research/calibration-tests/continuous-action-pilot/schema/task-packet-0.1.1.schema.json",
+  "allowed_configurations": [
+    "config.baseline",
+    "config.variant"
+  ],
+  "allowed_observations": [
+    {
+      "allowed_value_types": [
+        "integer",
+        "status"
+      ],
+      "description": "第二步更新完成后的 state.total 精确计数",
+      "observation_id": "obs.total-at-stop",
+      "tolerance_rule_id": "tol.synthetic.exact",
+      "unit": "count"
+    }
+  ],
+  "artifact_type": "prediction_task_packet",
+  "artifact_version": "0.1.1",
+  "assembled_output_schema": {
+    "path": "research/calibration-tests/continuous-action-pilot/schema/role-submission-0.1.2.schema.json",
+    "sha256": "ce1bcbb603550ec42afa9023191666b0ef45096b4c0efd1a3b42150c83577f95"
+  },
+  "behavior_scope": "structural_only",
+  "case_ids": [
+    "CA-R2"
+  ],
+  "condition_id": null,
+  "created_at": "2026-07-28T01:00:00Z",
+  "forbidden_actions": [
+    "access_other_condition",
+    "access_other_submission",
+    "access_package_outside_dispatch",
+    "access_truth_or_result",
+    "create_child_task",
+    "external_search",
+    "read_shared_workspace",
+    "tool_call"
+  ],
+  "input_artifacts": [
+    {
+      "artifact_id": "envelope.rehearsal-006.stage2",
+      "path": "research/calibration-tests/continuous-action-pilot/rehearsals/rehearsal-006/inputs/variant-envelope.json",
+      "sha256": "a3a951fdb95cf2a6cb1c473b5ef741e8bba8cd653b121b54476a772936449f49"
+    },
+    {
+      "artifact_id": "template.prediction.rehearsal-006",
+      "path": "research/calibration-tests/continuous-action-pilot/rehearsals/rehearsal-006/inputs/prediction-response.template.json",
+      "sha256": "1f60b5e5d6e0da72998c45eba6e88597747cf24252b9d0b7b6094f120a32838b"
+    }
+  ],
+  "instructions": [
+    "继续只使用自己的冻结重构、本任务、中性变体信封和模板；不得使用工具、网络、共享工作区、其他条件、真值、结果或他人提交。",
+    "模板是 typed_choice_template。阅读 participant_contract，最终只返回 template_payload 对应的单一 JSON 对象；尖括号槽位可以选择字符串值或真正的 JSON null。",
+    "若 prediction_status=indeterminate，主 expectations 必须使用 expectation_kind=status、serialized_value=indeterminate、value_type=status、unit=null。",
+    "confidence_percent 是类型化选择槽；必须把 <integer-0-100> 替换为 0 至 100 的 JSON 整数。",
+    "有量纲主预测的 <null|count> 是类型化选择：不确定分支选择真正的 JSON null，确定分支选择字符串 count。",
+    "compatible_alternatives 在不确定分支至少保留两个；每个替代都必须完整覆盖配置—观察量笛卡尔积，使用具体值、具体类型和声明单位，而且各替代至少一项预测不同。",
+    "确定分支可以清空 compatible_alternatives，也可以保留完整且具体的相容替代；主 expectations 仍必须使用允许的具体类型、声明单位和匹配的 expectation_kind。",
+    "integrity_exposures 可以保持空数组，也可以依照契约给出的完整 item shape 追加记录。",
+    "不要填写运行、任务、条件、actor、session、提交时间、输入散列、前阶段散列或审核字段；这些字段由保管工具生成。"
+  ],
+  "output_schema": {
+    "path": "research/calibration-tests/continuous-action-pilot/schema/blind-response-interface-0.1.1.schema.json",
+    "sha256": "aaa06ec2e530dd4ae8e3d769c7cc6263702290466d2c695f9ce9da14e2069f42"
+  },
+  "representation_version": "CA-SR 0.1",
+  "required_audit_checks": [],
+  "run_id": "rehearsal-006",
+  "stage1_submission_required": true,
+  "stop_boundary_refs": [
+    "stop.after-step-2"
+  ],
+  "target_encoding_sha256": null,
+  "target_view_sha256": null,
+  "task_id": "task.predict.neutral",
+  "tolerance_rule_refs": [
+    "tol.synthetic.exact"
+  ],
+  "variant_interventions": [
+    {
+      "baseline_value": {
+        "serialized_value": "0",
+        "unit": null,
+        "value_type": "integer"
+      },
+      "case_id": "CA-R2",
+      "invariant_ids": [
+        "inv.initial-state",
+        "inv.input-trace",
+        "inv.operation-count",
+        "inv.operation-identity",
+        "inv.step-order",
+        "inv.output-contract",
+        "inv.stop-boundary"
+      ],
+      "observation_ids": [
+        "obs.total-at-stop"
+      ],
+      "stop_boundary_id": "stop.after-step-2",
+      "variable_id": "v-q",
+      "variant_value": {
+        "serialized_value": "1",
+        "unit": null,
+        "value_type": "integer"
+      }
+    }
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "$schema": "https://github.com/onovich/Game-Primitives/blob/main/research/calibration-tests/continuous-action-pilot/schema/prediction-template-contract-check-0.1.1.schema.json",
+  "artifact_type": "prediction_template_contract_check",
+  "artifact_version": "0.1.1",
+  "issue_count": 0,
+  "issues": [],
+  "participant_contract_schema_sha256": "9a20740b26bae55320fd48840f53d40742113fffc07bc0d2dbd327f742516cb5",
+  "response_schema_sha256": "aaa06ec2e530dd4ae8e3d769c7cc6263702290466d2c695f9ce9da14e2069f42",
+  "role_schema_sha256": "45bb21217f462371e7d16d64560a5ce48a207c7370dd0644d96587568f908b1e",
+  "status": "passed",
+  "task_sha256": "53f46034304fd6659550e553a4aedc5af46556818c5c2dd4d20375a7b708cc0b",
+  "template_schema_sha256": "ef17d840403796b2eff0f0b5ebde6f6d29d6d5c8ee7c9c40d98d3c1fdcf3094a",
+  "template_sha256": "1f60b5e5d6e0da72998c45eba6e88597747cf24252b9d0b7b6094f120a32838b"
+}

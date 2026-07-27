@@ -1,0 +1,328 @@
+{
+  "$id": "https://github.com/onovich/Game-Primitives/blob/main/research/calibration-tests/continuous-action-pilot/schema/run-manifest-0.1.0.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$defs": {
+    "artifactEntry": {
+      "additionalProperties": false,
+      "properties": {
+        "artifact_id": {
+          "pattern": "^[a-z0-9][a-z0-9._-]*$",
+          "type": "string"
+        },
+        "artifact_kind": {
+          "enum": [
+            "audit",
+            "documentation",
+            "execution_plan",
+            "execution_result",
+            "fixture",
+            "report",
+            "source",
+            "submission",
+            "task_packet",
+            "trace",
+            "truth",
+            "reveal"
+          ]
+        },
+        "artifact_version": {
+          "$ref": "#/$defs/semanticVersion"
+        },
+        "audience": {
+          "items": {
+            "enum": [
+              "all_blind_testers",
+              "author",
+              "condition-v01",
+              "condition-v02",
+              "custodian",
+              "public_after_reveal",
+              "public_archive",
+              "source_auditor",
+              "source_encoder"
+            ]
+          },
+          "minItems": 1,
+          "type": "array",
+          "uniqueItems": true
+        },
+        "decision_relevant": {
+          "type": "boolean"
+        },
+        "included_in_frozen_set": {
+          "type": "boolean"
+        },
+        "path": {
+          "pattern": "^(?:README\\.md|(?:execution|fixtures|inputs|reports|reveal|source|submissions)/[A-Za-z0-9._-]+(?:/[A-Za-z0-9._-]+)*)$",
+          "type": "string"
+        },
+        "release_stage": {
+          "$ref": "#/$defs/stage"
+        },
+        "schema_path": {
+          "pattern": "^research/calibration-tests/continuous-action-pilot/schema/[A-Za-z0-9._-]+\\.schema\\.json$",
+          "type": "string"
+        },
+        "schema_sha256": {
+          "$ref": "#/$defs/sha256"
+        },
+        "sha256": {
+          "$ref": "#/$defs/sha256"
+        },
+        "supersedes_artifact_id": {
+          "oneOf": [
+            {
+              "pattern": "^[a-z0-9][a-z0-9._-]*$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "required": [
+        "artifact_id",
+        "artifact_kind",
+        "artifact_version",
+        "audience",
+        "decision_relevant",
+        "included_in_frozen_set",
+        "path",
+        "release_stage",
+        "schema_path",
+        "schema_sha256",
+        "sha256",
+        "supersedes_artifact_id"
+      ],
+      "type": "object"
+    },
+    "commitment": {
+      "additionalProperties": false,
+      "properties": {
+        "algorithm": {
+          "const": "SHA-256"
+        },
+        "combination": {
+          "const": "secret_nonce_bytes || exact_truth_bundle_bytes"
+        },
+        "commitment": {
+          "$ref": "#/$defs/sha256"
+        },
+        "created_at": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "nonce_length_bytes": {
+          "const": 32
+        },
+        "truth_bundle_bytes": {
+          "minimum": 1,
+          "type": "integer"
+        },
+        "truth_bundle_name": {
+          "const": "sealed-truth.json"
+        }
+      },
+      "required": [
+        "algorithm",
+        "combination",
+        "commitment",
+        "created_at",
+        "nonce_length_bytes",
+        "truth_bundle_bytes",
+        "truth_bundle_name"
+      ],
+      "type": "object"
+    },
+    "manifest": {
+      "additionalProperties": false,
+      "properties": {
+        "$schema": {
+          "type": "string"
+        },
+        "artifact_type": {
+          "enum": [
+            "formal_run_manifest",
+            "rehearsal_manifest"
+          ]
+        },
+        "artifact_version": {
+          "const": "0.1.0"
+        },
+        "artifacts": {
+          "items": {
+            "$ref": "#/$defs/artifactEntry"
+          },
+          "type": "array"
+        },
+        "created_at": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "freeze_commit": {
+          "oneOf": [
+            {
+              "pattern": "^[0-9a-f]{40}$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "frozen_artifact_set_digest": {
+          "oneOf": [
+            {
+              "$ref": "#/$defs/sha256"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "protocol_version": {
+          "$ref": "#/$defs/semanticVersion"
+        },
+        "run_id": {
+          "pattern": "^(?:continuous|rehearsal)-[0-9]{3}$",
+          "type": "string"
+        },
+        "schema_version": {
+          "const": "0.1.0"
+        },
+        "stage": {
+          "$ref": "#/$defs/stage"
+        },
+        "stage_digests": {
+          "items": {
+            "$ref": "#/$defs/stageDigest"
+          },
+          "type": "array"
+        },
+        "status": {
+          "enum": [
+            "collecting",
+            "frozen",
+            "invalidated",
+            "preparing",
+            "reported",
+            "revealed"
+          ]
+        },
+        "truth_commitment": {
+          "oneOf": [
+            {
+              "$ref": "#/$defs/commitment"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "updated_at": {
+          "format": "date-time",
+          "type": "string"
+        }
+      },
+      "required": [
+        "$schema",
+        "artifact_type",
+        "artifact_version",
+        "artifacts",
+        "created_at",
+        "freeze_commit",
+        "frozen_artifact_set_digest",
+        "protocol_version",
+        "run_id",
+        "schema_version",
+        "stage",
+        "stage_digests",
+        "status",
+        "truth_commitment",
+        "updated_at"
+      ],
+      "type": "object"
+    },
+    "semanticVersion": {
+      "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$",
+      "type": "string"
+    },
+    "sha256": {
+      "pattern": "^[0-9a-f]{64}$",
+      "type": "string"
+    },
+    "stage": {
+      "enum": [
+        "execution",
+        "preparation",
+        "prediction",
+        "reconstruction",
+        "reporting",
+        "reveal",
+        "source_audit",
+        "source_encoding",
+        "view_generation"
+      ]
+    },
+    "stageDigest": {
+      "additionalProperties": false,
+      "properties": {
+        "artifact_set_digest": {
+          "$ref": "#/$defs/sha256"
+        },
+        "git_commit": {
+          "pattern": "^[0-9a-f]{40}$",
+          "type": "string"
+        },
+        "recorded_at": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "stage": {
+          "$ref": "#/$defs/stage"
+        }
+      },
+      "required": [
+        "artifact_set_digest",
+        "git_commit",
+        "recorded_at",
+        "stage"
+      ],
+      "type": "object"
+    }
+  },
+  "oneOf": [
+    {
+      "properties": {
+        "artifact_type": {
+          "const": "formal_run_manifest"
+        },
+        "run_id": {
+          "pattern": "^continuous-[0-9]{3}$"
+        }
+      },
+      "required": [
+        "artifact_type",
+        "run_id"
+      ]
+    },
+    {
+      "properties": {
+        "artifact_type": {
+          "const": "rehearsal_manifest"
+        },
+        "run_id": {
+          "pattern": "^rehearsal-[0-9]{3}$"
+        }
+      },
+      "required": [
+        "artifact_type",
+        "run_id"
+      ]
+    }
+  ],
+  "title": "Game Primitives Continuous Action Pilot Run Manifest 0.1.0",
+  "type": "object",
+  "$ref": "#/$defs/manifest"
+}

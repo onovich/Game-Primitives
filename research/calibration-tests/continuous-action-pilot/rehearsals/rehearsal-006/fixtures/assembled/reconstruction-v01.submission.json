@@ -1,0 +1,83 @@
+{
+  "$schema": "https://github.com/onovich/Game-Primitives/blob/main/research/calibration-tests/continuous-action-pilot/schema/role-submission-0.1.2.schema.json",
+  "actor": {
+    "identifier": "fixture-r006-v01",
+    "model": "synthetic fixture actor",
+    "model_version": "protocol-0.1.1",
+    "reasoning_effort": "low",
+    "role": "blind_reconstructor_predictor",
+    "session_id": "rehearsal-006-fixture-v01"
+  },
+  "artifact_type": "reconstruction_submission",
+  "artifact_version": "0.1.2",
+  "audit_checks": [],
+  "audit_decision": null,
+  "condition_id": "condition-v01",
+  "findings": [],
+  "first_submission": true,
+  "input_artifacts": [
+    {
+      "artifact_id": "task.reconstruct.v01",
+      "sha256": "97a1381162144db189e9d49431322ff93049a9b45b1a4f22f158da1836e4fc2f"
+    },
+    {
+      "artifact_id": "view.v01",
+      "sha256": "59f0f7ce382e0b3bbe56b79a63623a5faa0e4af110cfb23230c61e8b4dfb7bb6"
+    },
+    {
+      "artifact_id": "template.reconstruction.condition-v01.rehearsal-006",
+      "sha256": "0e9b9d41e620390b9bfa77e60ebbbe33c32ecf06468cba9eddf23efa5db5d4e4"
+    }
+  ],
+  "packaging": {
+    "copied_fields": [
+      "pollution",
+      "reconstruction_answers"
+    ],
+    "envelope_path": "research/calibration-tests/continuous-action-pilot/rehearsals/rehearsal-006/fixtures/assembled/reconstruction-v01.envelope.json",
+    "envelope_sha256": "245340b73e27f085be85998ea8bded93ac038c06aacad1f388dc8159d9222bde",
+    "mode": "deterministic_field_copy",
+    "semantic_copy_verified": true,
+    "tool_path": "research/calibration-tests/continuous-action-pilot/tools/build-role-submission-v0.1.1.py",
+    "tool_sha256": "d43a3248a645eaeac8d495409ac5fbfe95b66a8d0c7260fa4639ed19472890e7"
+  },
+  "pollution": {
+    "familiarity": {
+      "exact_result_knowledge": "none",
+      "exact_rule_knowledge": "none",
+      "exact_variant_knowledge": "none",
+      "project_exposure": "none",
+      "recognition_status": "none",
+      "recognized_family": null,
+      "recognized_work": null,
+      "related_genre_experience": "unknown"
+    },
+    "integrity_exposures": [],
+    "stage_update_note": null
+  },
+  "prediction_answers": [],
+  "prior_stage_submission_sha256": null,
+  "raw_payload": {
+    "artifact_id": "payload.submission.reconstruct.fixture.v01",
+    "path": "research/calibration-tests/continuous-action-pilot/rehearsals/rehearsal-006/fixtures/positive/reconstruction-minimal.payload.json",
+    "schema_path": "research/calibration-tests/continuous-action-pilot/schema/blind-response-interface-0.1.1.schema.json",
+    "schema_sha256": "aaa06ec2e530dd4ae8e3d769c7cc6263702290466d2c695f9ce9da14e2069f42",
+    "sha256": "deefa4a5a6920a325ca87a8ba0b3a65333150e30fc428cefe73862497feca527"
+  },
+  "reconstruction_answers": [
+    {
+      "ambiguities": [],
+      "assumptions": [],
+      "case_id": "CA-R2",
+      "compatible_branches": [],
+      "confidence_percent": 0,
+      "recovered_facts": [],
+      "uniqueness": "insufficient_information"
+    }
+  ],
+  "run_id": "rehearsal-006",
+  "stage": "reconstruction",
+  "submission_id": "submission.reconstruct.fixture.v01",
+  "submitted_at": "2026-07-28T01:10:00Z",
+  "task_id": "task.reconstruct.v01"
+}

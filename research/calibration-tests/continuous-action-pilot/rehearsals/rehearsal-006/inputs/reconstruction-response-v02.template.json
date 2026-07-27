@@ -1,0 +1,310 @@
+{
+  "$schema": "https://github.com/onovich/Game-Primitives/blob/main/research/calibration-tests/continuous-action-pilot/schema/reconstruction-response-template-0.1.1.schema.json",
+  "artifact_type": "reconstruction_response_template",
+  "artifact_version": "0.1.1",
+  "created_at": "2026-07-28T01:00:00Z",
+  "participant_contract": {
+    "artifact_type": "reconstruction_participant_response_contract",
+    "artifact_version": "0.1.1",
+    "confidence_percent_rule": {
+      "maximum": 100,
+      "minimum": 0,
+      "template_slot": "<integer-0-100>",
+      "type": "integer"
+    },
+    "integrity_exposure_item_shape": {
+      "additionalProperties": false,
+      "properties": {
+        "affected_case_ids": {
+          "items": {
+            "pattern": "^(?:CA-R[1-3]|NEG-01)$",
+            "type": "string"
+          },
+          "type": "array",
+          "uniqueItems": true
+        },
+        "description": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "evidence": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "exposure_type": {
+          "enum": [
+            "answer_or_project_prediction",
+            "formal_result",
+            "non_dispatched_artifact",
+            "other_condition",
+            "other_submission",
+            "outside_search",
+            "raw_source_or_identity",
+            "shared_workspace",
+            "truth_nonce_or_mapping",
+            "unfrozen_input"
+          ]
+        },
+        "occurred_at": {
+          "oneOf": [
+            {
+              "format": "date-time",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "stage": {
+          "enum": [
+            "prediction",
+            "reconstruction",
+            "source_audit"
+          ]
+        },
+        "status": {
+          "enum": [
+            "confirmed",
+            "none",
+            "suspected"
+          ]
+        }
+      },
+      "required": [
+        "affected_case_ids",
+        "description",
+        "evidence",
+        "exposure_type",
+        "occurred_at",
+        "stage",
+        "status"
+      ],
+      "type": "object"
+    },
+    "local_id_pattern": "^[a-z0-9][a-z0-9._-]*$",
+    "pollution_enums": {
+      "exact_result_knowledge": [
+        "known",
+        "none",
+        "suspected",
+        "unknown"
+      ],
+      "exact_rule_knowledge": [
+        "known",
+        "none",
+        "suspected",
+        "unknown"
+      ],
+      "exact_variant_knowledge": [
+        "known",
+        "none",
+        "suspected",
+        "unknown"
+      ],
+      "integrity_exposure_type": [
+        "answer_or_project_prediction",
+        "formal_result",
+        "non_dispatched_artifact",
+        "other_condition",
+        "other_submission",
+        "outside_search",
+        "raw_source_or_identity",
+        "shared_workspace",
+        "truth_nonce_or_mapping",
+        "unfrozen_input"
+      ],
+      "integrity_stage": [
+        "prediction",
+        "reconstruction",
+        "source_audit"
+      ],
+      "integrity_status": [
+        "confirmed",
+        "none",
+        "suspected"
+      ],
+      "project_exposure": [
+        "limited",
+        "none",
+        "substantial",
+        "unknown"
+      ],
+      "recognition_status": [
+        "identified",
+        "none",
+        "suspected"
+      ],
+      "related_genre_experience": [
+        "extensive",
+        "limited",
+        "none",
+        "unknown"
+      ]
+    },
+    "reconstruction_rules": {
+      "case_ids": [
+        "CA-R2"
+      ],
+      "case_occurrence": "exactly_once",
+      "local_id_fields": [
+        "compatible_branches[].branch_id",
+        "recovered_facts[].fact_id",
+        "supporting_record_ids[]"
+      ],
+      "uniqueness_values": [
+        "insufficient_information",
+        "multiple_compatible_structures",
+        "uniquely_recoverable"
+      ]
+    },
+    "required_fields": {
+      "compatible_branch": [
+        "branch_id",
+        "description",
+        "supporting_record_ids"
+      ],
+      "familiarity": [
+        "exact_result_knowledge",
+        "exact_rule_knowledge",
+        "exact_variant_knowledge",
+        "project_exposure",
+        "recognized_family",
+        "recognized_work",
+        "recognition_status",
+        "related_genre_experience"
+      ],
+      "integrity_exposure": [
+        "affected_case_ids",
+        "description",
+        "evidence",
+        "exposure_type",
+        "occurred_at",
+        "stage",
+        "status"
+      ],
+      "pollution": [
+        "familiarity",
+        "integrity_exposures",
+        "stage_update_note"
+      ],
+      "reconstruction_answer": [
+        "ambiguities",
+        "assumptions",
+        "case_id",
+        "compatible_branches",
+        "confidence_percent",
+        "recovered_facts",
+        "uniqueness"
+      ],
+      "reconstruction_payload": [
+        "$schema",
+        "artifact_type",
+        "artifact_version",
+        "pollution",
+        "reconstruction_answers"
+      ],
+      "recovered_fact": [
+        "claim",
+        "fact_id",
+        "recovery_status",
+        "supporting_record_ids"
+      ]
+    },
+    "source_bindings": {
+      "response_schema": {
+        "schema_id": "https://github.com/onovich/Game-Primitives/blob/main/research/calibration-tests/continuous-action-pilot/schema/blind-response-interface-0.1.1.schema.json",
+        "sha256": "aaa06ec2e530dd4ae8e3d769c7cc6263702290466d2c695f9ce9da14e2069f42"
+      },
+      "role_schema": {
+        "schema_id": "https://github.com/onovich/Game-Primitives/blob/main/research/calibration-tests/continuous-action-pilot/schema/role-submission-0.1.1.schema.json",
+        "sha256": "45bb21217f462371e7d16d64560a5ce48a207c7370dd0644d96587568f908b1e"
+      },
+      "run_id": "rehearsal-006",
+      "task_id": "task.reconstruct.v02"
+    },
+    "stage": "reconstruction",
+    "template_choice_semantics": {
+      "choice_placeholder_pattern": "^<[^<>]+>$",
+      "frozen_value_rule": "non_placeholder_values_are_frozen_except_declared_mutable_arrays",
+      "mutable_array_rules": [
+        {
+          "allowed_action": "keep_empty_or_append_schema_valid_items",
+          "array": "pollution.integrity_exposures"
+        },
+        {
+          "allowed_action": "keep_empty_or_append_nonempty_strings",
+          "array": "reconstruction_answers[].ambiguities"
+        },
+        {
+          "allowed_action": "keep_empty_or_append_nonempty_strings",
+          "array": "reconstruction_answers[].assumptions"
+        },
+        {
+          "allowed_action": "clear_retain_or_expand_complete_items",
+          "array": "reconstruction_answers[].compatible_branches"
+        },
+        {
+          "allowed_action": "clear_retain_or_expand_complete_items",
+          "array": "reconstruction_answers[].recovered_facts"
+        },
+        {
+          "allowed_action": "keep_empty_or_append_valid_local_ids",
+          "array": "supporting_record_ids"
+        }
+      ],
+      "template_kind": "typed_choice_template"
+    }
+  },
+  "run_id": "rehearsal-006",
+  "stage": "reconstruction",
+  "target_response_schema": {
+    "artifact_id": "schema.blind-response-interface-0.1.1",
+    "path": "research/calibration-tests/continuous-action-pilot/schema/blind-response-interface-0.1.1.schema.json",
+    "sha256": "aaa06ec2e530dd4ae8e3d769c7cc6263702290466d2c695f9ce9da14e2069f42"
+  },
+  "template_id": "template.reconstruction.condition-v02.rehearsal-006",
+  "template_payload": {
+    "$schema": "https://github.com/onovich/Game-Primitives/blob/main/research/calibration-tests/continuous-action-pilot/schema/blind-response-interface-0.1.1.schema.json",
+    "artifact_type": "reconstruction_response_payload",
+    "artifact_version": "0.1.1",
+    "pollution": {
+      "familiarity": {
+        "exact_result_knowledge": "<none|suspected|known|unknown>",
+        "exact_rule_knowledge": "<none|suspected|known|unknown>",
+        "exact_variant_knowledge": "<none|suspected|known|unknown>",
+        "project_exposure": "<none|limited|substantial|unknown>",
+        "recognition_status": "<none|suspected|identified>",
+        "recognized_family": null,
+        "recognized_work": null,
+        "related_genre_experience": "<none|limited|extensive|unknown>"
+      },
+      "integrity_exposures": [],
+      "stage_update_note": null
+    },
+    "reconstruction_answers": [
+      {
+        "ambiguities": [],
+        "assumptions": [],
+        "case_id": "CA-R2",
+        "compatible_branches": [
+          {
+            "branch_id": "<required-local-id>",
+            "description": "<required-compatible-structure-description>",
+            "supporting_record_ids": []
+          }
+        ],
+        "confidence_percent": "<integer-0-100>",
+        "recovered_facts": [
+          {
+            "claim": "<required-fact-claim>",
+            "fact_id": "<required-local-id>",
+            "recovery_status": "<inferred_with_assumption|not_recoverable|recovered>",
+            "supporting_record_ids": []
+          }
+        ],
+        "uniqueness": "<insufficient_information|multiple_compatible_structures|uniquely_recoverable>"
+      }
+    ]
+  }
+}

@@ -1,0 +1,8 @@
+{
+  "identifier": "fixture-r006-v01",
+  "model": "synthetic fixture actor",
+  "model_version": "protocol-0.1.1",
+  "reasoning_effort": "low",
+  "role": "blind_reconstructor_predictor",
+  "session_id": "rehearsal-006-fixture-v01"
+}

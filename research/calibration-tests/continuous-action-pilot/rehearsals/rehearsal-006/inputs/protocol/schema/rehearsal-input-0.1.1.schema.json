@@ -1,0 +1,487 @@
+{
+  "$id": "https://github.com/onovich/Game-Primitives/blob/main/research/calibration-tests/continuous-action-pilot/schema/rehearsal-input-0.1.1.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$defs": {
+    "conditionView": {
+      "additionalProperties": false,
+      "properties": {
+        "artifact_type": {
+          "const": "rehearsal_condition_view"
+        },
+        "artifact_version": {
+          "const": "0.1.0"
+        },
+        "behavior_scope": {
+          "const": "structural_only"
+        },
+        "case_id": {
+          "const": "CA-R2"
+        },
+        "condition_id": {
+          "pattern": "^condition-v0[12]$",
+          "type": "string"
+        },
+        "initial_state": {
+          "items": {
+            "$ref": "#/$defs/stateValue"
+          },
+          "minItems": 1,
+          "type": "array"
+        },
+        "input_trace": {
+          "items": {
+            "$ref": "#/$defs/inputStep"
+          },
+          "minItems": 1,
+          "type": "array"
+        },
+        "opaque_configuration": {
+          "$ref": "#/$defs/opaqueConfiguration"
+        },
+        "operational_records": {
+          "items": {
+            "$ref": "#/$defs/operationalRecord"
+          },
+          "minItems": 1,
+          "type": "array"
+        },
+        "operation_trace": {
+          "items": {
+            "$ref": "#/$defs/operationStep"
+          },
+          "minItems": 1,
+          "type": "array"
+        },
+        "output_contract": {
+          "$ref": "#/$defs/outputContract"
+        },
+        "projection_notice": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "run_id": {
+          "pattern": "^rehearsal-[0-9]{3}$",
+          "type": "string"
+        },
+        "time_base": {
+          "$ref": "#/$defs/timeBase"
+        }
+      },
+      "required": [
+        "artifact_type",
+        "artifact_version",
+        "behavior_scope",
+        "case_id",
+        "condition_id",
+        "initial_state",
+        "input_trace",
+        "opaque_configuration",
+        "operation_trace",
+        "output_contract",
+        "run_id"
+      ],
+      "type": "object"
+    },
+    "inputStep": {
+      "additionalProperties": false,
+      "properties": {
+        "raw_value": {
+          "type": "integer"
+        },
+        "step": {
+          "minimum": 1,
+          "type": "integer"
+        }
+      },
+      "required": [
+        "raw_value",
+        "step"
+      ],
+      "type": "object"
+    },
+    "localId": {
+      "pattern": "^[a-z0-9][a-z0-9._-]*$",
+      "type": "string"
+    },
+    "opaqueConfiguration": {
+      "additionalProperties": false,
+      "properties": {
+        "active_value": {
+          "type": "integer"
+        },
+        "allowed_values": {
+          "items": {
+            "type": "integer"
+          },
+          "minItems": 2,
+          "type": "array",
+          "uniqueItems": true
+        },
+        "variable_id": {
+          "$ref": "#/$defs/localId"
+        }
+      },
+      "required": [
+        "active_value",
+        "allowed_values",
+        "variable_id"
+      ],
+      "type": "object"
+    },
+    "operationStep": {
+      "additionalProperties": false,
+      "properties": {
+        "operation_id": {
+          "$ref": "#/$defs/localId"
+        },
+        "record_refs": {
+          "items": {
+            "$ref": "#/$defs/localId"
+          },
+          "type": "array",
+          "uniqueItems": true
+        },
+        "step": {
+          "minimum": 1,
+          "type": "integer"
+        },
+        "writes": {
+          "items": {
+            "$ref": "#/$defs/localId"
+          },
+          "type": "array",
+          "uniqueItems": true
+        }
+      },
+      "required": [
+        "operation_id",
+        "step"
+      ],
+      "type": "object"
+    },
+    "operationalRecord": {
+      "oneOf": [
+        {
+          "$ref": "#/$defs/samplingPolicy"
+        },
+        {
+          "$ref": "#/$defs/stateUpdateProcess"
+        },
+        {
+          "$ref": "#/$defs/withinStepOrder"
+        }
+      ]
+    },
+    "outputContract": {
+      "additionalProperties": false,
+      "properties": {
+        "observation_id": {
+          "$ref": "#/$defs/localId"
+        },
+        "read_field_id": {
+          "$ref": "#/$defs/localId"
+        },
+        "stop_boundary_id": {
+          "$ref": "#/$defs/localId"
+        }
+      },
+      "required": [
+        "observation_id",
+        "read_field_id",
+        "stop_boundary_id"
+      ],
+      "type": "object"
+    },
+    "rehearsalTruthCommitment": {
+      "additionalProperties": false,
+      "properties": {
+        "algorithm": {
+          "const": "SHA-256"
+        },
+        "artifact_type": {
+          "const": "rehearsal_truth_commitment"
+        },
+        "artifact_version": {
+          "const": "0.1.0"
+        },
+        "combination": {
+          "const": "secret_nonce_bytes || exact_truth_bundle_bytes"
+        },
+        "commitment": {
+          "$ref": "#/$defs/sha256"
+        },
+        "created_at": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "nonce_length_bytes": {
+          "const": 32
+        },
+        "run_id": {
+          "pattern": "^rehearsal-[0-9]{3}$",
+          "type": "string"
+        },
+        "truth_bundle_bytes": {
+          "minimum": 1,
+          "type": "integer"
+        },
+        "truth_bundle_name": {
+          "const": "sealed-truth.json"
+        }
+      },
+      "required": [
+        "algorithm",
+        "artifact_type",
+        "artifact_version",
+        "combination",
+        "commitment",
+        "created_at",
+        "nonce_length_bytes",
+        "run_id",
+        "truth_bundle_bytes",
+        "truth_bundle_name"
+      ],
+      "type": "object"
+    },
+    "samplingPolicy": {
+      "additionalProperties": false,
+      "properties": {
+        "record_id": {
+          "$ref": "#/$defs/localId"
+        },
+        "record_type": {
+          "const": "input_sampling_policy"
+        },
+        "rules": {
+          "items": {
+            "$ref": "#/$defs/samplingRule"
+          },
+          "minItems": 1,
+          "type": "array"
+        },
+        "sampled_value_id": {
+          "$ref": "#/$defs/localId"
+        }
+      },
+      "required": [
+        "record_id",
+        "record_type",
+        "rules",
+        "sampled_value_id"
+      ],
+      "type": "object"
+    },
+    "samplingRule": {
+      "additionalProperties": false,
+      "properties": {
+        "configuration_value": {
+          "type": "integer"
+        },
+        "read_semantics": {
+          "minLength": 1,
+          "type": "string"
+        }
+      },
+      "required": [
+        "configuration_value",
+        "read_semantics"
+      ],
+      "type": "object"
+    },
+    "sha256": {
+      "pattern": "^[0-9a-f]{64}$",
+      "type": "string"
+    },
+    "stateUpdateProcess": {
+      "additionalProperties": false,
+      "properties": {
+        "record_id": {
+          "$ref": "#/$defs/localId"
+        },
+        "record_type": {
+          "const": "state_update_process"
+        },
+        "update_rule": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "write_field_id": {
+          "$ref": "#/$defs/localId"
+        }
+      },
+      "required": [
+        "record_id",
+        "record_type",
+        "update_rule",
+        "write_field_id"
+      ],
+      "type": "object"
+    },
+    "stateValue": {
+      "additionalProperties": false,
+      "properties": {
+        "field_id": {
+          "$ref": "#/$defs/localId"
+        },
+        "value": {
+          "type": "integer"
+        }
+      },
+      "required": [
+        "field_id",
+        "value"
+      ],
+      "type": "object"
+    },
+    "timeBase": {
+      "additionalProperties": false,
+      "properties": {
+        "ordered_steps": {
+          "items": {
+            "minimum": 1,
+            "type": "integer"
+          },
+          "minItems": 1,
+          "type": "array",
+          "uniqueItems": true
+        },
+        "time_base_id": {
+          "$ref": "#/$defs/localId"
+        }
+      },
+      "required": [
+        "ordered_steps",
+        "time_base_id"
+      ],
+      "type": "object"
+    },
+    "variantEnvelope": {
+      "additionalProperties": false,
+      "properties": {
+        "artifact_type": {
+          "const": "rehearsal_variant_envelope"
+        },
+        "artifact_version": {
+          "const": "0.1.0"
+        },
+        "behavior_scope": {
+          "const": "structural_only"
+        },
+        "case_id": {
+          "const": "CA-R2"
+        },
+        "invariants": {
+          "items": {
+            "$ref": "#/$defs/localId"
+          },
+          "minItems": 1,
+          "type": "array",
+          "uniqueItems": true
+        },
+        "observation": {
+          "$ref": "#/$defs/variantObservation"
+        },
+        "run_id": {
+          "pattern": "^rehearsal-[0-9]{3}$",
+          "type": "string"
+        },
+        "stop_boundary_id": {
+          "$ref": "#/$defs/localId"
+        },
+        "variable_intervention": {
+          "$ref": "#/$defs/variableIntervention"
+        }
+      },
+      "required": [
+        "artifact_type",
+        "artifact_version",
+        "behavior_scope",
+        "case_id",
+        "invariants",
+        "observation",
+        "run_id",
+        "stop_boundary_id",
+        "variable_intervention"
+      ],
+      "type": "object"
+    },
+    "variantObservation": {
+      "additionalProperties": false,
+      "properties": {
+        "comparison": {
+          "const": "exact"
+        },
+        "observation_id": {
+          "$ref": "#/$defs/localId"
+        },
+        "unit": {
+          "minLength": 1,
+          "type": "string"
+        }
+      },
+      "required": [
+        "comparison",
+        "observation_id",
+        "unit"
+      ],
+      "type": "object"
+    },
+    "variableIntervention": {
+      "additionalProperties": false,
+      "properties": {
+        "baseline_value": {
+          "type": "integer"
+        },
+        "variable_id": {
+          "$ref": "#/$defs/localId"
+        },
+        "variant_value": {
+          "type": "integer"
+        }
+      },
+      "required": [
+        "baseline_value",
+        "variable_id",
+        "variant_value"
+      ],
+      "type": "object"
+    },
+    "withinStepOrder": {
+      "additionalProperties": false,
+      "properties": {
+        "ordering": {
+          "items": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "minItems": 2,
+          "type": "array"
+        },
+        "record_id": {
+          "$ref": "#/$defs/localId"
+        },
+        "record_type": {
+          "const": "within_step_order"
+        }
+      },
+      "required": [
+        "ordering",
+        "record_id",
+        "record_type"
+      ],
+      "type": "object"
+    }
+  },
+  "oneOf": [
+    {
+      "$ref": "#/$defs/conditionView"
+    },
+    {
+      "$ref": "#/$defs/variantEnvelope"
+    },
+    {
+      "$ref": "#/$defs/rehearsalTruthCommitment"
+    }
+  ],
+  "title": "Game Primitives Continuous Action Rehearsal Inputs 0.1.1"
+}

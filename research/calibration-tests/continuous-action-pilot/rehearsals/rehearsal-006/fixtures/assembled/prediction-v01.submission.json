@@ -1,0 +1,118 @@
+{
+  "$schema": "https://github.com/onovich/Game-Primitives/blob/main/research/calibration-tests/continuous-action-pilot/schema/role-submission-0.1.2.schema.json",
+  "actor": {
+    "identifier": "fixture-r006-v01",
+    "model": "synthetic fixture actor",
+    "model_version": "protocol-0.1.1",
+    "reasoning_effort": "low",
+    "role": "blind_reconstructor_predictor",
+    "session_id": "rehearsal-006-fixture-v01"
+  },
+  "artifact_type": "prediction_submission",
+  "artifact_version": "0.1.2",
+  "audit_checks": [],
+  "audit_decision": null,
+  "condition_id": "condition-v01",
+  "findings": [],
+  "first_submission": true,
+  "input_artifacts": [
+    {
+      "artifact_id": "task.predict.neutral",
+      "sha256": "53f46034304fd6659550e553a4aedc5af46556818c5c2dd4d20375a7b708cc0b"
+    },
+    {
+      "artifact_id": "envelope.rehearsal-006.stage2",
+      "sha256": "a3a951fdb95cf2a6cb1c473b5ef741e8bba8cd653b121b54476a772936449f49"
+    },
+    {
+      "artifact_id": "template.prediction.rehearsal-006",
+      "sha256": "1f60b5e5d6e0da72998c45eba6e88597747cf24252b9d0b7b6094f120a32838b"
+    },
+    {
+      "artifact_id": "submission.reconstruct.fixture.v01",
+      "sha256": "59d1fbe551ac5555aae2bf76c13708de0160255589f2428a4fb773f362d68978"
+    }
+  ],
+  "packaging": {
+    "copied_fields": [
+      "pollution",
+      "prediction_answers"
+    ],
+    "envelope_path": "research/calibration-tests/continuous-action-pilot/rehearsals/rehearsal-006/fixtures/assembled/prediction-v01.envelope.json",
+    "envelope_sha256": "a64b7b75f687b5793a2005d3ecf424f0413ec3d5935587ad6ab2974543b6978a",
+    "mode": "deterministic_field_copy",
+    "semantic_copy_verified": true,
+    "tool_path": "research/calibration-tests/continuous-action-pilot/tools/build-role-submission-v0.1.1.py",
+    "tool_sha256": "d43a3248a645eaeac8d495409ac5fbfe95b66a8d0c7260fa4639ed19472890e7"
+  },
+  "pollution": {
+    "familiarity": {
+      "exact_result_knowledge": "none",
+      "exact_rule_knowledge": "none",
+      "exact_variant_knowledge": "none",
+      "project_exposure": "none",
+      "recognition_status": "none",
+      "recognized_family": null,
+      "recognized_work": null,
+      "related_genre_experience": "unknown"
+    },
+    "integrity_exposures": [],
+    "stage_update_note": null
+  },
+  "prediction_answers": [
+    {
+      "assumptions": [],
+      "case_id": "CA-R2",
+      "compatible_alternatives": [],
+      "confidence_percent": 100,
+      "expectations": [
+        {
+          "configuration_id": "config.baseline",
+          "expectation_kind": "exact",
+          "observation_id": "obs.total-at-stop",
+          "tolerance_rule_id": "tol.synthetic.exact",
+          "value": {
+            "serialized_value": "7",
+            "unit": "count",
+            "value_type": "integer"
+          }
+        },
+        {
+          "configuration_id": "config.variant",
+          "expectation_kind": "exact",
+          "observation_id": "obs.total-at-stop",
+          "tolerance_rule_id": "tol.synthetic.exact",
+          "value": {
+            "serialized_value": "4",
+            "unit": "count",
+            "value_type": "integer"
+          }
+        }
+      ],
+      "prediction_status": "determinate",
+      "reasoning": "配置 0 每步读取 2、5，配置 1 两步复用入口值 2。",
+      "supporting_record_ids": [
+        "rec.sampling-policy",
+        "rec.accumulator-process",
+        "rec.step-order",
+        "obs.total-at-stop",
+        "config.baseline",
+        "config.variant"
+      ]
+    }
+  ],
+  "prior_stage_submission_sha256": "59d1fbe551ac5555aae2bf76c13708de0160255589f2428a4fb773f362d68978",
+  "raw_payload": {
+    "artifact_id": "payload.submission.predict.fixture.v01",
+    "path": "research/calibration-tests/continuous-action-pilot/rehearsals/rehearsal-006/fixtures/positive/prediction-determinate.payload.json",
+    "schema_path": "research/calibration-tests/continuous-action-pilot/schema/blind-response-interface-0.1.1.schema.json",
+    "schema_sha256": "aaa06ec2e530dd4ae8e3d769c7cc6263702290466d2c695f9ce9da14e2069f42",
+    "sha256": "fa3a8f8665ef203e7ee01e75fc33bb03dfc6241e2acd7a50bf22f0da7670a791"
+  },
+  "reconstruction_answers": [],
+  "run_id": "rehearsal-006",
+  "stage": "prediction",
+  "submission_id": "submission.predict.fixture.v01",
+  "submitted_at": "2026-07-28T01:12:00Z",
+  "task_id": "task.predict.neutral"
+}

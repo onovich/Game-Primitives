@@ -1,0 +1,324 @@
+{
+  "$defs": {
+    "promptReference": {
+      "additionalProperties": false,
+      "properties": {
+        "path": {
+          "pattern": "^research/calibration-tests/continuous-action-pilot/rehearsals/rehearsal-006/inputs/dispatch/stage(?:1-v0[12]|2-neutral)\\.prompt\\.txt$",
+          "type": "string"
+        },
+        "sha256": {
+          "$ref": "#/$defs/sha256"
+        }
+      },
+      "required": [
+        "path",
+        "sha256"
+      ],
+      "type": "object"
+    },
+    "seat": {
+      "additionalProperties": false,
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "condition_id": {
+                "const": "condition-v01"
+              }
+            },
+            "required": [
+              "condition_id"
+            ]
+          },
+          "then": {
+            "properties": {
+              "stage1_prompt": {
+                "properties": {
+                  "path": {
+                    "const": "research/calibration-tests/continuous-action-pilot/rehearsals/rehearsal-006/inputs/dispatch/stage1-v01.prompt.txt"
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "condition_id": {
+                "const": "condition-v02"
+              }
+            },
+            "required": [
+              "condition_id"
+            ]
+          },
+          "then": {
+            "properties": {
+              "stage1_prompt": {
+                "properties": {
+                  "path": {
+                    "const": "research/calibration-tests/continuous-action-pilot/rehearsals/rehearsal-006/inputs/dispatch/stage1-v02.prompt.txt"
+                  }
+                }
+              }
+            }
+          }
+        }
+      ],
+      "properties": {
+        "actor_id": {
+          "enum": [
+            "r006-v01-a",
+            "r006-v01-b",
+            "r006-v02-a",
+            "r006-v02-b"
+          ]
+        },
+        "condition_id": {
+          "enum": [
+            "condition-v01",
+            "condition-v02"
+          ]
+        },
+        "directory_name": {
+          "enum": [
+            "gp-r006-v01-a",
+            "gp-r006-v01-b",
+            "gp-r006-v02-a",
+            "gp-r006-v02-b"
+          ]
+        },
+        "stage1_prompt": {
+          "$ref": "#/$defs/promptReference"
+        },
+        "stage2_prompt": {
+          "allOf": [
+            {
+              "$ref": "#/$defs/promptReference"
+            },
+            {
+              "properties": {
+                "path": {
+                  "const": "research/calibration-tests/continuous-action-pilot/rehearsals/rehearsal-006/inputs/dispatch/stage2-neutral.prompt.txt"
+                }
+              }
+            }
+          ]
+        }
+      },
+      "required": [
+        "actor_id",
+        "condition_id",
+        "directory_name",
+        "stage1_prompt",
+        "stage2_prompt"
+      ],
+      "type": "object"
+    },
+    "sha256": {
+      "pattern": "^[0-9a-f]{64}$",
+      "type": "string"
+    }
+  },
+  "$id": "https://github.com/onovich/Game-Primitives/blob/main/research/calibration-tests/continuous-action-pilot/schema/rehearsal-actor-dispatch-plan-0.1.0.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "allOf": [
+    {
+      "properties": {
+        "seats": {
+          "contains": {
+            "properties": {
+              "actor_id": {
+                "const": "r006-v01-a"
+              },
+              "condition_id": {
+                "const": "condition-v01"
+              },
+              "directory_name": {
+                "const": "gp-r006-v01-a"
+              }
+            },
+            "required": [
+              "actor_id",
+              "condition_id",
+              "directory_name"
+            ]
+          },
+          "maxContains": 1,
+          "minContains": 1
+        }
+      }
+    },
+    {
+      "properties": {
+        "seats": {
+          "contains": {
+            "properties": {
+              "actor_id": {
+                "const": "r006-v01-b"
+              },
+              "condition_id": {
+                "const": "condition-v01"
+              },
+              "directory_name": {
+                "const": "gp-r006-v01-b"
+              }
+            },
+            "required": [
+              "actor_id",
+              "condition_id",
+              "directory_name"
+            ]
+          },
+          "maxContains": 1,
+          "minContains": 1
+        }
+      }
+    },
+    {
+      "properties": {
+        "seats": {
+          "contains": {
+            "properties": {
+              "actor_id": {
+                "const": "r006-v02-a"
+              },
+              "condition_id": {
+                "const": "condition-v02"
+              },
+              "directory_name": {
+                "const": "gp-r006-v02-a"
+              }
+            },
+            "required": [
+              "actor_id",
+              "condition_id",
+              "directory_name"
+            ]
+          },
+          "maxContains": 1,
+          "minContains": 1
+        }
+      }
+    },
+    {
+      "properties": {
+        "seats": {
+          "contains": {
+            "properties": {
+              "actor_id": {
+                "const": "r006-v02-b"
+              },
+              "condition_id": {
+                "const": "condition-v02"
+              },
+              "directory_name": {
+                "const": "gp-r006-v02-b"
+              }
+            },
+            "required": [
+              "actor_id",
+              "condition_id",
+              "directory_name"
+            ]
+          },
+          "maxContains": 1,
+          "minContains": 1
+        }
+      }
+    }
+  ],
+  "properties": {
+    "$schema": {
+      "const": "https://github.com/onovich/Game-Primitives/blob/main/research/calibration-tests/continuous-action-pilot/schema/rehearsal-actor-dispatch-plan-0.1.0.schema.json"
+    },
+    "actor_configuration": {
+      "additionalProperties": false,
+      "properties": {
+        "model": {
+          "const": "gpt-5.6-sol"
+        },
+        "reasoning_effort": {
+          "const": "high"
+        },
+        "role": {
+          "const": "blind_reconstructor_predictor"
+        }
+      },
+      "required": [
+        "model",
+        "reasoning_effort",
+        "role"
+      ],
+      "type": "object"
+    },
+    "artifact_type": {
+      "const": "rehearsal_actor_dispatch_plan"
+    },
+    "artifact_version": {
+      "const": "0.1.0"
+    },
+    "created_at": {
+      "format": "date-time",
+      "type": "string"
+    },
+    "dispatch_rules": {
+      "additionalProperties": false,
+      "properties": {
+        "corrective_followup_allowed": {
+          "const": false
+        },
+        "first_answer_only": {
+          "const": true
+        },
+        "fork_existing_thread": {
+          "const": false
+        },
+        "same_thread_for_stage2": {
+          "const": true
+        },
+        "target_type": {
+          "const": "projectless"
+        },
+        "tool_calls_allowed": {
+          "const": false
+        }
+      },
+      "required": [
+        "corrective_followup_allowed",
+        "first_answer_only",
+        "fork_existing_thread",
+        "same_thread_for_stage2",
+        "target_type",
+        "tool_calls_allowed"
+      ],
+      "type": "object"
+    },
+    "run_id": {
+      "const": "rehearsal-006"
+    },
+    "seats": {
+      "items": {
+        "$ref": "#/$defs/seat"
+      },
+      "maxItems": 4,
+      "minItems": 4,
+      "type": "array",
+      "uniqueItems": true
+    }
+  },
+  "required": [
+    "$schema",
+    "actor_configuration",
+    "artifact_type",
+    "artifact_version",
+    "created_at",
+    "dispatch_rules",
+    "run_id",
+    "seats"
+  ],
+  "type": "object"
+}

@@ -1,0 +1,301 @@
+{
+  "$defs": {
+    "check": {
+      "additionalProperties": false,
+      "properties": {
+        "acceptance_condition": {
+          "enum": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            9,
+            10
+          ]
+        },
+        "check_id": {
+          "pattern": "^[a-z0-9][a-z0-9._-]*$",
+          "type": "string"
+        },
+        "evidence": {
+          "items": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "minItems": 1,
+          "type": "array",
+          "uniqueItems": true
+        },
+        "status": {
+          "const": "passed"
+        }
+      },
+      "required": [
+        "acceptance_condition",
+        "check_id",
+        "evidence",
+        "status"
+      ],
+      "type": "object"
+    },
+    "sha256": {
+      "pattern": "^[0-9a-f]{64}$",
+      "type": "string"
+    }
+  },
+  "$id": "https://github.com/onovich/Game-Primitives/blob/main/research/calibration-tests/continuous-action-pilot/schema/participant-interface-readiness-0.1.0.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "$schema": {
+      "const": "https://github.com/onovich/Game-Primitives/blob/main/research/calibration-tests/continuous-action-pilot/schema/participant-interface-readiness-0.1.0.schema.json"
+    },
+    "artifact_type": {
+      "const": "participant_interface_readiness"
+    },
+    "artifact_version": {
+      "const": "0.1.0"
+    },
+    "assessed_at": {
+      "format": "date-time",
+      "type": "string"
+    },
+    "checks": {
+      "allOf": [
+        {
+          "contains": {
+            "properties": {
+              "acceptance_condition": {
+                "const": 1
+              }
+            },
+            "required": [
+              "acceptance_condition"
+            ]
+          },
+          "maxContains": 1,
+          "minContains": 1
+        },
+        {
+          "contains": {
+            "properties": {
+              "acceptance_condition": {
+                "const": 2
+              }
+            },
+            "required": [
+              "acceptance_condition"
+            ]
+          },
+          "maxContains": 1,
+          "minContains": 1
+        },
+        {
+          "contains": {
+            "properties": {
+              "acceptance_condition": {
+                "const": 3
+              }
+            },
+            "required": [
+              "acceptance_condition"
+            ]
+          },
+          "maxContains": 1,
+          "minContains": 1
+        },
+        {
+          "contains": {
+            "properties": {
+              "acceptance_condition": {
+                "const": 4
+              }
+            },
+            "required": [
+              "acceptance_condition"
+            ]
+          },
+          "maxContains": 1,
+          "minContains": 1
+        },
+        {
+          "contains": {
+            "properties": {
+              "acceptance_condition": {
+                "const": 5
+              }
+            },
+            "required": [
+              "acceptance_condition"
+            ]
+          },
+          "maxContains": 1,
+          "minContains": 1
+        },
+        {
+          "contains": {
+            "properties": {
+              "acceptance_condition": {
+                "const": 6
+              }
+            },
+            "required": [
+              "acceptance_condition"
+            ]
+          },
+          "maxContains": 1,
+          "minContains": 1
+        },
+        {
+          "contains": {
+            "properties": {
+              "acceptance_condition": {
+                "const": 7
+              }
+            },
+            "required": [
+              "acceptance_condition"
+            ]
+          },
+          "maxContains": 1,
+          "minContains": 1
+        },
+        {
+          "contains": {
+            "properties": {
+              "acceptance_condition": {
+                "const": 9
+              }
+            },
+            "required": [
+              "acceptance_condition"
+            ]
+          },
+          "maxContains": 1,
+          "minContains": 1
+        },
+        {
+          "contains": {
+            "properties": {
+              "acceptance_condition": {
+                "const": 10
+              }
+            },
+            "required": [
+              "acceptance_condition"
+            ]
+          },
+          "maxContains": 1,
+          "minContains": 1
+        }
+      ],
+      "items": {
+        "$ref": "#/$defs/check"
+      },
+      "maxItems": 9,
+      "minItems": 9,
+      "type": "array",
+      "uniqueItems": true
+    },
+    "deferred_acceptance_conditions": {
+      "const": [
+        8
+      ]
+    },
+    "fixture_expectations_sha256": {
+      "$ref": "#/$defs/sha256"
+    },
+    "formal_input_access": {
+      "const": false
+    },
+    "isolated_repository_check": {
+      "const": "passed"
+    },
+    "isolation_evidence": {
+      "additionalProperties": false,
+      "properties": {
+        "command_count": {
+          "const": 12
+        },
+        "disallowed_path_references": {
+          "maxItems": 0,
+          "type": "array"
+        },
+        "executed_tool_paths": {
+          "const": [
+            "research/calibration-tests/continuous-action-pilot/tools/build-role-submission-v0.1.1.py",
+            "research/calibration-tests/continuous-action-pilot/tools/materialize-rehearsal-006-prompts.py",
+            "research/calibration-tests/continuous-action-pilot/tools/verify-prediction-template-contract-v0.1.1.py",
+            "research/calibration-tests/continuous-action-pilot/tools/verify-reconstruction-template-contract-v0.1.1.py"
+          ]
+        },
+        "formal_run_directory_present": {
+          "const": false
+        },
+        "mirror_kind": {
+          "const": "temporary_allowlisted_repository_copy"
+        }
+      },
+      "required": [
+        "command_count",
+        "disallowed_path_references",
+        "executed_tool_paths",
+        "formal_run_directory_present",
+        "mirror_kind"
+      ],
+      "type": "object"
+    },
+    "manifest_missing_required_paths": {
+      "maxItems": 0,
+      "type": "array"
+    },
+    "manifest_path": {
+      "const": "research/calibration-tests/continuous-action-pilot/rehearsals/rehearsal-006/manifest.json"
+    },
+    "protocol_version": {
+      "const": "0.1.1"
+    },
+    "required_frozen_paths": {
+      "items": {
+        "minLength": 1,
+        "type": "string"
+      },
+      "minItems": 1,
+      "type": "array",
+      "uniqueItems": true
+    },
+    "run_id": {
+      "const": "rehearsal-006"
+    },
+    "scope": {
+      "const": "pre_dispatch_acceptance_conditions_1_7_9_10"
+    },
+    "status": {
+      "const": "passed"
+    }
+  },
+  "required": [
+    "$schema",
+    "artifact_type",
+    "artifact_version",
+    "assessed_at",
+    "checks",
+    "deferred_acceptance_conditions",
+    "fixture_expectations_sha256",
+    "formal_input_access",
+    "isolated_repository_check",
+    "isolation_evidence",
+    "manifest_missing_required_paths",
+    "manifest_path",
+    "protocol_version",
+    "required_frozen_paths",
+    "run_id",
+    "scope",
+    "status"
+  ],
+  "title": "Game Primitives Participant Interface Readiness 0.1.0",
+  "type": "object"
+}

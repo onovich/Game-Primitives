@@ -1,0 +1,14 @@
+{
+  "$schema": "https://github.com/onovich/Game-Primitives/blob/main/research/calibration-tests/continuous-action-pilot/schema/reconstruction-template-contract-check-0.1.1.schema.json",
+  "artifact_type": "reconstruction_template_contract_check",
+  "artifact_version": "0.1.1",
+  "issue_count": 0,
+  "issues": [],
+  "participant_contract_schema_sha256": "bd2a65efcd8c5be956c11190a234cf67e553dffed4907415e7a9e0d68d793eb6",
+  "response_schema_sha256": "aaa06ec2e530dd4ae8e3d769c7cc6263702290466d2c695f9ce9da14e2069f42",
+  "role_schema_sha256": "45bb21217f462371e7d16d64560a5ce48a207c7370dd0644d96587568f908b1e",
+  "status": "passed",
+  "task_sha256": "951497b70287751ef1055220fd18c31a507e1dd29caa448a35e1cd6395d63d5d",
+  "template_schema_sha256": "6a106b21b849c2fc663a08455be552222124f4d3ea2a3e3c835f10e20c09ba83",
+  "template_sha256": "e4adf6b61cc60a65e8074139ae36c7b5b960e13a470351b3ba30af0bddd530d8"
+}

@@ -1,6 +1,6 @@
 # 连续行动盲测协议 0.1.1 修复计划
 
-> 状态：工作规范  
+> 状态：实施中；门前合成验收已通过，等待 `rehearsal-006` 空白 actor 验收
 > 来源：`continuous-001` 门后阻断事故  
 > 目标：先修复参与者接口，再建立新的彩排与正式轮次
 
@@ -75,6 +75,16 @@
 
 0.1.1 必须把模板定义为“带类型的选择模板”，并在任务中明确哪些值是冻结常量，哪些值是参与者必须选择的槽位。
 
+`confidence_percent` 同样是参与者必须选择的类型化槽位：
+
+```json
+{
+  "confidence_percent": "<integer-0-100>"
+}
+```
+
+任务必须明确要求把它替换为 0 至 100 的 JSON 整数；模板不得用超出响应 Schema 范围的哨兵值冒充冻结常量。
+
 ## 新增门前检查
 
 [`verify-prediction-template-contract-v0.1.0.py`](tools/verify-prediction-template-contract-v0.1.0.py) 是第一道新增检查。它现在能够：
@@ -100,6 +110,18 @@ python research/calibration-tests/continuous-action-pilot/tools/verify-predictio
 ```text
 python research/calibration-tests/continuous-action-pilot/tools/verify-prediction-template-contract-v0.1.0.py self-test
 ```
+
+0.1.1 不覆盖这组事故复算材料，而是新增阶段专用检查：
+
+- [`verify-prediction-template-contract-v0.1.1.py`](tools/verify-prediction-template-contract-v0.1.1.py) 从任务、响应 Schema 与角色 Schema 机械派生预测参与者契约，并逐字段复核模板、分支、单位和配置—观察量笛卡尔积；
+- [`verify-reconstruction-template-contract-v0.1.1.py`](tools/verify-reconstruction-template-contract-v0.1.1.py) 机械派生重构参与者契约，并拒绝第二阶段观察规则泄漏；
+- [`build-role-submission-v0.1.1.py`](tools/build-role-submission-v0.1.1.py) 只接受参与者原始 payload，校验前序重构和前序任务的显式绑定，再确定性生成机器信封与 0.1.2 提交；
+- [`materialize-rehearsal-006-prompts.py`](tools/materialize-rehearsal-006-prompts.py) 生成并复核四席 projectless 会话使用的逐字节两阶段操作提示与派发计划；
+- [`verify-rehearsal-006.py`](tools/verify-rehearsal-006.py) 在不含 `runs/` 的临时白名单仓库镜像中重放全部正例、负控和契约检查。
+
+截至门前冻结准备，验收条件 1—7、9、10 已通过并记录于
+[`participant-interface-readiness.json`](rehearsals/rehearsal-006/inputs/audits/participant-interface-readiness.json)。
+条件 8 仍明确延期到冻结后：必须由四个全新 projectless 会话在无追加格式提示的情况下完成两阶段首答，不能以合成夹具代替。
 
 ## 下一次彩排的验收条件
 

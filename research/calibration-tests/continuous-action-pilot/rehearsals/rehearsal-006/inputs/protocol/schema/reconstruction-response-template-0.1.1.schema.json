@@ -1,0 +1,273 @@
+{
+  "$id": "https://github.com/onovich/Game-Primitives/blob/main/research/calibration-tests/continuous-action-pilot/schema/reconstruction-response-template-0.1.1.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$defs": {
+    "artifactReference": {
+      "additionalProperties": false,
+      "properties": {
+        "artifact_id": {
+          "$ref": "#/$defs/localId"
+        },
+        "path": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "sha256": {
+          "pattern": "^[0-9a-f]{64}$",
+          "type": "string"
+        }
+      },
+      "required": [
+        "artifact_id",
+        "path",
+        "sha256"
+      ],
+      "type": "object"
+    },
+    "compatibleBranchTemplate": {
+      "additionalProperties": false,
+      "properties": {
+        "branch_id": {
+          "const": "<required-local-id>"
+        },
+        "description": {
+          "const": "<required-compatible-structure-description>"
+        },
+        "supporting_record_ids": {
+          "maxItems": 0,
+          "type": "array"
+        }
+      },
+      "required": [
+        "branch_id",
+        "description",
+        "supporting_record_ids"
+      ],
+      "type": "object"
+    },
+    "familiarityTemplate": {
+      "additionalProperties": false,
+      "properties": {
+        "exact_result_knowledge": {
+          "const": "<none|suspected|known|unknown>"
+        },
+        "exact_rule_knowledge": {
+          "const": "<none|suspected|known|unknown>"
+        },
+        "exact_variant_knowledge": {
+          "const": "<none|suspected|known|unknown>"
+        },
+        "project_exposure": {
+          "const": "<none|limited|substantial|unknown>"
+        },
+        "recognition_status": {
+          "const": "<none|suspected|identified>"
+        },
+        "recognized_family": {
+          "type": "null"
+        },
+        "recognized_work": {
+          "type": "null"
+        },
+        "related_genre_experience": {
+          "const": "<none|limited|extensive|unknown>"
+        }
+      },
+      "required": [
+        "exact_result_knowledge",
+        "exact_rule_knowledge",
+        "exact_variant_knowledge",
+        "project_exposure",
+        "recognition_status",
+        "recognized_family",
+        "recognized_work",
+        "related_genre_experience"
+      ],
+      "type": "object"
+    },
+    "localId": {
+      "pattern": "^[a-z0-9][a-z0-9._-]*$",
+      "type": "string"
+    },
+    "pollutionTemplate": {
+      "additionalProperties": false,
+      "properties": {
+        "familiarity": {
+          "$ref": "#/$defs/familiarityTemplate"
+        },
+        "integrity_exposures": {
+          "maxItems": 0,
+          "type": "array"
+        },
+        "stage_update_note": {
+          "type": "null"
+        }
+      },
+      "required": [
+        "familiarity",
+        "integrity_exposures",
+        "stage_update_note"
+      ],
+      "type": "object"
+    },
+    "reconstructionAnswerTemplate": {
+      "additionalProperties": false,
+      "properties": {
+        "ambiguities": {
+          "maxItems": 0,
+          "type": "array"
+        },
+        "assumptions": {
+          "maxItems": 0,
+          "type": "array"
+        },
+        "case_id": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "compatible_branches": {
+          "items": {
+            "$ref": "#/$defs/compatibleBranchTemplate"
+          },
+          "maxItems": 1,
+          "minItems": 1,
+          "type": "array",
+          "uniqueItems": true
+        },
+        "confidence_percent": {
+          "const": "<integer-0-100>"
+        },
+        "recovered_facts": {
+          "items": {
+            "$ref": "#/$defs/recoveredFactTemplate"
+          },
+          "maxItems": 1,
+          "minItems": 1,
+          "type": "array",
+          "uniqueItems": true
+        },
+        "uniqueness": {
+          "const": "<insufficient_information|multiple_compatible_structures|uniquely_recoverable>"
+        }
+      },
+      "required": [
+        "ambiguities",
+        "assumptions",
+        "case_id",
+        "compatible_branches",
+        "confidence_percent",
+        "recovered_facts",
+        "uniqueness"
+      ],
+      "type": "object"
+    },
+    "reconstructionPayloadTemplate": {
+      "additionalProperties": false,
+      "properties": {
+        "$schema": {
+          "const": "https://github.com/onovich/Game-Primitives/blob/main/research/calibration-tests/continuous-action-pilot/schema/blind-response-interface-0.1.1.schema.json"
+        },
+        "artifact_type": {
+          "const": "reconstruction_response_payload"
+        },
+        "artifact_version": {
+          "const": "0.1.1"
+        },
+        "pollution": {
+          "$ref": "#/$defs/pollutionTemplate"
+        },
+        "reconstruction_answers": {
+          "items": {
+            "$ref": "#/$defs/reconstructionAnswerTemplate"
+          },
+          "maxItems": 3,
+          "minItems": 1,
+          "type": "array",
+          "uniqueItems": true
+        }
+      },
+      "required": [
+        "$schema",
+        "artifact_type",
+        "artifact_version",
+        "pollution",
+        "reconstruction_answers"
+      ],
+      "type": "object"
+    },
+    "recoveredFactTemplate": {
+      "additionalProperties": false,
+      "properties": {
+        "claim": {
+          "const": "<required-fact-claim>"
+        },
+        "fact_id": {
+          "const": "<required-local-id>"
+        },
+        "recovery_status": {
+          "const": "<inferred_with_assumption|not_recoverable|recovered>"
+        },
+        "supporting_record_ids": {
+          "maxItems": 0,
+          "type": "array"
+        }
+      },
+      "required": [
+        "claim",
+        "fact_id",
+        "recovery_status",
+        "supporting_record_ids"
+      ],
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "$schema": {
+      "const": "https://github.com/onovich/Game-Primitives/blob/main/research/calibration-tests/continuous-action-pilot/schema/reconstruction-response-template-0.1.1.schema.json"
+    },
+    "artifact_type": {
+      "const": "reconstruction_response_template"
+    },
+    "artifact_version": {
+      "const": "0.1.1"
+    },
+    "created_at": {
+      "format": "date-time",
+      "type": "string"
+    },
+    "participant_contract": {
+      "$ref": "https://github.com/onovich/Game-Primitives/blob/main/research/calibration-tests/continuous-action-pilot/schema/reconstruction-participant-response-contract-0.1.1.schema.json"
+    },
+    "run_id": {
+      "pattern": "^(?:continuous|rehearsal)-[0-9]{3}$",
+      "type": "string"
+    },
+    "stage": {
+      "const": "reconstruction"
+    },
+    "target_response_schema": {
+      "$ref": "#/$defs/artifactReference"
+    },
+    "template_id": {
+      "$ref": "#/$defs/localId"
+    },
+    "template_payload": {
+      "$ref": "#/$defs/reconstructionPayloadTemplate"
+    }
+  },
+  "required": [
+    "$schema",
+    "artifact_type",
+    "artifact_version",
+    "created_at",
+    "participant_contract",
+    "run_id",
+    "stage",
+    "target_response_schema",
+    "template_id",
+    "template_payload"
+  ],
+  "title": "Game Primitives Blind Reconstruction Response Template 0.1.1",
+  "type": "object"
+}

@@ -1,0 +1,65 @@
+{
+  "$schema": "https://github.com/onovich/Game-Primitives/blob/main/research/calibration-tests/continuous-action-pilot/schema/task-packet-0.1.1.schema.json",
+  "allowed_configurations": [],
+  "allowed_observations": [],
+  "artifact_type": "reconstruction_task_packet",
+  "artifact_version": "0.1.1",
+  "assembled_output_schema": {
+    "path": "research/calibration-tests/continuous-action-pilot/schema/role-submission-0.1.2.schema.json",
+    "sha256": "ce1bcbb603550ec42afa9023191666b0ef45096b4c0efd1a3b42150c83577f95"
+  },
+  "behavior_scope": "structural_only",
+  "case_ids": [
+    "CA-R2"
+  ],
+  "condition_id": "condition-v02",
+  "created_at": "2026-07-28T01:00:00Z",
+  "forbidden_actions": [
+    "access_other_condition",
+    "access_other_submission",
+    "access_package_outside_dispatch",
+    "access_truth_or_result",
+    "create_child_task",
+    "external_search",
+    "read_shared_workspace",
+    "tool_call"
+  ],
+  "input_artifacts": [
+    {
+      "artifact_id": "view.v02",
+      "path": "research/calibration-tests/continuous-action-pilot/rehearsals/rehearsal-006/inputs/view-v02.json",
+      "sha256": "ab6596ee6498401a3994237671785d5b175fdfdd8cc77d2e87ea979fa84f4c7d"
+    },
+    {
+      "artifact_id": "template.reconstruction.condition-v02.rehearsal-006",
+      "path": "research/calibration-tests/continuous-action-pilot/rehearsals/rehearsal-006/inputs/reconstruction-response-v02.template.json",
+      "sha256": "e4adf6b61cc60a65e8074139ae36c7b5b960e13a470351b3ba30af0bddd530d8"
+    }
+  ],
+  "instructions": [
+    "只根据本条件视图、任务和模板回答；不得使用工具、网络、共享工作区、其他条件、真值、结果或既有项目上下文。",
+    "模板是 typed_choice_template。阅读 participant_contract，最终只返回 template_payload 对应的单一 JSON 对象；不要返回模板外壳、代码围栏或附加文字。",
+    "所有新建 fact_id、branch_id 和 supporting_record_ids 都必须符合 participant_contract.local_id_pattern；大写字母不合法。",
+    "confidence_percent 是类型化选择槽；必须把 <integer-0-100> 替换为 0 至 100 的 JSON 整数。",
+    "integrity_exposures 可以保持空数组，也可以依照契约给出的完整 item shape 追加记录。",
+    "只依照 participant_contract.template_choice_semantics.mutable_array_rules 清空、保留或扩展数组；尖括号表示必须选择或替换的槽位，其他值保持冻结。",
+    "每个任务 case 恰好回答一次；无法恢复结构时可以清空模板中的 recovered_facts 与 compatible_branches，并明确选择 insufficient_information。",
+    "不要填写运行、任务、条件、actor、session、提交时间、输入散列、前阶段散列或审核字段；这些字段由保管工具生成。"
+  ],
+  "output_schema": {
+    "path": "research/calibration-tests/continuous-action-pilot/schema/blind-response-interface-0.1.1.schema.json",
+    "sha256": "aaa06ec2e530dd4ae8e3d769c7cc6263702290466d2c695f9ce9da14e2069f42"
+  },
+  "representation_version": "CA-SR 0.1",
+  "required_audit_checks": [],
+  "run_id": "rehearsal-006",
+  "stage1_submission_required": false,
+  "stop_boundary_refs": [
+    "stop.after-step-2"
+  ],
+  "target_encoding_sha256": null,
+  "target_view_sha256": "ab6596ee6498401a3994237671785d5b175fdfdd8cc77d2e87ea979fa84f4c7d",
+  "task_id": "task.reconstruct.v02",
+  "tolerance_rule_refs": [],
+  "variant_interventions": []
+}

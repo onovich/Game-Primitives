@@ -1,0 +1,503 @@
+{
+  "$defs": {
+    "blindLocalId": {
+      "pattern": "^(?!.*(?:[Rr][Ii][Cc][Hh]|[Aa][Tt][Oo][Mm][Ii][Cc]))[a-z0-9][a-z0-9._-]*$",
+      "type": "string"
+    },
+    "blindScalar": {
+      "additionalProperties": false,
+      "properties": {
+        "serialized_value": {
+          "maxLength": 96,
+          "minLength": 1,
+          "pattern": "^(?!.*(?:[Rr][Ii][Cc][Hh]|[Aa][Tt][Oo][Mm][Ii][Cc]))[A-Za-z0-9.+_-]+$",
+          "type": "string"
+        },
+        "unit": {
+          "oneOf": [
+            {
+              "$ref": "#/$defs/blindLocalId"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "value_type": {
+          "enum": [
+            "boolean",
+            "decimal",
+            "id",
+            "integer",
+            "status"
+          ]
+        }
+      },
+      "required": [
+        "serialized_value",
+        "unit",
+        "value_type"
+      ],
+      "type": "object"
+    },
+    "caseIntervention": {
+      "additionalProperties": false,
+      "properties": {
+        "allowed_configuration_ids": {
+          "allOf": [
+            {
+              "contains": {
+                "const": "config.baseline"
+              },
+              "maxContains": 1,
+              "minContains": 1
+            },
+            {
+              "contains": {
+                "const": "config.variant"
+              },
+              "maxContains": 1,
+              "minContains": 1
+            }
+          ],
+          "items": {
+            "$ref": "#/$defs/blindLocalId"
+          },
+          "maxItems": 2,
+          "minItems": 2,
+          "type": "array",
+          "uniqueItems": true
+        },
+        "baseline_value": {
+          "$ref": "#/$defs/blindScalar"
+        },
+        "case_id": {
+          "pattern": "^CA-R[1-3]$",
+          "type": "string"
+        },
+        "formal_input_spec": {
+          "$ref": "#/$defs/formalInputSpec"
+        },
+        "initial_state_specs": {
+          "items": {
+            "$ref": "#/$defs/fieldValueSpec"
+          },
+          "minItems": 1,
+          "type": "array",
+          "uniqueItems": true
+        },
+        "invariant_ids": {
+          "items": {
+            "$ref": "#/$defs/blindLocalId"
+          },
+          "minItems": 1,
+          "type": "array",
+          "uniqueItems": true
+        },
+        "invariant_specs": {
+          "items": {
+            "$ref": "#/$defs/invariantSpec"
+          },
+          "minItems": 1,
+          "type": "array",
+          "uniqueItems": true
+        },
+        "observation_ids": {
+          "items": {
+            "$ref": "#/$defs/blindLocalId"
+          },
+          "minItems": 1,
+          "type": "array",
+          "uniqueItems": true
+        },
+        "stop_boundary_id": {
+          "$ref": "#/$defs/blindLocalId"
+        },
+        "stop_boundary_spec": {
+          "$ref": "#/$defs/stopBoundarySpec"
+        },
+        "tolerance_rule_ids": {
+          "items": {
+            "$ref": "#/$defs/blindLocalId"
+          },
+          "type": "array",
+          "uniqueItems": true
+        },
+        "tolerance_specs": {
+          "items": {
+            "$ref": "#/$defs/toleranceSpec"
+          },
+          "type": "array",
+          "uniqueItems": true
+        },
+        "variable_id": {
+          "$ref": "#/$defs/blindLocalId"
+        },
+        "variant_value": {
+          "$ref": "#/$defs/blindScalar"
+        }
+      },
+      "required": [
+        "allowed_configuration_ids",
+        "baseline_value",
+        "case_id",
+        "formal_input_spec",
+        "initial_state_specs",
+        "invariant_ids",
+        "invariant_specs",
+        "observation_ids",
+        "stop_boundary_id",
+        "stop_boundary_spec",
+        "tolerance_rule_ids",
+        "tolerance_specs",
+        "variable_id",
+        "variant_value"
+      ],
+      "type": "object"
+    },
+    "fieldValueSpec": {
+      "additionalProperties": false,
+      "properties": {
+        "field_id": {
+          "$ref": "#/$defs/blindLocalId"
+        },
+        "value": {
+          "$ref": "#/$defs/blindScalar"
+        }
+      },
+      "required": [
+        "field_id",
+        "value"
+      ],
+      "type": "object"
+    },
+    "formalInputEvent": {
+      "additionalProperties": false,
+      "properties": {
+        "at": {
+          "$ref": "#/$defs/blindScalar"
+        },
+        "event_id": {
+          "$ref": "#/$defs/blindLocalId"
+        },
+        "fields": {
+          "items": {
+            "$ref": "#/$defs/fieldValueSpec"
+          },
+          "minItems": 1,
+          "type": "array",
+          "uniqueItems": true
+        },
+        "sequence_index": {
+          "minimum": 0,
+          "type": "integer"
+        }
+      },
+      "required": [
+        "at",
+        "event_id",
+        "fields",
+        "sequence_index"
+      ],
+      "type": "object"
+    },
+    "formalInputSpec": {
+      "additionalProperties": false,
+      "properties": {
+        "events": {
+          "items": {
+            "$ref": "#/$defs/formalInputEvent"
+          },
+          "minItems": 1,
+          "type": "array",
+          "uniqueItems": true
+        },
+        "formal_input_id": {
+          "$ref": "#/$defs/blindLocalId"
+        },
+        "time_base": {
+          "$ref": "#/$defs/timeBaseSpec"
+        }
+      },
+      "required": [
+        "events",
+        "formal_input_id",
+        "time_base"
+      ],
+      "type": "object"
+    },
+    "invariantSpec": {
+      "additionalProperties": false,
+      "properties": {
+        "description": {
+          "maxLength": 240,
+          "minLength": 12,
+          "pattern": "^(?!.*(?:[Rr][Ii][Cc][Hh]|[Aa][Tt][Oo][Mm][Ii][Cc])).+$",
+          "type": "string"
+        },
+        "invariant_id": {
+          "$ref": "#/$defs/blindLocalId"
+        }
+      },
+      "required": [
+        "description",
+        "invariant_id"
+      ],
+      "type": "object"
+    },
+    "stopBoundarySpec": {
+      "additionalProperties": false,
+      "properties": {
+        "boundary_kind": {
+          "enum": [
+            "after_event",
+            "event_count",
+            "first_declared_condition",
+            "rule_time_reached"
+          ]
+        },
+        "coordinate": {
+          "oneOf": [
+            {
+              "$ref": "#/$defs/blindScalar"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "description": {
+          "maxLength": 240,
+          "minLength": 12,
+          "pattern": "^(?!.*(?:[Rr][Ii][Cc][Hh]|[Aa][Tt][Oo][Mm][Ii][Cc])).+$",
+          "type": "string"
+        },
+        "stop_boundary_id": {
+          "$ref": "#/$defs/blindLocalId"
+        }
+      },
+      "required": [
+        "boundary_kind",
+        "coordinate",
+        "description",
+        "stop_boundary_id"
+      ],
+      "type": "object"
+    },
+    "timeBaseSpec": {
+      "additionalProperties": false,
+      "properties": {
+        "origin": {
+          "$ref": "#/$defs/blindScalar"
+        },
+        "tick_unit": {
+          "$ref": "#/$defs/blindLocalId"
+        },
+        "time_base_id": {
+          "$ref": "#/$defs/blindLocalId"
+        }
+      },
+      "required": [
+        "origin",
+        "tick_unit",
+        "time_base_id"
+      ],
+      "type": "object"
+    },
+    "toleranceSpec": {
+      "additionalProperties": false,
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "comparison_kind": {
+                "enum": [
+                  "exact",
+                  "zero_or_nonzero_direction"
+                ]
+              }
+            },
+            "required": [
+              "comparison_kind"
+            ]
+          },
+          "then": {
+            "properties": {
+              "threshold": {
+                "type": "null"
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "comparison_kind": {
+                "enum": [
+                  "absolute_delta",
+                  "relative_delta"
+                ]
+              }
+            },
+            "required": [
+              "comparison_kind"
+            ]
+          },
+          "then": {
+            "properties": {
+              "threshold": {
+                "$ref": "#/$defs/blindScalar"
+              }
+            }
+          }
+        }
+      ],
+      "properties": {
+        "comparison_kind": {
+          "enum": [
+            "absolute_delta",
+            "exact",
+            "relative_delta",
+            "zero_or_nonzero_direction"
+          ]
+        },
+        "threshold": {
+          "oneOf": [
+            {
+              "$ref": "#/$defs/blindScalar"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "tolerance_rule_id": {
+          "$ref": "#/$defs/blindLocalId"
+        }
+      },
+      "required": [
+        "comparison_kind",
+        "threshold",
+        "tolerance_rule_id"
+      ],
+      "type": "object"
+    }
+  },
+  "$id": "https://github.com/onovich/Game-Primitives/blob/main/research/calibration-tests/continuous-action-pilot/schema/variant-envelope-0.1.0.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "$schema": {
+      "const": "https://github.com/onovich/Game-Primitives/blob/main/research/calibration-tests/continuous-action-pilot/schema/variant-envelope-0.1.0.schema.json"
+    },
+    "artifact_type": {
+      "const": "variant_envelope"
+    },
+    "artifact_version": {
+      "const": "0.1.0"
+    },
+    "behavior_scope": {
+      "const": "structural_only"
+    },
+    "blinding_assertions": {
+      "additionalProperties": false,
+      "properties": {
+        "condition_mapping_included": {
+          "const": false
+        },
+        "expected_results_included": {
+          "const": false
+        },
+        "source_identity_included": {
+          "const": false
+        },
+        "source_paths_included": {
+          "const": false
+        }
+      },
+      "required": [
+        "condition_mapping_included",
+        "expected_results_included",
+        "source_identity_included",
+        "source_paths_included"
+      ],
+      "type": "object"
+    },
+    "case_interventions": {
+      "allOf": [
+        {
+          "contains": {
+            "properties": {
+              "case_id": {
+                "const": "CA-R1"
+              }
+            },
+            "required": [
+              "case_id"
+            ]
+          },
+          "maxContains": 1,
+          "minContains": 1
+        },
+        {
+          "contains": {
+            "properties": {
+              "case_id": {
+                "const": "CA-R2"
+              }
+            },
+            "required": [
+              "case_id"
+            ]
+          },
+          "maxContains": 1,
+          "minContains": 1
+        },
+        {
+          "contains": {
+            "properties": {
+              "case_id": {
+                "const": "CA-R3"
+              }
+            },
+            "required": [
+              "case_id"
+            ]
+          },
+          "maxContains": 1,
+          "minContains": 1
+        }
+      ],
+      "items": {
+        "$ref": "#/$defs/caseIntervention"
+      },
+      "maxItems": 3,
+      "minItems": 3,
+      "type": "array"
+    },
+    "created_at": {
+      "format": "date-time",
+      "type": "string"
+    },
+    "envelope_id": {
+      "$ref": "#/$defs/blindLocalId"
+    },
+    "run_id": {
+      "pattern": "^continuous-[0-9]{3}$",
+      "type": "string"
+    }
+  },
+  "required": [
+    "$schema",
+    "artifact_type",
+    "artifact_version",
+    "behavior_scope",
+    "blinding_assertions",
+    "case_interventions",
+    "created_at",
+    "envelope_id",
+    "run_id"
+  ],
+  "title": "Game Primitives Blind Variant Envelope 0.1.0",
+  "type": "object"
+}

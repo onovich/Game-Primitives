@@ -1,0 +1,27 @@
+{
+  "artifact_type": "rehearsal_variant_envelope",
+  "artifact_version": "0.1.0",
+  "behavior_scope": "structural_only",
+  "case_id": "CA-R2",
+  "invariants": [
+    "initial_state",
+    "input_trace",
+    "operation_count",
+    "operation_identity",
+    "step_order",
+    "output_contract",
+    "stop_boundary"
+  ],
+  "observation": {
+    "comparison": "exact",
+    "observation_id": "obs.total-at-stop",
+    "unit": "count"
+  },
+  "run_id": "rehearsal-006",
+  "stop_boundary_id": "stop.after-step-2",
+  "variable_intervention": {
+    "baseline_value": 0,
+    "variable_id": "v-q",
+    "variant_value": 1
+  }
+}

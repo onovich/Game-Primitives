@@ -1,0 +1,432 @@
+{
+  "$schema": "https://github.com/onovich/Game-Primitives/blob/main/research/calibration-tests/continuous-action-pilot/schema/response-template-0.1.1.schema.json",
+  "artifact_type": "prediction_response_template",
+  "artifact_version": "0.1.1",
+  "created_at": "2026-07-28T01:00:00Z",
+  "participant_contract": {
+    "artifact_type": "prediction_participant_response_contract",
+    "artifact_version": "0.1.1",
+    "cartesian_product_rule": {
+      "applies_to": [
+        "main_expectations",
+        "each_compatible_alternative"
+      ],
+      "case_observations": [
+        {
+          "case_id": "CA-R2",
+          "observation_ids": [
+            "obs.total-at-stop"
+          ]
+        }
+      ],
+      "configuration_ids": [
+        "config.baseline",
+        "config.variant"
+      ],
+      "indeterminate_minimum_alternatives": 2,
+      "pair_occurrence": "exactly_once"
+    },
+    "confidence_percent_rule": {
+      "maximum": 100,
+      "minimum": 0,
+      "template_slot": "<integer-0-100>",
+      "type": "integer"
+    },
+    "integrity_exposure_item_shape": {
+      "additionalProperties": false,
+      "properties": {
+        "affected_case_ids": {
+          "items": {
+            "pattern": "^(?:CA-R[1-3]|NEG-01)$",
+            "type": "string"
+          },
+          "type": "array",
+          "uniqueItems": true
+        },
+        "description": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "evidence": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "exposure_type": {
+          "enum": [
+            "answer_or_project_prediction",
+            "formal_result",
+            "non_dispatched_artifact",
+            "other_condition",
+            "other_submission",
+            "outside_search",
+            "raw_source_or_identity",
+            "shared_workspace",
+            "truth_nonce_or_mapping",
+            "unfrozen_input"
+          ]
+        },
+        "occurred_at": {
+          "oneOf": [
+            {
+              "format": "date-time",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "stage": {
+          "enum": [
+            "prediction",
+            "reconstruction",
+            "source_audit"
+          ]
+        },
+        "status": {
+          "enum": [
+            "confirmed",
+            "none",
+            "suspected"
+          ]
+        }
+      },
+      "required": [
+        "affected_case_ids",
+        "description",
+        "evidence",
+        "exposure_type",
+        "occurred_at",
+        "stage",
+        "status"
+      ],
+      "type": "object"
+    },
+    "local_id_pattern": "^[a-z0-9][a-z0-9._-]*$",
+    "observation_rules": [
+      {
+        "allowed_value_types": [
+          "integer",
+          "status"
+        ],
+        "case_id": "CA-R2",
+        "compatible_alternative_unit": "count",
+        "declared_unit": "count",
+        "determinate_value_types": [
+          "integer"
+        ],
+        "main_unit_options": [
+          null,
+          "count"
+        ],
+        "observation_id": "obs.total-at-stop",
+        "tolerance_rule_id": "tol.synthetic.exact"
+      }
+    ],
+    "pollution_enums": {
+      "exact_result_knowledge": [
+        "known",
+        "none",
+        "suspected",
+        "unknown"
+      ],
+      "exact_rule_knowledge": [
+        "known",
+        "none",
+        "suspected",
+        "unknown"
+      ],
+      "exact_variant_knowledge": [
+        "known",
+        "none",
+        "suspected",
+        "unknown"
+      ],
+      "integrity_exposure_type": [
+        "answer_or_project_prediction",
+        "formal_result",
+        "non_dispatched_artifact",
+        "other_condition",
+        "other_submission",
+        "outside_search",
+        "raw_source_or_identity",
+        "shared_workspace",
+        "truth_nonce_or_mapping",
+        "unfrozen_input"
+      ],
+      "integrity_stage": [
+        "prediction",
+        "reconstruction",
+        "source_audit"
+      ],
+      "integrity_status": [
+        "confirmed",
+        "none",
+        "suspected"
+      ],
+      "project_exposure": [
+        "limited",
+        "none",
+        "substantial",
+        "unknown"
+      ],
+      "recognition_status": [
+        "identified",
+        "none",
+        "suspected"
+      ],
+      "related_genre_experience": [
+        "extensive",
+        "limited",
+        "none",
+        "unknown"
+      ]
+    },
+    "prediction_branch_rules": {
+      "determinate": {
+        "compatible_alternatives_action": "clear_or_retain_complete_concrete_alternatives",
+        "expectation_kind_rule": "match_selected_determinate_value_type",
+        "prediction_status": "determinate",
+        "unit_rule": "use_declared_observation_unit",
+        "value_type_rule": "select_allowed_non_status_value_type"
+      },
+      "indeterminate": {
+        "compatible_alternatives_action": "retain_at_least_two_complete_concrete_alternatives",
+        "expectation_kind": "status",
+        "prediction_status": "indeterminate",
+        "serialized_value": "indeterminate",
+        "unit": null,
+        "value_type": "status"
+      }
+    },
+    "required_fields_by_stage": {
+      "compatible_branch": [
+        "branch_id",
+        "description",
+        "supporting_record_ids"
+      ],
+      "familiarity": [
+        "exact_result_knowledge",
+        "exact_rule_knowledge",
+        "exact_variant_knowledge",
+        "project_exposure",
+        "recognized_family",
+        "recognized_work",
+        "recognition_status",
+        "related_genre_experience"
+      ],
+      "integrity_exposure": [
+        "affected_case_ids",
+        "description",
+        "evidence",
+        "exposure_type",
+        "occurred_at",
+        "stage",
+        "status"
+      ],
+      "pollution": [
+        "familiarity",
+        "integrity_exposures",
+        "stage_update_note"
+      ],
+      "prediction_alternative": [
+        "alternative_id",
+        "description",
+        "expectations"
+      ],
+      "prediction_answer": [
+        "assumptions",
+        "case_id",
+        "compatible_alternatives",
+        "confidence_percent",
+        "expectations",
+        "prediction_status",
+        "reasoning",
+        "supporting_record_ids"
+      ],
+      "prediction_expectation": [
+        "configuration_id",
+        "expectation_kind",
+        "observation_id",
+        "tolerance_rule_id",
+        "value"
+      ],
+      "prediction_payload": [
+        "$schema",
+        "artifact_type",
+        "artifact_version",
+        "pollution",
+        "prediction_answers"
+      ],
+      "reconstruction_answer": [
+        "ambiguities",
+        "assumptions",
+        "case_id",
+        "compatible_branches",
+        "confidence_percent",
+        "recovered_facts",
+        "uniqueness"
+      ],
+      "reconstruction_payload": [
+        "$schema",
+        "artifact_type",
+        "artifact_version",
+        "pollution",
+        "reconstruction_answers"
+      ],
+      "recovered_fact": [
+        "claim",
+        "fact_id",
+        "recovery_status",
+        "supporting_record_ids"
+      ]
+    },
+    "source_bindings": {
+      "response_schema": {
+        "schema_id": "https://github.com/onovich/Game-Primitives/blob/main/research/calibration-tests/continuous-action-pilot/schema/blind-response-interface-0.1.1.schema.json",
+        "sha256": "aaa06ec2e530dd4ae8e3d769c7cc6263702290466d2c695f9ce9da14e2069f42"
+      },
+      "role_schema": {
+        "schema_id": "https://github.com/onovich/Game-Primitives/blob/main/research/calibration-tests/continuous-action-pilot/schema/role-submission-0.1.1.schema.json",
+        "sha256": "45bb21217f462371e7d16d64560a5ce48a207c7370dd0644d96587568f908b1e"
+      },
+      "run_id": "rehearsal-006",
+      "task_id": "task.predict.neutral"
+    },
+    "stage": "prediction",
+    "template_choice_semantics": {
+      "choice_placeholder_pattern": "^<[^<>]+>$",
+      "frozen_value_rule": "non_placeholder_values_are_frozen_except_declared_mutable_arrays",
+      "mutable_array_rules": [
+        {
+          "allowed_action": "clear_or_retain_for_determinate_and_retain_expand_for_indeterminate",
+          "array": "compatible_alternatives"
+        },
+        {
+          "allowed_action": "keep_empty_or_append_schema_valid_items",
+          "array": "pollution.integrity_exposures"
+        }
+      ],
+      "template_kind": "typed_choice_template"
+    }
+  },
+  "run_id": "rehearsal-006",
+  "stage": "prediction",
+  "target_response_schema": {
+    "artifact_id": "schema.blind-response-interface-0.1.1",
+    "path": "research/calibration-tests/continuous-action-pilot/schema/blind-response-interface-0.1.1.schema.json",
+    "sha256": "aaa06ec2e530dd4ae8e3d769c7cc6263702290466d2c695f9ce9da14e2069f42"
+  },
+  "template_id": "template.prediction.rehearsal-006",
+  "template_payload": {
+    "$schema": "https://github.com/onovich/Game-Primitives/blob/main/research/calibration-tests/continuous-action-pilot/schema/blind-response-interface-0.1.1.schema.json",
+    "artifact_type": "prediction_response_payload",
+    "artifact_version": "0.1.1",
+    "pollution": {
+      "familiarity": {
+        "exact_result_knowledge": "<none|suspected|known|unknown>",
+        "exact_rule_knowledge": "<none|suspected|known|unknown>",
+        "exact_variant_knowledge": "<none|suspected|known|unknown>",
+        "project_exposure": "<none|limited|substantial|unknown>",
+        "recognition_status": "<none|suspected|identified>",
+        "recognized_family": null,
+        "recognized_work": null,
+        "related_genre_experience": "<none|limited|extensive|unknown>"
+      },
+      "integrity_exposures": [],
+      "stage_update_note": null
+    },
+    "prediction_answers": [
+      {
+        "assumptions": [],
+        "case_id": "CA-R2",
+        "compatible_alternatives": [
+          {
+            "alternative_id": "<required-local-id-1>",
+            "description": "<required-compatible-world-description-1>",
+            "expectations": [
+              {
+                "configuration_id": "config.baseline",
+                "expectation_kind": "<exact>",
+                "observation_id": "obs.total-at-stop",
+                "tolerance_rule_id": "tol.synthetic.exact",
+                "value": {
+                  "serialized_value": "<required-string>",
+                  "unit": "count",
+                  "value_type": "<integer>"
+                }
+              },
+              {
+                "configuration_id": "config.variant",
+                "expectation_kind": "<exact>",
+                "observation_id": "obs.total-at-stop",
+                "tolerance_rule_id": "tol.synthetic.exact",
+                "value": {
+                  "serialized_value": "<required-string>",
+                  "unit": "count",
+                  "value_type": "<integer>"
+                }
+              }
+            ]
+          },
+          {
+            "alternative_id": "<required-local-id-2>",
+            "description": "<required-compatible-world-description-2>",
+            "expectations": [
+              {
+                "configuration_id": "config.baseline",
+                "expectation_kind": "<exact>",
+                "observation_id": "obs.total-at-stop",
+                "tolerance_rule_id": "tol.synthetic.exact",
+                "value": {
+                  "serialized_value": "<required-string>",
+                  "unit": "count",
+                  "value_type": "<integer>"
+                }
+              },
+              {
+                "configuration_id": "config.variant",
+                "expectation_kind": "<exact>",
+                "observation_id": "obs.total-at-stop",
+                "tolerance_rule_id": "tol.synthetic.exact",
+                "value": {
+                  "serialized_value": "<required-string>",
+                  "unit": "count",
+                  "value_type": "<integer>"
+                }
+              }
+            ]
+          }
+        ],
+        "confidence_percent": "<integer-0-100>",
+        "expectations": [
+          {
+            "configuration_id": "config.baseline",
+            "expectation_kind": "<exact|status>",
+            "observation_id": "obs.total-at-stop",
+            "tolerance_rule_id": "tol.synthetic.exact",
+            "value": {
+              "serialized_value": "<required-string>",
+              "unit": "<null|count>",
+              "value_type": "<integer|status>"
+            }
+          },
+          {
+            "configuration_id": "config.variant",
+            "expectation_kind": "<exact|status>",
+            "observation_id": "obs.total-at-stop",
+            "tolerance_rule_id": "tol.synthetic.exact",
+            "value": {
+              "serialized_value": "<required-string>",
+              "unit": "<null|count>",
+              "value_type": "<integer|status>"
+            }
+          }
+        ],
+        "prediction_status": "<determinate|indeterminate>",
+        "reasoning": "<required-explanation>",
+        "supporting_record_ids": []
+      }
+    ]
+  }
+}

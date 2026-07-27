@@ -1,0 +1,74 @@
+{
+  "$schema": "https://github.com/onovich/Game-Primitives/blob/main/research/calibration-tests/continuous-action-pilot/schema/rehearsal-actor-dispatch-plan-0.1.0.schema.json",
+  "actor_configuration": {
+    "model": "gpt-5.6-sol",
+    "reasoning_effort": "high",
+    "role": "blind_reconstructor_predictor"
+  },
+  "artifact_type": "rehearsal_actor_dispatch_plan",
+  "artifact_version": "0.1.0",
+  "created_at": "2026-07-28T02:12:00Z",
+  "dispatch_rules": {
+    "corrective_followup_allowed": false,
+    "first_answer_only": true,
+    "fork_existing_thread": false,
+    "same_thread_for_stage2": true,
+    "target_type": "projectless",
+    "tool_calls_allowed": false
+  },
+  "run_id": "rehearsal-006",
+  "seats": [
+    {
+      "actor_id": "r006-v01-a",
+      "condition_id": "condition-v01",
+      "directory_name": "gp-r006-v01-a",
+      "stage1_prompt": {
+        "path": "research/calibration-tests/continuous-action-pilot/rehearsals/rehearsal-006/inputs/dispatch/stage1-v01.prompt.txt",
+        "sha256": "ff0a4e76e6264dc01f96f1e547a6bd3bb68fe04a8e1a16b92d8c668374ac4fc6"
+      },
+      "stage2_prompt": {
+        "path": "research/calibration-tests/continuous-action-pilot/rehearsals/rehearsal-006/inputs/dispatch/stage2-neutral.prompt.txt",
+        "sha256": "2161ecd8f8c0b7acfeaeb354e95e9282337330c0e59d8ffa8703f0597df386ea"
+      }
+    },
+    {
+      "actor_id": "r006-v01-b",
+      "condition_id": "condition-v01",
+      "directory_name": "gp-r006-v01-b",
+      "stage1_prompt": {
+        "path": "research/calibration-tests/continuous-action-pilot/rehearsals/rehearsal-006/inputs/dispatch/stage1-v01.prompt.txt",
+        "sha256": "ff0a4e76e6264dc01f96f1e547a6bd3bb68fe04a8e1a16b92d8c668374ac4fc6"
+      },
+      "stage2_prompt": {
+        "path": "research/calibration-tests/continuous-action-pilot/rehearsals/rehearsal-006/inputs/dispatch/stage2-neutral.prompt.txt",
+        "sha256": "2161ecd8f8c0b7acfeaeb354e95e9282337330c0e59d8ffa8703f0597df386ea"
+      }
+    },
+    {
+      "actor_id": "r006-v02-a",
+      "condition_id": "condition-v02",
+      "directory_name": "gp-r006-v02-a",
+      "stage1_prompt": {
+        "path": "research/calibration-tests/continuous-action-pilot/rehearsals/rehearsal-006/inputs/dispatch/stage1-v02.prompt.txt",
+        "sha256": "9eee0f03a9e1890cdcdad742c2efe11b6990c332c973df9d013fc997ebb8bd01"
+      },
+      "stage2_prompt": {
+        "path": "research/calibration-tests/continuous-action-pilot/rehearsals/rehearsal-006/inputs/dispatch/stage2-neutral.prompt.txt",
+        "sha256": "2161ecd8f8c0b7acfeaeb354e95e9282337330c0e59d8ffa8703f0597df386ea"
+      }
+    },
+    {
+      "actor_id": "r006-v02-b",
+      "condition_id": "condition-v02",
+      "directory_name": "gp-r006-v02-b",
+      "stage1_prompt": {
+        "path": "research/calibration-tests/continuous-action-pilot/rehearsals/rehearsal-006/inputs/dispatch/stage1-v02.prompt.txt",
+        "sha256": "9eee0f03a9e1890cdcdad742c2efe11b6990c332c973df9d013fc997ebb8bd01"
+      },
+      "stage2_prompt": {
+        "path": "research/calibration-tests/continuous-action-pilot/rehearsals/rehearsal-006/inputs/dispatch/stage2-neutral.prompt.txt",
+        "sha256": "2161ecd8f8c0b7acfeaeb354e95e9282337330c0e59d8ffa8703f0597df386ea"
+      }
+    }
+  ]
+}

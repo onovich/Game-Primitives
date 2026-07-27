@@ -1,0 +1,526 @@
+{
+  "$id": "https://github.com/onovich/Game-Primitives/blob/main/research/calibration-tests/continuous-action-pilot/schema/prediction-participant-response-contract-0.1.1.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$defs": {
+    "artifactBinding": {
+      "additionalProperties": false,
+      "properties": {
+        "schema_id": {
+          "format": "uri",
+          "type": "string"
+        },
+        "sha256": {
+          "$ref": "#/$defs/sha256"
+        }
+      },
+      "required": [
+        "schema_id",
+        "sha256"
+      ],
+      "type": "object"
+    },
+    "caseObservationRule": {
+      "additionalProperties": false,
+      "properties": {
+        "case_id": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "observation_ids": {
+          "items": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "minItems": 1,
+          "type": "array",
+          "uniqueItems": true
+        }
+      },
+      "required": [
+        "case_id",
+        "observation_ids"
+      ],
+      "type": "object"
+    },
+    "integrityExposureShape": {
+      "additionalProperties": false,
+      "properties": {
+        "additionalProperties": {
+          "const": false
+        },
+        "properties": {
+          "minProperties": 7,
+          "type": "object"
+        },
+        "required": {
+          "items": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "minItems": 7,
+          "type": "array",
+          "uniqueItems": true
+        },
+        "type": {
+          "const": "object"
+        }
+      },
+      "required": [
+        "additionalProperties",
+        "properties",
+        "required",
+        "type"
+      ],
+      "type": "object"
+    },
+    "observationRule": {
+      "additionalProperties": false,
+      "properties": {
+        "allowed_value_types": {
+          "items": {
+            "enum": [
+              "boolean",
+              "decimal",
+              "direction",
+              "id",
+              "id_set",
+              "integer",
+              "rational",
+              "status",
+              "string"
+            ]
+          },
+          "minItems": 1,
+          "type": "array",
+          "uniqueItems": true
+        },
+        "case_id": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "compatible_alternative_unit": {
+          "oneOf": [
+            {
+              "minLength": 1,
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "declared_unit": {
+          "oneOf": [
+            {
+              "minLength": 1,
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "determinate_value_types": {
+          "items": {
+            "enum": [
+              "boolean",
+              "decimal",
+              "direction",
+              "id",
+              "id_set",
+              "integer",
+              "rational",
+              "string"
+            ]
+          },
+          "minItems": 1,
+          "type": "array",
+          "uniqueItems": true
+        },
+        "main_unit_options": {
+          "items": {
+            "oneOf": [
+              {
+                "minLength": 1,
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "minItems": 1,
+          "type": "array",
+          "uniqueItems": true
+        },
+        "observation_id": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "tolerance_rule_id": {
+          "oneOf": [
+            {
+              "minLength": 1,
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "required": [
+        "allowed_value_types",
+        "case_id",
+        "compatible_alternative_unit",
+        "declared_unit",
+        "determinate_value_types",
+        "main_unit_options",
+        "observation_id",
+        "tolerance_rule_id"
+      ],
+      "type": "object"
+    },
+    "sha256": {
+      "pattern": "^[0-9a-f]{64}$",
+      "type": "string"
+    },
+    "stringEnum": {
+      "items": {
+        "minLength": 1,
+        "type": "string"
+      },
+      "minItems": 1,
+      "type": "array",
+      "uniqueItems": true
+    },
+    "stringFieldList": {
+      "items": {
+        "minLength": 1,
+        "type": "string"
+      },
+      "minItems": 1,
+      "type": "array",
+      "uniqueItems": true
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "artifact_type": {
+      "const": "prediction_participant_response_contract"
+    },
+    "artifact_version": {
+      "const": "0.1.1"
+    },
+    "confidence_percent_rule": {
+      "const": {
+        "maximum": 100,
+        "minimum": 0,
+        "template_slot": "<integer-0-100>",
+        "type": "integer"
+      }
+    },
+    "cartesian_product_rule": {
+      "additionalProperties": false,
+      "properties": {
+        "applies_to": {
+          "const": [
+            "main_expectations",
+            "each_compatible_alternative"
+          ]
+        },
+        "case_observations": {
+          "items": {
+            "$ref": "#/$defs/caseObservationRule"
+          },
+          "minItems": 1,
+          "type": "array",
+          "uniqueItems": true
+        },
+        "configuration_ids": {
+          "items": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "minItems": 1,
+          "type": "array",
+          "uniqueItems": true
+        },
+        "indeterminate_minimum_alternatives": {
+          "const": 2
+        },
+        "pair_occurrence": {
+          "const": "exactly_once"
+        }
+      },
+      "required": [
+        "applies_to",
+        "case_observations",
+        "configuration_ids",
+        "indeterminate_minimum_alternatives",
+        "pair_occurrence"
+      ],
+      "type": "object"
+    },
+    "integrity_exposure_item_shape": {
+      "$ref": "#/$defs/integrityExposureShape"
+    },
+    "local_id_pattern": {
+      "minLength": 1,
+      "type": "string"
+    },
+    "observation_rules": {
+      "items": {
+        "$ref": "#/$defs/observationRule"
+      },
+      "minItems": 1,
+      "type": "array",
+      "uniqueItems": true
+    },
+    "pollution_enums": {
+      "additionalProperties": false,
+      "properties": {
+        "exact_result_knowledge": {
+          "$ref": "#/$defs/stringEnum"
+        },
+        "exact_rule_knowledge": {
+          "$ref": "#/$defs/stringEnum"
+        },
+        "exact_variant_knowledge": {
+          "$ref": "#/$defs/stringEnum"
+        },
+        "integrity_exposure_type": {
+          "$ref": "#/$defs/stringEnum"
+        },
+        "integrity_stage": {
+          "$ref": "#/$defs/stringEnum"
+        },
+        "integrity_status": {
+          "$ref": "#/$defs/stringEnum"
+        },
+        "project_exposure": {
+          "$ref": "#/$defs/stringEnum"
+        },
+        "recognition_status": {
+          "$ref": "#/$defs/stringEnum"
+        },
+        "related_genre_experience": {
+          "$ref": "#/$defs/stringEnum"
+        }
+      },
+      "required": [
+        "exact_result_knowledge",
+        "exact_rule_knowledge",
+        "exact_variant_knowledge",
+        "integrity_exposure_type",
+        "integrity_stage",
+        "integrity_status",
+        "project_exposure",
+        "recognition_status",
+        "related_genre_experience"
+      ],
+      "type": "object"
+    },
+    "prediction_branch_rules": {
+      "additionalProperties": false,
+      "properties": {
+        "determinate": {
+          "additionalProperties": false,
+          "properties": {
+            "compatible_alternatives_action": {
+              "const": "clear_or_retain_complete_concrete_alternatives"
+            },
+            "expectation_kind_rule": {
+              "const": "match_selected_determinate_value_type"
+            },
+            "prediction_status": {
+              "const": "determinate"
+            },
+            "unit_rule": {
+              "const": "use_declared_observation_unit"
+            },
+            "value_type_rule": {
+              "const": "select_allowed_non_status_value_type"
+            }
+          },
+          "required": [
+            "compatible_alternatives_action",
+            "expectation_kind_rule",
+            "prediction_status",
+            "unit_rule",
+            "value_type_rule"
+          ],
+          "type": "object"
+        },
+        "indeterminate": {
+          "additionalProperties": false,
+          "properties": {
+            "compatible_alternatives_action": {
+              "const": "retain_at_least_two_complete_concrete_alternatives"
+            },
+            "expectation_kind": {
+              "const": "status"
+            },
+            "prediction_status": {
+              "const": "indeterminate"
+            },
+            "serialized_value": {
+              "const": "indeterminate"
+            },
+            "unit": {
+              "type": "null"
+            },
+            "value_type": {
+              "const": "status"
+            }
+          },
+          "required": [
+            "compatible_alternatives_action",
+            "expectation_kind",
+            "prediction_status",
+            "serialized_value",
+            "unit",
+            "value_type"
+          ],
+          "type": "object"
+        }
+      },
+      "required": [
+        "determinate",
+        "indeterminate"
+      ],
+      "type": "object"
+    },
+    "required_fields_by_stage": {
+      "additionalProperties": false,
+      "properties": {
+        "compatible_branch": {
+          "$ref": "#/$defs/stringFieldList"
+        },
+        "familiarity": {
+          "$ref": "#/$defs/stringFieldList"
+        },
+        "integrity_exposure": {
+          "$ref": "#/$defs/stringFieldList"
+        },
+        "pollution": {
+          "$ref": "#/$defs/stringFieldList"
+        },
+        "prediction_answer": {
+          "$ref": "#/$defs/stringFieldList"
+        },
+        "prediction_alternative": {
+          "$ref": "#/$defs/stringFieldList"
+        },
+        "prediction_expectation": {
+          "$ref": "#/$defs/stringFieldList"
+        },
+        "prediction_payload": {
+          "$ref": "#/$defs/stringFieldList"
+        },
+        "reconstruction_answer": {
+          "$ref": "#/$defs/stringFieldList"
+        },
+        "reconstruction_payload": {
+          "$ref": "#/$defs/stringFieldList"
+        },
+        "recovered_fact": {
+          "$ref": "#/$defs/stringFieldList"
+        }
+      },
+      "required": [
+        "compatible_branch",
+        "familiarity",
+        "integrity_exposure",
+        "pollution",
+        "prediction_answer",
+        "prediction_alternative",
+        "prediction_expectation",
+        "prediction_payload",
+        "reconstruction_answer",
+        "reconstruction_payload",
+        "recovered_fact"
+      ],
+      "type": "object"
+    },
+    "source_bindings": {
+      "additionalProperties": false,
+      "properties": {
+        "response_schema": {
+          "$ref": "#/$defs/artifactBinding"
+        },
+        "role_schema": {
+          "$ref": "#/$defs/artifactBinding"
+        },
+        "run_id": {
+          "pattern": "^(?:continuous|rehearsal)-[0-9]{3}$",
+          "type": "string"
+        },
+        "task_id": {
+          "minLength": 1,
+          "type": "string"
+        }
+      },
+      "required": [
+        "response_schema",
+        "role_schema",
+        "run_id",
+        "task_id"
+      ],
+      "type": "object"
+    },
+    "stage": {
+      "const": "prediction"
+    },
+    "template_choice_semantics": {
+      "additionalProperties": false,
+      "properties": {
+        "choice_placeholder_pattern": {
+          "const": "^<[^<>]+>$"
+        },
+        "frozen_value_rule": {
+          "const": "non_placeholder_values_are_frozen_except_declared_mutable_arrays"
+        },
+        "mutable_array_rules": {
+          "const": [
+            {
+              "array": "compatible_alternatives",
+              "allowed_action": "clear_or_retain_for_determinate_and_retain_expand_for_indeterminate"
+            },
+            {
+              "array": "pollution.integrity_exposures",
+              "allowed_action": "keep_empty_or_append_schema_valid_items"
+            }
+          ]
+        },
+        "template_kind": {
+          "const": "typed_choice_template"
+        }
+      },
+      "required": [
+        "choice_placeholder_pattern",
+        "frozen_value_rule",
+        "mutable_array_rules",
+        "template_kind"
+      ],
+      "type": "object"
+    }
+  },
+  "required": [
+    "artifact_type",
+    "artifact_version",
+    "cartesian_product_rule",
+    "confidence_percent_rule",
+    "integrity_exposure_item_shape",
+    "local_id_pattern",
+    "observation_rules",
+    "pollution_enums",
+    "prediction_branch_rules",
+    "required_fields_by_stage",
+    "source_bindings",
+    "stage",
+    "template_choice_semantics"
+  ],
+  "title": "Game Primitives Prediction Participant Response Contract 0.1.1",
+  "type": "object"
+}

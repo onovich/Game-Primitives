@@ -1,6 +1,6 @@
 # 连续行动先行组测试工作区
 
-- 状态：CA-07 已冻结；`continuous-001` 已完成三案夹具封装、最终构建准备、夹具锁与门前执行计划；第一轮第二道独立审核发现离线 Schema 依赖缺口，修订后正在重审；正式包尚未冻结，正式轮次未运行
+- 状态：`continuous-001` 已冻结，但因参与者预测接口不可构造而在正式输入执行前失败关闭；协议 0.1.1 的阶段契约、类型化模板与门前验证已经通过合成隔离检查，`rehearsal-006` 正在冻结并等待四个空白 actor 的首答彩排
 - 受测表示：[连续行动结构表示 v0.1](../../../theory/CONTINUOUS-ACTION-REPRESENTATION-0.1.md)
 - 执行与结论规则：[CA-06](../../continuous-action-pilot-ca-06-execution-and-verdicts.md)
 - 制品与放行规则：[CA-07](../../continuous-action-pilot-ca-07-artifacts-and-release.md)
@@ -47,7 +47,13 @@
 - [`role-submission-0.1.1.schema.json`](schema/role-submission-0.1.1.schema.json)：保留 0.1.0 并给预测期望增加必填 `configuration_id`，修复 `rehearsal-001` 发现的基线／变体寻址缺口。
 - [`role-submission-0.1.2.schema.json`](schema/role-submission-0.1.2.schema.json)：把原始盲测 payload、机器信封与装配工具散列绑定到派生提交。
 - [`blind-response-interface-0.1.0.schema.json`](schema/blind-response-interface-0.1.0.schema.json)：阶段专用的盲测语义 payload 与机器信封。
+- [`blind-response-interface-0.1.1.schema.json`](schema/blind-response-interface-0.1.1.schema.json)：把参与者原始回答与保管者信封分离，并让确定／不确定预测的类型与单位分支都可达。
+- [`response-template-0.1.1.schema.json`](schema/response-template-0.1.1.schema.json) 与 [`reconstruction-response-template-0.1.1.schema.json`](schema/reconstruction-response-template-0.1.1.schema.json)：把两阶段模板定义为带机器派生参与者契约的类型化选择模板，防止第一阶段泄漏第二阶段观察规则。
+- [`prediction-participant-response-contract-0.1.1.schema.json`](schema/prediction-participant-response-contract-0.1.1.schema.json) 与 [`reconstruction-participant-response-contract-0.1.1.schema.json`](schema/reconstruction-participant-response-contract-0.1.1.schema.json)：分别约束两阶段参与者可见的字段、枚举、条件分支、ID、单位和可变数组规则。
 - [`prediction-template-contract-check-0.1.0.schema.json`](schema/prediction-template-contract-check-0.1.0.schema.json)：记录任务、预测模板与响应 Schema 的参与者可达分支检查。
+- [`prediction-template-contract-check-0.1.1.schema.json`](schema/prediction-template-contract-check-0.1.1.schema.json) 与 [`reconstruction-template-contract-check-0.1.1.schema.json`](schema/reconstruction-template-contract-check-0.1.1.schema.json)：记录 0.1.1 两阶段模板与机器派生契约的逐字段闭合检查。
+- [`participant-interface-readiness-0.1.0.schema.json`](schema/participant-interface-readiness-0.1.0.schema.json)：要求协议 0.1.1 的正例、负控、无正式输入隔离重放和冻结依赖闭包同时成立；空白 actor 首答留给派发后验收。
+- [`rehearsal-actor-dispatch-plan-0.1.0.schema.json`](schema/rehearsal-actor-dispatch-plan-0.1.0.schema.json)：固定 `rehearsal-006` 的四个 projectless 空白席位、模型配置、两阶段同会话规则与逐字节操作提示绑定。
 - [`blind-protocol-incident-0.1.0.schema.json`](schema/blind-protocol-incident-0.1.0.schema.json)：记录人工门后、正式执行前发现的阻断性盲测协议事故及失败关闭状态。
 - [`execution-artifact-0.1.0.schema.json`](schema/execution-artifact-0.1.0.schema.json)：执行计划、原始轨迹包和派生执行结果。
 - [`execution-artifact-0.1.1.schema.json`](schema/execution-artifact-0.1.1.schema.json)：要求执行轨迹直接绑定原始调用／输出，执行结果直接绑定比较器输出。
@@ -61,7 +67,7 @@
 
 根摘要应同时通过 [`verify-frozen-manifest.py`](tools/verify-frozen-manifest.py) 复算。校验器只读清单、制品与 Schema；不会修正已经冻结的值。
 
-盲测回答使用 [`build-role-submission.py`](tools/build-role-submission.py) 渲染结构模板、捕获机器信封、确定性装配并复核。修订理由与边界见[盲测回答接口修订](../../continuous-action-pilot-blind-response-interface.md)。
+既有轮次仍由 [`build-role-submission.py`](tools/build-role-submission.py) 复算；协议 0.1.1 使用 [`build-role-submission-v0.1.1.py`](tools/build-role-submission-v0.1.1.py) 校验参与者原始回答、生成机器信封并确定性装配提交。修订理由与边界见[盲测回答接口修订](../../continuous-action-pilot-blind-response-interface.md)和[协议 0.1.1 修复计划](protocol-0.1.1-repair-plan.md)。
 
 正式包使用 [`verify-run-package.py`](tools/verify-run-package.py) 统一检查 Schema、自声明版本、规范字节、清单与嵌套散列引用、任务输入／输出、冻结集合摘要及冻结锚点提交。`preparing` 包可以通过结构检查；人工门前还必须以 `--require-frozen` 通过。
 
@@ -100,6 +106,7 @@ python research/calibration-tests/continuous-action-pilot/tools/verify-formal-ra
 | `rehearsal-003` | `procedure_fail` | 任务包保留了旧输入散列 |
 | `rehearsal-004` | `procedure_pass` | 六项阶段链闭合；完整提交接口仍过于脆弱 |
 | `rehearsal-005` | `procedure_pass` | 两种条件的四份原始首答直接有效；机器装配逐字节可重复 |
+| `rehearsal-006` | `in_progress` | 验收 1—7、9、10 已在不含 `runs/` 的白名单镜像中通过；等待四个 projectless 空白 actor 验收首答可构造性 |
 
 失败轮次、无效首答和已冻结 README 均原样保留。两次通过都是程序结论，不是理论证据；ADR 0116 的接口限制已经由 `rehearsal-005` 聚焦复测解除。
 
