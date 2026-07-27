@@ -1,0 +1,434 @@
+{
+  "$schema": "https://github.com/onovich/Game-Primitives/blob/main/research/calibration-tests/continuous-action-pilot/schema/role-submission-0.1.2.schema.json",
+  "actor": {
+    "identifier": "source-auditor.projection.continuous-001.019fa1e4",
+    "role": "source_auditor",
+    "session_id": "session.projection-audit.continuous-001.019fa1e4-367a-7582-98dc-2bf48718a9d5"
+  },
+  "artifact_type": "source_fidelity_audit",
+  "artifact_version": "0.1.2",
+  "audit_checks": [
+    {
+      "check_id": "answer_hint_scan",
+      "evidence": "locations=the roots and participant_files of the 16 task/view/envelope/template/dispatch boundary artifacts; finding=0 exact forbidden-token matches, 0 prefilled values and 0 prefilled expectation_kind values across 96 prediction expectation slots, and all 312 reconstruction answer cells remain placeholders; severity=none; required_change=none.",
+      "status": "passed",
+      "target_artifact_ids": [
+        "task.reconstruction.condition-v01",
+        "task.reconstruction.condition-v02",
+        "view.stage1-condition-v01-v0.1.0",
+        "view.stage1-condition-v02-v0.1.0",
+        "template.reconstruction-response-v0.1.0",
+        "task.prediction.continuous-001",
+        "envelope.variant.stage2-v0.1.0",
+        "template.prediction-response-v0.1.0",
+        "dispatch-template.stage1.p01",
+        "dispatch-template.stage1.p02",
+        "dispatch-template.stage1.p03",
+        "dispatch-template.stage1.p04",
+        "dispatch-template.stage2.p01",
+        "dispatch-template.stage2.p02",
+        "dispatch-template.stage2.p03",
+        "dispatch-template.stage2.p04"
+      ]
+    },
+    {
+      "check_id": "atomic_projection_equivalence",
+      "evidence": "locations=source.canonical-encoding-v0.1.0#/cases, projection.spec-v0.1.0#/conditions, and both view roots; finding=the rich rewrite has 0 shape/scalar deviations after the declared redactions and renames, with 401 aligned ID occurrences forming a 110-by-110 bijection; the atomic view retains exact scope/trace bindings plus reference/output-channel counts CA-R1=5/1, CA-R2=4/2, CA-R3=4/1 while every spec-declared removed structural array is empty; severity=none; required_change=none.",
+      "status": "passed",
+      "target_artifact_ids": [
+        "source.canonical-encoding-v0.1.0",
+        "projection.generator-v0.1.0",
+        "projection.spec-v0.1.0",
+        "view.stage1-condition-v01-v0.1.0",
+        "view.stage1-condition-v02-v0.1.0"
+      ]
+    },
+    {
+      "check_id": "dispatch_symmetry",
+      "evidence": "locations=the roots, participant_files, facility_files, and closure_edges of all eight dispatch templates; finding=all four stage-1 templates are byte-equal after seat/condition substitutions and all four stage-2 templates are likewise equal; p01/p02 bind condition-v01, p03/p04 bind condition-v02; stage-1 counts are participant=3, facility=9, closure=12 and stage-2 counts are participant=3, facility=8, closure=12, with 0 source/fixture/result/comparator paths in participant files; severity=none; required_change=none.",
+      "status": "passed",
+      "target_artifact_ids": [
+        "actor-plan.continuous-001",
+        "dispatch-template.stage1.p01",
+        "dispatch-template.stage1.p02",
+        "dispatch-template.stage1.p03",
+        "dispatch-template.stage1.p04",
+        "dispatch-template.stage2.p01",
+        "dispatch-template.stage2.p02",
+        "dispatch-template.stage2.p03",
+        "dispatch-template.stage2.p04",
+        "task.reconstruction.condition-v01",
+        "task.reconstruction.condition-v02",
+        "task.prediction.continuous-001",
+        "envelope.variant.stage2-v0.1.0",
+        "template.reconstruction-response-v0.1.0",
+        "template.prediction-response-v0.1.0"
+      ]
+    },
+    {
+      "check_id": "formal_build_readiness_integrity",
+      "evidence": "locations=build.formal-readiness-v0.1.0, fixture.lock-v0.1.0, execution.plan.continuous-001, the three assembly fragments, and python runtime evidence; finding=an independent declaration-only cross-check produced 0 mismatches: readiness and lock contain CA-R1/CA-R2/CA-R3, the plan adds only NEG-01, every positive case has passed build gates, baseline+variant configurations, false formal_input_executed/formal_result_produced, matching source commits, inputs, stops, invariants, tolerances, comparators, observations, and fixture references; the plan has 0 executions/results/derivations and null execution digests/timestamps; 228 declared reference objects contain 0 path/hash or artifact-id conflicts; no referenced unbound target was read or executed; severity=none; required_change=none.",
+      "status": "passed",
+      "target_artifact_ids": [
+        "build.formal-readiness-v0.1.0",
+        "fixture.lock-v0.1.0",
+        "execution.plan.continuous-001",
+        "evidence.python-runtime.continuous-001",
+        "fixture.assembly-fragment.ca-r1-v0.1.0",
+        "fixture.assembly-fragment.ca-r2-v0.1.0",
+        "fixture.assembly-fragment.ca-r3-v0.1.0"
+      ]
+    },
+    {
+      "check_id": "identity_leak_scan",
+      "evidence": "locations=the roots and participant_files of the 16 task/view/envelope/template/dispatch boundary artifacts; finding=0 forbidden identity-token matches; both views have 0 non-null audit_identity values, 0 non-empty provenance values, and 0 source issue entries; stage-2 task/envelope contain 0 condition-v01/condition-v02 or projection-v01/projection-v02 literals, and participant paths expose no source, fixture, submission, execution, truth, result, or comparator path; severity=none; required_change=none.",
+      "status": "passed",
+      "target_artifact_ids": [
+        "task.reconstruction.condition-v01",
+        "task.reconstruction.condition-v02",
+        "view.stage1-condition-v01-v0.1.0",
+        "view.stage1-condition-v02-v0.1.0",
+        "template.reconstruction-response-v0.1.0",
+        "task.prediction.continuous-001",
+        "envelope.variant.stage2-v0.1.0",
+        "template.prediction-response-v0.1.0",
+        "dispatch-template.stage1.p01",
+        "dispatch-template.stage1.p02",
+        "dispatch-template.stage1.p03",
+        "dispatch-template.stage1.p04",
+        "dispatch-template.stage2.p01",
+        "dispatch-template.stage2.p02",
+        "dispatch-template.stage2.p03",
+        "dispatch-template.stage2.p04"
+      ]
+    },
+    {
+      "check_id": "invariant_integrity",
+      "evidence": "locations=source.canonical-encoding-v0.1.0#/cases, envelope.variant.stage2-v0.1.0#/case_interventions, fixture.lock-v0.1.0#/cases, and execution.plan.continuous-001#/cases; finding=CA-R1 has exactly inv.a.0001..0006, CA-R2 inv.b.0001..0007, and CA-R3 inv.c.0001..0007, with no duplicate or missing IDs; stop, initial-state, formal-input, observation, and tolerance declarations close exactly from envelope through lock and plan with 0 cross-document mismatches; severity=none; required_change=none.",
+      "status": "passed",
+      "target_artifact_ids": [
+        "source.canonical-encoding-v0.1.0",
+        "envelope.variant.stage2-v0.1.0",
+        "fixture.lock-v0.1.0",
+        "execution.plan.continuous-001"
+      ]
+    },
+    {
+      "check_id": "projection_fidelity",
+      "evidence": "locations=projection.spec-v0.1.0#/conditions, both view roots, and projection.generator-v0.1.0 declarations; finding=both views bind canonical SHA-256 5682e1bb395a2c7e02df914b3a464005d195a736bc0dc0d88594f7ee3611e5c3, projection-spec SHA-256 7ac0fe8a33c2d75a38bde2df3b804f89012a9acc712f83cd090139141ae60ec0, and generator SHA-256 9b2681df8f2b09255001da6c167216484fc75ada1e5ca95f0699a00a3bad1d85; independent closure counts are rich CA-R1=44 declared/27 referenced/0 dangling, CA-R2=31/17/0, CA-R3=35/17/0 and atomic CA-R1=7/0/0, CA-R2=7/0/0, CA-R3=6/0/0, with 0 non-opaque IDs; severity=none; required_change=none.",
+      "status": "passed",
+      "target_artifact_ids": [
+        "source.canonical-encoding-v0.1.0",
+        "projection.generator-v0.1.0",
+        "projection.spec-v0.1.0",
+        "view.stage1-condition-v01-v0.1.0",
+        "view.stage1-condition-v02-v0.1.0"
+      ]
+    },
+    {
+      "check_id": "protocol_incident_disposition",
+      "evidence": "locations=audit.protocol-incident.r3-byte-integrity-read-v0.1.0#/aggregate_state, /evidence_scope_note, /operations, /non_operations, and /gate_disposition; finding=the bound event explicitly has formal_input_byte_read=true. It records one Path.read_bytes plus SHA-256 digest comparison solely for byte-integrity checking, with semantic_interpretation=false, json_parse=false, formal_input_executed=false, formal_result_produced=false, and every exposure flag false. No round- or process-scoped formal_input_read=false statement erases that aggregate byte-read fact. The documented non-semantic exception remains status=pending_explicit_human_acceptance and must still be explicitly accepted by the later human gate; severity=none for source-disposition accuracy, gate acceptance still pending; required_change=none in this audit, retain explicit human acceptance requirement.",
+      "status": "passed",
+      "target_artifact_ids": [
+        "audit.protocol-incident.r3-byte-integrity-read-v0.1.0",
+        "schema.protocol-incident-v0.1.0",
+        "fixture.lock-v0.1.0"
+      ]
+    },
+    {
+      "check_id": "reference_closure",
+      "evidence": "locations=task.projection-audit.continuous-001#output_schema and role-submission-0.1.2.schema.json at 16 external $ref occurrences; finding=all 58 bound input artifacts and the control packet passed SHA-256 recomputation, and rich/atomic internal ID closure has 0 dangling references, but the bound output schema contains 16 references to role-submission-0.1.1.schema.json while the control packet binds 0 copies of that dependency. Complete offline output-schema resolution and validation are therefore objectively impossible without an out-of-scope read; severity=blocking; required_change=bind role-submission-0.1.1.schema.json with SHA-256 or provide a self-contained output schema, then rerun full validation.",
+      "status": "failed",
+      "target_artifact_ids": [
+        "task.projection-audit.continuous-001",
+        "schema.task-packet-v0.1.2"
+      ]
+    },
+    {
+      "check_id": "single_variable_isolation",
+      "evidence": "locations=source.canonical-encoding-v0.1.0#/cases/*/case_scope/controlled_variable_id, both projected case scopes, and envelope.variant.stage2-v0.1.0#/case_interventions; finding=each case has exactly one controlled variable with exactly one structural duty edge in the rich encoding—CA-R1 variable.r1.whiff-cancel-permission gates the special action, CA-R2 variable.r2.input-sampling-policy modulates the used command, and CA-R3 variable.r3.adjudication-schedule schedules the accepted candidate—while the atomic projection retains only the variable identity/scope and every required neutral stage-2 ID closes (CA-R1=5, CA-R2=6, CA-R3=6; missing=0); severity=none; required_change=none.",
+      "status": "passed",
+      "target_artifact_ids": [
+        "source.canonical-encoding-v0.1.0",
+        "view.stage1-condition-v01-v0.1.0",
+        "view.stage1-condition-v02-v0.1.0",
+        "envelope.variant.stage2-v0.1.0"
+      ]
+    },
+    {
+      "check_id": "stage2_input_closure",
+      "evidence": "locations=envelope.variant.stage2-v0.1.0#/case_interventions, task.prediction.continuous-001, template.prediction-response-v0.1.0, and all four stage-2 dispatch templates; finding=the task interventions equal the envelope after only the declared removal of allowed_configuration_ids and tolerance_rule_ids; configuration closure is exactly config.baseline/config.variant; observations are CA-R1=5, CA-R2=5, CA-R3=6; main prediction grids are exact Cartesian products of size 10/10/12 and both compatible alternative grids are also exact; event sequences are CA-R1 indices 0..6, CA-R2 times 8..200 ms across 25 events, and CA-R3 one event at 1000 ms; all four participant sets are identical and all blinding assertions are false; severity=none; required_change=none.",
+      "status": "passed",
+      "target_artifact_ids": [
+        "envelope.variant.stage2-v0.1.0",
+        "task.prediction.continuous-001",
+        "template.prediction-response-v0.1.0",
+        "dispatch-template.stage2.p01",
+        "dispatch-template.stage2.p02",
+        "dispatch-template.stage2.p03",
+        "dispatch-template.stage2.p04",
+        "generator.stage2-envelope-v0.1.0",
+        "generator.stage2-task-v0.1.0"
+      ]
+    }
+  ],
+  "audit_decision": "revision_required",
+  "condition_id": null,
+  "findings": [
+    {
+      "finding_id": "finding.reference-closure.output-schema-dependency",
+      "message": "The bound role-submission 0.1.2 output schema has 16 external references to the unbound role-submission 0.1.1 schema, so complete offline schema validation cannot be performed without violating the control packet read boundary. Bind the missing dependency with SHA-256 or provide a self-contained schema, then rerun validation.",
+      "severity": "error"
+    }
+  ],
+  "first_submission": true,
+  "input_artifacts": [
+    {
+      "artifact_id": "schema.execution-artifact-v0.1.0",
+      "sha256": "ade31163179e4d100264d6b57c33561d3232b20f2fd0057cc74e174ace318906"
+    },
+    {
+      "artifact_id": "schema.execution-artifact-v0.1.1",
+      "sha256": "4d09bf48a1d1f6afaeaf9b56130333f13c1af2ecc2d5ef61784fa20bf8f3137a"
+    },
+    {
+      "artifact_id": "schema.fixture-assembly-fragment-v0.1.0",
+      "sha256": "964827e83a407b7aeceeaad32d64ed7d76120ad9db3b400cf159bbab831845de"
+    },
+    {
+      "artifact_id": "schema.fixture-lock-v0.1.0",
+      "sha256": "9221d543b33a1a418b1d12ca471d4ab371e4f7ace00e78656c6cb13697480f9e"
+    },
+    {
+      "artifact_id": "schema.formal-build-readiness-v0.1.0",
+      "sha256": "250368897679b7f0c9eaa835f5db144bee1afc1d230910f1ea7d84668bbe5c0a"
+    },
+    {
+      "artifact_id": "schema.task-packet-v0.1.2",
+      "sha256": "d32b78137d186a76921532fd3a861ab15e42eddc7def6395caa3e89caa27ca51"
+    },
+    {
+      "artifact_id": "schema.raw-trace.ca-r1-v0.1.0",
+      "sha256": "0b0d44087869fb178f83a5faa6690ab190d0f3df3f75c43ec339490a29412961"
+    },
+    {
+      "artifact_id": "schema.raw-trace.ca-r2-v0.1.0",
+      "sha256": "f719579e71bd1153ecd671302ab82df95f4630f9653c1d74bd90c4285b72e637"
+    },
+    {
+      "artifact_id": "schema.raw-trace.ca-r3-v0.1.0",
+      "sha256": "a257fc0920536f76c977be8867a1e9302d872b7f8cea0480ade999e3281f07f1"
+    },
+    {
+      "artifact_id": "schema.formal-comparator-output-v0.1.0",
+      "sha256": "602dc7edf80b36bbda52074d1a2a64c9ec85d57307a5fd85a48f25d54b4bc79d"
+    },
+    {
+      "artifact_id": "schema.formal-execution-permit-v0.1.0",
+      "sha256": "089397a3c6e65e7171375bdc7beb24d5d7f897078b364ef32a93b4d911886410"
+    },
+    {
+      "artifact_id": "schema.formal-human-gate-authorization-v0.1.0",
+      "sha256": "a19fb50a873a3a202737e1040ab8ed973fb3fe7fe36fa78534bbc3c0d50cd6d0"
+    },
+    {
+      "artifact_id": "schema.r1-standalone-build-evidence-v0.1.0",
+      "sha256": "351f4b623b333b5c26437a58f3b9fdec9d91ebc6f5a45cf1fa7f4fdb823d457b"
+    },
+    {
+      "artifact_id": "schema.r2-build-readiness-evidence-v0.1.0",
+      "sha256": "43457e02c83b9f387319d2eb9213d39f8b4dfcf6ab103ff472367a93e6e792d6"
+    },
+    {
+      "artifact_id": "schema.python-runtime-evidence-v0.1.0",
+      "sha256": "d755f0ea0e2da88a657333604d945ae34cc0fde19c163d0881f06b8e89692033"
+    },
+    {
+      "artifact_id": "schema.protocol-incident-v0.1.0",
+      "sha256": "f7a412a6ca1b593c0cf2e1bdac661fab6e2f970a88583c609662a313ae5d8f1c"
+    },
+    {
+      "artifact_id": "tool.build-role-submission-v0.1.0",
+      "sha256": "37029e58031a159937bfbd8008ab5a6041c86517836376dd63ab298676bfb4cb"
+    },
+    {
+      "artifact_id": "tool.materialize-execution-permit-v0.1.0",
+      "sha256": "cdfa62be90a1788895493db9728659408cded126482fb228aa932a1252ad5701"
+    },
+    {
+      "artifact_id": "tool.materialize-dispatch-v0.1.0",
+      "sha256": "3ba6f0263d40753b1f5084903d34c727043fa648438746fae3138c89a84e2bfc"
+    },
+    {
+      "artifact_id": "tool.verify-formal-execution-permit-v0.1.0",
+      "sha256": "b9c9b97319bd4a4e2814b5e463ca605783a6239b132dcb195fe2533c0b202b89"
+    },
+    {
+      "artifact_id": "tool.verify-formal-raw-trace-v0.1.0",
+      "sha256": "2a30f9a0126d1a0feb8b595974025e4a91c4db6b9955ccefe7014ad58d02cca0"
+    },
+    {
+      "artifact_id": "tool.formal-execution-target-contract-v0.1.0",
+      "sha256": "a8b1a95c158d2b0ce6aee5fa4845bc06ddce7f16b5c39eb3fa70180195c7882e"
+    },
+    {
+      "artifact_id": "tool.materialize-fixture-assembly-v0.1.0",
+      "sha256": "2bda970a0bdf05576fbafdac603bbacc986db9ac4ead301849f2b53033eff32e"
+    },
+    {
+      "artifact_id": "tool.materialize-final-execution-plan-v0.1.0",
+      "sha256": "b92f102c556703246a61844a8533f3aa11677057dc53b565c1d684ebdf8f9aaa"
+    },
+    {
+      "artifact_id": "tool.materialize-python-runtime-evidence-v0.1.0",
+      "sha256": "2e57818f968cbda0ed44396d24f54d646b28aca63ad5a7d9f3a8cbec66cbf087"
+    },
+    {
+      "artifact_id": "tool.materialize-projection-audit-task-v0.1.0",
+      "sha256": "f07e76aea7d61df7047f8b210a26b7e22de7625a5cf4d205facd14b26aa23c56"
+    },
+    {
+      "artifact_id": "tool.verify-formal-readiness-v0.1.0",
+      "sha256": "1ce71c917bb55410513207a82631d946be3963badcebe89e757208f36b5964ff"
+    },
+    {
+      "artifact_id": "tool.verify-run-package-v0.1.0",
+      "sha256": "cae98a257e4a4160924b8739a9626a2a08dc78bd1ec98e74dcb4b9dd769e01f0"
+    },
+    {
+      "artifact_id": "execution.plan.continuous-001",
+      "sha256": "e218609691bfc76f23f4440bd67d76438f6c9053f61ae2be7e2934619724f9af"
+    },
+    {
+      "artifact_id": "evidence.python-runtime.continuous-001",
+      "sha256": "546eb1b6ea3ca795e7e669345c89d8ee7192012c580566d71019ff103c9c245d"
+    },
+    {
+      "artifact_id": "fixture.lock-v0.1.0",
+      "sha256": "7550e7477ed9213fbf605c6f30898e48151244db4b119e89ed0caf5fb3db4b5c"
+    },
+    {
+      "artifact_id": "build.formal-readiness-v0.1.0",
+      "sha256": "581bf917f0b4d49f2f4dfec5c1eb5c8fb62ebb652533b263d593e7d0e0a6e082"
+    },
+    {
+      "artifact_id": "fixture.assembly-fragment.ca-r1-v0.1.0",
+      "sha256": "df13564e6736a1c889e6960600906c3cf56fb1430eea0c450823e5f44ff3e6fd"
+    },
+    {
+      "artifact_id": "fixture.assembly-fragment.ca-r2-v0.1.0",
+      "sha256": "0b2f21cb39e6f3ae2d284356fa0b037a47292199cad6073c69c30ebf99baaa72"
+    },
+    {
+      "artifact_id": "fixture.assembly-fragment.ca-r3-v0.1.0",
+      "sha256": "e0661c4fc3fd7e4cf3afecfaf92e7b47237c0040f3d80f0f6af3b3ff12f501dd"
+    },
+    {
+      "artifact_id": "actor-plan.continuous-001",
+      "sha256": "4a14c8429382be88e9ee76a9c7851a7f9aa7f360a96172a8b2ccff8d6456779d"
+    },
+    {
+      "artifact_id": "projection.generator-v0.1.0",
+      "sha256": "9b2681df8f2b09255001da6c167216484fc75ada1e5ca95f0699a00a3bad1d85"
+    },
+    {
+      "artifact_id": "generator.stage2-envelope-v0.1.0",
+      "sha256": "2d68201d8f6e2391fb0d74be64050163f550a6d2cbbfb6bcb78d6c522b6d849d"
+    },
+    {
+      "artifact_id": "generator.stage2-task-v0.1.0",
+      "sha256": "6a90950104ab7a5bb95095dd427149e44beccdfcddbc4b8a07b0a74149472cba"
+    },
+    {
+      "artifact_id": "template.prediction-response-v0.1.0",
+      "sha256": "c992554cbfd115de4063163cce9d2d16816a645cd3c2647bc42b6a33b8eed5af"
+    },
+    {
+      "artifact_id": "projection.spec-v0.1.0",
+      "sha256": "7ac0fe8a33c2d75a38bde2df3b804f89012a9acc712f83cd090139141ae60ec0"
+    },
+    {
+      "artifact_id": "template.reconstruction-response-v0.1.0",
+      "sha256": "1e51c517bedcf79de9d129202aa60ddabaa5cb94703053f3ed80d10d2296c7aa"
+    },
+    {
+      "artifact_id": "dispatch-template.stage1.p01",
+      "sha256": "c8dd8f2bdd00f06a6a292ec116dd9ed53bfcfd19af4209659d3219b3ddec1d79"
+    },
+    {
+      "artifact_id": "dispatch-template.stage1.p02",
+      "sha256": "774ec953f79da36cea1edf0c22c8894133f99551cbaba9553d317424bf3fa495"
+    },
+    {
+      "artifact_id": "dispatch-template.stage1.p03",
+      "sha256": "6fdcedd87a29364d2e92a641c8a2ff1cb5aab6987bbbac142345fcb1e87477cc"
+    },
+    {
+      "artifact_id": "dispatch-template.stage1.p04",
+      "sha256": "5ca49a18c15d8e1cd4e4a6c2322cfe070d5bd35e86462936d5a2117ee4b707bc"
+    },
+    {
+      "artifact_id": "task.reconstruction.condition-v01",
+      "sha256": "94fe34a01cd693b3fb08775f111409dbb4b172ea223e1df9756bbedf905d19ce"
+    },
+    {
+      "artifact_id": "task.reconstruction.condition-v02",
+      "sha256": "a74a854df07806706074b608380999a7eb51b0500f72422ae111cddfe98c3ed0"
+    },
+    {
+      "artifact_id": "view.stage1-condition-v01-v0.1.0",
+      "sha256": "a9ccd9500f92dc3f9619e10b01a8ba8a554f364393286c1af81ee1770956a850"
+    },
+    {
+      "artifact_id": "view.stage1-condition-v02-v0.1.0",
+      "sha256": "1d472560c46a11a3502b6cc0798bd01d52c48a210a9d3a8cc6c65b416e51a95b"
+    },
+    {
+      "artifact_id": "dispatch-template.stage2.p01",
+      "sha256": "a434faa306591aaa1631ba34baf01deb85c19da8fb89b255001fb132202398b7"
+    },
+    {
+      "artifact_id": "dispatch-template.stage2.p02",
+      "sha256": "8686756a89b7a3541d930b1e10d652654979df9317a0add42c87cd93dc76044a"
+    },
+    {
+      "artifact_id": "dispatch-template.stage2.p03",
+      "sha256": "2272293aa02b9202f8f90e4f740eee120c9b203449e1b5dcc00c7e7221b37355"
+    },
+    {
+      "artifact_id": "dispatch-template.stage2.p04",
+      "sha256": "5f4844905fd31818c878e744be6c5da2c4418f6aa4daad9517f7a417e0734a3e"
+    },
+    {
+      "artifact_id": "task.prediction.continuous-001",
+      "sha256": "7a4e286c486b03fe3a24875e2db1e95b4024750e5c36af5a993adae54cda388c"
+    },
+    {
+      "artifact_id": "envelope.variant.stage2-v0.1.0",
+      "sha256": "f4501e153cd103c0ec7a184c89e12aa57d4a9ef128e416654ad332a10c7702d1"
+    },
+    {
+      "artifact_id": "source.canonical-encoding-v0.1.0",
+      "sha256": "5682e1bb395a2c7e02df914b3a464005d195a736bc0dc0d88594f7ee3611e5c3"
+    },
+    {
+      "artifact_id": "audit.protocol-incident.r3-byte-integrity-read-v0.1.0",
+      "sha256": "379c583a5c7bf1d839cb6bdc8bd4874df1cb2a91525d18fa8470912e0233295c"
+    },
+    {
+      "artifact_id": "task.projection-audit.continuous-001",
+      "sha256": "7b7bf4df89c8f7b6dd5bd19c75f7e5bdb7d4eece76b86b567baf621dc39c4713"
+    }
+  ],
+  "packaging": null,
+  "pollution": null,
+  "prediction_answers": [],
+  "prior_stage_submission_sha256": null,
+  "raw_payload": null,
+  "reconstruction_answers": [],
+  "run_id": "continuous-001",
+  "stage": "source_audit",
+  "submission_id": "submission.projection-audit.continuous-001.v0.1.0",
+  "submitted_at": "2026-07-27T05:06:54Z",
+  "task_id": "task.projection-audit.continuous-001"
+}
