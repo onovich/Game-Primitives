@@ -17,7 +17,7 @@
       "release_stage": "preparation",
       "schema_path": "research/calibration-tests/continuous-action-pilot/schema/markdown-document-0.1.0.schema.json",
       "schema_sha256": "89827f39031c7d26f430584bb2f3e64c3600213a8e45e994da2c4120cb3f09a3",
-      "sha256": "7de4c04a9f6c0214e9b1797c4f0af85da9fa1719ccda685bd1b895dfef158b6e",
+      "sha256": "fff93d5ffbe393ca6e12369e32d4db4ed6d53d9c00cde727eb31ff7471c40d0c",
       "supersedes_artifact_id": null
     },
     {
@@ -1789,5 +1789,5 @@
     "truth_bundle_bytes": 32408,
     "truth_bundle_name": "sealed-truth.json"
   },
-  "updated_at": "2026-07-27T05:48:45Z"
+  "updated_at": "2026-07-27T05:52:00Z"
 }

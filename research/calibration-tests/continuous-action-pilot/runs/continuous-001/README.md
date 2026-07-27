@@ -12,7 +12,9 @@
 
 本目录是连续行动组第一个正式轮次包。当前只制作人工门之前允许的来源、编码、投影、夹具、比较器、任务、承诺和验证制品。
 
-来源规范编码及第一道独立来源审核已经通过。两份候选中性视图已从同一规范编码机械生成，并只以 `condition-v01`、`condition-v02` 暴露条件身份。第一轮第二道独立审核正确发现输出 Schema 的离线依赖未闭合，结论为 `revision_required`；该失败尝试已保存，依赖闭包与 atomic 端点单位表达已经修订，第二轮独立审核尚未完成，因此这些制品仍未进入冻结集合。
+来源规范编码及第一道独立来源审核已经通过。两份候选中性视图已从同一规范编码机械生成，并只以 `condition-v01`、`condition-v02` 暴露条件身份。第一轮第二道独立审核正确发现输出 Schema 的离线依赖未闭合，结论为 `revision_required`；该失败尝试已保存。修订后，第二轮审核在隔离工作区完成了 61 项输入、20 份绑定 Schema、437 条 `$ref`、机械投影、派发面和构建链的独立复核，11 项检查全部通过，结论为 `approved`。
+
+密封真值与 32 字节随机数现保存在仓库外；`manifest.json` 只保存 `SHA-256(secret_nonce_bytes || exact_truth_bundle_bytes)` 承诺。明文真值、条件映射和随机数均未进入 Git，正式结果也仍不存在。冻结集合尚未完成两次提交锚定，因此人工门仍未召开。
 
 三个来源身份已于 2026-07-27 直接通过官方 Git 远端复核：
 
@@ -30,7 +32,9 @@
 
 ## 第二道投影审核任务
 
-`inputs/projection-audit.task.json` 已在最终构建准备记录、夹具锁和最终执行计划之后重新生成，当前精确绑定 61 个输入制品。第一轮独立审核结果保存在 `source/projection-audit-attempt-01-revision-required-v0.1.0.json` 和对应 Git 历史中；它不是通过的审核记录，也不属于当前正式清单。该轮发现 `role-submission 0.1.2` 的基础 Schema 未被任务绑定。修订后的任务现显式绑定 `role-submission 0.1.1`、`task-packet 0.1.0` 与 `variant-envelope 0.1.0`，并机械拒绝任何不完整的传递 Schema 依赖闭包。正式路径 `source/projection-audit-v0.1.0.json` 仍等待第二个隔离工作区生成通过记录。
+`inputs/projection-audit.task.json` 已在最终构建准备记录、夹具锁和最终执行计划之后重新生成，当前精确绑定 61 个输入制品。第一轮独立审核结果保存在 `source/projection-audit-attempt-01-revision-required-v0.1.0.json` 和对应 Git 历史中；它不是通过的审核记录，也不属于当前正式清单。该轮发现 `role-submission 0.1.2` 的基础 Schema 未被任务绑定。修订后的任务显式绑定 `role-submission 0.1.1`、`task-packet 0.1.0` 与 `variant-envelope 0.1.0`，并机械拒绝任何不完整的传递 Schema 依赖闭包。
+
+第二轮隔离审核产物为 `source/projection-audit-v0.1.0.json`。它精确镜像任务的 61 项输入并额外绑定任务自身，共 62 项；审计结论为 `approved`，11 项要求全部为 `passed`。事件记录仍如实保留 `formal_input_byte_read=true`：该事件只涉及一次 R3 正式输入的字节完整性散列，没有语义解释、执行或结果暴露，但仍须在之后的人工门中显式接受，不能被轮次级布尔值抹除。
 
 门前工具 `tools/materialize-projection-audit-task.py` 把上述顺序做成失败即关闭的机械约束：
 
