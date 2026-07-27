@@ -51,7 +51,7 @@ MANIFEST_SCHEMA_ID = (
 )
 READINESS_TOOL_PATH = BASE / "tools/verify-formal-readiness.py"
 TRUSTED_READINESS_SHA256 = (
-    "e73ac7d88122b466e3c2d3d09c1dc41ac9ed5b2e30ca4dfca245f358d3e4615a"
+    "2f26a047fa2fd93f4d72c7325b1bba5a22143e7f1f8e3c6172eb8718e519a41a"
 )
 FULL_SHA = re.compile(r"^[0-9a-f]{40}$")
 TRUSTED_SCHEMA_SHA256 = {
@@ -91,6 +91,7 @@ REQUIRED_PATHS = {
     "inputs/stage2-variant-envelope.json": True,
     "source/canonical-encoding-v0.1.0.json": True,
     "source/encoding-audit-v0.1.0.json": True,
+    "source/protocol-incident-r3-byte-integrity-read-v0.1.0.json": True,
     "source/projection-audit-v0.1.0.json": True,
     "source/source-packet.json": True,
 }
