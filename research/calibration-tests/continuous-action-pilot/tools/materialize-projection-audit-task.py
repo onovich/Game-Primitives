@@ -106,8 +106,20 @@ INPUT_SPECS = (
         f"{SCHEMA.as_posix()}/formal-build-readiness-0.1.0.schema.json",
     ),
     InputSpec(
+        "schema.role-submission-v0.1.1",
+        f"{SCHEMA.as_posix()}/role-submission-0.1.1.schema.json",
+    ),
+    InputSpec(
+        "schema.task-packet-v0.1.0",
+        f"{SCHEMA.as_posix()}/task-packet-0.1.0.schema.json",
+    ),
+    InputSpec(
         "schema.task-packet-v0.1.2",
         f"{SCHEMA.as_posix()}/task-packet-0.1.2.schema.json",
+    ),
+    InputSpec(
+        "schema.variant-envelope-v0.1.0",
+        f"{SCHEMA.as_posix()}/variant-envelope-0.1.0.schema.json",
     ),
     InputSpec(
         "schema.raw-trace.ca-r1-v0.1.0",
@@ -596,6 +608,78 @@ def assert_readiness_sync(repo_root: Path) -> None:
         )
 
 
+def external_schema_ref_bases(value: Any) -> set[str]:
+    bases: set[str] = set()
+    if isinstance(value, dict):
+        for key, child in value.items():
+            if key == "$ref" and isinstance(child, str):
+                base = child.split("#", 1)[0]
+                if base:
+                    bases.add(base)
+            else:
+                bases.update(external_schema_ref_bases(child))
+    elif isinstance(value, list):
+        for child in value:
+            bases.update(external_schema_ref_bases(child))
+    return bases
+
+
+def assert_audit_schema_dependency_closure(
+    repo_root: Path,
+    *,
+    input_specs: tuple[InputSpec, ...] = INPUT_SPECS,
+) -> None:
+    authorized_paths = {
+        spec.path
+        for spec in input_specs
+        if spec.path.endswith(".schema.json") and not spec.run_relative
+    }
+    authorized_paths.add(OUTPUT_SCHEMA_PATH.as_posix())
+
+    schema_dir = resolve_within(repo_root, SCHEMA)
+    schemas_by_id: dict[str, tuple[str, dict[str, Any]]] = {}
+    for path in sorted(schema_dir.glob("*.schema.json")):
+        schema = strict_schema_object(path)
+        schema_id = schema.get("$id")
+        if not isinstance(schema_id, str) or not schema_id:
+            raise ProjectionAuditTaskError(f"schema has no $id: {path}")
+        relative = path.relative_to(repo_root).as_posix()
+        schemas_by_id[schema_id] = (relative, schema)
+
+    pending = list(sorted(authorized_paths))
+    visited: set[str] = set()
+    gaps: set[str] = set()
+    while pending:
+        relative = pending.pop()
+        if relative in visited:
+            continue
+        visited.add(relative)
+        path = resolve_within(repo_root, relative)
+        if not path.is_file():
+            gaps.add(f"missing authorized schema {relative}")
+            continue
+        schema = strict_schema_object(path)
+        for ref_base in sorted(external_schema_ref_bases(schema)):
+            target = schemas_by_id.get(ref_base)
+            if target is None:
+                gaps.add(f"unresolved external $ref {ref_base}")
+                continue
+            target_relative, _ = target
+            if target_relative not in authorized_paths:
+                gaps.add(
+                    f"unbound schema dependency {target_relative} "
+                    f"referenced by {relative}"
+                )
+                continue
+            pending.append(target_relative)
+
+    if gaps:
+        raise ProjectionAuditTaskError(
+            "projection-audit schema dependency closure incomplete: "
+            + "; ".join(sorted(gaps))
+        )
+
+
 def load_schema_registry(
     schema_repo_root: Path,
 ) -> tuple[Registry, dict[str, dict[str, Any]]]:
@@ -982,6 +1066,7 @@ def build_task(
         )
     if enforce_readiness_sync:
         assert_readiness_sync(repo_root)
+    assert_audit_schema_dependency_closure(repo_root)
 
     missing: list[str] = []
     references: list[dict[str, str]] = []
@@ -1361,6 +1446,25 @@ def self_test(actual_repo_root: Path) -> dict[str, Any]:
     assert_readiness_sync(actual_repo_root)
     positive = 0
     negative = 0
+    without_role_submission_base = tuple(
+        spec
+        for spec in INPUT_SPECS
+        if spec.path
+        != f"{SCHEMA.as_posix()}/role-submission-0.1.1.schema.json"
+    )
+    try:
+        assert_audit_schema_dependency_closure(
+            actual_repo_root,
+            input_specs=without_role_submission_base,
+        )
+    except ProjectionAuditTaskError as exc:
+        if "schema dependency closure incomplete" not in str(exc):
+            raise
+        negative += 1
+    else:
+        raise ProjectionAuditTaskError(
+            "self-test accepted an unbound output-schema dependency"
+        )
     with tempfile.TemporaryDirectory(
         prefix="game-primitives-projection-audit-"
     ) as temporary:

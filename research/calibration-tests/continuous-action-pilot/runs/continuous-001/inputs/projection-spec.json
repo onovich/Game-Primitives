@@ -71,7 +71,7 @@
   "generator_version": "0.1.0",
   "projections": [
     {
-      "projection_id": "projection-v01.gsha256-9b2681df8f2b09255001da6c167216484fc75ada1e5ca95f0699a00a3bad1d85",
+      "projection_id": "projection-v01.gsha256-bda0537d62533a6ef195a648ca68a0137ea1e5064066488d4b776dca54757e48",
       "rules": [
         {
           "from_value": null,
@@ -111,7 +111,7 @@
       ]
     },
     {
-      "projection_id": "projection-v02.gsha256-9b2681df8f2b09255001da6c167216484fc75ada1e5ca95f0699a00a3bad1d85",
+      "projection_id": "projection-v02.gsha256-bda0537d62533a6ef195a648ca68a0137ea1e5064066488d4b776dca54757e48",
       "rules": [
         {
           "from_value": null,
@@ -202,14 +202,14 @@
           "operation": "retain_endpoint",
           "path": "/cases/case_scope/observation_start",
           "rule_id": "v02.13.retain-start",
-          "to_value": "generic-start-coordinate"
+          "to_value": "source-unit-preserving-start-coordinate"
         },
         {
           "from_value": "canonical-observation-stop",
           "operation": "retain_endpoint",
           "path": "/cases/case_scope/observation_stop",
           "rule_id": "v02.14.retain-stop",
-          "to_value": "generic-stop-coordinate"
+          "to_value": "source-unit-preserving-stop-coordinate"
         }
       ]
     }

@@ -3190,7 +3190,7 @@
   ],
   "condition_id": "condition-v01",
   "generated_at": "2026-07-27T00:00:00Z",
-  "projection_id": "projection-v01.gsha256-9b2681df8f2b09255001da6c167216484fc75ada1e5ca95f0699a00a3bad1d85",
-  "projection_spec_sha256": "7ac0fe8a33c2d75a38bde2df3b804f89012a9acc712f83cd090139141ae60ec0",
+  "projection_id": "projection-v01.gsha256-bda0537d62533a6ef195a648ca68a0137ea1e5064066488d4b776dca54757e48",
+  "projection_spec_sha256": "b924e3cc21cbb7f8a993bd8b388213b5b1decf3bc8f53acda0cb1a7fc1456f7f",
   "run_id": "continuous-001"
 }

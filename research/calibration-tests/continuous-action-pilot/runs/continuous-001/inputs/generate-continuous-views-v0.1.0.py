@@ -615,19 +615,23 @@ def v02_endpoint_text(
     original_case: dict[str, Any],
     endpoint: str,
 ) -> str:
-    if endpoint == "start":
-        return "观察起点：规则相对时间 0；应用已声明初始字段。"
     stop = original_case["case_scope"]["observation_stop"]
     millisecond_match = re.search(r"(\d+)\s*ms\b", stop, flags=re.IGNORECASE)
+    update_match = re.search(r"更新\s*(\d+)", stop)
+    if endpoint == "start":
+        if millisecond_match:
+            return "观察起点：规则相对时间 0；应用已声明初始字段。"
+        if update_match:
+            return "观察起点：规则更新序号 0；应用已声明初始字段。"
+        return "观察起点：首个声明输入事件被接受；应用已声明初始字段。"
     if millisecond_match:
         return (
             f"观察终点：规则相对时间 {millisecond_match.group(1)} 毫秒；"
             "读取已声明终止字段。"
         )
-    update_match = re.search(r"更新\s*(\d+)", stop)
     if update_match:
         return (
-            f"观察终点：规则相对时间 {update_match.group(1)}；"
+            f"观察终点：规则更新序号 {update_match.group(1)} 完成；"
             "读取已声明终止字段。"
         )
     return "观察终点：首个声明终止条件满足；读取已声明终止字段。"

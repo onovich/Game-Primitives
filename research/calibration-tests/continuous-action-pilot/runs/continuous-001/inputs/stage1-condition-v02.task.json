@@ -30,7 +30,7 @@
     {
       "artifact_id": "view.stage1-condition-v02-v0.1.0",
       "path": "research/calibration-tests/continuous-action-pilot/runs/continuous-001/inputs/stage1-view-v02.json",
-      "sha256": "1d472560c46a11a3502b6cc0798bd01d52c48a210a9d3a8cc6c65b416e51a95b"
+      "sha256": "eab8d371da493b66697bb3f6ca02bb6d24013bc6683d43048e2325377728cc44"
     },
     {
       "artifact_id": "template.reconstruction.continuous-001",
@@ -62,7 +62,7 @@
     "o.c.0032"
   ],
   "target_encoding_sha256": null,
-  "target_view_sha256": "1d472560c46a11a3502b6cc0798bd01d52c48a210a9d3a8cc6c65b416e51a95b",
+  "target_view_sha256": "eab8d371da493b66697bb3f6ca02bb6d24013bc6683d43048e2325377728cc44",
   "task_id": "task.reconstruct.condition-v02",
   "tolerance_rule_refs": [],
   "variant_interventions": []

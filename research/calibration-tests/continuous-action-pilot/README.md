@@ -1,6 +1,6 @@
 # 连续行动先行组测试工作区
 
-- 状态：CA-07 已冻结；`continuous-001` 已完成来源编码与第一道独立审核，正在准备投影、夹具与第二道审核；正式包尚未冻结，正式轮次未运行
+- 状态：CA-07 已冻结；`continuous-001` 已完成三案夹具封装、最终构建准备、夹具锁与门前执行计划；第一轮第二道独立审核发现离线 Schema 依赖缺口，修订后正在重审；正式包尚未冻结，正式轮次未运行
 - 受测表示：[连续行动结构表示 v0.1](../../../theory/CONTINUOUS-ACTION-REPRESENTATION-0.1.md)
 - 执行与结论规则：[CA-06](../../continuous-action-pilot-ca-06-execution-and-verdicts.md)
 - 制品与放行规则：[CA-07](../../continuous-action-pilot-ca-07-artifacts-and-release.md)

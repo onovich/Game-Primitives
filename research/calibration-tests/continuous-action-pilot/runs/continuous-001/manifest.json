@@ -17,7 +17,7 @@
       "release_stage": "preparation",
       "schema_path": "research/calibration-tests/continuous-action-pilot/schema/markdown-document-0.1.0.schema.json",
       "schema_sha256": "89827f39031c7d26f430584bb2f3e64c3600213a8e45e994da2c4120cb3f09a3",
-      "sha256": "bc3541d745291fcf1699defdd45c0395068e55519fb1b8ad72673499638713fa",
+      "sha256": "7de4c04a9f6c0214e9b1797c4f0af85da9fa1719ccda685bd1b895dfef158b6e",
       "supersedes_artifact_id": null
     },
     {
@@ -424,7 +424,7 @@
       "release_stage": "view_generation",
       "schema_path": "research/calibration-tests/continuous-action-pilot/schema/ca-sr-artifact-0.1.0.schema.json",
       "schema_sha256": "80abf62c385d9723090c66601ff6530a6bbec4585292d3c8f81f77c1081d43a5",
-      "sha256": "7ac0fe8a33c2d75a38bde2df3b804f89012a9acc712f83cd090139141ae60ec0",
+      "sha256": "b924e3cc21cbb7f8a993bd8b388213b5b1decf3bc8f53acda0cb1a7fc1456f7f",
       "supersedes_artifact_id": null
     },
     {
@@ -442,7 +442,7 @@
       "release_stage": "view_generation",
       "schema_path": "research/calibration-tests/continuous-action-pilot/schema/text-artifact-0.1.0.schema.json",
       "schema_sha256": "277edbeae2c76e58fc6ba25975f78338d6df435b4fcf68b1caf06f22481a66c3",
-      "sha256": "9b2681df8f2b09255001da6c167216484fc75ada1e5ca95f0699a00a3bad1d85",
+      "sha256": "bda0537d62533a6ef195a648ca68a0137ea1e5064066488d4b776dca54757e48",
       "supersedes_artifact_id": null
     },
     {
@@ -461,7 +461,7 @@
       "release_stage": "view_generation",
       "schema_path": "research/calibration-tests/continuous-action-pilot/schema/ca-sr-artifact-0.1.0.schema.json",
       "schema_sha256": "80abf62c385d9723090c66601ff6530a6bbec4585292d3c8f81f77c1081d43a5",
-      "sha256": "a9ccd9500f92dc3f9619e10b01a8ba8a554f364393286c1af81ee1770956a850",
+      "sha256": "3d819262f123c8f9396e343b33c7f43389d28bd7396039b6df507ad328b1032e",
       "supersedes_artifact_id": null
     },
     {
@@ -480,7 +480,7 @@
       "release_stage": "view_generation",
       "schema_path": "research/calibration-tests/continuous-action-pilot/schema/ca-sr-artifact-0.1.0.schema.json",
       "schema_sha256": "80abf62c385d9723090c66601ff6530a6bbec4585292d3c8f81f77c1081d43a5",
-      "sha256": "1d472560c46a11a3502b6cc0798bd01d52c48a210a9d3a8cc6c65b416e51a95b",
+      "sha256": "eab8d371da493b66697bb3f6ca02bb6d24013bc6683d43048e2325377728cc44",
       "supersedes_artifact_id": null
     },
     {
@@ -587,7 +587,7 @@
       "release_stage": "reconstruction",
       "schema_path": "research/calibration-tests/continuous-action-pilot/schema/task-packet-0.1.2.schema.json",
       "schema_sha256": "d32b78137d186a76921532fd3a861ab15e42eddc7def6395caa3e89caa27ca51",
-      "sha256": "94fe34a01cd693b3fb08775f111409dbb4b172ea223e1df9756bbedf905d19ce",
+      "sha256": "1efbbb73b4671384fd45afd8dd773bddf6d9682ed159bfccf85360a975d67763",
       "supersedes_artifact_id": null
     },
     {
@@ -605,7 +605,7 @@
       "release_stage": "reconstruction",
       "schema_path": "research/calibration-tests/continuous-action-pilot/schema/task-packet-0.1.2.schema.json",
       "schema_sha256": "d32b78137d186a76921532fd3a861ab15e42eddc7def6395caa3e89caa27ca51",
-      "sha256": "a74a854df07806706074b608380999a7eb51b0500f72422ae111cddfe98c3ed0",
+      "sha256": "6b32831ac781594faf995a16814cf150634cbbe313971674874d17727369ba08",
       "supersedes_artifact_id": null
     },
     {
@@ -1353,7 +1353,7 @@
       "release_stage": "source_audit",
       "schema_path": "research/calibration-tests/continuous-action-pilot/schema/task-packet-0.1.2.schema.json",
       "schema_sha256": "d32b78137d186a76921532fd3a861ab15e42eddc7def6395caa3e89caa27ca51",
-      "sha256": "7b7bf4df89c8f7b6dd5bd19c75f7e5bdb7d4eece76b86b567baf621dc39c4713",
+      "sha256": "0a9523429d1203d47d8818184ccf01e9d909da6a41fab865fe3ea500ab2579f0",
       "supersedes_artifact_id": null
     },
     {
@@ -1763,5 +1763,5 @@
   "stage_digests": [],
   "status": "preparing",
   "truth_commitment": null,
-  "updated_at": "2026-07-27T04:35:58Z"
+  "updated_at": "2026-07-27T05:19:01Z"
 }
