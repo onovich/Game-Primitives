@@ -101,7 +101,7 @@ TRUSTED_SCHEMA_SHA256 = {
         "657eaeaad2b678ff1c755c683b109e02baa2dee7901c4e3a446887088002f1fa"
     ),
     REGISTRY_SCHEMA_PATH.as_posix(): (
-        "5514a1c950ef0e65581b0392e7f2d7e6fa2fedf50bd96141d2a6130a2075de99"
+        "11b58a3cb37942364f62ca394f92cc6459046aeb207ddb7c949846a691dd9513"
     ),
 }
 TRUSTED_MANAGER_SHA256 = (
@@ -111,7 +111,7 @@ TRUSTED_INVENTORY_TOOL_SHA256 = (
     "1837e945da545b281c2fd5bcf95becae0874fc174628c996f1f8a35794dd843f"
 )
 TRUSTED_REGISTRY_SHA256 = (
-    "55b720b914040a710ef0fe8b74830373ab07912c4fb80960fabd0ff7a9087552"
+    "97f7649e1a80d7f72812af7357ab1b9a495a50b5db7b377ab2d9d05f51238eb7"
 )
 TRUSTED_DENYLIST_CONTRACT_SHA256 = (
     "ab4218109a8c29076d0ab95d2932b734725f83e836a1c2de60bc0cacf8cc926f"
@@ -1667,6 +1667,18 @@ def _load_required_component_registry(
                 TOOLS_DIR / "verify-formal-post-gate-absence-v0.1.0.py"
             ).as_posix(),
             "component_id": "formal_post_gate_absence_verifier",
+            "required_at_invocation": True,
+            "trust_model": (
+                "caller_pins_exact_bytes_out_of_band_and_invokes_"
+                "python_isolated"
+            ),
+        },
+        {
+            "canonical_path": (
+                TOOLS_DIR
+                / "verify-external-dispatch-attestation-v0.1.0.py"
+            ).as_posix(),
+            "component_id": "external_dispatch_attestation_verifier",
             "required_at_invocation": True,
             "trust_model": (
                 "caller_pins_exact_bytes_out_of_band_and_invokes_"

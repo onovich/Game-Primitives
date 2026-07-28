@@ -1,0 +1,29 @@
+{
+  "$schema": "https://github.com/onovich/Game-Primitives/blob/main/research/calibration-tests/continuous-action-pilot/schema/external-dispatch-attestation-0.1.0.schema.json",
+  "artifact_type": "external_dispatch_attestation_template",
+  "artifact_version": "0.1.0",
+  "candidate_run_id": "continuous-002",
+  "document_state": "pre_gate_empty_template",
+  "dynamic_slots": {
+    "attestation_id": null,
+    "attested_at": null,
+    "external_query": null,
+    "instance_path": null,
+    "repository_absence_evidence": null,
+    "valid_until": null
+  },
+  "policy": {
+    "append_only_commit_rule": "single_parent_single_file_add",
+    "attestation_path_prefix": "research/calibration-tests/continuous-action-pilot/runs/continuous-002/gate/external-dispatch-attestations/",
+    "claim_scope": "current_authenticated_account_current_project_visible_objects",
+    "formal_dispatch_match_rule": "continuous_002_formal_dispatch_title_marker_v0.1.0",
+    "freshness_window_seconds": 600,
+    "frozen_set_membership": "excluded_post_b_append_only",
+    "global_absence_claimed": false,
+    "initial_observed_head_rule": "equals_finalize_commit_b",
+    "later_observed_head_rule": "attestation_only_descendant_of_finalize_commit_b",
+    "listing_normalization_contract": "codex_project_task_listing_v0.1.0",
+    "max_absence_to_query_seconds": 120,
+    "max_query_duration_seconds": 120
+  }
+}

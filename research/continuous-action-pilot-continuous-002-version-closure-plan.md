@@ -1,6 +1,6 @@
 # 连续行动先行组：continuous-002 旧绑定扫描与版本闭合计划
 
-- 状态：工作计划；扫描、版本决策、批次 0 与批次 1 的 denylist 小链仓库实现已完成，独立调用方的带外 re-pin／验收及批次 1 其余两条小链待完成
+- 状态：工作计划；扫描、版本决策、批次 0 与批次 1 前两条小链的仓库实现已完成，独立调用方的带外 re-pin／验收及 truth-continuity 小链待完成
 - 日期：2026-07-29
 - 扫描基线：Git 提交 `68653ddf9609333c88e6a1f795da3faaa3719ada`
 - 注册表：[`formal-required-component-registry-0.1.0.json`](calibration-tests/continuous-action-pilot/contracts/formal-required-component-registry-0.1.0.json)
@@ -62,6 +62,38 @@
 | 不重复阻断组件 | 119 |
 
 core 与独立 absence verifier 的 SHA 仍只是交给独立调用方复核并写入仓库外信任包的值；仓库内固定不能代替该验收。本切片没有创建 `runs/continuous-002/`，也没有放行任何正式执行。
+
+## 0.2 批次 1：external-dispatch-attestation 小链仓库实施记录（已完成；带外 re-pin 待验收）
+
+第二条新增控制面小链已经以一个纵向切片闭合：
+
+- Schema 用封闭 `oneOf` 分开门前空模板与提交 B 后的真实实例，避免用大量 nullable 字段把两种生命周期混成一种文档；
+- 空模板只固定候选轮次、追加规则、路径前缀、有限查询范围与时间窗，动态槽位均为空，且没有 task、thread 或 session 标识；
+- 独立 verifier 要求 `python -I`、调用方带外固定 verifier SHA-256、预期 Commit B 与冻结根，并显式确认仓库与 Git 对象字节读取；它把外部锚同证明及 B 中 manifest 核对，完整冻结前像／根复算仍由门前 formal-run-delta 链负责；
+- 生产 CLI 只使用 verifier 主机当前 UTC 时间，不接受调用方提供展示时间；Git 子进程清除配置注入，禁用对象懒取、可选锁、replace objects 与 fsmonitor，并拒绝对象库／工作树重定向、仓库配置 include、clean/process/smudge 外部过滤器、partial/promisor 配置、replace refs、grafts 和非根 `.git`；
+- `verify-draft` 把未提交证明绑定到干净的 `observed_head`；`verify-committed` 进一步要求保存提交的父提交就是该 head，且该提交只新增一份固定路径下的证明；
+- 初次证明要求 `observed_head == B`；后续证明要求从 B 到当前 head 的每个提交都只追加一份已完整验证的旧证明。覆盖、普通中间提交、陈旧证明、序号或前驱漂移都会失败关闭；
+- 证明固定项目列表规范化算法，以及标题同时含 `[continuous-002]` 与 `[formal-dispatch]` 的匹配谓词；结论只表示当前认证账号下当前项目可见列表中没有观测到匹配对象，不表示正式派发从未发生，也不表示平台全局绝对不存在对象。正文不保存真实外部对象 ID 或原始响应；
+- 专用隔离自测通过 7 项正控与 47 项具名负控；formal-run-delta 全链隔离自测继续通过 15 项正控与 73 项具名负控。两者均报告 `formal_input_access=false`、`runner_or_comparator_executed=false`、`temporary_repository_only=true`，专用自测另报告 `external_query_performed=false`；
+- 注册表精确回填 Schema、模板、verifier 与 self-test 的散列和直接依赖，把 verifier 登记为第五项外部信任根；真实实例继续保持 `post_gate_not_materialized`。
+
+本切片完成后的交接值：
+
+| 项目 | 值 |
+|---|---|
+| external-dispatch-attestation Schema SHA-256 | `4717ee62dc85ab5ea0f1609acb08ad724d030ec06462d9ef468d1634f05e3799` |
+| empty template SHA-256 | `d73c5c6083c66964af5a1ad307da0d6ff7a1d8842e09947ebfbe8ee1d1489c94` |
+| external attestation verifier SHA-256 | `8b47e99f2478a627b43e99f3e7ce001bbc3d76c2dc89fff2c609fce051dfb0cf` |
+| external attestation self-test SHA-256 | `7ad16e3350fb481cc29f4b418c94d8f64603e0c3ad1c38fe0f29034a7fb4ba7e` |
+| required-component Schema SHA-256 | `11b58a3cb37942364f62ca394f92cc6459046aeb207ddb7c949846a691dd9513` |
+| required-component registry SHA-256 | `97f7649e1a80d7f72812af7357ab1b9a495a50b5db7b377ab2d9d05f51238eb7` |
+| formal-run-delta self-test SHA-256 | `e02c080d78943ce64b4ac783d54a10e24d54ff89b542bebd9a97d5407fab962a` |
+| formal-run-delta core SHA-256 | `6443f0809c421c1b2d1a0dfc29ab782d80a59ac4135ffda99eb2dcbed0dcd457` |
+| 散列阻断 | 30 |
+| 依赖阻断 | 111 |
+| 不重复阻断组件 | 115 |
+
+core、absence verifier 与 external attestation verifier 的 SHA 仍只是交给独立调用方复核并写入仓库外信任包的交接值；仓库内固定不能代替该验收。本切片没有创建真实证明实例，没有执行外部查询，也没有创建 `runs/continuous-002/` 或放行正式执行。
 
 ## 1. 结论
 
@@ -297,7 +329,7 @@ hash_state   = unresolved_blocks_commit_a
 可分三条独立小链：
 
 1. **已完成（仓库内；带外 re-pin 待验收）**：denylist instance → absence verifier → self-test；
-2. external attestation Schema → 空 template → verifier → self-test；
+2. **已完成（仓库内；带外 re-pin 待验收）**：external attestation Schema → 空 template → verifier → self-test；
 3. truth continuity Schema → materializer → verifier → self-test。
 
 外部派发证明的真实实例仍留到 B 后。
@@ -375,4 +407,4 @@ Schema
 
 ## 9. 紧接着做什么
 
-下一项实现工作是**批次 1 的 external dispatch attestation 小链：Schema → 空 template → 只读 verifier → 合成 self-test**。真实证明实例仍只能在提交 B 后追加；门前只建立不含真实 task、thread 或 session 的冻结空模板与验证语义。仍不应先复制 26 个旧文件，也不应先创建 `runs/continuous-002/`。
+下一项实现工作是**批次 1 的 truth-continuity-attestation 小链：Schema → materializer → 只读 verifier → 合成 self-test**。它只建立门前的非明文承诺、再生成／离线比较元数据和审核身份绑定，不读取真实 `runs/**`，不运行正式 runner、comparator 或真值揭示。仍不应先复制 26 个旧文件，也不应创建 `runs/continuous-002/`。

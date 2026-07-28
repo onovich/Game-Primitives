@@ -1,0 +1,506 @@
+{
+  "$defs": {
+    "attestationId": {
+      "pattern": "^eda-[0-9]{8}T[0-9]{6}Z-[0-9a-f]{12}$",
+      "type": "string"
+    },
+    "capabilityLimits": {
+      "const": {
+        "archive": false,
+        "archived_objects_in_scope": true,
+        "create": false,
+        "delete": false,
+        "deleted_objects_visible": false,
+        "dispatch": false,
+        "execute": false,
+        "global_search": false,
+        "inaccessible_objects_visible": false,
+        "message_body_read": false,
+        "metadata_listing": true,
+        "objects_outside_current_account_visible": false,
+        "provider_signed_result": false,
+        "send": false,
+        "standalone_session_inventory": false,
+        "update": false
+      }
+    },
+    "commitBinding": {
+      "additionalProperties": false,
+      "properties": {
+        "finalize_commit_b": {
+          "$ref": "#/$defs/gitOid"
+        },
+        "freeze_anchor_commit_a": {
+          "$ref": "#/$defs/gitOid"
+        },
+        "frozen_artifact_set_digest": {
+          "$ref": "#/$defs/sha256"
+        },
+        "frozen_manifest_path": {
+          "const": "research/calibration-tests/continuous-action-pilot/runs/continuous-002/manifest.json"
+        },
+        "frozen_manifest_sha256": {
+          "$ref": "#/$defs/sha256"
+        },
+        "observed_head": {
+          "$ref": "#/$defs/gitOid"
+        },
+        "observed_head_relation": {
+          "enum": [
+            "equals_finalize_commit_b",
+            "attestation_only_descendant_of_finalize_commit_b"
+          ]
+        },
+        "previous_attestation_commit": {
+          "oneOf": [
+            {
+              "type": "null"
+            },
+            {
+              "$ref": "#/$defs/gitOid"
+            }
+          ]
+        },
+        "sequence": {
+          "minimum": 1,
+          "type": "integer"
+        }
+      },
+      "required": [
+        "finalize_commit_b",
+        "freeze_anchor_commit_a",
+        "frozen_artifact_set_digest",
+        "frozen_manifest_path",
+        "frozen_manifest_sha256",
+        "observed_head",
+        "observed_head_relation",
+        "previous_attestation_commit",
+        "sequence"
+      ],
+      "type": "object"
+    },
+    "gitOid": {
+      "pattern": "^[0-9a-f]{40}$",
+      "type": "string"
+    },
+    "instanceDocument": {
+      "additionalProperties": false,
+      "allOf": [
+        {
+          "else": {
+            "properties": {
+              "commit_binding": {
+                "properties": {
+                  "observed_head_relation": {
+                    "const": "attestation_only_descendant_of_finalize_commit_b"
+                  },
+                  "previous_attestation_commit": {
+                    "$ref": "#/$defs/gitOid"
+                  },
+                  "sequence": {
+                    "minimum": 2
+                  }
+                }
+              }
+            }
+          },
+          "if": {
+            "properties": {
+              "commit_binding": {
+                "properties": {
+                  "sequence": {
+                    "const": 1
+                  }
+                },
+                "required": [
+                  "sequence"
+                ]
+              }
+            },
+            "required": [
+              "commit_binding"
+            ]
+          },
+          "then": {
+            "properties": {
+              "commit_binding": {
+                "properties": {
+                  "observed_head_relation": {
+                    "const": "equals_finalize_commit_b"
+                  },
+                  "previous_attestation_commit": {
+                    "type": "null"
+                  }
+                }
+              }
+            }
+          }
+        }
+      ],
+      "properties": {
+        "$schema": {
+          "const": "https://github.com/onovich/Game-Primitives/blob/main/research/calibration-tests/continuous-action-pilot/schema/external-dispatch-attestation-0.1.0.schema.json"
+        },
+        "artifact_type": {
+          "const": "external_dispatch_attestation"
+        },
+        "artifact_version": {
+          "const": "0.1.0"
+        },
+        "attestation_id": {
+          "$ref": "#/$defs/attestationId"
+        },
+        "candidate_run_id": {
+          "const": "continuous-002"
+        },
+        "commit_binding": {
+          "$ref": "#/$defs/commitBinding"
+        },
+        "conclusion": {
+          "const": {
+            "claim_scope": "current_authenticated_account_current_project_visible_objects",
+            "global_absence_claimed": false,
+            "matching_formal_dispatch_object_observed": false,
+            "status": "no_matching_formal_dispatch_objects_observed"
+          }
+        },
+        "document_state": {
+          "const": "post_b_observation"
+        },
+        "external_query": {
+          "$ref": "#/$defs/queryEvidence"
+        },
+        "instance_path": {
+          "pattern": "^research/calibration-tests/continuous-action-pilot/runs/continuous-002/gate/external-dispatch-attestations/eda-[0-9]{8}T[0-9]{6}Z-[0-9a-f]{12}\\.json$",
+          "type": "string"
+        },
+        "observer": {
+          "$ref": "#/$defs/observer"
+        },
+        "policy": {
+          "$ref": "#/$defs/policy"
+        },
+        "repository_absence_evidence": {
+          "$ref": "#/$defs/repositoryAbsenceEvidence"
+        },
+        "validity": {
+          "$ref": "#/$defs/validity"
+        }
+      },
+      "required": [
+        "$schema",
+        "artifact_type",
+        "artifact_version",
+        "attestation_id",
+        "candidate_run_id",
+        "commit_binding",
+        "conclusion",
+        "document_state",
+        "external_query",
+        "instance_path",
+        "observer",
+        "policy",
+        "repository_absence_evidence",
+        "validity"
+      ],
+      "type": "object"
+    },
+    "listingContract": {
+      "const": {
+        "input_record_scope": "all_visible_active_and_archived_task_threads_in_exact_project",
+        "listing_serialization": "canonical_json_array_utf8_no_bom_lf",
+        "normalization_version": "codex_project_task_listing_v0.1.0",
+        "pagination_required": "complete",
+        "projection_fields": [
+          "archived",
+          "object_kind",
+          "project_locator",
+          "status",
+          "title"
+        ],
+        "record_serialization": "canonical_json_object_utf8_no_bom_lf",
+        "record_sort": "ascending_by_canonical_record_utf8_bytes",
+        "string_normalization": "unicode_nfc"
+      }
+    },
+    "matchRule": {
+      "const": {
+        "candidate_token": "[continuous-002]",
+        "case_handling": "unicode_casefold",
+        "field": "title",
+        "formal_dispatch_marker": "[formal-dispatch]",
+        "match_operator": "contains_both_literal_tokens_after_unicode_nfc",
+        "rule_version": "continuous_002_formal_dispatch_title_marker_v0.1.0"
+      }
+    },
+    "observer": {
+      "additionalProperties": false,
+      "properties": {
+        "attested_at": {
+          "$ref": "#/$defs/utcTimestamp"
+        },
+        "identifier": {
+          "pattern": "^[a-z][a-z0-9._-]{2,63}$",
+          "type": "string"
+        },
+        "observation_basis": {
+          "const": "direct_project_management_query"
+        },
+        "role": {
+          "const": "project_state_custodian"
+        }
+      },
+      "required": [
+        "attested_at",
+        "identifier",
+        "observation_basis",
+        "role"
+      ],
+      "type": "object"
+    },
+    "policy": {
+      "const": {
+        "append_only_commit_rule": "single_parent_single_file_add",
+        "attestation_path_prefix": "research/calibration-tests/continuous-action-pilot/runs/continuous-002/gate/external-dispatch-attestations/",
+        "claim_scope": "current_authenticated_account_current_project_visible_objects",
+        "formal_dispatch_match_rule": "continuous_002_formal_dispatch_title_marker_v0.1.0",
+        "freshness_window_seconds": 600,
+        "frozen_set_membership": "excluded_post_b_append_only",
+        "global_absence_claimed": false,
+        "initial_observed_head_rule": "equals_finalize_commit_b",
+        "later_observed_head_rule": "attestation_only_descendant_of_finalize_commit_b",
+        "listing_normalization_contract": "codex_project_task_listing_v0.1.0",
+        "max_absence_to_query_seconds": 120,
+        "max_query_duration_seconds": 120
+      }
+    },
+    "projectScope": {
+      "const": {
+        "candidate_run_id": "continuous-002",
+        "pagination_complete": true,
+        "project_locator": "git@github.com:onovich/Game-Primitives.git",
+        "resource_kinds": [
+          "task_thread"
+        ],
+        "scope_kind": "current_authenticated_account_current_project",
+        "states_requested": [
+          "active",
+          "archived"
+        ]
+      }
+    },
+    "queryEvidence": {
+      "additionalProperties": false,
+      "properties": {
+        "capability_limits": {
+          "$ref": "#/$defs/capabilityLimits"
+        },
+        "claim_scope": {
+          "const": "current_authenticated_account_current_project_visible_objects"
+        },
+        "interface": {
+          "const": "codex_project_task_listing"
+        },
+        "listing_contract": {
+          "$ref": "#/$defs/listingContract"
+        },
+        "matching_rule": {
+          "$ref": "#/$defs/matchRule"
+        },
+        "project_scope": {
+          "$ref": "#/$defs/projectScope"
+        },
+        "provider": {
+          "const": "openai_codex"
+        },
+        "query_completed_at": {
+          "$ref": "#/$defs/utcTimestamp"
+        },
+        "query_started_at": {
+          "$ref": "#/$defs/utcTimestamp"
+        },
+        "result_summary": {
+          "$ref": "#/$defs/resultSummary"
+        }
+      },
+      "required": [
+        "capability_limits",
+        "claim_scope",
+        "interface",
+        "listing_contract",
+        "matching_rule",
+        "project_scope",
+        "provider",
+        "query_completed_at",
+        "query_started_at",
+        "result_summary"
+      ],
+      "type": "object"
+    },
+    "repositoryAbsenceEvidence": {
+      "additionalProperties": false,
+      "properties": {
+        "checked_at": {
+          "$ref": "#/$defs/utcTimestamp"
+        },
+        "denylist_contract": {
+          "additionalProperties": false,
+          "properties": {
+            "artifact_version": {
+              "const": "0.1.0"
+            },
+            "path": {
+              "const": "research/calibration-tests/continuous-action-pilot/contracts/formal-post-gate-absence-denylist-0.1.0.json"
+            },
+            "sha256": {
+              "$ref": "#/$defs/sha256"
+            }
+          },
+          "required": [
+            "artifact_version",
+            "path",
+            "sha256"
+          ],
+          "type": "object"
+        },
+        "formal_run_delta_path": {
+          "const": "research/calibration-tests/continuous-action-pilot/runs/continuous-002/inputs/formal-run-delta-v0.1.0.json"
+        },
+        "formal_run_delta_sha256": {
+          "$ref": "#/$defs/sha256"
+        },
+        "method": {
+          "const": "frozen_b_absence_plus_append_only_history"
+        },
+        "observed_head": {
+          "$ref": "#/$defs/gitOid"
+        },
+        "post_b_history_status": {
+          "const": "attestation_additions_only"
+        },
+        "pre_b_scan_snapshot_sha256": {
+          "$ref": "#/$defs/sha256"
+        },
+        "status": {
+          "const": "passed"
+        },
+        "verifier_path": {
+          "const": "research/calibration-tests/continuous-action-pilot/tools/verify-external-dispatch-attestation-v0.1.0.py"
+        },
+        "verifier_sha256": {
+          "$ref": "#/$defs/sha256"
+        },
+        "worktree_clean_before_query": {
+          "const": true
+        }
+      },
+      "required": [
+        "checked_at",
+        "denylist_contract",
+        "formal_run_delta_path",
+        "formal_run_delta_sha256",
+        "method",
+        "observed_head",
+        "post_b_history_status",
+        "pre_b_scan_snapshot_sha256",
+        "status",
+        "verifier_path",
+        "verifier_sha256",
+        "worktree_clean_before_query"
+      ],
+      "type": "object"
+    },
+    "resultSummary": {
+      "additionalProperties": false,
+      "properties": {
+        "matching_formal_dispatch_object_count": {
+          "const": 0
+        },
+        "normalized_listing_sha256": {
+          "$ref": "#/$defs/sha256"
+        },
+        "visible_object_count": {
+          "minimum": 0,
+          "type": "integer"
+        }
+      },
+      "required": [
+        "matching_formal_dispatch_object_count",
+        "normalized_listing_sha256",
+        "visible_object_count"
+      ],
+      "type": "object"
+    },
+    "sha256": {
+      "pattern": "^(?!0{64}$)[0-9a-f]{64}$",
+      "type": "string"
+    },
+    "templateDocument": {
+      "const": {
+        "$schema": "https://github.com/onovich/Game-Primitives/blob/main/research/calibration-tests/continuous-action-pilot/schema/external-dispatch-attestation-0.1.0.schema.json",
+        "artifact_type": "external_dispatch_attestation_template",
+        "artifact_version": "0.1.0",
+        "candidate_run_id": "continuous-002",
+        "document_state": "pre_gate_empty_template",
+        "dynamic_slots": {
+          "attestation_id": null,
+          "attested_at": null,
+          "external_query": null,
+          "instance_path": null,
+          "repository_absence_evidence": null,
+          "valid_until": null
+        },
+        "policy": {
+          "append_only_commit_rule": "single_parent_single_file_add",
+          "attestation_path_prefix": "research/calibration-tests/continuous-action-pilot/runs/continuous-002/gate/external-dispatch-attestations/",
+          "claim_scope": "current_authenticated_account_current_project_visible_objects",
+          "formal_dispatch_match_rule": "continuous_002_formal_dispatch_title_marker_v0.1.0",
+          "freshness_window_seconds": 600,
+          "frozen_set_membership": "excluded_post_b_append_only",
+          "global_absence_claimed": false,
+          "initial_observed_head_rule": "equals_finalize_commit_b",
+          "later_observed_head_rule": "attestation_only_descendant_of_finalize_commit_b",
+          "listing_normalization_contract": "codex_project_task_listing_v0.1.0",
+          "max_absence_to_query_seconds": 120,
+          "max_query_duration_seconds": 120
+        }
+      }
+    },
+    "utcTimestamp": {
+      "format": "date-time",
+      "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}Z$",
+      "type": "string"
+    },
+    "validity": {
+      "additionalProperties": false,
+      "properties": {
+        "freshness_window_seconds": {
+          "const": 600
+        },
+        "valid_from": {
+          "$ref": "#/$defs/utcTimestamp"
+        },
+        "valid_until": {
+          "$ref": "#/$defs/utcTimestamp"
+        }
+      },
+      "required": [
+        "freshness_window_seconds",
+        "valid_from",
+        "valid_until"
+      ],
+      "type": "object"
+    }
+  },
+  "$id": "https://github.com/onovich/Game-Primitives/blob/main/research/calibration-tests/continuous-action-pilot/schema/external-dispatch-attestation-0.1.0.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "oneOf": [
+    {
+      "$ref": "#/$defs/templateDocument"
+    },
+    {
+      "$ref": "#/$defs/instanceDocument"
+    }
+  ],
+  "title": "Game Primitives External Dispatch Attestation 0.1.0"
+}

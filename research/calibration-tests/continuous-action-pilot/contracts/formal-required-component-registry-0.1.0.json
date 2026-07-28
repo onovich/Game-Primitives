@@ -2667,9 +2667,9 @@
       "component_kind": "schema",
       "expected_absent_at_b": false,
       "expected_instance_count_at_b": 1,
-      "expected_sha256": null,
+      "expected_sha256": "4717ee62dc85ab5ea0f1609acb08ad724d030ec06462d9ef468d1634f05e3799",
       "forbidden_reuse_family": "actors_sessions",
-      "hash_state": "unresolved_blocks_commit_a",
+      "hash_state": "pinned",
       "lifecycle": "new_pre_gate",
       "manifest_artifact_id": null,
       "manifest_artifact_kind": "source",
@@ -2739,9 +2739,9 @@
       "component_kind": "tool",
       "expected_absent_at_b": false,
       "expected_instance_count_at_b": 1,
-      "expected_sha256": null,
+      "expected_sha256": "7ad16e3350fb481cc29f4b418c94d8f64603e0c3ad1c38fe0f29034a7fb4ba7e",
       "forbidden_reuse_family": "actors_sessions",
-      "hash_state": "unresolved_blocks_commit_a",
+      "hash_state": "pinned",
       "lifecycle": "new_pre_gate",
       "manifest_artifact_id": null,
       "manifest_artifact_kind": "generator",
@@ -2761,8 +2761,13 @@
       "semantic_change_scope": "verification_implementation",
       "semantic_policy": "new_control_plane",
       "version": "0.1.0",
-      "allowed_dependency_component_ids": [],
-      "dependency_state": "not_applicable"
+      "allowed_dependency_component_ids": [
+        "external_dispatch_attestation",
+        "external_dispatch_attestation_template",
+        "external_dispatch_attestation_verifier",
+        "formal_post_gate_absence_denylist_instance"
+      ],
+      "dependency_state": "closed"
     },
     {
       "artifact_role": "external_attestation",
@@ -2775,9 +2780,9 @@
       "component_kind": "contract_instance",
       "expected_absent_at_b": false,
       "expected_instance_count_at_b": 1,
-      "expected_sha256": null,
+      "expected_sha256": "d73c5c6083c66964af5a1ad307da0d6ff7a1d8842e09947ebfbe8ee1d1489c94",
       "forbidden_reuse_family": "actors_sessions",
-      "hash_state": "unresolved_blocks_commit_a",
+      "hash_state": "pinned",
       "lifecycle": "new_pre_gate",
       "manifest_artifact_id": null,
       "manifest_artifact_kind": "source",
@@ -2797,8 +2802,10 @@
       "semantic_change_scope": "none",
       "semantic_policy": "new_control_plane",
       "version": "0.1.0",
-      "allowed_dependency_component_ids": [],
-      "dependency_state": "not_applicable"
+      "allowed_dependency_component_ids": [
+        "external_dispatch_attestation"
+      ],
+      "dependency_state": "closed"
     },
     {
       "artifact_role": "verification_tool",
@@ -2811,9 +2818,9 @@
       "component_kind": "tool",
       "expected_absent_at_b": false,
       "expected_instance_count_at_b": 1,
-      "expected_sha256": null,
+      "expected_sha256": "8b47e99f2478a627b43e99f3e7ce001bbc3d76c2dc89fff2c609fce051dfb0cf",
       "forbidden_reuse_family": "actors_sessions",
-      "hash_state": "unresolved_blocks_commit_a",
+      "hash_state": "pinned",
       "lifecycle": "new_pre_gate",
       "manifest_artifact_id": null,
       "manifest_artifact_kind": "generator",
@@ -2833,8 +2840,13 @@
       "semantic_change_scope": "verification_implementation",
       "semantic_policy": "new_control_plane",
       "version": "0.1.0",
-      "allowed_dependency_component_ids": [],
-      "dependency_state": "not_applicable"
+      "allowed_dependency_component_ids": [
+        "external_dispatch_attestation",
+        "external_dispatch_attestation_template",
+        "formal_post_gate_absence_denylist_instance",
+        "formal_run_delta"
+      ],
+      "dependency_state": "closed"
     },
     {
       "artifact_role": "generator",
@@ -3631,7 +3643,7 @@
       "component_kind": "schema",
       "expected_absent_at_b": false,
       "expected_instance_count_at_b": 1,
-      "expected_sha256": "5514a1c950ef0e65581b0392e7f2d7e6fa2fedf50bd96141d2a6130a2075de99",
+      "expected_sha256": "11b58a3cb37942364f62ca394f92cc6459046aeb207ddb7c949846a691dd9513",
       "forbidden_reuse_family": null,
       "hash_state": "pinned",
       "lifecycle": "new_pre_gate",
@@ -5761,6 +5773,12 @@
     {
       "canonical_path": "research/calibration-tests/continuous-action-pilot/tools/verify-formal-post-gate-absence-v0.1.0.py",
       "component_id": "formal_post_gate_absence_verifier",
+      "required_at_invocation": true,
+      "trust_model": "caller_pins_exact_bytes_out_of_band_and_invokes_python_isolated"
+    },
+    {
+      "canonical_path": "research/calibration-tests/continuous-action-pilot/tools/verify-external-dispatch-attestation-v0.1.0.py",
+      "component_id": "external_dispatch_attestation_verifier",
       "required_at_invocation": true,
       "trust_model": "caller_pins_exact_bytes_out_of_band_and_invokes_python_isolated"
     }
