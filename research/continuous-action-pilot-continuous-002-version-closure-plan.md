@@ -1,19 +1,43 @@
 # 连续行动先行组：continuous-002 旧绑定扫描与版本闭合计划
 
-- 状态：工作计划；扫描与版本决策已完成，实现尚未开始
+- 状态：工作计划；扫描、版本决策与批次 0 仓库实现已完成，独立调用方的带外 re-pin／验收待完成，批次 1 待开始
 - 日期：2026-07-29
 - 扫描基线：Git 提交 `68653ddf9609333c88e6a1f795da3faaa3719ada`
 - 注册表：[`formal-required-component-registry-0.1.0.json`](calibration-tests/continuous-action-pilot/contracts/formal-required-component-registry-0.1.0.json)
-- 注册表 SHA-256：`8604f928c342f3cc256796c5c6267ac29176b44923f64f9f3331e534485f3669`
+- 扫描基线注册表 SHA-256：`8604f928c342f3cc256796c5c6267ac29176b44923f64f9f3331e534485f3669`
 - 上位契约：[`continuous-002` 增量契约](continuous-action-pilot-continuous-002-delta-contract.md)
 
 > [范围] 本文只审计非 `runs/**` 控制面文件及注册表元数据。扫描没有读取任何正式输入，没有打开 `runs/**` 中的既有轮次文件，没有运行正式 runner、comparator、派发器或真值揭示流程，也没有创建 `continuous-002` 任务、thread、session 或候选包。本文不是“放行正式连续行动试验”。
 
+## 0. 批次 0 仓库实施记录（已完成；带外 re-pin 待验收）
+
+批次 0 的仓库实现已在不接触 `runs/**` 的前提下完成：
+
+- required-component Schema 增加 `hash_state=container_excluded`，并把它与 `component_kind=manifest_container` 双向约束；
+- `candidate_run_manifest_instance` 从假散列阻断迁移到容器排除态；
+- 依赖数组被明确定义为实际直接依赖，新增自环、一般环、门前→门后、runtime/execution→provenance、容器入边、`closed`→未闭合目标和门后联合状态检查；
+- 原先被误标为 `closed` 的 `actor_dispatch_plan_development_incident` 重新打开为依赖阻断，因为它依赖的 actor-plan 组件尚未闭合；
+- 隔离合成自测通过 15 项正控与 68 项具名负控，报告 `formal_input_access=false`、`runner_or_comparator_executed=false`、`temporary_repository_only=true`。
+
+批次 0 后：
+
+| 项目 | 值 |
+|---|---|
+| required-component Schema SHA-256 | `0f5f6ef1ba9f638a7adef1ea79f970b36f3191a9ff9481076de65ee9fb35ec03` |
+| required-component registry SHA-256 | `9ecb305bf6b6ec00e9f71384764a6a1ca7264a9f2365539b5b07a1f75e2af855` |
+| formal-run-delta self-test SHA-256 | `304f86878573cb9123603bafacfd921ea3ed07bed4103a72e711541c6493e3d7` |
+| formal-run-delta core SHA-256 | `49afd42f82c6837e6db04489703601821b9e15efbf1f10652f8f641c61e73842` |
+| 散列阻断 | 37 |
+| 依赖阻断 | 111 |
+| 不重复阻断组件 | 122 |
+
+依赖阻断从扫描基线的 110 增为 111 不是回退，而是消除一个未经证明的“已闭合”声明；manifest 假散列阻断同时被移除，所以不重复阻断组件总数仍为 122。core SHA 只是供独立调用方复核并写入带外信任包的交接值，不是由 core 自证的信任锚。
+
 ## 1. 结论
 
-### 1.1 注册表中的 38 个散列阻断并不等于 38 个待生成文件
+### 1.1 扫描基线中的 38 个散列阻断并不等于 38 个待生成文件
 
-注册表共有 158 个组件，当前报告：
+扫描基线的注册表共有 158 个组件，当时报告：
 
 - 38 个 `hash_state=unresolved_blocks_commit_a`；
 - 110 个 `dependency_state=unresolved_blocks_commit_a`；
@@ -27,7 +51,7 @@
 | 新控制面家族 | 11 | 按已登记接口完成首版 `0.1.0` |
 | candidate manifest 容器 | 1 | 不补 SHA；修正为容器排除态，最后再物化 |
 
-因此，真实缺失的是 37 份非 manifest 制品；第 38 项是注册表尚不能正确表达“容器不自散列”造成的假阻断。
+因此，真实缺失的是 37 份非 manifest 制品；第 38 项是扫描基线注册表当时不能正确表达“容器不自散列”造成的假阻断。批次 0 的仓库实现现已补上该状态及其完整验证路径。
 
 ### 1.2 本轮不引入 `0.2.0`
 
@@ -41,9 +65,9 @@
 
 `verify-frozen-manifest` 与 `verify-run-package` 是未来最值得参数化的两个候选，但本轮仍做自包含的 `0.1.1` 专用入口。不得在 `0.1.1` 名义下悄悄引入未登记的 `0.2.0` 共享核心。
 
-### 1.3 110 个依赖阻断不能机械改成 `closed`
+### 1.3 扫描基线的 110 个依赖阻断不能机械改成 `closed`
 
-110 项按绑定位置分为：
+扫描基线的 110 项按绑定位置分为：
 
 | 依赖层 | 数量 | 说明 |
 |---|---:|---|
@@ -56,7 +80,7 @@
 - 97 项当前没有声明任何依赖；
 - 其余 13 项只声明了部分依赖：3 项各 1 条、8 项各 2 条、1 项 4 条、1 项 15 条。
 
-当前验证器能检查排序、去重、目标 ID 存在、`closed` 非空和 runtime/execution 不依赖 provenance-only 组件，但尚不能证明无环、拓扑闭合或“声明边等于实际直接引用”。因此，批量填入任意 ID 再把状态改成 `closed` 只会形成自我声明，不构成闭包证据。
+扫描基线的验证器当时能检查排序、去重、目标 ID 存在、`closed` 非空和 runtime/execution 不依赖 provenance-only 组件，但尚不能证明无环、拓扑闭合或“声明边等于实际直接引用”。批次 0 已补上自环、一般环、时间逆向、作用域越界、容器边与伪闭合目标等可机械证明的图性质；“声明边等于实际直接引用”仍须由结构化依赖审计和针对性负控共同证明。因此，批量填入任意 ID 再把状态改成 `closed` 仍只会形成自我声明，不构成闭包证据。
 
 本计划把 `allowed_dependency_component_ids` 操作性定义为**实际直接依赖集合**，而不是传递闭包或宽泛白名单。传递闭包由验证器计算；循环、越域边和遗漏的直接 Schema／加载器／共享语义核引用都必须失败关闭。
 
@@ -170,18 +194,18 @@ $occurrences = (
 
 ## 5. manifest 容器排除决策
 
-当前 `candidate_run_manifest_instance` 同时声明：
+扫描基线中的 `candidate_run_manifest_instance` 同时声明：
 
 ```text
 binding_kind = container_excluded
 hash_state   = unresolved_blocks_commit_a
 ```
 
-这两个状态冲突：
+这两个状态在扫描基线中相互冲突：
 
 - `formal-run-delta` 的版本矩阵已经要求 manifest 的 base/candidate SHA 均为 `null`；
 - manifest 是其他制品散列的容器，不能把自己的未来字节散列反向写进自己；
-- required-component Schema 的 `hash_state` 枚举尚无 `container_excluded`，所以注册表只能误用 unresolved。
+- 扫描基线的 required-component Schema 在 `hash_state` 枚举中尚无 `container_excluded`，所以注册表当时只能误用 unresolved；批次 0 的仓库实现现已补上该状态及双向约束。
 
 决策：
 
@@ -227,15 +251,16 @@ hash_state   = unresolved_blocks_commit_a
 
 ## 7. 实施批次
 
-### 批次 0：先修注册表的表达能力
+### 批次 0：先修注册表的表达能力（仓库实现已完成；带外 re-pin 待验收）
 
 1. 为 manifest 加入 `hash_state=container_excluded`；
 2. 明确依赖字段表示直接实际依赖；
 3. 给验证器增加自环、一般环、门前→门后和容器错误散列负控；
-4. 待 Schema 与 registry 规范字节稳定后，重算两者 SHA-256，更新 `formal_run_delta_contract.py` 中的精确散列常量，并同步刷新调用方带外固定的共享语义核／信任包；
-5. 让 38 个散列 blocker 正确归一为 37 个真实缺件。
+4. **已完成（仓库内）**：重算 Schema 与 registry SHA-256，并更新 `formal_run_delta_contract.py` 中的精确散列常量；
+5. **待独立验收（仓库外）**：由调用方复核本节交接的 core SHA-256，并刷新其带外固定的共享语义核／信任包；仓库内文件不能自证或代替该信任动作；
+6. **已完成**：让 38 个扫描基线散列 blocker 正确归一为 37 个真实缺件。
 
-这一批完成前，不回填 110 项依赖状态。
+批次 0 的仓库实施没有把扫描基线的 110 项依赖状态批量回填为 `closed`；唯一的依赖状态修正是把一项未经证明的 `closed` 重新打开，因此当前依赖阻断为 111 项。
 
 ### 批次 1：建立三个新增控制面家族
 
@@ -320,4 +345,4 @@ Schema
 
 ## 9. 紧接着做什么
 
-下一项实现工作是**批次 0：修复 required-component registry 的 manifest 与依赖表示语义，并补齐失败关闭负控**。完成这一层后，再从三个新增 `0.1.0` 控制面家族开始生成真实字节；不应先复制 26 个旧文件，也不应先创建 `runs/continuous-002/`。
+下一项实现工作是**批次 1 的 denylist 小链：`formal-post-gate-absence-denylist 0.1.0` 实例 → 只读 verifier → 合成 self-test**。它依赖的 Schema 与共享扫描语义已经存在，适合作为三个新增控制面家族中的第一个纵向切片。仍不应先复制 26 个旧文件，也不应先创建 `runs/continuous-002/`。

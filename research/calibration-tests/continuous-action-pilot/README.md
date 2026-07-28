@@ -70,7 +70,7 @@
 - [`formal-run-delta-semantic-review-0.1.0.schema.json`](schema/formal-run-delta-semantic-review-0.1.0.schema.json)：约束来源审核与投影审核的输入集合摘要、十一项受保护设计 claim 和实际审核结论。
 - [`formal-post-gate-absence-denylist-0.1.0.schema.json`](schema/formal-post-gate-absence-denylist-0.1.0.schema.json)：固定候选提交 A 前必须缺席的路径族与 `artifact_type` 映射，禁止由增量实例自行改写为空 glob。
 - [`base-post-run-completion-inventory-0.1.0.schema.json`](schema/base-post-run-completion-inventory-0.1.0.schema.json)：把基础轮次在“完成后”实际出现的正式制品按路径、角色、类型和精确散列建立只读清单，作为新轮次依赖审计的事实起点。
-- [`formal-required-component-registry-0.1.0.schema.json`](schema/formal-required-component-registry-0.1.0.schema.json)：封闭 `continuous-002` 的门前、门后及容器组件全集，区分固定散列、候选 manifest 绑定、门后缺席和未解决阻断，并显式记录允许依赖。
+- [`formal-required-component-registry-0.1.0.schema.json`](schema/formal-required-component-registry-0.1.0.schema.json)：封闭 `continuous-002` 的门前、门后及容器组件全集，区分固定散列、候选 manifest 绑定、容器不自散列、门后缺席和未解决阻断，并把依赖数组定义为实际直接依赖而非宽泛白名单。
 - [`formal-actor-dispatch-plan-0.1.0.schema.json`](schema/formal-actor-dispatch-plan-0.1.0.schema.json)：约束四席、两阶段、同会话的静态派发计划；八份提示必须从三份固定正文来源逐字节确定性生成，且计划不得含真实 task、thread 或 session。
 
 根摘要应同时通过 [`verify-frozen-manifest.py`](tools/verify-frozen-manifest.py) 复算。校验器只读清单、制品与 Schema；不会修正已经冻结的值。
@@ -87,9 +87,9 @@
 python research/calibration-tests/continuous-action-pilot/tools/self-test-formal-run-delta-v0.1.0.py
 ```
 
-当前自测覆盖 14 项正控与 59 项具名负控，包括规范字节、可信 Schema／工具散列、真实 Git A/B、路径逃逸与大小写碰撞、固定版本矩阵、可闭合的全局组件 base endpoint、解码后的旧轮次引用、结构化且身份隔离的语义审核、禁止复用、required-component 注册表的类型／散列／依赖闭包、manifest 双向闭包、增量记录—冻结前像—根摘要绑定、事务短写回滚、Python 隔离模式、仓库级字节读取确认、wrapper 跨根拒绝、core 导入前散列校验，以及候选命名空间外与嵌套路径中的门后制品伪装；`P10` 式 B 后宽泛例外已被删除，pre-A 验证器对任何外部派发证明实例一律失败关闭。路径 glob 只接受版本化的仓库相对 `gitwildmatch` 子集（`*`、`**`、`?`），其余语法失败关闭。自测不会调用 runner 或 comparator。
+当前自测覆盖 15 项正控与 68 项具名负控，包括规范字节、可信 Schema／工具散列、真实 Git A/B、路径逃逸与大小写碰撞、固定版本矩阵、可闭合的全局组件 base endpoint、解码后的旧轮次引用、结构化且身份隔离的语义审核、禁止复用、required-component 注册表的类型／散列／依赖闭包、容器不自散列的完整验证路径、自环／一般环、门前→门后、作用域越界、容器依赖入边与出边、伪闭合目标和门后联合状态负控、manifest 双向闭包、增量记录—冻结前像—根摘要绑定、事务短写回滚、Python 隔离模式、仓库级字节读取确认、wrapper 跨根拒绝、core 导入前散列校验，以及候选命名空间外与嵌套路径中的门后制品伪装；`P10` 式 B 后宽泛例外已被删除，pre-A 验证器对任何外部派发证明实例一律失败关闭。路径 glob 只接受版本化的仓库相对 `gitwildmatch` 子集（`*`、`**`、`?`），其余语法失败关闭。自测不会调用 runner 或 comparator。
 
-基础清单由 [`base_post_run_inventory_contract.py`](tools/base_post_run_inventory_contract.py) 在只读基础轮次快照上复算；隔离自测把完成提交 `c42013d5cad89811e8838696c4072f6f71a859fb` 与树 `f8aae165fcf9620b8ba9cee64766e39f642d8d4c` 固定为 87 项制品，清单 SHA-256 为 `12f769ecbe378543a2f9ad153680266701a9d4d9d96f2eb3f56b42332aa5e673`，并通过 6 项正控与 10 项负控。required-component 注册表当前封闭 158 个组件，并诚实列出 materializer、verifier、共享语义核三项必须由调用方带外固定精确字节的外部信任根；两个入口再以必填 SHA-256 参数固定语义核。注册表表面上仍有 38 项散列阻断与 110 项依赖阻断，合计涉及 122 个不重复组件；[版本闭合审计](../../continuous-action-pilot-continuous-002-version-closure-plan.md)进一步确认，38 项应解释为 37 个真实缺件加 1 个不应自散列的 manifest 容器，110 项依赖则必须按真实直接边分批闭合。因此注册表是“工作完整性地图”，不是提交 A 已就绪的证明。
+基础清单由 [`base_post_run_inventory_contract.py`](tools/base_post_run_inventory_contract.py) 在只读基础轮次快照上复算；隔离自测把完成提交 `c42013d5cad89811e8838696c4072f6f71a859fb` 与树 `f8aae165fcf9620b8ba9cee64766e39f642d8d4c` 固定为 87 项制品，清单 SHA-256 为 `12f769ecbe378543a2f9ad153680266701a9d4d9d96f2eb3f56b42332aa5e673`，并通过 6 项正控与 10 项负控。required-component 注册表当前封闭 158 个组件，并诚实列出 materializer、verifier、共享语义核三项必须由调用方带外固定精确字节的外部信任根；两个入口再以必填 SHA-256 参数固定语义核。批次 0 后，注册表有 37 项真实散列阻断与 111 项依赖阻断，合计仍涉及 122 个不重复组件：manifest 容器已从假散列阻断迁移到 `container_excluded`，原先未经证明便标为 `closed` 的 actor-plan 开发事件则重新打开为依赖阻断。详见[版本闭合计划与实施记录](../../continuous-action-pilot-continuous-002-version-closure-plan.md)。因此注册表是“工作完整性地图”，不是提交 A 已就绪的证明。
 
 actor 派发计划由 [`materialize-formal-actor-dispatch-plan-v0.1.0.py`](tools/materialize-formal-actor-dispatch-plan-v0.1.0.py) 从三份固定正文来源确定性物化，再由 [`verify-formal-actor-dispatch-plan-v0.1.0.py`](tools/verify-formal-actor-dispatch-plan-v0.1.0.py) 只读复算；隔离自测覆盖 10 项正控与 49 项负控，包括来源伪造、真实短写／部分异常回滚、跨仓库工具错绑、跨行／注释／尾随运行标识和嵌套转义。开发范围事件及修订证据见[actor 派发计划开发范围事件](development-scope-incident-2026-07-28-actor-dispatch-plan.md)。这些工具只建立门前静态计划，不创建真实 Codex task、thread、session 或 dispatch。
 

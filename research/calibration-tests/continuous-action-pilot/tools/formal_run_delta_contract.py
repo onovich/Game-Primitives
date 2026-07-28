@@ -80,8 +80,9 @@ REGISTRY_SCHEMA_ID = (
     "formal-required-component-registry-0.1.0.schema.json"
 )
 
-# These are executable trust anchors, not documentation. Any intentional
-# contract change requires a new artifact version and new constants.
+# These are executable trust anchors, not documentation. Before first frozen
+# use, a pre-Commit-A closure fix requires new constants; after frozen use, an
+# intentional contract change also requires a new artifact version.
 TRUSTED_SCHEMA_SHA256 = {
     SCHEMA_PATH.as_posix(): (
         "9f4fe7db6c4367e7d978d049bc1b835788cd3cfb90ff0d1ed9f095a987cff0f2"
@@ -96,7 +97,7 @@ TRUSTED_SCHEMA_SHA256 = {
         "657eaeaad2b678ff1c755c683b109e02baa2dee7901c4e3a446887088002f1fa"
     ),
     REGISTRY_SCHEMA_PATH.as_posix(): (
-        "4c005cd1c5701765b26fb09c99d146babd9a90cc8c90e9c440cb25e8cd9da1b2"
+        "0f5f6ef1ba9f638a7adef1ea79f970b36f3191a9ff9481076de65ee9fb35ec03"
     ),
 }
 TRUSTED_MANAGER_SHA256 = (
@@ -106,7 +107,7 @@ TRUSTED_INVENTORY_TOOL_SHA256 = (
     "1837e945da545b281c2fd5bcf95becae0874fc174628c996f1f8a35794dd843f"
 )
 TRUSTED_REGISTRY_SHA256 = (
-    "8604f928c342f3cc256796c5c6267ac29176b44923f64f9f3331e534485f3669"
+    "9ecb305bf6b6ec00e9f71384764a6a1ca7264a9f2365539b5b07a1f75e2af855"
 )
 
 BASE_RUN_ID = "continuous-001"
@@ -1782,47 +1783,167 @@ def _load_required_component_registry(
                     f"future byte hash in the registry: {component['component_id']}"
                 ),
             )
+    _validate_required_component_relationships(registry)
+    return registry
+
+
+def _validate_required_component_relationships(
+    registry: dict[str, Any],
+) -> None:
+    components = registry["components"]
+    by_id = {
+        component["component_id"]: component
+        for component in components
+    }
+
+    for component in components:
+        component_id = component["component_id"]
         dependencies = component["allowed_dependency_component_ids"]
+        is_manifest_container = (
+            component["component_kind"] == "manifest_container"
+        )
+        has_container_hash_state = (
+            component["hash_state"] == "container_excluded"
+        )
+        if is_manifest_container != has_container_hash_state:
+            raise DeltaContractError(
+                "REQUIRED_COMPONENT_CONTAINER_HASH_STATE",
+                (
+                    "manifest containers must use the non-self-hashed "
+                    f"container state exclusively: {component_id}"
+                ),
+            )
+        if has_container_hash_state and (
+            component["binding_kind"] != "container_excluded"
+            or component["binding_scope"] != "container_excluded"
+            or component["expected_sha256"] is not None
+        ):
+            raise DeltaContractError(
+                "REQUIRED_COMPONENT_CONTAINER_HASH_STATE",
+                (
+                    "container-excluded hash state requires an excluded "
+                    f"binding and null byte hash: {component_id}"
+                ),
+            )
+
+        if not component["required_at_b"]:
+            expected_post_gate_state = (
+                component["expected_absent_at_b"]
+                and component["binding_kind"] == "post_gate_deferred"
+                and component["binding_scope"] == "post_gate_runtime"
+                and component["lifecycle"]
+                in {"post_gate_append_only", "post_gate_runtime"}
+                and component["hash_state"] == "post_gate_not_materialized"
+                and component["dependency_state"] == "not_applicable"
+                and not dependencies
+            )
+            if not expected_post_gate_state:
+                raise DeltaContractError(
+                    "REQUIRED_COMPONENT_POST_GATE_STATE",
+                    (
+                        "post-gate components must remain absent, deferred, "
+                        f"unhashed, and dependency-free at B: {component_id}"
+                    ),
+                )
+
         if dependencies != sorted(dependencies) or len(dependencies) != len(
             set(dependencies)
         ):
             raise DeltaContractError(
                 "REQUIRED_COMPONENT_DEPENDENCY_ORDER",
-                f"dependency list differs: {component['component_id']}",
+                f"dependency list differs: {component_id}",
             )
         missing = [item for item in dependencies if item not in by_id]
         if missing:
             raise DeltaContractError(
                 "REQUIRED_COMPONENT_DEPENDENCY_MISSING",
-                (
-                    f"{component['component_id']} references unknown "
-                    f"dependencies: {missing}"
-                ),
+                f"{component_id} references unknown dependencies: {missing}",
             )
         if component["dependency_state"] == "closed" and not dependencies:
             raise DeltaContractError(
                 "REQUIRED_COMPONENT_DEPENDENCY_EMPTY",
                 f"closed dependency set is empty: {component_id}",
             )
-        if component["dependency_state"] == "closed" and (
-            component["binding_scope"]
-            in {"runtime_binding", "execution_binding"}
-        ):
-            forbidden = [
-                dependency
-                for dependency in dependencies
-                if by_id[dependency]["binding_scope"]
-                == "provenance_reference"
-            ]
-            if forbidden:
+        if is_manifest_container and dependencies:
+            raise DeltaContractError(
+                "REQUIRED_COMPONENT_CONTAINER_DEPENDENCY",
+                f"manifest container has outgoing dependencies: {component_id}",
+            )
+        if component_id in dependencies:
+            raise DeltaContractError(
+                "REQUIRED_COMPONENT_DEPENDENCY_SELF_LOOP",
+                f"component depends on itself: {component_id}",
+            )
+        for dependency in dependencies:
+            target = by_id[dependency]
+            if target["component_kind"] == "manifest_container":
+                raise DeltaContractError(
+                    "REQUIRED_COMPONENT_CONTAINER_DEPENDENCY",
+                    (
+                        f"{component_id} depends on manifest container "
+                        f"{dependency}"
+                    ),
+                )
+            if component["required_at_b"] and not target["required_at_b"]:
+                raise DeltaContractError(
+                    "REQUIRED_COMPONENT_DEPENDENCY_TIME_ORDER",
+                    (
+                        f"pre-gate component {component_id} depends on "
+                        f"post-gate component {dependency}"
+                    ),
+                )
+            if (
+                component["binding_scope"]
+                in {"runtime_binding", "execution_binding"}
+                and target["binding_scope"] == "provenance_reference"
+            ):
                 raise DeltaContractError(
                     "RUNTIME_DEPENDENCY_SCOPE_VIOLATION",
                     (
-                        f"{component['component_id']} consumes provenance-only "
-                        f"data components: {forbidden}"
+                        f"{component_id} consumes provenance-only "
+                        f"data component {dependency}"
                     ),
                 )
-    return registry
+            if component["dependency_state"] == "closed" and (
+                target["hash_state"] == "unresolved_blocks_commit_a"
+                or target["dependency_state"] == "unresolved_blocks_commit_a"
+            ):
+                raise DeltaContractError(
+                    "REQUIRED_COMPONENT_DEPENDENCY_TARGET_UNRESOLVED",
+                    (
+                        f"closed component {component_id} depends on "
+                        f"unresolved component {dependency}"
+                    ),
+                )
+
+    visiting: set[str] = set()
+    visited: set[str] = set()
+    stack: list[str] = []
+
+    def visit(component_id: str) -> None:
+        if component_id in visited:
+            return
+        if component_id in visiting:
+            cycle_start = stack.index(component_id)
+            cycle = stack[cycle_start:] + [component_id]
+            raise DeltaContractError(
+                "REQUIRED_COMPONENT_DEPENDENCY_CYCLE",
+                f"dependency cycle detected: {' -> '.join(cycle)}",
+            )
+        visiting.add(component_id)
+        stack.append(component_id)
+        dependencies = sorted(
+            by_id[component_id]["allowed_dependency_component_ids"],
+        )
+        for dependency in dependencies:
+            if dependency in by_id:
+                visit(dependency)
+        stack.pop()
+        visiting.remove(component_id)
+        visited.add(component_id)
+
+    for component_id in sorted(by_id):
+        visit(component_id)
 
 
 def _validate_required_component_absences(
@@ -1984,6 +2105,21 @@ def _validate_required_components(
             )
         target = resolve_repo_file(repo_root, canonical_path)
         expected_hash = component["expected_sha256"]
+        if component["component_kind"] == "manifest_container":
+            if (
+                component["binding_kind"] != "container_excluded"
+                or component["binding_scope"] != "container_excluded"
+                or component["hash_state"] != "container_excluded"
+                or expected_hash is not None
+            ):
+                raise DeltaContractError(
+                    "REQUIRED_COMPONENT_CONTAINER_HASH_STATE",
+                    (
+                        "manifest container must be present but excluded from "
+                        f"its own byte-hash closure: {component_id}"
+                    ),
+                )
+            continue
         actual_hash = sha256_path(target)
         if component["binding_kind"] == "candidate_manifest_bound":
             if (

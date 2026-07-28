@@ -58,6 +58,7 @@ from formal_run_delta_contract import (
     _unresolved_global_base_endpoints,
     _validate_required_components,
     _validate_required_component_absences,
+    _validate_required_component_relationships,
     canonical_bytes,
     canonical_value_bytes,
     materialize_document,
@@ -110,6 +111,7 @@ EXPECTED_POSITIVE_IDS = (
     "P12_NO_FORMAL_EXECUTION",
     "P13_TWO_STAGE_REVIEW_INPUT",
     "P14_GLOBAL_BASE_ENDPOINT_REACHABLE",
+    "P15_CONTAINER_EXCLUDED_FULL_PATH",
 )
 
 EXPECTED_NEGATIVE_IDS = (
@@ -128,6 +130,15 @@ EXPECTED_NEGATIVE_IDS = (
     "N-REGISTRY01_TAMPERED_CONTRACT",
     "N-REGISTRY02_UNRESOLVED_BLOCKS_COMMIT_A",
     "N-REGISTRY03_ABSENCE_PATTERN_MATCH",
+    "N-REGISTRY04_CONTAINER_HASH_STATE",
+    "N-REGISTRY05_SELF_DEPENDENCY",
+    "N-REGISTRY06_DEPENDENCY_CYCLE",
+    "N-REGISTRY07_PRE_GATE_DEPENDS_ON_POST_GATE",
+    "N-REGISTRY08_UNRESOLVED_SCOPE_VIOLATION",
+    "N-REGISTRY09_CLOSED_DEPENDS_ON_UNRESOLVED",
+    "N-REGISTRY10_CONTAINER_DEPENDENCY_EDGE",
+    "N-REGISTRY11_POST_GATE_FIELD_MISMATCH",
+    "N-REGISTRY12_CONTAINER_FULL_PATH_PINNED",
     "N-INVENTORY01_WEAKENED_TOOL",
     "N-MANAGER01_WEAKENED_FREEZE_MANAGER",
     "N-BASE01_INVALID_A_B_PAIR",
@@ -1588,6 +1599,36 @@ def run_self_test(actual_root: Path) -> dict[str, Any]:
             raise RuntimeError("valid global base endpoint remained blocked")
         positive.append("P14_GLOBAL_BASE_ENDPOINT_REACHABLE")
 
+        container_root = root / "container-full-path"
+        container_manifest = {"artifacts": []}
+        container_manifest_path = repo_path(
+            container_root,
+            CANDIDATE_MANIFEST,
+        )
+        write_json(container_manifest_path, container_manifest)
+        container_component = {
+            "binding_kind": "container_excluded",
+            "binding_scope": "container_excluded",
+            "canonical_path": CANDIDATE_MANIFEST,
+            "component_id": "candidate_run_manifest_instance",
+            "component_kind": "manifest_container",
+            "dependency_state": "not_applicable",
+            "expected_absent_at_b": False,
+            "expected_sha256": None,
+            "hash_state": "container_excluded",
+            "required_at_b": True,
+        }
+        container_registry = {"components": [container_component]}
+        container_document = {"artifact_changes": []}
+        _validate_required_components(
+            container_root,
+            container_document,
+            container_registry,
+            container_manifest,
+            synthetic_test_profile=False,
+        )
+        positive.append("P15_CONTAINER_EXCLUDED_FULL_PATH")
+
         original_delta = delta_path.read_bytes()
         original_document = json.loads(original_delta.decode("utf-8"))
         manifest_path = repo_path(root, CANDIDATE_MANIFEST)
@@ -1780,6 +1821,207 @@ def run_self_test(actual_root: Path) -> dict[str, Any]:
             absent_rogue.parent.parent.rmdir()
             absent_rogue.parent.parent.parent.rmdir()
         negative.append("N-REGISTRY03_ABSENCE_PATTERN_MATCH")
+
+        invalid_container_registry = copy.deepcopy(registry)
+        invalid_container = next(
+            component
+            for component in invalid_container_registry["components"]
+            if component["component_id"] == "candidate_run_manifest_instance"
+        )
+        invalid_container["hash_state"] = "unresolved_blocks_commit_a"
+        require_failure(
+            lambda: _validate_required_component_relationships(
+                invalid_container_registry,
+            ),
+            "REQUIRED_COMPONENT_CONTAINER_HASH_STATE",
+        )
+        invalid_non_container_registry = copy.deepcopy(registry)
+        invalid_non_container = next(
+            component
+            for component in invalid_non_container_registry["components"]
+            if component["component_id"]
+            == "formal_required_component_registry"
+        )
+        invalid_non_container["hash_state"] = "container_excluded"
+        invalid_non_container["expected_sha256"] = None
+        require_failure(
+            lambda: _validate_required_component_relationships(
+                invalid_non_container_registry,
+            ),
+            "REQUIRED_COMPONENT_CONTAINER_HASH_STATE",
+        )
+        negative.append("N-REGISTRY04_CONTAINER_HASH_STATE")
+
+        self_dependency_registry = copy.deepcopy(registry)
+        self_dependent = next(
+            component
+            for component in self_dependency_registry["components"]
+            if component["component_id"]
+            == "candidate_formal_build_readiness_instance"
+        )
+        self_dependent["allowed_dependency_component_ids"] = [
+            self_dependent["component_id"],
+        ]
+        require_failure(
+            lambda: _validate_required_component_relationships(
+                self_dependency_registry,
+            ),
+            "REQUIRED_COMPONENT_DEPENDENCY_SELF_LOOP",
+        )
+        negative.append("N-REGISTRY05_SELF_DEPENDENCY")
+
+        cyclic_registry = copy.deepcopy(registry)
+        cyclic_by_id = {
+            component["component_id"]: component
+            for component in cyclic_registry["components"]
+        }
+        cyclic_by_id["candidate_formal_build_readiness_instance"][
+            "allowed_dependency_component_ids"
+        ] = ["candidate_fixture_lock_instance"]
+        cyclic_by_id["candidate_fixture_lock_instance"][
+            "allowed_dependency_component_ids"
+        ] = ["candidate_formal_build_readiness_instance"]
+        require_failure(
+            lambda: _validate_required_component_relationships(
+                cyclic_registry,
+            ),
+            "REQUIRED_COMPONENT_DEPENDENCY_CYCLE",
+        )
+        negative.append("N-REGISTRY06_DEPENDENCY_CYCLE")
+
+        time_reversed_registry = copy.deepcopy(registry)
+        pre_gate_component = next(
+            component
+            for component in time_reversed_registry["components"]
+            if component["component_id"]
+            == "candidate_formal_build_readiness_instance"
+        )
+        pre_gate_component["allowed_dependency_component_ids"] = [
+            "external_dispatch_attestation_instance",
+        ]
+        require_failure(
+            lambda: _validate_required_component_relationships(
+                time_reversed_registry,
+            ),
+            "REQUIRED_COMPONENT_DEPENDENCY_TIME_ORDER",
+        )
+        negative.append("N-REGISTRY07_PRE_GATE_DEPENDS_ON_POST_GATE")
+
+        unresolved_scope_registry = copy.deepcopy(registry)
+        runtime_component = next(
+            component
+            for component in unresolved_scope_registry["components"]
+            if component["component_id"]
+            == "candidate_formal_build_readiness_instance"
+        )
+        runtime_component["allowed_dependency_component_ids"] = [
+            "formal_required_component_registry",
+        ]
+        require_failure(
+            lambda: _validate_required_component_relationships(
+                unresolved_scope_registry,
+            ),
+            "RUNTIME_DEPENDENCY_SCOPE_VIOLATION",
+        )
+        negative.append("N-REGISTRY08_UNRESOLVED_SCOPE_VIOLATION")
+
+        unresolved_target_registry = copy.deepcopy(registry)
+        closed_component = next(
+            component
+            for component in unresolved_target_registry["components"]
+            if component["component_id"]
+            == "base_post_run_inventory_tool"
+        )
+        closed_component["allowed_dependency_component_ids"] = [
+            "candidate_formal_build_readiness_instance",
+        ]
+        require_failure(
+            lambda: _validate_required_component_relationships(
+                unresolved_target_registry,
+            ),
+            "REQUIRED_COMPONENT_DEPENDENCY_TARGET_UNRESOLVED",
+        )
+        negative.append("N-REGISTRY09_CLOSED_DEPENDS_ON_UNRESOLVED")
+
+        container_edge_registry = copy.deepcopy(registry)
+        container_dependent = next(
+            component
+            for component in container_edge_registry["components"]
+            if component["component_id"]
+            == "candidate_formal_build_readiness_instance"
+        )
+        container_dependent["allowed_dependency_component_ids"] = [
+            "candidate_run_manifest_instance",
+        ]
+        require_failure(
+            lambda: _validate_required_component_relationships(
+                container_edge_registry,
+            ),
+            "REQUIRED_COMPONENT_CONTAINER_DEPENDENCY",
+        )
+        container_outbound_registry = copy.deepcopy(registry)
+        manifest_container = next(
+            component
+            for component in container_outbound_registry["components"]
+            if component["component_id"] == "candidate_run_manifest_instance"
+        )
+        manifest_container["allowed_dependency_component_ids"] = [
+            "formal_required_component_registry",
+        ]
+        require_failure(
+            lambda: _validate_required_component_relationships(
+                container_outbound_registry,
+            ),
+            "REQUIRED_COMPONENT_CONTAINER_DEPENDENCY",
+        )
+        negative.append("N-REGISTRY10_CONTAINER_DEPENDENCY_EDGE")
+
+        inconsistent_post_gate_registry = copy.deepcopy(registry)
+        post_gate_component = next(
+            component
+            for component in inconsistent_post_gate_registry["components"]
+            if component["component_id"]
+            == "external_dispatch_attestation_instance"
+        )
+        post_gate_component["hash_state"] = "unresolved_blocks_commit_a"
+        require_failure(
+            lambda: _validate_required_component_relationships(
+                inconsistent_post_gate_registry,
+            ),
+            "REQUIRED_COMPONENT_POST_GATE_STATE",
+        )
+        invalid_post_gate_scope_registry = copy.deepcopy(registry)
+        invalid_post_gate_scope = next(
+            component
+            for component in invalid_post_gate_scope_registry["components"]
+            if component["component_id"]
+            == "external_dispatch_attestation_instance"
+        )
+        invalid_post_gate_scope["binding_scope"] = "none"
+        require_failure(
+            lambda: _validate_required_component_relationships(
+                invalid_post_gate_scope_registry,
+            ),
+            "REQUIRED_COMPONENT_POST_GATE_STATE",
+        )
+        negative.append("N-REGISTRY11_POST_GATE_FIELD_MISMATCH")
+
+        pinned_container_component = copy.deepcopy(container_component)
+        pinned_container_component["hash_state"] = "pinned"
+        pinned_container_component["expected_sha256"] = sha256_path(
+            container_manifest_path
+        )
+        require_failure(
+            lambda: _validate_required_components(
+                container_root,
+                container_document,
+                {"components": [pinned_container_component]},
+                container_manifest,
+                synthetic_test_profile=False,
+            ),
+            "REQUIRED_COMPONENT_CONTAINER_HASH_STATE",
+        )
+        negative.append("N-REGISTRY12_CONTAINER_FULL_PATH_PINNED")
 
         inventory_tool_path = repo_path(
             root,

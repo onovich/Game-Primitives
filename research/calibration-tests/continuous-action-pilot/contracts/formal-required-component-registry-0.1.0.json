@@ -575,7 +575,7 @@
         "formal_actor_dispatch_plan_self_test",
         "formal_actor_dispatch_plan_verifier"
       ],
-      "dependency_state": "closed"
+      "dependency_state": "unresolved_blocks_commit_a"
     },
     {
       "artifact_role": "schema",
@@ -1088,7 +1088,7 @@
       "expected_instance_count_at_b": 1,
       "expected_sha256": null,
       "forbidden_reuse_family": "truth_commitment",
-      "hash_state": "unresolved_blocks_commit_a",
+      "hash_state": "container_excluded",
       "lifecycle": "rematerialized_pre_gate",
       "manifest_artifact_id": null,
       "manifest_artifact_kind": null,
@@ -3622,7 +3622,7 @@
       "component_kind": "schema",
       "expected_absent_at_b": false,
       "expected_instance_count_at_b": 1,
-      "expected_sha256": "4c005cd1c5701765b26fb09c99d146babd9a90cc8c90e9c440cb25e8cd9da1b2",
+      "expected_sha256": "0f5f6ef1ba9f638a7adef1ea79f970b36f3191a9ff9481076de65ee9fb35ec03",
       "forbidden_reuse_family": null,
       "hash_state": "pinned",
       "lifecycle": "new_pre_gate",
@@ -3801,7 +3801,7 @@
       "component_kind": "tool",
       "expected_absent_at_b": false,
       "expected_instance_count_at_b": 1,
-      "expected_sha256": "f6632ef3c8d07f616af734796063a808e9590c5241924ef0b4275797b2c47632",
+      "expected_sha256": "304f86878573cb9123603bafacfd921ea3ed07bed4103a72e711541c6493e3d7",
       "forbidden_reuse_family": null,
       "hash_state": "pinned",
       "lifecycle": "new_pre_gate",

@@ -63,6 +63,50 @@
         {
           "if": {
             "properties": {
+              "component_kind": {
+                "const": "manifest_container"
+              }
+            },
+            "required": [
+              "component_kind"
+            ]
+          },
+          "then": {
+            "properties": {
+              "binding_kind": {
+                "const": "container_excluded"
+              },
+              "binding_scope": {
+                "const": "container_excluded"
+              },
+              "hash_state": {
+                "const": "container_excluded"
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "hash_state": {
+                "const": "container_excluded"
+              }
+            },
+            "required": [
+              "hash_state"
+            ]
+          },
+          "then": {
+            "properties": {
+              "component_kind": {
+                "const": "manifest_container"
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
               "expected_absent_at_b": {
                 "const": true
               }
@@ -73,6 +117,21 @@
           },
           "then": {
             "properties": {
+              "allowed_dependency_component_ids": {
+                "maxItems": 0
+              },
+              "binding_kind": {
+                "const": "post_gate_deferred"
+              },
+              "binding_scope": {
+                "const": "post_gate_runtime"
+              },
+              "dependency_state": {
+                "const": "not_applicable"
+              },
+              "hash_state": {
+                "const": "post_gate_not_materialized"
+              },
               "lifecycle": {
                 "enum": [
                   "post_gate_append_only",
@@ -280,6 +339,7 @@
       ],
       "properties": {
         "allowed_dependency_component_ids": {
+          "description": "The exact set of direct component dependencies actually required to build or verify this component; never a transitive closure or a permissive allowlist.",
           "items": {
             "$ref": "#/$defs/localId"
           },
@@ -463,6 +523,7 @@
         },
         "hash_state": {
           "enum": [
+            "container_excluded",
             "manifest_bound_at_b",
             "pinned",
             "post_gate_not_materialized",
