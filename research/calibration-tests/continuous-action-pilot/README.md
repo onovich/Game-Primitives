@@ -6,6 +6,7 @@
 - 制品与放行规则：[CA-07](../../continuous-action-pilot-ca-07-artifacts-and-release.md)
 - 正式包契约：[正式轮次包契约](../../continuous-action-pilot-formal-package-contract.md)
 - 新轮次增量：[`continuous-002` 增量契约](../../continuous-action-pilot-continuous-002-delta-contract.md)
+- 版本闭合：[`continuous-002` 旧绑定扫描与版本闭合计划](../../continuous-action-pilot-continuous-002-version-closure-plan.md)
 
 本工作区保存连续行动方法试验的结构化制品。当前授权仅覆盖 Schema、来源编码、来源审核、夹具准备、比较器准备和虚构材料的增量彩排，不授权正式盲测、三案冻结输入的精确执行或真值揭示。
 
@@ -88,7 +89,7 @@ python research/calibration-tests/continuous-action-pilot/tools/self-test-formal
 
 当前自测覆盖 14 项正控与 59 项具名负控，包括规范字节、可信 Schema／工具散列、真实 Git A/B、路径逃逸与大小写碰撞、固定版本矩阵、可闭合的全局组件 base endpoint、解码后的旧轮次引用、结构化且身份隔离的语义审核、禁止复用、required-component 注册表的类型／散列／依赖闭包、manifest 双向闭包、增量记录—冻结前像—根摘要绑定、事务短写回滚、Python 隔离模式、仓库级字节读取确认、wrapper 跨根拒绝、core 导入前散列校验，以及候选命名空间外与嵌套路径中的门后制品伪装；`P10` 式 B 后宽泛例外已被删除，pre-A 验证器对任何外部派发证明实例一律失败关闭。路径 glob 只接受版本化的仓库相对 `gitwildmatch` 子集（`*`、`**`、`?`），其余语法失败关闭。自测不会调用 runner 或 comparator。
 
-基础清单由 [`base_post_run_inventory_contract.py`](tools/base_post_run_inventory_contract.py) 在只读基础轮次快照上复算；隔离自测把完成提交 `c42013d5cad89811e8838696c4072f6f71a859fb` 与树 `f8aae165fcf9620b8ba9cee64766e39f642d8d4c` 固定为 87 项制品，清单 SHA-256 为 `12f769ecbe378543a2f9ad153680266701a9d4d9d96f2eb3f56b42332aa5e673`，并通过 6 项正控与 10 项负控。required-component 注册表当前封闭 158 个组件，并诚实列出 materializer、verifier、共享语义核三项必须由调用方带外固定精确字节的外部信任根；两个入口再以必填 SHA-256 参数固定语义核。当前仍有 38 项散列阻断与 110 项依赖阻断，合计涉及 122 个不重复组件，所以注册表是“工作完整性地图”，不是提交 A 已就绪的证明。
+基础清单由 [`base_post_run_inventory_contract.py`](tools/base_post_run_inventory_contract.py) 在只读基础轮次快照上复算；隔离自测把完成提交 `c42013d5cad89811e8838696c4072f6f71a859fb` 与树 `f8aae165fcf9620b8ba9cee64766e39f642d8d4c` 固定为 87 项制品，清单 SHA-256 为 `12f769ecbe378543a2f9ad153680266701a9d4d9d96f2eb3f56b42332aa5e673`，并通过 6 项正控与 10 项负控。required-component 注册表当前封闭 158 个组件，并诚实列出 materializer、verifier、共享语义核三项必须由调用方带外固定精确字节的外部信任根；两个入口再以必填 SHA-256 参数固定语义核。注册表表面上仍有 38 项散列阻断与 110 项依赖阻断，合计涉及 122 个不重复组件；[版本闭合审计](../../continuous-action-pilot-continuous-002-version-closure-plan.md)进一步确认，38 项应解释为 37 个真实缺件加 1 个不应自散列的 manifest 容器，110 项依赖则必须按真实直接边分批闭合。因此注册表是“工作完整性地图”，不是提交 A 已就绪的证明。
 
 actor 派发计划由 [`materialize-formal-actor-dispatch-plan-v0.1.0.py`](tools/materialize-formal-actor-dispatch-plan-v0.1.0.py) 从三份固定正文来源确定性物化，再由 [`verify-formal-actor-dispatch-plan-v0.1.0.py`](tools/verify-formal-actor-dispatch-plan-v0.1.0.py) 只读复算；隔离自测覆盖 10 项正控与 49 项负控，包括来源伪造、真实短写／部分异常回滚、跨仓库工具错绑、跨行／注释／尾随运行标识和嵌套转义。开发范围事件及修订证据见[actor 派发计划开发范围事件](development-scope-incident-2026-07-28-actor-dispatch-plan.md)。这些工具只建立门前静态计划，不创建真实 Codex task、thread、session 或 dispatch。
 

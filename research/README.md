@@ -35,5 +35,6 @@
 - [连续行动组 CA-06](continuous-action-pilot-ca-06-execution-and-verdicts.md)：丰富／压缩双条件、执行角色、熟悉度／污染与组级结论；
 - [连续行动组 CA-07](continuous-action-pilot-ca-07-artifacts-and-release.md)：七类制品、增量彩排、冻结纪律和一次性正式派发门；
 - [`continuous-002` 增量契约](continuous-action-pilot-continuous-002-delta-contract.md)：在不回写 `continuous-001` 的前提下，以协议 0.1.1 重建门前候选包、版本闭包与新人工门；
+- [`continuous-002` 旧绑定扫描与版本闭合计划](continuous-action-pilot-continuous-002-version-closure-plan.md)：把 38 个散列阻断拆成 37 个真实缺件与 1 个 manifest 容器假阻断，并规定 0.1.1／0.1.0 版本矩阵、直接依赖语义和实施拓扑；
 - [CA-SR 0.1](../theory/CONTINUOUS-ACTION-REPRESENTATION-0.1.md)：连续行动组的测试伴随表示与轨迹格式；
 - [校准门 D](calibration-gates/gate-d-second-cycle-method-pilot.md)：两组完成后复核强检验方法，再决定扩展范围。
