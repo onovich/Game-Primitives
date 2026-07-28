@@ -845,6 +845,12 @@
           "component_id": "formal_run_delta_verifier",
           "required_at_invocation": true,
           "trust_model": "caller_pins_exact_bytes_out_of_band_and_invokes_python_isolated"
+        },
+        {
+          "canonical_path": "research/calibration-tests/continuous-action-pilot/tools/verify-formal-post-gate-absence-v0.1.0.py",
+          "component_id": "formal_post_gate_absence_verifier",
+          "required_at_invocation": true,
+          "trust_model": "caller_pins_exact_bytes_out_of_band_and_invokes_python_isolated"
         }
       ]
     },

@@ -19,6 +19,7 @@ import copy
 import hashlib
 import importlib.util
 import json
+import os
 import re
 import subprocess
 import sys
@@ -37,6 +38,9 @@ TOOLS_DIR = PILOT / "tools"
 SCHEMA_PATH = SCHEMA_DIR / "formal-run-delta-0.1.0.schema.json"
 DENYLIST_SCHEMA_PATH = (
     SCHEMA_DIR / "formal-post-gate-absence-denylist-0.1.0.schema.json"
+)
+DENYLIST_CONTRACT_PATH = (
+    PILOT / "contracts/formal-post-gate-absence-denylist-0.1.0.json"
 )
 REVIEW_SCHEMA_PATH = (
     SCHEMA_DIR / "formal-run-delta-semantic-review-0.1.0.schema.json"
@@ -85,7 +89,7 @@ REGISTRY_SCHEMA_ID = (
 # intentional contract change also requires a new artifact version.
 TRUSTED_SCHEMA_SHA256 = {
     SCHEMA_PATH.as_posix(): (
-        "9f4fe7db6c4367e7d978d049bc1b835788cd3cfb90ff0d1ed9f095a987cff0f2"
+        "54d32eac6296bbb13db7fe83c93f86b3527f97ec3dad67f48469777214ea6c33"
     ),
     DENYLIST_SCHEMA_PATH.as_posix(): (
         "5a8c16e7dc82c9517e35e20f06d5d64d4cc8b5eac406fc62ea7c46c8ee0a1f7d"
@@ -97,7 +101,7 @@ TRUSTED_SCHEMA_SHA256 = {
         "657eaeaad2b678ff1c755c683b109e02baa2dee7901c4e3a446887088002f1fa"
     ),
     REGISTRY_SCHEMA_PATH.as_posix(): (
-        "0f5f6ef1ba9f638a7adef1ea79f970b36f3191a9ff9481076de65ee9fb35ec03"
+        "5514a1c950ef0e65581b0392e7f2d7e6fa2fedf50bd96141d2a6130a2075de99"
     ),
 }
 TRUSTED_MANAGER_SHA256 = (
@@ -107,7 +111,10 @@ TRUSTED_INVENTORY_TOOL_SHA256 = (
     "1837e945da545b281c2fd5bcf95becae0874fc174628c996f1f8a35794dd843f"
 )
 TRUSTED_REGISTRY_SHA256 = (
-    "9ecb305bf6b6ec00e9f71384764a6a1ca7264a9f2365539b5b07a1f75e2af855"
+    "55b720b914040a710ef0fe8b74830373ab07912c4fb80960fabd0ff7a9087552"
+)
+TRUSTED_DENYLIST_CONTRACT_SHA256 = (
+    "ab4218109a8c29076d0ab95d2932b734725f83e836a1c2de60bc0cacf8cc926f"
 )
 
 BASE_RUN_ID = "continuous-001"
@@ -868,6 +875,18 @@ def _git(
     return result
 
 
+def _tracked_path_matches_head(
+    repo_root: Path,
+    relative: str,
+    raw: bytes,
+) -> bool:
+    head_blob = _git(
+        repo_root,
+        ["cat-file", "blob", f"HEAD:{relative}"],
+    ).stdout
+    return head_blob == raw
+
+
 def _git_head(repo_root: Path) -> str:
     value = _git(repo_root, ["rev-parse", "HEAD"]).stdout.decode("ascii").strip()
     if not FULL_SHA_PATTERN.fullmatch(value):
@@ -1375,11 +1394,6 @@ def _iter_artifact_references(
         False,
     )
     yield (
-        "repository_absence:denylist",
-        document["repository_absence"]["denylist_contract"],
-        False,
-    )
-    yield (
         "gate_policy:external_contract",
         document["gate_policy"][
             "external_dispatch_attestation_contract"
@@ -1648,12 +1662,23 @@ def _load_required_component_registry(
                 "python_isolated"
             ),
         },
+        {
+            "canonical_path": (
+                TOOLS_DIR / "verify-formal-post-gate-absence-v0.1.0.py"
+            ).as_posix(),
+            "component_id": "formal_post_gate_absence_verifier",
+            "required_at_invocation": True,
+            "trust_model": (
+                "caller_pins_exact_bytes_out_of_band_and_invokes_"
+                "python_isolated"
+            ),
+        },
     ]
     if registry["external_trust_roots"] != expected_external_roots:
         raise DeltaContractError(
             "REQUIRED_COMPONENT_EXTERNAL_TRUST_ROOT",
             (
-                "the registry must declare the core and both isolated CLI "
+                "the registry must declare the core and all isolated CLI "
                 "entry points as out-of-band caller trust roots"
             ),
         )
@@ -3880,16 +3905,25 @@ def _load_denylist_contract(
 ) -> tuple[dict[str, Any], list[dict[str, Any]]]:
     schema = _load_trusted_schema(repo_root, DENYLIST_SCHEMA_PATH)
     reference = document["repository_absence"]["denylist_contract"]
-    change = _change_for_candidate_reference(document, reference)
-    if change["artifact_role"] != "research_contract":
+    expected_reference = {
+        "artifact_version": "0.1.0",
+        "path": DENYLIST_CONTRACT_PATH.as_posix(),
+        "sha256": TRUSTED_DENYLIST_CONTRACT_SHA256,
+    }
+    if reference != expected_reference:
         raise DeltaContractError(
             "DENYLIST_CHANGE_BINDING",
-            "absence denylist is not a research_contract",
+            "absence denylist differs from its fixed repository binding",
         )
-    contract, _ = read_json_object(
-        _candidate_path(repo_root, reference["path"]),
+    contract, raw = read_json_object(
+        resolve_repo_file(repo_root, DENYLIST_CONTRACT_PATH.as_posix()),
         require_canonical=True,
     )
+    if sha256_bytes(raw) != TRUSTED_DENYLIST_CONTRACT_SHA256:
+        raise DeltaContractError(
+            "DENYLIST_CONTRACT_HASH_MISMATCH",
+            "absence denylist bytes differ from the trusted repository instance",
+        )
     _schema_validate(
         schema,
         contract,
@@ -3993,9 +4027,8 @@ def _post_gate_path_family(
 
 def _permissive_json_value(raw: bytes) -> Any:
     try:
-        text = raw.decode("utf-8-sig")
         return json.loads(
-            text,
+            raw,
             object_pairs_hook=_duplicate_keys,
             parse_constant=_reject_nonfinite,
         )
@@ -4007,6 +4040,128 @@ def _permissive_json_value(raw: bytes) -> Any:
         return None
 
 
+def _raw_contains_candidate_binding(raw: bytes) -> bool:
+    return any(
+        CANDIDATE_RUN_ID.encode(encoding) in raw
+        for encoding in (
+            "utf-8",
+            "utf-16-le",
+            "utf-16-be",
+            "utf-32-le",
+            "utf-32-be",
+        )
+    )
+
+
+def _repository_scan_entries(
+    root: Path,
+    *,
+    exclude_root_git_metadata: bool,
+) -> list[Path]:
+    entries: list[Path] = []
+    walk_error: OSError | None = None
+
+    def record_error(error: OSError) -> None:
+        nonlocal walk_error
+        walk_error = error
+
+    for directory, dirnames, filenames in os.walk(
+        root,
+        topdown=True,
+        onerror=record_error,
+        followlinks=False,
+    ):
+        if walk_error is not None:
+            raise DeltaContractError(
+                "REPOSITORY_TRAVERSAL_FAILED",
+                f"repository traversal failed: {walk_error}",
+            )
+        parent = Path(directory)
+        relative_parent = parent.relative_to(root)
+        if exclude_root_git_metadata and not relative_parent.parts:
+            dirnames[:] = [
+                name for name in dirnames if name.casefold() != ".git"
+            ]
+            filenames = [
+                name for name in filenames if name.casefold() != ".git"
+            ]
+        dirnames.sort(key=lambda name: (name.casefold(), name))
+        filenames.sort(key=lambda name: (name.casefold(), name))
+        entries.extend(parent / name for name in dirnames)
+        entries.extend(parent / name for name in filenames)
+    if walk_error is not None:
+        raise DeltaContractError(
+            "REPOSITORY_TRAVERSAL_FAILED",
+            f"repository traversal failed: {walk_error}",
+        )
+    entries.sort(
+        key=lambda path: (
+            path.relative_to(root).as_posix().casefold(),
+            path.relative_to(root).as_posix(),
+        )
+    )
+    seen: dict[str, str] = {}
+    for path in entries:
+        relative = path.relative_to(root).as_posix()
+        folded = relative.casefold()
+        previous = seen.get(folded)
+        if previous is not None and previous != relative:
+            raise DeltaContractError(
+                "REPOSITORY_PATH_CASEFOLD_COLLISION",
+                f"repository paths collide after casefold: "
+                f"{previous!r}, {relative!r}",
+            )
+        seen[folded] = relative
+    return entries
+
+
+def _forbidden_artifact_types(
+    value: Any,
+    forbidden_types: dict[str, str],
+    *,
+    candidate_path_binding: bool,
+    include_nested: bool = True,
+    _depth: int = 0,
+) -> list[str]:
+    matches: list[str] = []
+    if isinstance(value, dict):
+        local_binding = (
+            (candidate_path_binding and _depth == 0)
+            or _contains_candidate_binding(value)
+        )
+        for key, child in value.items():
+            if (
+                isinstance(key, str)
+                and key.casefold() == "artifact_type"
+                and isinstance(child, str)
+            ):
+                canonical = forbidden_types.get(child.casefold())
+                if canonical is not None and local_binding:
+                    matches.append(canonical)
+            if include_nested:
+                matches.extend(
+                    _forbidden_artifact_types(
+                        child,
+                        forbidden_types,
+                        candidate_path_binding=False,
+                        include_nested=True,
+                        _depth=_depth + 1,
+                    )
+                )
+    elif include_nested and isinstance(value, list):
+        for child in value:
+            matches.extend(
+                _forbidden_artifact_types(
+                    child,
+                    forbidden_types,
+                    candidate_path_binding=False,
+                    include_nested=True,
+                    _depth=_depth + 1,
+                )
+            )
+    return matches
+
+
 def _repository_absence_scan(
     repo_root: Path,
     run_root: Path,
@@ -4015,12 +4170,17 @@ def _repository_absence_scan(
     manager: ModuleType,
 ) -> tuple[list[dict[str, Any]], str]:
     forbidden_types = {
-        artifact_type
+        artifact_type.casefold(): artifact_type
+        for rule in rules
+        for artifact_type in rule["artifact_types"]
+    }
+    absence_type_by_artifact_type = {
+        artifact_type.casefold(): rule["absence_type"]
         for rule in rules
         for artifact_type in rule["artifact_types"]
     }
     forbidden_text_signatures = {
-        value.casefold()
+        value
         for value in forbidden_types
     }
     for rule in rules:
@@ -4045,7 +4205,10 @@ def _repository_absence_scan(
         PREIMAGE_ENTRY_PATH,
     }
     _, manifest_by_path = _manifest_indexes(candidate_manifest)
-    for path in run_root.rglob("*"):
+    for path in _repository_scan_entries(
+        run_root,
+        exclude_root_git_metadata=False,
+    ):
         if path.is_symlink():
             raise DeltaContractError(
                 "PATH_SYMLINK",
@@ -4055,9 +4218,10 @@ def _repository_absence_scan(
             continue
         relative = path.relative_to(run_root).as_posix()
         artifact_type: str | None = None
+        raw = path.read_bytes()
         if path.suffix.casefold() == ".json":
             value = decode_json_bytes(
-                path.read_bytes(),
+                raw,
                 label=relative,
                 require_canonical=True,
             )
@@ -4066,11 +4230,32 @@ def _repository_absence_scan(
                 str,
             ):
                 artifact_type = value["artifact_type"]
+            for forbidden_type in _forbidden_artifact_types(
+                value,
+                forbidden_types,
+                candidate_path_binding=True,
+            ):
+                matches.append(
+                    {
+                        "absence_type": absence_type_by_artifact_type[
+                            forbidden_type.casefold()
+                        ],
+                        "artifact_type": forbidden_type,
+                        "match_kind": "artifact_type",
+                        "path": relative,
+                    }
+                )
         else:
-            raw = path.read_bytes()
             try:
                 text = raw.decode("utf-8")
             except UnicodeDecodeError:
+                matches.append(
+                    {
+                        "absence_type": "candidate_bound_binary",
+                        "match_kind": "binary_binding",
+                        "path": relative,
+                    }
+                )
                 text = ""
             folded_text = text.casefold()
             if (
@@ -4108,15 +4293,6 @@ def _repository_absence_scan(
                         "path": relative,
                     }
                 )
-            if artifact_type in rule["artifact_types"]:
-                matches.append(
-                    {
-                        "absence_type": rule["absence_type"],
-                        "artifact_type": artifact_type,
-                        "match_kind": "artifact_type",
-                        "path": relative,
-                    }
-                )
         manifest_entry = manifest_by_path.get(relative)
         if manifest_entry is not None:
             forbidden_kind = POST_GATE_MANIFEST_KINDS.get(
@@ -4136,30 +4312,26 @@ def _repository_absence_scan(
                 {
                     "artifact_type": artifact_type,
                     "path": relative,
-                    "sha256": sha256_path(path),
+                    "sha256": sha256_bytes(raw),
                 }
             )
 
     # Candidate-bound spillover is checked repository-wide, for every file
     # extension. JSON decoding is permissive here so BOM/CRLF cannot hide a
     # forbidden type; malformed candidate-bound JSON fails closed.
-    for path in repo_root.rglob("*"):
+    for path in _repository_scan_entries(
+        repo_root,
+        exclude_root_git_metadata=True,
+    ):
         relative_repo = path.relative_to(repo_root).as_posix()
-        if any(part.casefold() == ".git" for part in path.parts):
-            continue
+        if path.is_symlink():
+            raise DeltaContractError(
+                "REPOSITORY_SYMLINK",
+                f"repository scan does not admit symlinks: {relative_repo}",
+            )
         if _candidate_relative(path, run_root) is not None:
             continue
         suffix = _candidate_suffix_from_repository_path(relative_repo)
-        if path.is_symlink():
-            if suffix is not None:
-                matches.append(
-                    {
-                        "absence_type": "candidate_bound_symlink",
-                        "match_kind": "repository_symlink",
-                        "path": relative_repo,
-                    }
-                )
-            continue
         if not path.is_file():
             continue
         if suffix is not None:
@@ -4186,17 +4358,13 @@ def _repository_absence_scan(
                     )
         raw = path.read_bytes()
         if path.suffix.casefold() != ".json":
-            # A tracked source/tool/document may legitimately describe the
-            # candidate protocol and post-gate artifact types.  The text
-            # signature heuristic is for untracked spillover, or for a file
-            # whose repository path itself binds the candidate namespace.
-            # JSON remains structurally inspected regardless of tracked state.
-            if suffix is None and relative_repo in tracked_head_paths:
-                continue
             try:
                 text = raw.decode("utf-8")
             except UnicodeDecodeError:
-                if CANDIDATE_RUN_ID.encode("ascii") in raw:
+                if (
+                    suffix is not None
+                    or _raw_contains_candidate_binding(raw)
+                ):
                     matches.append(
                         {
                             "absence_type": "candidate_bound_binary",
@@ -4213,6 +4381,20 @@ def _repository_absence_scan(
                     for signature in forbidden_text_signatures
                 )
             ):
+                # A committed control-plane source or document may describe
+                # the candidate protocol and forbidden types.  Only its exact
+                # HEAD bytes are exempt: a worktree modification must not turn
+                # an arbitrary tracked file into a post-gate hiding place.
+                if (
+                    suffix is None
+                    and relative_repo in tracked_head_paths
+                    and _tracked_path_matches_head(
+                        repo_root,
+                        relative_repo,
+                        raw,
+                    )
+                ):
+                    continue
                 matches.append(
                     {
                         "absence_type": "candidate_bound_non_json",
@@ -4222,10 +4404,13 @@ def _repository_absence_scan(
                 )
             continue
         value = _permissive_json_value(raw)
-        raw_text = raw.decode("utf-8", errors="ignore")
         candidate_hint = (
             suffix is not None
-            or CANDIDATE_RUN_ID.casefold() in raw_text.casefold()
+            or (
+                value is not None
+                and _contains_candidate_binding(value)
+            )
+            or _raw_contains_candidate_binding(raw)
         )
         if value is None:
             if candidate_hint:
@@ -4237,15 +4422,14 @@ def _repository_absence_scan(
                     }
                 )
             continue
-        artifact_type = (
-            value.get("artifact_type") if isinstance(value, dict) else None
-        )
-        if (
-            artifact_type in forbidden_types
-            and (
-                candidate_hint
-                or _contains_candidate_binding(value)
-            )
+        for artifact_type in _forbidden_artifact_types(
+            value,
+            forbidden_types,
+            candidate_path_binding=suffix is not None,
+            include_nested=(
+                suffix is not None
+                or relative_repo not in tracked_head_paths
+            ),
         ):
             matches.append(
                 {

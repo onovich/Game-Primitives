@@ -26,7 +26,7 @@ from formal_run_delta_contract import (
     CORE_PATH,
     DELTA_ENTRY_PATH,
     DELTA_INSTANCE_PATH,
-    DENYLIST_SCHEMA_ID,
+    DENYLIST_CONTRACT_PATH,
     DENYLIST_SCHEMA_PATH,
     FORBIDDEN_REUSE_FAMILIES,
     INVENTORY_ENTRY_PATH,
@@ -46,6 +46,7 @@ from formal_run_delta_contract import (
     SCHEMA_ID,
     SCHEMA_PATH,
     TOOLS_DIR,
+    TRUSTED_DENYLIST_CONTRACT_SHA256,
     TRUSTED_REGISTRY_SHA256,
     TRUSTED_SCHEMA_SHA256,
     VERSION_MATRIX,
@@ -104,7 +105,7 @@ EXPECTED_POSITIVE_IDS = (
     "P05_BIDIRECTIONAL_MANIFEST_CLOSURE",
     "P06_DELTA_PREIMAGE_ROOT_BINDING",
     "P07_STRUCTURED_SEMANTIC_REVIEWS",
-    "P08_VERSIONED_DENYLIST_SCAN",
+    "P08_REPOSITORY_DENYLIST_SINGLE_SOURCE",
     "P09_DECODED_REFERENCE_ALLOWLIST",
     "P10_DERIVED_FORBIDDEN_REUSE",
     "P11_BASE_BYTES_READ_FROM_COMMIT_A",
@@ -165,6 +166,11 @@ EXPECTED_NEGATIVE_IDS = (
     "N-INVENTORY03_PROTECTED_FINGERPRINT",
     "N-DENY01_EMPTY_GLOB_REWRITE",
     "N-DENY02_FORBIDDEN_TYPE_OUTSIDE_NAMESPACE",
+    "N-DENY03_NESTED_DOT_GIT_NOT_EXEMPT",
+    "N-DENY04_UTF16_FORBIDDEN_TYPE",
+    "N-DENY05_UTF32_FORBIDDEN_TYPE",
+    "N-DENY06_MODIFIED_TRACKED_CANDIDATE_SIGNATURE",
+    "N-DENY07_TRACKED_EOL_NORMALIZATION",
     "N-R01_OLD_TOKEN_IN_GENERATOR",
     "N-R02_UNICODE_ESCAPE_BLOCKED",
     "N-R03_ALLOWLIST_OMISSION",
@@ -418,6 +424,7 @@ def _copy_contract_files(root: Path, actual_root: Path) -> None:
     relative_files = [
         SCHEMA_PATH.as_posix(),
         DENYLIST_SCHEMA_PATH.as_posix(),
+        DENYLIST_CONTRACT_PATH.as_posix(),
         REVIEW_SCHEMA_PATH.as_posix(),
         INVENTORY_SCHEMA_PATH.as_posix(),
         REGISTRY_SCHEMA_PATH.as_posix(),
@@ -476,6 +483,12 @@ def build_base(
     git(root, "init", "--quiet")
     git(root, "config", "user.email", "synthetic@example.invalid")
     git(root, "config", "user.name", "Synthetic Test")
+    control_text = repo_path(root, "notes/control-plane.md")
+    control_text.parent.mkdir(parents=True, exist_ok=True)
+    control_text.write_bytes(
+        b"Tracked protocol text may mention continuous-002 and truth_reveal "
+        b"without being a runtime artifact.\n"
+    )
 
     manager = _load_frozen_manager(actual_root)
     generic_hash = sha256_path(repo_path(root, GENERIC_SCHEMA))
@@ -727,6 +740,18 @@ def artifact_reference(
     return value
 
 
+def repository_artifact_reference(
+    path: str,
+    version: str,
+    sha256: str,
+) -> dict[str, Any]:
+    return {
+        "artifact_version": version,
+        "path": path,
+        "sha256": sha256,
+    }
+
+
 def make_change(
     *,
     artifact_id: str,
@@ -952,36 +977,6 @@ def build_candidate(
         )
     )
 
-    denylist_relative = (
-        "inputs/formal-post-gate-absence-denylist-v0.1.0.json"
-    )
-    denylist_repo = f"{CANDIDATE_RUN_ROOT}/{denylist_relative}"
-    denylist_schema = json.loads(
-        repo_path(root, DENYLIST_SCHEMA_PATH.as_posix()).read_text(
-            encoding="utf-8"
-        )
-    )
-    write_json(
-        repo_path(root, denylist_repo),
-        {
-            "$schema": DENYLIST_SCHEMA_ID,
-            "artifact_type": "formal_post_gate_absence_denylist",
-            "artifact_version": "0.1.0",
-            "candidate_run_id": "continuous-002",
-            "rules": denylist_schema["properties"]["rules"]["const"],
-            "verification_scope": "pre_commit_a_only",
-        },
-    )
-    changes.append(
-        make_change(
-            artifact_id="denylist.contract",
-            role="research_contract",
-            candidate_path=denylist_repo,
-            candidate_version="0.1.0",
-            kind="candidate_added",
-        )
-    )
-
     external_relative = (
         "inputs/external-dispatch-attestation-contract-v0.1.0.json"
     )
@@ -1183,11 +1178,10 @@ def build_candidate(
         },
         "required_component_registry_digest": TRUSTED_REGISTRY_SHA256,
         "repository_absence": {
-            "denylist_contract": artifact_reference(
-                denylist_repo,
+            "denylist_contract": repository_artifact_reference(
+                DENYLIST_CONTRACT_PATH.as_posix(),
                 "0.1.0",
-                sha256_path(repo_path(root, denylist_repo)),
-                manifest_artifact_id="denylist.contract",
+                TRUSTED_DENYLIST_CONTRACT_SHA256,
             ),
             "matches": [],
             "observed_head": base["completion"],
@@ -1282,10 +1276,7 @@ def build_candidate(
         if not isinstance(reference, dict):
             continue
         relative = reference["path"][len(CANDIDATE_RUN_ROOT) + 1 :]
-        if relative == denylist_relative:
-            schema_path = DENYLIST_SCHEMA_PATH.as_posix()
-            schema_hash = TRUSTED_SCHEMA_SHA256[schema_path]
-        elif relative == INVENTORY_ENTRY_PATH:
+        if relative == INVENTORY_ENTRY_PATH:
             schema_path = INVENTORY_SCHEMA_PATH.as_posix()
             schema_hash = TRUSTED_SCHEMA_SHA256[schema_path]
         elif reference["path"] in review_paths.values():
@@ -1400,7 +1391,7 @@ def build_candidate(
     write_json(repo_path(root, DRAFT), draft)
     return {
         "component_paths": component_paths,
-        "denylist": denylist_repo,
+        "denylist": DENYLIST_CONTRACT_PATH.as_posix(),
         "draft": draft,
         "external": external_repo,
         "generator": generator_repo,
@@ -1473,6 +1464,27 @@ def run_self_test(actual_root: Path) -> dict[str, Any]:
         root = Path(temporary).resolve()
         base = build_base(root, actual_root)
         fixture = build_candidate(root, base)
+        denylist_reference = fixture["draft"]["repository_absence"][
+            "denylist_contract"
+        ]
+        if (
+            denylist_reference
+            != repository_artifact_reference(
+                DENYLIST_CONTRACT_PATH.as_posix(),
+                "0.1.0",
+                TRUSTED_DENYLIST_CONTRACT_SHA256,
+            )
+            or any(
+                isinstance(change["candidate_artifact"], dict)
+                and change["candidate_artifact"]["path"]
+                == DENYLIST_CONTRACT_PATH.as_posix()
+                for change in fixture["draft"]["artifact_changes"]
+            )
+        ):
+            raise RuntimeError(
+                "denylist must have one repository-level source and no "
+                "candidate artifact-change binding"
+            )
 
         packet_a = prepare_semantic_review_packet(
             root,
@@ -1539,7 +1551,7 @@ def run_self_test(actual_root: Path) -> dict[str, Any]:
                 "P05_BIDIRECTIONAL_MANIFEST_CLOSURE",
                 "P06_DELTA_PREIMAGE_ROOT_BINDING",
                 "P07_STRUCTURED_SEMANTIC_REVIEWS",
-                "P08_VERSIONED_DENYLIST_SCAN",
+                "P08_REPOSITORY_DENYLIST_SINGLE_SOURCE",
                 "P09_DECODED_REFERENCE_ALLOWLIST",
                 "P10_DERIVED_FORBIDDEN_REUSE",
             )
@@ -2394,18 +2406,19 @@ def run_self_test(actual_root: Path) -> dict[str, Any]:
             refresh_semantic_reviews=True,
         )
 
-        candidate_json_failure(
-            fixture["denylist"],
-            lambda value: [
-                rule.update(
-                    {"path_patterns": ["never/matches/*.json"]}
-                )
-                for rule in value["rules"]
-            ],
-            "ARTIFACT_SCHEMA_VALIDATION",
-            "N-DENY01_EMPTY_GLOB_REWRITE",
-            refresh_semantic_reviews=True,
+        denylist_path = repo_path(root, fixture["denylist"])
+        denylist_raw = denylist_path.read_bytes()
+        denylist_value = json.loads(denylist_raw.decode("utf-8"))
+        for rule in denylist_value["rules"]:
+            rule["path_patterns"] = ["never/matches/*.json"]
+        write_json(denylist_path, denylist_value)
+        require_failure(
+            lambda: verify_now(root),
+            "DENYLIST_CONTRACT_HASH_MISMATCH",
         )
+        negative.append("N-DENY01_EMPTY_GLOB_REWRITE")
+        denylist_path.write_bytes(denylist_raw)
+        restore_binding()
 
         rogue = repo_path(root, "misc/candidate-bound-result.json")
         write_json(
@@ -2419,6 +2432,74 @@ def run_self_test(actual_root: Path) -> dict[str, Any]:
         negative.append("N-DENY02_FORBIDDEN_TYPE_OUTSIDE_NAMESPACE")
         rogue.unlink()
         rogue.parent.rmdir()
+        restore_binding()
+
+        nested_git = repo_path(
+            root,
+            "ordinary/.git/continuous-002/reveal/truth-reveal.json",
+        )
+        write_json(
+            nested_git,
+            {"artifact_type": "synthetic_renamed_payload"},
+        )
+        require_failure(lambda: verify_now(root), "ABSENCE_MATCH")
+        negative.append("N-DENY03_NESTED_DOT_GIT_NOT_EXEMPT")
+        shutil.rmtree(repo_path(root, "ordinary"))
+        restore_binding()
+
+        utf16_rogue = repo_path(root, "misc/utf16-result.json")
+        utf16_rogue.parent.mkdir(parents=True, exist_ok=True)
+        utf16_rogue.write_bytes(
+            json.dumps(
+                {
+                    "artifact_type": "execution_result",
+                    "candidate_run_id": "continuous-002",
+                },
+                sort_keys=True,
+            ).encode("utf-16")
+        )
+        require_failure(lambda: verify_now(root), "ABSENCE_MATCH")
+        negative.append("N-DENY04_UTF16_FORBIDDEN_TYPE")
+        utf16_rogue.unlink()
+        utf16_rogue.parent.rmdir()
+        restore_binding()
+
+        utf32_rogue = repo_path(root, "misc/utf32-result.json")
+        utf32_rogue.parent.mkdir(parents=True, exist_ok=True)
+        utf32_rogue.write_bytes(
+            json.dumps(
+                {
+                    "artifact_type": "execution_result",
+                    "candidate_run_id": "continuous-002",
+                },
+                sort_keys=True,
+            ).encode("utf-32")
+        )
+        require_failure(lambda: verify_now(root), "ABSENCE_MATCH")
+        negative.append("N-DENY05_UTF32_FORBIDDEN_TYPE")
+        utf32_rogue.unlink()
+        utf32_rogue.parent.rmdir()
+        restore_binding()
+
+        control_text = repo_path(root, "notes/control-plane.md")
+        control_text_raw = control_text.read_bytes()
+        control_text.write_bytes(
+            b"Modified tracked protocol text mentions continuous-002 and "
+            b"truth_reveal as a hidden runtime payload.\n"
+        )
+        require_failure(lambda: verify_now(root), "ABSENCE_MATCH")
+        negative.append(
+            "N-DENY06_MODIFIED_TRACKED_CANDIDATE_SIGNATURE"
+        )
+        control_text.write_bytes(control_text_raw)
+        restore_binding()
+
+        control_text.write_bytes(
+            control_text_raw.replace(b"\n", b"\r\n")
+        )
+        require_failure(lambda: verify_now(root), "ABSENCE_MATCH")
+        negative.append("N-DENY07_TRACKED_EOL_NORMALIZATION")
+        control_text.write_bytes(control_text_raw)
         restore_binding()
 
         candidate_json_failure(

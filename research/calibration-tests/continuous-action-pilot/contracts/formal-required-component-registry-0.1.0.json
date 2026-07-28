@@ -3479,9 +3479,9 @@
       "component_kind": "contract_instance",
       "expected_absent_at_b": false,
       "expected_instance_count_at_b": 1,
-      "expected_sha256": null,
+      "expected_sha256": "ab4218109a8c29076d0ab95d2932b734725f83e836a1c2de60bc0cacf8cc926f",
       "forbidden_reuse_family": null,
-      "hash_state": "unresolved_blocks_commit_a",
+      "hash_state": "pinned",
       "lifecycle": "new_pre_gate",
       "manifest_artifact_id": null,
       "manifest_artifact_kind": "source",
@@ -3501,8 +3501,10 @@
       "semantic_change_scope": "none",
       "semantic_policy": "new_control_plane",
       "version": "0.1.0",
-      "allowed_dependency_component_ids": [],
-      "dependency_state": "not_applicable"
+      "allowed_dependency_component_ids": [
+        "formal_post_gate_absence_denylist"
+      ],
+      "dependency_state": "closed"
     },
     {
       "artifact_role": "verification_tool",
@@ -3515,9 +3517,9 @@
       "component_kind": "tool",
       "expected_absent_at_b": false,
       "expected_instance_count_at_b": 1,
-      "expected_sha256": null,
+      "expected_sha256": "082a8ec82941d3d1a0c344b0dc0d390aebfbe42ded95e4112c9e3de136026443",
       "forbidden_reuse_family": null,
-      "hash_state": "unresolved_blocks_commit_a",
+      "hash_state": "pinned",
       "lifecycle": "new_pre_gate",
       "manifest_artifact_id": null,
       "manifest_artifact_kind": "generator",
@@ -3537,8 +3539,12 @@
       "semantic_change_scope": "verification_implementation",
       "semantic_policy": "new_control_plane",
       "version": "0.1.0",
-      "allowed_dependency_component_ids": [],
-      "dependency_state": "not_applicable"
+      "allowed_dependency_component_ids": [
+        "formal_post_gate_absence_denylist",
+        "formal_post_gate_absence_denylist_instance",
+        "formal_post_gate_absence_verifier"
+      ],
+      "dependency_state": "closed"
     },
     {
       "artifact_role": "verification_tool",
@@ -3551,9 +3557,9 @@
       "component_kind": "tool",
       "expected_absent_at_b": false,
       "expected_instance_count_at_b": 1,
-      "expected_sha256": null,
+      "expected_sha256": "494a140aad589a5d6fc4ff94bd1aeb785b7f1a163dd0ecfea7c11409b23da775",
       "forbidden_reuse_family": null,
-      "hash_state": "unresolved_blocks_commit_a",
+      "hash_state": "pinned",
       "lifecycle": "new_pre_gate",
       "manifest_artifact_id": null,
       "manifest_artifact_kind": "generator",
@@ -3573,8 +3579,11 @@
       "semantic_change_scope": "verification_implementation",
       "semantic_policy": "new_control_plane",
       "version": "0.1.0",
-      "allowed_dependency_component_ids": [],
-      "dependency_state": "not_applicable"
+      "allowed_dependency_component_ids": [
+        "formal_post_gate_absence_denylist",
+        "formal_post_gate_absence_denylist_instance"
+      ],
+      "dependency_state": "closed"
     },
     {
       "artifact_role": "verification_tool",
@@ -3622,7 +3631,7 @@
       "component_kind": "schema",
       "expected_absent_at_b": false,
       "expected_instance_count_at_b": 1,
-      "expected_sha256": "0f5f6ef1ba9f638a7adef1ea79f970b36f3191a9ff9481076de65ee9fb35ec03",
+      "expected_sha256": "5514a1c950ef0e65581b0392e7f2d7e6fa2fedf50bd96141d2a6130a2075de99",
       "forbidden_reuse_family": null,
       "hash_state": "pinned",
       "lifecycle": "new_pre_gate",
@@ -3657,7 +3666,7 @@
       "component_kind": "schema",
       "expected_absent_at_b": false,
       "expected_instance_count_at_b": 1,
-      "expected_sha256": "9f4fe7db6c4367e7d978d049bc1b835788cd3cfb90ff0d1ed9f095a987cff0f2",
+      "expected_sha256": "54d32eac6296bbb13db7fe83c93f86b3527f97ec3dad67f48469777214ea6c33",
       "forbidden_reuse_family": null,
       "hash_state": "pinned",
       "lifecycle": "new_pre_gate",
@@ -3801,7 +3810,7 @@
       "component_kind": "tool",
       "expected_absent_at_b": false,
       "expected_instance_count_at_b": 1,
-      "expected_sha256": "304f86878573cb9123603bafacfd921ea3ed07bed4103a72e711541c6493e3d7",
+      "expected_sha256": "e02c080d78943ce64b4ac783d54a10e24d54ff89b542bebd9a97d5407fab962a",
       "forbidden_reuse_family": null,
       "hash_state": "pinned",
       "lifecycle": "new_pre_gate",
@@ -5746,6 +5755,12 @@
     {
       "canonical_path": "research/calibration-tests/continuous-action-pilot/tools/verify-formal-run-delta-v0.1.0.py",
       "component_id": "formal_run_delta_verifier",
+      "required_at_invocation": true,
+      "trust_model": "caller_pins_exact_bytes_out_of_band_and_invokes_python_isolated"
+    },
+    {
+      "canonical_path": "research/calibration-tests/continuous-action-pilot/tools/verify-formal-post-gate-absence-v0.1.0.py",
+      "component_id": "formal_post_gate_absence_verifier",
       "required_at_invocation": true,
       "trust_model": "caller_pins_exact_bytes_out_of_band_and_invokes_python_isolated"
     }

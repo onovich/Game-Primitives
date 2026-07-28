@@ -885,7 +885,7 @@
       "additionalProperties": false,
       "properties": {
         "denylist_contract": {
-          "$ref": "#/$defs/artifactReference"
+          "$ref": "#/$defs/repositoryArtifactReference"
         },
         "matches": {
           "maxItems": 0,

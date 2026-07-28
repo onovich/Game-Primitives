@@ -1,6 +1,6 @@
 # 连续行动先行组：continuous-002 旧绑定扫描与版本闭合计划
 
-- 状态：工作计划；扫描、版本决策与批次 0 仓库实现已完成，独立调用方的带外 re-pin／验收待完成，批次 1 待开始
+- 状态：工作计划；扫描、版本决策、批次 0 与批次 1 的 denylist 小链仓库实现已完成，独立调用方的带外 re-pin／验收及批次 1 其余两条小链待完成
 - 日期：2026-07-29
 - 扫描基线：Git 提交 `68653ddf9609333c88e6a1f795da3faaa3719ada`
 - 注册表：[`formal-required-component-registry-0.1.0.json`](calibration-tests/continuous-action-pilot/contracts/formal-required-component-registry-0.1.0.json)
@@ -32,6 +32,36 @@
 | 不重复阻断组件 | 122 |
 
 依赖阻断从扫描基线的 110 增为 111 不是回退，而是消除一个未经证明的“已闭合”声明；manifest 假散列阻断同时被移除，所以不重复阻断组件总数仍为 122。core SHA 只是供独立调用方复核并写入带外信任包的交接值，不是由 core 自证的信任锚。
+
+## 0.1 批次 1：denylist 小链仓库实施记录（已完成；带外 re-pin 待验收）
+
+第一条新增控制面小链已经以一个纵向切片闭合：
+
+- `formal-post-gate-absence-denylist 0.1.0` 实例是现有 Schema `const` 的规范投影，并且只保留一份仓库级真源；
+- `formal-run-delta` 改用 `repositoryArtifactReference` 引用该实例，不再把第二份副本写入候选 `artifact_changes` 或 Manifest；
+- 独立只读 verifier 固定 Schema、实例、候选轮次与扫描范围，要求 `python -I` 和显式仓库级字节读取确认；只排除仓库根 Git 元数据，对嵌套 `.git`、symlink、casefold 碰撞、UTF-16/32、嵌套候选绑定、Manifest 门后类型和不确定遍历失败关闭；
+- 已跟踪的控制面 JSON／文本可以描述受禁类型，但文本豁免要求工作区原始字节与 `HEAD` blob 完全相符，不调用 EOL／clean filter；任何带候选绑定和受禁签名的已跟踪文本修改（包括只改 EOL）都会失败关闭。嵌套伪装只有在未跟踪文件、候选命名空间或同一子树存在候选绑定时命中，避免把注册表和基础完成清单误判为运行制品；
+- 专用隔离自测通过 4 项正控与 23 项具名负控；formal-run-delta 全链隔离自测通过 15 项正控与 73 项具名负控。两者均报告 `formal_input_access=false`、`runner_or_comparator_executed=false`、`temporary_repository_only=true`；
+- 注册表只为实例、verifier 和 self-test 回填了经审计的直接依赖，并把 verifier 加入调用方必须带外固定的信任根；没有批量伪造其他组件的 `closed` 状态。
+
+本切片完成后的交接值：
+
+| 项目 | 值 |
+|---|---|
+| denylist Schema SHA-256 | `5a8c16e7dc82c9517e35e20f06d5d64d4cc8b5eac406fc62ea7c46c8ee0a1f7d` |
+| denylist instance SHA-256 | `ab4218109a8c29076d0ab95d2932b734725f83e836a1c2de60bc0cacf8cc926f` |
+| absence verifier SHA-256 | `494a140aad589a5d6fc4ff94bd1aeb785b7f1a163dd0ecfea7c11409b23da775` |
+| absence self-test SHA-256 | `082a8ec82941d3d1a0c344b0dc0d390aebfbe42ded95e4112c9e3de136026443` |
+| formal-run-delta Schema SHA-256 | `54d32eac6296bbb13db7fe83c93f86b3527f97ec3dad67f48469777214ea6c33` |
+| required-component Schema SHA-256 | `5514a1c950ef0e65581b0392e7f2d7e6fa2fedf50bd96141d2a6130a2075de99` |
+| required-component registry SHA-256 | `55b720b914040a710ef0fe8b74830373ab07912c4fb80960fabd0ff7a9087552` |
+| formal-run-delta self-test SHA-256 | `e02c080d78943ce64b4ac783d54a10e24d54ff89b542bebd9a97d5407fab962a` |
+| formal-run-delta core SHA-256 | `88bdd7a843b56ec533e480d4b6a9fd31623e95c9cb822727821248300fac7961` |
+| 散列阻断 | 34 |
+| 依赖阻断 | 111 |
+| 不重复阻断组件 | 119 |
+
+core 与独立 absence verifier 的 SHA 仍只是交给独立调用方复核并写入仓库外信任包的值；仓库内固定不能代替该验收。本切片没有创建 `runs/continuous-002/`，也没有放行任何正式执行。
 
 ## 1. 结论
 
@@ -266,7 +296,7 @@ hash_state   = unresolved_blocks_commit_a
 
 可分三条独立小链：
 
-1. denylist instance → absence verifier → self-test；
+1. **已完成（仓库内；带外 re-pin 待验收）**：denylist instance → absence verifier → self-test；
 2. external attestation Schema → 空 template → verifier → self-test；
 3. truth continuity Schema → materializer → verifier → self-test。
 
@@ -345,4 +375,4 @@ Schema
 
 ## 9. 紧接着做什么
 
-下一项实现工作是**批次 1 的 denylist 小链：`formal-post-gate-absence-denylist 0.1.0` 实例 → 只读 verifier → 合成 self-test**。它依赖的 Schema 与共享扫描语义已经存在，适合作为三个新增控制面家族中的第一个纵向切片。仍不应先复制 26 个旧文件，也不应先创建 `runs/continuous-002/`。
+下一项实现工作是**批次 1 的 external dispatch attestation 小链：Schema → 空 template → 只读 verifier → 合成 self-test**。真实证明实例仍只能在提交 B 后追加；门前只建立不含真实 task、thread 或 session 的冻结空模板与验证语义。仍不应先复制 26 个旧文件，也不应先创建 `runs/continuous-002/`。
