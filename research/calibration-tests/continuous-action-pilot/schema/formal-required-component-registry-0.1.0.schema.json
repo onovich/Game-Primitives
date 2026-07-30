@@ -857,6 +857,18 @@
           "component_id": "external_dispatch_attestation_verifier",
           "required_at_invocation": true,
           "trust_model": "caller_pins_exact_bytes_out_of_band_and_invokes_python_isolated"
+        },
+        {
+          "canonical_path": "research/calibration-tests/continuous-action-pilot/tools/materialize-truth-continuity-attestation-v0.1.0.py",
+          "component_id": "truth_continuity_attestation_materializer",
+          "required_at_invocation": true,
+          "trust_model": "caller_pins_exact_bytes_out_of_band_and_invokes_python_isolated"
+        },
+        {
+          "canonical_path": "research/calibration-tests/continuous-action-pilot/tools/verify-truth-continuity-attestation-v0.1.0.py",
+          "component_id": "truth_continuity_attestation_verifier",
+          "required_at_invocation": true,
+          "trust_model": "caller_pins_exact_bytes_out_of_band_and_invokes_python_isolated"
         }
       ]
     },

@@ -1,0 +1,459 @@
+{
+  "$defs": {
+    "artifactReference": {
+      "additionalProperties": false,
+      "properties": {
+        "artifact_version": {
+          "const": "0.1.0"
+        },
+        "path": {
+          "type": "string"
+        },
+        "sha256": {
+          "$ref": "#/$defs/sha256"
+        }
+      },
+      "required": [
+        "artifact_version",
+        "path",
+        "sha256"
+      ],
+      "type": "object"
+    },
+    "baseBinding": {
+      "additionalProperties": false,
+      "properties": {
+        "completion_commit": {
+          "const": "c42013d5cad89811e8838696c4072f6f71a859fb"
+        },
+        "completion_tree": {
+          "const": "f8aae165fcf9620b8ba9cee64766e39f642d8d4c"
+        },
+        "finalize_commit_b": {
+          "const": "972589c6fb716932e01e09c7cefa92f59953336b"
+        },
+        "freeze_anchor_commit_a": {
+          "const": "bbea296b019ea1b5f5f3bb8cfe5937b0ff276f5b"
+        },
+        "frozen_artifact_set_digest": {
+          "const": "05ecfdb1e88db74e6839c1a443e6cb09a7a9e89754131b018e13ed04f7ff3c69"
+        },
+        "manifest_path": {
+          "const": "research/calibration-tests/continuous-action-pilot/runs/continuous-001/manifest.json"
+        },
+        "run_id": {
+          "const": "continuous-001"
+        },
+        "truth_commitment": {
+          "$ref": "#/$defs/truthCommitment"
+        }
+      },
+      "required": [
+        "completion_commit",
+        "completion_tree",
+        "finalize_commit_b",
+        "freeze_anchor_commit_a",
+        "frozen_artifact_set_digest",
+        "manifest_path",
+        "run_id",
+        "truth_commitment"
+      ],
+      "type": "object"
+    },
+    "candidateBinding": {
+      "additionalProperties": false,
+      "properties": {
+        "manifest_path": {
+          "const": "research/calibration-tests/continuous-action-pilot/runs/continuous-002/manifest.json"
+        },
+        "manifest_schema_version": {
+          "const": "0.1.1"
+        },
+        "manifest_status_at_review": {
+          "const": "preparing"
+        },
+        "run_id": {
+          "const": "continuous-002"
+        },
+        "truth_commitment": {
+          "$ref": "#/$defs/truthCommitment"
+        }
+      },
+      "required": [
+        "manifest_path",
+        "manifest_schema_version",
+        "manifest_status_at_review",
+        "run_id",
+        "truth_commitment"
+      ],
+      "type": "object"
+    },
+    "claimBoundary": {
+      "const": {
+        "commitment_records_bound": true,
+        "formal_comparator_executed": false,
+        "formal_dispatch_authorized": false,
+        "formal_dispatch_performed": false,
+        "formal_runner_executed": false,
+        "future_commitment_recomputation_proven": false,
+        "hidden_plaintext_semantic_equivalence_proven": false,
+        "offline_process_metadata_bound": true,
+        "plaintext_fields_present": false,
+        "post_reveal_mechanical_verification_required": true,
+        "reviewer_identity_cryptographically_authenticated": false,
+        "reviewer_identity_statement_bound": true,
+        "secret_nonce_fields_present": false,
+        "truth_reveal_performed": false
+      }
+    },
+    "continuityProcess": {
+      "additionalProperties": false,
+      "properties": {
+        "allowed_variation_profile_id": {
+          "const": "nonsemantic_serialization_metadata_only_v0.1.0"
+        },
+        "comparison_policy_id": {
+          "const": "truth_continuity_offline_review_policy_v0.1.0"
+        },
+        "confidentiality_boundary": {
+          "const": {
+            "plaintext_processed_outside_repository": true,
+            "raw_comparison_output_embedded": false,
+            "repository_truth_or_nonce_written": false,
+            "semantic_projection_digest_embedded": false
+          }
+        },
+        "method": {
+          "const": "offline_semantic_projection_review_v0.1.0"
+        },
+        "operator": {
+          "$ref": "#/$defs/operatorIdentity"
+        },
+        "performed_at": {
+          "$ref": "#/$defs/utcTimestamp"
+        },
+        "process_artifact": {
+          "additionalProperties": false,
+          "properties": {
+            "artifact_id": {
+              "const": "truth-continuity-offline-review-process"
+            },
+            "artifact_version": {
+              "const": "0.1.0"
+            },
+            "sha256": {
+              "$ref": "#/$defs/sha256"
+            }
+          },
+          "required": [
+            "artifact_id",
+            "artifact_version",
+            "sha256"
+          ],
+          "type": "object"
+        },
+        "protected_projection_profile_id": {
+          "const": "continuous_action_truth_semantics_v0.1.0"
+        },
+        "result": {
+          "const": "reviewer_reported_process_continuity_supported"
+        }
+      },
+      "required": [
+        "allowed_variation_profile_id",
+        "comparison_policy_id",
+        "confidentiality_boundary",
+        "method",
+        "operator",
+        "performed_at",
+        "process_artifact",
+        "protected_projection_profile_id",
+        "result"
+      ],
+      "type": "object"
+    },
+    "operatorIdentity": {
+      "additionalProperties": false,
+      "properties": {
+        "identifier": {
+          "$ref": "#/$defs/principalIdentifier"
+        },
+        "role": {
+          "const": "offline_continuity_review_operator"
+        },
+        "session_id": {
+          "$ref": "#/$defs/sessionIdentifier"
+        }
+      },
+      "required": [
+        "identifier",
+        "role",
+        "session_id"
+      ],
+      "type": "object"
+    },
+    "principalIdentifier": {
+      "maxLength": 64,
+      "minLength": 3,
+      "pattern": "^[a-z][a-z0-9._-]*$",
+      "type": "string"
+    },
+    "review": {
+      "additionalProperties": false,
+      "properties": {
+        "decision": {
+          "const": "passed"
+        },
+        "identity_assurance": {
+          "const": "caller_pinned_identifier_and_session_not_cryptographically_authenticated"
+        },
+        "input_set_sha256": {
+          "$ref": "#/$defs/sha256"
+        },
+        "reviewed_at": {
+          "$ref": "#/$defs/utcTimestamp"
+        },
+        "reviewer": {
+          "$ref": "#/$defs/reviewerIdentity"
+        }
+      },
+      "required": [
+        "decision",
+        "identity_assurance",
+        "input_set_sha256",
+        "reviewed_at",
+        "reviewer"
+      ],
+      "type": "object"
+    },
+    "reviewRecord": {
+      "additionalProperties": false,
+      "properties": {
+        "artifact_type": {
+          "const": "truth_continuity_review_record"
+        },
+        "artifact_version": {
+          "const": "0.1.0"
+        },
+        "base_binding": {
+          "$ref": "#/$defs/baseBinding"
+        },
+        "candidate_binding": {
+          "$ref": "#/$defs/candidateBinding"
+        },
+        "claim_boundary": {
+          "$ref": "#/$defs/claimBoundary"
+        },
+        "continuity_process": {
+          "$ref": "#/$defs/continuityProcess"
+        },
+        "review": {
+          "$ref": "#/$defs/review"
+        }
+      },
+      "required": [
+        "artifact_type",
+        "artifact_version",
+        "base_binding",
+        "candidate_binding",
+        "claim_boundary",
+        "continuity_process",
+        "review"
+      ],
+      "type": "object"
+    },
+    "reviewerIdentity": {
+      "additionalProperties": false,
+      "properties": {
+        "identifier": {
+          "$ref": "#/$defs/principalIdentifier"
+        },
+        "role": {
+          "const": "independent_truth_continuity_reviewer"
+        },
+        "session_id": {
+          "$ref": "#/$defs/sessionIdentifier"
+        }
+      },
+      "required": [
+        "identifier",
+        "role",
+        "session_id"
+      ],
+      "type": "object"
+    },
+    "sessionIdentifier": {
+      "maxLength": 96,
+      "minLength": 8,
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9._:-]*$",
+      "type": "string"
+    },
+    "sha256": {
+      "pattern": "^(?!0{64}$)[0-9a-f]{64}$",
+      "type": "string"
+    },
+    "toolchain": {
+      "additionalProperties": false,
+      "properties": {
+        "materializer": {
+          "allOf": [
+            {
+              "$ref": "#/$defs/artifactReference"
+            },
+            {
+              "properties": {
+                "path": {
+                  "const": "research/calibration-tests/continuous-action-pilot/tools/materialize-truth-continuity-attestation-v0.1.0.py"
+                }
+              }
+            }
+          ]
+        },
+        "schema": {
+          "allOf": [
+            {
+              "$ref": "#/$defs/artifactReference"
+            },
+            {
+              "properties": {
+                "path": {
+                  "const": "research/calibration-tests/continuous-action-pilot/schema/truth-continuity-attestation-0.1.0.schema.json"
+                }
+              }
+            }
+          ]
+        },
+        "verifier": {
+          "allOf": [
+            {
+              "$ref": "#/$defs/artifactReference"
+            },
+            {
+              "properties": {
+                "path": {
+                  "const": "research/calibration-tests/continuous-action-pilot/tools/verify-truth-continuity-attestation-v0.1.0.py"
+                }
+              }
+            }
+          ]
+        }
+      },
+      "required": [
+        "materializer",
+        "schema",
+        "verifier"
+      ],
+      "type": "object"
+    },
+    "truthCommitment": {
+      "additionalProperties": false,
+      "properties": {
+        "algorithm": {
+          "const": "SHA-256"
+        },
+        "combination": {
+          "const": "secret_nonce_bytes || exact_truth_bundle_bytes"
+        },
+        "commitment": {
+          "$ref": "#/$defs/sha256"
+        },
+        "created_at": {
+          "$ref": "#/$defs/utcTimestamp"
+        },
+        "nonce_length_bytes": {
+          "const": 32
+        },
+        "truth_bundle_bytes": {
+          "minimum": 1,
+          "type": "integer"
+        },
+        "truth_bundle_name": {
+          "const": "sealed-truth.json"
+        }
+      },
+      "required": [
+        "algorithm",
+        "combination",
+        "commitment",
+        "created_at",
+        "nonce_length_bytes",
+        "truth_bundle_bytes",
+        "truth_bundle_name"
+      ],
+      "type": "object"
+    },
+    "utcTimestamp": {
+      "format": "date-time",
+      "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}Z$",
+      "type": "string"
+    }
+  },
+  "$id": "https://github.com/onovich/Game-Primitives/blob/main/research/calibration-tests/continuous-action-pilot/schema/truth-continuity-attestation-0.1.0.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "description": "Nonplaintext binding of base and candidate truth commitments, a fixed offline review process, and a caller-pinned independent review identity. This artifact cannot prove hidden plaintext semantic equivalence before reveal.",
+  "properties": {
+    "$schema": {
+      "const": "https://github.com/onovich/Game-Primitives/blob/main/research/calibration-tests/continuous-action-pilot/schema/truth-continuity-attestation-0.1.0.schema.json"
+    },
+    "artifact_type": {
+      "const": "truth_continuity_attestation"
+    },
+    "artifact_version": {
+      "const": "0.1.0"
+    },
+    "attestation_id": {
+      "pattern": "^tca-[0-9a-f]{12}-[0-9a-f]{12}$",
+      "type": "string"
+    },
+    "candidate_run_id": {
+      "const": "continuous-002"
+    },
+    "conclusion": {
+      "const": {
+        "claim_scope": "commitments_process_metadata_and_caller_pinned_review_identity_only",
+        "hidden_plaintext_semantic_equivalence_proven": false,
+        "post_reveal_mechanical_verification_required": true,
+        "status": "nonplaintext_continuity_process_attested"
+      }
+    },
+    "document_state": {
+      "const": "pre_gate_nonplaintext_process_attestation"
+    },
+    "instance_path": {
+      "const": "research/calibration-tests/continuous-action-pilot/runs/continuous-002/source/truth-continuity-attestation-v0.1.0.json"
+    },
+    "materialized_at": {
+      "$ref": "#/$defs/utcTimestamp"
+    },
+    "review_input_sha256": {
+      "$ref": "#/$defs/sha256"
+    },
+    "review_record": {
+      "$ref": "#/$defs/reviewRecord"
+    },
+    "review_record_sha256": {
+      "$ref": "#/$defs/sha256"
+    },
+    "toolchain": {
+      "$ref": "#/$defs/toolchain"
+    }
+  },
+  "required": [
+    "$schema",
+    "artifact_type",
+    "artifact_version",
+    "attestation_id",
+    "candidate_run_id",
+    "conclusion",
+    "document_state",
+    "instance_path",
+    "materialized_at",
+    "review_input_sha256",
+    "review_record",
+    "review_record_sha256",
+    "toolchain"
+  ],
+  "title": "Truth continuity attestation 0.1.0",
+  "type": "object"
+}

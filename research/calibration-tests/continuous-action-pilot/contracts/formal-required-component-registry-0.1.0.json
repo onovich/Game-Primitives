@@ -3643,7 +3643,7 @@
       "component_kind": "schema",
       "expected_absent_at_b": false,
       "expected_instance_count_at_b": 1,
-      "expected_sha256": "11b58a3cb37942364f62ca394f92cc6459046aeb207ddb7c949846a691dd9513",
+      "expected_sha256": "88a1f43fdae944ea49466cb9e97dad87b71295a56cd7949a77c9d6b0f689c0fe",
       "forbidden_reuse_family": null,
       "hash_state": "pinned",
       "lifecycle": "new_pre_gate",
@@ -5514,9 +5514,9 @@
       "component_kind": "schema",
       "expected_absent_at_b": false,
       "expected_instance_count_at_b": 1,
-      "expected_sha256": null,
+      "expected_sha256": "ef9296dc6cadb52fa12e70bfe72f47f344b2f534f615c2edde00c157be390ad9",
       "forbidden_reuse_family": "truth_commitment",
-      "hash_state": "unresolved_blocks_commit_a",
+      "hash_state": "pinned",
       "lifecycle": "new_pre_gate",
       "manifest_artifact_id": null,
       "manifest_artifact_kind": "source",
@@ -5584,9 +5584,9 @@
       "component_kind": "tool",
       "expected_absent_at_b": false,
       "expected_instance_count_at_b": 1,
-      "expected_sha256": null,
+      "expected_sha256": "021d3376f77b39070fec25ceb24bd3679cecb6c212241f6e859d4f69379446fc",
       "forbidden_reuse_family": "truth_commitment",
-      "hash_state": "unresolved_blocks_commit_a",
+      "hash_state": "pinned",
       "lifecycle": "new_pre_gate",
       "manifest_artifact_id": null,
       "manifest_artifact_kind": "generator",
@@ -5605,8 +5605,11 @@
       "semantic_change_scope": "verification_implementation",
       "semantic_policy": "new_control_plane",
       "version": "0.1.0",
-      "allowed_dependency_component_ids": [],
-      "dependency_state": "not_applicable"
+      "allowed_dependency_component_ids": [
+        "truth_continuity_attestation",
+        "truth_continuity_attestation_verifier"
+      ],
+      "dependency_state": "closed"
     },
     {
       "artifact_role": "verification_tool",
@@ -5619,9 +5622,9 @@
       "component_kind": "tool",
       "expected_absent_at_b": false,
       "expected_instance_count_at_b": 1,
-      "expected_sha256": null,
+      "expected_sha256": "b7ea2d6b1f72567b80d193f4d3750e6ae7486106e8e40fc7d69476f60d5faf8e",
       "forbidden_reuse_family": "truth_commitment",
-      "hash_state": "unresolved_blocks_commit_a",
+      "hash_state": "pinned",
       "lifecycle": "new_pre_gate",
       "manifest_artifact_id": null,
       "manifest_artifact_kind": "generator",
@@ -5640,8 +5643,12 @@
       "semantic_change_scope": "verification_implementation",
       "semantic_policy": "new_control_plane",
       "version": "0.1.0",
-      "allowed_dependency_component_ids": [],
-      "dependency_state": "not_applicable"
+      "allowed_dependency_component_ids": [
+        "truth_continuity_attestation",
+        "truth_continuity_attestation_materializer",
+        "truth_continuity_attestation_verifier"
+      ],
+      "dependency_state": "closed"
     },
     {
       "artifact_role": "verification_tool",
@@ -5654,9 +5661,9 @@
       "component_kind": "tool",
       "expected_absent_at_b": false,
       "expected_instance_count_at_b": 1,
-      "expected_sha256": null,
+      "expected_sha256": "e3f79495978952082b87fa803b206802180ccceae57a1b2dbfad7d51574f2195",
       "forbidden_reuse_family": "truth_commitment",
-      "hash_state": "unresolved_blocks_commit_a",
+      "hash_state": "pinned",
       "lifecycle": "new_pre_gate",
       "manifest_artifact_id": null,
       "manifest_artifact_kind": "generator",
@@ -5675,8 +5682,10 @@
       "semantic_change_scope": "verification_implementation",
       "semantic_policy": "new_control_plane",
       "version": "0.1.0",
-      "allowed_dependency_component_ids": [],
-      "dependency_state": "not_applicable"
+      "allowed_dependency_component_ids": [
+        "truth_continuity_attestation"
+      ],
+      "dependency_state": "closed"
     },
     {
       "artifact_role": "schema",
@@ -5779,6 +5788,18 @@
     {
       "canonical_path": "research/calibration-tests/continuous-action-pilot/tools/verify-external-dispatch-attestation-v0.1.0.py",
       "component_id": "external_dispatch_attestation_verifier",
+      "required_at_invocation": true,
+      "trust_model": "caller_pins_exact_bytes_out_of_band_and_invokes_python_isolated"
+    },
+    {
+      "canonical_path": "research/calibration-tests/continuous-action-pilot/tools/materialize-truth-continuity-attestation-v0.1.0.py",
+      "component_id": "truth_continuity_attestation_materializer",
+      "required_at_invocation": true,
+      "trust_model": "caller_pins_exact_bytes_out_of_band_and_invokes_python_isolated"
+    },
+    {
+      "canonical_path": "research/calibration-tests/continuous-action-pilot/tools/verify-truth-continuity-attestation-v0.1.0.py",
+      "component_id": "truth_continuity_attestation_verifier",
       "required_at_invocation": true,
       "trust_model": "caller_pins_exact_bytes_out_of_band_and_invokes_python_isolated"
     }

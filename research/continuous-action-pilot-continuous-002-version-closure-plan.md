@@ -1,6 +1,6 @@
 # 连续行动先行组：continuous-002 旧绑定扫描与版本闭合计划
 
-- 状态：工作计划；扫描、版本决策、批次 0 与批次 1 前两条小链的仓库实现已完成，独立调用方的带外 re-pin／验收及 truth-continuity 小链待完成
+- 状态：工作计划；扫描、版本决策、批次 0 与批次 1 三条小链的仓库实现已完成，独立调用方的带外 re-pin／验收及批次 2 待完成
 - 日期：2026-07-29
 - 扫描基线：Git 提交 `68653ddf9609333c88e6a1f795da3faaa3719ada`
 - 注册表：[`formal-required-component-registry-0.1.0.json`](calibration-tests/continuous-action-pilot/contracts/formal-required-component-registry-0.1.0.json)
@@ -94,6 +94,36 @@ core 与独立 absence verifier 的 SHA 仍只是交给独立调用方复核并�
 | 不重复阻断组件 | 115 |
 
 core、absence verifier 与 external attestation verifier 的 SHA 仍只是交给独立调用方复核并写入仓库外信任包的交接值；仓库内固定不能代替该验收。本切片没有创建真实证明实例，没有执行外部查询，也没有创建 `runs/continuous-002/` 或放行正式执行。
+
+## 0.3 批次 1：truth-continuity-attestation 小链仓库实施记录（已完成；带外 re-pin 待验收）
+
+第三条新增控制面小链已经以一个纵向切片闭合：
+
+- Schema 把文档限制为**非明文元数据证明**，固定基准轮次的 A／B／完成提交／完成树／冻结根，完整保存基准与候选的七字段承诺记录，但不保存真值、secret nonce、案例真值、条件映射、硬规则、原始比较输出或额外语义投影摘要；
+- `0.1.0` 只支持 `offline_semantic_projection_review_v0.1.0` 一种方法。离线过程由固定 policy／projection profile 标识、过程制品 SHA-256、独立 operator 和复核者 identifier／session、规范复核输入摘要及时间顺序共同约束，不提前设计尚不存在的通用生成器分支；
+- 外部复核记录必须位于仓库外，并以规范 UTF-8／无 BOM／LF JSON 输入。materializer 要求调用方带外固定 Schema、materializer、verifier、两个承诺、复核记录、复核输入、过程制品和复核者身份；`preview` 不写入，`materialize --write` 只在固定路径进行不覆盖的独占发布；
+- verifier 只读复算证明 Schema、规范字节、嵌入复核记录、复核输入摘要、候选 manifest 承诺、身份分离、时间顺序、证明 ID 和工具链锚点。调用方仍必须在执行前独立固定两个 CLI 的精确字节；
+- 证明边界显式声明：审核者身份没有密码学认证，隐藏明文语义等价尚未被机械证明，未来承诺复算尚未发生，揭示后的最终机械验证仍然必需，且没有授权或执行正式派发、runner、comparator 或真值揭示；
+- 合成自测通过 4 项正控与 44 项具名负控，覆盖锚点／承诺／过程／审核身份漂移、全零占位散列、固定路径大小写漂移、时间倒置、BOM／CRLF／重复键／非有限数、明文与 nonce 字段、夹带命令、独占写入及 verifier 只读性；报告 `real_run_bytes_read=false`、`truth_or_nonce_read=false`、`formal_runner_executed=false`、`formal_comparator_executed=false`、`truth_reveal_performed=false`；
+- formal-run-delta 全链隔离自测继续通过 15 项正控与 73 项具名负控；注册表精确回填四个全局组件的散列和直接依赖，并把 materializer／verifier 登记为第六、七项外部信任根。真实证明实例继续保持 `manifest_bound_at_b`，本切片没有创建它。
+
+本切片完成后的交接值：
+
+| 项目 | 值 |
+|---|---|
+| truth-continuity-attestation Schema SHA-256 | `ef9296dc6cadb52fa12e70bfe72f47f344b2f534f615c2edde00c157be390ad9` |
+| truth continuity materializer SHA-256 | `021d3376f77b39070fec25ceb24bd3679cecb6c212241f6e859d4f69379446fc` |
+| truth continuity verifier SHA-256 | `e3f79495978952082b87fa803b206802180ccceae57a1b2dbfad7d51574f2195` |
+| truth continuity self-test SHA-256 | `b7ea2d6b1f72567b80d193f4d3750e6ae7486106e8e40fc7d69476f60d5faf8e` |
+| required-component Schema SHA-256 | `88a1f43fdae944ea49466cb9e97dad87b71295a56cd7949a77c9d6b0f689c0fe` |
+| required-component registry SHA-256 | `91fa1641e8d89ce37acf94583ffb4083b59e2550ad7499ac9ca6c92fba8de9bb` |
+| formal-run-delta self-test SHA-256 | `e02c080d78943ce64b4ac783d54a10e24d54ff89b542bebd9a97d5407fab962a` |
+| formal-run-delta core SHA-256 | `aebe5e5b4f436a1da867f64fc4a6305ff7ab97205e96aedd27e0890423db3984` |
+| 散列阻断 | 26 |
+| 依赖阻断 | 111 |
+| 不重复阻断组件 | 111 |
+
+上述 Schema、materializer、verifier、复核记录与身份散列仍不能自证其真实性；它们只是供独立调用方核验并写入仓库外信任包的交接值。本切片没有读取真实 `runs/**`，没有运行正式 runner／comparator，没有执行真值揭示，也没有创建 `runs/continuous-002/`。
 
 ## 1. 结论
 
@@ -330,9 +360,9 @@ hash_state   = unresolved_blocks_commit_a
 
 1. **已完成（仓库内；带外 re-pin 待验收）**：denylist instance → absence verifier → self-test；
 2. **已完成（仓库内；带外 re-pin 待验收）**：external attestation Schema → 空 template → verifier → self-test；
-3. truth continuity Schema → materializer → verifier → self-test。
+3. **已完成（仓库内；带外 re-pin 待验收）**：truth continuity Schema → materializer → verifier → self-test。
 
-外部派发证明的真实实例仍留到 B 后。
+外部派发证明的真实实例仍留到 B 后；truth-continuity 实例只在候选 manifest 与仓库外复核记录均准备好后物化。
 
 ### 批次 2：重发 10 个 Schema 与 execution-target contract
 
@@ -407,4 +437,4 @@ Schema
 
 ## 9. 紧接着做什么
 
-下一项实现工作是**批次 1 的 truth-continuity-attestation 小链：Schema → materializer → 只读 verifier → 合成 self-test**。它只建立门前的非明文承诺、再生成／离线比较元数据和审核身份绑定，不读取真实 `runs/**`，不运行正式 runner、comparator 或真值揭示。仍不应先复制 26 个旧文件，也不应创建 `runs/continuous-002/`。
+下一项实现工作是**批次 2 的 10 个 Schema 与 execution-target contract 版本矩阵**。应先逐项冻结 `0.1.1` 字段、路径和交叉引用，按 raw trace → execution permit → human gate → dispatch envelope → cohort lock 的依赖方向建立小批次，再修改下游工具；不得一次性复制 26 个旧文件，也不得创建 `runs/continuous-002/`、正式 actor 或任何执行授权。

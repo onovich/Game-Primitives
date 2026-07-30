@@ -101,7 +101,7 @@ TRUSTED_SCHEMA_SHA256 = {
         "657eaeaad2b678ff1c755c683b109e02baa2dee7901c4e3a446887088002f1fa"
     ),
     REGISTRY_SCHEMA_PATH.as_posix(): (
-        "11b58a3cb37942364f62ca394f92cc6459046aeb207ddb7c949846a691dd9513"
+        "88a1f43fdae944ea49466cb9e97dad87b71295a56cd7949a77c9d6b0f689c0fe"
     ),
 }
 TRUSTED_MANAGER_SHA256 = (
@@ -111,7 +111,7 @@ TRUSTED_INVENTORY_TOOL_SHA256 = (
     "1837e945da545b281c2fd5bcf95becae0874fc174628c996f1f8a35794dd843f"
 )
 TRUSTED_REGISTRY_SHA256 = (
-    "97f7649e1a80d7f72812af7357ab1b9a495a50b5db7b377ab2d9d05f51238eb7"
+    "91fa1641e8d89ce37acf94583ffb4083b59e2550ad7499ac9ca6c92fba8de9bb"
 )
 TRUSTED_DENYLIST_CONTRACT_SHA256 = (
     "ab4218109a8c29076d0ab95d2932b734725f83e836a1c2de60bc0cacf8cc926f"
@@ -1679,6 +1679,30 @@ def _load_required_component_registry(
                 / "verify-external-dispatch-attestation-v0.1.0.py"
             ).as_posix(),
             "component_id": "external_dispatch_attestation_verifier",
+            "required_at_invocation": True,
+            "trust_model": (
+                "caller_pins_exact_bytes_out_of_band_and_invokes_"
+                "python_isolated"
+            ),
+        },
+        {
+            "canonical_path": (
+                TOOLS_DIR
+                / "materialize-truth-continuity-attestation-v0.1.0.py"
+            ).as_posix(),
+            "component_id": "truth_continuity_attestation_materializer",
+            "required_at_invocation": True,
+            "trust_model": (
+                "caller_pins_exact_bytes_out_of_band_and_invokes_"
+                "python_isolated"
+            ),
+        },
+        {
+            "canonical_path": (
+                TOOLS_DIR
+                / "verify-truth-continuity-attestation-v0.1.0.py"
+            ).as_posix(),
+            "component_id": "truth_continuity_attestation_verifier",
             "required_at_invocation": True,
             "trust_model": (
                 "caller_pins_exact_bytes_out_of_band_and_invokes_"
