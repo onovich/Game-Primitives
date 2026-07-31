@@ -1,6 +1,6 @@
 # 连续行动先行组：continuous-002 旧绑定扫描与版本闭合计划
 
-- 状态：工作计划；扫描、版本决策、批次 0 与批次 1 三条小链的仓库实现已完成，独立调用方的带外 re-pin／验收及批次 2 待完成
+- 状态：工作计划；扫描、版本决策、批次 0、批次 1 三条小链与批次 2 的仓库实现已完成，独立调用方的带外 re-pin／验收及批次 3 待完成
 - 日期：2026-07-29
 - 扫描基线：Git 提交 `68653ddf9609333c88e6a1f795da3faaa3719ada`
 - 注册表：[`formal-required-component-registry-0.1.0.json`](calibration-tests/continuous-action-pilot/contracts/formal-required-component-registry-0.1.0.json)
@@ -124,6 +124,47 @@ core、absence verifier 与 external attestation verifier 的 SHA 仍只是交�
 | 不重复阻断组件 | 111 |
 
 上述 Schema、materializer、verifier、复核记录与身份散列仍不能自证其真实性；它们只是供独立调用方核验并写入仓库外信任包的交接值。本切片没有读取真实 `runs/**`，没有运行正式 runner／comparator，没有执行真值揭示，也没有创建 `runs/continuous-002/`。
+
+## 0.4 批次 2：10 个 Schema 与 execution-target contract（已完成；带外 re-pin 待验收）
+
+批次 2 实际包含 **10 个 JSON Schema 加 1 份执行目标契约，共 11 个组件**；“10 个”只指 Schema 数量。该切片没有批量复制 26 个旧文件，而是先固定整组版本矩阵，再逐项收紧轮次、路径和交叉绑定：
+
+- 三份 raw trace 与 comparator output 直接绑定同一个 `execution-permit.continuous-002`、固定许可路径和逐案正式输入路径。CA-R1 延续既有“实例无 `artifact_version`”语义；0.1.1 由 Schema `$id` 与 Schema 精确字节标识，额外添加版本字段会被 `additionalProperties=false` 拒绝；
+- `formal-build-readiness 0.1.1` 只表达 `build_only`，内联自身需要的引用基元，不从 GitHub 或网络加载 `task-packet 0.1.2`。任务包与参与者表面的闭包由批次 3／4 的 generator 与 verifier 负责，不能伪装成构建记录的直接 Schema 依赖；
+- human gate 明确绑定冻结 Commit A、完成 Commit B、actor 派发计划、formal-run delta、真值连续性证明、最新 external-dispatch-attestation 的实例／序号／observed head／保存提交，以及门后缺席 denylist 和对应 verifier；`continuous-001` 的一次性协议事故字段没有迁移到新轮次；
+- 两阶段逐席模板绑定冻结 actor plan 与席位专用提示词。真实回执必须记录 task、thread、派发时间、提交 UTF-8 SHA 和回读 UTF-8 SHA，只有回读完成才允许 `dispatched_and_readback_verified`；Schema 阻止跨轮次与串席路径，后续 verifier 证明提交／回读相等、同席同 session、模板／授权／文件数组精确闭包；
+- cohort lock 为四席逐一固定 raw payload、machine envelope、重构提交、第一阶段派发回执和 turn audit 路径。四个 actor session 相互独立以及与各回执相等仍是后续 verifier 的机械义务；
+- execution-target contract 保留 37 个既有执行面路径的文件身份，只把轮次根切换到 `continuous-002`，并把三份 raw-trace Schema 切换到 0.1.1。因文件名含连字符，下游必须按注册表固定路径用 `importlib` 加载并先核对精确 SHA，不得回退到旧下划线模块；
+- 11 个组件都没有项目内直接 `$ref` 或 import；路径常量与未来制品流不是构建依赖。因此它们被逐项审计为 `allowed_dependency_component_ids=[]`、`dependency_state=closed` 的**空依赖叶节点**。required-component Schema 与共享语义核现已允许这种显式叶节点，同时继续让 `unresolved_blocks_commit_a + []` 保持阻断。
+
+批次 2 的合成全链自测通过 17 项正控与 79 项具名负控，其中新增控制直接覆盖跨轮次制品引用、全零散列、串席提示词、缺失回读、CA-R1 伪 `artifact_version` 及 build-readiness 借用旧轮次。报告为 `formal_input_access=false`、`runner_or_comparator_executed=false`、`temporary_repository_only=true`。
+
+本切片完成后的交接值：
+
+| 组件／状态 | SHA-256 或数量 |
+|---|---|
+| `ca-r1-raw-trace-0.1.1.schema.json` | `ff6a7f3a8ddc52fd9d423839532ec4531597408cfac6002f6a68ef21b306c5f4` |
+| `ca-r2-raw-trace-0.1.1.schema.json` | `5dd023f53d9e5a49c82c7fb2ff999e16f9c636c55d089aa2f21236b01e6e66f0` |
+| `ca-r3-raw-trace-0.1.1.schema.json` | `5831bb17775f22ce32b4d2babc72887c95ed49f6c7ffa4cbaf5a2e1379c69a00` |
+| `formal-build-readiness-0.1.1.schema.json` | `13676ddf0ec8ee3cbce861f7f9b351ce7026d2b1e40e2ad2e0aae71046358fb1` |
+| `formal-comparator-output-0.1.1.schema.json` | `7fcdef716e09dcf391cdf9da873af0dc1ac83c9adec784ff2401485629338a1e` |
+| `formal-execution-permit-0.1.1.schema.json` | `4bc3bbff6abc9ebc030f73bc18f0cdf521358d735448c6c98403320a0783bfab` |
+| `formal-human-gate-authorization-0.1.1.schema.json` | `136552ef21306017dfd27298cf0880ac5f61060065f6801bbb099814eee3f7f0` |
+| `stage1-cohort-lock-0.1.1.schema.json` | `5a9e9aa3d18837018bc1c8bdfc723a5e13788137dd200a11fea55a1e893d39a0` |
+| `stage1-seat-dispatch-envelope-0.1.1.schema.json` | `d56bce5e34cc9b9701342e47b519a1fc350145fea8d2929f06120af38a0e699f` |
+| `stage2-seat-dispatch-envelope-0.1.1.schema.json` | `ee34d4582e551cb7070ed7aef849e89b8fddb68331de73595077d2516dbfa39d` |
+| `formal-execution-target-contract-v0.1.1.py` | `2996c0b4dbe00f03fdc46ae8a1067e6db925e9c68066e0698d477754169650ea` |
+| required-component Schema | `92ffe8c39e510de0619b7f1c43f524fb084a90386768b143365288ab3e8fbc7f` |
+| formal-run-delta self-test | `529716ded14f61f4020e3b2e12f3d02b4d982a7679b3ede236c3abb3475adaab` |
+| required-component registry（最终字节散列） | `671f46edeea7528df67dc01f7e134d7bbcfa2baf615ecec31a34b330b7c720b0` |
+| formal-run-delta core（最终字节散列） | `e30b2ce956b91b5c2a9124b892bce094afe1eb642c6fd26a1697820da0957fc1` |
+| 散列阻断 | 15 |
+| 依赖阻断 | 100 |
+| 不重复阻断组件 | 100 |
+
+表中的 registry 与 core 值是全部登记说明回填完成后重新计算的最终字节散列，仅供独立调用方复核并写入仓库外信任包；把它们记入实施记录不构成仓库内自证。
+
+> [边界事件] 批次 2 开始时，一次为查找旧绑定而运行的递归 `rg` 使用了在 Windows 路径下未生效的排除 glob，终端因此打印了少量既有 `runs/continuous-001/` 匹配片段。没有读取或生成 `continuous-002` 候选包，没有读取真值／nonce，没有解析或执行正式输入，也没有运行 runner／comparator。发现后立即停止目录级递归检索；此后所有查询均使用明确列出的非 `runs/**` 文件路径。该事件被保留在记录中，不能把“预期排除”误写成“机械证明未触及”。
 
 ## 1. 结论
 
@@ -364,9 +405,9 @@ hash_state   = unresolved_blocks_commit_a
 
 外部派发证明的真实实例仍留到 B 后；truth-continuity 实例只在候选 manifest 与仓库外复核记录均准备好后物化。
 
-### 批次 2：重发 10 个 Schema 与 execution-target contract
+### 批次 2：重发 10 个 Schema 与 execution-target contract（仓库实现已完成；带外 re-pin 待验收）
 
-先冻结字段、版本和路径约束，再让下游工具精确引用。三份 raw trace、execution permit、human gate、dispatch envelope 与 cohort lock 必须作为一个一致版本矩阵复核。
+字段、版本、路径约束和 11 项精确散列已经冻结；三份 raw trace、execution permit、human gate、dispatch envelope、cohort lock 与 execution-target contract 已作为一个一致矩阵通过合成回归。下游工具尚未重发，本批次的 Schema 通过路径常量声明未来接口，但不把尚未实现的 materializer／verifier 伪记为直接依赖。
 
 ### 批次 3：重发 8 个 generator
 
@@ -437,4 +478,4 @@ Schema
 
 ## 9. 紧接着做什么
 
-下一项实现工作是**批次 2 的 10 个 Schema 与 execution-target contract 版本矩阵**。应先逐项冻结 `0.1.1` 字段、路径和交叉引用，按 raw trace → execution permit → human gate → dispatch envelope → cohort lock 的依赖方向建立小批次，再修改下游工具；不得一次性复制 26 个旧文件，也不得创建 `runs/continuous-002/`、正式 actor 或任何执行授权。
+下一项实现工作是**批次 3 的 8 个 generator 重发**。先按 fixture assembly／runtime evidence／final execution plan → projection audit task → dispatch／execution permit → preparing manifest updater → freeze manager 的顺序逐个迁移，并让每个入口按固定路径和带外 SHA 加载本批次的 0.1.1 契约；不得回退旧模块，不得一次性复制其余旧文件，也不得创建 `runs/continuous-002/`、正式 actor 或任何执行授权。

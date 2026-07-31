@@ -1,0 +1,333 @@
+{
+  "$defs": {
+    "sha256": {
+      "pattern": "^(?!0{64}$)[0-9a-f]{64}$",
+      "type": "string"
+    },
+    "traceEntry": {
+      "additionalProperties": false,
+      "properties": {
+        "after_action_frame": {
+          "type": "integer"
+        },
+        "after_action_id": {
+          "type": "integer"
+        },
+        "after_buffer_action_id": {
+          "type": "integer"
+        },
+        "attack_held": {
+          "enum": [
+            0,
+            1
+          ]
+        },
+        "before_action_frame": {
+          "type": "integer"
+        },
+        "before_action_id": {
+          "type": "integer"
+        },
+        "before_buffer_action_id": {
+          "type": "integer"
+        },
+        "cancel_eligible_before": {
+          "enum": [
+            0,
+            1
+          ]
+        },
+        "contact_count": {
+          "const": 0
+        },
+        "event_id": {
+          "type": "string"
+        },
+        "hit_count": {
+          "const": 0
+        },
+        "input_down": {
+          "minimum": 0,
+          "type": "integer"
+        },
+        "input_value": {
+          "minimum": 0,
+          "type": "integer"
+        },
+        "sequence_index": {
+          "maximum": 6,
+          "minimum": 0,
+          "type": "integer"
+        }
+      },
+      "required": [
+        "after_action_frame",
+        "after_action_id",
+        "after_buffer_action_id",
+        "attack_held",
+        "before_action_frame",
+        "before_action_id",
+        "before_buffer_action_id",
+        "cancel_eligible_before",
+        "contact_count",
+        "event_id",
+        "hit_count",
+        "input_down",
+        "input_value",
+        "sequence_index"
+      ],
+      "type": "object"
+    }
+  },
+  "$id": "https://github.com/onovich/Game-Primitives/blob/main/research/calibration-tests/continuous-action-pilot/schema/ca-r1-raw-trace-0.1.1.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "configuration_id": {
+            "const": "config.baseline"
+          }
+        },
+        "required": [
+          "configuration_id"
+        ]
+      },
+      "then": {
+        "properties": {
+          "controlled_value": {
+            "const": 0
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "configuration_id": {
+            "const": "config.variant"
+          }
+        },
+        "required": [
+          "configuration_id"
+        ]
+      },
+      "then": {
+        "properties": {
+          "controlled_value": {
+            "const": 1
+          }
+        }
+      }
+    }
+  ],
+  "properties": {
+    "artifact_type": {
+      "const": "ca_r1_raw_trace"
+    },
+    "case_id": {
+      "const": "CA-R1"
+    },
+    "configuration_id": {
+      "enum": [
+        "config.baseline",
+        "config.variant"
+      ]
+    },
+    "controlled_value": {
+      "enum": [
+        0,
+        1
+      ]
+    },
+    "execution_permit_sha256": {
+      "$ref": "#/$defs/sha256"
+    },
+    "execution_permit_id": {
+      "const": "execution-permit.continuous-002"
+    },
+    "execution_permit_path": {
+      "const": "research/calibration-tests/continuous-action-pilot/runs/continuous-002/execution/formal-execution-permit.json"
+    },
+    "formal_input_id": {
+      "const": "o.a.0002"
+    },
+    "formal_input_path": {
+      "const": "research/calibration-tests/continuous-action-pilot/runs/continuous-002/fixtures/r1/footsies-r1-formal-input-v0.1.0.json"
+    },
+    "formal_input_sha256": {
+      "$ref": "#/$defs/sha256"
+    },
+    "invariant_first_request_recognized": {
+      "const": 1
+    },
+    "invariant_second_request_buffered": {
+      "const": 1
+    },
+    "invariant_zero_contacts": {
+      "const": 1
+    },
+    "invariant_zero_hits": {
+      "const": 1
+    },
+    "prediction_set_digest": {
+      "$ref": "#/$defs/sha256"
+    },
+    "run_id": {
+      "const": "continuous-002"
+    },
+    "stop_boundary_id": {
+      "const": "o.a.0042"
+    },
+    "trace_entries": {
+      "items": false,
+      "maxItems": 7,
+      "minItems": 7,
+      "prefixItems": [
+        {
+          "allOf": [
+            {
+              "$ref": "#/$defs/traceEntry"
+            },
+            {
+              "properties": {
+                "event_id": {
+                  "const": "event.ca-r1.update-0"
+                },
+                "sequence_index": {
+                  "const": 0
+                }
+              }
+            }
+          ]
+        },
+        {
+          "allOf": [
+            {
+              "$ref": "#/$defs/traceEntry"
+            },
+            {
+              "properties": {
+                "event_id": {
+                  "const": "event.ca-r1.update-1"
+                },
+                "sequence_index": {
+                  "const": 1
+                }
+              }
+            }
+          ]
+        },
+        {
+          "allOf": [
+            {
+              "$ref": "#/$defs/traceEntry"
+            },
+            {
+              "properties": {
+                "event_id": {
+                  "const": "event.ca-r1.update-2"
+                },
+                "sequence_index": {
+                  "const": 2
+                }
+              }
+            }
+          ]
+        },
+        {
+          "allOf": [
+            {
+              "$ref": "#/$defs/traceEntry"
+            },
+            {
+              "properties": {
+                "event_id": {
+                  "const": "event.ca-r1.update-3"
+                },
+                "sequence_index": {
+                  "const": 3
+                }
+              }
+            }
+          ]
+        },
+        {
+          "allOf": [
+            {
+              "$ref": "#/$defs/traceEntry"
+            },
+            {
+              "properties": {
+                "event_id": {
+                  "const": "event.ca-r1.update-4"
+                },
+                "sequence_index": {
+                  "const": 4
+                }
+              }
+            }
+          ]
+        },
+        {
+          "allOf": [
+            {
+              "$ref": "#/$defs/traceEntry"
+            },
+            {
+              "properties": {
+                "event_id": {
+                  "const": "event.ca-r1.update-5"
+                },
+                "sequence_index": {
+                  "const": 5
+                }
+              }
+            }
+          ]
+        },
+        {
+          "allOf": [
+            {
+              "$ref": "#/$defs/traceEntry"
+            },
+            {
+              "properties": {
+                "event_id": {
+                  "const": "event.ca-r1.update-6"
+                },
+                "sequence_index": {
+                  "const": 6
+                }
+              }
+            }
+          ]
+        }
+      ],
+      "type": "array"
+    }
+  },
+  "required": [
+    "artifact_type",
+    "case_id",
+    "configuration_id",
+    "controlled_value",
+    "execution_permit_id",
+    "execution_permit_path",
+    "execution_permit_sha256",
+    "formal_input_id",
+    "formal_input_path",
+    "formal_input_sha256",
+    "invariant_first_request_recognized",
+    "invariant_second_request_buffered",
+    "invariant_zero_contacts",
+    "invariant_zero_hits",
+    "prediction_set_digest",
+    "run_id",
+    "stop_boundary_id",
+    "trace_entries"
+  ],
+  "title": "continuous-002 CA-R1 Raw Trace 0.1.1",
+  "type": "object"
+}

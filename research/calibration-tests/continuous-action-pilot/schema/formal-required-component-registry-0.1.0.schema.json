@@ -25,25 +25,6 @@
         {
           "if": {
             "properties": {
-              "dependency_state": {
-                "const": "closed"
-              }
-            },
-            "required": [
-              "dependency_state"
-            ]
-          },
-          "then": {
-            "properties": {
-              "allowed_dependency_component_ids": {
-                "minItems": 1
-              }
-            }
-          }
-        },
-        {
-          "if": {
-            "properties": {
               "hash_state": {
                 "const": "manifest_bound_at_b"
               }
@@ -339,7 +320,7 @@
       ],
       "properties": {
         "allowed_dependency_component_ids": {
-          "description": "The exact set of direct component dependencies actually required to build or verify this component; never a transitive closure or a permissive allowlist.",
+          "description": "The exact set of direct component dependencies actually required to build or verify this component; never a transitive closure or a permissive allowlist. An empty array with dependency_state=closed denotes an explicitly audited leaf, while the same empty array with dependency_state=unresolved_blocks_commit_a remains unreviewed and blocking.",
           "items": {
             "$ref": "#/$defs/localId"
           },

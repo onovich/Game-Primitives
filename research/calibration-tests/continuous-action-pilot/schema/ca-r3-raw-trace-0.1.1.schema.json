@@ -1,0 +1,425 @@
+{
+  "$defs": {
+    "event": {
+      "additionalProperties": false,
+      "properties": {
+        "event": {
+          "type": "string"
+        },
+        "ordinal": {
+          "maximum": 4,
+          "minimum": 0,
+          "type": "integer"
+        },
+        "time_ms": {
+          "type": "number"
+        }
+      },
+      "required": [
+        "event",
+        "ordinal",
+        "time_ms"
+      ],
+      "type": "object"
+    },
+    "sha256": {
+      "pattern": "^(?!0{64}$)[0-9a-f]{64}$",
+      "type": "string"
+    }
+  },
+  "$id": "https://github.com/onovich/Game-Primitives/blob/main/research/calibration-tests/continuous-action-pilot/schema/ca-r3-raw-trace-0.1.1.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "configuration_id": {
+            "enum": [
+              "config.baseline",
+              "config.negative-a"
+            ]
+          }
+        },
+        "required": [
+          "configuration_id"
+        ]
+      },
+      "then": {
+        "properties": {
+          "input": {
+            "properties": {
+              "adjudication_delay_ms": {
+                "const": 0
+              },
+              "hit_animations": {
+                "const": true
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "configuration_id": {
+            "const": "config.variant"
+          }
+        },
+        "required": [
+          "configuration_id"
+        ]
+      },
+      "then": {
+        "properties": {
+          "input": {
+            "properties": {
+              "adjudication_delay_ms": {
+                "const": 75
+              },
+              "hit_animations": {
+                "const": true
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "configuration_id": {
+            "const": "config.negative-b"
+          }
+        },
+        "required": [
+          "configuration_id"
+        ]
+      },
+      "then": {
+        "properties": {
+          "input": {
+            "properties": {
+              "adjudication_delay_ms": {
+                "const": 0
+              },
+              "hit_animations": {
+                "const": false
+              }
+            }
+          }
+        }
+      }
+    }
+  ],
+  "properties": {
+    "artifact_type": {
+      "const": "continuous_action_r3_trace"
+    },
+    "artifact_version": {
+      "const": "0.1.1"
+    },
+    "case_id": {
+      "const": "CA-R3"
+    },
+    "configuration_id": {
+      "enum": [
+        "config.baseline",
+        "config.variant",
+        "config.negative-a",
+        "config.negative-b"
+      ]
+    },
+    "execution_permit_sha256": {
+      "$ref": "#/$defs/sha256"
+    },
+    "execution_permit_id": {
+      "const": "execution-permit.continuous-002"
+    },
+    "execution_permit_path": {
+      "const": "research/calibration-tests/continuous-action-pilot/runs/continuous-002/execution/formal-execution-permit.json"
+    },
+    "formal_input_path": {
+      "const": "research/calibration-tests/continuous-action-pilot/runs/continuous-002/fixtures/r3/formal-input-r3-v0.1.0.json"
+    },
+    "formal_input_sha256": {
+      "$ref": "#/$defs/sha256"
+    },
+    "input": {
+      "additionalProperties": false,
+      "properties": {
+        "adjudication_delay_ms": {
+          "enum": [
+            0,
+            75
+          ]
+        },
+        "candidate_count": {
+          "const": 1
+        },
+        "candidate_time_ms": {
+          "const": 1000
+        },
+        "hit_animations": {
+          "type": "boolean"
+        },
+        "object_start_time_ms": {
+          "const": 1000
+        },
+        "overall_difficulty": {
+          "const": 5
+        }
+      },
+      "required": [
+        "adjudication_delay_ms",
+        "candidate_count",
+        "candidate_time_ms",
+        "hit_animations",
+        "object_start_time_ms",
+        "overall_difficulty"
+      ],
+      "type": "object"
+    },
+    "observation": {
+      "additionalProperties": false,
+      "properties": {
+        "adjudication_time_ms": {
+          "type": "number"
+        },
+        "candidate_accepted": {
+          "const": true
+        },
+        "candidate_time_ms": {
+          "const": 1000
+        },
+        "event_trace": {
+          "items": false,
+          "maxItems": 5,
+          "minItems": 5,
+          "prefixItems": [
+            {
+              "allOf": [
+                {
+                  "$ref": "#/$defs/event"
+                },
+                {
+                  "properties": {
+                    "event": {
+                      "const": "candidate"
+                    },
+                    "ordinal": {
+                      "const": 0
+                    }
+                  }
+                }
+              ]
+            },
+            {
+              "allOf": [
+                {
+                  "$ref": "#/$defs/event"
+                },
+                {
+                  "properties": {
+                    "event": {
+                      "const": "adjudication"
+                    },
+                    "ordinal": {
+                      "const": 1
+                    }
+                  }
+                }
+              ]
+            },
+            {
+              "allOf": [
+                {
+                  "$ref": "#/$defs/event"
+                },
+                {
+                  "properties": {
+                    "event": {
+                      "const": "result_notification"
+                    },
+                    "ordinal": {
+                      "const": 2
+                    }
+                  }
+                }
+              ]
+            },
+            {
+              "allOf": [
+                {
+                  "$ref": "#/$defs/event"
+                },
+                {
+                  "properties": {
+                    "event": {
+                      "const": "scoring_notification"
+                    },
+                    "ordinal": {
+                      "const": 3
+                    }
+                  }
+                }
+              ]
+            },
+            {
+              "allOf": [
+                {
+                  "$ref": "#/$defs/event"
+                },
+                {
+                  "properties": {
+                    "event": {
+                      "const": "reentry_closed"
+                    },
+                    "ordinal": {
+                      "const": 4
+                    }
+                  }
+                }
+              ]
+            }
+          ],
+          "type": "array"
+        },
+        "hit_action": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "judged": {
+          "const": true
+        },
+        "notification_count": {
+          "const": 1
+        },
+        "notification_time_ms": {
+          "type": "number"
+        },
+        "production_can_be_hit_after_result": {
+          "const": false
+        },
+        "production_delegate_method": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "production_delegate_target_type": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "raw_time_ms": {
+          "type": "number"
+        },
+        "reentry_allowed_after_candidate": {
+          "type": "boolean"
+        },
+        "reentry_allowed_at_notification": {
+          "type": "boolean"
+        },
+        "reentry_closed_time_ms": {
+          "type": "number"
+        },
+        "result": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "score_combo": {
+          "minimum": 0,
+          "type": "integer"
+        },
+        "score_judged_hits": {
+          "minimum": 1,
+          "type": "integer"
+        },
+        "score_notification_count": {
+          "const": 1
+        },
+        "score_notification_time_ms": {
+          "type": "number"
+        },
+        "score_total": {
+          "minimum": 0,
+          "type": "number"
+        },
+        "time_offset_ms": {
+          "type": "number"
+        }
+      },
+      "required": [
+        "adjudication_time_ms",
+        "candidate_accepted",
+        "candidate_time_ms",
+        "event_trace",
+        "hit_action",
+        "judged",
+        "notification_count",
+        "notification_time_ms",
+        "production_can_be_hit_after_result",
+        "production_delegate_method",
+        "production_delegate_target_type",
+        "raw_time_ms",
+        "reentry_allowed_after_candidate",
+        "reentry_allowed_at_notification",
+        "reentry_closed_time_ms",
+        "result",
+        "score_combo",
+        "score_judged_hits",
+        "score_notification_count",
+        "score_notification_time_ms",
+        "score_total",
+        "time_offset_ms"
+      ],
+      "type": "object"
+    },
+    "prediction_set_digest": {
+      "$ref": "#/$defs/sha256"
+    },
+    "run_id": {
+      "const": "continuous-002"
+    },
+    "window_snapshot_ms": {
+      "additionalProperties": false,
+      "properties": {
+        "great": {
+          "exclusiveMinimum": 0,
+          "type": "number"
+        },
+        "meh": {
+          "exclusiveMinimum": 0,
+          "type": "number"
+        },
+        "ok": {
+          "exclusiveMinimum": 0,
+          "type": "number"
+        }
+      },
+      "required": [
+        "great",
+        "meh",
+        "ok"
+      ],
+      "type": "object"
+    }
+  },
+  "required": [
+    "artifact_type",
+    "artifact_version",
+    "case_id",
+    "configuration_id",
+    "execution_permit_id",
+    "execution_permit_path",
+    "execution_permit_sha256",
+    "formal_input_path",
+    "formal_input_sha256",
+    "input",
+    "observation",
+    "prediction_set_digest",
+    "run_id",
+    "window_snapshot_ms"
+  ],
+  "title": "continuous-002 CA-R3 Raw Trace 0.1.1",
+  "type": "object"
+}

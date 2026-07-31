@@ -1,0 +1,288 @@
+{
+  "$defs": {
+    "command": {
+      "additionalProperties": false,
+      "properties": {
+        "angles": {
+          "items": {
+            "type": "integer"
+          },
+          "maxItems": 3,
+          "minItems": 3,
+          "type": "array"
+        },
+        "buttons": {
+          "type": "integer"
+        },
+        "forwardmove": {
+          "maximum": 127,
+          "minimum": -128,
+          "type": "integer"
+        },
+        "rightmove": {
+          "maximum": 127,
+          "minimum": -128,
+          "type": "integer"
+        },
+        "serverTime": {
+          "minimum": 8,
+          "type": "integer"
+        },
+        "upmove": {
+          "maximum": 127,
+          "minimum": -128,
+          "type": "integer"
+        },
+        "weapon": {
+          "maximum": 255,
+          "minimum": 0,
+          "type": "integer"
+        }
+      },
+      "required": [
+        "serverTime",
+        "angles",
+        "buttons",
+        "weapon",
+        "forwardmove",
+        "rightmove",
+        "upmove"
+      ],
+      "type": "object"
+    },
+    "sha256": {
+      "pattern": "^(?!0{64}$)[0-9a-f]{64}$",
+      "type": "string"
+    },
+    "step": {
+      "additionalProperties": false,
+      "properties": {
+        "air_fmove": {
+          "type": "number"
+        },
+        "air_move_calls": {
+          "const": 1
+        },
+        "air_smove": {
+          "type": "number"
+        },
+        "branch_calls": {
+          "const": 1
+        },
+        "branch_id": {
+          "const": 6
+        },
+        "commandTime": {
+          "minimum": 8,
+          "type": "integer"
+        },
+        "event_calls": {
+          "const": 0
+        },
+        "groundEntityNum": {
+          "type": "integer"
+        },
+        "numtouch": {
+          "const": 0
+        },
+        "origin": {
+          "items": {
+            "type": "number"
+          },
+          "maxItems": 3,
+          "minItems": 3,
+          "type": "array"
+        },
+        "pointcontents_calls": {
+          "minimum": 1,
+          "type": "integer"
+        },
+        "printf_calls": {
+          "const": 0
+        },
+        "raw_cmd": {
+          "$ref": "#/$defs/command"
+        },
+        "record_type": {
+          "const": "step"
+        },
+        "snap_calls": {
+          "const": 1
+        },
+        "step_index": {
+          "maximum": 24,
+          "minimum": 0,
+          "type": "integer"
+        },
+        "trace_calls": {
+          "minimum": 1,
+          "type": "integer"
+        },
+        "trace_violation": {
+          "const": 0
+        },
+        "used_cmd": {
+          "$ref": "#/$defs/command"
+        },
+        "velocity": {
+          "items": {
+            "type": "number"
+          },
+          "maxItems": 3,
+          "minItems": 3,
+          "type": "array"
+        },
+        "waterlevel": {
+          "const": 0
+        },
+        "watertype": {
+          "const": 0
+        },
+        "wishdir": {
+          "items": {
+            "type": "number"
+          },
+          "maxItems": 3,
+          "minItems": 3,
+          "type": "array"
+        },
+        "wishspeed": {
+          "type": "number"
+        }
+      },
+      "required": [
+        "record_type",
+        "step_index",
+        "raw_cmd",
+        "used_cmd",
+        "branch_id",
+        "branch_calls",
+        "air_move_calls",
+        "air_fmove",
+        "air_smove",
+        "wishdir",
+        "wishspeed",
+        "trace_calls",
+        "pointcontents_calls",
+        "event_calls",
+        "printf_calls",
+        "snap_calls",
+        "trace_violation",
+        "numtouch",
+        "watertype",
+        "waterlevel",
+        "groundEntityNum",
+        "commandTime",
+        "origin",
+        "velocity"
+      ],
+      "type": "object"
+    }
+  },
+  "$id": "https://github.com/onovich/Game-Primitives/blob/main/research/calibration-tests/continuous-action-pilot/schema/ca-r2-raw-trace-0.1.1.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "artifact_type": {
+      "const": "ca_r2_raw_trace"
+    },
+    "artifact_version": {
+      "const": "0.1.1"
+    },
+    "case_id": {
+      "const": "CA-R2"
+    },
+    "configuration_id": {
+      "enum": [
+        "config.baseline",
+        "config.variant"
+      ]
+    },
+    "execution_permit_sha256": {
+      "$ref": "#/$defs/sha256"
+    },
+    "execution_permit_id": {
+      "const": "execution-permit.continuous-002"
+    },
+    "execution_permit_path": {
+      "const": "research/calibration-tests/continuous-action-pilot/runs/continuous-002/execution/formal-execution-permit.json"
+    },
+    "formal_input_path": {
+      "const": "research/calibration-tests/continuous-action-pilot/runs/continuous-002/fixtures/r2/r2-formal-input-v0.1.0.json"
+    },
+    "formal_input_sha256": {
+      "$ref": "#/$defs/sha256"
+    },
+    "platform_scope": {
+      "const": "MSVC-x64"
+    },
+    "prediction_set_digest": {
+      "$ref": "#/$defs/sha256"
+    },
+    "run_id": {
+      "const": "continuous-002"
+    },
+    "source_commit": {
+      "const": "dbe4ddb10315479fc00086f08e25d968b4b43c49"
+    },
+    "step_count": {
+      "const": 25
+    },
+    "step_ms": {
+      "const": 8
+    },
+    "steps": {
+      "items": {
+        "$ref": "#/$defs/step"
+      },
+      "maxItems": 25,
+      "minItems": 25,
+      "type": "array"
+    },
+    "stop": {
+      "additionalProperties": false,
+      "properties": {
+        "invariants_passed": {
+          "const": true
+        },
+        "record_type": {
+          "const": "stop"
+        },
+        "rule_time_ms": {
+          "const": 200
+        },
+        "steps_completed": {
+          "const": 25
+        }
+      },
+      "required": [
+        "record_type",
+        "rule_time_ms",
+        "steps_completed",
+        "invariants_passed"
+      ],
+      "type": "object"
+    }
+  },
+  "required": [
+    "artifact_type",
+    "artifact_version",
+    "case_id",
+    "configuration_id",
+    "execution_permit_id",
+    "execution_permit_path",
+    "execution_permit_sha256",
+    "formal_input_path",
+    "formal_input_sha256",
+    "platform_scope",
+    "prediction_set_digest",
+    "run_id",
+    "source_commit",
+    "step_count",
+    "step_ms",
+    "steps",
+    "stop"
+  ],
+  "title": "continuous-002 CA-R2 Normalized Raw Trace 0.1.1",
+  "type": "object"
+}

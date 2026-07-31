@@ -65,6 +65,14 @@
 | 重构契约检查 | `reconstruction-template-contract-check 0.1.1` |
 | 保管装配 | `build-role-submission-v0.1.1.py` |
 | 派生提交 | `role-submission 0.1.2` |
+| 最终构建准备记录 | `formal-build-readiness 0.1.1` |
+| 人工放行凭据 | `formal-human-gate-authorization 0.1.1` |
+| 预测冻结后的执行许可 | `formal-execution-permit 0.1.1` |
+| 逐席派发模板与回执 | `stage1-seat-dispatch-envelope 0.1.1`、`stage2-seat-dispatch-envelope 0.1.1` |
+| 第一阶段共同冻结锁 | `stage1-cohort-lock 0.1.1` |
+| 三案原始轨迹 | `ca-r1-raw-trace 0.1.1`、`ca-r2-raw-trace 0.1.1`、`ca-r3-raw-trace 0.1.1` |
+| 比较器结构化输出 | `formal-comparator-output 0.1.1` |
+| 执行目标单一来源 | `formal-execution-target-contract-v0.1.1.py` |
 
 下列轮次无关家族可在散列复核后沿用：`ca-sr-artifact 0.1.0`、`fixture-lock 0.1.0`、`variant-envelope 0.1.0`、`formal-input-trace 0.1.0`、`execution-artifact 0.1.1`、`truth-reveal 0.1.0` 与 `run-report 0.1.0`。
 
@@ -89,6 +97,8 @@
 2. 发布 `0.2.0` 的显式参数化版本，并用负控证明不能跨轮次串包。
 
 候选包在版本矩阵尚有“待定”时不得进入提交 A。
+
+上述 10 个 Schema 与一份 execution-target contract 的版本选择已经在批次 2 固定；这只关闭了这 11 个叶组件自身的版本、路径和散列，不表示其下游 materializer／verifier 已经完成。逐席派发回执必须保存真实 task／thread、提交字节与回读字节散列，第一阶段共同冻结锁还必须绑定每席 turn audit；这些跨制品相等性、session 连续性和数组精确闭包由后续 0.1.1 工具证明，不能仅凭 Schema 的字段存在性宣称成立。
 
 ### 4.3 新增的 002 契约家族
 

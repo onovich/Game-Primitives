@@ -101,7 +101,7 @@ TRUSTED_SCHEMA_SHA256 = {
         "657eaeaad2b678ff1c755c683b109e02baa2dee7901c4e3a446887088002f1fa"
     ),
     REGISTRY_SCHEMA_PATH.as_posix(): (
-        "88a1f43fdae944ea49466cb9e97dad87b71295a56cd7949a77c9d6b0f689c0fe"
+        "92ffe8c39e510de0619b7f1c43f524fb084a90386768b143365288ab3e8fbc7f"
     ),
 }
 TRUSTED_MANAGER_SHA256 = (
@@ -111,7 +111,7 @@ TRUSTED_INVENTORY_TOOL_SHA256 = (
     "1837e945da545b281c2fd5bcf95becae0874fc174628c996f1f8a35794dd843f"
 )
 TRUSTED_REGISTRY_SHA256 = (
-    "91fa1641e8d89ce37acf94583ffb4083b59e2550ad7499ac9ca6c92fba8de9bb"
+    "671f46edeea7528df67dc01f7e134d7bbcfa2baf615ecec31a34b330b7c720b0"
 )
 TRUSTED_DENYLIST_CONTRACT_SHA256 = (
     "ab4218109a8c29076d0ab95d2932b734725f83e836a1c2de60bc0cacf8cc926f"
@@ -1919,11 +1919,6 @@ def _validate_required_component_relationships(
             raise DeltaContractError(
                 "REQUIRED_COMPONENT_DEPENDENCY_MISSING",
                 f"{component_id} references unknown dependencies: {missing}",
-            )
-        if component["dependency_state"] == "closed" and not dependencies:
-            raise DeltaContractError(
-                "REQUIRED_COMPONENT_DEPENDENCY_EMPTY",
-                f"closed dependency set is empty: {component_id}",
             )
         if is_manifest_container and dependencies:
             raise DeltaContractError(

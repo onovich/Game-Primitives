@@ -8,6 +8,7 @@ the real runs/ namespace is read, and no runner or comparator is invoked.
 from __future__ import annotations
 
 import copy
+import importlib.util
 import json
 import os
 import re
@@ -17,6 +18,8 @@ import sys
 import tempfile
 from pathlib import Path
 from typing import Any, Callable
+
+from jsonschema import Draft202012Validator
 
 from formal_run_delta_contract import (
     BASE_MANIFEST,
@@ -82,6 +85,33 @@ GENERIC_SCHEMA = (
     "synthetic-artifact-0.1.0.schema.json"
 )
 
+BATCH2_SCHEMA_PATHS = (
+    "research/calibration-tests/continuous-action-pilot/schema/"
+    "ca-r1-raw-trace-0.1.1.schema.json",
+    "research/calibration-tests/continuous-action-pilot/schema/"
+    "ca-r2-raw-trace-0.1.1.schema.json",
+    "research/calibration-tests/continuous-action-pilot/schema/"
+    "ca-r3-raw-trace-0.1.1.schema.json",
+    "research/calibration-tests/continuous-action-pilot/schema/"
+    "formal-build-readiness-0.1.1.schema.json",
+    "research/calibration-tests/continuous-action-pilot/schema/"
+    "formal-comparator-output-0.1.1.schema.json",
+    "research/calibration-tests/continuous-action-pilot/schema/"
+    "formal-execution-permit-0.1.1.schema.json",
+    "research/calibration-tests/continuous-action-pilot/schema/"
+    "formal-human-gate-authorization-0.1.1.schema.json",
+    "research/calibration-tests/continuous-action-pilot/schema/"
+    "stage1-cohort-lock-0.1.1.schema.json",
+    "research/calibration-tests/continuous-action-pilot/schema/"
+    "stage1-seat-dispatch-envelope-0.1.1.schema.json",
+    "research/calibration-tests/continuous-action-pilot/schema/"
+    "stage2-seat-dispatch-envelope-0.1.1.schema.json",
+)
+BATCH2_TARGET_CONTRACT_PATH = (
+    "research/calibration-tests/continuous-action-pilot/tools/"
+    "formal-execution-target-contract-v0.1.1.py"
+)
+
 BASE_COMPONENT_PATHS = {
     "blind_response_interface": "inputs/stage1-condition-v01.task.json",
     "prediction_contract_check": "source/projection-audit-v0.1.0.json",
@@ -113,6 +143,8 @@ EXPECTED_POSITIVE_IDS = (
     "P13_TWO_STAGE_REVIEW_INPUT",
     "P14_GLOBAL_BASE_ENDPOINT_REACHABLE",
     "P15_CONTAINER_EXCLUDED_FULL_PATH",
+    "P16_AUDITED_EMPTY_DEPENDENCY_LEAF",
+    "P17_ROUND_BOUND_011_COMPONENT_MATRIX",
 )
 
 EXPECTED_NEGATIVE_IDS = (
@@ -189,6 +221,12 @@ EXPECTED_NEGATIVE_IDS = (
     "N-CLI03_WRAPPER_CROSS_ROOT_REJECTED",
     "N-CLI04_PREPARE_REVIEW_FAILS_CLOSED",
     "N-CLI05_TAMPERED_CORE_NOT_IMPORTED",
+    "N-B2-01_CROSS_ROUND_ARTIFACT_REFERENCE",
+    "N-B2-02_ZERO_DIGEST",
+    "N-B2-03_SEAT_PROMPT_SWAP",
+    "N-B2-04_INCOMPLETE_DISPATCH_READBACK",
+    "N-B2-05_R1_ARTIFACT_VERSION_FORBIDDEN",
+    "N-B2-06_BUILD_READINESS_CROSS_ROUND_REFERENCE",
 )
 
 
@@ -289,6 +327,343 @@ def require_cli_failure(
             f"CLI did not fail closed with {expected_fragment}: {value!r}"
         )
     return value
+
+
+def _batch2_definition_validator(
+    schema: dict[str, Any],
+    definition: str,
+) -> Draft202012Validator:
+    return Draft202012Validator(
+        {
+            "$schema": "https://json-schema.org/draft/2020-12/schema",
+            "$defs": schema["$defs"],
+            "$ref": f"#/$defs/{definition}",
+        }
+    )
+
+
+def _batch2_component_matrix_controls(
+    actual_root: Path,
+    positive: list[str],
+    negative: list[str],
+) -> None:
+    schemas: dict[str, dict[str, Any]] = {}
+    for relative in BATCH2_SCHEMA_PATHS:
+        path = repo_path(actual_root, relative)
+        raw = path.read_bytes()
+        if raw.startswith(b"\xef\xbb\xbf") or b"continuous-001" in raw:
+            raise RuntimeError(f"Batch 2 Schema is not cleanly rebound: {relative}")
+        schema = json.loads(raw.decode("utf-8"))
+        Draft202012Validator.check_schema(schema)
+        if not schema["$id"].endswith("/" + Path(relative).name):
+            raise RuntimeError(f"Batch 2 Schema identity drifted: {relative}")
+        schemas[Path(relative).name] = schema
+
+    r1 = schemas["ca-r1-raw-trace-0.1.1.schema.json"]
+    if (
+        r1.get("additionalProperties") is not False
+        or "artifact_version" in r1["properties"]
+    ):
+        raise RuntimeError(
+            "CA-R1 must retain its versionless instance contract and reject "
+            "undeclared artifact_version"
+        )
+    for name, schema in schemas.items():
+        if name == "ca-r1-raw-trace-0.1.1.schema.json":
+            continue
+        artifact_version = schema.get("properties", {}).get(
+            "artifact_version"
+        )
+        if artifact_version is None and {
+            "receipt",
+            "template",
+        } <= set(schema.get("$defs", {})):
+            version_values = {
+                schema["$defs"][kind]["properties"]["artifact_version"]["const"]
+                for kind in ("receipt", "template")
+            }
+            artifact_version = {"const": version_values.pop()} if (
+                len(version_values) == 1
+            ) else None
+        if artifact_version != {"const": "0.1.1"}:
+            raise RuntimeError(f"Batch 2 artifact version drifted: {name}")
+
+    human_gate = schemas[
+        "formal-human-gate-authorization-0.1.1.schema.json"
+    ]
+    required_human_gate = {
+        "actor_dispatch_plan",
+        "external_dispatch_attestation",
+        "external_dispatch_attestation_observed_head",
+        "external_dispatch_attestation_saved_commit",
+        "external_dispatch_attestation_sequence",
+        "finalize_commit_b",
+        "formal_run_delta",
+        "truth_continuity_attestation",
+    }
+    if not required_human_gate <= set(human_gate["required"]):
+        raise RuntimeError("human-gate A/B and attestation closure is incomplete")
+    required_contracts = {
+        "formal_actor_dispatch_plan_materializer",
+        "formal_actor_dispatch_plan_schema",
+        "formal_actor_dispatch_plan_verifier",
+        "formal_post_gate_absence_denylist",
+        "formal_post_gate_absence_verifier",
+        "formal_run_delta_verifier",
+    }
+    if not required_contracts <= set(
+        human_gate["$defs"]["contractArtifacts"]["required"]
+    ):
+        raise RuntimeError("human-gate verifier contract closure is incomplete")
+
+    for name in (
+        "stage1-seat-dispatch-envelope-0.1.1.schema.json",
+        "stage2-seat-dispatch-envelope-0.1.1.schema.json",
+    ):
+        receipt_required = set(
+            schemas[name]["$defs"]["receipt"]["required"]
+        )
+        if not {
+            "actor_dispatch_plan",
+            "dispatch_prompt",
+            "dispatch_transport",
+        } <= receipt_required:
+            raise RuntimeError(f"dispatch readback closure is incomplete: {name}")
+    if "stage1_turn_audit" not in schemas[
+        "stage1-cohort-lock-0.1.1.schema.json"
+    ]["$defs"]["cohortMember"]["required"]:
+        raise RuntimeError("stage-1 cohort lock omits the turn audit")
+    if "finalize_commit_b" not in schemas[
+        "formal-execution-permit-0.1.1.schema.json"
+    ]["properties"]["authorization_lineage"]["required"]:
+        raise RuntimeError("execution permit omits Commit B")
+
+    readiness = schemas["formal-build-readiness-0.1.1.schema.json"]
+    external_refs: list[str] = []
+
+    def collect_external_refs(value: Any) -> None:
+        if isinstance(value, dict):
+            for key, child in value.items():
+                if (
+                    key == "$ref"
+                    and isinstance(child, str)
+                    and not child.startswith("#")
+                ):
+                    external_refs.append(child)
+                collect_external_refs(child)
+        elif isinstance(value, list):
+            for child in value:
+                collect_external_refs(child)
+
+    collect_external_refs(readiness)
+    if external_refs:
+        raise RuntimeError(
+            "build-only readiness unexpectedly imports task-packet closure"
+        )
+
+    target_path = repo_path(actual_root, BATCH2_TARGET_CONTRACT_PATH)
+    target_raw = target_path.read_bytes()
+    if (
+        target_raw.startswith(b"\xef\xbb\xbf")
+        or b"continuous-001" in target_raw
+    ):
+        raise RuntimeError("execution-target contract is not cleanly rebound")
+    spec = importlib.util.spec_from_file_location(
+        "game_primitives_formal_execution_target_contract_011",
+        target_path,
+    )
+    if spec is None or spec.loader is None:
+        raise RuntimeError("cannot load fixed-path execution-target contract")
+    target_contract = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(target_contract)
+    if (
+        target_contract.CONTRACT_VERSION != "0.1.1"
+        or target_contract.RUN_ID != "continuous-002"
+        or set(target_contract.CASES) != {"CA-R1", "CA-R2", "CA-R3"}
+    ):
+        raise RuntimeError("execution-target contract identity drifted")
+
+    execution_paths: list[str] = []
+    raw_schema_paths: list[str] = []
+    for case in target_contract.CASES:
+        target = target_contract.EXECUTION_TARGET_PATHS[case]
+        raw_schema_paths.append(target["raw_trace_schema"])
+        for key, value in target.items():
+            if key == "raw_trace_schema":
+                continue
+            if isinstance(value, str):
+                execution_paths.append(value)
+            elif isinstance(value, dict):
+                execution_paths.extend(value.values())
+    if (
+        len(execution_paths) != 37
+        or any(
+            not path.startswith(
+                "research/calibration-tests/continuous-action-pilot/"
+                "runs/continuous-002/"
+            )
+            for path in execution_paths
+        )
+        or sorted(raw_schema_paths)
+        != sorted(target_contract.RAW_TRACE_SCHEMA_PATHS.values())
+        or any(not path.endswith("-0.1.1.schema.json") for path in raw_schema_paths)
+    ):
+        raise RuntimeError("execution-target path closure drifted")
+    positive.append("P17_ROUND_BOUND_011_COMPONENT_MATRIX")
+
+    stage1 = schemas["stage1-seat-dispatch-envelope-0.1.1.schema.json"]
+    reference_validator = _batch2_definition_validator(
+        stage1,
+        "artifactReference",
+    )
+    current_reference = {
+        "path": (
+            "research/calibration-tests/continuous-action-pilot/"
+            "runs/continuous-002/inputs/example.json"
+        ),
+        "sha256": "1" * 64,
+    }
+    if not reference_validator.is_valid(current_reference):
+        raise RuntimeError("Batch 2 reference positive control is invalid")
+    cross_round = copy.deepcopy(current_reference)
+    cross_round["path"] = cross_round["path"].replace(
+        "continuous-002",
+        "continuous-001",
+    )
+    if reference_validator.is_valid(cross_round):
+        raise RuntimeError("cross-round artifact reference was accepted")
+    negative.append("N-B2-01_CROSS_ROUND_ARTIFACT_REFERENCE")
+
+    zero_digest = copy.deepcopy(current_reference)
+    zero_digest["sha256"] = "0" * 64
+    if reference_validator.is_valid(zero_digest):
+        raise RuntimeError("zero digest was accepted")
+    negative.append("N-B2-02_ZERO_DIGEST")
+
+    seat_prompt_validator = Draft202012Validator(
+        {
+            "$schema": "https://json-schema.org/draft/2020-12/schema",
+            "$defs": stage1["$defs"],
+            "additionalProperties": False,
+            "allOf": [
+                {"$ref": "#/$defs/seatConditionInvariant"},
+            ],
+            "properties": {
+                "dispatch_prompt": {
+                    "$ref": "#/$defs/dispatchPromptReference"
+                },
+                "seat_id": {
+                    "type": "string"
+                },
+            },
+            "required": [
+                "dispatch_prompt",
+                "seat_id",
+            ],
+            "type": "object",
+        }
+    )
+    swapped_prompt = {
+        "dispatch_prompt": {
+            "path": (
+                "research/calibration-tests/continuous-action-pilot/"
+                "runs/continuous-002/inputs/dispatch/prompts/"
+                "stage1-p02.prompt.txt"
+            ),
+            "sha256": "2" * 64,
+        },
+        "seat_id": "p01",
+    }
+    if seat_prompt_validator.is_valid(swapped_prompt):
+        raise RuntimeError("cross-seat dispatch prompt was accepted")
+    negative.append("N-B2-03_SEAT_PROMPT_SWAP")
+
+    transfer_validator = _batch2_definition_validator(
+        stage1,
+        "dispatchTransferReceipt",
+    )
+    incomplete_transfer = {
+        "dispatched_at": "2026-07-31T00:00:00Z",
+        "external_task_id": "task-1",
+        "external_thread_id": "thread-1",
+        "submitted_utf8_sha256": "3" * 64,
+    }
+    if transfer_validator.is_valid(incomplete_transfer):
+        raise RuntimeError("dispatch receipt without readback was accepted")
+    negative.append("N-B2-04_INCOMPLETE_DISPATCH_READBACK")
+
+    entry_template = {
+        "after_action_frame": 0,
+        "after_action_id": 0,
+        "after_buffer_action_id": 0,
+        "attack_held": 0,
+        "before_action_frame": 0,
+        "before_action_id": 0,
+        "before_buffer_action_id": 0,
+        "cancel_eligible_before": 0,
+        "contact_count": 0,
+        "event_id": "",
+        "hit_count": 0,
+        "input_down": 0,
+        "input_value": 0,
+        "sequence_index": 0,
+    }
+    r1_instance = {
+        "artifact_type": "ca_r1_raw_trace",
+        "case_id": "CA-R1",
+        "configuration_id": "config.baseline",
+        "controlled_value": 0,
+        "execution_permit_id": "execution-permit.continuous-002",
+        "execution_permit_path": (
+            "research/calibration-tests/continuous-action-pilot/"
+            "runs/continuous-002/execution/formal-execution-permit.json"
+        ),
+        "execution_permit_sha256": "4" * 64,
+        "formal_input_id": "o.a.0002",
+        "formal_input_path": (
+            "research/calibration-tests/continuous-action-pilot/"
+            "runs/continuous-002/fixtures/r1/"
+            "footsies-r1-formal-input-v0.1.0.json"
+        ),
+        "formal_input_sha256": "5" * 64,
+        "invariant_first_request_recognized": 1,
+        "invariant_second_request_buffered": 1,
+        "invariant_zero_contacts": 1,
+        "invariant_zero_hits": 1,
+        "prediction_set_digest": "6" * 64,
+        "run_id": "continuous-002",
+        "stop_boundary_id": "o.a.0042",
+        "trace_entries": [],
+    }
+    for index in range(7):
+        entry = copy.deepcopy(entry_template)
+        entry["event_id"] = f"event.ca-r1.update-{index}"
+        entry["sequence_index"] = index
+        r1_instance["trace_entries"].append(entry)
+    r1_validator = Draft202012Validator(r1)
+    if not r1_validator.is_valid(r1_instance):
+        raise RuntimeError("CA-R1 versionless positive control is invalid")
+    r1_with_version = copy.deepcopy(r1_instance)
+    r1_with_version["artifact_version"] = "0.1.1"
+    if r1_validator.is_valid(r1_with_version):
+        raise RuntimeError("CA-R1 accepted the forbidden artifact_version")
+    negative.append("N-B2-05_R1_ARTIFACT_VERSION_FORBIDDEN")
+
+    build_reference_validator = _batch2_definition_validator(
+        readiness,
+        "artifactReference",
+    )
+    old_build_reference = {
+        "artifact_id": "old-build-evidence",
+        "path": (
+            "research/calibration-tests/continuous-action-pilot/"
+            "runs/continuous-001/fixtures/build.json"
+        ),
+        "sha256": "7" * 64,
+    }
+    if build_reference_validator.is_valid(old_build_reference):
+        raise RuntimeError("build readiness accepted a prior-round reference")
+    negative.append("N-B2-06_BUILD_READINESS_CROSS_ROUND_REFERENCE")
 
 
 def synthetic_preview(root: Path) -> dict[str, Any]:
@@ -1793,6 +2168,17 @@ def run_self_test(actual_root: Path) -> dict[str, Any]:
             root,
             original_document,
         )
+        closed_leaf_registry = copy.deepcopy(registry)
+        closed_leaf = next(
+            component
+            for component in closed_leaf_registry["components"]
+            if component["component_id"] == "truth_continuity_attestation"
+        )
+        closed_leaf["allowed_dependency_component_ids"] = []
+        closed_leaf["dependency_state"] = "closed"
+        _validate_required_component_relationships(closed_leaf_registry)
+        positive.append("P16_AUDITED_EMPTY_DEPENDENCY_LEAF")
+
         require_failure(
             lambda: _validate_required_components(
                 root,
@@ -2940,6 +3326,12 @@ def run_self_test(actual_root: Path) -> dict[str, Any]:
             synthetic_verifier.unlink(missing_ok=True)
             synthetic_materializer.unlink(missing_ok=True)
             synthetic_core.unlink(missing_ok=True)
+
+    _batch2_component_matrix_controls(
+        actual_root,
+        positive,
+        negative,
+    )
 
     if tuple(positive) != EXPECTED_POSITIVE_IDS:
         raise RuntimeError(

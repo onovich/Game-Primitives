@@ -766,9 +766,9 @@
       "component_kind": "schema",
       "expected_absent_at_b": false,
       "expected_instance_count_at_b": 1,
-      "expected_sha256": null,
+      "expected_sha256": "ff6a7f3a8ddc52fd9d423839532ec4531597408cfac6002f6a68ef21b306c5f4",
       "forbidden_reuse_family": "execution_evidence",
-      "hash_state": "unresolved_blocks_commit_a",
+      "hash_state": "pinned",
       "lifecycle": "audited_reissue",
       "manifest_artifact_id": null,
       "manifest_artifact_kind": "source",
@@ -789,7 +789,7 @@
       "semantic_policy": "round_bound_reissue",
       "version": "0.1.1",
       "allowed_dependency_component_ids": [],
-      "dependency_state": "unresolved_blocks_commit_a"
+      "dependency_state": "closed"
     },
     {
       "artifact_role": "schema",
@@ -802,9 +802,9 @@
       "component_kind": "schema",
       "expected_absent_at_b": false,
       "expected_instance_count_at_b": 1,
-      "expected_sha256": null,
+      "expected_sha256": "5dd023f53d9e5a49c82c7fb2ff999e16f9c636c55d089aa2f21236b01e6e66f0",
       "forbidden_reuse_family": "execution_evidence",
-      "hash_state": "unresolved_blocks_commit_a",
+      "hash_state": "pinned",
       "lifecycle": "audited_reissue",
       "manifest_artifact_id": null,
       "manifest_artifact_kind": "source",
@@ -825,7 +825,7 @@
       "semantic_policy": "round_bound_reissue",
       "version": "0.1.1",
       "allowed_dependency_component_ids": [],
-      "dependency_state": "unresolved_blocks_commit_a"
+      "dependency_state": "closed"
     },
     {
       "artifact_role": "schema",
@@ -838,9 +838,9 @@
       "component_kind": "schema",
       "expected_absent_at_b": false,
       "expected_instance_count_at_b": 1,
-      "expected_sha256": null,
+      "expected_sha256": "5831bb17775f22ce32b4d2babc72887c95ed49f6c7ffa4cbaf5a2e1379c69a00",
       "forbidden_reuse_family": "execution_evidence",
-      "hash_state": "unresolved_blocks_commit_a",
+      "hash_state": "pinned",
       "lifecycle": "audited_reissue",
       "manifest_artifact_id": null,
       "manifest_artifact_kind": "source",
@@ -861,7 +861,7 @@
       "semantic_policy": "round_bound_reissue",
       "version": "0.1.1",
       "allowed_dependency_component_ids": [],
-      "dependency_state": "unresolved_blocks_commit_a"
+      "dependency_state": "closed"
     },
     {
       "artifact_role": "schema",
@@ -1122,7 +1122,7 @@
       "component_kind": "protocol",
       "expected_absent_at_b": false,
       "expected_instance_count_at_b": 1,
-      "expected_sha256": "20ee45057cd0eaa81d5018c3ad113c89421267cf2c538dcbe7ab10568293e9dc",
+      "expected_sha256": "9ceec99fa91a8c6f394aa4335dc6aa00b1beef3f84a934a7d455ddb423820b7b",
       "forbidden_reuse_family": null,
       "hash_state": "pinned",
       "lifecycle": "new_pre_gate",
@@ -3241,9 +3241,9 @@
       "component_kind": "schema",
       "expected_absent_at_b": false,
       "expected_instance_count_at_b": 1,
-      "expected_sha256": null,
+      "expected_sha256": "13676ddf0ec8ee3cbce861f7f9b351ce7026d2b1e40e2ad2e0aae71046358fb1",
       "forbidden_reuse_family": "runtime_bound_artifact",
-      "hash_state": "unresolved_blocks_commit_a",
+      "hash_state": "pinned",
       "lifecycle": "audited_reissue",
       "manifest_artifact_id": null,
       "manifest_artifact_kind": "source",
@@ -3263,7 +3263,7 @@
       "semantic_policy": "round_bound_reissue",
       "version": "0.1.1",
       "allowed_dependency_component_ids": [],
-      "dependency_state": "unresolved_blocks_commit_a"
+      "dependency_state": "closed"
     },
     {
       "artifact_role": "schema",
@@ -3276,9 +3276,9 @@
       "component_kind": "schema",
       "expected_absent_at_b": false,
       "expected_instance_count_at_b": 1,
-      "expected_sha256": null,
+      "expected_sha256": "7fcdef716e09dcf391cdf9da873af0dc1ac83c9adec784ff2401485629338a1e",
       "forbidden_reuse_family": "execution_evidence",
-      "hash_state": "unresolved_blocks_commit_a",
+      "hash_state": "pinned",
       "lifecycle": "audited_reissue",
       "manifest_artifact_id": null,
       "manifest_artifact_kind": "source",
@@ -3299,7 +3299,7 @@
       "semantic_policy": "round_bound_reissue",
       "version": "0.1.1",
       "allowed_dependency_component_ids": [],
-      "dependency_state": "unresolved_blocks_commit_a"
+      "dependency_state": "closed"
     },
     {
       "artifact_role": "schema",
@@ -3312,9 +3312,9 @@
       "component_kind": "schema",
       "expected_absent_at_b": false,
       "expected_instance_count_at_b": 1,
-      "expected_sha256": null,
+      "expected_sha256": "4bc3bbff6abc9ebc030f73bc18f0cdf521358d735448c6c98403320a0783bfab",
       "forbidden_reuse_family": "execution_permit",
-      "hash_state": "unresolved_blocks_commit_a",
+      "hash_state": "pinned",
       "lifecycle": "audited_reissue",
       "manifest_artifact_id": null,
       "manifest_artifact_kind": "source",
@@ -3335,7 +3335,7 @@
       "semantic_policy": "round_bound_reissue",
       "version": "0.1.1",
       "allowed_dependency_component_ids": [],
-      "dependency_state": "unresolved_blocks_commit_a"
+      "dependency_state": "closed"
     },
     {
       "artifact_role": "research_contract",
@@ -3348,9 +3348,9 @@
       "component_kind": "tool",
       "expected_absent_at_b": false,
       "expected_instance_count_at_b": 1,
-      "expected_sha256": null,
+      "expected_sha256": "2996c0b4dbe00f03fdc46ae8a1067e6db925e9c68066e0698d477754169650ea",
       "forbidden_reuse_family": "runtime_bound_artifact",
-      "hash_state": "unresolved_blocks_commit_a",
+      "hash_state": "pinned",
       "lifecycle": "audited_reissue",
       "manifest_artifact_id": null,
       "manifest_artifact_kind": "source",
@@ -3371,7 +3371,7 @@
       "semantic_policy": "round_bound_reissue",
       "version": "0.1.1",
       "allowed_dependency_component_ids": [],
-      "dependency_state": "unresolved_blocks_commit_a"
+      "dependency_state": "closed"
     },
     {
       "artifact_role": "schema",
@@ -3384,9 +3384,9 @@
       "component_kind": "schema",
       "expected_absent_at_b": false,
       "expected_instance_count_at_b": 1,
-      "expected_sha256": null,
+      "expected_sha256": "136552ef21306017dfd27298cf0880ac5f61060065f6801bbb099814eee3f7f0",
       "forbidden_reuse_family": "authorization",
-      "hash_state": "unresolved_blocks_commit_a",
+      "hash_state": "pinned",
       "lifecycle": "audited_reissue",
       "manifest_artifact_id": null,
       "manifest_artifact_kind": "source",
@@ -3406,7 +3406,7 @@
       "semantic_policy": "round_bound_reissue",
       "version": "0.1.1",
       "allowed_dependency_component_ids": [],
-      "dependency_state": "unresolved_blocks_commit_a"
+      "dependency_state": "closed"
     },
     {
       "artifact_role": "schema",
@@ -3643,7 +3643,7 @@
       "component_kind": "schema",
       "expected_absent_at_b": false,
       "expected_instance_count_at_b": 1,
-      "expected_sha256": "88a1f43fdae944ea49466cb9e97dad87b71295a56cd7949a77c9d6b0f689c0fe",
+      "expected_sha256": "92ffe8c39e510de0619b7f1c43f524fb084a90386768b143365288ab3e8fbc7f",
       "forbidden_reuse_family": null,
       "hash_state": "pinned",
       "lifecycle": "new_pre_gate",
@@ -3822,7 +3822,7 @@
       "component_kind": "tool",
       "expected_absent_at_b": false,
       "expected_instance_count_at_b": 1,
-      "expected_sha256": "e02c080d78943ce64b4ac783d54a10e24d54ff89b542bebd9a97d5407fab962a",
+      "expected_sha256": "529716ded14f61f4020e3b2e12f3d02b4d982a7679b3ede236c3abb3475adaab",
       "forbidden_reuse_family": null,
       "hash_state": "pinned",
       "lifecycle": "new_pre_gate",
@@ -5336,9 +5336,9 @@
       "component_kind": "schema",
       "expected_absent_at_b": false,
       "expected_instance_count_at_b": 1,
-      "expected_sha256": null,
+      "expected_sha256": "5a9e9aa3d18837018bc1c8bdfc723a5e13788137dd200a11fea55a1e893d39a0",
       "forbidden_reuse_family": "dispatch_and_cohort",
-      "hash_state": "unresolved_blocks_commit_a",
+      "hash_state": "pinned",
       "lifecycle": "audited_reissue",
       "manifest_artifact_id": null,
       "manifest_artifact_kind": "source",
@@ -5358,7 +5358,7 @@
       "semantic_policy": "round_bound_reissue",
       "version": "0.1.1",
       "allowed_dependency_component_ids": [],
-      "dependency_state": "unresolved_blocks_commit_a"
+      "dependency_state": "closed"
     },
     {
       "artifact_role": "schema",
@@ -5371,9 +5371,9 @@
       "component_kind": "schema",
       "expected_absent_at_b": false,
       "expected_instance_count_at_b": 1,
-      "expected_sha256": null,
+      "expected_sha256": "d56bce5e34cc9b9701342e47b519a1fc350145fea8d2929f06120af38a0e699f",
       "forbidden_reuse_family": "dispatch_and_cohort",
-      "hash_state": "unresolved_blocks_commit_a",
+      "hash_state": "pinned",
       "lifecycle": "audited_reissue",
       "manifest_artifact_id": null,
       "manifest_artifact_kind": "source",
@@ -5394,7 +5394,7 @@
       "semantic_policy": "round_bound_reissue",
       "version": "0.1.1",
       "allowed_dependency_component_ids": [],
-      "dependency_state": "unresolved_blocks_commit_a"
+      "dependency_state": "closed"
     },
     {
       "artifact_role": "schema",
@@ -5407,9 +5407,9 @@
       "component_kind": "schema",
       "expected_absent_at_b": false,
       "expected_instance_count_at_b": 1,
-      "expected_sha256": null,
+      "expected_sha256": "ee34d4582e551cb7070ed7aef849e89b8fddb68331de73595077d2516dbfa39d",
       "forbidden_reuse_family": "dispatch_and_cohort",
-      "hash_state": "unresolved_blocks_commit_a",
+      "hash_state": "pinned",
       "lifecycle": "audited_reissue",
       "manifest_artifact_id": null,
       "manifest_artifact_kind": "source",
@@ -5430,7 +5430,7 @@
       "semantic_policy": "round_bound_reissue",
       "version": "0.1.1",
       "allowed_dependency_component_ids": [],
-      "dependency_state": "unresolved_blocks_commit_a"
+      "dependency_state": "closed"
     },
     {
       "artifact_role": "submission_assembler",

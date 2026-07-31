@@ -1,0 +1,512 @@
+{
+  "$id": "https://github.com/onovich/Game-Primitives/blob/main/research/calibration-tests/continuous-action-pilot/schema/stage1-cohort-lock-0.1.1.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$defs": {
+    "actorBinding": {
+      "additionalProperties": false,
+      "properties": {
+        "actor_identifier": {
+          "$ref": "#/$defs/localId"
+        },
+        "actor_object_sha256": {
+          "$ref": "#/$defs/sha256"
+        },
+        "session_id": {
+          "minLength": 1,
+          "type": "string"
+        }
+      },
+      "required": [
+        "actor_identifier",
+        "actor_object_sha256",
+        "session_id"
+      ],
+      "type": "object"
+    },
+    "artifactReference": {
+      "additionalProperties": false,
+      "properties": {
+        "path": {
+          "pattern": "^(?:research/calibration-tests/continuous-action-pilot/(?:schema|tools|contracts)/[A-Za-z0-9][A-Za-z0-9._-]*|research/calibration-tests/continuous-action-pilot/runs/continuous-002/(?:[A-Za-z0-9][A-Za-z0-9._-]*/)*[A-Za-z0-9][A-Za-z0-9._-]*)$",
+          "type": "string"
+        },
+        "sha256": {
+          "$ref": "#/$defs/sha256"
+        }
+      },
+      "required": [
+        "path",
+        "sha256"
+      ],
+      "type": "object"
+    },
+    "authorizationReceiptReference": {
+      "$ref": "#/$defs/artifactReference",
+      "properties": {
+        "path": {
+          "const": "research/calibration-tests/continuous-action-pilot/runs/continuous-002/submissions/dispatch/human-gate-authorization.json"
+        }
+      }
+    },
+    "cohortMember": {
+      "additionalProperties": false,
+      "properties": {
+        "actor_binding": {
+          "$ref": "#/$defs/actorBinding"
+        },
+        "condition_id": {
+          "pattern": "^condition-v0[12]$",
+          "type": "string"
+        },
+        "freeze_status": {
+          "const": "frozen_by_exact_hash"
+        },
+        "machine_envelope": {
+          "$ref": "#/$defs/artifactReference"
+        },
+        "raw_payload": {
+          "$ref": "#/$defs/artifactReference"
+        },
+        "reconstruction_submission": {
+          "$ref": "#/$defs/artifactReference"
+        },
+        "seat_id": {
+          "pattern": "^p0[1-4]$",
+          "type": "string"
+        },
+        "stage1_dispatch_receipt": {
+          "$ref": "#/$defs/artifactReference"
+        },
+        "stage1_turn_audit": {
+          "$ref": "#/$defs/artifactReference"
+        }
+      },
+      "required": [
+        "actor_binding",
+        "condition_id",
+        "freeze_status",
+        "machine_envelope",
+        "raw_payload",
+        "reconstruction_submission",
+        "seat_id",
+        "stage1_dispatch_receipt",
+        "stage1_turn_audit"
+      ],
+      "type": "object"
+    },
+    "dependencyEdge": {
+      "additionalProperties": false,
+      "properties": {
+        "document_path": {
+          "pattern": "^research/calibration-tests/continuous-action-pilot/runs/continuous-002/(?:[A-Za-z0-9][A-Za-z0-9._-]*/)*[A-Za-z0-9][A-Za-z0-9._-]*$",
+          "type": "string"
+        },
+        "schema_path": {
+          "pattern": "^research/calibration-tests/continuous-action-pilot/schema/[A-Za-z0-9][A-Za-z0-9._-]*\\.schema\\.json$",
+          "type": "string"
+        }
+      },
+      "required": [
+        "document_path",
+        "schema_path"
+      ],
+      "type": "object"
+    },
+    "fileReference": {
+      "additionalProperties": false,
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "dispatch_role": {
+                "const": "participant_cognitive_input"
+              }
+            },
+            "required": [
+              "dispatch_role"
+            ]
+          },
+          "then": {
+            "properties": {
+              "path": {
+                "pattern": "^research/calibration-tests/continuous-action-pilot/runs/continuous-002/inputs/(?:[A-Za-z0-9][A-Za-z0-9._-]*/)*[A-Za-z0-9][A-Za-z0-9._-]*$"
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "dispatch_role": {
+                "const": "facility_schema"
+              }
+            },
+            "required": [
+              "dispatch_role"
+            ]
+          },
+          "then": {
+            "properties": {
+              "path": {
+                "pattern": "^research/calibration-tests/continuous-action-pilot/schema/[A-Za-z0-9][A-Za-z0-9._-]*\\.schema\\.json$"
+              }
+            }
+          }
+        }
+      ],
+      "properties": {
+        "dispatch_role": {
+          "enum": [
+            "participant_cognitive_input",
+            "facility_schema"
+          ]
+        },
+        "path": {
+          "type": "string"
+        },
+        "sha256": {
+          "$ref": "#/$defs/sha256"
+        }
+      },
+      "required": [
+        "dispatch_role",
+        "path",
+        "sha256"
+      ],
+      "type": "object"
+    },
+    "localId": {
+      "pattern": "^[a-z0-9][a-z0-9._-]*$",
+      "type": "string"
+    },
+    "memberP01": {
+      "$ref": "#/$defs/cohortMember",
+      "properties": {
+        "condition_id": {
+          "const": "condition-v01"
+        },
+        "machine_envelope": {
+          "properties": {
+            "path": {
+              "const": "research/calibration-tests/continuous-action-pilot/runs/continuous-002/submissions/envelopes/p01-stage1.json"
+            }
+          }
+        },
+        "raw_payload": {
+          "properties": {
+            "path": {
+              "const": "research/calibration-tests/continuous-action-pilot/runs/continuous-002/submissions/raw/p01-stage1.json"
+            }
+          }
+        },
+        "reconstruction_submission": {
+          "properties": {
+            "path": {
+              "const": "research/calibration-tests/continuous-action-pilot/runs/continuous-002/submissions/p01-stage1.json"
+            }
+          }
+        },
+        "seat_id": {
+          "const": "p01"
+        },
+        "stage1_dispatch_receipt": {
+          "properties": {
+            "path": {
+              "const": "research/calibration-tests/continuous-action-pilot/runs/continuous-002/submissions/dispatch/stage1-p01.json"
+            }
+          }
+        },
+        "stage1_turn_audit": {
+          "properties": {
+            "path": {
+              "const": "research/calibration-tests/continuous-action-pilot/runs/continuous-002/submissions/audits/p01-stage1-turn.json"
+            }
+          }
+        }
+      }
+    },
+    "memberP02": {
+      "$ref": "#/$defs/cohortMember",
+      "properties": {
+        "condition_id": {
+          "const": "condition-v01"
+        },
+        "machine_envelope": {
+          "properties": {
+            "path": {
+              "const": "research/calibration-tests/continuous-action-pilot/runs/continuous-002/submissions/envelopes/p02-stage1.json"
+            }
+          }
+        },
+        "raw_payload": {
+          "properties": {
+            "path": {
+              "const": "research/calibration-tests/continuous-action-pilot/runs/continuous-002/submissions/raw/p02-stage1.json"
+            }
+          }
+        },
+        "reconstruction_submission": {
+          "properties": {
+            "path": {
+              "const": "research/calibration-tests/continuous-action-pilot/runs/continuous-002/submissions/p02-stage1.json"
+            }
+          }
+        },
+        "seat_id": {
+          "const": "p02"
+        },
+        "stage1_dispatch_receipt": {
+          "properties": {
+            "path": {
+              "const": "research/calibration-tests/continuous-action-pilot/runs/continuous-002/submissions/dispatch/stage1-p02.json"
+            }
+          }
+        },
+        "stage1_turn_audit": {
+          "properties": {
+            "path": {
+              "const": "research/calibration-tests/continuous-action-pilot/runs/continuous-002/submissions/audits/p02-stage1-turn.json"
+            }
+          }
+        }
+      }
+    },
+    "memberP03": {
+      "$ref": "#/$defs/cohortMember",
+      "properties": {
+        "condition_id": {
+          "const": "condition-v02"
+        },
+        "machine_envelope": {
+          "properties": {
+            "path": {
+              "const": "research/calibration-tests/continuous-action-pilot/runs/continuous-002/submissions/envelopes/p03-stage1.json"
+            }
+          }
+        },
+        "raw_payload": {
+          "properties": {
+            "path": {
+              "const": "research/calibration-tests/continuous-action-pilot/runs/continuous-002/submissions/raw/p03-stage1.json"
+            }
+          }
+        },
+        "reconstruction_submission": {
+          "properties": {
+            "path": {
+              "const": "research/calibration-tests/continuous-action-pilot/runs/continuous-002/submissions/p03-stage1.json"
+            }
+          }
+        },
+        "seat_id": {
+          "const": "p03"
+        },
+        "stage1_dispatch_receipt": {
+          "properties": {
+            "path": {
+              "const": "research/calibration-tests/continuous-action-pilot/runs/continuous-002/submissions/dispatch/stage1-p03.json"
+            }
+          }
+        },
+        "stage1_turn_audit": {
+          "properties": {
+            "path": {
+              "const": "research/calibration-tests/continuous-action-pilot/runs/continuous-002/submissions/audits/p03-stage1-turn.json"
+            }
+          }
+        }
+      }
+    },
+    "memberP04": {
+      "$ref": "#/$defs/cohortMember",
+      "properties": {
+        "condition_id": {
+          "const": "condition-v02"
+        },
+        "machine_envelope": {
+          "properties": {
+            "path": {
+              "const": "research/calibration-tests/continuous-action-pilot/runs/continuous-002/submissions/envelopes/p04-stage1.json"
+            }
+          }
+        },
+        "raw_payload": {
+          "properties": {
+            "path": {
+              "const": "research/calibration-tests/continuous-action-pilot/runs/continuous-002/submissions/raw/p04-stage1.json"
+            }
+          }
+        },
+        "reconstruction_submission": {
+          "properties": {
+            "path": {
+              "const": "research/calibration-tests/continuous-action-pilot/runs/continuous-002/submissions/p04-stage1.json"
+            }
+          }
+        },
+        "seat_id": {
+          "const": "p04"
+        },
+        "stage1_dispatch_receipt": {
+          "properties": {
+            "path": {
+              "const": "research/calibration-tests/continuous-action-pilot/runs/continuous-002/submissions/dispatch/stage1-p04.json"
+            }
+          }
+        },
+        "stage1_turn_audit": {
+          "properties": {
+            "path": {
+              "const": "research/calibration-tests/continuous-action-pilot/runs/continuous-002/submissions/audits/p04-stage1-turn.json"
+            }
+          }
+        }
+      }
+    },
+    "sha256": {
+      "pattern": "^(?!0{64}$)[0-9a-f]{64}$",
+      "type": "string"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "$schema": {
+      "const": "https://github.com/onovich/Game-Primitives/blob/main/research/calibration-tests/continuous-action-pilot/schema/stage1-cohort-lock-0.1.1.schema.json"
+    },
+    "all_stage1_frozen": {
+      "const": true
+    },
+    "artifact_type": {
+      "const": "stage1_cohort_lock"
+    },
+    "artifact_version": {
+      "const": "0.1.1"
+    },
+    "authorization_receipt": {
+      "$ref": "#/$defs/authorizationReceiptReference"
+    },
+    "common_stage2_facility_files": {
+      "items": {
+        "$ref": "#/$defs/fileReference"
+      },
+      "minItems": 1,
+      "type": "array",
+      "uniqueItems": true
+    },
+    "common_stage2_participant_files": {
+      "items": {
+        "$ref": "#/$defs/fileReference"
+      },
+      "maxItems": 3,
+      "minItems": 3,
+      "type": "array",
+      "uniqueItems": true
+    },
+    "common_stage2_schema_dependency_closure": {
+      "items": {
+        "$ref": "#/$defs/dependencyEdge"
+      },
+      "minItems": 1,
+      "type": "array",
+      "uniqueItems": true
+    },
+    "condition_counts": {
+      "additionalProperties": false,
+      "properties": {
+        "condition-v01": {
+          "const": 2
+        },
+        "condition-v02": {
+          "const": 2
+        }
+      },
+      "required": [
+        "condition-v01",
+        "condition-v02"
+      ],
+      "type": "object"
+    },
+    "independent_actor_sessions_verified": {
+      "const": true
+    },
+    "lock_id": {
+      "$ref": "#/$defs/localId"
+    },
+    "lock_status": {
+      "const": "locked"
+    },
+    "members": {
+      "allOf": [
+        {
+          "contains": {
+            "$ref": "#/$defs/memberP01"
+          },
+          "maxContains": 1,
+          "minContains": 1
+        },
+        {
+          "contains": {
+            "$ref": "#/$defs/memberP02"
+          },
+          "maxContains": 1,
+          "minContains": 1
+        },
+        {
+          "contains": {
+            "$ref": "#/$defs/memberP03"
+          },
+          "maxContains": 1,
+          "minContains": 1
+        },
+        {
+          "contains": {
+            "$ref": "#/$defs/memberP04"
+          },
+          "maxContains": 1,
+          "minContains": 1
+        }
+      ],
+      "items": {
+        "oneOf": [
+          {
+            "$ref": "#/$defs/memberP01"
+          },
+          {
+            "$ref": "#/$defs/memberP02"
+          },
+          {
+            "$ref": "#/$defs/memberP03"
+          },
+          {
+            "$ref": "#/$defs/memberP04"
+          }
+        ]
+      },
+      "maxItems": 4,
+      "minItems": 4,
+      "type": "array",
+      "uniqueItems": true
+    },
+    "run_id": {
+      "const": "continuous-002"
+    }
+  },
+  "required": [
+    "$schema",
+    "all_stage1_frozen",
+    "artifact_type",
+    "artifact_version",
+    "authorization_receipt",
+    "common_stage2_facility_files",
+    "common_stage2_participant_files",
+    "common_stage2_schema_dependency_closure",
+    "condition_counts",
+    "independent_actor_sessions_verified",
+    "lock_id",
+    "lock_status",
+    "members",
+    "run_id"
+  ],
+  "title": "continuous-002 Stage 1 Cohort Lock 0.1.1",
+  "type": "object"
+}

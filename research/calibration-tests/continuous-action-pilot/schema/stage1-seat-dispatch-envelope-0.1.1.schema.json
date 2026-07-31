@@ -1,0 +1,739 @@
+{
+  "$id": "https://github.com/onovich/Game-Primitives/blob/main/research/calibration-tests/continuous-action-pilot/schema/stage1-seat-dispatch-envelope-0.1.1.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$defs": {
+    "actorBindingReceipt": {
+      "additionalProperties": false,
+      "properties": {
+        "actor_identifier": {
+          "$ref": "#/$defs/localId"
+        },
+        "actor_object_sha256": {
+          "$ref": "#/$defs/sha256"
+        },
+        "session_id": {
+          "minLength": 1,
+          "type": "string"
+        }
+      },
+      "required": [
+        "actor_identifier",
+        "actor_object_sha256",
+        "session_id"
+      ],
+      "type": "object"
+    },
+    "actorBindingTemplate": {
+      "additionalProperties": false,
+      "properties": {
+        "actor_identifier": {
+          "type": "null"
+        },
+        "actor_object_sha256": {
+          "type": "null"
+        },
+        "session_id": {
+          "type": "null"
+        }
+      },
+      "required": [
+        "actor_identifier",
+        "actor_object_sha256",
+        "session_id"
+      ],
+      "type": "object"
+    },
+    "artifactReference": {
+      "additionalProperties": false,
+      "properties": {
+        "path": {
+          "pattern": "^(?:research/calibration-tests/continuous-action-pilot/(?:schema|tools|contracts)/[A-Za-z0-9][A-Za-z0-9._-]*|research/calibration-tests/continuous-action-pilot/runs/continuous-002/(?:[A-Za-z0-9][A-Za-z0-9._-]*/)*[A-Za-z0-9][A-Za-z0-9._-]*)$",
+          "type": "string"
+        },
+        "sha256": {
+          "$ref": "#/$defs/sha256"
+        }
+      },
+      "required": [
+        "path",
+        "sha256"
+      ],
+      "type": "object"
+    },
+    "actorDispatchPlanReference": {
+      "$ref": "#/$defs/artifactReference",
+      "properties": {
+        "path": {
+          "const": "research/calibration-tests/continuous-action-pilot/runs/continuous-002/inputs/dispatch/actor-dispatch-plan.json"
+        }
+      }
+    },
+    "authorizationReceiptReference": {
+      "$ref": "#/$defs/artifactReference",
+      "properties": {
+        "path": {
+          "const": "research/calibration-tests/continuous-action-pilot/runs/continuous-002/submissions/dispatch/human-gate-authorization.json"
+        }
+      }
+    },
+    "conditionBindingReceipt": {
+      "additionalProperties": false,
+      "properties": {
+        "condition_id": {
+          "pattern": "^condition-v0[12]$",
+          "type": "string"
+        },
+        "condition_view_path": {
+          "pattern": "^research/calibration-tests/continuous-action-pilot/runs/continuous-002/inputs/stage1-view-v0[12]\\.json$",
+          "type": "string"
+        },
+        "condition_view_sha256": {
+          "$ref": "#/$defs/sha256"
+        },
+        "task_path": {
+          "pattern": "^research/calibration-tests/continuous-action-pilot/runs/continuous-002/inputs/stage1-condition-v0[12]\\.task\\.json$",
+          "type": "string"
+        },
+        "task_sha256": {
+          "$ref": "#/$defs/sha256"
+        }
+      },
+      "required": [
+        "condition_id",
+        "condition_view_path",
+        "condition_view_sha256",
+        "task_path",
+        "task_sha256"
+      ],
+      "type": "object"
+    },
+    "conditionBindingTemplate": {
+      "additionalProperties": false,
+      "properties": {
+        "condition_id": {
+          "pattern": "^condition-v0[12]$",
+          "type": "string"
+        },
+        "condition_view_path": {
+          "pattern": "^research/calibration-tests/continuous-action-pilot/runs/continuous-002/inputs/stage1-view-v0[12]\\.json$",
+          "type": "string"
+        },
+        "condition_view_sha256": {
+          "type": "null"
+        },
+        "task_path": {
+          "pattern": "^research/calibration-tests/continuous-action-pilot/runs/continuous-002/inputs/stage1-condition-v0[12]\\.task\\.json$",
+          "type": "string"
+        },
+        "task_sha256": {
+          "type": "null"
+        }
+      },
+      "required": [
+        "condition_id",
+        "condition_view_path",
+        "condition_view_sha256",
+        "task_path",
+        "task_sha256"
+      ],
+      "type": "object"
+    },
+    "dependencyEdge": {
+      "additionalProperties": false,
+      "properties": {
+        "document_path": {
+          "pattern": "^research/calibration-tests/continuous-action-pilot/runs/continuous-002/(?:[A-Za-z0-9][A-Za-z0-9._-]*/)*[A-Za-z0-9][A-Za-z0-9._-]*$",
+          "type": "string"
+        },
+        "schema_path": {
+          "pattern": "^research/calibration-tests/continuous-action-pilot/schema/[A-Za-z0-9][A-Za-z0-9._-]*\\.schema\\.json$",
+          "type": "string"
+        }
+      },
+      "required": [
+        "document_path",
+        "schema_path"
+      ],
+      "type": "object"
+    },
+    "dispatchPromptReference": {
+      "$ref": "#/$defs/artifactReference",
+      "properties": {
+        "path": {
+          "pattern": "^research/calibration-tests/continuous-action-pilot/runs/continuous-002/inputs/dispatch/prompts/stage1-p0[1-4]\\.prompt\\.txt$"
+        }
+      }
+    },
+    "dispatchTransferReceipt": {
+      "additionalProperties": false,
+      "properties": {
+        "dispatched_at": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "external_task_id": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "external_thread_id": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "readback_utf8_sha256": {
+          "$ref": "#/$defs/sha256"
+        },
+        "submitted_utf8_sha256": {
+          "$ref": "#/$defs/sha256"
+        }
+      },
+      "required": [
+        "dispatched_at",
+        "external_task_id",
+        "external_thread_id",
+        "readback_utf8_sha256",
+        "submitted_utf8_sha256"
+      ],
+      "type": "object"
+    },
+    "localId": {
+      "pattern": "^[a-z0-9][a-z0-9._-]*$",
+      "type": "string"
+    },
+    "lockedFile": {
+      "additionalProperties": false,
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "dispatch_role": {
+                "const": "participant_cognitive_input"
+              }
+            },
+            "required": [
+              "dispatch_role"
+            ]
+          },
+          "then": {
+            "properties": {
+              "path": {
+                "pattern": "^research/calibration-tests/continuous-action-pilot/runs/continuous-002/inputs/(?:[A-Za-z0-9][A-Za-z0-9._-]*/)*[A-Za-z0-9][A-Za-z0-9._-]*$"
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "dispatch_role": {
+                "const": "facility_schema"
+              }
+            },
+            "required": [
+              "dispatch_role"
+            ]
+          },
+          "then": {
+            "properties": {
+              "path": {
+                "pattern": "^research/calibration-tests/continuous-action-pilot/schema/[A-Za-z0-9][A-Za-z0-9._-]*\\.schema\\.json$"
+              }
+            }
+          }
+        }
+      ],
+      "properties": {
+        "dispatch_role": {
+          "enum": [
+            "participant_cognitive_input",
+            "facility_schema"
+          ]
+        },
+        "path": {
+          "type": "string"
+        },
+        "sha256": {
+          "$ref": "#/$defs/sha256"
+        }
+      },
+      "required": [
+        "dispatch_role",
+        "path",
+        "sha256"
+      ],
+      "type": "object"
+    },
+    "receipt": {
+      "additionalProperties": false,
+      "allOf": [
+        {
+          "$ref": "#/$defs/seatConditionInvariant"
+        }
+      ],
+      "properties": {
+        "$schema": {
+          "const": "https://github.com/onovich/Game-Primitives/blob/main/research/calibration-tests/continuous-action-pilot/schema/stage1-seat-dispatch-envelope-0.1.1.schema.json"
+        },
+        "actor_binding": {
+          "$ref": "#/$defs/actorBindingReceipt"
+        },
+        "actor_dispatch_plan": {
+          "$ref": "#/$defs/actorDispatchPlanReference"
+        },
+        "actor_source": {
+          "$ref": "#/$defs/artifactReference"
+        },
+        "artifact_type": {
+          "const": "stage1_seat_dispatch_receipt"
+        },
+        "artifact_version": {
+          "const": "0.1.1"
+        },
+        "authorization_receipt": {
+          "$ref": "#/$defs/authorizationReceiptReference"
+        },
+        "condition_binding": {
+          "$ref": "#/$defs/conditionBindingReceipt"
+        },
+        "dispatch_prompt": {
+          "$ref": "#/$defs/dispatchPromptReference"
+        },
+        "dispatch_status": {
+          "const": "dispatched_and_readback_verified"
+        },
+        "dispatch_transport": {
+          "$ref": "#/$defs/dispatchTransferReceipt"
+        },
+        "facility_files": {
+          "items": {
+            "$ref": "#/$defs/lockedFile"
+          },
+          "minItems": 1,
+          "type": "array",
+          "uniqueItems": true
+        },
+        "participant_files": {
+          "items": {
+            "$ref": "#/$defs/lockedFile"
+          },
+          "maxItems": 3,
+          "minItems": 3,
+          "type": "array",
+          "uniqueItems": true
+        },
+        "receipt_id": {
+          "$ref": "#/$defs/localId"
+        },
+        "release_authorized": {
+          "const": true
+        },
+        "run_id": {
+          "const": "continuous-002"
+        },
+        "schema_dependency_closure": {
+          "items": {
+            "$ref": "#/$defs/dependencyEdge"
+          },
+          "minItems": 1,
+          "type": "array",
+          "uniqueItems": true
+        },
+        "seat_id": {
+          "pattern": "^p0[1-4]$",
+          "type": "string"
+        },
+        "stage": {
+          "const": "reconstruction"
+        },
+        "template_source": {
+          "$ref": "#/$defs/artifactReference"
+        }
+      },
+      "required": [
+        "$schema",
+        "actor_binding",
+        "actor_dispatch_plan",
+        "actor_source",
+        "artifact_type",
+        "artifact_version",
+        "authorization_receipt",
+        "condition_binding",
+        "dispatch_prompt",
+        "dispatch_status",
+        "dispatch_transport",
+        "facility_files",
+        "participant_files",
+        "receipt_id",
+        "release_authorized",
+        "run_id",
+        "schema_dependency_closure",
+        "seat_id",
+        "stage",
+        "template_source"
+      ],
+      "type": "object"
+    },
+    "seatConditionInvariant": {
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "seat_id": {
+                "enum": [
+                  "p01",
+                  "p02"
+                ]
+              }
+            },
+            "required": [
+              "seat_id"
+            ]
+          },
+          "then": {
+            "properties": {
+              "condition_binding": {
+                "properties": {
+                  "condition_id": {
+                    "const": "condition-v01"
+                  },
+                  "condition_view_path": {
+                    "const": "research/calibration-tests/continuous-action-pilot/runs/continuous-002/inputs/stage1-view-v01.json"
+                  },
+                  "task_path": {
+                    "const": "research/calibration-tests/continuous-action-pilot/runs/continuous-002/inputs/stage1-condition-v01.task.json"
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "seat_id": {
+                "enum": [
+                  "p03",
+                  "p04"
+                ]
+              }
+            },
+            "required": [
+              "seat_id"
+            ]
+          },
+          "then": {
+            "properties": {
+              "condition_binding": {
+                "properties": {
+                  "condition_id": {
+                    "const": "condition-v02"
+                  },
+                  "condition_view_path": {
+                    "const": "research/calibration-tests/continuous-action-pilot/runs/continuous-002/inputs/stage1-view-v02.json"
+                  },
+                  "task_path": {
+                    "const": "research/calibration-tests/continuous-action-pilot/runs/continuous-002/inputs/stage1-condition-v02.task.json"
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "seat_id": {
+                "const": "p01"
+              }
+            },
+            "required": [
+              "seat_id"
+            ]
+          },
+          "then": {
+            "properties": {
+              "dispatch_prompt": {
+                "properties": {
+                  "path": {
+                    "const": "research/calibration-tests/continuous-action-pilot/runs/continuous-002/inputs/dispatch/prompts/stage1-p01.prompt.txt"
+                  }
+                }
+              },
+              "planned_receipt_path": {
+                "const": "research/calibration-tests/continuous-action-pilot/runs/continuous-002/submissions/dispatch/stage1-p01.json"
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "seat_id": {
+                "const": "p02"
+              }
+            },
+            "required": [
+              "seat_id"
+            ]
+          },
+          "then": {
+            "properties": {
+              "dispatch_prompt": {
+                "properties": {
+                  "path": {
+                    "const": "research/calibration-tests/continuous-action-pilot/runs/continuous-002/inputs/dispatch/prompts/stage1-p02.prompt.txt"
+                  }
+                }
+              },
+              "planned_receipt_path": {
+                "const": "research/calibration-tests/continuous-action-pilot/runs/continuous-002/submissions/dispatch/stage1-p02.json"
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "seat_id": {
+                "const": "p03"
+              }
+            },
+            "required": [
+              "seat_id"
+            ]
+          },
+          "then": {
+            "properties": {
+              "dispatch_prompt": {
+                "properties": {
+                  "path": {
+                    "const": "research/calibration-tests/continuous-action-pilot/runs/continuous-002/inputs/dispatch/prompts/stage1-p03.prompt.txt"
+                  }
+                }
+              },
+              "planned_receipt_path": {
+                "const": "research/calibration-tests/continuous-action-pilot/runs/continuous-002/submissions/dispatch/stage1-p03.json"
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "seat_id": {
+                "const": "p04"
+              }
+            },
+            "required": [
+              "seat_id"
+            ]
+          },
+          "then": {
+            "properties": {
+              "dispatch_prompt": {
+                "properties": {
+                  "path": {
+                    "const": "research/calibration-tests/continuous-action-pilot/runs/continuous-002/inputs/dispatch/prompts/stage1-p04.prompt.txt"
+                  }
+                }
+              },
+              "planned_receipt_path": {
+                "const": "research/calibration-tests/continuous-action-pilot/runs/continuous-002/submissions/dispatch/stage1-p04.json"
+              }
+            }
+          }
+        }
+      ]
+    },
+    "sha256": {
+      "pattern": "^(?!0{64}$)[0-9a-f]{64}$",
+      "type": "string"
+    },
+    "template": {
+      "additionalProperties": false,
+      "allOf": [
+        {
+          "$ref": "#/$defs/seatConditionInvariant"
+        }
+      ],
+      "properties": {
+        "$schema": {
+          "const": "https://github.com/onovich/Game-Primitives/blob/main/research/calibration-tests/continuous-action-pilot/schema/stage1-seat-dispatch-envelope-0.1.1.schema.json"
+        },
+        "actor_binding": {
+          "$ref": "#/$defs/actorBindingTemplate"
+        },
+        "actor_dispatch_plan": {
+          "$ref": "#/$defs/actorDispatchPlanReference"
+        },
+        "actor_source": {
+          "type": "null"
+        },
+        "artifact_type": {
+          "const": "stage1_seat_dispatch_template"
+        },
+        "artifact_version": {
+          "const": "0.1.1"
+        },
+        "authorization_receipt": {
+          "type": "null"
+        },
+        "condition_binding": {
+          "$ref": "#/$defs/conditionBindingTemplate"
+        },
+        "dispatch_prompt": {
+          "$ref": "#/$defs/dispatchPromptReference"
+        },
+        "dispatch_status": {
+          "const": "template_only"
+        },
+        "dispatch_transport": {
+          "type": "null"
+        },
+        "facility_files": {
+          "items": {
+            "$ref": "#/$defs/templateFile"
+          },
+          "minItems": 1,
+          "type": "array",
+          "uniqueItems": true
+        },
+        "participant_files": {
+          "items": {
+            "$ref": "#/$defs/templateFile"
+          },
+          "maxItems": 3,
+          "minItems": 3,
+          "type": "array",
+          "uniqueItems": true
+        },
+        "planned_receipt_path": {
+          "pattern": "^research/calibration-tests/continuous-action-pilot/runs/continuous-002/submissions/dispatch/stage1-p0[1-4]\\.json$",
+          "type": "string"
+        },
+        "release_authorized": {
+          "const": false
+        },
+        "run_id": {
+          "const": "continuous-002"
+        },
+        "schema_dependency_closure": {
+          "items": {
+            "$ref": "#/$defs/dependencyEdge"
+          },
+          "minItems": 1,
+          "type": "array",
+          "uniqueItems": true
+        },
+        "seat_id": {
+          "pattern": "^p0[1-4]$",
+          "type": "string"
+        },
+        "stage": {
+          "const": "reconstruction"
+        },
+        "template_id": {
+          "$ref": "#/$defs/localId"
+        },
+        "template_source": {
+          "type": "null"
+        }
+      },
+      "required": [
+        "$schema",
+        "actor_binding",
+        "actor_dispatch_plan",
+        "actor_source",
+        "artifact_type",
+        "artifact_version",
+        "authorization_receipt",
+        "condition_binding",
+        "dispatch_prompt",
+        "dispatch_status",
+        "dispatch_transport",
+        "facility_files",
+        "participant_files",
+        "planned_receipt_path",
+        "release_authorized",
+        "run_id",
+        "schema_dependency_closure",
+        "seat_id",
+        "stage",
+        "template_id",
+        "template_source"
+      ],
+      "type": "object"
+    },
+    "templateFile": {
+      "additionalProperties": false,
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "dispatch_role": {
+                "const": "participant_cognitive_input"
+              }
+            },
+            "required": [
+              "dispatch_role"
+            ]
+          },
+          "then": {
+            "properties": {
+              "path": {
+                "pattern": "^research/calibration-tests/continuous-action-pilot/runs/continuous-002/inputs/(?:[A-Za-z0-9][A-Za-z0-9._-]*/)*[A-Za-z0-9][A-Za-z0-9._-]*$"
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "dispatch_role": {
+                "const": "facility_schema"
+              }
+            },
+            "required": [
+              "dispatch_role"
+            ]
+          },
+          "then": {
+            "properties": {
+              "path": {
+                "pattern": "^research/calibration-tests/continuous-action-pilot/schema/[A-Za-z0-9][A-Za-z0-9._-]*\\.schema\\.json$"
+              }
+            }
+          }
+        }
+      ],
+      "properties": {
+        "dispatch_role": {
+          "enum": [
+            "participant_cognitive_input",
+            "facility_schema"
+          ]
+        },
+        "path": {
+          "type": "string"
+        },
+        "sha256": {
+          "type": "null"
+        }
+      },
+      "required": [
+        "dispatch_role",
+        "path",
+        "sha256"
+      ],
+      "type": "object"
+    }
+  },
+  "oneOf": [
+    {
+      "$ref": "#/$defs/template"
+    },
+    {
+      "$ref": "#/$defs/receipt"
+    }
+  ],
+  "title": "continuous-002 Per-Seat Stage 1 Dispatch Template and Receipt 0.1.1"
+}
